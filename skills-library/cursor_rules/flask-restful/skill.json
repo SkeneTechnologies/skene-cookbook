@@ -1,0 +1,34 @@
+{
+  "id": "cursor_rules/flask-restful",
+  "version": "1.0.0",
+  "name": "flask-restful",
+  "description": "This guide defines definitive best practices for building robust, maintainable, and modern REST APIs using Flask-RESTful, emphasizing Pydantic for validation and clear architectural patterns.",
+  "domain": "cursor_rules",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "cursor_rules",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "cursor": {
+      "globs": [
+        "**/*.py"
+      ]
+    },
+    "claude": {
+      "triggers": [
+        "help with flask restful"
+      ]
+    },
+    "skeneflow": {}
+  }
+}

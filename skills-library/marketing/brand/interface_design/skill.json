@@ -1,0 +1,51 @@
+{
+  "id": "marketing_interface_design",
+  "version": "1.0.0",
+  "name": "interface-design",
+  "description": "This skill is for interface design — dashboards, admin panels, apps, tools, and interactive products. NOT for marketing design (landing pages, marketing sites, campaigns).",
+  "domain": "marketing",
+  "category": "brand",
+  "source": "skene-marketing",
+  "tools": [],
+  "exitStates": [
+    "idle",
+    "support"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {},
+    "required": []
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {}
+  },
+  "temperature": 0.3,
+  "tags": [
+    "marketing",
+    "brand",
+    "interface-design",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with interface design",
+        "campaigns"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "resend.send_email",
+          "required": false
+        },
+        {
+          "name": "analytics.track_campaign",
+          "required": false
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "id": "marketing_daily_journal_writer",
+  "version": "1.0.0",
+  "name": "daily-journal-writer",
+  "description": "Generates structured daily activity journals tracking accomplishments, plans, metrics, and insights. Creates narrative-style entries that document campaign progress, skill executions, outreach status, and priorities. Use at the end of each day or when reviewing campaign progress.",
+  "domain": "marketing",
+  "category": "operations",
+  "source": "skene-marketing",
+  "tools": [],
+  "exitStates": [
+    "idle",
+    "support"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {},
+    "required": []
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {}
+  },
+  "temperature": 0.3,
+  "tags": [
+    "marketing",
+    "operations",
+    "daily-journal-writer",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with daily journal writer"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "resend.send_email",
+          "required": false
+        },
+        {
+          "name": "analytics.track_campaign",
+          "required": false
+        }
+      ]
+    }
+  }
+}

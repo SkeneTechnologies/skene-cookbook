@@ -1,0 +1,126 @@
+{
+  "id": "mon_cohort_ltv_analyzer",
+  "version": "1.0.0",
+  "name": "Cohort LTV Analyzer",
+  "description": "Analyzes lifetime value by cohort to optimize acquisition and retention strategies",
+  "domain": "monetization",
+  "tools": [
+    {
+      "name": "analytics.cohort",
+      "required": true
+    },
+    {
+      "name": "analytics.get_metrics",
+      "required": true
+    },
+    {
+      "name": "ai.ltv_prediction",
+      "required": true
+    },
+    {
+      "name": "stripe.list_customers",
+      "required": false
+    },
+    {
+      "name": "crm.segment_accounts",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "analysis_complete",
+    "segment_identified",
+    "action_recommended",
+    "model_updated",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "cohort_by": {
+        "type": "string",
+        "enum": [
+          "signup_month",
+          "acquisition_channel",
+          "plan",
+          "industry",
+          "company_size"
+        ],
+        "default": "signup_month"
+      },
+      "lookback_months": {
+        "type": "integer",
+        "default": 12
+      },
+      "forecast_months": {
+        "type": "integer",
+        "default": 36
+      }
+    },
+    "required": []
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "cohorts": {
+        "type": "array",
+        "description": "LTV metrics by cohort"
+      },
+      "avg_ltv": {
+        "type": "number"
+      },
+      "ltv_to_cac": {
+        "type": "number"
+      },
+      "payback_months": {
+        "type": "number"
+      },
+      "best_performing_cohort": {
+        "type": "object"
+      },
+      "recommendations": {
+        "type": "array"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "ltv_to_cac_ratio",
+    "benchmarks": {
+      "excellent": "> 5x",
+      "good": "3-5x",
+      "needs_improvement": "< 3x"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "monetization",
+    "ltv",
+    "cohort-analysis",
+    "unit-economics",
+    "growth",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Cohort LTV Analyzer"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "stripe.get_customer",
+          "required": true
+        },
+        {
+          "name": "stripe.list_subscriptions",
+          "required": false
+        },
+        {
+          "name": "stripe.create_checkout",
+          "required": false
+        }
+      ]
+    }
+  }
+}

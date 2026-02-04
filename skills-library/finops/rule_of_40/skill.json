@@ -1,0 +1,112 @@
+{
+  "id": "finops_rule_of_40",
+  "version": "1.0.0",
+  "name": "Rule of 40 Calculator",
+  "description": "Tracks growth + profitability metric against SaaS benchmarks to measure business health",
+  "domain": "finops",
+  "tools": [
+    {
+      "name": "stripe.get_metrics",
+      "required": true
+    },
+    {
+      "name": "analytics.calculate",
+      "required": true
+    },
+    {
+      "name": "analytics.get_revenue",
+      "required": true
+    },
+    {
+      "name": "ai.trend_analysis",
+      "required": false
+    },
+    {
+      "name": "benchmarks.compare",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "investor_metrics",
+    "scenario_planner",
+    "benchmark_comparator",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "period": {
+        "type": "string",
+        "description": "Reporting period (YYYY-MM or YYYY)"
+      },
+      "granularity": {
+        "type": "string",
+        "enum": [
+          "monthly",
+          "quarterly",
+          "annual"
+        ],
+        "default": "quarterly"
+      },
+      "include_forecast": {
+        "type": "boolean",
+        "default": true
+      }
+    },
+    "required": [
+      "period"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "rule_of_40_score": {
+        "type": "number"
+      },
+      "revenue_growth_rate": {
+        "type": "number"
+      },
+      "profit_margin": {
+        "type": "number"
+      },
+      "growth_component": {
+        "type": "number"
+      },
+      "profitability_component": {
+        "type": "number"
+      },
+      "benchmark_percentile": {
+        "type": "number"
+      },
+      "trend": {
+        "type": "string"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "rule_of_40_score",
+    "benchmarks": {
+      "excellent": "> 60",
+      "good": "40-60",
+      "needs_improvement": "< 40"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "finops",
+    "metrics",
+    "growth",
+    "profitability",
+    "saas-benchmarks",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Rule of 40 Calculator"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

@@ -1,0 +1,120 @@
+{
+  "id": "mon_payment_method_optimizer",
+  "version": "1.0.0",
+  "name": "Payment Method Optimizer",
+  "description": "Optimizes payment methods to reduce failed payments and processing costs",
+  "domain": "monetization",
+  "tools": [
+    {
+      "name": "stripe.get_customer",
+      "required": true
+    },
+    {
+      "name": "stripe.list_payment_methods",
+      "required": true
+    },
+    {
+      "name": "stripe.update_customer",
+      "required": true
+    },
+    {
+      "name": "analytics.get_metrics",
+      "required": true
+    },
+    {
+      "name": "messaging.send_email",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "payment_updated",
+    "card_expiring_notified",
+    "backup_added",
+    "intervention_needed",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "customer_id": {
+        "type": "string",
+        "description": "Customer to optimize"
+      },
+      "optimization_goal": {
+        "type": "string",
+        "enum": [
+          "reduce_failures",
+          "reduce_fees",
+          "add_backup"
+        ],
+        "default": "reduce_failures"
+      }
+    },
+    "required": [
+      "customer_id"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "current_method": {
+        "type": "object"
+      },
+      "failure_risk": {
+        "type": "string",
+        "enum": [
+          "low",
+          "medium",
+          "high"
+        ]
+      },
+      "recommendations": {
+        "type": "array"
+      },
+      "potential_savings": {
+        "type": "number"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "payment_success_rate",
+    "benchmarks": {
+      "excellent": "> 98%",
+      "good": "95-98%",
+      "needs_improvement": "< 95%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "monetization",
+    "payments",
+    "optimization",
+    "failed-payments",
+    "processing",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Payment Method Optimizer"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "stripe.get_customer",
+          "required": true
+        },
+        {
+          "name": "stripe.list_subscriptions",
+          "required": false
+        },
+        {
+          "name": "stripe.create_checkout",
+          "required": false
+        }
+      ]
+    }
+  }
+}

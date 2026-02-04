@@ -1,0 +1,32 @@
+{
+  "id": "security/firebase-apk-scanner",
+  "version": "1.0.0",
+  "name": "firebase-apk-scanner",
+  "description": "Scans Android APKs for Firebase security misconfigurations including open databases, storage buckets, authentication issues, and exposed cloud functions. Use when analyzing APK files for Firebase vulnerabilities, performing mobile app security audits, or testing Firebase endpoint security. For authorized security research only.",
+  "domain": "security",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "security",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with firebase apk scanner",
+        "security audit",
+        "analyzing apk files for firebase vulnerabilities, performing mobile app security audits, or testing firebase endpoint security"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

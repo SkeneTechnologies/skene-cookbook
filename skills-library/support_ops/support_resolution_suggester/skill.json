@@ -1,0 +1,108 @@
+{
+  "id": "support_resolution_suggester",
+  "version": "1.0.0",
+  "name": "Resolution Suggester",
+  "description": "Suggests optimal resolutions for support tickets by analyzing similar past cases and knowledge base content.",
+  "domain": "support_ops",
+  "tools": [
+    {
+      "name": "rag.search",
+      "required": true
+    },
+    {
+      "name": "ai.generate",
+      "required": true
+    },
+    {
+      "name": "support.get_ticket",
+      "required": true
+    },
+    {
+      "name": "analytics.find_similar_tickets",
+      "required": true
+    },
+    {
+      "name": "support.log_resolution",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "first_response",
+    "kb_gap_finder",
+    "macros_optimizer",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "ticket_id": {
+        "type": "string",
+        "description": "Ticket to find resolution for"
+      },
+      "max_suggestions": {
+        "type": "number",
+        "default": 3
+      },
+      "include_similar_cases": {
+        "type": "boolean",
+        "default": true
+      },
+      "min_confidence": {
+        "type": "number",
+        "default": 0.6
+      }
+    },
+    "required": [
+      "ticket_id"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "ticket_id": {
+        "type": "string"
+      },
+      "suggestions": {
+        "type": "array"
+      },
+      "kb_articles": {
+        "type": "array"
+      },
+      "similar_resolutions": {
+        "type": "array"
+      },
+      "confidence_score": {
+        "type": "number"
+      },
+      "estimated_resolution_time": {
+        "type": "string"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "suggestion_acceptance_rate",
+    "benchmarks": {
+      "excellent": "> 70%",
+      "good": "50-70%",
+      "needs_improvement": "< 50%"
+    }
+  },
+  "temperature": 0.2,
+  "tags": [
+    "support_ops",
+    "resolution",
+    "suggestion",
+    "knowledge",
+    "automation",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Resolution Suggester"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

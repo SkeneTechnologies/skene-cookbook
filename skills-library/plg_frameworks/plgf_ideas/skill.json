@@ -1,0 +1,113 @@
+{
+  "id": "plgf_ideas",
+  "version": "1.0.0",
+  "name": "PLG Ideas Library",
+  "description": "Curated library of 108 PLG tactics organized by category, filterable by difficulty, impact, and PLG lever. A reference guide for growth ideation.",
+  "domain": "plg_frameworks",
+  "tools": [
+    {
+      "name": "analytics.get_metrics",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "experiment_design",
+    "implementation",
+    "prioritization",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "lever": {
+        "type": "string",
+        "enum": [
+          "acquisition",
+          "activation",
+          "retention",
+          "revenue",
+          "referral",
+          "all"
+        ],
+        "description": "PLG lever to filter ideas"
+      },
+      "difficulty": {
+        "type": "string",
+        "enum": [
+          "low",
+          "medium",
+          "high",
+          "all"
+        ],
+        "description": "Implementation difficulty filter"
+      },
+      "impact": {
+        "type": "string",
+        "enum": [
+          "low",
+          "medium",
+          "high",
+          "all"
+        ],
+        "description": "Expected impact filter"
+      },
+      "category": {
+        "type": "string",
+        "description": "Specific category to explore"
+      }
+    },
+    "required": []
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "ideas": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "categories": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "topRecommendations": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      }
+    }
+  },
+  "metrics": {
+    "primary": "idea_implementation_rate",
+    "benchmarks": {
+      "excellent": "> 50% of selected ideas implemented",
+      "good": "30-50% implemented",
+      "needs_improvement": "< 30% implemented"
+    }
+  },
+  "integrations": [],
+  "temperature": 0.5,
+  "tags": [
+    "plg",
+    "ideas",
+    "tactics",
+    "growth",
+    "reference",
+    "ideation",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with PLG Ideas Library",
+        "growth framework"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

@@ -1,0 +1,121 @@
+{
+  "id": "plgf_mental_models",
+  "version": "1.0.0",
+  "name": "PLG Mental Models",
+  "description": "Access and apply 42 mental models for Product-Led Growth with challenge-to-model lookup matrix",
+  "domain": "plg_frameworks",
+  "tools": [
+    {
+      "name": "rag.query",
+      "required": true
+    },
+    {
+      "name": "analytics.get_metrics",
+      "required": false
+    },
+    {
+      "name": "ui_kit.panel",
+      "required": false
+    },
+    {
+      "name": "ui_kit.table",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "model_applied",
+    "models_recommended",
+    "needs_more_context",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "challenge": {
+        "type": "string",
+        "description": "Current PLG challenge or problem to solve"
+      },
+      "category": {
+        "type": "string",
+        "enum": [
+          "acquisition",
+          "activation",
+          "retention",
+          "monetization",
+          "referral",
+          "strategy"
+        ],
+        "description": "Challenge category"
+      },
+      "context": {
+        "type": "object",
+        "description": "Additional context about the situation"
+      },
+      "specificModel": {
+        "type": "string",
+        "description": "Specific mental model to apply"
+      }
+    },
+    "required": [
+      "challenge"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "recommendedModels": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "modelApplication": {
+        "type": "object"
+      },
+      "frameworkSteps": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "relatedModels": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "caseStudies": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      }
+    }
+  },
+  "metrics": {
+    "primary": "model_application_success",
+    "benchmarks": {
+      "excellent": "> 85%",
+      "good": "70-85%",
+      "needs_improvement": "< 70%"
+    }
+  },
+  "temperature": 0.4,
+  "tags": [
+    "plg_frameworks",
+    "mental_models",
+    "strategy",
+    "decision_making",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with PLG Mental Models",
+        "growth framework"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

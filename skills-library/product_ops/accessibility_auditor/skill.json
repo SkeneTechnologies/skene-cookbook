@@ -1,0 +1,119 @@
+{
+  "id": "prodops_accessibility_auditor",
+  "version": "1.0.0",
+  "name": "Accessibility Auditor",
+  "description": "Audits product accessibility compliance against WCAG standards and tracks remediation progress.",
+  "domain": "product_ops",
+  "tools": [
+    {
+      "name": "web.scrape",
+      "required": true
+    },
+    {
+      "name": "browser.audit",
+      "required": true
+    },
+    {
+      "name": "ai.generate",
+      "required": true
+    },
+    {
+      "name": "linear.create_issue",
+      "required": true
+    },
+    {
+      "name": "analytics.get_metrics",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "prioritization_engine",
+    "documentation_health",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "urls": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "URLs to audit"
+      },
+      "standard": {
+        "type": "string",
+        "enum": [
+          "WCAG2.0-A",
+          "WCAG2.0-AA",
+          "WCAG2.1-AA",
+          "WCAG2.2-AA"
+        ],
+        "description": "Accessibility standard"
+      },
+      "includeScreenReader": {
+        "type": "boolean",
+        "description": "Include screen reader testing"
+      },
+      "focusAreas": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Specific areas to focus on"
+      }
+    },
+    "required": [
+      "urls"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "complianceScore": {
+        "type": "number"
+      },
+      "issuesByCategory": {
+        "type": "object"
+      },
+      "criticalIssues": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "remediationPlan": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      }
+    }
+  },
+  "metrics": {
+    "primary": "accessibility_compliance_score",
+    "benchmarks": {
+      "excellent": "> 95%",
+      "good": "85-95%",
+      "needs_improvement": "< 85%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "product_ops",
+    "accessibility",
+    "wcag",
+    "a11y",
+    "compliance",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Accessibility Auditor"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

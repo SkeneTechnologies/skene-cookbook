@@ -1,0 +1,109 @@
+{
+  "id": "support_bug_linker",
+  "version": "1.0.0",
+  "name": "Bug Report Linker",
+  "description": "Automatically links support tickets to existing bug reports and creates new bug reports when patterns emerge.",
+  "domain": "support_ops",
+  "tools": [
+    {
+      "name": "engineering.search_issues",
+      "required": true
+    },
+    {
+      "name": "ai.match_similarity",
+      "required": true
+    },
+    {
+      "name": "support.get_ticket",
+      "required": true
+    },
+    {
+      "name": "engineering.create_issue",
+      "required": false
+    },
+    {
+      "name": "support.link_ticket",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "resolution_suggester",
+    "escalation_predictor",
+    "kb_gap_finder",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "ticket_id": {
+        "type": "string",
+        "description": "Support ticket to analyze"
+      },
+      "auto_link": {
+        "type": "boolean",
+        "default": false
+      },
+      "auto_create_threshold": {
+        "type": "number",
+        "default": 3,
+        "description": "Min similar tickets to auto-create bug"
+      },
+      "similarity_threshold": {
+        "type": "number",
+        "default": 0.8
+      }
+    },
+    "required": [
+      "ticket_id"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "ticket_id": {
+        "type": "string"
+      },
+      "matched_bugs": {
+        "type": "array"
+      },
+      "confidence_scores": {
+        "type": "array"
+      },
+      "new_bug_suggested": {
+        "type": "boolean"
+      },
+      "similar_tickets": {
+        "type": "array"
+      },
+      "linked_bug_id": {
+        "type": "string"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "bug_match_accuracy",
+    "benchmarks": {
+      "excellent": "> 90%",
+      "good": "75-90%",
+      "needs_improvement": "< 75%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "support_ops",
+    "bug",
+    "engineering",
+    "linking",
+    "triage",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Bug Report Linker"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

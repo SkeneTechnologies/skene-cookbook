@@ -1,0 +1,113 @@
+{
+  "id": "devex_support_deflector",
+  "version": "1.0.0",
+  "name": "Developer Support Deflector",
+  "description": "Provides instant answers to common developer questions, reducing support ticket volume while improving developer satisfaction.",
+  "domain": "devex",
+  "tools": [
+    {
+      "name": "rag.query",
+      "required": true
+    },
+    {
+      "name": "ai.generate_answer",
+      "required": true
+    },
+    {
+      "name": "analytics.track_deflection",
+      "required": false
+    },
+    {
+      "name": "support.escalate",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "error_explainer",
+    "api_onboarding",
+    "code_sample_generator",
+    "human_support"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "question": {
+        "type": "string",
+        "description": "Developer's question"
+      },
+      "developer_id": {
+        "type": "string",
+        "description": "Developer for context"
+      },
+      "context": {
+        "type": "object",
+        "description": "Additional context (errors, code, etc.)"
+      },
+      "channel": {
+        "type": "string",
+        "enum": [
+          "chat",
+          "email",
+          "ticket",
+          "docs"
+        ],
+        "default": "chat"
+      }
+    },
+    "required": [
+      "question"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "answer": {
+        "type": "string"
+      },
+      "confidence": {
+        "type": "number"
+      },
+      "sources": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "related_questions": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "escalate": {
+        "type": "boolean"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "ticket_deflection_rate",
+    "benchmarks": {
+      "excellent": "> 70% questions answered",
+      "good": "50-70% questions answered",
+      "needs_improvement": "< 50% questions answered"
+    }
+  },
+  "temperature": 0.3,
+  "tags": [
+    "devex",
+    "support",
+    "self-service",
+    "faq",
+    "documentation",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Developer Support Deflector"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

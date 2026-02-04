@@ -1,0 +1,114 @@
+{
+  "id": "finops_ndr_tracker",
+  "version": "1.0.0",
+  "name": "Net Dollar Retention Tracker",
+  "description": "Tracks Net Dollar Retention to measure revenue expansion efficiency and customer value growth",
+  "domain": "finops",
+  "tools": [
+    {
+      "name": "stripe.get_subscriptions",
+      "required": true
+    },
+    {
+      "name": "analytics.cohort",
+      "required": true
+    },
+    {
+      "name": "analytics.calculate",
+      "required": true
+    },
+    {
+      "name": "crm.get_accounts",
+      "required": false
+    },
+    {
+      "name": "ai.segment_analysis",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "arr_waterfall",
+    "investor_metrics",
+    "churn_analysis",
+    "expansion_playbook",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "period": {
+        "type": "string",
+        "description": "Reporting period (YYYY-MM or YYYY-QX)"
+      },
+      "cohort_by": {
+        "type": "string",
+        "enum": [
+          "signup_month",
+          "segment",
+          "plan",
+          "industry"
+        ],
+        "default": "signup_month"
+      },
+      "lookback_periods": {
+        "type": "integer",
+        "default": 12
+      }
+    },
+    "required": [
+      "period"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "net_dollar_retention": {
+        "type": "number"
+      },
+      "gross_dollar_retention": {
+        "type": "number"
+      },
+      "expansion_rate": {
+        "type": "number"
+      },
+      "contraction_rate": {
+        "type": "number"
+      },
+      "churn_rate": {
+        "type": "number"
+      },
+      "ndr_by_segment": {
+        "type": "object"
+      },
+      "ndr_trend": {
+        "type": "array"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "net_dollar_retention",
+    "benchmarks": {
+      "excellent": "> 130%",
+      "good": "110-130%",
+      "needs_improvement": "< 110%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "finops",
+    "ndr",
+    "retention",
+    "expansion",
+    "saas-metrics",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Net Dollar Retention Tracker"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

@@ -1,0 +1,135 @@
+{
+  "id": "revops_win_loss_analyzer",
+  "version": "1.0.0",
+  "name": "Win/Loss Analysis Engine",
+  "description": "Analyzes closed deals to extract actionable insights on win/loss patterns and competitive dynamics.",
+  "domain": "revops",
+  "tools": [
+    {
+      "name": "crm.get_closed_deals",
+      "required": true
+    },
+    {
+      "name": "crm.get_activities",
+      "required": true
+    },
+    {
+      "name": "ai.analyze_conversation",
+      "required": true
+    },
+    {
+      "name": "ai.extract_themes",
+      "required": true
+    },
+    {
+      "name": "analytics.get_cohort_analysis",
+      "required": true
+    },
+    {
+      "name": "crm.tag_deal",
+      "required": false
+    },
+    {
+      "name": "feedback.request_interview",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "sales_coaching",
+    "competitive_intel",
+    "product_feedback",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "period": {
+        "type": "string",
+        "description": "Analysis period (e.g., 'Q4-2025')"
+      },
+      "segment": {
+        "type": "string"
+      },
+      "outcome": {
+        "type": "string",
+        "enum": [
+          "won",
+          "lost",
+          "both"
+        ]
+      },
+      "competitor": {
+        "type": "string",
+        "description": "Filter by specific competitor"
+      },
+      "minDealSize": {
+        "type": "number"
+      }
+    },
+    "required": [
+      "period"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "winRate": {
+        "type": "number"
+      },
+      "topWinReasons": {
+        "type": "array"
+      },
+      "topLossReasons": {
+        "type": "array"
+      },
+      "competitorAnalysis": {
+        "type": "object"
+      },
+      "recommendations": {
+        "type": "array"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "win_rate_improvement",
+    "benchmarks": {
+      "excellent": "> 5% QoQ improvement",
+      "good": "2-5% QoQ improvement",
+      "needs_improvement": "< 2% QoQ improvement"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "revops",
+    "win-loss",
+    "analysis",
+    "competitive",
+    "sales-effectiveness",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Win/Loss Analysis Engine",
+        "deal velocity"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "crm.get_pipeline",
+          "required": true
+        },
+        {
+          "name": "crm.list_deals",
+          "required": false
+        },
+        {
+          "name": "analytics.get_forecast",
+          "required": false
+        }
+      ]
+    }
+  }
+}

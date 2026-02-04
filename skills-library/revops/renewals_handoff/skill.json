@@ -1,0 +1,135 @@
+{
+  "id": "revops_renewals_handoff",
+  "version": "1.0.0",
+  "name": "Renewals Handoff Orchestrator",
+  "description": "Orchestrates seamless handoff from sales to customer success and manages renewal pipeline.",
+  "domain": "revops",
+  "tools": [
+    {
+      "name": "crm.get_deal",
+      "required": true
+    },
+    {
+      "name": "crm.get_account",
+      "required": true
+    },
+    {
+      "name": "crm.create_renewal_opportunity",
+      "required": true
+    },
+    {
+      "name": "crm.assign_csm",
+      "required": true
+    },
+    {
+      "name": "messaging.send_handoff",
+      "required": true
+    },
+    {
+      "name": "crm.schedule_touchpoints",
+      "required": false
+    },
+    {
+      "name": "analytics.get_renewal_risk",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "pipeline_health",
+    "customer_success",
+    "churn_prevention",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "dealId": {
+        "type": "string"
+      },
+      "accountId": {
+        "type": "string"
+      },
+      "handoffType": {
+        "type": "string",
+        "enum": [
+          "new_customer",
+          "renewal",
+          "expansion"
+        ]
+      },
+      "priority": {
+        "type": "string",
+        "enum": [
+          "standard",
+          "high",
+          "strategic"
+        ]
+      }
+    },
+    "required": [
+      "dealId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "renewalOpportunityId": {
+        "type": "string"
+      },
+      "assignedCsm": {
+        "type": "string"
+      },
+      "handoffComplete": {
+        "type": "boolean"
+      },
+      "scheduledTouchpoints": {
+        "type": "array"
+      },
+      "renewalDate": {
+        "type": "string"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "gross_revenue_retention",
+    "benchmarks": {
+      "excellent": "> 95%",
+      "good": "90-95%",
+      "needs_improvement": "< 90%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "revops",
+    "renewals",
+    "handoff",
+    "customer-success",
+    "retention",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Renewals Handoff Orchestrator",
+        "sales pipeline"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "crm.get_pipeline",
+          "required": true
+        },
+        {
+          "name": "crm.list_deals",
+          "required": false
+        },
+        {
+          "name": "analytics.get_forecast",
+          "required": false
+        }
+      ]
+    }
+  }
+}

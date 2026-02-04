@@ -1,0 +1,115 @@
+{
+  "id": "prodops_beta_program_manager",
+  "version": "1.0.0",
+  "name": "Beta Program Manager",
+  "description": "Manages beta programs including participant selection, feature rollout, feedback collection, and graduation criteria.",
+  "domain": "product_ops",
+  "tools": [
+    {
+      "name": "lifecycle.get_segment",
+      "required": true
+    },
+    {
+      "name": "vercel.edge_config",
+      "required": true
+    },
+    {
+      "name": "messaging.send_email",
+      "required": true
+    },
+    {
+      "name": "analytics.track_event",
+      "required": true
+    },
+    {
+      "name": "feedback.create_survey",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "feature_adoption",
+    "experimentation",
+    "feedback_synthesis",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "betaId": {
+        "type": "string",
+        "description": "Beta program identifier"
+      },
+      "featureId": {
+        "type": "string",
+        "description": "Feature being beta tested"
+      },
+      "action": {
+        "type": "string",
+        "enum": [
+          "setup",
+          "invite",
+          "manage",
+          "graduate"
+        ],
+        "description": "Beta program action"
+      },
+      "criteria": {
+        "type": "object",
+        "description": "Participant selection criteria"
+      }
+    },
+    "required": [
+      "betaId",
+      "featureId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "participants": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "feedbackSummary": {
+        "type": "object"
+      },
+      "graduationReadiness": {
+        "type": "object"
+      },
+      "nextSteps": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "metrics": {
+    "primary": "beta_feedback_rate",
+    "benchmarks": {
+      "excellent": "> 60%",
+      "good": "40-60%",
+      "needs_improvement": "< 40%"
+    }
+  },
+  "temperature": 0.1,
+  "tags": [
+    "product_ops",
+    "beta",
+    "early_access",
+    "feedback",
+    "rollout",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Beta Program Manager"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

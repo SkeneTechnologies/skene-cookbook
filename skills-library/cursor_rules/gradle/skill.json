@@ -1,0 +1,34 @@
+{
+  "id": "cursor_rules/gradle",
+  "version": "1.0.0",
+  "name": "gradle",
+  "description": "Enforce modern Gradle build practices for Java and Android projects, focusing on Kotlin DSL, modularity, version catalogs, and performance optimizations.",
+  "domain": "cursor_rules",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "cursor_rules",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "cursor": {
+      "globs": [
+        "**/*.java"
+      ]
+    },
+    "claude": {
+      "triggers": [
+        "help with gradle"
+      ]
+    },
+    "skeneflow": {}
+  }
+}

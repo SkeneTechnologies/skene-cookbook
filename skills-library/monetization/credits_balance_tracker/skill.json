@@ -1,0 +1,128 @@
+{
+  "id": "mon_credits_balance_tracker",
+  "version": "1.0.0",
+  "name": "Credits Balance Tracker",
+  "description": "Tracks prepaid credits, consumption, expiration, and balance management",
+  "domain": "monetization",
+  "tools": [
+    {
+      "name": "stripe.get_customer_balance",
+      "required": true
+    },
+    {
+      "name": "stripe.create_customer_balance_transaction",
+      "required": true
+    },
+    {
+      "name": "analytics.credit_usage",
+      "required": true
+    },
+    {
+      "name": "messaging.send_email",
+      "required": false
+    },
+    {
+      "name": "ai.forecast",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "balance_healthy",
+    "low_balance_alert",
+    "credits_expiring",
+    "top_up_recommended",
+    "credits_exhausted",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "customer_id": {
+        "type": "string",
+        "description": "Customer to check"
+      },
+      "action": {
+        "type": "string",
+        "enum": [
+          "check",
+          "add",
+          "deduct",
+          "expire",
+          "transfer"
+        ],
+        "default": "check"
+      },
+      "amount": {
+        "type": "number",
+        "description": "Credit amount for add/deduct"
+      }
+    },
+    "required": [
+      "customer_id"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "current_balance": {
+        "type": "number"
+      },
+      "reserved_balance": {
+        "type": "number"
+      },
+      "available_balance": {
+        "type": "number"
+      },
+      "expiring_soon": {
+        "type": "number"
+      },
+      "burn_rate": {
+        "type": "number"
+      },
+      "estimated_runway": {
+        "type": "number"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "credit_utilization_rate",
+    "benchmarks": {
+      "excellent": "> 90%",
+      "good": "70-90%",
+      "needs_improvement": "< 70%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "monetization",
+    "credits",
+    "prepaid",
+    "balance",
+    "consumption",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Credits Balance Tracker"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "stripe.get_customer",
+          "required": true
+        },
+        {
+          "name": "stripe.list_subscriptions",
+          "required": false
+        },
+        {
+          "name": "stripe.create_checkout",
+          "required": false
+        }
+      ]
+    }
+  }
+}

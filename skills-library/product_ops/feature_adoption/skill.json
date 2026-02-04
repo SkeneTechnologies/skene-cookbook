@@ -1,0 +1,56 @@
+{
+  "id": "prodops_feature_adoption",
+  "version": "1.0.0",
+  "name": "Feature Adoption Tracker",
+  "description": "Tracks feature adoption metrics and identifies opportunities to drive usage.",
+  "domain": "product_ops",
+  "tools": [
+    {
+      "name": "analytics.feature_adoption",
+      "required": true
+    },
+    {
+      "name": "analytics.funnel",
+      "required": true
+    },
+    {
+      "name": "lifecycle.get_segment",
+      "required": false
+    },
+    {
+      "name": "messaging.send_in_app",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "adoption_campaign",
+    "feature_sunset",
+    "product_review",
+    "idle"
+  ],
+  "metrics": {
+    "primary": "feature_adoption_rate",
+    "benchmarks": {
+      "excellent": "> 60%",
+      "good": "40-60%",
+      "needs_improvement": "< 40%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "product_ops",
+    "adoption",
+    "features",
+    "usage",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Feature Adoption Tracker"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

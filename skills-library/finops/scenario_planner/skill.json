@@ -1,0 +1,120 @@
+{
+  "id": "finops_scenario_planner",
+  "version": "1.0.0",
+  "name": "Financial Scenario Planner",
+  "description": "Models financial scenarios to support strategic planning and decision-making",
+  "domain": "finops",
+  "tools": [
+    {
+      "name": "analytics.get_actuals",
+      "required": true
+    },
+    {
+      "name": "ai.forecast",
+      "required": true
+    },
+    {
+      "name": "analytics.calculate",
+      "required": true
+    },
+    {
+      "name": "modeling.run_scenario",
+      "required": true
+    },
+    {
+      "name": "visualize.comparison",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "burn_rate_monitor",
+    "investor_metrics",
+    "rule_of_40",
+    "budget_planning",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "base_period": {
+        "type": "string",
+        "description": "Starting period for projections"
+      },
+      "forecast_periods": {
+        "type": "integer",
+        "default": 12
+      },
+      "scenarios": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "default": [
+          "base",
+          "optimistic",
+          "conservative"
+        ]
+      },
+      "key_variables": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "default": [
+          "revenue_growth",
+          "headcount",
+          "burn_rate"
+        ]
+      }
+    },
+    "required": [
+      "base_period"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "scenarios": {
+        "type": "array"
+      },
+      "comparison_metrics": {
+        "type": "object"
+      },
+      "decision_triggers": {
+        "type": "array"
+      },
+      "recommended_scenario": {
+        "type": "string"
+      },
+      "risk_assessment": {
+        "type": "object"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "scenario_coverage",
+    "benchmarks": {
+      "comprehensive": "3+ scenarios",
+      "adequate": "2 scenarios",
+      "insufficient": "1 scenario"
+    }
+  },
+  "temperature": 0.1,
+  "tags": [
+    "finops",
+    "scenario-planning",
+    "forecasting",
+    "strategy",
+    "modeling",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Financial Scenario Planner"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

@@ -1,0 +1,125 @@
+{
+  "id": "elg_integration_health",
+  "version": "1.0.0",
+  "name": "Integration Health Monitor",
+  "description": "Monitors the health, performance, and usage of partner integrations to ensure reliability and identify optimization opportunities.",
+  "domain": "ecosystem",
+  "tools": [
+    {
+      "name": "integration.get_status",
+      "required": true
+    },
+    {
+      "name": "integration.get_metrics",
+      "required": true
+    },
+    {
+      "name": "integration.get_errors",
+      "required": true
+    },
+    {
+      "name": "analytics.get_usage",
+      "required": false
+    },
+    {
+      "name": "messaging.send_alert",
+      "required": false
+    },
+    {
+      "name": "partner.notify",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "tech_partner_finder",
+    "partner_tier_manager",
+    "support",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "integrationId": {
+        "type": "string",
+        "description": "Integration to monitor"
+      },
+      "partnerId": {
+        "type": "string",
+        "description": "Partner owning the integration"
+      },
+      "checkType": {
+        "type": "string",
+        "enum": [
+          "health",
+          "performance",
+          "usage",
+          "full"
+        ]
+      }
+    },
+    "required": [
+      "integrationId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "health_status": {
+        "type": "string",
+        "enum": [
+          "healthy",
+          "degraded",
+          "critical",
+          "offline"
+        ]
+      },
+      "uptime": {
+        "type": "number"
+      },
+      "error_rate": {
+        "type": "number"
+      },
+      "usage_metrics": {
+        "type": "object"
+      },
+      "issues": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "recommendations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "metrics": {
+    "primary": "integration_uptime",
+    "benchmarks": {
+      "excellent": "> 99.9%",
+      "good": "99-99.9%",
+      "needs_improvement": "< 99%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "ecosystem",
+    "integration",
+    "monitoring",
+    "health",
+    "reliability",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Integration Health Monitor"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "id": "cursor_rules/redux",
+  "version": "1.0.0",
+  "name": "redux",
+  "description": "This guide defines the definitive best practices for using Redux in our projects, mandating Redux Toolkit (RTK) for all state management logic to ensure consistency, maintainability, and optimal performance.",
+  "domain": "cursor_rules",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "cursor_rules",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "cursor": {
+      "globs": [
+        "**/*.{js",
+        "jsx}"
+      ]
+    },
+    "claude": {
+      "triggers": [
+        "help with redux"
+      ]
+    },
+    "skeneflow": {}
+  }
+}

@@ -1,0 +1,131 @@
+{
+  "id": "revops_sales_content_recommender",
+  "version": "1.0.0",
+  "name": "Sales Content Recommender",
+  "description": "Recommends relevant sales collateral, case studies, and battle cards based on deal context and buyer journey.",
+  "domain": "revops",
+  "tools": [
+    {
+      "name": "crm.get_deal",
+      "required": true
+    },
+    {
+      "name": "crm.get_account",
+      "required": true
+    },
+    {
+      "name": "content.search",
+      "required": true
+    },
+    {
+      "name": "content.get_usage_stats",
+      "required": true
+    },
+    {
+      "name": "ai.match_content",
+      "required": true
+    },
+    {
+      "name": "crm.log_activity",
+      "required": false
+    },
+    {
+      "name": "analytics.track_content_share",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "deal_inspection",
+    "competitive_intel",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "dealId": {
+        "type": "string"
+      },
+      "stage": {
+        "type": "string"
+      },
+      "persona": {
+        "type": "string",
+        "description": "Target persona (e.g., 'cfo', 'cto')"
+      },
+      "contentType": {
+        "type": "string",
+        "enum": [
+          "case_study",
+          "battlecard",
+          "one_pager",
+          "demo",
+          "roi_calc",
+          "any"
+        ]
+      },
+      "competitor": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "dealId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "recommendations": {
+        "type": "array"
+      },
+      "topRecommendation": {
+        "type": "object"
+      },
+      "relevanceScores": {
+        "type": "object"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "content_influence_rate",
+    "benchmarks": {
+      "excellent": "> 30% of won deals used recommended content",
+      "good": "20-30%",
+      "needs_improvement": "< 20%"
+    }
+  },
+  "temperature": 0.1,
+  "tags": [
+    "revops",
+    "content",
+    "enablement",
+    "sales",
+    "recommendation",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Sales Content Recommender",
+        "sales pipeline",
+        "deal velocity"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "crm.get_pipeline",
+          "required": true
+        },
+        {
+          "name": "crm.list_deals",
+          "required": false
+        },
+        {
+          "name": "analytics.get_forecast",
+          "required": false
+        }
+      ]
+    }
+  }
+}

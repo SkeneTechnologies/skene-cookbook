@@ -1,0 +1,121 @@
+{
+  "id": "prodops_impact_analyzer",
+  "version": "1.0.0",
+  "name": "Feature Impact Analyzer",
+  "description": "Analyzes the impact of shipped features on key metrics and business outcomes with causal inference methods.",
+  "domain": "product_ops",
+  "tools": [
+    {
+      "name": "analytics.get_metrics",
+      "required": true
+    },
+    {
+      "name": "analytics.cohort_analysis",
+      "required": true
+    },
+    {
+      "name": "analytics.ab_test",
+      "required": false
+    },
+    {
+      "name": "lifecycle.get_segment",
+      "required": false
+    },
+    {
+      "name": "ai.generate",
+      "required": true
+    }
+  ],
+  "exitStates": [
+    "feature_adoption",
+    "roadmap_alignment",
+    "prioritization_engine",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "featureId": {
+        "type": "string",
+        "description": "Feature to analyze"
+      },
+      "launchDate": {
+        "type": "string",
+        "format": "date",
+        "description": "Feature launch date"
+      },
+      "targetMetrics": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Metrics to measure"
+      },
+      "analysisType": {
+        "type": "string",
+        "enum": [
+          "pre_post",
+          "cohort",
+          "causal"
+        ],
+        "description": "Analysis methodology"
+      }
+    },
+    "required": [
+      "featureId",
+      "launchDate"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "impactSummary": {
+        "type": "object"
+      },
+      "metricChanges": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "attribution": {
+        "type": "object"
+      },
+      "roi": {
+        "type": "object"
+      },
+      "recommendations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "metrics": {
+    "primary": "feature_roi_accuracy",
+    "benchmarks": {
+      "excellent": "> 85%",
+      "good": "70-85%",
+      "needs_improvement": "< 70%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "product_ops",
+    "impact",
+    "analytics",
+    "roi",
+    "feature_analysis",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Feature Impact Analyzer"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

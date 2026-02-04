@@ -1,0 +1,118 @@
+{
+  "id": "plg_empty_state_optimizer",
+  "version": "1.0.0",
+  "name": "Empty State Optimizer",
+  "description": "Transforms empty states from dead-ends into engagement opportunities with contextual guidance, sample data, and clear next actions.",
+  "domain": "plg",
+  "tools": [
+    {
+      "name": "ui_kit.empty_state",
+      "required": true
+    },
+    {
+      "name": "analytics.track_event",
+      "required": true
+    },
+    {
+      "name": "lifecycle.get_segment",
+      "required": false
+    },
+    {
+      "name": "rag.query",
+      "required": false
+    },
+    {
+      "name": "supabase.seed_data",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "activation",
+    "quick_win_generator",
+    "onboarding_flow",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "userId": {
+        "type": "string",
+        "description": "User encountering empty state"
+      },
+      "emptyStateLocation": {
+        "type": "string",
+        "description": "Where the empty state is"
+      },
+      "resourceType": {
+        "type": "string",
+        "description": "Type of resource that's empty"
+      }
+    },
+    "required": [
+      "userId",
+      "emptyStateLocation"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "emptyStateContent": {
+        "type": "object"
+      },
+      "sampleDataOption": {
+        "type": "boolean"
+      },
+      "primaryAction": {
+        "type": "string"
+      },
+      "engagementScore": {
+        "type": "number"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "empty_state_action_rate",
+    "benchmarks": {
+      "excellent": "> 60%",
+      "good": "40-60%",
+      "needs_improvement": "< 40%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "plg",
+    "ux",
+    "empty-state",
+    "onboarding",
+    "engagement",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Empty State Optimizer"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "lifecycle.get_segment",
+          "required": true
+        },
+        {
+          "name": "lifecycle.record_moment",
+          "required": false
+        },
+        {
+          "name": "analytics.track_event",
+          "required": false
+        },
+        {
+          "name": "messaging.send_in_app",
+          "required": false
+        }
+      ]
+    }
+  }
+}

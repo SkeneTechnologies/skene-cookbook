@@ -1,0 +1,132 @@
+{
+  "id": "plg_friction_detector",
+  "version": "1.0.0",
+  "name": "Friction Point Detector",
+  "description": "Identifies and analyzes user experience friction points through behavioral signals, enabling proactive intervention and UX optimization.",
+  "domain": "plg",
+  "tools": [
+    {
+      "name": "analytics.get_metrics",
+      "required": true
+    },
+    {
+      "name": "analytics.track_event",
+      "required": true
+    },
+    {
+      "name": "analytics.funnel",
+      "required": true
+    },
+    {
+      "name": "lifecycle.get_segment",
+      "required": false
+    },
+    {
+      "name": "messaging.send_in_app",
+      "required": false
+    },
+    {
+      "name": "lifecycle.record_moment",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "support",
+    "contextual_help",
+    "onboarding_flow",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "userId": {
+        "type": "string",
+        "description": "User experiencing friction"
+      },
+      "flowId": {
+        "type": "string",
+        "description": "Specific flow to analyze"
+      },
+      "analysisType": {
+        "type": "string",
+        "enum": [
+          "real_time",
+          "historical",
+          "comparative"
+        ],
+        "description": "Type of friction analysis"
+      }
+    },
+    "required": [
+      "userId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "frictionPoints": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "severityScore": {
+        "type": "number"
+      },
+      "recommendedInterventions": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "estimatedImpact": {
+        "type": "string"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "friction_reduction_rate",
+    "benchmarks": {
+      "excellent": "> 40%",
+      "good": "25-40%",
+      "needs_improvement": "< 25%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "plg",
+    "ux",
+    "friction",
+    "analytics",
+    "optimization",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Friction Point Detector"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "lifecycle.get_segment",
+          "required": true
+        },
+        {
+          "name": "lifecycle.record_moment",
+          "required": false
+        },
+        {
+          "name": "analytics.track_event",
+          "required": false
+        },
+        {
+          "name": "messaging.send_in_app",
+          "required": false
+        }
+      ]
+    }
+  }
+}

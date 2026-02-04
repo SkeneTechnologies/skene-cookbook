@@ -1,0 +1,114 @@
+{
+  "id": "finops_cac_calculator",
+  "version": "1.0.0",
+  "name": "CAC Calculator",
+  "description": "Calculates Customer Acquisition Cost by channel, segment, and cohort for unit economics analysis",
+  "domain": "finops",
+  "tools": [
+    {
+      "name": "analytics.get_spend",
+      "required": true
+    },
+    {
+      "name": "crm.get_conversions",
+      "required": true
+    },
+    {
+      "name": "analytics.calculate",
+      "required": true
+    },
+    {
+      "name": "attribution.get_data",
+      "required": false
+    },
+    {
+      "name": "benchmarks.compare",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "payback_period",
+    "investor_metrics",
+    "magic_number",
+    "ltv_analysis",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "period": {
+        "type": "string",
+        "description": "Reporting period (YYYY-MM or YYYY-QX)"
+      },
+      "breakdown_by": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "default": [
+          "channel",
+          "segment"
+        ]
+      },
+      "include_fully_loaded": {
+        "type": "boolean",
+        "default": true
+      }
+    },
+    "required": [
+      "period"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "blended_cac": {
+        "type": "number"
+      },
+      "paid_cac": {
+        "type": "number"
+      },
+      "organic_cac": {
+        "type": "number"
+      },
+      "fully_loaded_cac": {
+        "type": "number"
+      },
+      "cac_by_channel": {
+        "type": "object"
+      },
+      "cac_by_segment": {
+        "type": "object"
+      },
+      "cac_trend": {
+        "type": "array"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "blended_cac",
+    "benchmarks": {
+      "excellent": "< $500",
+      "good": "$500-1500",
+      "needs_improvement": "> $1500"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "finops",
+    "cac",
+    "acquisition",
+    "unit-economics",
+    "marketing-efficiency",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with CAC Calculator"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

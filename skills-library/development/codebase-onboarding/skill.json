@@ -1,0 +1,63 @@
+{
+  "id": "development/codebase-onboarding",
+  "version": "1.0.0",
+  "name": "Codebase Onboarding",
+  "description": "Systematic approach to understanding a new codebase. Use when joining a project, exploring unfamiliar code, or helping someone understand a repo structure.",
+  "domain": "development",
+  "source": "native",
+  "tools": [],
+  "exitStates": [
+    "understood",
+    "needs_more_exploration"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "repoPath": {
+        "type": "string",
+        "description": "Path to repository"
+      },
+      "focusArea": {
+        "type": "string",
+        "description": "Specific area to focus on"
+      }
+    }
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "summary": {
+        "type": "string"
+      },
+      "architecture": {
+        "type": "object"
+      },
+      "entryPoints": {
+        "type": "array"
+      },
+      "keyFiles": {
+        "type": "array"
+      }
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "development",
+    "onboarding",
+    "exploration",
+    "architecture",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Codebase Onboarding",
+        "code review",
+        "codebase exploration",
+        "joining a project, exploring unfamiliar code, or helping someone understand a repo structure"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

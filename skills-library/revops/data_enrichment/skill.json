@@ -1,0 +1,142 @@
+{
+  "id": "revops_data_enrichment",
+  "version": "1.0.0",
+  "name": "Data Enrichment Pipeline",
+  "description": "Automatically enriches lead, contact, and account data using multiple data sources for improved targeting and personalization.",
+  "domain": "revops",
+  "tools": [
+    {
+      "name": "crm.get_records",
+      "required": true
+    },
+    {
+      "name": "enrichment.clearbit",
+      "required": false
+    },
+    {
+      "name": "enrichment.zoominfo",
+      "required": false
+    },
+    {
+      "name": "enrichment.apollo",
+      "required": false
+    },
+    {
+      "name": "ai.infer_attributes",
+      "required": true
+    },
+    {
+      "name": "crm.update_records",
+      "required": true
+    },
+    {
+      "name": "analytics.track_enrichment",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "lead_qualification",
+    "territory_planner",
+    "lead_routing",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "recordType": {
+        "type": "string",
+        "enum": [
+          "lead",
+          "contact",
+          "account"
+        ]
+      },
+      "recordIds": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "enrichmentFields": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "sources": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "overwriteExisting": {
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "recordType"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "recordsProcessed": {
+        "type": "number"
+      },
+      "recordsEnriched": {
+        "type": "number"
+      },
+      "fieldsUpdated": {
+        "type": "number"
+      },
+      "dataQualityScore": {
+        "type": "number"
+      },
+      "enrichmentCost": {
+        "type": "number"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "data_completeness",
+    "benchmarks": {
+      "excellent": "> 90% field completion",
+      "good": "75-90% field completion",
+      "needs_improvement": "< 75% field completion"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "revops",
+    "data",
+    "enrichment",
+    "quality",
+    "automation",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Data Enrichment Pipeline",
+        "lead qualification"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "crm.get_pipeline",
+          "required": true
+        },
+        {
+          "name": "crm.list_deals",
+          "required": false
+        },
+        {
+          "name": "analytics.get_forecast",
+          "required": false
+        }
+      ]
+    }
+  }
+}

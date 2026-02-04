@@ -1,0 +1,132 @@
+{
+  "id": "prodops_competitive_feature_tracker",
+  "version": "1.0.0",
+  "name": "Competitive Feature Tracker",
+  "description": "Monitors competitor feature releases and market positioning to inform product strategy and differentiation.",
+  "domain": "product_ops",
+  "tools": [
+    {
+      "name": "web.scrape",
+      "required": true
+    },
+    {
+      "name": "ai.generate",
+      "required": true
+    },
+    {
+      "name": "ai.embed",
+      "required": true
+    },
+    {
+      "name": "vector.upsert",
+      "required": true
+    },
+    {
+      "name": "notion.create_page",
+      "required": false
+    },
+    {
+      "name": "slack.send_message",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "roadmap_alignment",
+    "prioritization_engine",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "competitors": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Competitor names to track"
+      },
+      "trackingPeriod": {
+        "type": "string",
+        "enum": [
+          "daily",
+          "weekly",
+          "monthly"
+        ],
+        "description": "Monitoring frequency"
+      },
+      "focusAreas": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Product areas to monitor"
+      },
+      "alertThreshold": {
+        "type": "string",
+        "enum": [
+          "all",
+          "significant",
+          "critical"
+        ],
+        "description": "Alert level"
+      }
+    },
+    "required": [
+      "competitors"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "updates": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "gaps": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "threats": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "opportunities": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      }
+    }
+  },
+  "metrics": {
+    "primary": "competitive_awareness_score",
+    "benchmarks": {
+      "excellent": "> 90% coverage",
+      "good": "70-90% coverage",
+      "needs_improvement": "< 70% coverage"
+    }
+  },
+  "temperature": 0.2,
+  "tags": [
+    "product_ops",
+    "competitive",
+    "market_intelligence",
+    "strategy",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Competitive Feature Tracker"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

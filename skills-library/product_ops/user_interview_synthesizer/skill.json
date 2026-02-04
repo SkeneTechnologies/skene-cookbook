@@ -1,0 +1,118 @@
+{
+  "id": "prodops_user_interview_synthesizer",
+  "version": "1.0.0",
+  "name": "User Interview Synthesizer",
+  "description": "Synthesizes insights from user interviews into actionable product recommendations with thematic analysis.",
+  "domain": "product_ops",
+  "tools": [
+    {
+      "name": "ai.generate",
+      "required": true
+    },
+    {
+      "name": "ai.embed",
+      "required": true
+    },
+    {
+      "name": "vector.search",
+      "required": true
+    },
+    {
+      "name": "vector.upsert",
+      "required": true
+    },
+    {
+      "name": "notion.create_page",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "roadmap_alignment",
+    "prioritization_engine",
+    "feedback_synthesis",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "transcripts": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Interview transcripts to analyze"
+      },
+      "researchQuestion": {
+        "type": "string",
+        "description": "Primary research question"
+      },
+      "userSegment": {
+        "type": "string",
+        "description": "User segment being interviewed"
+      },
+      "projectId": {
+        "type": "string",
+        "description": "Research project identifier"
+      }
+    },
+    "required": [
+      "transcripts",
+      "researchQuestion"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "themes": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "insights": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "recommendations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "quotes": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      }
+    }
+  },
+  "metrics": {
+    "primary": "insight_actionability_rate",
+    "benchmarks": {
+      "excellent": "> 80%",
+      "good": "60-80%",
+      "needs_improvement": "< 60%"
+    }
+  },
+  "temperature": 0.2,
+  "tags": [
+    "product_ops",
+    "research",
+    "interviews",
+    "insights",
+    "synthesis",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with User Interview Synthesizer"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

@@ -1,0 +1,126 @@
+{
+  "id": "cs_time_to_impact",
+  "version": "1.0.0",
+  "name": "Time to Impact Calculator",
+  "description": "Measures and optimizes the time from customer onboarding to measurable business impact and value realization.",
+  "domain": "customer_success",
+  "tools": [
+    {
+      "name": "analytics.query_events",
+      "required": true
+    },
+    {
+      "name": "crm.get_account",
+      "required": true
+    },
+    {
+      "name": "crm.get_goals",
+      "required": true
+    },
+    {
+      "name": "analytics.get_metrics",
+      "required": false
+    },
+    {
+      "name": "crm.update_account",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "onboarding_health",
+    "outcome_tracker",
+    "vla_tracker",
+    "health_scoring",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "accountId": {
+        "type": "string",
+        "description": "Customer account identifier"
+      },
+      "impactType": {
+        "type": "string",
+        "enum": [
+          "first_value",
+          "roi_positive",
+          "strategic_outcome",
+          "full_value"
+        ]
+      },
+      "benchmarkCohort": {
+        "type": "string",
+        "description": "Cohort for comparison"
+      }
+    },
+    "required": [
+      "accountId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "timeToFirstValue": {
+        "type": "number"
+      },
+      "timeToROI": {
+        "type": "number"
+      },
+      "milestones": {
+        "type": "array"
+      },
+      "accelerators": {
+        "type": "array"
+      },
+      "blockers": {
+        "type": "array"
+      },
+      "forecast": {
+        "type": "object"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "avg_time_to_first_value",
+    "benchmarks": {
+      "excellent": "< 14 days",
+      "good": "14-30 days",
+      "needs_improvement": "> 30 days"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "customer_success",
+    "time_to_value",
+    "impact",
+    "onboarding",
+    "roi",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Time to Impact Calculator",
+        "customer health"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "lifecycle.get_segment",
+          "required": true
+        },
+        {
+          "name": "analytics.get_cohort",
+          "required": false
+        },
+        {
+          "name": "crm.update_account",
+          "required": false
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,148 @@
+{
+  "id": "plg_interactive_tour",
+  "version": "1.0.0",
+  "name": "Interactive Tour Architect",
+  "description": "Creates dynamic step-by-step product walkthroughs with contextual guidance that adapts to user behavior and feature familiarity.",
+  "domain": "plg",
+  "tools": [
+    {
+      "name": "ui_kit.tooltip",
+      "required": true
+    },
+    {
+      "name": "ui_kit.spotlight",
+      "required": true
+    },
+    {
+      "name": "analytics.track_event",
+      "required": true
+    },
+    {
+      "name": "lifecycle.get_segment",
+      "required": false
+    },
+    {
+      "name": "lifecycle.record_moment",
+      "required": false
+    },
+    {
+      "name": "rag.query",
+      "required": false
+    },
+    {
+      "name": "messaging.send_in_app",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "onboarding_flow",
+    "activation",
+    "support",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "userId": {
+        "type": "string",
+        "description": "User receiving the tour"
+      },
+      "featureId": {
+        "type": "string",
+        "description": "Specific feature to tour"
+      },
+      "tourType": {
+        "type": "string",
+        "enum": [
+          "full",
+          "feature",
+          "contextual"
+        ],
+        "description": "Type of tour to deliver"
+      },
+      "resumeFrom": {
+        "type": "number",
+        "description": "Step to resume from if continuing"
+      }
+    },
+    "required": [
+      "userId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "tourId": {
+        "type": "string"
+      },
+      "stepsCompleted": {
+        "type": "number"
+      },
+      "totalSteps": {
+        "type": "number"
+      },
+      "nextStep": {
+        "type": "string"
+      },
+      "completionRate": {
+        "type": "number"
+      },
+      "skippedSteps": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "metrics": {
+    "primary": "tour_completion_rate",
+    "benchmarks": {
+      "excellent": "> 80%",
+      "good": "60-80%",
+      "needs_improvement": "< 60%"
+    }
+  },
+  "integrations": [
+    "intercom",
+    "pendo",
+    "appcues"
+  ],
+  "temperature": 0,
+  "tags": [
+    "plg",
+    "onboarding",
+    "tour",
+    "activation",
+    "guidance",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Interactive Tour Architect"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "lifecycle.get_segment",
+          "required": true
+        },
+        {
+          "name": "lifecycle.record_moment",
+          "required": false
+        },
+        {
+          "name": "analytics.track_event",
+          "required": false
+        },
+        {
+          "name": "messaging.send_in_app",
+          "required": false
+        }
+      ]
+    }
+  }
+}

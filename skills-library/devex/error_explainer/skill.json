@@ -1,0 +1,117 @@
+{
+  "id": "devex_error_explainer",
+  "version": "1.0.0",
+  "name": "Error Explainer",
+  "description": "Provides human-readable explanations for API errors with contextual troubleshooting steps and code fixes.",
+  "domain": "devex",
+  "tools": [
+    {
+      "name": "rag.query",
+      "required": true
+    },
+    {
+      "name": "ai.explain_error",
+      "required": true
+    },
+    {
+      "name": "analytics.get_error_context",
+      "required": false
+    },
+    {
+      "name": "docs.get_error_docs",
+      "required": true
+    }
+  ],
+  "exitStates": [
+    "support_deflector",
+    "api_onboarding",
+    "code_sample_generator",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "error_code": {
+        "type": "string",
+        "description": "API error code"
+      },
+      "error_message": {
+        "type": "string",
+        "description": "Error message text"
+      },
+      "request_context": {
+        "type": "object",
+        "description": "Request details (endpoint, params, headers)"
+      },
+      "developer_id": {
+        "type": "string",
+        "description": "Developer for personalized context"
+      },
+      "stack_trace": {
+        "type": "string",
+        "description": "Optional stack trace"
+      }
+    },
+    "required": [
+      "error_code"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "explanation": {
+        "type": "string"
+      },
+      "root_cause": {
+        "type": "string"
+      },
+      "fix_steps": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "code_fix": {
+        "type": "object"
+      },
+      "related_docs": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "similar_issues": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      }
+    }
+  },
+  "metrics": {
+    "primary": "error_resolution_rate",
+    "benchmarks": {
+      "excellent": "> 85% self-resolved",
+      "good": "70-85% self-resolved",
+      "needs_improvement": "< 70% self-resolved"
+    }
+  },
+  "temperature": 0.2,
+  "tags": [
+    "devex",
+    "errors",
+    "troubleshooting",
+    "documentation",
+    "support",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Error Explainer"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

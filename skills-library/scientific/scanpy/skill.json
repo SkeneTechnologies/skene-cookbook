@@ -1,0 +1,33 @@
+{
+  "id": "scientific/scanpy",
+  "version": "1.0.0",
+  "name": "scanpy",
+  "description": "Standard single-cell RNA-seq analysis pipeline. Use for QC, normalization, dimensionality reduction (PCA/UMAP/t-SNE), clustering, differential expression, and visualization. Best for exploratory scRNA-seq analysis with established workflows. For deep learning models use scvi-tools; for data format questions use anndata.",
+  "domain": "scientific",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "scientific",
+    "imported",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "license": "SD-3-Clause license",
+      "triggers": [
+        "help with scanpy",
+        "data analysis",
+        "visualization"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

@@ -1,0 +1,139 @@
+{
+  "id": "ai_summarization_agent",
+  "version": "1.0.0",
+  "name": "Summarization Agent",
+  "description": "Generates concise, accurate summaries from long-form content including documents, threads, and reports.",
+  "domain": "ai_ops",
+  "tools": [
+    {
+      "name": "ai.summarize",
+      "required": true
+    },
+    {
+      "name": "ai.extract_key_points",
+      "required": true
+    },
+    {
+      "name": "ai.generate_tldr",
+      "required": false
+    },
+    {
+      "name": "storage.cache_summary",
+      "required": false
+    },
+    {
+      "name": "messaging.send",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "summary_generated",
+    "multi_format",
+    "too_short",
+    "requires_context",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "content": {
+        "type": "string",
+        "description": "Content to summarize"
+      },
+      "content_type": {
+        "type": "string",
+        "enum": [
+          "document",
+          "email_thread",
+          "meeting",
+          "report",
+          "article",
+          "conversation"
+        ]
+      },
+      "target_length": {
+        "type": "string",
+        "enum": [
+          "tldr",
+          "brief",
+          "detailed"
+        ]
+      },
+      "focus_areas": {
+        "type": "array",
+        "description": "Specific aspects to emphasize"
+      },
+      "audience": {
+        "type": "string",
+        "enum": [
+          "executive",
+          "technical",
+          "general"
+        ]
+      }
+    },
+    "required": [
+      "content"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "summary": {
+        "type": "string"
+      },
+      "key_points": {
+        "type": "array"
+      },
+      "action_items": {
+        "type": "array"
+      },
+      "topics": {
+        "type": "array"
+      },
+      "word_count_reduction": {
+        "type": "number"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "summary_accuracy_score",
+    "benchmarks": {
+      "excellent": "> 95%",
+      "good": "85-95%",
+      "needs_improvement": "< 85%"
+    }
+  },
+  "temperature": 0.1,
+  "tags": [
+    "ai_ops",
+    "summarization",
+    "content",
+    "synthesis",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Summarization Agent"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "ai.classify",
+          "required": false
+        },
+        {
+          "name": "ai.generate",
+          "required": false
+        },
+        {
+          "name": "ai.score_lead",
+          "required": false
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "id": "scientific/cobrapy",
+  "version": "1.0.0",
+  "name": "cobrapy",
+  "description": "Constraint-based metabolic modeling (COBRA). FBA, FVA, gene knockouts, flux sampling, SBML models, for systems biology and metabolic engineering analysis.",
+  "domain": "scientific",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "scientific",
+    "imported",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "license": "GPL-2.0 license",
+      "triggers": [
+        "help with cobrapy"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

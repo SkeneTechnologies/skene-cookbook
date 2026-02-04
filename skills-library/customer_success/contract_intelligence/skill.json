@@ -1,0 +1,131 @@
+{
+  "id": "cs_contract_intelligence",
+  "version": "1.0.0",
+  "name": "Contract Intelligence",
+  "description": "Analyzes contract terms, tracks obligations, and provides insights for renewal and expansion conversations.",
+  "domain": "customer_success",
+  "tools": [
+    {
+      "name": "crm.get_account",
+      "required": true
+    },
+    {
+      "name": "stripe.get_subscription",
+      "required": true
+    },
+    {
+      "name": "crm.get_contract",
+      "required": true
+    },
+    {
+      "name": "analytics.get_metrics",
+      "required": false
+    },
+    {
+      "name": "crm.create_task",
+      "required": false
+    },
+    {
+      "name": "messaging.send_alert",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "renewal_orchestration",
+    "expansion_playbook",
+    "quarterly_business_review",
+    "csql_generator",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "accountId": {
+        "type": "string",
+        "description": "Customer account identifier"
+      },
+      "analysisType": {
+        "type": "string",
+        "enum": [
+          "renewal_prep",
+          "expansion_review",
+          "compliance_check",
+          "risk_assessment"
+        ]
+      },
+      "includeComparisons": {
+        "type": "boolean",
+        "default": true
+      }
+    },
+    "required": [
+      "accountId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "contractSummary": {
+        "type": "object"
+      },
+      "keyTerms": {
+        "type": "array"
+      },
+      "obligations": {
+        "type": "array"
+      },
+      "renewalAnalysis": {
+        "type": "object"
+      },
+      "expansionOpportunities": {
+        "type": "array"
+      },
+      "risks": {
+        "type": "array"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "contract_renewal_rate",
+    "benchmarks": {
+      "excellent": "> 95%",
+      "good": "90-95%",
+      "needs_improvement": "< 90%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "customer_success",
+    "contract",
+    "renewal",
+    "legal",
+    "compliance",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Contract Intelligence",
+        "renewal",
+        "expansion"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "lifecycle.get_segment",
+          "required": true
+        },
+        {
+          "name": "analytics.get_cohort",
+          "required": false
+        },
+        {
+          "name": "crm.update_account",
+          "required": false
+        }
+      ]
+    }
+  }
+}

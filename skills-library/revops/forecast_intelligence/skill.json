@@ -1,0 +1,124 @@
+{
+  "id": "revops_forecast_intelligence",
+  "version": "1.0.0",
+  "name": "Forecast Intelligence",
+  "description": "AI-powered revenue forecasting with deal-level predictions, risk analysis, and scenario modeling.",
+  "domain": "revops",
+  "tools": [
+    {
+      "name": "crm.get_pipeline",
+      "required": true
+    },
+    {
+      "name": "crm.get_deal_velocity",
+      "required": true
+    },
+    {
+      "name": "analytics.get_metrics",
+      "required": true
+    },
+    {
+      "name": "analytics.cohort",
+      "required": false
+    },
+    {
+      "name": "ai.score_lead",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "pipeline_health",
+    "quota_planning",
+    "board_reporting",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "period": {
+        "type": "string",
+        "enum": [
+          "month",
+          "quarter",
+          "year"
+        ]
+      },
+      "team": {
+        "type": "string"
+      },
+      "confidenceLevel": {
+        "type": "string",
+        "enum": [
+          "conservative",
+          "moderate",
+          "aggressive"
+        ]
+      }
+    }
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "forecast": {
+        "type": "number"
+      },
+      "bestCase": {
+        "type": "number"
+      },
+      "worstCase": {
+        "type": "number"
+      },
+      "confidence": {
+        "type": "number"
+      },
+      "riskFactors": {
+        "type": "array"
+      },
+      "dealPredictions": {
+        "type": "array"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "forecast_accuracy",
+    "benchmarks": {
+      "excellent": "> 90%",
+      "good": "80-90%",
+      "needs_improvement": "< 80%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "revops",
+    "forecast",
+    "revenue",
+    "prediction",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Forecast Intelligence",
+        "forecasting",
+        "deal velocity"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "crm.get_pipeline",
+          "required": true
+        },
+        {
+          "name": "crm.list_deals",
+          "required": false
+        },
+        {
+          "name": "analytics.get_forecast",
+          "required": false
+        }
+      ]
+    }
+  }
+}

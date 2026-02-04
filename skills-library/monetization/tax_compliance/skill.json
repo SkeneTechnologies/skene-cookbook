@@ -1,0 +1,129 @@
+{
+  "id": "mon_tax_compliance",
+  "version": "1.0.0",
+  "name": "Tax Compliance Assistant",
+  "description": "Manages sales tax, VAT, and GST compliance across jurisdictions",
+  "domain": "monetization",
+  "tools": [
+    {
+      "name": "stripe.tax.calculate",
+      "required": true
+    },
+    {
+      "name": "stripe.get_customer",
+      "required": true
+    },
+    {
+      "name": "stripe.update_customer",
+      "required": true
+    },
+    {
+      "name": "analytics.tax_report",
+      "required": true
+    },
+    {
+      "name": "ai.classify_product",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "tax_calculated",
+    "exemption_applied",
+    "nexus_alert",
+    "filing_due",
+    "audit_flagged",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "action": {
+        "type": "string",
+        "enum": [
+          "calculate",
+          "validate_exemption",
+          "report",
+          "nexus_check"
+        ],
+        "default": "calculate"
+      },
+      "customer_id": {
+        "type": "string",
+        "description": "Customer for tax calculation"
+      },
+      "amount": {
+        "type": "number",
+        "description": "Transaction amount"
+      },
+      "jurisdiction": {
+        "type": "string",
+        "description": "Tax jurisdiction"
+      }
+    },
+    "required": [
+      "action"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "tax_amount": {
+        "type": "number"
+      },
+      "tax_rate": {
+        "type": "number"
+      },
+      "jurisdiction": {
+        "type": "string"
+      },
+      "exemption_status": {
+        "type": "string"
+      },
+      "compliance_status": {
+        "type": "string"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "tax_accuracy",
+    "benchmarks": {
+      "excellent": "100%",
+      "good": "> 99%",
+      "needs_improvement": "< 99%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "monetization",
+    "tax",
+    "compliance",
+    "vat",
+    "sales-tax",
+    "gst",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Tax Compliance Assistant"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "stripe.get_customer",
+          "required": true
+        },
+        {
+          "name": "stripe.list_subscriptions",
+          "required": false
+        },
+        {
+          "name": "stripe.create_checkout",
+          "required": false
+        }
+      ]
+    }
+  }
+}

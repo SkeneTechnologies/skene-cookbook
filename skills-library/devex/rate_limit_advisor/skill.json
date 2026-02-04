@@ -1,0 +1,108 @@
+{
+  "id": "devex_rate_limit_advisor",
+  "version": "1.0.0",
+  "name": "Rate Limit Advisor",
+  "description": "Monitors API usage patterns, predicts rate limit issues, and provides optimization recommendations.",
+  "domain": "devex",
+  "tools": [
+    {
+      "name": "analytics.get_usage_metrics",
+      "required": true
+    },
+    {
+      "name": "ai.analyze_patterns",
+      "required": true
+    },
+    {
+      "name": "messaging.send_alert",
+      "required": false
+    },
+    {
+      "name": "docs.get_rate_limits",
+      "required": true
+    }
+  ],
+  "exitStates": [
+    "latency_advisor",
+    "support_deflector",
+    "integration_health",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "developer_id": {
+        "type": "string",
+        "description": "Developer or API key"
+      },
+      "time_range": {
+        "type": "object",
+        "description": "Analysis period"
+      },
+      "alert_threshold": {
+        "type": "number",
+        "description": "Percentage of limit to alert at",
+        "default": 80
+      },
+      "include_forecast": {
+        "type": "boolean",
+        "default": true
+      }
+    },
+    "required": [
+      "developer_id"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "current_usage": {
+        "type": "object"
+      },
+      "limit_status": {
+        "type": "object"
+      },
+      "forecast": {
+        "type": "object"
+      },
+      "optimization_suggestions": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "alerts": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      }
+    }
+  },
+  "metrics": {
+    "primary": "rate_limit_hit_rate",
+    "benchmarks": {
+      "excellent": "< 1% requests rate limited",
+      "good": "1-5% requests rate limited",
+      "needs_improvement": "> 5% requests rate limited"
+    }
+  },
+  "temperature": 0.1,
+  "tags": [
+    "devex",
+    "rate-limiting",
+    "optimization",
+    "monitoring",
+    "usage",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Rate Limit Advisor"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

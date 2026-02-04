@@ -1,0 +1,34 @@
+{
+  "id": "cursor_rules/ant-design",
+  "version": "1.0.0",
+  "name": "ant-design",
+  "description": "Definitive guidelines for building consistent, performant, and maintainable UIs with Ant Design v6.x, focusing on design tokens, layout, and component usage.",
+  "domain": "cursor_rules",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "cursor_rules",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "cursor": {
+      "globs": [
+        "**/*"
+      ]
+    },
+    "claude": {
+      "triggers": [
+        "help with ant design"
+      ]
+    },
+    "skeneflow": {}
+  }
+}

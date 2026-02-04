@@ -1,0 +1,138 @@
+{
+  "id": "data_etl_monitor",
+  "version": "1.0.0",
+  "name": "ETL Pipeline Monitor",
+  "description": "Monitors ETL/ELT pipeline health, detects failures and delays, and ensures data freshness SLAs are met.",
+  "domain": "data_ops",
+  "tools": [
+    {
+      "name": "airflow.get_dag_runs",
+      "required": true
+    },
+    {
+      "name": "airflow.get_task_status",
+      "required": true
+    },
+    {
+      "name": "warehouse.query",
+      "required": true
+    },
+    {
+      "name": "alerting.send",
+      "required": true
+    },
+    {
+      "name": "dbt.get_run_status",
+      "required": false
+    },
+    {
+      "name": "fivetran.get_connector_status",
+      "required": false
+    },
+    {
+      "name": "pagerduty.create_incident",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "data_anomaly_alerter",
+    "data_warehouse_optimizer",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "pipelines": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Pipeline names to monitor"
+      },
+      "check_freshness": {
+        "type": "boolean",
+        "default": true
+      },
+      "freshness_slas": {
+        "type": "object",
+        "description": "Table freshness SLAs in hours"
+      },
+      "alert_on_failure": {
+        "type": "boolean",
+        "default": true
+      },
+      "alert_on_delay": {
+        "type": "boolean",
+        "default": true
+      },
+      "delay_threshold_minutes": {
+        "type": "number",
+        "default": 30
+      }
+    },
+    "required": [
+      "pipelines"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "pipeline_status": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "failures": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "delays": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "freshness_status": {
+        "type": "object"
+      },
+      "alerts_sent": {
+        "type": "number"
+      },
+      "recommendations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "metrics": {
+    "primary": "pipeline_success_rate",
+    "benchmarks": {
+      "excellent": "> 99.5% success rate, 0 SLA breaches",
+      "good": "98-99.5% success rate, < 2 SLA breaches/week",
+      "needs_improvement": "< 98% success rate or > 2 SLA breaches/week"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "data_ops",
+    "etl",
+    "pipelines",
+    "monitoring",
+    "data_freshness",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with ETL Pipeline Monitor"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

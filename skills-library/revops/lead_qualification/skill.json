@@ -1,0 +1,131 @@
+{
+  "id": "revops_lead_qualification",
+  "version": "1.0.0",
+  "name": "Lead Qualification Engine",
+  "description": "Qualifies leads using BANT, MEDDIC, or custom frameworks, combining firmographic and behavioral signals.",
+  "domain": "revops",
+  "tools": [
+    {
+      "name": "crm.get_account",
+      "required": true
+    },
+    {
+      "name": "crm.get_contacts",
+      "required": true
+    },
+    {
+      "name": "crm.create_deal",
+      "required": false
+    },
+    {
+      "name": "crm.log_activity",
+      "required": true
+    },
+    {
+      "name": "ai.score_lead",
+      "required": true
+    },
+    {
+      "name": "analytics.query_events",
+      "required": false
+    },
+    {
+      "name": "lifecycle.get_segment",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "pipeline_health",
+    "handoff_orchestration",
+    "nurture",
+    "disqualified",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "leadId": {
+        "type": "string"
+      },
+      "accountId": {
+        "type": "string"
+      },
+      "framework": {
+        "type": "string",
+        "enum": [
+          "BANT",
+          "MEDDIC",
+          "CHAMP",
+          "custom"
+        ]
+      },
+      "source": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "leadId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "qualified": {
+        "type": "boolean"
+      },
+      "score": {
+        "type": "number"
+      },
+      "frameworkResults": {
+        "type": "object"
+      },
+      "recommendedAction": {
+        "type": "string"
+      },
+      "assignedRep": {
+        "type": "string"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "lead_to_opportunity_rate",
+    "benchmarks": {
+      "excellent": "> 25%",
+      "good": "15-25%",
+      "needs_improvement": "< 15%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "revops",
+    "lead",
+    "qualification",
+    "sales",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Lead Qualification Engine",
+        "lead qualification"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "crm.get_pipeline",
+          "required": true
+        },
+        {
+          "name": "crm.list_deals",
+          "required": false
+        },
+        {
+          "name": "analytics.get_forecast",
+          "required": false
+        }
+      ]
+    }
+  }
+}

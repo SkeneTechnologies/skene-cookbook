@@ -1,0 +1,132 @@
+{
+  "id": "plgf_retention_analysis",
+  "version": "1.0.0",
+  "name": "Retention Analysis",
+  "description": "Retention curves, cohort analysis, churn prediction, engagement scoring, and resurrection strategies",
+  "domain": "plg_frameworks",
+  "tools": [
+    {
+      "name": "analytics.get_cohort",
+      "required": true
+    },
+    {
+      "name": "analytics.get_metrics",
+      "required": true
+    },
+    {
+      "name": "analytics.get_funnel",
+      "required": false
+    },
+    {
+      "name": "lifecycle.get_segment",
+      "required": false
+    },
+    {
+      "name": "messaging.send_email",
+      "required": false
+    },
+    {
+      "name": "ui_kit.chart",
+      "required": false
+    },
+    {
+      "name": "ui_kit.panel",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "analysis_complete",
+    "churn_risk_identified",
+    "resurrection_campaign",
+    "healthy_retention",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "productId": {
+        "type": "string",
+        "description": "Product to analyze retention for"
+      },
+      "cohortPeriod": {
+        "type": "string",
+        "description": "Cohort period (weekly, monthly)"
+      },
+      "retentionWindow": {
+        "type": "number",
+        "description": "Days to analyze for retention"
+      },
+      "segmentBy": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Dimensions to segment cohorts by"
+      }
+    },
+    "required": [
+      "productId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "retentionCurve": {
+        "type": "object"
+      },
+      "cohortAnalysis": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "churnPrediction": {
+        "type": "object"
+      },
+      "engagementScores": {
+        "type": "object"
+      },
+      "atRiskUsers": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "resurrectionStrategies": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "benchmarkComparison": {
+        "type": "object"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "day_30_retention",
+    "benchmarks": {
+      "excellent": "> 40%",
+      "good": "20-40%",
+      "needs_improvement": "< 20%"
+    }
+  },
+  "temperature": 0.2,
+  "tags": [
+    "plg_frameworks",
+    "retention",
+    "churn",
+    "cohort_analysis",
+    "resurrection",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Retention Analysis"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

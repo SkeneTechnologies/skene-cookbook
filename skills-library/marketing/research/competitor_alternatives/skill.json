@@ -1,0 +1,52 @@
+{
+  "id": "marketing_competitor_alternatives",
+  "version": "1.0.0",
+  "name": "competitor-alternatives",
+  "description": "\"When the user wants to create competitor comparison or alternative pages for SEO and sales enablement. Also use when the user mentions 'alternative page,' 'vs page,' 'competitor comparison,' 'comparison page,' '[Product] vs [Product],' '[Product] alternative,' or 'competitive landing pages.' Covers four formats: singular alternative, plural alternatives, you vs competitor, and competitor vs competitor. Emphasizes deep research, modular content architecture, and varied section types beyond feature tables.\"",
+  "domain": "marketing",
+  "category": "research",
+  "source": "skene-marketing",
+  "tools": [],
+  "exitStates": [
+    "idle",
+    "support"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {},
+    "required": []
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {}
+  },
+  "temperature": 0.3,
+  "tags": [
+    "marketing",
+    "research",
+    "competitor-alternatives",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with competitor alternatives",
+        "content strategy",
+        "the user mentions 'alternative page,' 'vs page,' 'competitor comparison,' 'comparison page,' '[product] vs [product],' '[product] alternative,' or 'competitive landing pages"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "resend.send_email",
+          "required": false
+        },
+        {
+          "name": "analytics.track_campaign",
+          "required": false
+        }
+      ]
+    }
+  }
+}

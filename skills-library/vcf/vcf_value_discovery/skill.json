@@ -1,0 +1,202 @@
+{
+  "id": "vcf_value_discovery",
+  "version": "1.0.0",
+  "name": "Value Creation Discovery",
+  "description": "Conducts stakeholder-specific value discovery to understand priorities, problems, and success metrics using the Value Pyramid framework.",
+  "domain": "vcf",
+  "tools": [
+    {
+      "name": "crm.get_customer_data",
+      "required": true
+    },
+    {
+      "name": "crm.get_contacts",
+      "required": true
+    },
+    {
+      "name": "crm.get_activities",
+      "required": true
+    },
+    {
+      "name": "crm.update_record",
+      "required": true
+    },
+    {
+      "name": "crm.create_activity",
+      "required": true
+    },
+    {
+      "name": "ai.extract_insights",
+      "required": false
+    },
+    {
+      "name": "ai.summarize",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "vcf_value_metrics",
+    "vcf_roi_calculator",
+    "needs_more_discovery",
+    "deal_not_qualified",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "dealId": {
+        "type": "string"
+      },
+      "accountId": {
+        "type": "string"
+      },
+      "stakeholderMap": {
+        "type": "object",
+        "description": "Output from vcf_stakeholder_mapping"
+      },
+      "meetingNotes": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Notes from discovery calls"
+      },
+      "industry": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "dealId",
+      "stakeholderMap"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "valuePyramid": {
+        "type": "object",
+        "properties": {
+          "economicBuyer": {
+            "type": "object",
+            "properties": {
+              "strategicPriorities": {
+                "type": "array"
+              },
+              "commercialDrivers": {
+                "type": "array"
+              },
+              "targetMetrics": {
+                "type": "array"
+              }
+            }
+          },
+          "champion": {
+            "type": "object",
+            "properties": {
+              "targets": {
+                "type": "array"
+              },
+              "projects": {
+                "type": "array"
+              },
+              "painPoints": {
+                "type": "array"
+              }
+            }
+          },
+          "userBuyers": {
+            "type": "object",
+            "properties": {
+              "workflows": {
+                "type": "array"
+              },
+              "painPoints": {
+                "type": "array"
+              },
+              "desiredOutcomes": {
+                "type": "array"
+              }
+            }
+          },
+          "technicalBuyers": {
+            "type": "object",
+            "properties": {
+              "requirements": {
+                "type": "array"
+              },
+              "concerns": {
+                "type": "array"
+              }
+            }
+          }
+        }
+      },
+      "priorityProblems": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "problem": {
+              "type": "string"
+            },
+            "stakeholder": {
+              "type": "string"
+            },
+            "priority": {
+              "type": "string",
+              "enum": [
+                "hair_on_fire",
+                "high",
+                "medium",
+                "low"
+              ]
+            },
+            "currentSolution": {
+              "type": "string"
+            },
+            "gap": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "discoveryCompleteness": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 100
+      },
+      "metricsToQuantify": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "metrics": {
+    "primary": "discovery_completeness",
+    "benchmarks": {
+      "excellent": "> 80% - All stakeholder priorities documented with quantifiable targets",
+      "good": "60-80% - Key stakeholder priorities known, some gaps in metrics",
+      "needs_improvement": "< 60% - Missing critical priority or problem information"
+    }
+  },
+  "temperature": 0.2,
+  "tags": [
+    "vcf",
+    "value-creation",
+    "discovery",
+    "value-pyramid",
+    "enterprise-sales",
+    "experimental"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Value Creation Discovery"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

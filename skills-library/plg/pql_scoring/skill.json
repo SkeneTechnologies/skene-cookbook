@@ -1,0 +1,135 @@
+{
+  "id": "plg_pql_scoring",
+  "version": "1.0.0",
+  "name": "Product-Qualified Lead Scoring",
+  "description": "Identifies and scores Product-Qualified Leads (PQLs) based on product usage patterns and engagement signals.",
+  "domain": "plg",
+  "tools": [
+    {
+      "name": "lifecycle.get_segment",
+      "required": true
+    },
+    {
+      "name": "analytics.query_events",
+      "required": true
+    },
+    {
+      "name": "analytics.feature_adoption",
+      "required": true
+    },
+    {
+      "name": "stripe.get_usage",
+      "required": false
+    },
+    {
+      "name": "ai.score_lead",
+      "required": false
+    },
+    {
+      "name": "crm.create_deal",
+      "required": false
+    },
+    {
+      "name": "messaging.send_alert",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "sales_handoff",
+    "upgrade_trigger",
+    "nurture",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "userId": {
+        "type": "string"
+      },
+      "accountId": {
+        "type": "string"
+      },
+      "evaluationPeriod": {
+        "type": "string",
+        "enum": [
+          "7d",
+          "14d",
+          "30d"
+        ]
+      }
+    },
+    "required": [
+      "userId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "pqlScore": {
+        "type": "number"
+      },
+      "tier": {
+        "type": "string",
+        "enum": [
+          "hot",
+          "warm",
+          "cold"
+        ]
+      },
+      "signals": {
+        "type": "array"
+      },
+      "recommendedAction": {
+        "type": "string"
+      },
+      "salesReady": {
+        "type": "boolean"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "pql_conversion_rate",
+    "benchmarks": {
+      "excellent": "> 40%",
+      "good": "25-40%",
+      "needs_improvement": "< 25%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "plg",
+    "pql",
+    "scoring",
+    "sales",
+    "revenue",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Product Qualified Lead Scoring"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "lifecycle.get_segment",
+          "required": true
+        },
+        {
+          "name": "lifecycle.record_moment",
+          "required": false
+        },
+        {
+          "name": "analytics.track_event",
+          "required": false
+        },
+        {
+          "name": "messaging.send_in_app",
+          "required": false
+        }
+      ]
+    }
+  }
+}

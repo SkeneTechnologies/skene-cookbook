@@ -1,0 +1,122 @@
+{
+  "id": "support_sentiment_tracker",
+  "version": "1.0.0",
+  "name": "Ticket Sentiment Tracker",
+  "description": "Tracks and analyzes sentiment across ticket conversations to identify at-risk interactions and trending issues.",
+  "domain": "support_ops",
+  "tools": [
+    {
+      "name": "ai.analyze_sentiment",
+      "required": true
+    },
+    {
+      "name": "support.get_ticket",
+      "required": true
+    },
+    {
+      "name": "analytics.track_sentiment",
+      "required": true
+    },
+    {
+      "name": "messaging.send_alert",
+      "required": false
+    },
+    {
+      "name": "crm.update_health_score",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "escalation_predictor",
+    "csat_analyzer",
+    "proactive_outreach",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "ticket_id": {
+        "type": "string",
+        "description": "Ticket to analyze"
+      },
+      "analyze_full_conversation": {
+        "type": "boolean",
+        "default": true
+      },
+      "alert_on_negative": {
+        "type": "boolean",
+        "default": true
+      },
+      "negative_threshold": {
+        "type": "number",
+        "default": -0.5
+      }
+    },
+    "required": [
+      "ticket_id"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "ticket_id": {
+        "type": "string"
+      },
+      "overall_sentiment": {
+        "type": "number"
+      },
+      "sentiment_label": {
+        "type": "string",
+        "enum": [
+          "positive",
+          "neutral",
+          "negative",
+          "critical"
+        ]
+      },
+      "sentiment_trajectory": {
+        "type": "string",
+        "enum": [
+          "improving",
+          "stable",
+          "declining"
+        ]
+      },
+      "key_phrases": {
+        "type": "array"
+      },
+      "emotion_breakdown": {
+        "type": "object"
+      },
+      "risk_indicators": {
+        "type": "array"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "sentiment_detection_accuracy",
+    "benchmarks": {
+      "excellent": "> 90%",
+      "good": "80-90%",
+      "needs_improvement": "< 80%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "support_ops",
+    "sentiment",
+    "analysis",
+    "risk",
+    "customer_experience",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Ticket Sentiment Tracker"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

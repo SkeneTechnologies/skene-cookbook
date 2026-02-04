@@ -1,0 +1,51 @@
+{
+  "id": "marketing_schema_markup",
+  "version": "1.0.0",
+  "name": "schema-markup",
+  "description": "When the user wants to add, fix, or optimize schema markup and structured data on their site. Also use when the user mentions \"schema markup,\" \"structured data,\" \"JSON-LD,\" \"rich snippets,\" \"schema.org,\" \"FAQ schema,\" \"product schema,\" \"review schema,\" or \"breadcrumb schema.\" For broader SEO issues, see seo-audit.",
+  "domain": "marketing",
+  "category": "seo",
+  "source": "skene-marketing",
+  "tools": [],
+  "exitStates": [
+    "idle",
+    "support"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {},
+    "required": []
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {}
+  },
+  "temperature": 0.3,
+  "tags": [
+    "marketing",
+    "seo",
+    "schema-markup",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with schema markup",
+        "the user mentions \"schema markup,\" \"structured data,\" \"json-ld,\" \"rich snippets,\" \"schema"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "resend.send_email",
+          "required": false
+        },
+        {
+          "name": "analytics.track_campaign",
+          "required": false
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,124 @@
+{
+  "id": "cs_multi_product_adoption",
+  "version": "1.0.0",
+  "name": "Multi-Product Adoption Tracker",
+  "description": "Tracks and optimizes adoption across multiple products or modules, identifying cross-sell opportunities and adoption gaps.",
+  "domain": "customer_success",
+  "tools": [
+    {
+      "name": "analytics.feature_adoption",
+      "required": true
+    },
+    {
+      "name": "stripe.get_subscription",
+      "required": true
+    },
+    {
+      "name": "crm.get_account",
+      "required": true
+    },
+    {
+      "name": "analytics.query_events",
+      "required": false
+    },
+    {
+      "name": "crm.create_deal",
+      "required": false
+    },
+    {
+      "name": "messaging.send_in_app",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "expansion_playbook",
+    "csql_generator",
+    "product_adoption_guidance",
+    "health_scoring",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "accountId": {
+        "type": "string",
+        "description": "Customer account identifier"
+      },
+      "products": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Specific products to analyze"
+      },
+      "includeEntitlements": {
+        "type": "boolean",
+        "default": true
+      }
+    },
+    "required": [
+      "accountId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "productAdoption": {
+        "type": "array"
+      },
+      "crossSellScore": {
+        "type": "number"
+      },
+      "adoptionGaps": {
+        "type": "array"
+      },
+      "integrationStatus": {
+        "type": "object"
+      },
+      "recommendations": {
+        "type": "array"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "multi_product_adoption_rate",
+    "benchmarks": {
+      "excellent": "> 70%",
+      "good": "50-70%",
+      "needs_improvement": "< 50%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "customer_success",
+    "multi_product",
+    "adoption",
+    "cross_sell",
+    "portfolio",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Multi Product Adoption Tracker"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "lifecycle.get_segment",
+          "required": true
+        },
+        {
+          "name": "analytics.get_cohort",
+          "required": false
+        },
+        {
+          "name": "crm.update_account",
+          "required": false
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,137 @@
+{
+  "id": "plg_guided_setup_wizard",
+  "version": "1.0.0",
+  "name": "Guided Setup Wizard",
+  "description": "Orchestrates personalized multi-step setup flows that configure the product based on user goals, industry, and preferences.",
+  "domain": "plg",
+  "tools": [
+    {
+      "name": "ui_kit.wizard",
+      "required": true
+    },
+    {
+      "name": "analytics.track_event",
+      "required": true
+    },
+    {
+      "name": "lifecycle.get_segment",
+      "required": false
+    },
+    {
+      "name": "lifecycle.record_moment",
+      "required": false
+    },
+    {
+      "name": "supabase.update_profile",
+      "required": false
+    },
+    {
+      "name": "rag.query",
+      "required": false
+    },
+    {
+      "name": "vercel.get_edge_config",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "onboarding_flow",
+    "activation",
+    "quick_win_generator",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "userId": {
+        "type": "string",
+        "description": "User going through setup"
+      },
+      "wizardType": {
+        "type": "string",
+        "enum": [
+          "initial",
+          "feature",
+          "integration"
+        ],
+        "description": "Type of setup wizard"
+      },
+      "currentStep": {
+        "type": "number",
+        "description": "Step to resume from"
+      },
+      "skipPersonalization": {
+        "type": "boolean",
+        "description": "Skip personalization questions"
+      }
+    },
+    "required": [
+      "userId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "wizardId": {
+        "type": "string"
+      },
+      "currentStep": {
+        "type": "number"
+      },
+      "totalSteps": {
+        "type": "number"
+      },
+      "configuredSettings": {
+        "type": "object"
+      },
+      "completionStatus": {
+        "type": "string"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "wizard_completion_rate",
+    "benchmarks": {
+      "excellent": "> 85%",
+      "good": "70-85%",
+      "needs_improvement": "< 70%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "plg",
+    "onboarding",
+    "setup",
+    "wizard",
+    "personalization",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Guided Setup Wizard"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "lifecycle.get_segment",
+          "required": true
+        },
+        {
+          "name": "lifecycle.record_moment",
+          "required": false
+        },
+        {
+          "name": "analytics.track_event",
+          "required": false
+        },
+        {
+          "name": "messaging.send_in_app",
+          "required": false
+        }
+      ]
+    }
+  }
+}

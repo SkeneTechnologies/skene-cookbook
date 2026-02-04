@@ -1,0 +1,137 @@
+{
+  "id": "cs_quarterly_business_review",
+  "version": "1.0.0",
+  "name": "QBR Deck Generator",
+  "description": "Generates comprehensive Quarterly Business Review presentations with value metrics, adoption insights, and strategic recommendations.",
+  "domain": "customer_success",
+  "tools": [
+    {
+      "name": "crm.get_account",
+      "required": true
+    },
+    {
+      "name": "analytics.get_metrics",
+      "required": true
+    },
+    {
+      "name": "analytics.feature_adoption",
+      "required": true
+    },
+    {
+      "name": "crm.get_goals",
+      "required": true
+    },
+    {
+      "name": "stripe.get_usage",
+      "required": false
+    },
+    {
+      "name": "feedback.get_surveys",
+      "required": false
+    },
+    {
+      "name": "crm.get_interactions",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "vla_tracker",
+    "expansion_playbook",
+    "success_plan_generator",
+    "renewal_orchestration",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "accountId": {
+        "type": "string",
+        "description": "Customer account identifier"
+      },
+      "quarter": {
+        "type": "string",
+        "description": "Quarter for review (e.g., 'Q4 2024')"
+      },
+      "includeRoadmap": {
+        "type": "boolean",
+        "default": true
+      },
+      "audienceLevel": {
+        "type": "string",
+        "enum": [
+          "executive",
+          "operational",
+          "technical"
+        ]
+      }
+    },
+    "required": [
+      "accountId",
+      "quarter"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "executiveSummary": {
+        "type": "string"
+      },
+      "valueDelivered": {
+        "type": "object"
+      },
+      "adoptionMetrics": {
+        "type": "object"
+      },
+      "healthScore": {
+        "type": "number"
+      },
+      "recommendations": {
+        "type": "array"
+      },
+      "nextQuarterGoals": {
+        "type": "array"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "qbr_completion_rate",
+    "benchmarks": {
+      "excellent": "> 95%",
+      "good": "85-95%",
+      "needs_improvement": "< 85%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "customer_success",
+    "qbr",
+    "business_review",
+    "executive",
+    "reporting",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with QBR Deck Generator"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "lifecycle.get_segment",
+          "required": true
+        },
+        {
+          "name": "analytics.get_cohort",
+          "required": false
+        },
+        {
+          "name": "crm.update_account",
+          "required": false
+        }
+      ]
+    }
+  }
+}

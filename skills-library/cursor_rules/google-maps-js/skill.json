@@ -1,0 +1,35 @@
+{
+  "id": "cursor_rules/google-maps-js",
+  "version": "1.0.0",
+  "name": "google-maps-js",
+  "description": "This guide provides definitive best practices for integrating and managing the Google Maps JavaScript API in modern web applications, focusing on security, performance, and maintainability.",
+  "domain": "cursor_rules",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "cursor_rules",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "cursor": {
+      "globs": [
+        "**/*.{js",
+        "jsx}"
+      ]
+    },
+    "claude": {
+      "triggers": [
+        "help with google maps js"
+      ]
+    },
+    "skeneflow": {}
+  }
+}

@@ -1,0 +1,144 @@
+{
+  "id": "revops_deal_inspection",
+  "version": "1.0.0",
+  "name": "Deal Inspection Assistant",
+  "description": "Conducts thorough deal reviews with MEDDPICC analysis, risk assessment, and actionable coaching.",
+  "domain": "revops",
+  "tools": [
+    {
+      "name": "crm.get_deal",
+      "required": true
+    },
+    {
+      "name": "crm.get_activities",
+      "required": true
+    },
+    {
+      "name": "crm.get_contacts",
+      "required": true
+    },
+    {
+      "name": "crm.get_account",
+      "required": true
+    },
+    {
+      "name": "ai.analyze_conversation",
+      "required": true
+    },
+    {
+      "name": "ai.score_deal",
+      "required": true
+    },
+    {
+      "name": "analytics.get_similar_deals",
+      "required": false
+    },
+    {
+      "name": "crm.update_deal",
+      "required": false
+    },
+    {
+      "name": "messaging.send_alert",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "pipeline_health",
+    "sales_coaching",
+    "forecast_intelligence",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "dealId": {
+        "type": "string"
+      },
+      "inspectionType": {
+        "type": "string",
+        "enum": [
+          "full",
+          "quick",
+          "forecast"
+        ]
+      },
+      "framework": {
+        "type": "string",
+        "enum": [
+          "MEDDPICC",
+          "MEDDIC",
+          "BANT",
+          "custom"
+        ]
+      }
+    },
+    "required": [
+      "dealId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "dealScore": {
+        "type": "number"
+      },
+      "frameworkScores": {
+        "type": "object"
+      },
+      "riskFactors": {
+        "type": "array"
+      },
+      "strengths": {
+        "type": "array"
+      },
+      "recommendations": {
+        "type": "array"
+      },
+      "winProbability": {
+        "type": "number"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "forecast_accuracy",
+    "benchmarks": {
+      "excellent": "> 90%",
+      "good": "80-90%",
+      "needs_improvement": "< 80%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "revops",
+    "deal",
+    "inspection",
+    "coaching",
+    "forecasting",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Deal Inspection Assistant",
+        "deal velocity"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "crm.get_pipeline",
+          "required": true
+        },
+        {
+          "name": "crm.list_deals",
+          "required": false
+        },
+        {
+          "name": "analytics.get_forecast",
+          "required": false
+        }
+      ]
+    }
+  }
+}

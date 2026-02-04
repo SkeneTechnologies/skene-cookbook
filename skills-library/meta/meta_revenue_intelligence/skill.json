@@ -1,0 +1,169 @@
+{
+  "id": "meta_revenue_intelligence",
+  "version": "1.0.0",
+  "name": "Revenue Intelligence Hub",
+  "description": "Provides unified visibility across RevOps, Monetization, and FinOps for comprehensive revenue insights and forecasting",
+  "domain": "meta",
+  "tools": [
+    {
+      "name": "crm.get_pipeline",
+      "required": true
+    },
+    {
+      "name": "crm.get_forecast",
+      "required": true
+    },
+    {
+      "name": "monetization.get_mrr_movements",
+      "required": true
+    },
+    {
+      "name": "monetization.get_arr_breakdown",
+      "required": true
+    },
+    {
+      "name": "finops.get_unit_economics",
+      "required": true
+    },
+    {
+      "name": "finops.get_cac_payback",
+      "required": true
+    },
+    {
+      "name": "analytics.get_cohort_analysis",
+      "required": true
+    },
+    {
+      "name": "analytics.get_revenue_attribution",
+      "required": true
+    },
+    {
+      "name": "ai.forecast_revenue",
+      "required": true
+    },
+    {
+      "name": "ai.detect_anomalies",
+      "required": true
+    }
+  ],
+  "exitStates": [
+    "forecast_updated",
+    "anomaly_detected",
+    "target_at_risk",
+    "expansion_opportunity",
+    "efficiency_alert",
+    "healthy"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "reportingPeriod": {
+        "type": "string",
+        "enum": [
+          "weekly",
+          "monthly",
+          "quarterly",
+          "annual"
+        ]
+      },
+      "focusArea": {
+        "type": "string",
+        "enum": [
+          "pipeline",
+          "bookings",
+          "retention",
+          "expansion",
+          "efficiency",
+          "all"
+        ]
+      },
+      "segmentFilter": {
+        "type": "string",
+        "description": "Optional segment to focus on"
+      },
+      "comparisonPeriod": {
+        "type": "string",
+        "description": "Period for comparison (e.g., 'previous_quarter')"
+      }
+    },
+    "required": [
+      "reportingPeriod"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "revenueSnapshot": {
+        "type": "object"
+      },
+      "keyMetrics": {
+        "type": "object"
+      },
+      "anomalies": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "forecast": {
+        "type": "object"
+      },
+      "recommendations": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "alerts": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      }
+    }
+  },
+  "metrics": {
+    "primary": "forecast_accuracy",
+    "secondary": [
+      "revenue_growth_rate",
+      "net_revenue_retention",
+      "cac_payback_months",
+      "ltv_cac_ratio"
+    ],
+    "benchmarks": {
+      "excellent": "> 95% accuracy",
+      "good": "85-95% accuracy",
+      "needs_improvement": "< 85% accuracy"
+    }
+  },
+  "orchestrates": [
+    "revops/commit_accuracy",
+    "revops/deal_inspection",
+    "revops/attribution_tracker",
+    "monetization/mrr_movement_tracker",
+    "monetization/cohort_ltv_analyzer",
+    "monetization/revenue_recognition",
+    "finops/budget_variance",
+    "finops/cost_allocation"
+  ],
+  "temperature": 0,
+  "tags": [
+    "meta",
+    "orchestration",
+    "revenue",
+    "revops",
+    "monetization",
+    "finops",
+    "forecasting",
+    "experimental"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Revenue Intelligence Hub"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

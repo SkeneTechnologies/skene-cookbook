@@ -1,0 +1,118 @@
+{
+  "id": "elg_referral_program",
+  "version": "1.0.0",
+  "name": "Partner Referral Manager",
+  "description": "Manages partner referral programs including lead tracking, commission calculation, payout processing, and referral analytics.",
+  "domain": "ecosystem",
+  "tools": [
+    {
+      "name": "partner.get_referrals",
+      "required": true
+    },
+    {
+      "name": "partner.submit_referral",
+      "required": true
+    },
+    {
+      "name": "partner.calculate_commission",
+      "required": true
+    },
+    {
+      "name": "crm.create_lead",
+      "required": true
+    },
+    {
+      "name": "crm.get_deal",
+      "required": false
+    },
+    {
+      "name": "partner.process_payout",
+      "required": false
+    },
+    {
+      "name": "messaging.send_email",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "lead_qualification",
+    "co_sell_trigger",
+    "partner_influenced_revenue",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "partnerId": {
+        "type": "string",
+        "description": "Partner submitting or checking referrals"
+      },
+      "action": {
+        "type": "string",
+        "enum": [
+          "submit",
+          "track",
+          "payout",
+          "report"
+        ]
+      },
+      "referralData": {
+        "type": "object",
+        "description": "Referral details for submission"
+      }
+    },
+    "required": [
+      "partnerId",
+      "action"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "referral_id": {
+        "type": "string"
+      },
+      "status": {
+        "type": "string"
+      },
+      "commission": {
+        "type": "object"
+      },
+      "referral_pipeline": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "pending_payouts": {
+        "type": "number"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "referral_revenue",
+    "benchmarks": {
+      "excellent": "> $1M",
+      "good": "$500K-$1M",
+      "needs_improvement": "< $500K"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "ecosystem",
+    "partner",
+    "referral",
+    "commission",
+    "revenue",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Partner Referral Manager"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

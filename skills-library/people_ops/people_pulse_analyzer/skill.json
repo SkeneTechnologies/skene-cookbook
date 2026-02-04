@@ -1,0 +1,126 @@
+{
+  "id": "people_pulse_analyzer",
+  "version": "1.0.0",
+  "name": "Employee Pulse Analyzer",
+  "description": "Analyzes employee pulse surveys, engagement data, and sentiment to surface actionable insights and early warning signals.",
+  "domain": "people_ops",
+  "tools": [
+    {
+      "name": "hr.get_survey_results",
+      "required": true
+    },
+    {
+      "name": "analytics.aggregate_scores",
+      "required": true
+    },
+    {
+      "name": "ai.analyze_sentiment",
+      "required": true
+    },
+    {
+      "name": "hr.get_team_structure",
+      "required": false
+    },
+    {
+      "name": "analytics.get_benchmarks",
+      "required": false
+    },
+    {
+      "name": "messaging.send_alert",
+      "required": false
+    },
+    {
+      "name": "hr.create_action_item",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "people_perf_review_generator",
+    "people_skill_gap_analyzer",
+    "people_dei_tracker",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "surveyId": {
+        "type": "string",
+        "description": "Pulse survey identifier"
+      },
+      "teamId": {
+        "type": "string",
+        "description": "Team or department to analyze"
+      },
+      "timePeriod": {
+        "type": "string",
+        "enum": [
+          "weekly",
+          "monthly",
+          "quarterly"
+        ]
+      },
+      "compareToBaseline": {
+        "type": "boolean",
+        "description": "Compare to historical baseline"
+      }
+    },
+    "required": [
+      "surveyId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "overallScore": {
+        "type": "number"
+      },
+      "eNPS": {
+        "type": "number"
+      },
+      "dimensionScores": {
+        "type": "object"
+      },
+      "trends": {
+        "type": "array"
+      },
+      "riskAreas": {
+        "type": "array"
+      },
+      "strengths": {
+        "type": "array"
+      },
+      "themes": {
+        "type": "array"
+      },
+      "recommendations": {
+        "type": "array"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "employee_engagement_score",
+    "benchmarks": {
+      "excellent": "> 80",
+      "good": "65-80",
+      "needs_improvement": "< 65"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "people_ops",
+    "engagement",
+    "pulse",
+    "sentiment",
+    "employee_experience",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Employee Pulse Analyzer"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

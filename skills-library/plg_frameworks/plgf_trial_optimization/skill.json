@@ -1,0 +1,129 @@
+{
+  "id": "plgf_trial_optimization",
+  "version": "1.0.0",
+  "name": "Trial Optimization",
+  "description": "Trial types comparison, length optimization, email sequences, and conversion benchmarks",
+  "domain": "plg_frameworks",
+  "tools": [
+    {
+      "name": "analytics.get_metrics",
+      "required": true
+    },
+    {
+      "name": "analytics.get_cohort",
+      "required": true
+    },
+    {
+      "name": "analytics.get_funnel",
+      "required": true
+    },
+    {
+      "name": "messaging.send_email",
+      "required": false
+    },
+    {
+      "name": "lifecycle.get_segment",
+      "required": false
+    },
+    {
+      "name": "ui_kit.panel",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "trial_optimized",
+    "sequence_launched",
+    "extension_granted",
+    "conversion_improved",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "productId": {
+        "type": "string",
+        "description": "Product to optimize trial for"
+      },
+      "currentTrialType": {
+        "type": "string",
+        "enum": [
+          "time-limited",
+          "feature-limited",
+          "usage-limited",
+          "reverse"
+        ],
+        "description": "Current trial type"
+      },
+      "trialLength": {
+        "type": "number",
+        "description": "Current trial length in days"
+      },
+      "currentConversionRate": {
+        "type": "number",
+        "description": "Current trial to paid conversion rate"
+      }
+    },
+    "required": [
+      "productId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "trialTypeAnalysis": {
+        "type": "object"
+      },
+      "lengthOptimization": {
+        "type": "object"
+      },
+      "emailSequence": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "conversionBenchmarks": {
+        "type": "object"
+      },
+      "extensionStrategy": {
+        "type": "object"
+      },
+      "abTestRecommendations": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "projectedImpact": {
+        "type": "object"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "trial_to_paid_rate",
+    "benchmarks": {
+      "excellent": "> 25%",
+      "good": "15-25%",
+      "needs_improvement": "< 15%"
+    }
+  },
+  "temperature": 0.3,
+  "tags": [
+    "plg_frameworks",
+    "trial",
+    "conversion",
+    "email_sequence",
+    "optimization",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Trial Optimization",
+        "trial optimization"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

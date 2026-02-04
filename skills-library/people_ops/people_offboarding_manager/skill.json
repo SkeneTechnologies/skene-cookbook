@@ -1,0 +1,134 @@
+{
+  "id": "people_offboarding_manager",
+  "version": "1.0.0",
+  "name": "Offboarding Manager",
+  "description": "Manages employee departures with compliance-focused checklists, knowledge transfer, and exit interview analysis.",
+  "domain": "people_ops",
+  "tools": [
+    {
+      "name": "hr.create_offboarding_checklist",
+      "required": true
+    },
+    {
+      "name": "hr.get_employee",
+      "required": true
+    },
+    {
+      "name": "provisioning.revoke_access",
+      "required": true
+    },
+    {
+      "name": "hr.schedule_exit_interview",
+      "required": true
+    },
+    {
+      "name": "ai.analyze_exit_feedback",
+      "required": false
+    },
+    {
+      "name": "knowledge.transfer_docs",
+      "required": false
+    },
+    {
+      "name": "payroll.process_final_pay",
+      "required": false
+    },
+    {
+      "name": "messaging.send_notification",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "people_pulse_analyzer",
+    "people_candidate_sourcer",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "employeeId": {
+        "type": "string",
+        "description": "Departing employee identifier"
+      },
+      "lastDay": {
+        "type": "string",
+        "format": "date",
+        "description": "Last working day"
+      },
+      "separationType": {
+        "type": "string",
+        "enum": [
+          "voluntary",
+          "involuntary",
+          "retirement",
+          "contract_end"
+        ]
+      },
+      "rehireEligible": {
+        "type": "boolean",
+        "description": "Whether employee is eligible for rehire"
+      },
+      "knowledgeTransferRequired": {
+        "type": "boolean",
+        "description": "Whether knowledge transfer is needed"
+      }
+    },
+    "required": [
+      "employeeId",
+      "lastDay",
+      "separationType"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "checklistId": {
+        "type": "string"
+      },
+      "completionStatus": {
+        "type": "object"
+      },
+      "accessRevoked": {
+        "type": "array"
+      },
+      "exitInterviewInsights": {
+        "type": "object"
+      },
+      "knowledgeTransferStatus": {
+        "type": "string"
+      },
+      "complianceStatus": {
+        "type": "string"
+      },
+      "finalPayStatus": {
+        "type": "string"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "offboarding_compliance_rate",
+    "benchmarks": {
+      "excellent": "100%",
+      "good": "95-99%",
+      "needs_improvement": "< 95%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "people_ops",
+    "offboarding",
+    "hr",
+    "compliance",
+    "exit_interview",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Offboarding Manager"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

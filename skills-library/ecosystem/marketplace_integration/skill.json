@@ -1,0 +1,56 @@
+{
+  "id": "elg_marketplace_integration",
+  "version": "1.0.0",
+  "name": "Marketplace Integration Manager",
+  "description": "Manages marketplace listings and tracks integration-driven growth.",
+  "domain": "ecosystem",
+  "tools": [
+    {
+      "name": "partner.get_marketplace_listing",
+      "required": true
+    },
+    {
+      "name": "partner.list_marketplaces",
+      "required": true
+    },
+    {
+      "name": "analytics.get_metrics",
+      "required": false
+    },
+    {
+      "name": "lifecycle.get_segment",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "eql_scoring",
+    "activation",
+    "expansion_playbook",
+    "idle"
+  ],
+  "metrics": {
+    "primary": "marketplace_influenced_revenue",
+    "benchmarks": {
+      "excellent": "> $100K/mo",
+      "good": "$50-100K/mo",
+      "needs_improvement": "< $50K/mo"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "ecosystem",
+    "marketplace",
+    "integration",
+    "distribution",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Marketplace Integration Manager"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

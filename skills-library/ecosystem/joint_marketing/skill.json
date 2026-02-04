@@ -1,0 +1,123 @@
+{
+  "id": "elg_joint_marketing",
+  "version": "1.0.0",
+  "name": "Joint Marketing Orchestrator",
+  "description": "Coordinates joint marketing initiatives with partners including co-branded campaigns, webinars, content, and events.",
+  "domain": "ecosystem",
+  "tools": [
+    {
+      "name": "partner.get",
+      "required": true
+    },
+    {
+      "name": "partner.get_marketing_activities",
+      "required": true
+    },
+    {
+      "name": "partner.create_campaign",
+      "required": true
+    },
+    {
+      "name": "mdf.request",
+      "required": false
+    },
+    {
+      "name": "crm.create_campaign",
+      "required": false
+    },
+    {
+      "name": "analytics.get_metrics",
+      "required": false
+    },
+    {
+      "name": "messaging.send_email",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "mdf_tracker",
+    "partner_influenced_revenue",
+    "nearbound_signal",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "partnerId": {
+        "type": "string",
+        "description": "Partner for joint marketing"
+      },
+      "campaignType": {
+        "type": "string",
+        "enum": [
+          "webinar",
+          "content",
+          "event",
+          "email",
+          "digital_ads"
+        ]
+      },
+      "targetAudience": {
+        "type": "string",
+        "description": "Target segment for campaign"
+      },
+      "budget": {
+        "type": "number",
+        "description": "Campaign budget"
+      }
+    },
+    "required": [
+      "partnerId",
+      "campaignType"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "campaign_id": {
+        "type": "string"
+      },
+      "campaign_plan": {
+        "type": "object"
+      },
+      "mdf_request": {
+        "type": "object"
+      },
+      "timeline": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "expected_roi": {
+        "type": "object"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "joint_marketing_sourced_pipeline",
+    "benchmarks": {
+      "excellent": "> $2M",
+      "good": "$1M-$2M",
+      "needs_improvement": "< $1M"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "ecosystem",
+    "partner",
+    "marketing",
+    "campaign",
+    "co-marketing",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Joint Marketing Orchestrator"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

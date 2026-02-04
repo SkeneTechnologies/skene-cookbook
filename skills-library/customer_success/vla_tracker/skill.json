@@ -1,0 +1,137 @@
+{
+  "id": "cs_vla_tracker",
+  "version": "1.0.0",
+  "name": "Value-Level Agreement Manager",
+  "description": "Defines and tracks VLA outcomes aligned with customer business objectives, ensuring measurable value delivery throughout the customer lifecycle.",
+  "domain": "customer_success",
+  "tools": [
+    {
+      "name": "crm.get_goals",
+      "required": true
+    },
+    {
+      "name": "crm.get_account",
+      "required": true
+    },
+    {
+      "name": "analytics.get_metrics",
+      "required": true
+    },
+    {
+      "name": "analytics.query_events",
+      "required": false
+    },
+    {
+      "name": "crm.update_account",
+      "required": false
+    },
+    {
+      "name": "messaging.send_alert",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "health_scoring",
+    "expansion_playbook",
+    "outcome_tracker",
+    "quarterly_business_review",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "accountId": {
+        "type": "string",
+        "description": "Customer account identifier"
+      },
+      "vlaDefinitions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "outcome": {
+              "type": "string"
+            },
+            "metric": {
+              "type": "string"
+            },
+            "target": {
+              "type": "number"
+            },
+            "timeline": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "required": [
+      "accountId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "vlaStatus": {
+        "type": "string",
+        "enum": [
+          "on_track",
+          "at_risk",
+          "exceeded",
+          "missed"
+        ]
+      },
+      "attainmentRate": {
+        "type": "number"
+      },
+      "outcomes": {
+        "type": "array"
+      },
+      "recommendations": {
+        "type": "array"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "vla_attainment_rate",
+    "benchmarks": {
+      "excellent": "> 90%",
+      "good": "70-90%",
+      "needs_improvement": "< 70%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "customer_success",
+    "vla",
+    "outcomes",
+    "value_delivery",
+    "goals",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Value Level Agreement Manager",
+        "customer health"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "lifecycle.get_segment",
+          "required": true
+        },
+        {
+          "name": "analytics.get_cohort",
+          "required": false
+        },
+        {
+          "name": "crm.update_account",
+          "required": false
+        }
+      ]
+    }
+  }
+}

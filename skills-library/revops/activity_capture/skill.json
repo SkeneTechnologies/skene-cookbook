@@ -1,0 +1,137 @@
+{
+  "id": "revops_activity_capture",
+  "version": "1.0.0",
+  "name": "Activity Capture Intelligence",
+  "description": "Automatically captures and enriches sales activities from email, calendar, and calls for complete deal visibility.",
+  "domain": "revops",
+  "tools": [
+    {
+      "name": "integration.sync_email",
+      "required": true
+    },
+    {
+      "name": "integration.sync_calendar",
+      "required": true
+    },
+    {
+      "name": "integration.sync_calls",
+      "required": true
+    },
+    {
+      "name": "ai.extract_activity_insights",
+      "required": true
+    },
+    {
+      "name": "crm.create_activity",
+      "required": true
+    },
+    {
+      "name": "crm.link_activity",
+      "required": true
+    },
+    {
+      "name": "ai.match_contact",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "deal_inspection",
+    "pipeline_health",
+    "next_best_action",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "repId": {
+        "type": "string"
+      },
+      "syncWindow": {
+        "type": "string",
+        "description": "Time window to sync (e.g., '24h', '7d')"
+      },
+      "sources": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": [
+            "email",
+            "calendar",
+            "calls",
+            "linkedin"
+          ]
+        }
+      },
+      "autoLink": {
+        "type": "boolean",
+        "description": "Auto-link to deals/contacts"
+      }
+    },
+    "required": [
+      "repId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "activitiesCaptured": {
+        "type": "number"
+      },
+      "activitiesLinked": {
+        "type": "number"
+      },
+      "dealsUpdated": {
+        "type": "array"
+      },
+      "contactsCreated": {
+        "type": "number"
+      },
+      "insightsExtracted": {
+        "type": "array"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "activity_capture_rate",
+    "benchmarks": {
+      "excellent": "> 95% auto-captured",
+      "good": "85-95% auto-captured",
+      "needs_improvement": "< 85% auto-captured"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "revops",
+    "activity",
+    "capture",
+    "automation",
+    "integration",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Activity Capture Intelligence",
+        "sales pipeline",
+        "deal velocity"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "crm.get_pipeline",
+          "required": true
+        },
+        {
+          "name": "crm.list_deals",
+          "required": false
+        },
+        {
+          "name": "analytics.get_forecast",
+          "required": false
+        }
+      ]
+    }
+  }
+}

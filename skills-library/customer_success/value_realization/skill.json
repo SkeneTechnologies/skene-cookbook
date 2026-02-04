@@ -1,0 +1,76 @@
+{
+  "id": "cs_value_realization",
+  "version": "1.0.0",
+  "name": "Value Realization Tracker",
+  "description": "Tracks and documents customer value realization against defined success criteria (VLAs).",
+  "domain": "customer_success",
+  "tools": [
+    {
+      "name": "analytics.get_metrics",
+      "required": true
+    },
+    {
+      "name": "analytics.query_events",
+      "required": true
+    },
+    {
+      "name": "crm.get_account",
+      "required": true
+    },
+    {
+      "name": "crm.log_activity",
+      "required": true
+    },
+    {
+      "name": "lifecycle.record_moment",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "expansion_playbook",
+    "case_study",
+    "advocacy",
+    "idle"
+  ],
+  "metrics": {
+    "primary": "value_realization_rate",
+    "benchmarks": {
+      "excellent": "> 80%",
+      "good": "60-80%",
+      "needs_improvement": "< 60%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "customer_success",
+    "value",
+    "outcomes",
+    "roi",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Value Realization Tracker",
+        "customer health"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "lifecycle.get_segment",
+          "required": true
+        },
+        {
+          "name": "analytics.get_cohort",
+          "required": false
+        },
+        {
+          "name": "crm.update_account",
+          "required": false
+        }
+      ]
+    }
+  }
+}

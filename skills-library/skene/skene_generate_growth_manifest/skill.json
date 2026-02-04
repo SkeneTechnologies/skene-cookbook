@@ -1,0 +1,126 @@
+{
+  "id": "skene_generate_growth_manifest",
+  "version": "1.0.0",
+  "name": "Growth Manifest Generator",
+  "description": "Combines all analyses into a comprehensive growth manifest and identifies GTM gaps and opportunities",
+  "domain": "skene",
+  "tools": [
+    {
+      "name": "fs.write",
+      "required": true
+    },
+    {
+      "name": "ai.synthesize",
+      "required": true
+    },
+    {
+      "name": "ai.recommend",
+      "required": true
+    }
+  ],
+  "exitStates": [
+    "generate_growth_template",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "rootPath": {
+        "type": "string",
+        "description": "Root path of the codebase"
+      },
+      "techStack": {
+        "type": "object",
+        "description": "Output from tech stack analyzer"
+      },
+      "productOverview": {
+        "type": "object",
+        "description": "Output from product overview extractor"
+      },
+      "growthHubs": {
+        "type": "object",
+        "description": "Output from growth hubs analyzer"
+      },
+      "features": {
+        "type": "object",
+        "description": "Output from feature documenter"
+      },
+      "outputPath": {
+        "type": "string",
+        "description": "Path for generated manifest",
+        "default": "growth-manifest.json"
+      }
+    },
+    "required": [
+      "rootPath",
+      "techStack",
+      "growthHubs",
+      "features"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "manifest": {
+        "type": "object",
+        "properties": {
+          "product": {
+            "type": "object"
+          },
+          "techStack": {
+            "type": "object"
+          },
+          "features": {
+            "type": "array"
+          },
+          "growthCapabilities": {
+            "type": "object"
+          },
+          "gtmGaps": {
+            "type": "array"
+          },
+          "recommendations": {
+            "type": "array"
+          }
+        }
+      },
+      "gtmReadinessScore": {
+        "type": "number"
+      },
+      "prioritizedActions": {
+        "type": "array"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "gtm_readiness_score",
+    "secondary": [
+      "gap_identification_rate",
+      "recommendation_actionability"
+    ],
+    "benchmarks": {
+      "excellent": "> 85%",
+      "good": "65-85%",
+      "needs_improvement": "< 65%"
+    }
+  },
+  "temperature": 0.2,
+  "tags": [
+    "skene",
+    "synthesis",
+    "growth",
+    "manifest",
+    "gtm",
+    "recommendations",
+    "experimental"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Growth Manifest Generator"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

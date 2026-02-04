@@ -1,0 +1,133 @@
+{
+  "id": "plg_habit_loop_builder",
+  "version": "1.0.0",
+  "name": "Habit Loop Builder",
+  "description": "Designs and reinforces product usage habits through cue-routine-reward cycles, driving sustainable engagement and retention.",
+  "domain": "plg",
+  "tools": [
+    {
+      "name": "lifecycle.get_segment",
+      "required": true
+    },
+    {
+      "name": "analytics.track_event",
+      "required": true
+    },
+    {
+      "name": "analytics.get_metrics",
+      "required": true
+    },
+    {
+      "name": "messaging.send_in_app",
+      "required": false
+    },
+    {
+      "name": "resend.send_template",
+      "required": false
+    },
+    {
+      "name": "lifecycle.record_moment",
+      "required": false
+    },
+    {
+      "name": "ui_kit.notification",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "activation",
+    "retention",
+    "churn_prevention",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "userId": {
+        "type": "string",
+        "description": "User to build habits for"
+      },
+      "targetHabit": {
+        "type": "string",
+        "description": "Specific habit to reinforce"
+      },
+      "habitPhase": {
+        "type": "string",
+        "enum": [
+          "cue",
+          "routine",
+          "reward",
+          "analyze"
+        ]
+      }
+    },
+    "required": [
+      "userId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "habitStrength": {
+        "type": "number"
+      },
+      "currentStreak": {
+        "type": "number"
+      },
+      "habitLoopPhase": {
+        "type": "string"
+      },
+      "nextCueTime": {
+        "type": "string"
+      },
+      "recommendedReinforcement": {
+        "type": "string"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "habit_formation_rate",
+    "benchmarks": {
+      "excellent": "> 60%",
+      "good": "40-60%",
+      "needs_improvement": "< 40%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "plg",
+    "retention",
+    "habit",
+    "engagement",
+    "behavioral",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Habit Loop Builder"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "lifecycle.get_segment",
+          "required": true
+        },
+        {
+          "name": "lifecycle.record_moment",
+          "required": false
+        },
+        {
+          "name": "analytics.track_event",
+          "required": false
+        },
+        {
+          "name": "messaging.send_in_app",
+          "required": false
+        }
+      ]
+    }
+  }
+}

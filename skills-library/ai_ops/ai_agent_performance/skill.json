@@ -1,0 +1,120 @@
+{
+  "id": "ai_agent_performance",
+  "version": "1.0.0",
+  "name": "Agent Performance Monitor",
+  "description": "Monitors and analyzes AI agent performance, accuracy, and health across all deployed agents.",
+  "domain": "ai_ops",
+  "tools": [
+    {
+      "name": "ai.evaluate_performance",
+      "required": true
+    },
+    {
+      "name": "analytics.get_agent_metrics",
+      "required": true
+    },
+    {
+      "name": "ai.analyze_errors",
+      "required": true
+    },
+    {
+      "name": "alerting.notify",
+      "required": false
+    },
+    {
+      "name": "ai.suggest_improvements",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "healthy",
+    "degraded",
+    "critical",
+    "improved",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "agent_id": {
+        "type": "string",
+        "description": "Agent to monitor (or 'all')"
+      },
+      "time_range": {
+        "type": "object",
+        "description": "Analysis period"
+      },
+      "metrics": {
+        "type": "array",
+        "description": "Specific metrics to analyze"
+      },
+      "compare_baseline": {
+        "type": "boolean",
+        "default": true
+      }
+    },
+    "required": [
+      "agent_id"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "health_score": {
+        "type": "number"
+      },
+      "metrics": {
+        "type": "object"
+      },
+      "issues_detected": {
+        "type": "array"
+      },
+      "recommendations": {
+        "type": "array"
+      },
+      "alerts": {
+        "type": "array"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "agent_health_score",
+    "benchmarks": {
+      "excellent": "> 95%",
+      "good": "85-95%",
+      "needs_improvement": "< 85%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "ai_ops",
+    "monitoring",
+    "performance",
+    "observability",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Agent Performance Monitor"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "ai.classify",
+          "required": false
+        },
+        {
+          "name": "ai.generate",
+          "required": false
+        },
+        {
+          "name": "ai.score_lead",
+          "required": false
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,133 @@
+{
+  "id": "revops_sales_coaching",
+  "version": "1.0.0",
+  "name": "Sales Coaching Intelligence",
+  "description": "Provides AI-powered coaching insights based on call analysis, deal patterns, and performance metrics.",
+  "domain": "revops",
+  "tools": [
+    {
+      "name": "crm.get_rep_deals",
+      "required": true
+    },
+    {
+      "name": "crm.get_rep_activities",
+      "required": true
+    },
+    {
+      "name": "ai.analyze_calls",
+      "required": true
+    },
+    {
+      "name": "analytics.get_rep_benchmarks",
+      "required": true
+    },
+    {
+      "name": "ai.generate_coaching",
+      "required": true
+    },
+    {
+      "name": "crm.get_rep_performance",
+      "required": false
+    },
+    {
+      "name": "messaging.send_coaching",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "deal_inspection",
+    "win_loss_analyzer",
+    "pipeline_health",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "repId": {
+        "type": "string"
+      },
+      "coachingArea": {
+        "type": "string",
+        "enum": [
+          "discovery",
+          "demo",
+          "negotiation",
+          "objection_handling",
+          "closing",
+          "all"
+        ]
+      },
+      "period": {
+        "type": "string"
+      },
+      "includeCallReview": {
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "repId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "overallScore": {
+        "type": "number"
+      },
+      "strengthAreas": {
+        "type": "array"
+      },
+      "improvementAreas": {
+        "type": "array"
+      },
+      "specificCoaching": {
+        "type": "array"
+      },
+      "callHighlights": {
+        "type": "array"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "coaching_impact",
+    "benchmarks": {
+      "excellent": "> 20% performance improvement",
+      "good": "10-20% improvement",
+      "needs_improvement": "< 10% improvement"
+    }
+  },
+  "temperature": 0.2,
+  "tags": [
+    "revops",
+    "coaching",
+    "training",
+    "performance",
+    "ai",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Sales Coaching Intelligence",
+        "deal velocity"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "crm.get_pipeline",
+          "required": true
+        },
+        {
+          "name": "crm.list_deals",
+          "required": false
+        },
+        {
+          "name": "analytics.get_forecast",
+          "required": false
+        }
+      ]
+    }
+  }
+}

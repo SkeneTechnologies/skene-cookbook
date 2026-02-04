@@ -1,0 +1,130 @@
+{
+  "id": "plg_time_to_value",
+  "version": "1.0.0",
+  "name": "Time-to-Value Optimizer",
+  "description": "Monitors and optimizes time-to-value, identifying blockers and accelerating first value achievement.",
+  "domain": "plg",
+  "tools": [
+    {
+      "name": "lifecycle.get_segment",
+      "required": true
+    },
+    {
+      "name": "lifecycle.record_moment",
+      "required": true
+    },
+    {
+      "name": "analytics.funnel",
+      "required": true
+    },
+    {
+      "name": "analytics.track_event",
+      "required": true
+    },
+    {
+      "name": "ai.personalize",
+      "required": false
+    },
+    {
+      "name": "messaging.send_in_app",
+      "required": false
+    },
+    {
+      "name": "resend.send_template",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "aha_moment_detection",
+    "support",
+    "activation",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "userId": {
+        "type": "string"
+      },
+      "signupTimestamp": {
+        "type": "string"
+      },
+      "targetTTV": {
+        "type": "number",
+        "description": "Target TTV in minutes"
+      }
+    },
+    "required": [
+      "userId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "currentTTV": {
+        "type": "number"
+      },
+      "targetTTV": {
+        "type": "number"
+      },
+      "status": {
+        "type": "string",
+        "enum": [
+          "on_track",
+          "at_risk",
+          "delayed"
+        ]
+      },
+      "blockers": {
+        "type": "array"
+      },
+      "interventions": {
+        "type": "array"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "median_time_to_value",
+    "benchmarks": {
+      "excellent": "< 5 minutes",
+      "good": "5-15 minutes",
+      "needs_improvement": "> 15 minutes"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "plg",
+    "ttv",
+    "activation",
+    "optimization",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Time to Value Optimizer"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "lifecycle.get_segment",
+          "required": true
+        },
+        {
+          "name": "lifecycle.record_moment",
+          "required": false
+        },
+        {
+          "name": "analytics.track_event",
+          "required": false
+        },
+        {
+          "name": "messaging.send_in_app",
+          "required": false
+        }
+      ]
+    }
+  }
+}

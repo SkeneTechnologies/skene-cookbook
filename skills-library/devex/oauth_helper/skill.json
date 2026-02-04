@@ -1,0 +1,117 @@
+{
+  "id": "devex_oauth_helper",
+  "version": "1.0.0",
+  "name": "OAuth Setup Helper",
+  "description": "Guides developers through OAuth configuration with step-by-step setup, token management, and troubleshooting.",
+  "domain": "devex",
+  "tools": [
+    {
+      "name": "oauth.validate_config",
+      "required": true
+    },
+    {
+      "name": "ai.generate_code",
+      "required": true
+    },
+    {
+      "name": "docs.get_oauth_docs",
+      "required": true
+    },
+    {
+      "name": "oauth.test_flow",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "api_onboarding",
+    "error_explainer",
+    "sandbox_manager",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "developer_id": {
+        "type": "string",
+        "description": "Developer setting up OAuth"
+      },
+      "oauth_type": {
+        "type": "string",
+        "enum": [
+          "authorization_code",
+          "client_credentials",
+          "pkce",
+          "device_code"
+        ],
+        "description": "OAuth flow type"
+      },
+      "platform": {
+        "type": "string",
+        "description": "Platform/language"
+      },
+      "action": {
+        "type": "string",
+        "enum": [
+          "setup",
+          "troubleshoot",
+          "refresh",
+          "validate"
+        ],
+        "default": "setup"
+      },
+      "error_details": {
+        "type": "object",
+        "description": "Error information for troubleshooting"
+      }
+    },
+    "required": [
+      "developer_id"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "setup_guide": {
+        "type": "object"
+      },
+      "code_samples": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "config_validation": {
+        "type": "object"
+      },
+      "troubleshooting": {
+        "type": "object"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "oauth_setup_success_rate",
+    "benchmarks": {
+      "excellent": "> 90% successful OAuth setups",
+      "good": "75-90% successful OAuth setups",
+      "needs_improvement": "< 75% successful OAuth setups"
+    }
+  },
+  "temperature": 0.2,
+  "tags": [
+    "devex",
+    "oauth",
+    "authentication",
+    "security",
+    "setup",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with OAuth Setup Helper"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

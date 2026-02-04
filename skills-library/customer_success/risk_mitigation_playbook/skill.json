@@ -1,0 +1,139 @@
+{
+  "id": "cs_risk_mitigation_playbook",
+  "version": "1.0.0",
+  "name": "Risk Mitigation Playbook",
+  "description": "Identifies at-risk accounts and executes structured intervention playbooks to prevent churn and restore customer health.",
+  "domain": "customer_success",
+  "tools": [
+    {
+      "name": "lifecycle.get_segment",
+      "required": true
+    },
+    {
+      "name": "analytics.query_events",
+      "required": true
+    },
+    {
+      "name": "crm.get_interactions",
+      "required": true
+    },
+    {
+      "name": "feedback.get_surveys",
+      "required": false
+    },
+    {
+      "name": "crm.create_task",
+      "required": false
+    },
+    {
+      "name": "messaging.send_alert",
+      "required": false
+    },
+    {
+      "name": "messaging.send_email",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "health_scoring",
+    "escalation_manager",
+    "churn_prediction",
+    "success_plan_generator",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "accountId": {
+        "type": "string",
+        "description": "Customer account identifier"
+      },
+      "riskType": {
+        "type": "string",
+        "enum": [
+          "usage_decline",
+          "sentiment_drop",
+          "champion_loss",
+          "competitive_threat",
+          "budget_cut",
+          "executive_change"
+        ]
+      },
+      "severity": {
+        "type": "string",
+        "enum": [
+          "critical",
+          "high",
+          "medium",
+          "low"
+        ]
+      }
+    },
+    "required": [
+      "accountId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "riskAssessment": {
+        "type": "object"
+      },
+      "selectedPlaybook": {
+        "type": "string"
+      },
+      "actionPlan": {
+        "type": "array"
+      },
+      "escalationPath": {
+        "type": "array"
+      },
+      "successCriteria": {
+        "type": "array"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "risk_mitigation_success_rate",
+    "benchmarks": {
+      "excellent": "> 80%",
+      "good": "65-80%",
+      "needs_improvement": "< 65%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "customer_success",
+    "risk",
+    "mitigation",
+    "playbook",
+    "retention",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Risk Mitigation Playbook",
+        "customer health",
+        "churn prevention"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "lifecycle.get_segment",
+          "required": true
+        },
+        {
+          "name": "analytics.get_cohort",
+          "required": false
+        },
+        {
+          "name": "crm.update_account",
+          "required": false
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,134 @@
+{
+  "id": "people_skill_gap_analyzer",
+  "version": "1.0.0",
+  "name": "Skills Gap Analyzer",
+  "description": "Identifies skill gaps across teams and individuals, maps current capabilities against future needs, and recommends development paths.",
+  "domain": "people_ops",
+  "tools": [
+    {
+      "name": "hr.get_skills_inventory",
+      "required": true
+    },
+    {
+      "name": "hr.get_role_requirements",
+      "required": true
+    },
+    {
+      "name": "ai.assess_skill_gaps",
+      "required": true
+    },
+    {
+      "name": "learning.get_catalog",
+      "required": false
+    },
+    {
+      "name": "hr.get_career_paths",
+      "required": false
+    },
+    {
+      "name": "analytics.forecast_skill_demand",
+      "required": false
+    },
+    {
+      "name": "hr.create_development_plan",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "people_perf_review_generator",
+    "people_candidate_sourcer",
+    "people_onboarding_checklist",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "analysisScope": {
+        "type": "string",
+        "enum": [
+          "individual",
+          "team",
+          "department",
+          "organization"
+        ]
+      },
+      "targetId": {
+        "type": "string",
+        "description": "Employee, team, or department ID"
+      },
+      "futureHorizon": {
+        "type": "string",
+        "enum": [
+          "6_months",
+          "1_year",
+          "2_years",
+          "3_years"
+        ]
+      },
+      "includeSuccessionPlanning": {
+        "type": "boolean"
+      },
+      "strategicPriorities": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "required": [
+      "analysisScope"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "currentSkillsProfile": {
+        "type": "object"
+      },
+      "requiredSkillsProfile": {
+        "type": "object"
+      },
+      "gaps": {
+        "type": "array"
+      },
+      "strengths": {
+        "type": "array"
+      },
+      "developmentRecommendations": {
+        "type": "array"
+      },
+      "hiringRecommendations": {
+        "type": "array"
+      },
+      "riskAssessment": {
+        "type": "object"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "skill_gap_coverage",
+    "benchmarks": {
+      "excellent": "> 90% critical skills covered",
+      "good": "75-90% critical skills covered",
+      "needs_improvement": "< 75% critical skills covered"
+    }
+  },
+  "temperature": 0.2,
+  "tags": [
+    "people_ops",
+    "skills",
+    "development",
+    "workforce_planning",
+    "learning",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Skills Gap Analyzer"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

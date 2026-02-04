@@ -1,0 +1,122 @@
+{
+  "id": "mon_entitlement_manager",
+  "version": "1.0.0",
+  "name": "Entitlement Manager",
+  "description": "Manages feature access, usage limits, and plan entitlements in real-time",
+  "domain": "monetization",
+  "tools": [
+    {
+      "name": "stripe.get_subscription",
+      "required": true
+    },
+    {
+      "name": "entitlements.get",
+      "required": true
+    },
+    {
+      "name": "entitlements.update",
+      "required": true
+    },
+    {
+      "name": "analytics.feature_usage",
+      "required": false
+    },
+    {
+      "name": "messaging.send_notification",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "access_granted",
+    "access_denied",
+    "upgrade_required",
+    "limit_reached",
+    "trial_extended",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "account_id": {
+        "type": "string",
+        "description": "Account to check"
+      },
+      "feature_id": {
+        "type": "string",
+        "description": "Feature to check access for"
+      },
+      "action": {
+        "type": "string",
+        "enum": [
+          "check",
+          "grant",
+          "revoke",
+          "extend"
+        ],
+        "default": "check"
+      }
+    },
+    "required": [
+      "account_id"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "entitled_features": {
+        "type": "array"
+      },
+      "usage_limits": {
+        "type": "object"
+      },
+      "current_usage": {
+        "type": "object"
+      },
+      "upgrade_options": {
+        "type": "array"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "entitlement_accuracy",
+    "benchmarks": {
+      "excellent": "100%",
+      "good": "> 99.5%",
+      "needs_improvement": "< 99.5%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "monetization",
+    "entitlements",
+    "features",
+    "access-control",
+    "limits",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Entitlement Manager",
+        "usage metering"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "stripe.get_customer",
+          "required": true
+        },
+        {
+          "name": "stripe.list_subscriptions",
+          "required": false
+        },
+        {
+          "name": "stripe.create_checkout",
+          "required": false
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,135 @@
+{
+  "id": "data_experiment_analyzer",
+  "version": "1.0.0",
+  "name": "Experiment Results Analyzer",
+  "description": "Analyzes A/B test and experiment results with statistical rigor, determining winners and providing actionable insights.",
+  "domain": "data_ops",
+  "tools": [
+    {
+      "name": "warehouse.query",
+      "required": true
+    },
+    {
+      "name": "analytics.get_experiment",
+      "required": true
+    },
+    {
+      "name": "ai.analyze",
+      "required": true
+    },
+    {
+      "name": "statsig.get_results",
+      "required": false
+    },
+    {
+      "name": "launchdarkly.get_metrics",
+      "required": false
+    },
+    {
+      "name": "reporting.create_report",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "data_funnel_optimizer",
+    "data_cohort_builder",
+    "data_dashboard_builder",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "experiment_id": {
+        "type": "string",
+        "description": "Experiment identifier"
+      },
+      "metrics": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Metrics to analyze"
+      },
+      "confidence_level": {
+        "type": "number",
+        "default": 0.95
+      },
+      "segments": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Segments to break down"
+      },
+      "include_guardrails": {
+        "type": "boolean",
+        "default": true
+      },
+      "bayesian": {
+        "type": "boolean",
+        "default": false
+      }
+    },
+    "required": [
+      "experiment_id"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "summary": {
+        "type": "object"
+      },
+      "metric_results": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "winner": {
+        "type": "string"
+      },
+      "confidence": {
+        "type": "number"
+      },
+      "segment_analysis": {
+        "type": "object"
+      },
+      "recommendation": {
+        "type": "string"
+      },
+      "follow_up_experiments": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      }
+    }
+  },
+  "metrics": {
+    "primary": "experiment_decision_quality",
+    "benchmarks": {
+      "excellent": "> 95% decisions correct (validated by holdouts)",
+      "good": "85-95% correct",
+      "needs_improvement": "< 85% correct"
+    }
+  },
+  "temperature": 0.1,
+  "tags": [
+    "data_ops",
+    "experimentation",
+    "ab_testing",
+    "statistics",
+    "analytics",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Experiment Results Analyzer"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

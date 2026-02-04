@@ -1,0 +1,129 @@
+{
+  "id": "ai_workflow_automator",
+  "version": "1.0.0",
+  "name": "Workflow Automation Intelligence",
+  "description": "Intelligently automates business workflows using AI-powered decision making and orchestration.",
+  "domain": "ai_ops",
+  "tools": [
+    {
+      "name": "ai.evaluate_conditions",
+      "required": true
+    },
+    {
+      "name": "workflow.execute_step",
+      "required": true
+    },
+    {
+      "name": "workflow.route_decision",
+      "required": true
+    },
+    {
+      "name": "ai.extract_data",
+      "required": false
+    },
+    {
+      "name": "integrations.call",
+      "required": false
+    },
+    {
+      "name": "analytics.track_workflow",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "completed",
+    "awaiting_input",
+    "failed",
+    "escalated",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "workflow_id": {
+        "type": "string",
+        "description": "Workflow definition ID"
+      },
+      "trigger": {
+        "type": "object",
+        "description": "Trigger event data"
+      },
+      "context": {
+        "type": "object",
+        "description": "Additional context"
+      },
+      "mode": {
+        "type": "string",
+        "enum": [
+          "execute",
+          "simulate",
+          "analyze"
+        ]
+      }
+    },
+    "required": [
+      "workflow_id",
+      "trigger"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "string"
+      },
+      "steps_executed": {
+        "type": "array"
+      },
+      "decisions_made": {
+        "type": "array"
+      },
+      "outputs": {
+        "type": "object"
+      },
+      "duration_ms": {
+        "type": "number"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "workflow_success_rate",
+    "benchmarks": {
+      "excellent": "> 98%",
+      "good": "90-98%",
+      "needs_improvement": "< 90%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "ai_ops",
+    "workflow",
+    "automation",
+    "orchestration",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Workflow Automation Intelligence"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "ai.classify",
+          "required": false
+        },
+        {
+          "name": "ai.generate",
+          "required": false
+        },
+        {
+          "name": "ai.score_lead",
+          "required": false
+        }
+      ]
+    }
+  }
+}

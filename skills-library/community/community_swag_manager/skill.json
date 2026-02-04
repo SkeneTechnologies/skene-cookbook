@@ -1,0 +1,125 @@
+{
+  "id": "community_swag_manager",
+  "version": "1.0.0",
+  "name": "Swag Distribution Manager",
+  "description": "Manages community swag inventory, distribution, and fulfillment for events, rewards, and recognition programs.",
+  "domain": "community",
+  "tools": [
+    {
+      "name": "inventory.check",
+      "required": true
+    },
+    {
+      "name": "inventory.reserve",
+      "required": true
+    },
+    {
+      "name": "fulfillment.create_order",
+      "required": true
+    },
+    {
+      "name": "crm.get_contact",
+      "required": true
+    },
+    {
+      "name": "analytics.track_event",
+      "required": true
+    },
+    {
+      "name": "messaging.send_notification",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "event_manager",
+    "ambassador_program",
+    "champion_identifier",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "requestType": {
+        "type": "string",
+        "enum": [
+          "reward",
+          "event",
+          "ambassador",
+          "milestone",
+          "contest"
+        ],
+        "description": "Type of swag request"
+      },
+      "recipientId": {
+        "type": "string",
+        "description": "Recipient user ID"
+      },
+      "items": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        },
+        "description": "Requested swag items"
+      },
+      "eventId": {
+        "type": "string",
+        "description": "Associated event ID if applicable"
+      },
+      "reason": {
+        "type": "string",
+        "description": "Reason for swag distribution"
+      }
+    },
+    "required": [
+      "requestType"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "orderId": {
+        "type": "string"
+      },
+      "itemsShipped": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "trackingNumber": {
+        "type": "string"
+      },
+      "estimatedDelivery": {
+        "type": "string"
+      },
+      "inventoryStatus": {
+        "type": "object"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "swag_fulfillment_rate",
+    "benchmarks": {
+      "excellent": "> 95%",
+      "good": "85-95%",
+      "needs_improvement": "< 85%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "swag",
+    "rewards",
+    "fulfillment",
+    "inventory",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Swag Distribution Manager"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

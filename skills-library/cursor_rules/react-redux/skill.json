@@ -1,0 +1,35 @@
+{
+  "id": "cursor_rules/react-redux",
+  "version": "1.0.0",
+  "name": "react-redux",
+  "description": "Definitive guidelines for building robust, performant, and maintainable React-Redux applications using modern Redux Toolkit practices.",
+  "domain": "cursor_rules",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "cursor_rules",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "cursor": {
+      "globs": [
+        "**/*.{js",
+        "jsx}"
+      ]
+    },
+    "claude": {
+      "triggers": [
+        "help with react redux"
+      ]
+    },
+    "skeneflow": {}
+  }
+}

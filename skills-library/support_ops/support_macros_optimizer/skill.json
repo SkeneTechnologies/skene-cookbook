@@ -1,0 +1,106 @@
+{
+  "id": "support_macros_optimizer",
+  "version": "1.0.0",
+  "name": "Macros Optimizer",
+  "description": "Analyzes macro usage patterns to identify optimization opportunities, suggest new macros, and retire ineffective ones.",
+  "domain": "support_ops",
+  "tools": [
+    {
+      "name": "support.get_macros",
+      "required": true
+    },
+    {
+      "name": "analytics.get_macro_usage",
+      "required": true
+    },
+    {
+      "name": "ai.analyze_responses",
+      "required": true
+    },
+    {
+      "name": "support.create_macro",
+      "required": false
+    },
+    {
+      "name": "support.update_macro",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "first_response",
+    "kb_gap_finder",
+    "resolution_suggester",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "time_period": {
+        "type": "string",
+        "default": "30d"
+      },
+      "min_usage": {
+        "type": "number",
+        "default": 10
+      },
+      "analyze_modifications": {
+        "type": "boolean",
+        "default": true
+      },
+      "suggest_new_macros": {
+        "type": "boolean",
+        "default": true
+      }
+    },
+    "required": []
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "macro_performance": {
+        "type": "array"
+      },
+      "underutilized_macros": {
+        "type": "array"
+      },
+      "high_modification_macros": {
+        "type": "array"
+      },
+      "suggested_new_macros": {
+        "type": "array"
+      },
+      "retirement_candidates": {
+        "type": "array"
+      },
+      "optimization_recommendations": {
+        "type": "array"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "macro_effectiveness_rate",
+    "benchmarks": {
+      "excellent": "> 80%",
+      "good": "60-80%",
+      "needs_improvement": "< 60%"
+    }
+  },
+  "temperature": 0.2,
+  "tags": [
+    "support_ops",
+    "macros",
+    "automation",
+    "efficiency",
+    "templates",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Macros Optimizer"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

@@ -1,0 +1,121 @@
+{
+  "id": "elg_deal_registration",
+  "version": "1.0.0",
+  "name": "Deal Registration Manager",
+  "description": "Manages partner deal registration workflow including submission, approval, protection, and expiration tracking.",
+  "domain": "ecosystem",
+  "tools": [
+    {
+      "name": "partner.register_deal",
+      "required": true
+    },
+    {
+      "name": "partner.get_registrations",
+      "required": true
+    },
+    {
+      "name": "partner.approve_registration",
+      "required": true
+    },
+    {
+      "name": "crm.get_deal",
+      "required": true
+    },
+    {
+      "name": "crm.create_deal",
+      "required": false
+    },
+    {
+      "name": "messaging.send_email",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "co_sell_trigger",
+    "referral_program",
+    "partner_tier_manager",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "partnerId": {
+        "type": "string",
+        "description": "Partner submitting registration"
+      },
+      "action": {
+        "type": "string",
+        "enum": [
+          "submit",
+          "review",
+          "approve",
+          "reject",
+          "extend",
+          "report"
+        ]
+      },
+      "registrationData": {
+        "type": "object",
+        "description": "Deal registration details"
+      }
+    },
+    "required": [
+      "partnerId",
+      "action"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "registration_id": {
+        "type": "string"
+      },
+      "status": {
+        "type": "string",
+        "enum": [
+          "pending",
+          "approved",
+          "rejected",
+          "expired",
+          "won",
+          "lost"
+        ]
+      },
+      "protection_period": {
+        "type": "object"
+      },
+      "discount_authorization": {
+        "type": "object"
+      },
+      "pipeline_impact": {
+        "type": "number"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "registration_approval_rate",
+    "benchmarks": {
+      "excellent": "> 85%",
+      "good": "70-85%",
+      "needs_improvement": "< 70%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "ecosystem",
+    "partner",
+    "deal",
+    "registration",
+    "protection",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Deal Registration Manager"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

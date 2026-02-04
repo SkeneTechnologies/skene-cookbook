@@ -1,0 +1,113 @@
+{
+  "id": "prodops_documentation_health",
+  "version": "1.0.0",
+  "name": "Documentation Health Monitor",
+  "description": "Monitors documentation coverage, accuracy, and freshness to ensure product documentation remains helpful and current.",
+  "domain": "product_ops",
+  "tools": [
+    {
+      "name": "web.scrape",
+      "required": true
+    },
+    {
+      "name": "github.get_commits",
+      "required": true
+    },
+    {
+      "name": "analytics.get_metrics",
+      "required": true
+    },
+    {
+      "name": "ai.generate",
+      "required": true
+    },
+    {
+      "name": "linear.create_issue",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "release_notes_generator",
+    "feedback_synthesis",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "docsBaseUrl": {
+        "type": "string",
+        "description": "Documentation site base URL"
+      },
+      "repoPath": {
+        "type": "string",
+        "description": "Path to docs in repository"
+      },
+      "features": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Features to check coverage for"
+      },
+      "freshnessThreshold": {
+        "type": "number",
+        "description": "Days before doc is considered stale"
+      }
+    },
+    "required": [
+      "docsBaseUrl"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "healthScore": {
+        "type": "number"
+      },
+      "coverageGaps": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "staleContent": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "accuracyIssues": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      }
+    }
+  },
+  "metrics": {
+    "primary": "documentation_health_score",
+    "benchmarks": {
+      "excellent": "> 90%",
+      "good": "75-90%",
+      "needs_improvement": "< 75%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "product_ops",
+    "documentation",
+    "quality",
+    "freshness",
+    "coverage",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Documentation Health Monitor"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

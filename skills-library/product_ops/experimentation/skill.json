@@ -1,0 +1,109 @@
+{
+  "id": "prodops_experimentation",
+  "version": "1.0.0",
+  "name": "Experimentation Platform",
+  "description": "Manages A/B tests and feature experiments with statistical rigor, enabling data-driven product decisions.",
+  "domain": "product_ops",
+  "tools": [
+    {
+      "name": "vercel.edge_config",
+      "required": true
+    },
+    {
+      "name": "analytics.ab_test",
+      "required": true
+    },
+    {
+      "name": "analytics.get_metrics",
+      "required": true
+    },
+    {
+      "name": "analytics.track_event",
+      "required": false
+    },
+    {
+      "name": "lifecycle.get_segment",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "feature_adoption",
+    "roadmap_alignment",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "experimentId": {
+        "type": "string",
+        "description": "ID of the experiment to analyze"
+      },
+      "featureFlag": {
+        "type": "string",
+        "description": "Feature flag key for the experiment"
+      },
+      "targetMetric": {
+        "type": "string",
+        "description": "Primary metric to measure"
+      },
+      "analysisType": {
+        "type": "string",
+        "enum": [
+          "setup",
+          "monitor",
+          "conclude"
+        ],
+        "description": "Type of experimentation action"
+      }
+    },
+    "required": [
+      "featureFlag"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "experimentStatus": {
+        "type": "string"
+      },
+      "statisticalSignificance": {
+        "type": "number"
+      },
+      "confidenceInterval": {
+        "type": "object"
+      },
+      "recommendation": {
+        "type": "string"
+      },
+      "sampleSize": {
+        "type": "object"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "experiment_velocity",
+    "benchmarks": {
+      "excellent": "> 4 experiments/month",
+      "good": "2-4 experiments/month",
+      "needs_improvement": "< 2 experiments/month"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "product_ops",
+    "experimentation",
+    "ab_test",
+    "feature_flags",
+    "analytics",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Experimentation Platform"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

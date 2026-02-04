@@ -1,0 +1,128 @@
+{
+  "id": "community_user_group_manager",
+  "version": "1.0.0",
+  "name": "User Group Manager",
+  "description": "Manages regional and interest-based user groups, supporting local community leaders and coordinating activities.",
+  "domain": "community",
+  "tools": [
+    {
+      "name": "crm.get_contacts",
+      "required": true
+    },
+    {
+      "name": "crm.update_contact",
+      "required": true
+    },
+    {
+      "name": "messaging.send_email",
+      "required": true
+    },
+    {
+      "name": "analytics.track_event",
+      "required": true
+    },
+    {
+      "name": "calendar.create_event",
+      "required": false
+    },
+    {
+      "name": "ai.match",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "event_manager",
+    "ambassador_program",
+    "champion_identifier",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "groupType": {
+        "type": "string",
+        "enum": [
+          "regional",
+          "industry",
+          "interest",
+          "role"
+        ],
+        "description": "Type of user group"
+      },
+      "groupName": {
+        "type": "string",
+        "description": "Name of the user group"
+      },
+      "region": {
+        "type": "string",
+        "description": "Geographic region if applicable"
+      },
+      "leaderId": {
+        "type": "string",
+        "description": "User group leader ID"
+      },
+      "action": {
+        "type": "string",
+        "enum": [
+          "create",
+          "manage",
+          "report",
+          "recruit"
+        ],
+        "description": "Action to perform"
+      }
+    },
+    "required": [
+      "groupType",
+      "action"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "groupId": {
+        "type": "string"
+      },
+      "memberCount": {
+        "type": "number"
+      },
+      "activityMetrics": {
+        "type": "object"
+      },
+      "leaderReport": {
+        "type": "object"
+      },
+      "recommendations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "metrics": {
+    "primary": "group_engagement_rate",
+    "benchmarks": {
+      "excellent": "> 40%",
+      "good": "25-40%",
+      "needs_improvement": "< 25%"
+    }
+  },
+  "temperature": 0.2,
+  "tags": [
+    "user-groups",
+    "regional",
+    "engagement",
+    "leaders",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with User Group Manager"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

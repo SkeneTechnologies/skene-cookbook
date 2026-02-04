@@ -1,0 +1,127 @@
+{
+  "id": "cs_product_gap_reporter",
+  "version": "1.0.0",
+  "name": "Product Gap Reporter",
+  "description": "Aggregates and prioritizes customer feature requests and product gaps, providing structured feedback to product teams.",
+  "domain": "customer_success",
+  "tools": [
+    {
+      "name": "feedback.get_requests",
+      "required": true
+    },
+    {
+      "name": "crm.get_interactions",
+      "required": true
+    },
+    {
+      "name": "crm.get_account",
+      "required": true
+    },
+    {
+      "name": "analytics.query_events",
+      "required": false
+    },
+    {
+      "name": "messaging.send_alert",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "health_scoring",
+    "risk_mitigation_playbook",
+    "product_feedback_loop",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "accountId": {
+        "type": "string",
+        "description": "Customer account identifier"
+      },
+      "aggregationLevel": {
+        "type": "string",
+        "enum": [
+          "account",
+          "segment",
+          "portfolio",
+          "company"
+        ]
+      },
+      "timeframe": {
+        "type": "string",
+        "enum": [
+          "30d",
+          "90d",
+          "ytd",
+          "all_time"
+        ]
+      }
+    },
+    "required": [
+      "accountId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "gaps": {
+        "type": "array"
+      },
+      "prioritizedRequests": {
+        "type": "array"
+      },
+      "revenueAtRisk": {
+        "type": "number"
+      },
+      "competitiveGaps": {
+        "type": "array"
+      },
+      "productRecommendations": {
+        "type": "array"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "gap_resolution_rate",
+    "benchmarks": {
+      "excellent": "> 40%",
+      "good": "25-40%",
+      "needs_improvement": "< 25%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "customer_success",
+    "product",
+    "feedback",
+    "feature_requests",
+    "gaps",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Product Gap Reporter",
+        "customer health"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "lifecycle.get_segment",
+          "required": true
+        },
+        {
+          "name": "analytics.get_cohort",
+          "required": false
+        },
+        {
+          "name": "crm.update_account",
+          "required": false
+        }
+      ]
+    }
+  }
+}

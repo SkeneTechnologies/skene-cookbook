@@ -1,0 +1,52 @@
+{
+  "id": "marketing_paid_ads",
+  "version": "1.0.0",
+  "name": "paid-ads",
+  "description": "\"When the user wants help with paid advertising campaigns on Google Ads, Meta (Facebook/Instagram), LinkedIn, Twitter/X, or other ad platforms. Also use when the user mentions 'PPC,' 'paid media,' 'ad copy,' 'ad creative,' 'ROAS,' 'CPA,' 'ad campaign,' 'retargeting,' or 'audience targeting.' This skill covers campaign strategy, ad creation, audience targeting, and optimization.\"",
+  "domain": "marketing",
+  "category": "outreach",
+  "source": "skene-marketing",
+  "tools": [],
+  "exitStates": [
+    "idle",
+    "support"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {},
+    "required": []
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {}
+  },
+  "temperature": 0.3,
+  "tags": [
+    "marketing",
+    "outreach",
+    "paid-ads",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with paid ads",
+        "campaigns",
+        "the user mentions 'ppc,' 'paid media,' 'ad copy,' 'ad creative,' 'roas,' 'cpa,' 'ad campaign,' 'retargeting,' or 'audience targeting"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "resend.send_email",
+          "required": false
+        },
+        {
+          "name": "analytics.track_campaign",
+          "required": false
+        }
+      ]
+    }
+  }
+}

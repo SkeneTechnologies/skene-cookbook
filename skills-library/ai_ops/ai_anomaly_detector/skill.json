@@ -1,0 +1,130 @@
+{
+  "id": "ai_anomaly_detector",
+  "version": "1.0.0",
+  "name": "Behavioral Anomaly Detector",
+  "description": "Detects unusual patterns in user behavior, system metrics, and business data to identify issues early.",
+  "domain": "ai_ops",
+  "tools": [
+    {
+      "name": "ai.detect_anomaly",
+      "required": true
+    },
+    {
+      "name": "analytics.get_metrics",
+      "required": true
+    },
+    {
+      "name": "analytics.get_baseline",
+      "required": true
+    },
+    {
+      "name": "alerting.trigger",
+      "required": false
+    },
+    {
+      "name": "lifecycle.flag_account",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "anomaly_detected",
+    "alert_triggered",
+    "normal",
+    "investigating",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "data_type": {
+        "type": "string",
+        "enum": [
+          "user_behavior",
+          "system_metrics",
+          "revenue",
+          "usage"
+        ]
+      },
+      "entity_id": {
+        "type": "string",
+        "description": "User, account, or system ID"
+      },
+      "time_range": {
+        "type": "object",
+        "description": "Start and end time"
+      },
+      "sensitivity": {
+        "type": "string",
+        "enum": [
+          "high",
+          "medium",
+          "low"
+        ]
+      }
+    },
+    "required": [
+      "data_type"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "anomalies": {
+        "type": "array"
+      },
+      "severity": {
+        "type": "string"
+      },
+      "confidence": {
+        "type": "number"
+      },
+      "baseline_comparison": {
+        "type": "object"
+      },
+      "recommended_actions": {
+        "type": "array"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "anomaly_detection_precision",
+    "benchmarks": {
+      "excellent": "> 90%",
+      "good": "75-90%",
+      "needs_improvement": "< 75%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "ai_ops",
+    "anomaly",
+    "detection",
+    "monitoring",
+    "alerting",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Behavioral Anomaly Detector"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "ai.classify",
+          "required": false
+        },
+        {
+          "name": "ai.generate",
+          "required": false
+        },
+        {
+          "name": "ai.score_lead",
+          "required": false
+        }
+      ]
+    }
+  }
+}

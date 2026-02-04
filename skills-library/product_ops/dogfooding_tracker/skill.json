@@ -1,0 +1,108 @@
+{
+  "id": "prodops_dogfooding_tracker",
+  "version": "1.0.0",
+  "name": "Internal Dogfooding Tracker",
+  "description": "Tracks internal usage of the product, collecting feedback from employees to improve quality and empathy.",
+  "domain": "product_ops",
+  "tools": [
+    {
+      "name": "analytics.get_metrics",
+      "required": true
+    },
+    {
+      "name": "slack.send_message",
+      "required": true
+    },
+    {
+      "name": "slack.get_messages",
+      "required": false
+    },
+    {
+      "name": "linear.create_issue",
+      "required": true
+    },
+    {
+      "name": "feedback.create_survey",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "feedback_synthesis",
+    "prioritization_engine",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "team": {
+        "type": "string",
+        "description": "Team to track dogfooding for"
+      },
+      "feature": {
+        "type": "string",
+        "description": "Specific feature to track"
+      },
+      "period": {
+        "type": "string",
+        "enum": [
+          "weekly",
+          "monthly"
+        ],
+        "description": "Reporting period"
+      },
+      "includeExecSummary": {
+        "type": "boolean",
+        "description": "Include executive summary"
+      }
+    }
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "usageMetrics": {
+        "type": "object"
+      },
+      "feedbackItems": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "issuesCreated": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "dogfoodingScore": {
+        "type": "number"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "internal_adoption_rate",
+    "benchmarks": {
+      "excellent": "> 80%",
+      "good": "60-80%",
+      "needs_improvement": "< 60%"
+    }
+  },
+  "temperature": 0.1,
+  "tags": [
+    "product_ops",
+    "dogfooding",
+    "internal",
+    "feedback",
+    "quality",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Internal Dogfooding Tracker"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

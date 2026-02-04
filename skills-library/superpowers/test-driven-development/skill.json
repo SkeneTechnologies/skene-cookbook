@@ -1,0 +1,33 @@
+{
+  "id": "superpowers/test-driven-development",
+  "version": "1.0.0",
+  "name": "test-driven-development",
+  "description": "Use when implementing any feature or bugfix, before writing implementation code",
+  "domain": "superpowers",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "superpowers",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with test driven development",
+        "code review",
+        "writing plans",
+        "implementing any feature or bugfix, before writing implementation code"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

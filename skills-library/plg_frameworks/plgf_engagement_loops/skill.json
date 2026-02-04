@@ -1,0 +1,128 @@
+{
+  "id": "plgf_engagement_loops",
+  "version": "1.0.0",
+  "name": "Engagement Loops",
+  "description": "Design manufactured vs environment loops using Trigger-Action-Reward-Investment (Nir Eyal Hook Model) with notification strategy",
+  "domain": "plg_frameworks",
+  "tools": [
+    {
+      "name": "analytics.get_metrics",
+      "required": true
+    },
+    {
+      "name": "analytics.get_cohort",
+      "required": true
+    },
+    {
+      "name": "messaging.send_notification",
+      "required": false
+    },
+    {
+      "name": "messaging.send_email",
+      "required": false
+    },
+    {
+      "name": "lifecycle.get_segment",
+      "required": false
+    },
+    {
+      "name": "ui_kit.panel",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "loop_designed",
+    "notification_scheduled",
+    "habit_forming",
+    "needs_refinement",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "productId": {
+        "type": "string",
+        "description": "Product to design engagement loops for"
+      },
+      "loopType": {
+        "type": "string",
+        "enum": [
+          "manufactured",
+          "environment",
+          "hybrid"
+        ],
+        "description": "Type of engagement loop"
+      },
+      "targetBehavior": {
+        "type": "string",
+        "description": "Target user behavior to reinforce"
+      },
+      "currentEngagement": {
+        "type": "object",
+        "description": "Current engagement metrics"
+      }
+    },
+    "required": [
+      "productId",
+      "targetBehavior"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "hookModel": {
+        "type": "object"
+      },
+      "triggerDesign": {
+        "type": "object"
+      },
+      "actionSimplification": {
+        "type": "object"
+      },
+      "variableRewards": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "investmentMechanics": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "notificationStrategy": {
+        "type": "object"
+      },
+      "loopDiagram": {
+        "type": "string"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "weekly_active_users",
+    "benchmarks": {
+      "excellent": "> 40% WAU/MAU",
+      "good": "25-40% WAU/MAU",
+      "needs_improvement": "< 25% WAU/MAU"
+    }
+  },
+  "temperature": 0.4,
+  "tags": [
+    "plg_frameworks",
+    "engagement",
+    "hooks",
+    "retention",
+    "nir_eyal",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Engagement Loops"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

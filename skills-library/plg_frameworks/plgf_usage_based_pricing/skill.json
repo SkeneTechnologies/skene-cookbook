@@ -1,0 +1,138 @@
+{
+  "id": "plgf_usage_based_pricing",
+  "version": "1.0.0",
+  "name": "Usage-Based Pricing Framework",
+  "description": "Comprehensive framework for implementing consumption-based pricing models including credit systems, overage handling, AI product pricing, and billing infrastructure.",
+  "domain": "plg_frameworks",
+  "tools": [
+    {
+      "name": "analytics.get_metrics",
+      "required": true
+    },
+    {
+      "name": "stripe.get_usage",
+      "required": true
+    },
+    {
+      "name": "stripe.create_meter",
+      "required": false
+    },
+    {
+      "name": "stripe.report_usage",
+      "required": false
+    },
+    {
+      "name": "stripe.get_subscription",
+      "required": false
+    },
+    {
+      "name": "messaging.send_in_app",
+      "required": false
+    },
+    {
+      "name": "resend.send_template",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "billing_optimization",
+    "overage_handling",
+    "plan_recommendation",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "accountId": {
+        "type": "string",
+        "description": "Account for pricing analysis"
+      },
+      "analysisType": {
+        "type": "string",
+        "enum": [
+          "model_design",
+          "pricing_optimization",
+          "overage_prediction",
+          "credit_management"
+        ],
+        "description": "Type of pricing analysis"
+      },
+      "currentModel": {
+        "type": "string",
+        "enum": [
+          "flat_rate",
+          "tiered",
+          "usage_based",
+          "hybrid",
+          "credit_based"
+        ],
+        "description": "Current pricing model"
+      },
+      "usageMetric": {
+        "type": "string",
+        "description": "Primary usage metric (api_calls, tokens, seats, storage)"
+      }
+    },
+    "required": [
+      "accountId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "recommendedModel": {
+        "type": "string"
+      },
+      "pricingTiers": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "overageRisk": {
+        "type": "number"
+      },
+      "revenueProjection": {
+        "type": "object"
+      },
+      "creditBalance": {
+        "type": "number"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "revenue_per_user",
+    "benchmarks": {
+      "excellent": "Usage aligns with value delivered",
+      "good": "Predictable revenue with growth",
+      "needs_improvement": "Revenue volatility or value mismatch"
+    }
+  },
+  "integrations": [
+    "stripe",
+    "metronome",
+    "lago",
+    "orb",
+    "chargebee"
+  ],
+  "temperature": 0,
+  "tags": [
+    "plg",
+    "pricing",
+    "usage-based",
+    "billing",
+    "monetization",
+    "consumption",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Usage Based Pricing Framework",
+        "pricing strategy"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

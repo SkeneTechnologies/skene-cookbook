@@ -1,0 +1,31 @@
+{
+  "id": "scientific/alphafold-database",
+  "version": "1.0.0",
+  "name": "alphafold-database",
+  "description": "Access AlphaFold 200M+ AI-predicted protein structures. Retrieve structures by UniProt ID, download PDB/mmCIF files, analyze confidence metrics (pLDDT, PAE), for drug discovery and structural biology.",
+  "domain": "scientific",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "scientific",
+    "imported",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "license": "Unknown",
+      "triggers": [
+        "help with alphafold database"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

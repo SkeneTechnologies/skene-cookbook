@@ -1,0 +1,124 @@
+{
+  "id": "cs_playbook_selector",
+  "version": "1.0.0",
+  "name": "Playbook Selector",
+  "description": "Intelligently selects and recommends the optimal CS playbook based on customer situation, signals, and historical effectiveness.",
+  "domain": "customer_success",
+  "tools": [
+    {
+      "name": "lifecycle.get_segment",
+      "required": true
+    },
+    {
+      "name": "analytics.query_events",
+      "required": true
+    },
+    {
+      "name": "crm.get_interactions",
+      "required": true
+    },
+    {
+      "name": "crm.get_account",
+      "required": false
+    },
+    {
+      "name": "analytics.get_playbook_effectiveness",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "risk_mitigation_playbook",
+    "expansion_playbook",
+    "onboarding_health",
+    "success_plan_generator",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "accountId": {
+        "type": "string",
+        "description": "Customer account identifier"
+      },
+      "situation": {
+        "type": "string",
+        "description": "Description of current situation"
+      },
+      "goal": {
+        "type": "string",
+        "enum": [
+          "retain",
+          "expand",
+          "adopt",
+          "recover",
+          "renew"
+        ]
+      }
+    },
+    "required": [
+      "accountId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "recommendedPlaybook": {
+        "type": "object"
+      },
+      "alternativePlaybooks": {
+        "type": "array"
+      },
+      "matchScore": {
+        "type": "number"
+      },
+      "expectedOutcome": {
+        "type": "object"
+      },
+      "executionGuidance": {
+        "type": "array"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "playbook_success_rate",
+    "benchmarks": {
+      "excellent": "> 75%",
+      "good": "60-75%",
+      "needs_improvement": "< 60%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "customer_success",
+    "playbook",
+    "automation",
+    "decision",
+    "best_practice",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Playbook Selector",
+        "customer health"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "lifecycle.get_segment",
+          "required": true
+        },
+        {
+          "name": "analytics.get_cohort",
+          "required": false
+        },
+        {
+          "name": "crm.update_account",
+          "required": false
+        }
+      ]
+    }
+  }
+}

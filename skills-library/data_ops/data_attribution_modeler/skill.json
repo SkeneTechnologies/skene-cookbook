@@ -1,0 +1,126 @@
+{
+  "id": "data_attribution_modeler",
+  "version": "1.0.0",
+  "name": "Attribution Model Builder",
+  "description": "Builds and compares marketing attribution models to understand channel effectiveness and optimize spend allocation.",
+  "domain": "data_ops",
+  "tools": [
+    {
+      "name": "warehouse.query",
+      "required": true
+    },
+    {
+      "name": "ai.model",
+      "required": true
+    },
+    {
+      "name": "analytics.get_touchpoints",
+      "required": true
+    },
+    {
+      "name": "google_ads.get_conversions",
+      "required": false
+    },
+    {
+      "name": "facebook_ads.get_conversions",
+      "required": false
+    },
+    {
+      "name": "reporting.create_report",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "data_dashboard_builder",
+    "data_experiment_analyzer",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "conversion_event": {
+        "type": "string",
+        "description": "Event that defines a conversion"
+      },
+      "attribution_window": {
+        "type": "string",
+        "default": "30d",
+        "description": "Lookback window for touchpoints"
+      },
+      "models": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Models to compare"
+      },
+      "channels": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Marketing channels to include"
+      },
+      "time_range": {
+        "type": "string",
+        "default": "90d"
+      },
+      "include_spend": {
+        "type": "boolean",
+        "default": true
+      }
+    },
+    "required": [
+      "conversion_event"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "model_results": {
+        "type": "object"
+      },
+      "channel_attribution": {
+        "type": "object"
+      },
+      "model_comparison": {
+        "type": "object"
+      },
+      "roi_by_channel": {
+        "type": "object"
+      },
+      "optimization_recommendations": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      }
+    }
+  },
+  "metrics": {
+    "primary": "attribution_accuracy",
+    "benchmarks": {
+      "excellent": "> 30% improvement in marketing efficiency after optimization",
+      "good": "15-30% improvement",
+      "needs_improvement": "< 15% improvement"
+    }
+  },
+  "temperature": 0.1,
+  "tags": [
+    "data_ops",
+    "attribution",
+    "marketing",
+    "analytics",
+    "roi",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Attribution Model Builder"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

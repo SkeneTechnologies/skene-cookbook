@@ -1,0 +1,121 @@
+{
+  "id": "mon_invoice_explainer",
+  "version": "1.0.0",
+  "name": "Invoice Explainer",
+  "description": "Generates clear, detailed explanations of invoice line items and billing changes",
+  "domain": "monetization",
+  "tools": [
+    {
+      "name": "stripe.get_invoice",
+      "required": true
+    },
+    {
+      "name": "stripe.get_subscription",
+      "required": true
+    },
+    {
+      "name": "stripe.get_usage",
+      "required": false
+    },
+    {
+      "name": "ai.generate_explanation",
+      "required": true
+    },
+    {
+      "name": "messaging.send_email",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "explanation_sent",
+    "dispute_flagged",
+    "correction_needed",
+    "acknowledged",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "invoice_id": {
+        "type": "string",
+        "description": "Invoice to explain"
+      },
+      "question": {
+        "type": "string",
+        "description": "Specific question about the invoice"
+      },
+      "detail_level": {
+        "type": "string",
+        "enum": [
+          "summary",
+          "detailed",
+          "line_by_line"
+        ],
+        "default": "detailed"
+      }
+    },
+    "required": [
+      "invoice_id"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "summary": {
+        "type": "string"
+      },
+      "line_items": {
+        "type": "array",
+        "description": "Explained line items"
+      },
+      "changes_from_previous": {
+        "type": "array"
+      },
+      "faq_answers": {
+        "type": "array"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "billing_inquiry_resolution_rate",
+    "benchmarks": {
+      "excellent": "> 90%",
+      "good": "75-90%",
+      "needs_improvement": "< 75%"
+    }
+  },
+  "temperature": 0.1,
+  "tags": [
+    "monetization",
+    "billing",
+    "invoices",
+    "customer-support",
+    "transparency",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Invoice Explainer",
+        "billing"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "stripe.get_customer",
+          "required": true
+        },
+        {
+          "name": "stripe.list_subscriptions",
+          "required": false
+        },
+        {
+          "name": "stripe.create_checkout",
+          "required": false
+        }
+      ]
+    }
+  }
+}

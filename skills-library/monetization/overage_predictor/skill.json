@@ -1,0 +1,125 @@
+{
+  "id": "mon_overage_predictor",
+  "version": "1.0.0",
+  "name": "Overage Predictor",
+  "description": "Predicts usage overages and proactively notifies customers before billing surprises",
+  "domain": "monetization",
+  "tools": [
+    {
+      "name": "stripe.get_usage",
+      "required": true
+    },
+    {
+      "name": "stripe.get_subscription",
+      "required": true
+    },
+    {
+      "name": "ai.forecast",
+      "required": true
+    },
+    {
+      "name": "messaging.send_email",
+      "required": true
+    },
+    {
+      "name": "analytics.get_metrics",
+      "required": false
+    },
+    {
+      "name": "crm.create_task",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "overage_alert_sent",
+    "upgrade_recommended",
+    "usage_normal",
+    "limit_reached",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "subscription_id": {
+        "type": "string",
+        "description": "Subscription to analyze"
+      },
+      "alert_threshold": {
+        "type": "number",
+        "default": 80,
+        "description": "Percentage of limit to trigger alert"
+      },
+      "forecast_horizon": {
+        "type": "string",
+        "default": "billing_period",
+        "description": "How far ahead to forecast"
+      }
+    },
+    "required": [
+      "subscription_id"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "current_usage_pct": {
+        "type": "number"
+      },
+      "projected_overage": {
+        "type": "number"
+      },
+      "projected_overage_cost": {
+        "type": "number"
+      },
+      "days_until_limit": {
+        "type": "integer"
+      },
+      "recommended_action": {
+        "type": "string"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "surprise_overage_rate",
+    "benchmarks": {
+      "excellent": "< 5%",
+      "good": "5-15%",
+      "needs_improvement": "> 15%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "monetization",
+    "usage",
+    "overage",
+    "alerts",
+    "customer-success",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Overage Predictor",
+        "billing",
+        "usage metering"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "stripe.get_customer",
+          "required": true
+        },
+        {
+          "name": "stripe.list_subscriptions",
+          "required": false
+        },
+        {
+          "name": "stripe.create_checkout",
+          "required": false
+        }
+      ]
+    }
+  }
+}

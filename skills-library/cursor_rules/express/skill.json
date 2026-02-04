@@ -1,0 +1,35 @@
+{
+  "id": "cursor_rules/express",
+  "version": "1.0.0",
+  "name": "express",
+  "description": "This guide defines definitive best practices for building robust, scalable, and secure Express.js applications, emphasizing modern patterns and common pitfalls.",
+  "domain": "cursor_rules",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "cursor_rules",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "cursor": {
+      "globs": [
+        "**/*.{js",
+        "ts}"
+      ]
+    },
+    "claude": {
+      "triggers": [
+        "help with express"
+      ]
+    },
+    "skeneflow": {}
+  }
+}

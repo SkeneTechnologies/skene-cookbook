@@ -1,0 +1,134 @@
+{
+  "id": "data_funnel_optimizer",
+  "version": "1.0.0",
+  "name": "Funnel Optimization Engine",
+  "description": "Analyzes conversion funnels, identifies drop-off points, and recommends optimizations to improve conversion rates.",
+  "domain": "data_ops",
+  "tools": [
+    {
+      "name": "warehouse.query",
+      "required": true
+    },
+    {
+      "name": "analytics.get_funnel",
+      "required": true
+    },
+    {
+      "name": "ai.analyze",
+      "required": true
+    },
+    {
+      "name": "amplitude.get_funnel",
+      "required": false
+    },
+    {
+      "name": "mixpanel.get_funnel",
+      "required": false
+    },
+    {
+      "name": "linear.create_issue",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "data_experiment_analyzer",
+    "data_cohort_builder",
+    "data_dashboard_builder",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "funnel_name": {
+        "type": "string",
+        "description": "Name of the funnel to analyze"
+      },
+      "steps": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Ordered list of funnel steps/events"
+      },
+      "conversion_window": {
+        "type": "string",
+        "default": "7d",
+        "description": "Time window for conversion"
+      },
+      "segment_by": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Dimensions to segment analysis"
+      },
+      "time_range": {
+        "type": "string",
+        "default": "30d"
+      },
+      "compare_to": {
+        "type": "string",
+        "description": "Previous period to compare"
+      }
+    },
+    "required": [
+      "funnel_name",
+      "steps"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "overall_conversion": {
+        "type": "number"
+      },
+      "step_conversions": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "biggest_drop_off": {
+        "type": "object"
+      },
+      "segment_analysis": {
+        "type": "object"
+      },
+      "recommendations": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "projected_impact": {
+        "type": "object"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "funnel_conversion_rate",
+    "benchmarks": {
+      "excellent": "> 50% increase in conversion after optimization",
+      "good": "20-50% increase",
+      "needs_improvement": "< 20% increase"
+    }
+  },
+  "temperature": 0.2,
+  "tags": [
+    "data_ops",
+    "funnels",
+    "conversion",
+    "optimization",
+    "analytics",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Funnel Optimization Engine"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

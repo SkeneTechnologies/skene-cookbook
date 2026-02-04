@@ -1,0 +1,50 @@
+{
+  "id": "marketing_daily_report_summarizer",
+  "version": "1.0.0",
+  "name": "daily-report-summarizer",
+  "description": "Compiles signals, analytics, leads, experiments, and outreach data into executive summaries and daily reports. Generates both structured data and human-readable narratives. Use at the end of each day or when asked to summarize campaign performance.",
+  "domain": "marketing",
+  "category": "operations",
+  "source": "skene-marketing",
+  "tools": [],
+  "exitStates": [
+    "idle",
+    "support"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {},
+    "required": []
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {}
+  },
+  "temperature": 0.3,
+  "tags": [
+    "marketing",
+    "operations",
+    "daily-report-summarizer",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with daily report summarizer"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "resend.send_email",
+          "required": false
+        },
+        {
+          "name": "analytics.track_campaign",
+          "required": false
+        }
+      ]
+    }
+  }
+}

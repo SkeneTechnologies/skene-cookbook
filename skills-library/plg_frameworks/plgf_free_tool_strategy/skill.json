@@ -1,0 +1,119 @@
+{
+  "id": "plgf_free_tool_strategy",
+  "version": "1.0.0",
+  "name": "Free Tool Strategy Framework",
+  "description": "Engineering-as-marketing framework for building free tools including tool evaluation scorecard, ROI projection, SEO strategy, and conversion optimization.",
+  "domain": "plg_frameworks",
+  "tools": [
+    {
+      "name": "analytics.get_metrics",
+      "required": true
+    },
+    {
+      "name": "analytics.track_event",
+      "required": true
+    },
+    {
+      "name": "seo.get_keywords",
+      "required": false
+    },
+    {
+      "name": "lifecycle.record_moment",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "tool_development",
+    "seo_optimization",
+    "conversion_flow",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "phase": {
+        "type": "string",
+        "enum": [
+          "ideation",
+          "evaluation",
+          "development",
+          "launch",
+          "optimization"
+        ],
+        "description": "Free tool project phase"
+      },
+      "toolType": {
+        "type": "string",
+        "enum": [
+          "calculator",
+          "generator",
+          "analyzer",
+          "converter",
+          "checker",
+          "template"
+        ],
+        "description": "Type of free tool"
+      },
+      "targetKeyword": {
+        "type": "string",
+        "description": "Primary SEO keyword target"
+      }
+    },
+    "required": [
+      "phase"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "toolConcept": {
+        "type": "object"
+      },
+      "evaluationScore": {
+        "type": "number"
+      },
+      "roiProjection": {
+        "type": "object"
+      },
+      "seoStrategy": {
+        "type": "object"
+      },
+      "conversionPlan": {
+        "type": "object"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "tool_to_signup_rate",
+    "benchmarks": {
+      "excellent": "> 5% of tool users become signups",
+      "good": "2-5% conversion",
+      "needs_improvement": "< 2% conversion"
+    }
+  },
+  "integrations": [
+    "ahrefs",
+    "semrush",
+    "segment",
+    "amplitude"
+  ],
+  "temperature": 0.3,
+  "tags": [
+    "plg",
+    "free-tool",
+    "seo",
+    "engineering-marketing",
+    "acquisition",
+    "content",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Free Tool Strategy Framework"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}
