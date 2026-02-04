@@ -1,0 +1,32 @@
+{
+  "id": "scientific/biorxiv-database",
+  "version": "1.0.0",
+  "name": "biorxiv-database",
+  "description": "Efficient database search tool for bioRxiv preprint server. Use this skill when searching for life sciences preprints by keywords, authors, date ranges, or categories, retrieving paper metadata, downloading PDFs, or conducting literature reviews.",
+  "domain": "scientific",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "scientific",
+    "imported",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "license": "Unknown",
+      "triggers": [
+        "help with biorxiv database",
+        "data analysis"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

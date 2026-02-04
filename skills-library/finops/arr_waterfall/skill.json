@@ -1,0 +1,121 @@
+{
+  "id": "finops_arr_waterfall",
+  "version": "1.0.0",
+  "name": "ARR Waterfall Analyzer",
+  "description": "Analyzes ARR movements including new, expansion, contraction, and churn for revenue visibility",
+  "domain": "finops",
+  "tools": [
+    {
+      "name": "stripe.list_subscriptions",
+      "required": true
+    },
+    {
+      "name": "analytics.arr_movement",
+      "required": true
+    },
+    {
+      "name": "crm.get_accounts",
+      "required": true
+    },
+    {
+      "name": "ai.anomaly_detection",
+      "required": false
+    },
+    {
+      "name": "visualize.waterfall",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "ndr_tracker",
+    "investor_metrics",
+    "churn_analysis",
+    "report_generated",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "period": {
+        "type": "string",
+        "description": "Reporting period (YYYY-MM or YYYY-QX)"
+      },
+      "granularity": {
+        "type": "string",
+        "enum": [
+          "monthly",
+          "quarterly"
+        ],
+        "default": "quarterly"
+      },
+      "segment_by": {
+        "type": "string",
+        "enum": [
+          "none",
+          "plan",
+          "region",
+          "industry"
+        ],
+        "default": "none"
+      }
+    },
+    "required": [
+      "period"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "starting_arr": {
+        "type": "number"
+      },
+      "ending_arr": {
+        "type": "number"
+      },
+      "new_arr": {
+        "type": "number"
+      },
+      "expansion_arr": {
+        "type": "number"
+      },
+      "contraction_arr": {
+        "type": "number"
+      },
+      "churn_arr": {
+        "type": "number"
+      },
+      "net_arr_change": {
+        "type": "number"
+      },
+      "arr_growth_rate": {
+        "type": "number"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "net_arr_growth",
+    "benchmarks": {
+      "excellent": "> 100% YoY",
+      "good": "50-100% YoY",
+      "needs_improvement": "< 50% YoY"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "finops",
+    "arr",
+    "revenue",
+    "growth-accounting",
+    "saas-metrics",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with ARR Waterfall Analyzer"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

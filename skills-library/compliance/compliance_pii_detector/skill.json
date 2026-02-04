@@ -1,0 +1,136 @@
+{
+  "id": "compliance_pii_detector",
+  "version": "1.0.0",
+  "name": "PII Detection Scanner",
+  "description": "Scans data stores, documents, and code repositories to detect and classify personally identifiable information",
+  "domain": "compliance",
+  "tools": [
+    {
+      "name": "scanner.scan_datastore",
+      "required": true
+    },
+    {
+      "name": "scanner.scan_documents",
+      "required": true
+    },
+    {
+      "name": "scanner.classify_pii",
+      "required": true
+    },
+    {
+      "name": "data.tag_sensitive",
+      "required": false
+    },
+    {
+      "name": "audit.log_discovery",
+      "required": true
+    },
+    {
+      "name": "messaging.send_alert",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "gdpr_manager",
+    "data_retention",
+    "access_reviewer",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "action": {
+        "type": "string",
+        "enum": [
+          "scan",
+          "classify",
+          "report",
+          "remediate"
+        ],
+        "default": "scan"
+      },
+      "scanTarget": {
+        "type": "string",
+        "description": "Database, file system, or repository to scan"
+      },
+      "scanType": {
+        "type": "string",
+        "enum": [
+          "full",
+          "incremental",
+          "sample"
+        ],
+        "default": "incremental"
+      },
+      "piiTypes": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Specific PII types to detect"
+      },
+      "sensitivityThreshold": {
+        "type": "string",
+        "enum": [
+          "high",
+          "medium",
+          "low"
+        ],
+        "default": "medium"
+      }
+    },
+    "required": [
+      "action",
+      "scanTarget"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "scanId": {
+        "type": "string"
+      },
+      "piiFound": {
+        "type": "array"
+      },
+      "riskScore": {
+        "type": "number"
+      },
+      "classifications": {
+        "type": "object"
+      },
+      "remediationActions": {
+        "type": "array"
+      },
+      "complianceImpact": {
+        "type": "object"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "pii_coverage",
+    "benchmarks": {
+      "excellent": "100%",
+      "good": "> 95%",
+      "needs_improvement": "< 95%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "compliance",
+    "pii",
+    "data-discovery",
+    "privacy",
+    "classification",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with PII Detection Scanner"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

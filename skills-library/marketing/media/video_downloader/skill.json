@@ -1,0 +1,50 @@
+{
+  "id": "marketing_video_downloader",
+  "version": "1.0.0",
+  "name": "youtube-downloader",
+  "description": "Download YouTube videos with customizable quality and format options. Use this skill when the user asks to download, save, or grab YouTube videos. Supports various quality settings (best, 1080p, 720p, 480p, 360p), multiple formats (mp4, webm, mkv), and audio-only downloads as MP3.",
+  "domain": "marketing",
+  "category": "media",
+  "source": "skene-marketing",
+  "tools": [],
+  "exitStates": [
+    "idle",
+    "support"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {},
+    "required": []
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {}
+  },
+  "temperature": 0.3,
+  "tags": [
+    "marketing",
+    "media",
+    "video-downloader",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with youtube downloader"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "resend.send_email",
+          "required": false
+        },
+        {
+          "name": "analytics.track_campaign",
+          "required": false
+        }
+      ]
+    }
+  }
+}

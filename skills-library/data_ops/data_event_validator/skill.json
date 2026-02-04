@@ -1,0 +1,138 @@
+{
+  "id": "data_event_validator",
+  "version": "1.0.0",
+  "name": "Event Schema Validator",
+  "description": "Validates tracking event schemas for data quality, ensuring events conform to specifications and catching issues before they pollute analytics.",
+  "domain": "data_ops",
+  "tools": [
+    {
+      "name": "segment.get_schema",
+      "required": true
+    },
+    {
+      "name": "segment.get_events",
+      "required": true
+    },
+    {
+      "name": "ai.validate",
+      "required": true
+    },
+    {
+      "name": "schema_registry.fetch",
+      "required": false
+    },
+    {
+      "name": "slack.send_message",
+      "required": false
+    },
+    {
+      "name": "linear.create_issue",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "data_anomaly_alerter",
+    "data_dashboard_builder",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "source": {
+        "type": "string",
+        "description": "Event source to validate (e.g., segment, amplitude, mixpanel)"
+      },
+      "schema_url": {
+        "type": "string",
+        "description": "URL to JSON Schema or tracking plan"
+      },
+      "event_types": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Specific events to validate (or all)"
+      },
+      "time_range": {
+        "type": "string",
+        "description": "Time range to sample events from"
+      },
+      "sample_size": {
+        "type": "number",
+        "default": 1000,
+        "description": "Number of events to sample"
+      },
+      "strict_mode": {
+        "type": "boolean",
+        "default": false,
+        "description": "Fail on any schema violation"
+      }
+    },
+    "required": [
+      "source"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "compliance_rate": {
+        "type": "number",
+        "description": "Percentage of events passing validation"
+      },
+      "events_analyzed": {
+        "type": "number"
+      },
+      "violations": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "undocumented_events": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "schema_suggestions": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "recommendations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "metrics": {
+    "primary": "schema_compliance_rate",
+    "benchmarks": {
+      "excellent": "> 99%",
+      "good": "95-99%",
+      "needs_improvement": "< 95%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "data_ops",
+    "events",
+    "validation",
+    "schema",
+    "tracking",
+    "quality",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Event Schema Validator"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

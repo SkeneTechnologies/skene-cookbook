@@ -1,0 +1,132 @@
+{
+  "id": "ai_translation_localizer",
+  "version": "1.0.0",
+  "name": "Translation & Localization Engine",
+  "description": "Translates and localizes content while preserving context, tone, and cultural nuances.",
+  "domain": "ai_ops",
+  "tools": [
+    {
+      "name": "ai.translate",
+      "required": true
+    },
+    {
+      "name": "ai.localize",
+      "required": true
+    },
+    {
+      "name": "ai.detect_language",
+      "required": true
+    },
+    {
+      "name": "storage.save_translation",
+      "required": false
+    },
+    {
+      "name": "cms.update_content",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "translated",
+    "localized",
+    "needs_review",
+    "unsupported_language",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "content": {
+        "type": "string",
+        "description": "Content to translate"
+      },
+      "source_language": {
+        "type": "string",
+        "description": "Source language code (auto-detect if empty)"
+      },
+      "target_languages": {
+        "type": "array",
+        "description": "Target language codes"
+      },
+      "content_type": {
+        "type": "string",
+        "enum": [
+          "marketing",
+          "technical",
+          "legal",
+          "support",
+          "ui"
+        ]
+      },
+      "glossary": {
+        "type": "object",
+        "description": "Custom terminology mappings"
+      }
+    },
+    "required": [
+      "content",
+      "target_languages"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "translations": {
+        "type": "object"
+      },
+      "source_language": {
+        "type": "string"
+      },
+      "quality_scores": {
+        "type": "object"
+      },
+      "localization_notes": {
+        "type": "array"
+      },
+      "glossary_applied": {
+        "type": "array"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "translation_quality_score",
+    "benchmarks": {
+      "excellent": "> 95%",
+      "good": "85-95%",
+      "needs_improvement": "< 85%"
+    }
+  },
+  "temperature": 0.2,
+  "tags": [
+    "ai_ops",
+    "translation",
+    "localization",
+    "i18n",
+    "multilingual",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Translation & Localization Engine"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "ai.classify",
+          "required": false
+        },
+        {
+          "name": "ai.generate",
+          "required": false
+        },
+        {
+          "name": "ai.score_lead",
+          "required": false
+        }
+      ]
+    }
+  }
+}

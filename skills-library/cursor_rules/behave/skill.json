@@ -1,0 +1,34 @@
+{
+  "id": "cursor_rules/behave",
+  "version": "1.0.0",
+  "name": "behave",
+  "description": "Definitive guidelines for writing maintainable, readable, and effective BDD tests with behave in Python, emphasizing thin steps, clear Gherkin, and robust fixture management.",
+  "domain": "cursor_rules",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "cursor_rules",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "cursor": {
+      "globs": [
+        "**/*.py"
+      ]
+    },
+    "claude": {
+      "triggers": [
+        "help with behave"
+      ]
+    },
+    "skeneflow": {}
+  }
+}

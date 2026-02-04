@@ -1,0 +1,134 @@
+{
+  "id": "compliance_gdpr_manager",
+  "version": "1.0.0",
+  "name": "GDPR Compliance Manager",
+  "description": "Manages data subject requests and GDPR compliance workflows including DSARs, consent records, and data processing activities",
+  "domain": "compliance",
+  "tools": [
+    {
+      "name": "data.export",
+      "required": true
+    },
+    {
+      "name": "data.delete",
+      "required": true
+    },
+    {
+      "name": "data.anonymize",
+      "required": true
+    },
+    {
+      "name": "consent.get_records",
+      "required": true
+    },
+    {
+      "name": "audit.log_activity",
+      "required": true
+    },
+    {
+      "name": "messaging.send_notification",
+      "required": false
+    },
+    {
+      "name": "crm.get_customer",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "privacy_policy",
+    "consent_manager",
+    "data_retention",
+    "breach_response",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "requestType": {
+        "type": "string",
+        "enum": [
+          "access",
+          "rectification",
+          "erasure",
+          "portability",
+          "restriction",
+          "objection"
+        ],
+        "description": "GDPR right being exercised"
+      },
+      "subjectId": {
+        "type": "string",
+        "description": "Data subject identifier"
+      },
+      "subjectEmail": {
+        "type": "string",
+        "description": "Data subject email address"
+      },
+      "requestDetails": {
+        "type": "string",
+        "description": "Additional request context"
+      },
+      "urgency": {
+        "type": "string",
+        "enum": [
+          "standard",
+          "urgent"
+        ],
+        "default": "standard"
+      }
+    },
+    "required": [
+      "requestType",
+      "subjectId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "requestId": {
+        "type": "string"
+      },
+      "status": {
+        "type": "string"
+      },
+      "deadline": {
+        "type": "string"
+      },
+      "dataLocations": {
+        "type": "array"
+      },
+      "actionsCompleted": {
+        "type": "array"
+      },
+      "auditTrail": {
+        "type": "object"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "dsr_response_time",
+    "benchmarks": {
+      "excellent": "< 7 days",
+      "good": "7-21 days",
+      "needs_improvement": "> 21 days"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "compliance",
+    "gdpr",
+    "privacy",
+    "data-subject-rights",
+    "dsar",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with GDPR Compliance Manager"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

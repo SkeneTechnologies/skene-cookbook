@@ -1,0 +1,52 @@
+{
+  "id": "marketing_outreach_personalizer",
+  "version": "1.0.0",
+  "name": "outreach-personalizer",
+  "description": "Creates hyper-personalized outreach messages (DMs, emails) with stack-aware P.S. lines, category-specific angles, and enrichment-based personalization. Applies copywriting principles to generate messages that resonate. Use when preparing personalized outreach to specific leads.",
+  "domain": "marketing",
+  "category": "outreach",
+  "source": "skene-marketing",
+  "tools": [],
+  "exitStates": [
+    "idle",
+    "support"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {},
+    "required": []
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {}
+  },
+  "temperature": 0.3,
+  "tags": [
+    "marketing",
+    "outreach",
+    "outreach-personalizer",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with outreach personalizer",
+        "copywriting",
+        "preparing personalized outreach to specific leads"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "resend.send_email",
+          "required": false
+        },
+        {
+          "name": "analytics.track_campaign",
+          "required": false
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,125 @@
+{
+  "id": "mon_commitment_tracker",
+  "version": "1.0.0",
+  "name": "Commitment Tracker",
+  "description": "Tracks minimum commitments, consumption vs commitment, and true-up obligations",
+  "domain": "monetization",
+  "tools": [
+    {
+      "name": "stripe.get_subscription",
+      "required": true
+    },
+    {
+      "name": "stripe.get_usage",
+      "required": true
+    },
+    {
+      "name": "crm.get_deal",
+      "required": true
+    },
+    {
+      "name": "analytics.commitment_tracking",
+      "required": true
+    },
+    {
+      "name": "ai.forecast",
+      "required": false
+    },
+    {
+      "name": "messaging.send_email",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "on_track",
+    "under_consumption",
+    "over_consumption",
+    "true_up_due",
+    "renegotiation_recommended",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "account_id": {
+        "type": "string",
+        "description": "Account to track"
+      },
+      "commitment_id": {
+        "type": "string",
+        "description": "Specific commitment to analyze"
+      },
+      "include_forecast": {
+        "type": "boolean",
+        "default": true
+      }
+    },
+    "required": [
+      "account_id"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "commitment_amount": {
+        "type": "number"
+      },
+      "consumed_amount": {
+        "type": "number"
+      },
+      "consumption_rate": {
+        "type": "number"
+      },
+      "projected_consumption": {
+        "type": "number"
+      },
+      "true_up_amount": {
+        "type": "number"
+      },
+      "days_remaining": {
+        "type": "integer"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "commitment_attainment",
+    "benchmarks": {
+      "excellent": "> 100%",
+      "good": "90-100%",
+      "needs_improvement": "< 90%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "monetization",
+    "commitments",
+    "consumption",
+    "enterprise",
+    "true-up",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Commitment Tracker"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "stripe.get_customer",
+          "required": true
+        },
+        {
+          "name": "stripe.list_subscriptions",
+          "required": false
+        },
+        {
+          "name": "stripe.create_checkout",
+          "required": false
+        }
+      ]
+    }
+  }
+}

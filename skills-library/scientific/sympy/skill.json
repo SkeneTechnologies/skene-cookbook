@@ -1,0 +1,31 @@
+{
+  "id": "scientific/sympy",
+  "version": "1.0.0",
+  "name": "sympy",
+  "description": "Use this skill when working with symbolic mathematics in Python. This skill should be used for symbolic computation tasks including solving equations algebraically, performing calculus operations (derivatives, integrals, limits), manipulating algebraic expressions, working with matrices symbolically, physics calculations, number theory problems, geometry computations, and generating executable code from mathematical expressions. Apply this skill when the user needs exact symbolic results rather than numerical approximations, or when working with mathematical formulas that contain variables and parameters.",
+  "domain": "scientific",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "scientific",
+    "imported",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "license": "https://github.com/sympy/sympy/blob/master/LICENSE",
+      "triggers": [
+        "help with sympy"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "id": "scientific/opentargets-database",
+  "version": "1.0.0",
+  "name": "opentargets-database",
+  "description": "Query Open Targets Platform for target-disease associations, drug target discovery, tractability/safety data, genetics/omics evidence, known drugs, for therapeutic target identification.",
+  "domain": "scientific",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "scientific",
+    "imported",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "license": "Unknown",
+      "triggers": [
+        "help with opentargets database",
+        "data analysis"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

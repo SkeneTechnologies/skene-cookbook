@@ -1,0 +1,115 @@
+{
+  "id": "support_queue_balancer",
+  "version": "1.0.0",
+  "name": "Queue Load Balancer",
+  "description": "Optimizes ticket distribution across agents and queues to balance workload and maintain SLA compliance.",
+  "domain": "support_ops",
+  "tools": [
+    {
+      "name": "support.get_queues",
+      "required": true
+    },
+    {
+      "name": "support.get_agents",
+      "required": true
+    },
+    {
+      "name": "analytics.get_workload",
+      "required": true
+    },
+    {
+      "name": "support.reassign_ticket",
+      "required": false
+    },
+    {
+      "name": "messaging.send_notification",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "sla_monitor",
+    "ticket_triage",
+    "escalation_predictor",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "scope": {
+        "type": "string",
+        "enum": [
+          "all",
+          "queue",
+          "team"
+        ],
+        "default": "all"
+      },
+      "scope_id": {
+        "type": "string"
+      },
+      "balance_mode": {
+        "type": "string",
+        "enum": [
+          "equal",
+          "skill_weighted",
+          "sla_priority"
+        ],
+        "default": "skill_weighted"
+      },
+      "auto_rebalance": {
+        "type": "boolean",
+        "default": false
+      }
+    },
+    "required": []
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "current_distribution": {
+        "type": "object"
+      },
+      "imbalances_detected": {
+        "type": "array"
+      },
+      "recommended_reassignments": {
+        "type": "array"
+      },
+      "queue_health": {
+        "type": "object"
+      },
+      "agent_utilization": {
+        "type": "array"
+      },
+      "forecast": {
+        "type": "object"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "workload_balance_index",
+    "benchmarks": {
+      "excellent": "> 0.9",
+      "good": "0.7-0.9",
+      "needs_improvement": "< 0.7"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "support_ops",
+    "queue",
+    "workload",
+    "balancing",
+    "capacity",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Queue Load Balancer"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

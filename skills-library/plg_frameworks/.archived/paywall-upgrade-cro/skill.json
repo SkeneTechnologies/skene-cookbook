@@ -1,0 +1,33 @@
+{
+  "id": "plg_frameworks/paywall-upgrade-cro",
+  "version": "1.0.0",
+  "name": "paywall-upgrade-cro",
+  "description": "When the user wants to optimize in-app paywalls, upgrade screens, or upgrade prompts -- including feature locks, usage limit walls, trial expiration screens, or context-triggered upsells. Also use when the user says \"paywall design,\" \"upgrade conversion,\" \"upgrade modal,\" or \"upsell prompt.\" For feature gating strategy, see feature-gating. For in-product messaging, see in-product-messaging.",
+  "domain": "plg_frameworks",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "plg_frameworks",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with paywall upgrade cro",
+        "trial optimization",
+        "feature adoption",
+        "the user says \"paywall design,\" \"upgrade conversion,\" \"upgrade modal,\" or \"upsell prompt"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

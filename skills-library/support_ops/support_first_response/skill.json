@@ -1,0 +1,118 @@
+{
+  "id": "support_first_response",
+  "version": "1.0.0",
+  "name": "First Response Generator",
+  "description": "Generates personalized, context-aware first responses to support tickets using AI and knowledge base retrieval.",
+  "domain": "support_ops",
+  "tools": [
+    {
+      "name": "ai.generate",
+      "required": true
+    },
+    {
+      "name": "rag.search",
+      "required": true
+    },
+    {
+      "name": "support.get_ticket",
+      "required": true
+    },
+    {
+      "name": "crm.get_customer",
+      "required": false
+    },
+    {
+      "name": "support.send_response",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "resolution_suggester",
+    "escalation_predictor",
+    "kb_gap_finder",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "ticket_id": {
+        "type": "string",
+        "description": "Ticket to respond to"
+      },
+      "response_type": {
+        "type": "string",
+        "enum": [
+          "acknowledgment",
+          "solution",
+          "clarification",
+          "handoff"
+        ]
+      },
+      "tone": {
+        "type": "string",
+        "enum": [
+          "formal",
+          "friendly",
+          "empathetic",
+          "technical"
+        ]
+      },
+      "include_kb_links": {
+        "type": "boolean",
+        "default": true
+      }
+    },
+    "required": [
+      "ticket_id"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "ticket_id": {
+        "type": "string"
+      },
+      "response_text": {
+        "type": "string"
+      },
+      "kb_articles_referenced": {
+        "type": "array"
+      },
+      "confidence_score": {
+        "type": "number"
+      },
+      "suggested_macros": {
+        "type": "array"
+      },
+      "follow_up_actions": {
+        "type": "array"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "first_response_time",
+    "benchmarks": {
+      "excellent": "< 1 hour",
+      "good": "1-4 hours",
+      "needs_improvement": "> 4 hours"
+    }
+  },
+  "temperature": 0.3,
+  "tags": [
+    "support_ops",
+    "response",
+    "first_contact",
+    "automation",
+    "kb",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with First Response Generator"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

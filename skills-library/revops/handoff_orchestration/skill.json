@@ -1,0 +1,131 @@
+{
+  "id": "revops_handoff_orchestration",
+  "version": "1.0.0",
+  "name": "Handoff Orchestration",
+  "description": "Orchestrates seamless handoffs between Marketing, Sales, and Customer Success teams.",
+  "domain": "revops",
+  "tools": [
+    {
+      "name": "crm.get_account",
+      "required": true
+    },
+    {
+      "name": "crm.get_contacts",
+      "required": true
+    },
+    {
+      "name": "crm.update_deal",
+      "required": true
+    },
+    {
+      "name": "crm.log_activity",
+      "required": true
+    },
+    {
+      "name": "lifecycle.get_segment",
+      "required": false
+    },
+    {
+      "name": "resend.send_template",
+      "required": false
+    },
+    {
+      "name": "messaging.send_alert",
+      "required": true
+    }
+  ],
+  "exitStates": [
+    "sales_engaged",
+    "customer_success",
+    "account_management",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "handoffType": {
+        "type": "string",
+        "enum": [
+          "mql_to_sales",
+          "sql_to_ae",
+          "closed_to_cs",
+          "expansion_to_sales"
+        ]
+      },
+      "accountId": {
+        "type": "string"
+      },
+      "dealId": {
+        "type": "string"
+      },
+      "fromTeam": {
+        "type": "string"
+      },
+      "toTeam": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "handoffType",
+      "accountId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "handoffComplete": {
+        "type": "boolean"
+      },
+      "assignedOwner": {
+        "type": "string"
+      },
+      "briefingSent": {
+        "type": "boolean"
+      },
+      "slaDeadline": {
+        "type": "string"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "handoff_conversion_rate",
+    "benchmarks": {
+      "excellent": "> 80%",
+      "good": "60-80%",
+      "needs_improvement": "< 60%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "revops",
+    "handoff",
+    "alignment",
+    "process",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Handoff Orchestration",
+        "sales pipeline"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "crm.get_pipeline",
+          "required": true
+        },
+        {
+          "name": "crm.list_deals",
+          "required": false
+        },
+        {
+          "name": "analytics.get_forecast",
+          "required": false
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,187 @@
+{
+  "id": "meta_customer_360",
+  "version": "1.0.0",
+  "name": "Customer 360 Aggregator",
+  "description": "Aggregates complete customer view from Customer Success, Support, Product Analytics, and Billing for holistic account intelligence",
+  "domain": "meta",
+  "tools": [
+    {
+      "name": "crm.get_account",
+      "required": true
+    },
+    {
+      "name": "crm.get_contacts",
+      "required": true
+    },
+    {
+      "name": "crm.get_activities",
+      "required": true
+    },
+    {
+      "name": "cs.get_health_score",
+      "required": true
+    },
+    {
+      "name": "cs.get_success_plan",
+      "required": false
+    },
+    {
+      "name": "support.get_tickets",
+      "required": true
+    },
+    {
+      "name": "support.get_satisfaction",
+      "required": true
+    },
+    {
+      "name": "analytics.get_product_usage",
+      "required": true
+    },
+    {
+      "name": "analytics.get_feature_adoption",
+      "required": true
+    },
+    {
+      "name": "monetization.get_billing_history",
+      "required": true
+    },
+    {
+      "name": "monetization.get_contract",
+      "required": true
+    },
+    {
+      "name": "ai.synthesize_insights",
+      "required": true
+    },
+    {
+      "name": "ai.predict_risk",
+      "required": true
+    }
+  ],
+  "exitStates": [
+    "healthy",
+    "attention_needed",
+    "at_risk",
+    "expansion_ready",
+    "renewal_focus",
+    "escalation_required"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "accountId": {
+        "type": "string",
+        "description": "Target account identifier"
+      },
+      "depth": {
+        "type": "string",
+        "enum": [
+          "summary",
+          "detailed",
+          "comprehensive"
+        ],
+        "default": "detailed"
+      },
+      "focusArea": {
+        "type": "string",
+        "enum": [
+          "health",
+          "engagement",
+          "support",
+          "usage",
+          "commercial",
+          "all"
+        ]
+      },
+      "timeframe": {
+        "type": "string",
+        "description": "Lookback period (e.g., '90d', '6m', '1y')"
+      }
+    },
+    "required": [
+      "accountId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "accountProfile": {
+        "type": "object"
+      },
+      "healthSummary": {
+        "type": "object"
+      },
+      "engagementSummary": {
+        "type": "object"
+      },
+      "supportSummary": {
+        "type": "object"
+      },
+      "usageSummary": {
+        "type": "object"
+      },
+      "commercialSummary": {
+        "type": "object"
+      },
+      "riskIndicators": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "opportunities": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "recommendedActions": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      }
+    }
+  },
+  "metrics": {
+    "primary": "account_health_accuracy",
+    "secondary": [
+      "data_completeness",
+      "insight_actionability",
+      "prediction_accuracy"
+    ],
+    "benchmarks": {
+      "excellent": "> 90% accuracy",
+      "good": "75-90% accuracy",
+      "needs_improvement": "< 75% accuracy"
+    }
+  },
+  "orchestrates": [
+    "customer_success/adoption_score",
+    "customer_success/stakeholder_mapper",
+    "customer_success/sentiment_analyzer",
+    "customer_success/red_flag_detector",
+    "support_ops/ticket_prioritizer",
+    "support_ops/escalation_predictor",
+    "product_ops/impact_analyzer"
+  ],
+  "temperature": 0,
+  "tags": [
+    "meta",
+    "orchestration",
+    "customer-360",
+    "customer-success",
+    "support",
+    "analytics",
+    "experimental"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Customer 360 Aggregator"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

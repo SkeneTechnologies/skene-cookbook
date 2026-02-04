@@ -1,0 +1,120 @@
+{
+  "id": "ai_knowledge_synthesizer",
+  "version": "1.0.0",
+  "name": "Knowledge Synthesizer",
+  "description": "Synthesizes information from multiple knowledge sources to provide comprehensive, accurate answers.",
+  "domain": "ai_ops",
+  "tools": [
+    {
+      "name": "rag.query",
+      "required": true
+    },
+    {
+      "name": "ai.synthesize",
+      "required": true
+    },
+    {
+      "name": "vector.search",
+      "required": true
+    },
+    {
+      "name": "knowledge.cite",
+      "required": false
+    },
+    {
+      "name": "analytics.track_query",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "answer_provided",
+    "sources_cited",
+    "escalate_to_human",
+    "no_answer",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "query": {
+        "type": "string",
+        "description": "User's question"
+      },
+      "sources": {
+        "type": "array",
+        "description": "Knowledge bases to search"
+      },
+      "context": {
+        "type": "object",
+        "description": "User and session context"
+      },
+      "max_sources": {
+        "type": "number",
+        "default": 5
+      }
+    },
+    "required": [
+      "query"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "answer": {
+        "type": "string"
+      },
+      "confidence": {
+        "type": "number"
+      },
+      "sources": {
+        "type": "array"
+      },
+      "related_questions": {
+        "type": "array"
+      },
+      "requires_human": {
+        "type": "boolean"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "answer_accuracy",
+    "benchmarks": {
+      "excellent": "> 95%",
+      "good": "85-95%",
+      "needs_improvement": "< 85%"
+    }
+  },
+  "temperature": 0.1,
+  "tags": [
+    "ai_ops",
+    "knowledge",
+    "synthesis",
+    "rag",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Knowledge Synthesizer"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "ai.classify",
+          "required": false
+        },
+        {
+          "name": "ai.generate",
+          "required": false
+        },
+        {
+          "name": "ai.score_lead",
+          "required": false
+        }
+      ]
+    }
+  }
+}

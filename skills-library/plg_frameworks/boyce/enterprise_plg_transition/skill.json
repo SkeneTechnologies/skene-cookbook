@@ -1,0 +1,52 @@
+{
+  "id": "boyce_enterprise_plg_transition",
+  "version": "1.0.0",
+  "name": "Enterprise PLG Transition",
+  "description": "Guides established sales-led companies in adding PLG. Based on Dave Boyce's FREEMIUM framework (Chapter 16): The biggest trap is trying to PLG-ify the entire product at once.",
+  "domain": "plg_frameworks",
+  "author": "Dave Boyce (FREEMIUM, Stanford University Press)",
+  
+  "tools": [
+    { "name": "analytics.get_usage", "required": true },
+    { "name": "stripe.get_revenue_metrics", "required": true },
+    { "name": "ai.analyze", "required": false }
+  ],
+  
+  "exitStates": ["plg_strategy_ready", "sidecar_recommended", "not_ready_for_plg", "growth_team_needed"],
+  
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "currentArr": { "type": "number" },
+      "currentGtm": { "type": "string", "enum": ["sales_led", "marketing_led", "hybrid"] },
+      "productComplexity": { "type": "string", "enum": ["low", "medium", "high"] },
+      "existingFreeTier": { "type": "boolean" }
+    }
+  },
+  
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "plgReadiness": { "type": "number" },
+      "recommendedApproach": { "type": "string", "enum": ["full_plg", "plg_carveout", "sidecar_product", "not_recommended"] },
+      "scopeRecommendation": { "type": "string" },
+      "teamRequirements": { "type": "object" },
+      "timeline": { "type": "string" },
+      "risks": { "type": "array", "items": { "type": "string" } }
+    }
+  },
+  
+  "metrics": {
+    "primary": "plg_revenue_contribution",
+    "secondary": ["time_to_first_plg_revenue", "plg_cac_vs_sales_cac"],
+    "benchmarks": {
+      "excellent": "PLG > 30% of new revenue in Y2",
+      "good": "PLG 10-30% of new revenue in Y2",
+      "needs_improvement": "PLG < 10% of new revenue in Y2"
+    }
+  },
+  
+  "integrations": ["stripe", "salesforce"],
+  "temperature": 0.2,
+  "tags": ["plg", "enterprise", "transition", "sales-led", "boyce", "freemium", "transformation"]
+}

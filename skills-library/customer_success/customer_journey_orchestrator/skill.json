@@ -1,0 +1,129 @@
+{
+  "id": "cs_customer_journey_orchestrator",
+  "version": "1.0.0",
+  "name": "Journey Orchestrator",
+  "description": "Orchestrates personalized customer journeys across lifecycle stages, triggering contextual touchpoints and interventions.",
+  "domain": "customer_success",
+  "tools": [
+    {
+      "name": "lifecycle.get_segment",
+      "required": true
+    },
+    {
+      "name": "lifecycle.get_journey_stage",
+      "required": true
+    },
+    {
+      "name": "analytics.query_events",
+      "required": true
+    },
+    {
+      "name": "messaging.send_in_app",
+      "required": false
+    },
+    {
+      "name": "messaging.send_email",
+      "required": false
+    },
+    {
+      "name": "crm.create_task",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "onboarding_health",
+    "product_adoption_guidance",
+    "expansion_playbook",
+    "renewal_orchestration",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "accountId": {
+        "type": "string",
+        "description": "Customer account identifier"
+      },
+      "journeyStage": {
+        "type": "string",
+        "enum": [
+          "onboarding",
+          "adoption",
+          "growth",
+          "maturity",
+          "renewal",
+          "advocacy"
+        ]
+      },
+      "triggerEvent": {
+        "type": "string",
+        "description": "Event that triggered journey evaluation"
+      }
+    },
+    "required": [
+      "accountId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "currentStage": {
+        "type": "string"
+      },
+      "stageProgress": {
+        "type": "number"
+      },
+      "nextMilestone": {
+        "type": "object"
+      },
+      "triggeredActions": {
+        "type": "array"
+      },
+      "journeyHealth": {
+        "type": "number"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "journey_progression_rate",
+    "benchmarks": {
+      "excellent": "> 80%",
+      "good": "60-80%",
+      "needs_improvement": "< 60%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "customer_success",
+    "journey",
+    "lifecycle",
+    "orchestration",
+    "automation",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Journey Orchestrator",
+        "customer health"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "lifecycle.get_segment",
+          "required": true
+        },
+        {
+          "name": "analytics.get_cohort",
+          "required": false
+        },
+        {
+          "name": "crm.update_account",
+          "required": false
+        }
+      ]
+    }
+  }
+}

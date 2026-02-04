@@ -1,0 +1,137 @@
+{
+  "id": "plg_contextual_help",
+  "version": "1.0.0",
+  "name": "Contextual Help Provider",
+  "description": "Delivers intelligent, context-aware help content and guidance based on user's current location, action, and history.",
+  "domain": "plg",
+  "tools": [
+    {
+      "name": "rag.query",
+      "required": true
+    },
+    {
+      "name": "analytics.track_event",
+      "required": true
+    },
+    {
+      "name": "lifecycle.get_segment",
+      "required": false
+    },
+    {
+      "name": "ui_kit.tooltip",
+      "required": false
+    },
+    {
+      "name": "ui_kit.panel",
+      "required": false
+    },
+    {
+      "name": "messaging.send_in_app",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "support",
+    "interactive_tour",
+    "onboarding_flow",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "userId": {
+        "type": "string",
+        "description": "User requesting help"
+      },
+      "context": {
+        "type": "string",
+        "description": "Current page or feature context"
+      },
+      "query": {
+        "type": "string",
+        "description": "User's help question"
+      },
+      "helpType": {
+        "type": "string",
+        "enum": [
+          "proactive",
+          "reactive",
+          "search"
+        ],
+        "description": "Type of help request"
+      }
+    },
+    "required": [
+      "userId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "helpContent": {
+        "type": "string"
+      },
+      "relatedArticles": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "suggestedActions": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "escalationNeeded": {
+        "type": "boolean"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "help_deflection_rate",
+    "benchmarks": {
+      "excellent": "> 80%",
+      "good": "60-80%",
+      "needs_improvement": "< 60%"
+    }
+  },
+  "temperature": 0.3,
+  "tags": [
+    "plg",
+    "support",
+    "help",
+    "documentation",
+    "guidance",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Contextual Help Provider",
+        "help with activation"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "lifecycle.get_segment",
+          "required": true
+        },
+        {
+          "name": "lifecycle.record_moment",
+          "required": false
+        },
+        {
+          "name": "analytics.track_event",
+          "required": false
+        },
+        {
+          "name": "messaging.send_in_app",
+          "required": false
+        }
+      ]
+    }
+  }
+}

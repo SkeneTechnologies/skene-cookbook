@@ -1,0 +1,157 @@
+{
+  "id": "revops_meeting_scheduler",
+  "version": "1.0.0",
+  "name": "Intelligent Meeting Scheduler",
+  "description": "Schedules optimal meeting times considering availability, timezone, deal priority, and meeting type.",
+  "domain": "revops",
+  "tools": [
+    {
+      "name": "calendar.get_availability",
+      "required": true
+    },
+    {
+      "name": "calendar.create_event",
+      "required": true
+    },
+    {
+      "name": "crm.get_deal",
+      "required": true
+    },
+    {
+      "name": "crm.get_contacts",
+      "required": true
+    },
+    {
+      "name": "ai.find_optimal_time",
+      "required": true
+    },
+    {
+      "name": "messaging.send_invite",
+      "required": false
+    },
+    {
+      "name": "crm.log_activity",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "deal_inspection",
+    "activity_capture",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "dealId": {
+        "type": "string"
+      },
+      "meetingType": {
+        "type": "string",
+        "enum": [
+          "discovery",
+          "demo",
+          "technical",
+          "executive",
+          "negotiation",
+          "close"
+        ]
+      },
+      "duration": {
+        "type": "number",
+        "description": "Duration in minutes"
+      },
+      "requiredAttendees": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "optionalAttendees": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "preferredTimes": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "urgency": {
+        "type": "string",
+        "enum": [
+          "normal",
+          "high",
+          "critical"
+        ]
+      }
+    },
+    "required": [
+      "dealId",
+      "meetingType"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "eventId": {
+        "type": "string"
+      },
+      "scheduledTime": {
+        "type": "string"
+      },
+      "attendees": {
+        "type": "array"
+      },
+      "meetingLink": {
+        "type": "string"
+      },
+      "conflictsResolved": {
+        "type": "array"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "time_to_meeting",
+    "benchmarks": {
+      "excellent": "< 2 business days",
+      "good": "2-5 business days",
+      "needs_improvement": "> 5 business days"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "revops",
+    "meeting",
+    "scheduling",
+    "calendar",
+    "automation",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Intelligent Meeting Scheduler",
+        "deal velocity"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "crm.get_pipeline",
+          "required": true
+        },
+        {
+          "name": "crm.list_deals",
+          "required": false
+        },
+        {
+          "name": "analytics.get_forecast",
+          "required": false
+        }
+      ]
+    }
+  }
+}

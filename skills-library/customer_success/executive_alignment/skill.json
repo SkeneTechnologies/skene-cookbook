@@ -1,0 +1,129 @@
+{
+  "id": "cs_executive_alignment",
+  "version": "1.0.0",
+  "name": "Executive Sponsor Tracker",
+  "description": "Tracks executive sponsor engagement and alignment, ensuring strategic partnership at the highest levels of customer organizations.",
+  "domain": "customer_success",
+  "tools": [
+    {
+      "name": "crm.get_contacts",
+      "required": true
+    },
+    {
+      "name": "crm.get_interactions",
+      "required": true
+    },
+    {
+      "name": "crm.get_account",
+      "required": true
+    },
+    {
+      "name": "analytics.get_metrics",
+      "required": false
+    },
+    {
+      "name": "crm.create_task",
+      "required": false
+    },
+    {
+      "name": "messaging.send_alert",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "stakeholder_mapper",
+    "quarterly_business_review",
+    "churn_prediction",
+    "renewal_orchestration",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "accountId": {
+        "type": "string",
+        "description": "Customer account identifier"
+      },
+      "executiveId": {
+        "type": "string",
+        "description": "Specific executive contact ID"
+      },
+      "alertThreshold": {
+        "type": "number",
+        "default": 90,
+        "description": "Days without engagement before alert"
+      }
+    },
+    "required": [
+      "accountId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "executiveStatus": {
+        "type": "string",
+        "enum": [
+          "engaged",
+          "at_risk",
+          "disengaged",
+          "unknown"
+        ]
+      },
+      "lastEngagement": {
+        "type": "string"
+      },
+      "engagementScore": {
+        "type": "number"
+      },
+      "alignmentTopics": {
+        "type": "array"
+      },
+      "recommendations": {
+        "type": "array"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "exec_engagement_rate",
+    "benchmarks": {
+      "excellent": "> 80%",
+      "good": "60-80%",
+      "needs_improvement": "< 60%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "customer_success",
+    "executive",
+    "sponsor",
+    "alignment",
+    "relationship",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Executive Sponsor Tracker",
+        "customer health"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "lifecycle.get_segment",
+          "required": true
+        },
+        {
+          "name": "analytics.get_cohort",
+          "required": false
+        },
+        {
+          "name": "crm.update_account",
+          "required": false
+        }
+      ]
+    }
+  }
+}

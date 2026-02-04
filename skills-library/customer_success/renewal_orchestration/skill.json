@@ -1,0 +1,80 @@
+{
+  "id": "cs_renewal_orchestration",
+  "version": "1.0.0",
+  "name": "Renewal Orchestration",
+  "description": "Orchestrates the renewal process from early warning to close, maximizing GRR and NRR.",
+  "domain": "customer_success",
+  "tools": [
+    {
+      "name": "stripe.get_subscription",
+      "required": true
+    },
+    {
+      "name": "crm.get_account",
+      "required": true
+    },
+    {
+      "name": "crm.create_deal",
+      "required": true
+    },
+    {
+      "name": "lifecycle.get_segment",
+      "required": true
+    },
+    {
+      "name": "resend.send_template",
+      "required": false
+    },
+    {
+      "name": "messaging.send_alert",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "renewal_complete",
+    "churn_prediction",
+    "expansion_playbook",
+    "idle"
+  ],
+  "metrics": {
+    "primary": "gross_renewal_rate",
+    "benchmarks": {
+      "excellent": "> 95%",
+      "good": "90-95%",
+      "needs_improvement": "< 90%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "customer_success",
+    "renewal",
+    "retention",
+    "nrr",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Renewal Orchestration",
+        "renewal"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "lifecycle.get_segment",
+          "required": true
+        },
+        {
+          "name": "analytics.get_cohort",
+          "required": false
+        },
+        {
+          "name": "crm.update_account",
+          "required": false
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "id": "mon_limit_notification",
+  "version": "1.0.0",
+  "name": "Usage Limit Notification",
+  "description": "Proactively notifies users when approaching or exceeding usage limits.",
+  "domain": "monetization",
+  "tools": [
+    {
+      "name": "stripe.get_usage",
+      "required": true
+    },
+    {
+      "name": "stripe.get_subscription",
+      "required": true
+    },
+    {
+      "name": "messaging.send_in_app",
+      "required": true
+    },
+    {
+      "name": "resend.send_template",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "upgrade_trigger",
+    "support",
+    "idle"
+  ],
+  "metrics": {
+    "primary": "limit_notification_to_upgrade_rate",
+    "benchmarks": {
+      "excellent": "> 25%",
+      "good": "15-25%",
+      "needs_improvement": "< 15%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "monetization",
+    "limits",
+    "notification",
+    "upsell",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Usage Limit Notification",
+        "usage metering"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "stripe.get_customer",
+          "required": true
+        },
+        {
+          "name": "stripe.list_subscriptions",
+          "required": false
+        },
+        {
+          "name": "stripe.create_checkout",
+          "required": false
+        }
+      ]
+    }
+  }
+}

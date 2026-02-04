@@ -1,0 +1,34 @@
+{
+  "id": "cursor_rules/seaborn",
+  "version": "1.0.0",
+  "name": "seaborn",
+  "description": "This guide defines best practices for using Seaborn in Python for data visualization, emphasizing modern, reproducible, and performant approaches in AI/ML pipelines.",
+  "domain": "cursor_rules",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "cursor_rules",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "cursor": {
+      "globs": [
+        "**/*.py"
+      ]
+    },
+    "claude": {
+      "triggers": [
+        "help with seaborn"
+      ]
+    },
+    "skeneflow": {}
+  }
+}

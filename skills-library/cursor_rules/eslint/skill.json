@@ -1,0 +1,39 @@
+{
+  "id": "cursor_rules/eslint",
+  "version": "1.0.0",
+  "name": "eslint",
+  "description": "This guide defines the definitive ESLint configuration and best practices for our team, ensuring consistent code quality, early error detection, and seamless integration with modern JavaScript and TypeScript workflows.",
+  "domain": "cursor_rules",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "cursor_rules",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "cursor": {
+      "globs": [
+        "**/*.{js",
+        "jsx",
+        "ts",
+        "tsx",
+        "mts",
+        "cts}"
+      ]
+    },
+    "claude": {
+      "triggers": [
+        "help with eslint"
+      ]
+    },
+    "skeneflow": {}
+  }
+}

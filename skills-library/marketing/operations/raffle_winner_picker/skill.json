@@ -1,0 +1,50 @@
+{
+  "id": "marketing_raffle_winner_picker",
+  "version": "1.0.0",
+  "name": "raffle-winner-picker",
+  "description": "Picks random winners from lists, spreadsheets, or Google Sheets for giveaways, raffles, and contests. Ensures fair, unbiased selection with transparency.",
+  "domain": "marketing",
+  "category": "operations",
+  "source": "skene-marketing",
+  "tools": [],
+  "exitStates": [
+    "idle",
+    "support"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {},
+    "required": []
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {}
+  },
+  "temperature": 0.3,
+  "tags": [
+    "marketing",
+    "operations",
+    "raffle-winner-picker",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with raffle winner picker"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "resend.send_email",
+          "required": false
+        },
+        {
+          "name": "analytics.track_campaign",
+          "required": false
+        }
+      ]
+    }
+  }
+}

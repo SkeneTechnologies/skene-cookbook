@@ -1,0 +1,132 @@
+{
+  "id": "data_warehouse_optimizer",
+  "version": "1.0.0",
+  "name": "Query Optimizer",
+  "description": "Analyzes and optimizes data warehouse queries, identifying slow queries and recommending performance improvements.",
+  "domain": "data_ops",
+  "tools": [
+    {
+      "name": "warehouse.query",
+      "required": true
+    },
+    {
+      "name": "warehouse.explain",
+      "required": true
+    },
+    {
+      "name": "warehouse.get_query_history",
+      "required": true
+    },
+    {
+      "name": "ai.analyze",
+      "required": true
+    },
+    {
+      "name": "warehouse.create_index",
+      "required": false
+    },
+    {
+      "name": "warehouse.cluster_table",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "data_etl_monitor",
+    "data_dashboard_builder",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "warehouse_type": {
+        "type": "string",
+        "enum": [
+          "snowflake",
+          "bigquery",
+          "redshift",
+          "databricks"
+        ],
+        "description": "Data warehouse platform"
+      },
+      "time_range": {
+        "type": "string",
+        "default": "7d",
+        "description": "Query history lookback"
+      },
+      "min_duration_seconds": {
+        "type": "number",
+        "default": 30,
+        "description": "Minimum query duration to analyze"
+      },
+      "include_costs": {
+        "type": "boolean",
+        "default": true
+      },
+      "auto_apply_optimizations": {
+        "type": "boolean",
+        "default": false
+      }
+    },
+    "required": [
+      "warehouse_type"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "slow_queries": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "expensive_queries": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "optimization_recommendations": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "cost_savings": {
+        "type": "object"
+      },
+      "applied_optimizations": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      }
+    }
+  },
+  "metrics": {
+    "primary": "query_performance_improvement",
+    "benchmarks": {
+      "excellent": "> 50% reduction in p95 query time",
+      "good": "25-50% reduction",
+      "needs_improvement": "< 25% reduction"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "data_ops",
+    "warehouse",
+    "query_optimization",
+    "performance",
+    "cost",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Query Optimizer"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

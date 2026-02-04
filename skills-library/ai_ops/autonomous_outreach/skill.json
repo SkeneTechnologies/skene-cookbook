@@ -1,0 +1,75 @@
+{
+  "id": "ai_autonomous_outreach",
+  "version": "1.0.0",
+  "name": "Autonomous Outreach",
+  "description": "AI-powered autonomous outbound outreach with personalization and sequence management.",
+  "domain": "ai_ops",
+  "tools": [
+    {
+      "name": "ai.personalize",
+      "required": true
+    },
+    {
+      "name": "ai.generate_content",
+      "required": true
+    },
+    {
+      "name": "crm.get_contacts",
+      "required": true
+    },
+    {
+      "name": "resend.send_email",
+      "required": true
+    },
+    {
+      "name": "crm.log_activity",
+      "required": true
+    }
+  ],
+  "exitStates": [
+    "lead_qualification",
+    "meeting_scheduled",
+    "nurture",
+    "idle"
+  ],
+  "metrics": {
+    "primary": "outreach_reply_rate",
+    "benchmarks": {
+      "excellent": "> 15%",
+      "good": "8-15%",
+      "needs_improvement": "< 8%"
+    }
+  },
+  "temperature": 0.3,
+  "tags": [
+    "ai_ops",
+    "outreach",
+    "automation",
+    "sales",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Autonomous Outreach"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "ai.classify",
+          "required": false
+        },
+        {
+          "name": "ai.generate",
+          "required": false
+        },
+        {
+          "name": "ai.score_lead",
+          "required": false
+        }
+      ]
+    }
+  }
+}

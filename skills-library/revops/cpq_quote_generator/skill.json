@@ -1,0 +1,166 @@
+{
+  "id": "revops_cpq_quote_generator",
+  "version": "1.0.0",
+  "name": "CPQ Quote Architect",
+  "description": "Generates accurate, compliant quotes with intelligent product configuration, pricing rules, and approval workflows.",
+  "domain": "revops",
+  "tools": [
+    {
+      "name": "crm.get_deal",
+      "required": true
+    },
+    {
+      "name": "crm.get_account",
+      "required": true
+    },
+    {
+      "name": "cpq.get_products",
+      "required": true
+    },
+    {
+      "name": "cpq.get_price_book",
+      "required": true
+    },
+    {
+      "name": "cpq.configure_bundle",
+      "required": true
+    },
+    {
+      "name": "cpq.apply_discounts",
+      "required": true
+    },
+    {
+      "name": "cpq.generate_quote",
+      "required": true
+    },
+    {
+      "name": "cpq.submit_approval",
+      "required": false
+    },
+    {
+      "name": "ai.recommend_products",
+      "required": false
+    },
+    {
+      "name": "crm.update_deal",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "deal_inspection",
+    "pricing_guidance",
+    "approval_workflow",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "dealId": {
+        "type": "string"
+      },
+      "accountId": {
+        "type": "string"
+      },
+      "products": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "productId": {
+              "type": "string"
+            },
+            "quantity": {
+              "type": "number"
+            }
+          }
+        }
+      },
+      "term": {
+        "type": "number",
+        "description": "Contract term in months"
+      },
+      "discountRequest": {
+        "type": "number",
+        "description": "Requested discount percentage"
+      },
+      "paymentTerms": {
+        "type": "string",
+        "enum": [
+          "monthly",
+          "annual",
+          "upfront"
+        ]
+      }
+    },
+    "required": [
+      "dealId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "quoteId": {
+        "type": "string"
+      },
+      "quoteNumber": {
+        "type": "string"
+      },
+      "totalAmount": {
+        "type": "number"
+      },
+      "discountApplied": {
+        "type": "number"
+      },
+      "approvalRequired": {
+        "type": "boolean"
+      },
+      "validUntil": {
+        "type": "string"
+      },
+      "quoteUrl": {
+        "type": "string"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "quote_to_close_rate",
+    "benchmarks": {
+      "excellent": "> 40%",
+      "good": "25-40%",
+      "needs_improvement": "< 25%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "revops",
+    "cpq",
+    "quote",
+    "pricing",
+    "configuration",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with CPQ Quote Architect"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "crm.get_pipeline",
+          "required": true
+        },
+        {
+          "name": "crm.list_deals",
+          "required": false
+        },
+        {
+          "name": "analytics.get_forecast",
+          "required": false
+        }
+      ]
+    }
+  }
+}

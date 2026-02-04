@@ -1,0 +1,125 @@
+{
+  "id": "community_content_curator",
+  "version": "1.0.0",
+  "name": "Community Content Curator",
+  "description": "Curates, organizes, and surfaces the best community-generated content for maximum visibility and engagement.",
+  "domain": "community",
+  "tools": [
+    {
+      "name": "rag.query",
+      "required": true
+    },
+    {
+      "name": "ai.classify",
+      "required": true
+    },
+    {
+      "name": "ai.summarize",
+      "required": true
+    },
+    {
+      "name": "analytics.get_content_performance",
+      "required": true
+    },
+    {
+      "name": "messaging.send_digest",
+      "required": false
+    },
+    {
+      "name": "analytics.track_event",
+      "required": true
+    }
+  ],
+  "exitStates": [
+    "ugc_curator",
+    "champion_identifier",
+    "forum_moderator",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "contentSource": {
+        "type": "string",
+        "description": "Source platform (forum, discord, blog)"
+      },
+      "timeRange": {
+        "type": "string",
+        "enum": [
+          "24h",
+          "7d",
+          "30d"
+        ],
+        "description": "Time range for content discovery"
+      },
+      "contentTypes": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Types to curate (tutorial, discussion, showcase)"
+      },
+      "curationType": {
+        "type": "string",
+        "enum": [
+          "digest",
+          "featured",
+          "newsletter",
+          "social"
+        ],
+        "description": "Purpose of curation"
+      }
+    },
+    "required": [
+      "contentSource"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "curatedContent": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "contentCategories": {
+        "type": "object"
+      },
+      "topContributors": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "digestReady": {
+        "type": "boolean"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "content_engagement_lift",
+    "benchmarks": {
+      "excellent": "> 50%",
+      "good": "25-50%",
+      "needs_improvement": "< 25%"
+    }
+  },
+  "temperature": 0.2,
+  "tags": [
+    "content",
+    "curation",
+    "digest",
+    "engagement",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Community Content Curator"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

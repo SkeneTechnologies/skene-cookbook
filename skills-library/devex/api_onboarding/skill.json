@@ -1,0 +1,122 @@
+{
+  "id": "devex_api_onboarding",
+  "version": "1.0.0",
+  "name": "API Quick Start Generator",
+  "description": "Creates personalized API getting-started guides based on developer's tech stack and use case for faster time-to-first-call.",
+  "domain": "devex",
+  "tools": [
+    {
+      "name": "rag.query",
+      "required": true
+    },
+    {
+      "name": "ai.generate_code",
+      "required": true
+    },
+    {
+      "name": "analytics.track_developer",
+      "required": false
+    },
+    {
+      "name": "docs.get_endpoints",
+      "required": true
+    }
+  ],
+  "exitStates": [
+    "sdk_version_monitor",
+    "webhook_tester",
+    "code_sample_generator",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "developer_id": {
+        "type": "string",
+        "description": "Developer or API key identifier"
+      },
+      "tech_stack": {
+        "type": "string",
+        "description": "Primary programming language/framework"
+      },
+      "use_case": {
+        "type": "string",
+        "description": "What the developer wants to build"
+      },
+      "experience_level": {
+        "type": "string",
+        "enum": [
+          "beginner",
+          "intermediate",
+          "advanced"
+        ],
+        "default": "intermediate"
+      },
+      "endpoints_of_interest": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Specific API endpoints to focus on"
+      }
+    },
+    "required": [
+      "developer_id"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "quick_start_guide": {
+        "type": "object"
+      },
+      "code_samples": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "estimated_time_to_first_call": {
+        "type": "string"
+      },
+      "recommended_next_steps": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "relevant_docs": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      }
+    }
+  },
+  "metrics": {
+    "primary": "developer_time_to_first_call",
+    "benchmarks": {
+      "excellent": "< 15 minutes",
+      "good": "15-60 minutes",
+      "needs_improvement": "> 60 minutes"
+    }
+  },
+  "temperature": 0.3,
+  "tags": [
+    "devex",
+    "api",
+    "onboarding",
+    "documentation",
+    "quickstart",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with API Quick Start Generator"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

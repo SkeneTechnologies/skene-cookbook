@@ -1,0 +1,132 @@
+{
+  "id": "cs_advocacy_identifier",
+  "version": "1.0.0",
+  "name": "Advocacy Identifier",
+  "description": "Identifies potential customer advocates and reference candidates based on satisfaction, engagement, and success signals.",
+  "domain": "customer_success",
+  "tools": [
+    {
+      "name": "feedback.get_surveys",
+      "required": true
+    },
+    {
+      "name": "crm.get_contacts",
+      "required": true
+    },
+    {
+      "name": "analytics.query_events",
+      "required": true
+    },
+    {
+      "name": "crm.get_account",
+      "required": false
+    },
+    {
+      "name": "crm.update_contact",
+      "required": false
+    },
+    {
+      "name": "messaging.send_email",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "stakeholder_mapper",
+    "expansion_playbook",
+    "outcome_tracker",
+    "marketing_handoff",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "accountId": {
+        "type": "string",
+        "description": "Customer account identifier"
+      },
+      "advocacyType": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": [
+            "reference",
+            "case_study",
+            "review",
+            "speaker",
+            "advisory_board",
+            "referral"
+          ]
+        }
+      },
+      "minimumScore": {
+        "type": "number",
+        "default": 75
+      }
+    },
+    "required": [
+      "accountId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "advocacyScore": {
+        "type": "number"
+      },
+      "potentialAdvocates": {
+        "type": "array"
+      },
+      "advocacyOpportunities": {
+        "type": "array"
+      },
+      "recommendedAsks": {
+        "type": "array"
+      },
+      "engagementPlan": {
+        "type": "object"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "advocate_activation_rate",
+    "benchmarks": {
+      "excellent": "> 40%",
+      "good": "25-40%",
+      "needs_improvement": "< 25%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "customer_success",
+    "advocacy",
+    "reference",
+    "case_study",
+    "promoter",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Advocacy Identifier",
+        "customer health"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "lifecycle.get_segment",
+          "required": true
+        },
+        {
+          "name": "analytics.get_cohort",
+          "required": false
+        },
+        {
+          "name": "crm.update_account",
+          "required": false
+        }
+      ]
+    }
+  }
+}

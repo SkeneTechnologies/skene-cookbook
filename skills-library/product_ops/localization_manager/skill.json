@@ -1,0 +1,110 @@
+{
+  "id": "prodops_localization_manager",
+  "version": "1.0.0",
+  "name": "Localization Manager",
+  "description": "Manages product localization including translation coverage, quality monitoring, and locale-specific feature rollouts.",
+  "domain": "product_ops",
+  "tools": [
+    {
+      "name": "github.get_files",
+      "required": true
+    },
+    {
+      "name": "ai.generate",
+      "required": true
+    },
+    {
+      "name": "analytics.get_metrics",
+      "required": true
+    },
+    {
+      "name": "linear.create_issue",
+      "required": false
+    },
+    {
+      "name": "slack.send_message",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "documentation_health",
+    "feature_adoption",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "locales": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Locales to manage"
+      },
+      "sourceLocale": {
+        "type": "string",
+        "description": "Source locale (default: en)"
+      },
+      "translationPath": {
+        "type": "string",
+        "description": "Path to translation files"
+      },
+      "qualityThreshold": {
+        "type": "number",
+        "description": "Minimum translation quality score"
+      }
+    },
+    "required": [
+      "locales"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "coverageByLocale": {
+        "type": "object"
+      },
+      "missingTranslations": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "qualityIssues": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "localeMetrics": {
+        "type": "object"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "translation_coverage",
+    "benchmarks": {
+      "excellent": "> 98%",
+      "good": "90-98%",
+      "needs_improvement": "< 90%"
+    }
+  },
+  "temperature": 0.1,
+  "tags": [
+    "product_ops",
+    "localization",
+    "i18n",
+    "translation",
+    "international",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Localization Manager"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

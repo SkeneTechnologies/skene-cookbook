@@ -1,0 +1,167 @@
+{
+  "id": "skene_analyze_product_overview",
+  "version": "1.0.0",
+  "name": "Product Overview Extractor",
+  "description": "Extracts product information, value proposition, and positioning from README, documentation, and marketing content in the codebase",
+  "domain": "skene",
+  "tools": [
+    {
+      "name": "fs.read",
+      "required": true
+    },
+    {
+      "name": "fs.glob",
+      "required": true
+    },
+    {
+      "name": "ai.extract",
+      "required": true
+    },
+    {
+      "name": "ai.summarize",
+      "required": true
+    }
+  ],
+  "exitStates": [
+    "analyze_features",
+    "generate_growth_manifest",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "rootPath": {
+        "type": "string",
+        "description": "Root path of the codebase to analyze"
+      },
+      "includeChangelog": {
+        "type": "boolean",
+        "description": "Include changelog in analysis",
+        "default": true
+      },
+      "maxDocsDepth": {
+        "type": "number",
+        "description": "Max depth for docs folder scanning",
+        "default": 2
+      }
+    },
+    "required": [
+      "rootPath"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "productName": {
+        "type": "string"
+      },
+      "tagline": {
+        "type": "string"
+      },
+      "description": {
+        "type": "string"
+      },
+      "valueProposition": {
+        "type": "object",
+        "properties": {
+          "primary": {
+            "type": "string"
+          },
+          "benefits": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "targetAudience": {
+            "type": "string"
+          }
+        }
+      },
+      "features": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "category": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "positioning": {
+        "type": "object",
+        "properties": {
+          "category": {
+            "type": "string"
+          },
+          "competitors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "differentiators": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "maturitySignals": {
+        "type": "object",
+        "properties": {
+          "hasDocumentation": {
+            "type": "boolean"
+          },
+          "hasChangelog": {
+            "type": "boolean"
+          },
+          "hasContributing": {
+            "type": "boolean"
+          },
+          "hasLicense": {
+            "type": "boolean"
+          }
+        }
+      }
+    }
+  },
+  "metrics": {
+    "primary": "extraction_completeness",
+    "secondary": [
+      "value_prop_clarity",
+      "positioning_accuracy"
+    ],
+    "benchmarks": {
+      "excellent": "> 90%",
+      "good": "70-90%",
+      "needs_improvement": "< 70%"
+    }
+  },
+  "temperature": 0.1,
+  "tags": [
+    "skene",
+    "analysis",
+    "product",
+    "documentation",
+    "positioning",
+    "experimental"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Product Overview Extractor"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

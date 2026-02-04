@@ -1,0 +1,132 @@
+{
+  "id": "plg_aha_moment_detection",
+  "version": "1.0.0",
+  "name": "Aha Moment Detection",
+  "description": "Identifies and triggers aha moments - the specific actions that correlate with long-term retention.",
+  "domain": "plg",
+  "tools": [
+    {
+      "name": "lifecycle.get_segment",
+      "required": true
+    },
+    {
+      "name": "lifecycle.record_moment",
+      "required": true
+    },
+    {
+      "name": "analytics.query_events",
+      "required": true
+    },
+    {
+      "name": "analytics.retention",
+      "required": true
+    },
+    {
+      "name": "analytics.feature_adoption",
+      "required": false
+    },
+    {
+      "name": "messaging.send_in_app",
+      "required": false
+    },
+    {
+      "name": "ai.personalize",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "habit_formation",
+    "upgrade_trigger",
+    "viral_loop",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "userId": {
+        "type": "string"
+      },
+      "ahaDefinitions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "event": {
+              "type": "string"
+            },
+            "threshold": {
+              "type": "number"
+            },
+            "timeframe": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "required": [
+      "userId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "ahaReached": {
+        "type": "boolean"
+      },
+      "ahaMoment": {
+        "type": "string"
+      },
+      "progressToAha": {
+        "type": "number"
+      },
+      "predictedRetention": {
+        "type": "number"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "aha_moment_rate",
+    "benchmarks": {
+      "excellent": "> 60%",
+      "good": "40-60%",
+      "needs_improvement": "< 40%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "plg",
+    "aha",
+    "retention",
+    "activation",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Aha Moment Detection"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "lifecycle.get_segment",
+          "required": true
+        },
+        {
+          "name": "lifecycle.record_moment",
+          "required": false
+        },
+        {
+          "name": "analytics.track_event",
+          "required": false
+        },
+        {
+          "name": "messaging.send_in_app",
+          "required": false
+        }
+      ]
+    }
+  }
+}

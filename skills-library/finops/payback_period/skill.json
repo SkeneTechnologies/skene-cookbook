@@ -1,0 +1,108 @@
+{
+  "id": "finops_payback_period",
+  "version": "1.0.0",
+  "name": "CAC Payback Calculator",
+  "description": "Calculates CAC payback period to measure go-to-market efficiency and capital requirements",
+  "domain": "finops",
+  "tools": [
+    {
+      "name": "analytics.get_metrics",
+      "required": true
+    },
+    {
+      "name": "analytics.calculate",
+      "required": true
+    },
+    {
+      "name": "stripe.get_mrr_data",
+      "required": true
+    },
+    {
+      "name": "ai.cohort_analysis",
+      "required": false
+    },
+    {
+      "name": "benchmarks.compare",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "cac_calculator",
+    "magic_number",
+    "investor_metrics",
+    "burn_rate_monitor",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "period": {
+        "type": "string",
+        "description": "Reporting period (YYYY-MM or YYYY-QX)"
+      },
+      "use_gross_margin": {
+        "type": "boolean",
+        "default": true
+      },
+      "segment_by": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "default": [
+          "segment",
+          "channel"
+        ]
+      }
+    },
+    "required": [
+      "period"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "blended_payback_months": {
+        "type": "number"
+      },
+      "payback_by_segment": {
+        "type": "object"
+      },
+      "payback_by_channel": {
+        "type": "object"
+      },
+      "payback_trend": {
+        "type": "array"
+      },
+      "capital_efficiency_score": {
+        "type": "number"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "cac_payback_months",
+    "benchmarks": {
+      "excellent": "< 12 months",
+      "good": "12-18 months",
+      "needs_improvement": "> 18 months"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "finops",
+    "payback",
+    "cac",
+    "efficiency",
+    "unit-economics",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with CAC Payback Calculator"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

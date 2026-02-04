@@ -1,0 +1,34 @@
+{
+  "id": "cursor_rules/click",
+  "version": "1.0.0",
+  "name": "click",
+  "description": "This guide outlines definitive best practices for building robust, maintainable, and user-friendly command-line interfaces (CLIs) using the `click` Python library, emphasizing modern patterns and common pitfalls.",
+  "domain": "cursor_rules",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "cursor_rules",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "cursor": {
+      "globs": [
+        "**/*.py"
+      ]
+    },
+    "claude": {
+      "triggers": [
+        "help with click"
+      ]
+    },
+    "skeneflow": {}
+  }
+}

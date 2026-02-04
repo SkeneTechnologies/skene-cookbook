@@ -1,0 +1,34 @@
+{
+  "id": "cursor_rules/pyside",
+  "version": "1.0.0",
+  "name": "pyside",
+  "description": "Definitive guide for building modern, maintainable, and performant PySide6 applications using best practices like UI/logic separation, modern controls, and robust type safety.",
+  "domain": "cursor_rules",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "cursor_rules",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "cursor": {
+      "globs": [
+        "**/*.py"
+      ]
+    },
+    "claude": {
+      "triggers": [
+        "help with pyside"
+      ]
+    },
+    "skeneflow": {}
+  }
+}

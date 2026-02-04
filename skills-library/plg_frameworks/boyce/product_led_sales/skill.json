@@ -1,0 +1,65 @@
+{
+  "id": "boyce_product_led_sales",
+  "version": "1.0.0",
+  "name": "Product-Led Sales (PLS)",
+  "description": "Hybrid PLG+Sales motion using product usage signals to generate and qualify sales pipeline. Based on Dave Boyce's FREEMIUM framework (Chapters 14-15): 'To maximize Enterprise Sales, you need a self-service happy path.'",
+  "domain": "plg_frameworks",
+  "author": "Dave Boyce (FREEMIUM, Stanford University Press)",
+  
+  "tools": [
+    { "name": "lifecycle.get_segment", "required": true },
+    { "name": "analytics.get_usage", "required": true },
+    { "name": "crm.get_account", "required": true },
+    { "name": "crm.update_account", "required": true },
+    { "name": "ai.score_lead", "required": true },
+    { "name": "messaging.send_in_app", "required": false },
+    { "name": "resend.send_template", "required": false },
+    { "name": "analytics.track_event", "required": false }
+  ],
+  
+  "exitStates": ["sales_engaged", "self_service_continue", "pqa_qualified", "activation_assist_needed", "not_ready"],
+  
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "accountId": { "type": "string", "description": "Account to evaluate for PLS" },
+      "userId": { "type": "string", "description": "Primary user in the account" },
+      "icpCriteria": { 
+        "type": "object", 
+        "description": "Ideal Customer Profile criteria",
+        "properties": {
+          "companySize": { "type": "string" },
+          "industry": { "type": "array", "items": { "type": "string" } },
+          "techStack": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "required": ["accountId"]
+  },
+  
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "pqaScore": { "type": "number", "description": "Product-Qualified Account score (0-100)" },
+      "fitScore": { "type": "number", "description": "ICP fit score (0-100)" },
+      "readinessScore": { "type": "number", "description": "Buying readiness score (0-100)" },
+      "recommendation": { "type": "string", "enum": ["sales_engage", "self_service", "activation_assist", "nurture"] },
+      "signals": { "type": "array", "items": { "type": "object" } },
+      "nextPlay": { "type": "string" }
+    }
+  },
+  
+  "metrics": {
+    "primary": "pqa_to_opportunity_rate",
+    "secondary": ["sales_accepted_rate", "time_to_first_meeting", "pls_sourced_pipeline"],
+    "benchmarks": {
+      "excellent": "PQA→Opp > 40%, SAL > 70%",
+      "good": "PQA→Opp 25-40%, SAL 50-70%",
+      "needs_improvement": "PQA→Opp < 25%, SAL < 50%"
+    }
+  },
+  
+  "integrations": ["salesforce", "hubspot", "segment", "amplitude"],
+  "temperature": 0,
+  "tags": ["plg", "sales", "pls", "pqa", "boyce", "freemium", "enterprise", "hybrid-gtm"]
+}

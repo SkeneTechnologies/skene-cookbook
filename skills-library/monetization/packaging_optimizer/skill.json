@@ -1,0 +1,129 @@
+{
+  "id": "mon_packaging_optimizer",
+  "version": "1.0.0",
+  "name": "Packaging Optimizer",
+  "description": "Optimizes product packaging, bundles, and tier structures for maximum revenue",
+  "domain": "monetization",
+  "tools": [
+    {
+      "name": "analytics.feature_usage",
+      "required": true
+    },
+    {
+      "name": "analytics.get_metrics",
+      "required": true
+    },
+    {
+      "name": "analytics.cohort",
+      "required": true
+    },
+    {
+      "name": "ai.clustering",
+      "required": true
+    },
+    {
+      "name": "ai.willingness_to_pay",
+      "required": false
+    },
+    {
+      "name": "stripe.list_products",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "optimization_identified",
+    "bundle_recommended",
+    "tier_restructure",
+    "experiment_proposed",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "analysis_type": {
+        "type": "string",
+        "enum": [
+          "feature_bundling",
+          "tier_optimization",
+          "add_on_strategy",
+          "full_audit"
+        ],
+        "default": "full_audit"
+      },
+      "segment": {
+        "type": "string",
+        "description": "Customer segment to optimize for"
+      },
+      "objective": {
+        "type": "string",
+        "enum": [
+          "revenue",
+          "conversion",
+          "retention",
+          "expansion"
+        ],
+        "default": "revenue"
+      }
+    },
+    "required": []
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "current_packaging": {
+        "type": "object"
+      },
+      "recommendations": {
+        "type": "array"
+      },
+      "projected_impact": {
+        "type": "object"
+      },
+      "experiment_design": {
+        "type": "object"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "packaging_efficiency",
+    "benchmarks": {
+      "excellent": "> 85% feature utilization",
+      "good": "70-85%",
+      "needs_improvement": "< 70%"
+    }
+  },
+  "temperature": 0.1,
+  "tags": [
+    "monetization",
+    "packaging",
+    "pricing",
+    "bundles",
+    "optimization",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Packaging Optimizer",
+        "revenue optimization"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "stripe.get_customer",
+          "required": true
+        },
+        {
+          "name": "stripe.list_subscriptions",
+          "required": false
+        },
+        {
+          "name": "stripe.create_checkout",
+          "required": false
+        }
+      ]
+    }
+  }
+}

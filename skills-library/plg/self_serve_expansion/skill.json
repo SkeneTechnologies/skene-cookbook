@@ -1,0 +1,141 @@
+{
+  "id": "plg_self_serve_expansion",
+  "version": "1.0.0",
+  "name": "Self-Serve Expansion Engine",
+  "description": "Identifies and enables account expansion opportunities through seat additions, plan upgrades, and add-on purchases without sales involvement.",
+  "domain": "plg",
+  "tools": [
+    {
+      "name": "stripe.get_subscription",
+      "required": true
+    },
+    {
+      "name": "analytics.get_metrics",
+      "required": true
+    },
+    {
+      "name": "lifecycle.get_segment",
+      "required": true
+    },
+    {
+      "name": "crm.get_account",
+      "required": false
+    },
+    {
+      "name": "messaging.send_in_app",
+      "required": false
+    },
+    {
+      "name": "resend.send_template",
+      "required": false
+    },
+    {
+      "name": "lifecycle.record_moment",
+      "required": false
+    },
+    {
+      "name": "stripe.create_checkout",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "monetization",
+    "pql_scoring",
+    "support",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "userId": {
+        "type": "string",
+        "description": "User to evaluate for expansion"
+      },
+      "accountId": {
+        "type": "string",
+        "description": "Account ID for team expansion"
+      },
+      "expansionType": {
+        "type": "string",
+        "enum": [
+          "seats",
+          "plan",
+          "addon",
+          "usage"
+        ],
+        "description": "Type of expansion"
+      }
+    },
+    "required": [
+      "userId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "expansionScore": {
+        "type": "number"
+      },
+      "recommendedExpansion": {
+        "type": "string"
+      },
+      "estimatedValue": {
+        "type": "number"
+      },
+      "expansionReadiness": {
+        "type": "string"
+      },
+      "triggers": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "metrics": {
+    "primary": "self_serve_expansion_rate",
+    "benchmarks": {
+      "excellent": "> 8%",
+      "good": "5-8%",
+      "needs_improvement": "< 5%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "plg",
+    "expansion",
+    "monetization",
+    "upsell",
+    "growth",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Self Serve Expansion Engine"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "lifecycle.get_segment",
+          "required": true
+        },
+        {
+          "name": "lifecycle.record_moment",
+          "required": false
+        },
+        {
+          "name": "analytics.track_event",
+          "required": false
+        },
+        {
+          "name": "messaging.send_in_app",
+          "required": false
+        }
+      ]
+    }
+  }
+}

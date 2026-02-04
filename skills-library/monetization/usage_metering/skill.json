@@ -1,0 +1,73 @@
+{
+  "id": "mon_usage_metering",
+  "version": "1.0.0",
+  "name": "Usage Metering",
+  "description": "Tracks and reports usage for consumption-based billing models.",
+  "domain": "monetization",
+  "tools": [
+    {
+      "name": "stripe.record_usage",
+      "required": true
+    },
+    {
+      "name": "stripe.get_usage",
+      "required": true
+    },
+    {
+      "name": "stripe.get_subscription",
+      "required": true
+    },
+    {
+      "name": "analytics.track_event",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "limit_notification",
+    "upgrade_trigger",
+    "billing_reconciliation",
+    "idle"
+  ],
+  "metrics": {
+    "primary": "usage_billing_accuracy",
+    "benchmarks": {
+      "excellent": "> 99%",
+      "good": "95-99%",
+      "needs_improvement": "< 95%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "monetization",
+    "usage",
+    "metering",
+    "billing",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Usage Metering",
+        "billing",
+        "usage metering"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "stripe.get_customer",
+          "required": true
+        },
+        {
+          "name": "stripe.list_subscriptions",
+          "required": false
+        },
+        {
+          "name": "stripe.create_checkout",
+          "required": false
+        }
+      ]
+    }
+  }
+}

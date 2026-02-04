@@ -1,0 +1,136 @@
+{
+  "id": "ai_chatbot_orchestrator",
+  "version": "1.0.0",
+  "name": "Chatbot Orchestrator",
+  "description": "Manages conversational AI flows, context, and handoffs between bot and human agents.",
+  "domain": "ai_ops",
+  "tools": [
+    {
+      "name": "ai.generate_response",
+      "required": true
+    },
+    {
+      "name": "ai.manage_context",
+      "required": true
+    },
+    {
+      "name": "ai.detect_intent",
+      "required": true
+    },
+    {
+      "name": "support.handoff_agent",
+      "required": false
+    },
+    {
+      "name": "analytics.track_conversation",
+      "required": false
+    },
+    {
+      "name": "rag.query",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "response_sent",
+    "handoff_initiated",
+    "escalated",
+    "conversation_ended",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "message": {
+        "type": "string",
+        "description": "User's message"
+      },
+      "conversation_id": {
+        "type": "string"
+      },
+      "context": {
+        "type": "object",
+        "description": "Conversation context and history"
+      },
+      "user_id": {
+        "type": "string"
+      },
+      "channel": {
+        "type": "string",
+        "enum": [
+          "web",
+          "mobile",
+          "slack",
+          "teams",
+          "whatsapp"
+        ]
+      }
+    },
+    "required": [
+      "message",
+      "conversation_id"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "response": {
+        "type": "string"
+      },
+      "intent": {
+        "type": "string"
+      },
+      "confidence": {
+        "type": "number"
+      },
+      "action_taken": {
+        "type": "string"
+      },
+      "handoff_required": {
+        "type": "boolean"
+      },
+      "context_updated": {
+        "type": "object"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "conversation_resolution_rate",
+    "benchmarks": {
+      "excellent": "> 80%",
+      "good": "60-80%",
+      "needs_improvement": "< 60%"
+    }
+  },
+  "temperature": 0.3,
+  "tags": [
+    "ai_ops",
+    "chatbot",
+    "conversational",
+    "orchestration",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Chatbot Orchestrator"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "ai.classify",
+          "required": false
+        },
+        {
+          "name": "ai.generate",
+          "required": false
+        },
+        {
+          "name": "ai.score_lead",
+          "required": false
+        }
+      ]
+    }
+  }
+}

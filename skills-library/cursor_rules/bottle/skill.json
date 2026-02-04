@@ -1,0 +1,34 @@
+{
+  "id": "cursor_rules/bottle",
+  "version": "1.0.0",
+  "name": "bottle",
+  "description": "Definitive guidelines for building maintainable, secure, and performant Bottle applications in 2025, emphasizing modern Python best practices.",
+  "domain": "cursor_rules",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "cursor_rules",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "cursor": {
+      "globs": [
+        "**/*.py"
+      ]
+    },
+    "claude": {
+      "triggers": [
+        "help with bottle"
+      ]
+    },
+    "skeneflow": {}
+  }
+}

@@ -1,0 +1,174 @@
+{
+  "id": "meta_growth_diagnostician",
+  "version": "1.0.0",
+  "name": "Growth Diagnostician",
+  "description": "Identifies growth blockers and opportunities across all domains by analyzing funnel metrics, cohort behavior, and cross-functional signals",
+  "domain": "meta",
+  "tools": [
+    {
+      "name": "analytics.get_funnel_metrics",
+      "required": true
+    },
+    {
+      "name": "analytics.get_cohort_analysis",
+      "required": true
+    },
+    {
+      "name": "analytics.get_conversion_rates",
+      "required": true
+    },
+    {
+      "name": "lifecycle.get_stage_distribution",
+      "required": true
+    },
+    {
+      "name": "lifecycle.get_velocity_metrics",
+      "required": true
+    },
+    {
+      "name": "product.get_feature_impact",
+      "required": true
+    },
+    {
+      "name": "product.get_friction_points",
+      "required": true
+    },
+    {
+      "name": "monetization.get_expansion_funnel",
+      "required": false
+    },
+    {
+      "name": "marketing.get_channel_performance",
+      "required": false
+    },
+    {
+      "name": "ai.diagnose_blockers",
+      "required": true
+    },
+    {
+      "name": "ai.recommend_experiments",
+      "required": true
+    }
+  ],
+  "exitStates": [
+    "blocker_identified",
+    "experiment_recommended",
+    "benchmark_alert",
+    "growth_healthy",
+    "data_insufficient"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "focusArea": {
+        "type": "string",
+        "enum": [
+          "acquisition",
+          "activation",
+          "retention",
+          "expansion",
+          "referral",
+          "all"
+        ]
+      },
+      "segment": {
+        "type": "string",
+        "description": "Optional segment to analyze"
+      },
+      "timeframe": {
+        "type": "string",
+        "description": "Analysis period (e.g., '30d', '90d', 'quarter')"
+      },
+      "comparisonBasis": {
+        "type": "string",
+        "enum": [
+          "previous_period",
+          "benchmark",
+          "cohort",
+          "segment"
+        ]
+      }
+    },
+    "required": [
+      "focusArea"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "growthHealth": {
+        "type": "object"
+      },
+      "blockers": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "opportunities": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "funnelAnalysis": {
+        "type": "object"
+      },
+      "recommendations": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "experiments": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      }
+    }
+  },
+  "metrics": {
+    "primary": "growth_rate",
+    "secondary": [
+      "activation_rate",
+      "retention_rate",
+      "expansion_rate",
+      "viral_coefficient"
+    ],
+    "benchmarks": {
+      "excellent": "> 20% MoM",
+      "good": "10-20% MoM",
+      "needs_improvement": "< 10% MoM"
+    }
+  },
+  "orchestrates": [
+    "plg/friction_detector",
+    "plg/quick_win_generator",
+    "plg/habit_loop_builder",
+    "marketing/channel_optimizer",
+    "marketing/conversion_optimizer",
+    "product_ops/experimentation",
+    "product_ops/impact_analyzer",
+    "customer_success/onboarding_health"
+  ],
+  "temperature": 0.1,
+  "tags": [
+    "meta",
+    "orchestration",
+    "growth",
+    "diagnostics",
+    "funnel",
+    "optimization",
+    "experimental"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Growth Diagnostician"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

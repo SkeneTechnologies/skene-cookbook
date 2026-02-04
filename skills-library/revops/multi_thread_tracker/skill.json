@@ -1,0 +1,122 @@
+{
+  "id": "revops_multi_thread_tracker",
+  "version": "1.0.0",
+  "name": "Multi-Threading Tracker",
+  "description": "Tracks and optimizes multi-stakeholder engagement to reduce single-threading risk.",
+  "domain": "revops",
+  "tools": [
+    {
+      "name": "crm.get_deal",
+      "required": true
+    },
+    {
+      "name": "crm.get_contacts",
+      "required": true
+    },
+    {
+      "name": "crm.get_activities",
+      "required": true
+    },
+    {
+      "name": "ai.analyze_stakeholder_map",
+      "required": true
+    },
+    {
+      "name": "ai.recommend_contacts",
+      "required": false
+    },
+    {
+      "name": "crm.update_contact",
+      "required": false
+    },
+    {
+      "name": "messaging.send_alert",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "deal_inspection",
+    "next_best_action",
+    "pipeline_health",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "dealId": {
+        "type": "string"
+      },
+      "includeRecommendations": {
+        "type": "boolean"
+      },
+      "alertThreshold": {
+        "type": "number",
+        "description": "Min contacts before alert"
+      }
+    },
+    "required": [
+      "dealId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "threadCount": {
+        "type": "number"
+      },
+      "stakeholderMap": {
+        "type": "object"
+      },
+      "engagementScores": {
+        "type": "object"
+      },
+      "riskLevel": {
+        "type": "string"
+      },
+      "recommendations": {
+        "type": "array"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "multi_thread_win_rate",
+    "benchmarks": {
+      "excellent": "3+ threads = 2x win rate",
+      "good": "2 threads = 1.5x win rate",
+      "needs_improvement": "1 thread = baseline"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "revops",
+    "multi-threading",
+    "stakeholder",
+    "engagement",
+    "risk",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Multi Threading Tracker"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "crm.get_pipeline",
+          "required": true
+        },
+        {
+          "name": "crm.list_deals",
+          "required": false
+        },
+        {
+          "name": "analytics.get_forecast",
+          "required": false
+        }
+      ]
+    }
+  }
+}

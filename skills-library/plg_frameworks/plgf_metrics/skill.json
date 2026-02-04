@@ -1,0 +1,131 @@
+{
+  "id": "plgf_metrics",
+  "version": "1.0.0",
+  "name": "PLG Metrics Framework",
+  "description": "Complete PLG metrics stack including North Star framework, leading indicators, cohort analysis, benchmarks by stage, and dashboard design patterns.",
+  "domain": "plg_frameworks",
+  "tools": [
+    {
+      "name": "analytics.get_metrics",
+      "required": true
+    },
+    {
+      "name": "analytics.funnel",
+      "required": true
+    },
+    {
+      "name": "analytics.cohort",
+      "required": true
+    },
+    {
+      "name": "analytics.track_event",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "dashboard_creation",
+    "metric_alert",
+    "cohort_analysis",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "analysisType": {
+        "type": "string",
+        "enum": [
+          "north_star",
+          "funnel",
+          "cohort",
+          "benchmarking",
+          "dashboard_design"
+        ],
+        "description": "Type of metrics analysis"
+      },
+      "companyStage": {
+        "type": "string",
+        "enum": [
+          "pre_seed",
+          "seed",
+          "series_a",
+          "series_b",
+          "growth",
+          "scale"
+        ],
+        "description": "Company stage for benchmarking"
+      },
+      "productType": {
+        "type": "string",
+        "enum": [
+          "b2b_saas",
+          "b2c_saas",
+          "marketplace",
+          "platform",
+          "consumer_app"
+        ],
+        "description": "Product type for relevant metrics"
+      },
+      "timeframe": {
+        "type": "string",
+        "default": "90d"
+      }
+    },
+    "required": [
+      "analysisType"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "northStarMetric": {
+        "type": "object"
+      },
+      "keyMetrics": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "benchmarks": {
+        "type": "object"
+      },
+      "dashboardSpec": {
+        "type": "object"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "metric_coverage",
+    "benchmarks": {
+      "excellent": "Full AARRR funnel tracked",
+      "good": "Core metrics tracked",
+      "needs_improvement": "Gaps in measurement"
+    }
+  },
+  "integrations": [
+    "amplitude",
+    "mixpanel",
+    "segment",
+    "posthog",
+    "metabase"
+  ],
+  "temperature": 0,
+  "tags": [
+    "plg",
+    "metrics",
+    "analytics",
+    "north-star",
+    "dashboard",
+    "measurement",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with PLG Metrics Framework"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

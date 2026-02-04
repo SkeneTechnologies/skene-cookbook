@@ -1,0 +1,50 @@
+{
+  "id": "marketing_lead_pipeline_organizer",
+  "version": "1.0.0",
+  "name": "lead-pipeline-organizer",
+  "description": "Organizes leads and pipeline according to campaign objectives. Analyzes lead progress against objectives (resonates, tries, shares), prioritizes leads, creates pipeline views, and suggests next actions based on objective alignment.",
+  "domain": "marketing",
+  "category": "research",
+  "source": "skene-marketing",
+  "tools": [],
+  "exitStates": [
+    "idle",
+    "support"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {},
+    "required": []
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {}
+  },
+  "temperature": 0.3,
+  "tags": [
+    "marketing",
+    "research",
+    "lead-pipeline-organizer",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with lead pipeline organizer"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "resend.send_email",
+          "required": false
+        },
+        {
+          "name": "analytics.track_campaign",
+          "required": false
+        }
+      ]
+    }
+  }
+}

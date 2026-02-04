@@ -1,0 +1,35 @@
+{
+  "id": "cursor_rules/react",
+  "version": "1.0.0",
+  "name": "react",
+  "description": "Definitive guidelines for writing idiomatic, maintainable, and performant React applications using modern best practices and TypeScript.",
+  "domain": "cursor_rules",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "cursor_rules",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "cursor": {
+      "globs": [
+        "**/*.{jsx",
+        "tsx}"
+      ]
+    },
+    "claude": {
+      "triggers": [
+        "help with react"
+      ]
+    },
+    "skeneflow": {}
+  }
+}

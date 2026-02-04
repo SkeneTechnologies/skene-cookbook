@@ -1,0 +1,116 @@
+{
+  "id": "plgf_growth_modeling",
+  "version": "1.0.0",
+  "name": "Growth Modeling Framework",
+  "description": "Quantitative growth modeling framework including loop-based models, sensitivity analysis, S-curve modeling, unit economics, and scenario planning.",
+  "domain": "plg_frameworks",
+  "tools": [
+    {
+      "name": "analytics.get_metrics",
+      "required": true
+    },
+    {
+      "name": "analytics.cohort",
+      "required": true
+    },
+    {
+      "name": "analytics.forecast",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "scenario_planning",
+    "unit_economics",
+    "growth_projection",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "modelType": {
+        "type": "string",
+        "enum": [
+          "loop_based",
+          "s_curve",
+          "unit_economics",
+          "scenario_analysis",
+          "sensitivity"
+        ],
+        "description": "Type of growth model to build"
+      },
+      "timeHorizon": {
+        "type": "string",
+        "enum": [
+          "quarterly",
+          "annual",
+          "multi_year"
+        ],
+        "description": "Forecast time horizon"
+      },
+      "currentMetrics": {
+        "type": "object",
+        "description": "Current key metrics for modeling"
+      }
+    },
+    "required": [
+      "modelType"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "model": {
+        "type": "object"
+      },
+      "projections": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "sensitivityAnalysis": {
+        "type": "object"
+      },
+      "keyAssumptions": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "metrics": {
+    "primary": "model_accuracy",
+    "benchmarks": {
+      "excellent": "< 15% variance from actual",
+      "good": "15-30% variance",
+      "needs_improvement": "> 30% variance"
+    }
+  },
+  "integrations": [
+    "excel",
+    "google_sheets",
+    "causal",
+    "runway"
+  ],
+  "temperature": 0,
+  "tags": [
+    "plg",
+    "modeling",
+    "growth",
+    "forecasting",
+    "unit-economics",
+    "planning",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Growth Modeling Framework",
+        "growth framework"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

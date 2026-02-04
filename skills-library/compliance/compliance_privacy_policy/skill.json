@@ -1,0 +1,139 @@
+{
+  "id": "compliance_privacy_policy",
+  "version": "1.0.0",
+  "name": "Privacy Policy Generator",
+  "description": "Generates and maintains compliant privacy policies for multiple jurisdictions including GDPR, CCPA, and other regulations",
+  "domain": "compliance",
+  "tools": [
+    {
+      "name": "data.get_processing_activities",
+      "required": true
+    },
+    {
+      "name": "consent.get_purposes",
+      "required": true
+    },
+    {
+      "name": "ai.generate_policy",
+      "required": true
+    },
+    {
+      "name": "compliance.check_requirements",
+      "required": true
+    },
+    {
+      "name": "versioning.publish",
+      "required": false
+    },
+    {
+      "name": "messaging.notify_users",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "consent_manager",
+    "gdpr_manager",
+    "data_retention",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "action": {
+        "type": "string",
+        "enum": [
+          "generate",
+          "update",
+          "audit",
+          "translate"
+        ],
+        "default": "generate"
+      },
+      "jurisdictions": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": [
+            "gdpr",
+            "ccpa",
+            "lgpd",
+            "pipl",
+            "appi",
+            "pipeda"
+          ]
+        }
+      },
+      "policyType": {
+        "type": "string",
+        "enum": [
+          "privacy",
+          "cookie",
+          "data_processing"
+        ],
+        "default": "privacy"
+      },
+      "language": {
+        "type": "string",
+        "default": "en"
+      },
+      "includeChangelog": {
+        "type": "boolean",
+        "default": true
+      }
+    },
+    "required": [
+      "action",
+      "jurisdictions"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "policyContent": {
+        "type": "string"
+      },
+      "version": {
+        "type": "string"
+      },
+      "jurisdictionsCovered": {
+        "type": "array"
+      },
+      "complianceChecklist": {
+        "type": "object"
+      },
+      "requiredDisclosures": {
+        "type": "array"
+      },
+      "changelog": {
+        "type": "array"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "compliance_coverage",
+    "benchmarks": {
+      "excellent": "100%",
+      "good": "> 95%",
+      "needs_improvement": "< 95%"
+    }
+  },
+  "temperature": 0.3,
+  "tags": [
+    "compliance",
+    "privacy",
+    "policy",
+    "gdpr",
+    "ccpa",
+    "documentation",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Privacy Policy Generator"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

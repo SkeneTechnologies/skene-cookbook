@@ -1,0 +1,52 @@
+{
+  "id": "marketing_reverse_influence_strategist",
+  "version": "1.0.0",
+  "name": "reverse-influence-strategist",
+  "description": "Applies academic marketing frameworks (Multi-Step Flow, Structural Holes, Surround Sound, Consensus Buying) to specific outreach situations. Translates theory into tactics. Use when planning influencer campaigns or designing viral strategies.",
+  "domain": "marketing",
+  "category": "tools",
+  "source": "skene-marketing",
+  "tools": [],
+  "exitStates": [
+    "idle",
+    "support"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {},
+    "required": []
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {}
+  },
+  "temperature": 0.3,
+  "tags": [
+    "marketing",
+    "tools",
+    "reverse-influence-strategist",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with reverse influence strategist",
+        "campaigns",
+        "planning influencer campaigns or designing viral strategies"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "resend.send_email",
+          "required": false
+        },
+        {
+          "name": "analytics.track_campaign",
+          "required": false
+        }
+      ]
+    }
+  }
+}

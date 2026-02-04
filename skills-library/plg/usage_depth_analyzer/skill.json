@@ -1,0 +1,135 @@
+{
+  "id": "plg_usage_depth_analyzer",
+  "version": "1.0.0",
+  "name": "Usage Depth Analyzer",
+  "description": "Measures and optimizes product usage depth, identifying power users and opportunities to deepen engagement across features.",
+  "domain": "plg",
+  "tools": [
+    {
+      "name": "analytics.get_metrics",
+      "required": true
+    },
+    {
+      "name": "analytics.track_event",
+      "required": true
+    },
+    {
+      "name": "lifecycle.get_segment",
+      "required": true
+    },
+    {
+      "name": "rag.query",
+      "required": false
+    },
+    {
+      "name": "messaging.send_in_app",
+      "required": false
+    },
+    {
+      "name": "lifecycle.record_moment",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "activation",
+    "progressive_disclosure",
+    "churn_prevention",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "userId": {
+        "type": "string",
+        "description": "User to analyze"
+      },
+      "featureArea": {
+        "type": "string",
+        "description": "Specific feature area to analyze"
+      },
+      "analysisDepth": {
+        "type": "string",
+        "enum": [
+          "summary",
+          "detailed",
+          "diagnostic"
+        ],
+        "description": "Level of analysis"
+      }
+    },
+    "required": [
+      "userId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "depthScore": {
+        "type": "number"
+      },
+      "featureUtilization": {
+        "type": "object"
+      },
+      "powerUserIndicators": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "deepeningOpportunities": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "usagePattern": {
+        "type": "string"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "feature_depth_score",
+    "benchmarks": {
+      "excellent": "> 70%",
+      "good": "50-70%",
+      "needs_improvement": "< 50%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "plg",
+    "analytics",
+    "engagement",
+    "usage",
+    "power-user",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Usage Depth Analyzer"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "lifecycle.get_segment",
+          "required": true
+        },
+        {
+          "name": "lifecycle.record_moment",
+          "required": false
+        },
+        {
+          "name": "analytics.track_event",
+          "required": false
+        },
+        {
+          "name": "messaging.send_in_app",
+          "required": false
+        }
+      ]
+    }
+  }
+}

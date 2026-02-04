@@ -1,0 +1,134 @@
+{
+  "id": "revops_quota_setter",
+  "version": "1.0.0",
+  "name": "Quota Setting Intelligence",
+  "description": "Sets fair, achievable quotas using historical performance, market data, and territory potential.",
+  "domain": "revops",
+  "tools": [
+    {
+      "name": "analytics.get_historical_attainment",
+      "required": true
+    },
+    {
+      "name": "analytics.get_market_data",
+      "required": true
+    },
+    {
+      "name": "crm.get_territories",
+      "required": true
+    },
+    {
+      "name": "crm.get_pipeline",
+      "required": true
+    },
+    {
+      "name": "ai.forecast_potential",
+      "required": true
+    },
+    {
+      "name": "ai.optimize_quotas",
+      "required": true
+    },
+    {
+      "name": "crm.set_quota",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "territory_planner",
+    "forecast_intelligence",
+    "sales_coaching",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "fiscalYear": {
+        "type": "number"
+      },
+      "revenueTarget": {
+        "type": "number",
+        "description": "Company revenue target"
+      },
+      "quotaModel": {
+        "type": "string",
+        "enum": [
+          "top_down",
+          "bottom_up",
+          "hybrid"
+        ]
+      },
+      "segment": {
+        "type": "string"
+      },
+      "adjustForRamp": {
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "fiscalYear",
+      "revenueTarget"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "quotas": {
+        "type": "array"
+      },
+      "totalQuota": {
+        "type": "number"
+      },
+      "coverageRatio": {
+        "type": "number"
+      },
+      "attainabilityScore": {
+        "type": "number"
+      },
+      "fairnessScore": {
+        "type": "number"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "quota_attainment_rate",
+    "benchmarks": {
+      "excellent": "55-65% of reps at 100%+",
+      "good": "45-55% of reps at 100%+",
+      "needs_improvement": "< 45% of reps at 100%+"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "revops",
+    "quota",
+    "compensation",
+    "planning",
+    "forecasting",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Quota Setting Intelligence"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "crm.get_pipeline",
+          "required": true
+        },
+        {
+          "name": "crm.list_deals",
+          "required": false
+        },
+        {
+          "name": "analytics.get_forecast",
+          "required": false
+        }
+      ]
+    }
+  }
+}

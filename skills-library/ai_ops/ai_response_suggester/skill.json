@@ -1,0 +1,129 @@
+{
+  "id": "ai_response_suggester",
+  "version": "1.0.0",
+  "name": "Response Suggestion Engine",
+  "description": "Suggests contextual responses for support agents and sales reps based on conversation context.",
+  "domain": "ai_ops",
+  "tools": [
+    {
+      "name": "ai.generate_response",
+      "required": true
+    },
+    {
+      "name": "rag.query",
+      "required": true
+    },
+    {
+      "name": "knowledge.search",
+      "required": true
+    },
+    {
+      "name": "crm.get_context",
+      "required": false
+    },
+    {
+      "name": "analytics.track_suggestion",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "suggestion_provided",
+    "multiple_options",
+    "escalate",
+    "no_suggestion",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "conversation": {
+        "type": "array",
+        "description": "Conversation history"
+      },
+      "customer_message": {
+        "type": "string",
+        "description": "Latest customer message"
+      },
+      "agent_id": {
+        "type": "string"
+      },
+      "context": {
+        "type": "object",
+        "description": "Customer and ticket context"
+      },
+      "tone": {
+        "type": "string",
+        "enum": [
+          "professional",
+          "friendly",
+          "empathetic",
+          "technical"
+        ]
+      }
+    },
+    "required": [
+      "customer_message"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "primary_suggestion": {
+        "type": "string"
+      },
+      "alternatives": {
+        "type": "array"
+      },
+      "knowledge_sources": {
+        "type": "array"
+      },
+      "confidence": {
+        "type": "number"
+      },
+      "requires_review": {
+        "type": "boolean"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "suggestion_acceptance_rate",
+    "benchmarks": {
+      "excellent": "> 70%",
+      "good": "50-70%",
+      "needs_improvement": "< 50%"
+    }
+  },
+  "temperature": 0.3,
+  "tags": [
+    "ai_ops",
+    "response",
+    "suggestion",
+    "support",
+    "sales",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Response Suggestion Engine"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "ai.classify",
+          "required": false
+        },
+        {
+          "name": "ai.generate",
+          "required": false
+        },
+        {
+          "name": "ai.score_lead",
+          "required": false
+        }
+      ]
+    }
+  }
+}

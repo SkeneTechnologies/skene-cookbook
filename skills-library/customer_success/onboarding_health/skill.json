@@ -1,0 +1,130 @@
+{
+  "id": "cs_onboarding_health",
+  "version": "1.0.0",
+  "name": "Onboarding Health Monitor",
+  "description": "Monitors customer onboarding progress, identifies blockers, and ensures successful time-to-value during the critical first 90 days.",
+  "domain": "customer_success",
+  "tools": [
+    {
+      "name": "crm.get_account",
+      "required": true
+    },
+    {
+      "name": "analytics.query_events",
+      "required": true
+    },
+    {
+      "name": "crm.get_tasks",
+      "required": true
+    },
+    {
+      "name": "analytics.feature_adoption",
+      "required": false
+    },
+    {
+      "name": "crm.get_contacts",
+      "required": false
+    },
+    {
+      "name": "messaging.send_alert",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "success_plan_generator",
+    "product_adoption_guidance",
+    "escalation_manager",
+    "health_scoring",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "accountId": {
+        "type": "string",
+        "description": "Customer account identifier"
+      },
+      "onboardingPhase": {
+        "type": "string",
+        "enum": [
+          "kickoff",
+          "implementation",
+          "adoption",
+          "optimization"
+        ]
+      },
+      "daysSinceStart": {
+        "type": "number",
+        "description": "Days since onboarding began"
+      }
+    },
+    "required": [
+      "accountId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "onboardingScore": {
+        "type": "number"
+      },
+      "phase": {
+        "type": "string"
+      },
+      "completedMilestones": {
+        "type": "array"
+      },
+      "blockers": {
+        "type": "array"
+      },
+      "timeToValue": {
+        "type": "number"
+      },
+      "recommendations": {
+        "type": "array"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "time_to_first_value",
+    "benchmarks": {
+      "excellent": "< 14 days",
+      "good": "14-30 days",
+      "needs_improvement": "> 30 days"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "customer_success",
+    "onboarding",
+    "implementation",
+    "time_to_value",
+    "adoption",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Onboarding Health Monitor",
+        "customer health"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "lifecycle.get_segment",
+          "required": true
+        },
+        {
+          "name": "analytics.get_cohort",
+          "required": false
+        },
+        {
+          "name": "crm.update_account",
+          "required": false
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,158 @@
+{
+  "id": "skene_analyze_features",
+  "version": "1.0.0",
+  "name": "Feature Documenter",
+  "description": "Documents user-facing features by scanning codebase for routes, components, API endpoints, and user interactions",
+  "domain": "skene",
+  "tools": [
+    {
+      "name": "fs.scan",
+      "required": true
+    },
+    {
+      "name": "fs.read",
+      "required": true
+    },
+    {
+      "name": "fs.glob",
+      "required": true
+    },
+    {
+      "name": "fs.grep",
+      "required": true
+    },
+    {
+      "name": "ai.extract",
+      "required": true
+    },
+    {
+      "name": "ai.summarize",
+      "required": true
+    }
+  ],
+  "exitStates": [
+    "generate_growth_manifest",
+    "analyze_growth_hubs",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "rootPath": {
+        "type": "string",
+        "description": "Root path of the codebase to analyze"
+      },
+      "techStack": {
+        "type": "object",
+        "description": "Tech stack from previous analysis"
+      },
+      "includeInternal": {
+        "type": "boolean",
+        "description": "Include internal/admin features",
+        "default": false
+      },
+      "maxDepth": {
+        "type": "number",
+        "description": "Max depth for feature scanning",
+        "default": 4
+      }
+    },
+    "required": [
+      "rootPath"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "features": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "category": {
+              "type": "string"
+            },
+            "route": {
+              "type": "string"
+            },
+            "components": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "apiEndpoints": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "userActions": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "featureMap": {
+        "type": "object",
+        "description": "Hierarchical feature organization"
+      },
+      "userJourneys": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "steps": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "metrics": {
+    "primary": "feature_coverage",
+    "secondary": [
+      "documentation_completeness",
+      "journey_clarity"
+    ],
+    "benchmarks": {
+      "excellent": "> 90%",
+      "good": "70-90%",
+      "needs_improvement": "< 70%"
+    }
+  },
+  "temperature": 0.1,
+  "tags": [
+    "skene",
+    "analysis",
+    "features",
+    "documentation",
+    "routes",
+    "experimental"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Feature Documenter"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

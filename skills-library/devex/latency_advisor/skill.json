@@ -1,0 +1,104 @@
+{
+  "id": "devex_latency_advisor",
+  "version": "1.0.0",
+  "name": "Latency Optimization Advisor",
+  "description": "Analyzes API call patterns and provides recommendations to reduce latency and improve response times.",
+  "domain": "devex",
+  "tools": [
+    {
+      "name": "analytics.get_latency_metrics",
+      "required": true
+    },
+    {
+      "name": "ai.analyze_patterns",
+      "required": true
+    },
+    {
+      "name": "docs.get_optimization_tips",
+      "required": true
+    },
+    {
+      "name": "network.diagnose",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "rate_limit_advisor",
+    "integration_health",
+    "code_sample_generator",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "developer_id": {
+        "type": "string",
+        "description": "Developer to analyze"
+      },
+      "endpoint": {
+        "type": "string",
+        "description": "Specific endpoint to analyze (or 'all')"
+      },
+      "time_range": {
+        "type": "object",
+        "description": "Analysis period"
+      },
+      "latency_target": {
+        "type": "number",
+        "description": "Target latency in ms"
+      }
+    },
+    "required": [
+      "developer_id"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "latency_analysis": {
+        "type": "object"
+      },
+      "bottlenecks": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "recommendations": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "expected_improvement": {
+        "type": "object"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "average_latency_improvement",
+    "benchmarks": {
+      "excellent": "> 50% latency reduction achieved",
+      "good": "25-50% latency reduction achieved",
+      "needs_improvement": "< 25% latency reduction achieved"
+    }
+  },
+  "temperature": 0.2,
+  "tags": [
+    "devex",
+    "latency",
+    "performance",
+    "optimization",
+    "monitoring",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Latency Optimization Advisor"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

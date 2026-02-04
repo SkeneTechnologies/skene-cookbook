@@ -1,0 +1,34 @@
+{
+  "id": "cursor_rules/scikit-image",
+  "version": "1.0.0",
+  "name": "scikit-image",
+  "description": "This guide defines the definitive best practices for developing with scikit-image, ensuring maintainable, performant, and robust image processing code.",
+  "domain": "cursor_rules",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "cursor_rules",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "cursor": {
+      "globs": [
+        "**/*.py"
+      ]
+    },
+    "claude": {
+      "triggers": [
+        "help with scikit image"
+      ]
+    },
+    "skeneflow": {}
+  }
+}

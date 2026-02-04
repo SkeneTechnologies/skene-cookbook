@@ -1,0 +1,142 @@
+{
+  "id": "people_onboarding_checklist",
+  "version": "1.0.0",
+  "name": "Employee Onboarding Orchestrator",
+  "description": "Manages new hire onboarding with automated checklists, task assignments, and progress tracking to ensure a smooth first 90 days.",
+  "domain": "people_ops",
+  "tools": [
+    {
+      "name": "hr.create_checklist",
+      "required": true
+    },
+    {
+      "name": "hr.get_employee",
+      "required": true
+    },
+    {
+      "name": "messaging.assign",
+      "required": true
+    },
+    {
+      "name": "hr.get_tasks",
+      "required": true
+    },
+    {
+      "name": "calendar.schedule_meeting",
+      "required": false
+    },
+    {
+      "name": "provisioning.create_accounts",
+      "required": false
+    },
+    {
+      "name": "messaging.send_notification",
+      "required": false
+    },
+    {
+      "name": "hr.update_status",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "people_pulse_analyzer",
+    "people_perf_review_generator",
+    "people_skill_gap_analyzer",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "employeeId": {
+        "type": "string",
+        "description": "New hire employee identifier"
+      },
+      "startDate": {
+        "type": "string",
+        "format": "date",
+        "description": "Employee start date"
+      },
+      "department": {
+        "type": "string",
+        "description": "Department the employee is joining"
+      },
+      "role": {
+        "type": "string",
+        "description": "Job title/role"
+      },
+      "managerId": {
+        "type": "string",
+        "description": "Direct manager identifier"
+      },
+      "onboardingType": {
+        "type": "string",
+        "enum": [
+          "standard",
+          "executive",
+          "remote",
+          "contractor"
+        ]
+      }
+    },
+    "required": [
+      "employeeId",
+      "startDate",
+      "department"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "checklistId": {
+        "type": "string"
+      },
+      "completionRate": {
+        "type": "number"
+      },
+      "currentPhase": {
+        "type": "string"
+      },
+      "completedTasks": {
+        "type": "array"
+      },
+      "pendingTasks": {
+        "type": "array"
+      },
+      "blockers": {
+        "type": "array"
+      },
+      "daysToFullProductivity": {
+        "type": "number"
+      },
+      "recommendations": {
+        "type": "array"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "onboarding_completion_rate",
+    "benchmarks": {
+      "excellent": "> 95%",
+      "good": "85-95%",
+      "needs_improvement": "< 85%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "people_ops",
+    "onboarding",
+    "hr",
+    "new_hire",
+    "employee_experience",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Employee Onboarding Orchestrator"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

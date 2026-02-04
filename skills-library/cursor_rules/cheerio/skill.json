@@ -1,0 +1,35 @@
+{
+  "id": "cursor_rules/cheerio",
+  "version": "1.0.0",
+  "name": "cheerio",
+  "description": "Definitive guidelines for using cheerio effectively in Node.js projects, focusing on robust web scraping, performance, and maintainable code.",
+  "domain": "cursor_rules",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "cursor_rules",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "cursor": {
+      "globs": [
+        "**/*.{js",
+        "jsx}"
+      ]
+    },
+    "claude": {
+      "triggers": [
+        "help with cheerio"
+      ]
+    },
+    "skeneflow": {}
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "id": "anthropic_official/brand-guidelines",
+  "version": "1.0.0",
+  "name": "brand-guidelines",
+  "description": "Applies Anthropic's official brand colors and typography to any sort of artifact that may benefit from having Anthropic's look-and-feel. Use it when brand colors or style guidelines, visual formatting, or company design standards apply.",
+  "domain": "anthropic_official",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "anthropic_official",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "license": "Complete terms in LICENSE.txt",
+      "triggers": [
+        "help with brand guidelines"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "categories": [
+    "marketing",
+    "marketing/brand"
+  ]
+}

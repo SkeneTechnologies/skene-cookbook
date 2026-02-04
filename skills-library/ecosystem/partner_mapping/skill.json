@@ -1,0 +1,56 @@
+{
+  "id": "elg_partner_mapping",
+  "version": "1.0.0",
+  "name": "Partner Account Mapping",
+  "description": "Maps accounts between partners to identify overlaps and co-selling opportunities.",
+  "domain": "ecosystem",
+  "tools": [
+    {
+      "name": "partner.account_map",
+      "required": true
+    },
+    {
+      "name": "partner.list",
+      "required": true
+    },
+    {
+      "name": "crm.list_accounts",
+      "required": true
+    },
+    {
+      "name": "crm.get_account",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "co_sell_trigger",
+    "eql_scoring",
+    "partner_outreach",
+    "idle"
+  ],
+  "metrics": {
+    "primary": "overlap_identification_rate",
+    "benchmarks": {
+      "excellent": "> 80%",
+      "good": "60-80%",
+      "needs_improvement": "< 60%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "ecosystem",
+    "partner",
+    "mapping",
+    "overlap",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Partner Account Mapping"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

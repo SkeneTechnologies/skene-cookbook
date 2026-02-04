@@ -1,0 +1,31 @@
+{
+  "id": "scientific/reactome-database",
+  "version": "1.0.0",
+  "name": "reactome-database",
+  "description": "Query Reactome REST API for pathway analysis, enrichment, gene-pathway mapping, disease pathways, molecular interactions, expression analysis, for systems biology studies.",
+  "domain": "scientific",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "scientific",
+    "imported",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "license": "Unknown",
+      "triggers": [
+        "help with reactome database"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

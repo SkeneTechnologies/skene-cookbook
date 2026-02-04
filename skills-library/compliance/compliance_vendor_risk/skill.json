@@ -1,0 +1,131 @@
+{
+  "id": "compliance_vendor_risk",
+  "version": "1.0.0",
+  "name": "Vendor Risk Assessor",
+  "description": "Assesses and monitors third-party vendor security and compliance risks throughout the vendor lifecycle",
+  "domain": "compliance",
+  "tools": [
+    {
+      "name": "vendor.get_profile",
+      "required": true
+    },
+    {
+      "name": "vendor.assess_risk",
+      "required": true
+    },
+    {
+      "name": "vendor.get_certifications",
+      "required": true
+    },
+    {
+      "name": "security.check_breaches",
+      "required": false
+    },
+    {
+      "name": "legal.get_contract",
+      "required": false
+    },
+    {
+      "name": "messaging.send_questionnaire",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "soc2_tracker",
+    "audit_preparer",
+    "breach_response",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "action": {
+        "type": "string",
+        "enum": [
+          "assess",
+          "review",
+          "monitor",
+          "report"
+        ],
+        "default": "assess"
+      },
+      "vendorId": {
+        "type": "string",
+        "description": "Vendor identifier"
+      },
+      "vendorName": {
+        "type": "string",
+        "description": "Vendor name for new assessment"
+      },
+      "riskCategory": {
+        "type": "string",
+        "enum": [
+          "critical",
+          "high",
+          "medium",
+          "low"
+        ],
+        "description": "Data/service criticality"
+      },
+      "dataShared": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Types of data shared"
+      }
+    },
+    "required": [
+      "action"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "riskScore": {
+        "type": "number"
+      },
+      "riskRating": {
+        "type": "string"
+      },
+      "findings": {
+        "type": "array"
+      },
+      "certifications": {
+        "type": "array"
+      },
+      "recommendations": {
+        "type": "array"
+      },
+      "nextReviewDate": {
+        "type": "string"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "vendor_risk_coverage",
+    "benchmarks": {
+      "excellent": "100%",
+      "good": "> 95%",
+      "needs_improvement": "< 95%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "compliance",
+    "vendor-risk",
+    "third-party",
+    "security",
+    "assessment",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Vendor Risk Assessor"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

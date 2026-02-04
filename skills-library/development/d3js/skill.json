@@ -1,0 +1,30 @@
+{
+  "id": "development/d3js",
+  "version": "1.0.0",
+  "name": "d3js",
+  "description": "Creating interactive data visualisations using d3.js. This skill should be used when creating custom charts, graphs, network diagrams, geographic visualisations, or any complex SVG-based data visualisation that requires fine-grained control over visual elements, transitions, or interactions. Use this for bespoke visualisations beyond standard charting libraries, whether in React, Vue, Svelte, vanilla JavaScript, or any other environment.",
+  "domain": "development",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "development",
+    "imported",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with d3js"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "id": "prodops_roadmap_alignment",
+  "version": "1.0.0",
+  "name": "Roadmap Alignment",
+  "description": "Aligns product roadmap with customer feedback, business goals, and market demands.",
+  "domain": "product_ops",
+  "tools": [
+    {
+      "name": "feedback.list_feature_requests",
+      "required": true
+    },
+    {
+      "name": "analytics.feature_adoption",
+      "required": true
+    },
+    {
+      "name": "analytics.get_metrics",
+      "required": false
+    },
+    {
+      "name": "crm.get_deal_velocity",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "prioritization_complete",
+    "stakeholder_review",
+    "sprint_planning",
+    "idle"
+  ],
+  "metrics": {
+    "primary": "roadmap_customer_alignment",
+    "benchmarks": {
+      "excellent": "> 70%",
+      "good": "50-70%",
+      "needs_improvement": "< 50%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "product_ops",
+    "roadmap",
+    "alignment",
+    "planning",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Roadmap Alignment"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

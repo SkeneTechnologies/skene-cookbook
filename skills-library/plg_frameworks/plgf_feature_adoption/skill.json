@@ -1,0 +1,127 @@
+{
+  "id": "plgf_feature_adoption",
+  "version": "1.0.0",
+  "name": "Feature Adoption",
+  "description": "Adoption lifecycle analysis, discovery mechanisms, stickiness analysis, and deprecation communication",
+  "domain": "plg_frameworks",
+  "tools": [
+    {
+      "name": "analytics.get_metrics",
+      "required": true
+    },
+    {
+      "name": "analytics.get_cohort",
+      "required": true
+    },
+    {
+      "name": "analytics.track_event",
+      "required": false
+    },
+    {
+      "name": "messaging.send_in_app",
+      "required": false
+    },
+    {
+      "name": "ui_kit.spotlight",
+      "required": false
+    },
+    {
+      "name": "ui_kit.panel",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "adoption_analyzed",
+    "discovery_optimized",
+    "deprecation_planned",
+    "feature_sticky",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "featureId": {
+        "type": "string",
+        "description": "Feature to analyze"
+      },
+      "productId": {
+        "type": "string",
+        "description": "Product containing the feature"
+      },
+      "launchDate": {
+        "type": "string",
+        "format": "date",
+        "description": "Feature launch date"
+      },
+      "analysisType": {
+        "type": "string",
+        "enum": [
+          "adoption",
+          "discovery",
+          "stickiness",
+          "deprecation"
+        ],
+        "description": "Type of analysis"
+      }
+    },
+    "required": [
+      "featureId",
+      "productId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "adoptionLifecycle": {
+        "type": "object"
+      },
+      "discoveryAnalysis": {
+        "type": "object"
+      },
+      "stickinessMetrics": {
+        "type": "object"
+      },
+      "userSegmentation": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "discoveryOptimizations": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "deprecationPlan": {
+        "type": "object"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "feature_adoption_rate",
+    "benchmarks": {
+      "excellent": "> 30%",
+      "good": "15-30%",
+      "needs_improvement": "< 15%"
+    }
+  },
+  "temperature": 0.3,
+  "tags": [
+    "plg_frameworks",
+    "feature_adoption",
+    "discovery",
+    "stickiness",
+    "deprecation",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Feature Adoption"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

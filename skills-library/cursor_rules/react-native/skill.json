@@ -1,0 +1,37 @@
+{
+  "id": "cursor_rules/react-native",
+  "version": "1.0.0",
+  "name": "react-native",
+  "description": "Definitive guidelines for building robust, performant, and maintainable React Native applications using modern TypeScript, functional components, and a feature-first architecture.",
+  "domain": "cursor_rules",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "cursor_rules",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "cursor": {
+      "globs": [
+        "**/*.{js",
+        "jsx",
+        "ts",
+        "tsx}"
+      ]
+    },
+    "claude": {
+      "triggers": [
+        "help with react native"
+      ]
+    },
+    "skeneflow": {}
+  }
+}

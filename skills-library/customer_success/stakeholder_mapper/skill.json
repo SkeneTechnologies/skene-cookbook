@@ -1,0 +1,132 @@
+{
+  "id": "cs_stakeholder_mapper",
+  "version": "1.0.0",
+  "name": "Stakeholder Relationship Mapper",
+  "description": "Maps and tracks stakeholder relationships within customer organizations, identifying champions, detractors, and relationship gaps.",
+  "domain": "customer_success",
+  "tools": [
+    {
+      "name": "crm.get_contacts",
+      "required": true
+    },
+    {
+      "name": "crm.get_interactions",
+      "required": true
+    },
+    {
+      "name": "analytics.query_events",
+      "required": false
+    },
+    {
+      "name": "feedback.get_surveys",
+      "required": false
+    },
+    {
+      "name": "crm.update_contact",
+      "required": false
+    },
+    {
+      "name": "messaging.send_alert",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "executive_alignment",
+    "success_plan_generator",
+    "churn_prediction",
+    "expansion_playbook",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "accountId": {
+        "type": "string",
+        "description": "Customer account identifier"
+      },
+      "includeInactive": {
+        "type": "boolean",
+        "default": false
+      },
+      "analysisDepth": {
+        "type": "string",
+        "enum": [
+          "basic",
+          "detailed",
+          "comprehensive"
+        ]
+      }
+    },
+    "required": [
+      "accountId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "stakeholders": {
+        "type": "array"
+      },
+      "orgChart": {
+        "type": "object"
+      },
+      "champions": {
+        "type": "array"
+      },
+      "detractors": {
+        "type": "array"
+      },
+      "gaps": {
+        "type": "array"
+      },
+      "relationshipScore": {
+        "type": "number"
+      },
+      "recommendations": {
+        "type": "array"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "stakeholder_coverage_rate",
+    "benchmarks": {
+      "excellent": "> 85%",
+      "good": "70-85%",
+      "needs_improvement": "< 70%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "customer_success",
+    "stakeholders",
+    "relationships",
+    "champions",
+    "org_chart",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Stakeholder Relationship Mapper",
+        "customer health"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "lifecycle.get_segment",
+          "required": true
+        },
+        {
+          "name": "analytics.get_cohort",
+          "required": false
+        },
+        {
+          "name": "crm.update_account",
+          "required": false
+        }
+      ]
+    }
+  }
+}

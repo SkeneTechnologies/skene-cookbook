@@ -1,0 +1,128 @@
+{
+  "id": "compliance_consent_manager",
+  "version": "1.0.0",
+  "name": "Consent Preference Manager",
+  "description": "Manages user consent preferences, consent collection, and preference synchronization across systems",
+  "domain": "compliance",
+  "tools": [
+    {
+      "name": "consent.get_preferences",
+      "required": true
+    },
+    {
+      "name": "consent.update_preference",
+      "required": true
+    },
+    {
+      "name": "consent.get_history",
+      "required": true
+    },
+    {
+      "name": "consent.sync_systems",
+      "required": true
+    },
+    {
+      "name": "audit.log_consent",
+      "required": true
+    },
+    {
+      "name": "messaging.send_confirmation",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "privacy_policy",
+    "gdpr_manager",
+    "data_retention",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "action": {
+        "type": "string",
+        "enum": [
+          "get",
+          "update",
+          "history",
+          "sync",
+          "audit"
+        ],
+        "default": "get"
+      },
+      "subjectId": {
+        "type": "string",
+        "description": "User/subject identifier"
+      },
+      "purposeId": {
+        "type": "string",
+        "description": "Consent purpose identifier"
+      },
+      "consent": {
+        "type": "boolean",
+        "description": "Consent decision for update action"
+      },
+      "source": {
+        "type": "string",
+        "enum": [
+          "web",
+          "mobile",
+          "api",
+          "email",
+          "phone"
+        ],
+        "description": "Consent collection channel"
+      }
+    },
+    "required": [
+      "action",
+      "subjectId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "preferences": {
+        "type": "object"
+      },
+      "consentHistory": {
+        "type": "array"
+      },
+      "syncStatus": {
+        "type": "object"
+      },
+      "lastUpdated": {
+        "type": "string"
+      },
+      "auditTrail": {
+        "type": "array"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "consent_sync_accuracy",
+    "benchmarks": {
+      "excellent": "100%",
+      "good": "> 99%",
+      "needs_improvement": "< 99%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "compliance",
+    "consent",
+    "privacy",
+    "gdpr",
+    "preferences",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Consent Preference Manager"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

@@ -1,0 +1,135 @@
+{
+  "id": "revops_attribution_tracker",
+  "version": "1.0.0",
+  "name": "Revenue Attribution Tracker",
+  "description": "Tracks and attributes revenue to marketing campaigns, channels, and touchpoints using multi-touch attribution models.",
+  "domain": "revops",
+  "tools": [
+    {
+      "name": "crm.get_closed_deals",
+      "required": true
+    },
+    {
+      "name": "marketing.get_touchpoints",
+      "required": true
+    },
+    {
+      "name": "marketing.get_campaigns",
+      "required": true
+    },
+    {
+      "name": "analytics.calculate_attribution",
+      "required": true
+    },
+    {
+      "name": "ai.optimize_attribution",
+      "required": false
+    },
+    {
+      "name": "analytics.create_report",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "win_loss_analyzer",
+    "pipeline_health",
+    "marketing_roi",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "period": {
+        "type": "string",
+        "description": "Attribution period"
+      },
+      "model": {
+        "type": "string",
+        "enum": [
+          "first_touch",
+          "last_touch",
+          "linear",
+          "time_decay",
+          "position_based",
+          "ml_weighted"
+        ]
+      },
+      "groupBy": {
+        "type": "string",
+        "enum": [
+          "campaign",
+          "channel",
+          "source",
+          "content"
+        ]
+      },
+      "minDealSize": {
+        "type": "number"
+      }
+    },
+    "required": [
+      "period"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "totalRevenue": {
+        "type": "number"
+      },
+      "attributedRevenue": {
+        "type": "number"
+      },
+      "attributionByEntity": {
+        "type": "object"
+      },
+      "modelComparison": {
+        "type": "object"
+      },
+      "recommendations": {
+        "type": "array"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "attribution_coverage",
+    "benchmarks": {
+      "excellent": "> 95% of revenue attributed",
+      "good": "85-95% attributed",
+      "needs_improvement": "< 85% attributed"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "revops",
+    "attribution",
+    "marketing",
+    "revenue",
+    "analytics",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Revenue Attribution Tracker"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "crm.get_pipeline",
+          "required": true
+        },
+        {
+          "name": "crm.list_deals",
+          "required": false
+        },
+        {
+          "name": "analytics.get_forecast",
+          "required": false
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,128 @@
+{
+  "id": "plg_quick_win_generator",
+  "version": "1.0.0",
+  "name": "Quick Win Identifier",
+  "description": "Identifies and surfaces immediate value opportunities that users can achieve within minutes, building momentum and confidence.",
+  "domain": "plg",
+  "tools": [
+    {
+      "name": "lifecycle.get_segment",
+      "required": true
+    },
+    {
+      "name": "analytics.get_metrics",
+      "required": true
+    },
+    {
+      "name": "analytics.track_event",
+      "required": true
+    },
+    {
+      "name": "rag.query",
+      "required": false
+    },
+    {
+      "name": "messaging.send_in_app",
+      "required": false
+    },
+    {
+      "name": "lifecycle.record_moment",
+      "required": false
+    },
+    {
+      "name": "ui_kit.checklist",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "activation",
+    "aha_moment_detection",
+    "onboarding_flow",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "userId": {
+        "type": "string",
+        "description": "User to find quick wins for"
+      },
+      "context": {
+        "type": "string",
+        "description": "Current user context or page"
+      },
+      "maxTimeMinutes": {
+        "type": "number",
+        "description": "Maximum time for quick win (default: 5)"
+      }
+    },
+    "required": [
+      "userId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "quickWins": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "priorityWin": {
+        "type": "object"
+      },
+      "estimatedImpact": {
+        "type": "string"
+      },
+      "completionTime": {
+        "type": "number"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "quick_win_completion_rate",
+    "benchmarks": {
+      "excellent": "> 75%",
+      "good": "55-75%",
+      "needs_improvement": "< 55%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "plg",
+    "activation",
+    "quick-win",
+    "momentum",
+    "onboarding",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Quick Win Identifier"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "lifecycle.get_segment",
+          "required": true
+        },
+        {
+          "name": "lifecycle.record_moment",
+          "required": false
+        },
+        {
+          "name": "analytics.track_event",
+          "required": false
+        },
+        {
+          "name": "messaging.send_in_app",
+          "required": false
+        }
+      ]
+    }
+  }
+}

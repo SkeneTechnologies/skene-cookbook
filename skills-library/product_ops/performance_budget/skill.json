@@ -1,0 +1,115 @@
+{
+  "id": "prodops_performance_budget",
+  "version": "1.0.0",
+  "name": "Performance Budget Monitor",
+  "description": "Monitors web performance against defined budgets, alerting on regressions and tracking Core Web Vitals.",
+  "domain": "product_ops",
+  "tools": [
+    {
+      "name": "browser.audit",
+      "required": true
+    },
+    {
+      "name": "analytics.get_metrics",
+      "required": true
+    },
+    {
+      "name": "github.get_commits",
+      "required": false
+    },
+    {
+      "name": "slack.send_message",
+      "required": false
+    },
+    {
+      "name": "linear.create_issue",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "experimentation",
+    "incident_analyzer",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "urls": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "URLs to monitor"
+      },
+      "budgets": {
+        "type": "object",
+        "description": "Performance budget thresholds"
+      },
+      "device": {
+        "type": "string",
+        "enum": [
+          "mobile",
+          "desktop",
+          "both"
+        ],
+        "description": "Device to test"
+      },
+      "alertOnRegression": {
+        "type": "boolean",
+        "description": "Alert when budgets exceeded"
+      }
+    },
+    "required": [
+      "urls"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "coreWebVitals": {
+        "type": "object"
+      },
+      "budgetStatus": {
+        "type": "object"
+      },
+      "regressions": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "optimizationOpportunities": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      }
+    }
+  },
+  "metrics": {
+    "primary": "performance_budget_compliance",
+    "benchmarks": {
+      "excellent": "100% within budget",
+      "good": "> 90% within budget",
+      "needs_improvement": "< 90% within budget"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "product_ops",
+    "performance",
+    "web_vitals",
+    "monitoring",
+    "budgets",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Performance Budget Monitor"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

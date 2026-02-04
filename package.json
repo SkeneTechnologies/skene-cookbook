@@ -1,0 +1,52 @@
+{
+  "name": "@skene/skills-directory",
+  "version": "0.1.0",
+  "description": "Skills Directory — 800+ AI skills for Claude and Cursor. PLG, marketing, security, DevEx, and more. One command to install.",
+  "private": false,
+  "type": "module",
+  "license": "MIT",
+  "keywords": [
+    "ai",
+    "skills",
+    "claude",
+    "cursor",
+    "anthropic",
+    "ai-skills",
+    "cursor-rules",
+    "plg",
+    "product-led-growth",
+    "skills-directory"
+  ],
+  "files": [
+    "bin",
+    "scripts",
+    "skills-library",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SkeneTechnologies/skills-directory.git"
+  },
+  "bugs": {
+    "url": "https://github.com/SkeneTechnologies/skills-directory/issues"
+  },
+  "homepage": "https://github.com/SkeneTechnologies/skills-directory#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "bin": {
+    "skills-directory": "./bin/skills-directory.js"
+  },
+  "scripts": {
+    "postinstall": "echo '\n✅ Installed! Run: npx skills-directory install --target all\n'",
+    "install:skills": "node bin/skills-directory.js install --target all",
+    "install:cursor": "node bin/skills-directory.js install --target cursor",
+    "install:claude": "node bin/skills-directory.js install --target claude"
+  },
+  "dependencies": {
+    "tsx": "^4.21.0"
+  }
+}

@@ -1,0 +1,106 @@
+{
+  "id": "devex_changelog_tracker",
+  "version": "1.0.0",
+  "name": "API Changelog Tracker",
+  "description": "Tracks API changes and proactively notifies developers about updates relevant to their integrations.",
+  "domain": "devex",
+  "tools": [
+    {
+      "name": "docs.get_changelog",
+      "required": true
+    },
+    {
+      "name": "analytics.get_developer_usage",
+      "required": true
+    },
+    {
+      "name": "ai.analyze_impact",
+      "required": true
+    },
+    {
+      "name": "messaging.send_notification",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "migration_assistant",
+    "sdk_version_monitor",
+    "deprecation_notifier",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "developer_id": {
+        "type": "string",
+        "description": "Developer to analyze impact for"
+      },
+      "since_date": {
+        "type": "string",
+        "format": "date",
+        "description": "Show changes since this date"
+      },
+      "include_upcoming": {
+        "type": "boolean",
+        "default": true
+      },
+      "filter_relevant_only": {
+        "type": "boolean",
+        "default": true
+      }
+    },
+    "required": []
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "changes": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "developer_impact": {
+        "type": "object"
+      },
+      "action_required": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "upcoming_changes": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      }
+    }
+  },
+  "metrics": {
+    "primary": "developer_awareness_rate",
+    "benchmarks": {
+      "excellent": "> 90% aware of relevant changes",
+      "good": "70-90% aware of relevant changes",
+      "needs_improvement": "< 70% aware of relevant changes"
+    }
+  },
+  "temperature": 0.1,
+  "tags": [
+    "devex",
+    "changelog",
+    "updates",
+    "notifications",
+    "versioning",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with API Changelog Tracker"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

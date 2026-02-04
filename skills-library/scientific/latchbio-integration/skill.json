@@ -1,0 +1,32 @@
+{
+  "id": "scientific/latchbio-integration",
+  "version": "1.0.0",
+  "name": "latchbio-integration",
+  "description": "Latch platform for bioinformatics workflows. Build pipelines with Latch SDK, @workflow/@task decorators, deploy serverless workflows, LatchFile/LatchDir, Nextflow/Snakemake integration.",
+  "domain": "scientific",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "scientific",
+    "imported",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "license": "Unknown",
+      "triggers": [
+        "help with latchbio integration",
+        "bioinformatics"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

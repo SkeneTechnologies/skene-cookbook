@@ -1,0 +1,52 @@
+{
+  "id": "boyce_multi_gtm_orchestrator",
+  "version": "1.0.0",
+  "name": "Multi-GTM Orchestrator",
+  "description": "Orchestrates multiple GTM motions (PLG + Sales) in parallel. Based on Dave Boyce's FREEMIUM framework (Chapter 13): Run your multi-GTM business like a lean revenue factory.",
+  "domain": "plg_frameworks",
+  "author": "Dave Boyce (FREEMIUM, Stanford University Press)",
+  
+  "tools": [
+    { "name": "analytics.get_usage", "required": true },
+    { "name": "crm.get_pipeline", "required": true },
+    { "name": "stripe.get_revenue_metrics", "required": true },
+    { "name": "crm.get_account", "required": false }
+  ],
+  
+  "exitStates": ["gtm_balanced", "plg_dominant", "sales_dominant", "rebalance_needed"],
+  
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "currentMotions": { 
+        "type": "array", 
+        "items": { "type": "string", "enum": ["plg", "sales_led", "marketing_led", "partner_led"] }
+      },
+      "revenueByMotion": { "type": "object" }
+    }
+  },
+  
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "motionHealth": { "type": "object" },
+      "capacityAllocation": { "type": "object" },
+      "inflectionSignals": { "type": "array", "items": { "type": "string" } },
+      "recommendations": { "type": "array", "items": { "type": "string" } }
+    }
+  },
+  
+  "metrics": {
+    "primary": "blended_cac",
+    "secondary": ["plg_revenue_pct", "sales_efficiency", "gtm_coverage"],
+    "benchmarks": {
+      "excellent": "Blended CAC < 12mo payback, PLG > 40%",
+      "good": "CAC 12-18mo payback, PLG 20-40%",
+      "needs_improvement": "CAC > 18mo payback, PLG < 20%"
+    }
+  },
+  
+  "integrations": ["salesforce", "hubspot", "stripe"],
+  "temperature": 0.1,
+  "tags": ["plg", "gtm", "sales", "revenue-factory", "boyce", "freemium", "multi-motion"]
+}

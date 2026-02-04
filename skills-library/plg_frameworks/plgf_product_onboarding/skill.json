@@ -1,0 +1,137 @@
+{
+  "id": "plgf_product_onboarding",
+  "version": "1.0.0",
+  "name": "Product Onboarding",
+  "description": "Onboarding architecture design including interactive tours, checklists, empty states, and progressive disclosure patterns",
+  "domain": "plg_frameworks",
+  "tools": [
+    {
+      "name": "analytics.get_funnel",
+      "required": true
+    },
+    {
+      "name": "analytics.track_event",
+      "required": true
+    },
+    {
+      "name": "lifecycle.get_segment",
+      "required": false
+    },
+    {
+      "name": "ui_kit.checklist",
+      "required": false
+    },
+    {
+      "name": "ui_kit.tour",
+      "required": false
+    },
+    {
+      "name": "ui_kit.panel",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "onboarding_complete",
+    "tour_started",
+    "checklist_assigned",
+    "needs_personalization",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "userId": {
+        "type": "string",
+        "description": "User to onboard"
+      },
+      "productId": {
+        "type": "string",
+        "description": "Product being onboarded to"
+      },
+      "onboardingType": {
+        "type": "string",
+        "enum": [
+          "self-serve",
+          "assisted",
+          "enterprise"
+        ],
+        "description": "Type of onboarding"
+      },
+      "userSegment": {
+        "type": "string",
+        "description": "User segment or persona"
+      },
+      "priorExperience": {
+        "type": "string",
+        "enum": [
+          "none",
+          "similar_product",
+          "power_user"
+        ],
+        "description": "User's prior experience level"
+      }
+    },
+    "required": [
+      "userId",
+      "productId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "onboardingArchitecture": {
+        "type": "string"
+      },
+      "checklist": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "tourSequence": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "emptyStateDesign": {
+        "type": "object"
+      },
+      "progressiveDisclosureMap": {
+        "type": "object"
+      },
+      "personalizationRules": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      }
+    }
+  },
+  "metrics": {
+    "primary": "onboarding_completion_rate",
+    "benchmarks": {
+      "excellent": "> 70%",
+      "good": "50-70%",
+      "needs_improvement": "< 50%"
+    }
+  },
+  "temperature": 0.3,
+  "tags": [
+    "plg_frameworks",
+    "onboarding",
+    "activation",
+    "checklists",
+    "tours",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Product Onboarding"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

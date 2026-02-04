@@ -1,0 +1,50 @@
+{
+  "id": "marketing_template_skill",
+  "version": "1.0.0",
+  "name": "template-skill",
+  "description": "Replace with description of the skill and when Claude should use it.",
+  "domain": "marketing",
+  "category": "tools",
+  "source": "skene-marketing",
+  "tools": [],
+  "exitStates": [
+    "idle",
+    "support"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {},
+    "required": []
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {}
+  },
+  "temperature": 0.3,
+  "tags": [
+    "marketing",
+    "tools",
+    "template-skill",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with template skill"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "resend.send_email",
+          "required": false
+        },
+        {
+          "name": "analytics.track_campaign",
+          "required": false
+        }
+      ]
+    }
+  }
+}

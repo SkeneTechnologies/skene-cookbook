@@ -1,0 +1,119 @@
+{
+  "id": "revops_competitive_intel",
+  "version": "1.0.0",
+  "name": "Competitive Intelligence Tracker",
+  "description": "Tracks competitive landscape, win/loss patterns against competitors, and provides real-time battle card intelligence.",
+  "domain": "revops",
+  "tools": [
+    {
+      "name": "crm.get_deals",
+      "required": true
+    },
+    {
+      "name": "crm.get_activities",
+      "required": true
+    },
+    {
+      "name": "ai.extract_competitive_mentions",
+      "required": true
+    },
+    {
+      "name": "analytics.get_competitive_metrics",
+      "required": true
+    },
+    {
+      "name": "content.get_battlecards",
+      "required": false
+    },
+    {
+      "name": "messaging.send_alert",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "win_loss_analyzer",
+    "sales_content_recommender",
+    "pricing_guidance",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "competitor": {
+        "type": "string",
+        "description": "Specific competitor to analyze"
+      },
+      "period": {
+        "type": "string"
+      },
+      "dealId": {
+        "type": "string",
+        "description": "Get intel for specific deal"
+      },
+      "segment": {
+        "type": "string"
+      }
+    }
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "competitorAnalysis": {
+        "type": "object"
+      },
+      "winRate": {
+        "type": "number"
+      },
+      "commonObjections": {
+        "type": "array"
+      },
+      "battlecardRecommendations": {
+        "type": "array"
+      },
+      "pricingIntel": {
+        "type": "object"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "competitive_win_rate",
+    "benchmarks": {
+      "excellent": "> 60%",
+      "good": "50-60%",
+      "needs_improvement": "< 50%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "revops",
+    "competitive",
+    "intelligence",
+    "battlecard",
+    "win-rate",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Competitive Intelligence Tracker"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "crm.get_pipeline",
+          "required": true
+        },
+        {
+          "name": "crm.list_deals",
+          "required": false
+        },
+        {
+          "name": "analytics.get_forecast",
+          "required": false
+        }
+      ]
+    }
+  }
+}

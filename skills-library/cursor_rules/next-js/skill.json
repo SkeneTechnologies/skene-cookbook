@@ -1,0 +1,37 @@
+{
+  "id": "cursor_rules/next-js",
+  "version": "1.0.0",
+  "name": "next-js",
+  "description": "This guide defines definitive best practices for Next.js applications, focusing on the `app` directory, Server Components, performance, and maintainability. Follow these rules to build robust, scalable, and performant Next.js projects.",
+  "domain": "cursor_rules",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "cursor_rules",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "cursor": {
+      "globs": [
+        "**/*.{js",
+        "jsx",
+        "ts",
+        "tsx}"
+      ]
+    },
+    "claude": {
+      "triggers": [
+        "help with next js"
+      ]
+    },
+    "skeneflow": {}
+  }
+}

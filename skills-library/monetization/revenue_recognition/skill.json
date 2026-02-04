@@ -1,0 +1,124 @@
+{
+  "id": "mon_revenue_recognition",
+  "version": "1.0.0",
+  "name": "Revenue Recognition Assistant",
+  "description": "Assists with ASC 606 compliant revenue recognition and reporting",
+  "domain": "monetization",
+  "tools": [
+    {
+      "name": "stripe.get_subscription",
+      "required": true
+    },
+    {
+      "name": "stripe.list_invoices",
+      "required": true
+    },
+    {
+      "name": "analytics.revenue_waterfall",
+      "required": true
+    },
+    {
+      "name": "ai.classify_revenue",
+      "required": true
+    },
+    {
+      "name": "crm.get_deal",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "recognition_scheduled",
+    "manual_review_required",
+    "compliance_alert",
+    "report_generated",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "period": {
+        "type": "string",
+        "description": "Reporting period (YYYY-MM or YYYY-Q#)"
+      },
+      "account_id": {
+        "type": "string",
+        "description": "Specific account to analyze"
+      },
+      "report_type": {
+        "type": "string",
+        "enum": [
+          "summary",
+          "detailed",
+          "audit"
+        ],
+        "default": "summary"
+      }
+    },
+    "required": [
+      "period"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "recognized_revenue": {
+        "type": "number"
+      },
+      "deferred_revenue": {
+        "type": "number"
+      },
+      "unbilled_revenue": {
+        "type": "number"
+      },
+      "adjustments": {
+        "type": "array"
+      },
+      "compliance_status": {
+        "type": "string"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "revenue_accuracy",
+    "benchmarks": {
+      "excellent": "> 99.5%",
+      "good": "98-99.5%",
+      "needs_improvement": "< 98%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "monetization",
+    "revenue",
+    "recognition",
+    "accounting",
+    "compliance",
+    "ASC606",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Revenue Recognition Assistant",
+        "revenue optimization"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "stripe.get_customer",
+          "required": true
+        },
+        {
+          "name": "stripe.list_subscriptions",
+          "required": false
+        },
+        {
+          "name": "stripe.create_checkout",
+          "required": false
+        }
+      ]
+    }
+  }
+}

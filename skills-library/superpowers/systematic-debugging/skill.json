@@ -1,0 +1,31 @@
+{
+  "id": "superpowers/systematic-debugging",
+  "version": "1.0.0",
+  "name": "systematic-debugging",
+  "description": "Use when encountering any bug, test failure, or unexpected behavior, before proposing fixes",
+  "domain": "superpowers",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "superpowers",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with systematic debugging",
+        "encountering any bug, test failure, or unexpected behavior, before proposing fixes"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

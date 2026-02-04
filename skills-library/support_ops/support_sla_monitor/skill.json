@@ -1,0 +1,112 @@
+{
+  "id": "support_sla_monitor",
+  "version": "1.0.0",
+  "name": "SLA Monitor",
+  "description": "Monitors SLA compliance in real-time, predicts breaches, and triggers escalations to ensure service level commitments.",
+  "domain": "support_ops",
+  "tools": [
+    {
+      "name": "support.get_tickets",
+      "required": true
+    },
+    {
+      "name": "support.get_sla_config",
+      "required": true
+    },
+    {
+      "name": "analytics.calculate_sla_metrics",
+      "required": true
+    },
+    {
+      "name": "messaging.send_alert",
+      "required": false
+    },
+    {
+      "name": "support.reassign_ticket",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "queue_balancer",
+    "escalation_predictor",
+    "ticket_triage",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "scope": {
+        "type": "string",
+        "enum": [
+          "all",
+          "team",
+          "queue",
+          "ticket"
+        ],
+        "default": "all"
+      },
+      "scope_id": {
+        "type": "string",
+        "description": "ID for team/queue/ticket scope"
+      },
+      "time_window": {
+        "type": "string",
+        "default": "24h"
+      },
+      "breach_threshold_minutes": {
+        "type": "number",
+        "default": 30
+      }
+    },
+    "required": []
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "tickets_at_risk": {
+        "type": "array"
+      },
+      "tickets_breached": {
+        "type": "array"
+      },
+      "sla_health": {
+        "type": "object"
+      },
+      "compliance_rate": {
+        "type": "number"
+      },
+      "predicted_breaches": {
+        "type": "array"
+      },
+      "recommendations": {
+        "type": "array"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "sla_compliance_rate",
+    "benchmarks": {
+      "excellent": "> 98%",
+      "good": "95-98%",
+      "needs_improvement": "< 95%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "support_ops",
+    "sla",
+    "compliance",
+    "monitoring",
+    "escalation",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with SLA Monitor"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

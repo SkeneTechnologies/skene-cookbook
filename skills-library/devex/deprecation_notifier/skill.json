@@ -1,0 +1,108 @@
+{
+  "id": "devex_deprecation_notifier",
+  "version": "1.0.0",
+  "name": "Deprecation Notification Manager",
+  "description": "Manages deprecation communications, tracks developer migration progress, and ensures smooth feature sunsets.",
+  "domain": "devex",
+  "tools": [
+    {
+      "name": "analytics.get_deprecation_usage",
+      "required": true
+    },
+    {
+      "name": "messaging.send_notification",
+      "required": true
+    },
+    {
+      "name": "docs.get_deprecations",
+      "required": true
+    },
+    {
+      "name": "ai.generate_migration_guide",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "migration_assistant",
+    "changelog_tracker",
+    "support_deflector",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "deprecation_id": {
+        "type": "string",
+        "description": "Specific deprecation to manage"
+      },
+      "developer_id": {
+        "type": "string",
+        "description": "Developer to check impact for"
+      },
+      "action": {
+        "type": "string",
+        "enum": [
+          "analyze",
+          "notify",
+          "track",
+          "report"
+        ],
+        "default": "analyze"
+      },
+      "include_timeline": {
+        "type": "boolean",
+        "default": true
+      }
+    },
+    "required": []
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "deprecations": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "affected_developers": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "migration_progress": {
+        "type": "object"
+      },
+      "notifications_sent": {
+        "type": "object"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "deprecation_migration_rate",
+    "benchmarks": {
+      "excellent": "> 95% migrated before sunset",
+      "good": "80-95% migrated before sunset",
+      "needs_improvement": "< 80% migrated before sunset"
+    }
+  },
+  "temperature": 0.1,
+  "tags": [
+    "devex",
+    "deprecation",
+    "migration",
+    "notifications",
+    "lifecycle",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Deprecation Notification Manager"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

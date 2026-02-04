@@ -1,0 +1,120 @@
+{
+  "id": "community_contributor_tracker",
+  "version": "1.0.0",
+  "name": "Open Source Contributor Tracker",
+  "description": "Tracks and nurtures open source contributors including PRs, issues, and community contributions.",
+  "domain": "community",
+  "tools": [
+    {
+      "name": "github.get_contributions",
+      "required": true
+    },
+    {
+      "name": "github.get_user",
+      "required": true
+    },
+    {
+      "name": "ai.score",
+      "required": true
+    },
+    {
+      "name": "crm.update_contact",
+      "required": true
+    },
+    {
+      "name": "messaging.send_email",
+      "required": false
+    },
+    {
+      "name": "analytics.track_event",
+      "required": true
+    }
+  ],
+  "exitStates": [
+    "ambassador_program",
+    "swag_manager",
+    "champion_identifier",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "action": {
+        "type": "string",
+        "enum": [
+          "track",
+          "analyze",
+          "recognize",
+          "report"
+        ],
+        "description": "Tracking action"
+      },
+      "githubUsername": {
+        "type": "string",
+        "description": "GitHub username to track"
+      },
+      "repository": {
+        "type": "string",
+        "description": "Repository to analyze"
+      },
+      "timeRange": {
+        "type": "string",
+        "enum": [
+          "7d",
+          "30d",
+          "90d",
+          "all"
+        ],
+        "description": "Analysis time range"
+      }
+    },
+    "required": [
+      "action"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "contributorId": {
+        "type": "string"
+      },
+      "contributionStats": {
+        "type": "object"
+      },
+      "contributorTier": {
+        "type": "string"
+      },
+      "recognitionSent": {
+        "type": "boolean"
+      },
+      "nextMilestone": {
+        "type": "object"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "contributor_retention_rate",
+    "benchmarks": {
+      "excellent": "> 60%",
+      "good": "40-60%",
+      "needs_improvement": "< 40%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "open-source",
+    "contributors",
+    "github",
+    "recognition",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Open Source Contributor Tracker"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

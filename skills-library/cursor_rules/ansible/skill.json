@@ -1,0 +1,34 @@
+{
+  "id": "cursor_rules/ansible",
+  "version": "1.0.0",
+  "name": "ansible",
+  "description": "This guide defines definitive best practices for writing maintainable, performant, and robust Ansible code, focusing on modern YAML hygiene, role design, and CI/CD integration.",
+  "domain": "cursor_rules",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "cursor_rules",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "cursor": {
+      "globs": [
+        "**/*"
+      ]
+    },
+    "claude": {
+      "triggers": [
+        "help with ansible"
+      ]
+    },
+    "skeneflow": {}
+  }
+}

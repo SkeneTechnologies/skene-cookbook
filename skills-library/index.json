@@ -1,0 +1,410 @@
+{
+  "name": "SkeneFlow SaaS Growth Skills Library",
+  "version": "2.1.0",
+  "description": "A comprehensive skills library covering the entire SaaS growth stack: PLG, RevOps, Customer Success, Ecosystem-Led Growth, Monetization, AI Ops, Product Operations, Finance Ops, Developer Experience, Community, Compliance, Support Ops, Data/Analytics, People Ops, Meta-Orchestration, Skene Codebase Analysis, and PLG Frameworks.",
+  "generated_at": "2026-01-29T00:00:00.000Z",
+  
+  "domains": {
+    "plg": {
+      "name": "Product-Led Growth",
+      "description": "User activation, onboarding, and viral growth skills",
+      "skills": [
+        { "id": "plg_activation", "name": "User Activation", "path": "plg/activation" },
+        { "id": "plg_onboarding_flow", "name": "Onboarding Flow Orchestrator", "path": "plg/onboarding_flow" },
+        { "id": "plg_pql_scoring", "name": "Product-Qualified Lead Scoring", "path": "plg/pql_scoring" },
+        { "id": "plg_time_to_value", "name": "Time-to-Value Optimizer", "path": "plg/time_to_value" },
+        { "id": "plg_aha_moment_detection", "name": "Aha Moment Detection", "path": "plg/aha_moment_detection" },
+        { "id": "plg_viral_loop", "name": "Viral Loop Orchestrator", "path": "plg/viral_loop" },
+        { "id": "plg_interactive_tour", "name": "Interactive Tour Architect", "path": "plg/interactive_tour" },
+        { "id": "plg_progressive_disclosure", "name": "Progressive Disclosure Manager", "path": "plg/progressive_disclosure" },
+        { "id": "plg_reverse_trial", "name": "Reverse Trial Orchestrator", "path": "plg/reverse_trial" },
+        { "id": "plg_sandbox_environment", "name": "Sandbox Environment Provisioner", "path": "plg/sandbox_environment" },
+        { "id": "plg_quick_win_generator", "name": "Quick Win Identifier", "path": "plg/quick_win_generator" },
+        { "id": "plg_habit_loop_builder", "name": "Habit Loop Builder", "path": "plg/habit_loop_builder" },
+        { "id": "plg_network_effect_amplifier", "name": "Network Effect Amplifier", "path": "plg/network_effect_amplifier" },
+        { "id": "plg_self_serve_expansion", "name": "Self-Serve Expansion Engine", "path": "plg/self_serve_expansion" },
+        { "id": "plg_usage_depth_analyzer", "name": "Usage Depth Analyzer", "path": "plg/usage_depth_analyzer" },
+        { "id": "plg_guided_setup_wizard", "name": "Guided Setup Wizard", "path": "plg/guided_setup_wizard" },
+        { "id": "plg_contextual_help", "name": "Contextual Help Provider", "path": "plg/contextual_help" },
+        { "id": "plg_social_proof_injector", "name": "Social Proof Injector", "path": "plg/social_proof_injector" },
+        { "id": "plg_friction_detector", "name": "Friction Point Detector", "path": "plg/friction_detector" },
+        { "id": "plg_empty_state_optimizer", "name": "Empty State Optimizer", "path": "plg/empty_state_optimizer" },
+        { "id": "plg_milestone_celebration", "name": "Milestone Celebration Engine", "path": "plg/milestone_celebration" },
+        { "id": "plg_personalized_checklist", "name": "Personalized Checklist Builder", "path": "plg/personalized_checklist" },
+        { "id": "plg_trial_extension_evaluator", "name": "Trial Extension Evaluator", "path": "plg/trial_extension_evaluator" },
+        { "id": "plg_feature_request_handler", "name": "Feature Request Handler", "path": "plg/feature_request_handler" }
+      ]
+    },
+    "revops": {
+      "name": "Revenue Operations",
+      "description": "Sales pipeline, forecasting, and GTM alignment skills",
+      "skills": [
+        { "id": "revops_lead_qualification", "name": "Lead Qualification Engine", "path": "revops/lead_qualification" },
+        { "id": "revops_pipeline_health", "name": "Pipeline Health Monitor", "path": "revops/pipeline_health" },
+        { "id": "revops_forecast_intelligence", "name": "Forecast Intelligence", "path": "revops/forecast_intelligence" },
+        { "id": "revops_handoff_orchestration", "name": "Handoff Orchestration", "path": "revops/handoff_orchestration" },
+        { "id": "revops_deal_velocity", "name": "Deal Velocity Optimizer", "path": "revops/deal_velocity" },
+        { "id": "revops_lead_routing", "name": "Intelligent Lead Router", "path": "revops/lead_routing" },
+        { "id": "revops_cpq_quote_generator", "name": "CPQ Quote Architect", "path": "revops/cpq_quote_generator" },
+        { "id": "revops_deal_inspection", "name": "Deal Inspection Assistant", "path": "revops/deal_inspection" },
+        { "id": "revops_territory_planner", "name": "Territory Planning Engine", "path": "revops/territory_planner" },
+        { "id": "revops_quota_setter", "name": "Quota Setting Intelligence", "path": "revops/quota_setter" },
+        { "id": "revops_win_loss_analyzer", "name": "Win/Loss Analysis Engine", "path": "revops/win_loss_analyzer" },
+        { "id": "revops_sales_content_recommender", "name": "Sales Content Recommender", "path": "revops/sales_content_recommender" },
+        { "id": "revops_meeting_scheduler", "name": "Intelligent Meeting Scheduler", "path": "revops/meeting_scheduler" },
+        { "id": "revops_opportunity_scoring", "name": "Opportunity Scoring Engine", "path": "revops/opportunity_scoring" },
+        { "id": "revops_commit_accuracy", "name": "Commit Accuracy Tracker", "path": "revops/commit_accuracy" },
+        { "id": "revops_activity_capture", "name": "Activity Capture Intelligence", "path": "revops/activity_capture" },
+        { "id": "revops_next_best_action", "name": "Next Best Action Engine", "path": "revops/next_best_action" },
+        { "id": "revops_multi_thread_tracker", "name": "Multi-Threading Tracker", "path": "revops/multi_thread_tracker" },
+        { "id": "revops_sales_coaching", "name": "Sales Coaching Intelligence", "path": "revops/sales_coaching" },
+        { "id": "revops_pricing_guidance", "name": "Pricing Guidance Engine", "path": "revops/pricing_guidance" },
+        { "id": "revops_renewals_handoff", "name": "Renewals Handoff Orchestrator", "path": "revops/renewals_handoff" },
+        { "id": "revops_data_enrichment", "name": "Data Enrichment Pipeline", "path": "revops/data_enrichment" },
+        { "id": "revops_attribution_tracker", "name": "Revenue Attribution Tracker", "path": "revops/attribution_tracker" },
+        { "id": "revops_stage_duration", "name": "Stage Duration Analyzer", "path": "revops/stage_duration" },
+        { "id": "revops_competitive_intel", "name": "Competitive Intelligence Tracker", "path": "revops/competitive_intel" }
+      ]
+    },
+    "customer_success": {
+      "name": "Customer Success",
+      "description": "Retention, expansion, and customer value realization skills",
+      "skills": [
+        { "id": "cs_health_scoring", "name": "Customer Health Scoring", "path": "customer_success/health_scoring" },
+        { "id": "cs_churn_prediction", "name": "Churn Prediction", "path": "customer_success/churn_prediction" },
+        { "id": "cs_expansion_playbook", "name": "Expansion Playbook", "path": "customer_success/expansion_playbook" },
+        { "id": "cs_renewal_orchestration", "name": "Renewal Orchestration", "path": "customer_success/renewal_orchestration" },
+        { "id": "cs_value_realization", "name": "Value Realization Tracker", "path": "customer_success/value_realization" },
+        { "id": "cs_nps_followup", "name": "NPS Follow-up Automation", "path": "customer_success/nps_followup" },
+        { "id": "cs_vla_tracker", "name": "Value-Level Agreement Manager", "path": "customer_success/vla_tracker" },
+        { "id": "cs_sentiment_analyzer", "name": "Customer Sentiment Analyzer", "path": "customer_success/sentiment_analyzer" },
+        { "id": "cs_success_plan_generator", "name": "Success Plan Architect", "path": "customer_success/success_plan_generator" },
+        { "id": "cs_quarterly_business_review", "name": "QBR Deck Generator", "path": "customer_success/quarterly_business_review" },
+        { "id": "cs_stakeholder_mapper", "name": "Stakeholder Relationship Mapper", "path": "customer_success/stakeholder_mapper" },
+        { "id": "cs_executive_alignment", "name": "Executive Sponsor Tracker", "path": "customer_success/executive_alignment" },
+        { "id": "cs_adoption_score", "name": "Adoption Score Calculator", "path": "customer_success/adoption_score" },
+        { "id": "cs_risk_mitigation_playbook", "name": "Risk Mitigation Playbook", "path": "customer_success/risk_mitigation_playbook" },
+        { "id": "cs_onboarding_health", "name": "Onboarding Health Monitor", "path": "customer_success/onboarding_health" },
+        { "id": "cs_product_adoption_guidance", "name": "Product Adoption Coach", "path": "customer_success/product_adoption_guidance" },
+        { "id": "cs_escalation_manager", "name": "Escalation Manager", "path": "customer_success/escalation_manager" },
+        { "id": "cs_customer_journey_orchestrator", "name": "Journey Orchestrator", "path": "customer_success/customer_journey_orchestrator" },
+        { "id": "cs_outcome_tracker", "name": "Business Outcome Tracker", "path": "customer_success/outcome_tracker" },
+        { "id": "cs_csql_generator", "name": "CS-Qualified Lead Generator", "path": "customer_success/csql_generator" },
+        { "id": "cs_playbook_selector", "name": "Playbook Selector", "path": "customer_success/playbook_selector" },
+        { "id": "cs_advocacy_identifier", "name": "Advocacy Identifier", "path": "customer_success/advocacy_identifier" },
+        { "id": "cs_product_gap_reporter", "name": "Product Gap Reporter", "path": "customer_success/product_gap_reporter" },
+        { "id": "cs_time_to_impact", "name": "Time to Impact Calculator", "path": "customer_success/time_to_impact" },
+        { "id": "cs_red_flag_detector", "name": "Red Flag Detector", "path": "customer_success/red_flag_detector" },
+        { "id": "cs_multi_product_adoption", "name": "Multi-Product Adoption Tracker", "path": "customer_success/multi_product_adoption" },
+        { "id": "cs_contract_intelligence", "name": "Contract Intelligence", "path": "customer_success/contract_intelligence" },
+        { "id": "cs_customer_maturity_model", "name": "Customer Maturity Assessor", "path": "customer_success/customer_maturity_model" }
+      ]
+    },
+    "ecosystem": {
+      "name": "Ecosystem-Led Growth",
+      "description": "Partner ecosystem and co-selling skills",
+      "skills": [
+        { "id": "elg_partner_mapping", "name": "Partner Account Mapping", "path": "ecosystem/partner_mapping" },
+        { "id": "elg_co_sell_trigger", "name": "Co-Sell Motion Trigger", "path": "ecosystem/co_sell_trigger" },
+        { "id": "elg_marketplace_integration", "name": "Marketplace Integration Manager", "path": "ecosystem/marketplace_integration" },
+        { "id": "elg_eql_scoring", "name": "Ecosystem-Qualified Lead Scoring", "path": "ecosystem/eql_scoring" },
+        { "id": "elg_nearbound_signal", "name": "Nearbound Signal Detector", "path": "ecosystem/nearbound_signal" },
+        { "id": "elg_tech_partner_finder", "name": "Tech Partner Finder", "path": "ecosystem/tech_partner_finder" },
+        { "id": "elg_channel_enablement", "name": "Channel Enablement Manager", "path": "ecosystem/channel_enablement" },
+        { "id": "elg_referral_program", "name": "Partner Referral Manager", "path": "ecosystem/referral_program" },
+        { "id": "elg_joint_marketing", "name": "Joint Marketing Orchestrator", "path": "ecosystem/joint_marketing" },
+        { "id": "elg_marketplace_listing_optimizer", "name": "Marketplace Listing Optimizer", "path": "ecosystem/marketplace_listing_optimizer" },
+        { "id": "elg_integration_health", "name": "Integration Health Monitor", "path": "ecosystem/integration_health" },
+        { "id": "elg_partner_influenced_revenue", "name": "Partner Influenced Revenue Tracker", "path": "ecosystem/partner_influenced_revenue" },
+        { "id": "elg_deal_registration", "name": "Deal Registration Manager", "path": "ecosystem/deal_registration" },
+        { "id": "elg_mdf_tracker", "name": "MDF Allocation Tracker", "path": "ecosystem/mdf_tracker" },
+        { "id": "elg_partner_tier_manager", "name": "Partner Tier Manager", "path": "ecosystem/partner_tier_manager" },
+        { "id": "elg_ecosystem_intelligence", "name": "Ecosystem Intelligence", "path": "ecosystem/ecosystem_intelligence" }
+      ]
+    },
+    "monetization": {
+      "name": "Monetization",
+      "description": "Usage-based pricing, billing, and revenue optimization skills",
+      "skills": [
+        { "id": "mon_usage_metering", "name": "Usage Metering", "path": "monetization/usage_metering" },
+        { "id": "mon_limit_notification", "name": "Usage Limit Notification", "path": "monetization/limit_notification" },
+        { "id": "mon_upgrade_trigger", "name": "Upgrade Trigger", "path": "monetization/upgrade_trigger" },
+        { "id": "mon_dunning_automation", "name": "Dunning Automation", "path": "monetization/dunning_automation" },
+        { "id": "mon_pricing_optimization", "name": "Pricing Optimization", "path": "monetization/pricing_optimization" },
+        { "id": "mon_consumption_analyzer", "name": "Consumption Pattern Analyzer", "path": "monetization/consumption_analyzer" },
+        { "id": "mon_price_experimentation", "name": "Price Experimentation Engine", "path": "monetization/price_experimentation" },
+        { "id": "mon_discount_optimizer", "name": "Discount Optimization Engine", "path": "monetization/discount_optimizer" },
+        { "id": "mon_overage_predictor", "name": "Overage Predictor", "path": "monetization/overage_predictor" },
+        { "id": "mon_invoice_explainer", "name": "Invoice Explainer", "path": "monetization/invoice_explainer" },
+        { "id": "mon_contract_value_tracker", "name": "Contract Value Tracker", "path": "monetization/contract_value_tracker" },
+        { "id": "mon_payment_method_optimizer", "name": "Payment Method Optimizer", "path": "monetization/payment_method_optimizer" },
+        { "id": "mon_revenue_recognition", "name": "Revenue Recognition Assistant", "path": "monetization/revenue_recognition" },
+        { "id": "mon_mrr_movement_tracker", "name": "MRR Movement Tracker", "path": "monetization/mrr_movement_tracker" },
+        { "id": "mon_cohort_ltv_analyzer", "name": "Cohort LTV Analyzer", "path": "monetization/cohort_ltv_analyzer" },
+        { "id": "mon_entitlement_manager", "name": "Entitlement Manager", "path": "monetization/entitlement_manager" },
+        { "id": "mon_credits_balance_tracker", "name": "Credits Balance Tracker", "path": "monetization/credits_balance_tracker" },
+        { "id": "mon_tax_compliance", "name": "Tax Compliance Assistant", "path": "monetization/tax_compliance" },
+        { "id": "mon_commitment_tracker", "name": "Commitment Tracker", "path": "monetization/commitment_tracker" },
+        { "id": "mon_packaging_optimizer", "name": "Packaging Optimizer", "path": "monetization/packaging_optimizer" }
+      ]
+    },
+    "ai_ops": {
+      "name": "AI Operations",
+      "description": "AI-powered automation and intelligence skills",
+      "skills": [
+        { "id": "ai_autonomous_outreach", "name": "Autonomous Outreach", "path": "ai_ops/autonomous_outreach" },
+        { "id": "ai_conversation_intelligence", "name": "Conversation Intelligence", "path": "ai_ops/conversation_intelligence" },
+        { "id": "ai_predictive_lead_scoring", "name": "Predictive Lead Scoring", "path": "ai_ops/predictive_lead_scoring" },
+        { "id": "ai_personalization_engine", "name": "Personalization Engine", "path": "ai_ops/personalization_engine" },
+        { "id": "ai_intent_classifier", "name": "Intent Classification Engine", "path": "ai_ops/intent_classifier" },
+        { "id": "ai_content_generator", "name": "Dynamic Content Generator", "path": "ai_ops/content_generator" },
+        { "id": "ai_knowledge_synthesizer", "name": "Knowledge Synthesizer", "path": "ai_ops/knowledge_synthesizer" },
+        { "id": "ai_meeting_intelligence", "name": "Meeting Intelligence Agent", "path": "ai_ops/meeting_intelligence" },
+        { "id": "ai_ticket_classifier", "name": "Support Ticket Classifier", "path": "ai_ops/ticket_classifier" },
+        { "id": "ai_response_suggester", "name": "Response Suggestion Engine", "path": "ai_ops/response_suggester" },
+        { "id": "ai_anomaly_detector", "name": "Behavioral Anomaly Detector", "path": "ai_ops/anomaly_detector" },
+        { "id": "ai_document_parser", "name": "Document Intelligence Parser", "path": "ai_ops/document_parser" },
+        { "id": "ai_translation_localizer", "name": "Translation & Localization Engine", "path": "ai_ops/translation_localizer" },
+        { "id": "ai_summarization_agent", "name": "Summarization Agent", "path": "ai_ops/summarization_agent" },
+        { "id": "ai_chatbot_orchestrator", "name": "Chatbot Orchestrator", "path": "ai_ops/chatbot_orchestrator" },
+        { "id": "ai_agent_performance", "name": "Agent Performance Monitor", "path": "ai_ops/agent_performance" },
+        { "id": "ai_data_quality_agent", "name": "Data Quality Agent", "path": "ai_ops/data_quality_agent" },
+        { "id": "ai_workflow_automator", "name": "Workflow Automation Intelligence", "path": "ai_ops/workflow_automator" }
+      ]
+    },
+    "product_ops": {
+      "name": "Product Operations",
+      "description": "Product feedback, roadmap, and feature adoption skills",
+      "skills": [
+        { "id": "prodops_feedback_synthesis", "name": "Feedback Synthesis", "path": "product_ops/feedback_synthesis" },
+        { "id": "prodops_roadmap_alignment", "name": "Roadmap Alignment", "path": "product_ops/roadmap_alignment" },
+        { "id": "prodops_feature_adoption", "name": "Feature Adoption Tracker", "path": "product_ops/feature_adoption" },
+        { "id": "prodops_voc_aggregation", "name": "Voice of Customer Aggregation", "path": "product_ops/voc_aggregation" },
+        { "id": "prodops_experimentation", "name": "Experimentation Platform", "path": "product_ops/experimentation" },
+        { "id": "prodops_release_notes_generator", "name": "Release Notes Generator", "path": "product_ops/release_notes_generator" },
+        { "id": "prodops_user_interview_synthesizer", "name": "User Interview Synthesizer", "path": "product_ops/user_interview_synthesizer" },
+        { "id": "prodops_impact_analyzer", "name": "Feature Impact Analyzer", "path": "product_ops/impact_analyzer" },
+        { "id": "prodops_prioritization_engine", "name": "Prioritization Engine", "path": "product_ops/prioritization_engine" },
+        { "id": "prodops_competitive_feature_tracker", "name": "Competitive Feature Tracker", "path": "product_ops/competitive_feature_tracker" },
+        { "id": "prodops_beta_program_manager", "name": "Beta Program Manager", "path": "product_ops/beta_program_manager" },
+        { "id": "prodops_dogfooding_tracker", "name": "Internal Dogfooding Tracker", "path": "product_ops/dogfooding_tracker" },
+        { "id": "prodops_documentation_health", "name": "Documentation Health Monitor", "path": "product_ops/documentation_health" },
+        { "id": "prodops_localization_manager", "name": "Localization Manager", "path": "product_ops/localization_manager" },
+        { "id": "prodops_accessibility_auditor", "name": "Accessibility Auditor", "path": "product_ops/accessibility_auditor" },
+        { "id": "prodops_performance_budget", "name": "Performance Budget Monitor", "path": "product_ops/performance_budget" },
+        { "id": "prodops_incident_analyzer", "name": "Incident Learning Analyzer", "path": "product_ops/incident_analyzer" },
+        { "id": "prodops_api_deprecation", "name": "API Deprecation Manager", "path": "product_ops/api_deprecation" }
+      ]
+    },
+    "finops": {
+      "name": "Finance Operations",
+      "description": "SaaS financial metrics, forecasting, and investor reporting skills",
+      "skills": [
+        { "id": "finops_rule_of_40", "name": "Rule of 40 Calculator", "path": "finops/rule_of_40" },
+        { "id": "finops_burn_rate_monitor", "name": "Burn Rate Monitor", "path": "finops/burn_rate_monitor" },
+        { "id": "finops_arr_waterfall", "name": "ARR Waterfall Analyzer", "path": "finops/arr_waterfall" },
+        { "id": "finops_cac_calculator", "name": "CAC Calculator", "path": "finops/cac_calculator" },
+        { "id": "finops_payback_period", "name": "CAC Payback Calculator", "path": "finops/payback_period" },
+        { "id": "finops_magic_number", "name": "Magic Number Calculator", "path": "finops/magic_number" },
+        { "id": "finops_ndr_tracker", "name": "Net Dollar Retention Tracker", "path": "finops/ndr_tracker" },
+        { "id": "finops_gross_margin", "name": "Gross Margin Analyzer", "path": "finops/gross_margin" },
+        { "id": "finops_scenario_planner", "name": "Financial Scenario Planner", "path": "finops/scenario_planner" },
+        { "id": "finops_investor_metrics", "name": "Investor Metrics Dashboard", "path": "finops/investor_metrics" },
+        { "id": "finops_expense_allocator", "name": "Expense Allocation Engine", "path": "finops/expense_allocator" },
+        { "id": "finops_benchmark_comparator", "name": "Benchmark Comparator", "path": "finops/benchmark_comparator" }
+      ]
+    },
+    "devex": {
+      "name": "Developer Experience",
+      "description": "API onboarding, SDK management, and developer success skills",
+      "skills": [
+        { "id": "devex_api_onboarding", "name": "API Quick Start Generator", "path": "devex/api_onboarding" },
+        { "id": "devex_sdk_version_monitor", "name": "SDK Version Monitor", "path": "devex/sdk_version_monitor" },
+        { "id": "devex_error_explainer", "name": "Error Explainer", "path": "devex/error_explainer" },
+        { "id": "devex_rate_limit_advisor", "name": "Rate Limit Advisor", "path": "devex/rate_limit_advisor" },
+        { "id": "devex_sandbox_manager", "name": "Developer Sandbox Manager", "path": "devex/sandbox_manager" },
+        { "id": "devex_migration_assistant", "name": "API Migration Assistant", "path": "devex/migration_assistant" },
+        { "id": "devex_code_sample_generator", "name": "Code Sample Generator", "path": "devex/code_sample_generator" },
+        { "id": "devex_webhook_tester", "name": "Webhook Testing Assistant", "path": "devex/webhook_tester" },
+        { "id": "devex_integration_health", "name": "Integration Health Scorer", "path": "devex/integration_health" },
+        { "id": "devex_changelog_tracker", "name": "API Changelog Tracker", "path": "devex/changelog_tracker" },
+        { "id": "devex_support_deflector", "name": "Developer Support Deflector", "path": "devex/support_deflector" },
+        { "id": "devex_oauth_helper", "name": "OAuth Setup Helper", "path": "devex/oauth_helper" },
+        { "id": "devex_latency_advisor", "name": "Latency Optimization Advisor", "path": "devex/latency_advisor" },
+        { "id": "devex_deprecation_notifier", "name": "Deprecation Notification Manager", "path": "devex/deprecation_notifier" }
+      ]
+    },
+    "community": {
+      "name": "Community & Growth Marketing",
+      "description": "Community engagement, advocacy, and user-generated content skills",
+      "skills": [
+        { "id": "community_champion_identifier", "name": "Champion Identifier", "path": "community/community_champion_identifier" },
+        { "id": "community_content_curator", "name": "Community Content Curator", "path": "community/community_content_curator" },
+        { "id": "community_event_manager", "name": "Community Event Manager", "path": "community/community_event_manager" },
+        { "id": "community_ama_orchestrator", "name": "AMA Session Orchestrator", "path": "community/community_ama_orchestrator" },
+        { "id": "community_user_group_manager", "name": "User Group Manager", "path": "community/community_user_group_manager" },
+        { "id": "community_swag_manager", "name": "Swag Distribution Manager", "path": "community/community_swag_manager" },
+        { "id": "community_hackathon_manager", "name": "Hackathon Orchestrator", "path": "community/community_hackathon_manager" },
+        { "id": "community_ambassador_program", "name": "Ambassador Program Manager", "path": "community/community_ambassador_program" },
+        { "id": "community_forum_moderator", "name": "Forum Moderation Assistant", "path": "community/community_forum_moderator" },
+        { "id": "community_contributor_tracker", "name": "Open Source Contributor Tracker", "path": "community/community_contributor_tracker" },
+        { "id": "community_case_study_finder", "name": "Case Study Candidate Finder", "path": "community/community_case_study_finder" },
+        { "id": "community_ugc_curator", "name": "User-Generated Content Curator", "path": "community/community_ugc_curator" }
+      ]
+    },
+    "compliance": {
+      "name": "Compliance & Security",
+      "description": "Privacy, security, and regulatory compliance skills",
+      "skills": [
+        { "id": "compliance_gdpr_manager", "name": "GDPR Compliance Manager", "path": "compliance/gdpr_manager" },
+        { "id": "compliance_soc2_tracker", "name": "SOC 2 Compliance Tracker", "path": "compliance/soc2_tracker" },
+        { "id": "compliance_privacy_policy", "name": "Privacy Policy Generator", "path": "compliance/privacy_policy" },
+        { "id": "compliance_data_retention", "name": "Data Retention Manager", "path": "compliance/data_retention" },
+        { "id": "compliance_consent_manager", "name": "Consent Preference Manager", "path": "compliance/consent_manager" },
+        { "id": "compliance_vendor_risk", "name": "Vendor Risk Assessor", "path": "compliance/vendor_risk" },
+        { "id": "compliance_access_reviewer", "name": "Access Review Orchestrator", "path": "compliance/access_reviewer" },
+        { "id": "compliance_breach_response", "name": "Breach Response Coordinator", "path": "compliance/breach_response" },
+        { "id": "compliance_audit_preparer", "name": "Audit Preparation Assistant", "path": "compliance/audit_preparer" },
+        { "id": "compliance_pii_detector", "name": "PII Detection Scanner", "path": "compliance/pii_detector" }
+      ]
+    },
+    "support_ops": {
+      "name": "Support Operations",
+      "description": "Customer support automation and intelligence skills",
+      "skills": [
+        { "id": "support_ticket_triage", "name": "Ticket Triage Intelligence", "path": "support_ops/ticket_triage" },
+        { "id": "support_first_response", "name": "First Response Generator", "path": "support_ops/first_response" },
+        { "id": "support_escalation_predictor", "name": "Escalation Predictor", "path": "support_ops/escalation_predictor" },
+        { "id": "support_resolution_suggester", "name": "Resolution Suggester", "path": "support_ops/resolution_suggester" },
+        { "id": "support_sentiment_tracker", "name": "Ticket Sentiment Tracker", "path": "support_ops/sentiment_tracker" },
+        { "id": "support_sla_monitor", "name": "SLA Monitor", "path": "support_ops/sla_monitor" },
+        { "id": "support_kb_gap_finder", "name": "Knowledge Base Gap Finder", "path": "support_ops/kb_gap_finder" },
+        { "id": "support_csat_analyzer", "name": "CSAT Analysis Engine", "path": "support_ops/csat_analyzer" },
+        { "id": "support_macros_optimizer", "name": "Macros Optimizer", "path": "support_ops/macros_optimizer" },
+        { "id": "support_queue_balancer", "name": "Queue Load Balancer", "path": "support_ops/queue_balancer" },
+        { "id": "support_proactive_outreach", "name": "Proactive Support Outreach", "path": "support_ops/proactive_outreach" },
+        { "id": "support_bug_linker", "name": "Bug Report Linker", "path": "support_ops/bug_linker" }
+      ]
+    },
+    "data_ops": {
+      "name": "Data & Analytics Operations",
+      "description": "Data pipeline, analytics, and experimentation skills",
+      "skills": [
+        { "id": "data_event_validator", "name": "Event Schema Validator", "path": "data_ops/event_validator" },
+        { "id": "data_dashboard_builder", "name": "Dashboard Builder", "path": "data_ops/dashboard_builder" },
+        { "id": "data_anomaly_alerter", "name": "Metric Anomaly Alerter", "path": "data_ops/anomaly_alerter" },
+        { "id": "data_cohort_builder", "name": "Cohort Builder", "path": "data_ops/cohort_builder" },
+        { "id": "data_funnel_optimizer", "name": "Funnel Optimization Engine", "path": "data_ops/funnel_optimizer" },
+        { "id": "data_attribution_modeler", "name": "Attribution Model Builder", "path": "data_ops/attribution_modeler" },
+        { "id": "data_etl_monitor", "name": "ETL Pipeline Monitor", "path": "data_ops/etl_monitor" },
+        { "id": "data_warehouse_optimizer", "name": "Query Optimizer", "path": "data_ops/warehouse_optimizer" },
+        { "id": "data_privacy_scanner", "name": "Analytics Privacy Scanner", "path": "data_ops/privacy_scanner" },
+        { "id": "data_experiment_analyzer", "name": "Experiment Results Analyzer", "path": "data_ops/experiment_analyzer" }
+      ]
+    },
+    "people_ops": {
+      "name": "People Operations",
+      "description": "HR tech, employee lifecycle, and workforce management skills",
+      "skills": [
+        { "id": "people_onboarding_checklist", "name": "Employee Onboarding Orchestrator", "path": "people_ops/onboarding_checklist" },
+        { "id": "people_pulse_analyzer", "name": "Employee Pulse Analyzer", "path": "people_ops/pulse_analyzer" },
+        { "id": "people_offboarding_manager", "name": "Offboarding Manager", "path": "people_ops/offboarding_manager" },
+        { "id": "people_perf_review_generator", "name": "Performance Review Generator", "path": "people_ops/perf_review_generator" },
+        { "id": "people_candidate_sourcer", "name": "Candidate Sourcing Assistant", "path": "people_ops/candidate_sourcer" },
+        { "id": "people_comp_benchmarker", "name": "Compensation Benchmarker", "path": "people_ops/comp_benchmarker" },
+        { "id": "people_skill_gap_analyzer", "name": "Skills Gap Analyzer", "path": "people_ops/skill_gap_analyzer" },
+        { "id": "people_dei_tracker", "name": "DEI Metrics Tracker", "path": "people_ops/dei_tracker" }
+      ]
+    },
+    "meta": {
+      "name": "Meta-Orchestration",
+      "description": "Cross-cutting skills that orchestrate multiple domain-specific skills",
+      "skills": [
+        { "id": "meta_gtm_orchestrator", "name": "GTM Motion Orchestrator", "path": "meta/gtm_orchestrator" },
+        { "id": "meta_land_expand_journey", "name": "Land & Expand Journey Manager", "path": "meta/land_expand_journey" },
+        { "id": "meta_revenue_intelligence", "name": "Revenue Intelligence Hub", "path": "meta/revenue_intelligence" },
+        { "id": "meta_customer_360", "name": "Customer 360 Aggregator", "path": "meta/customer_360" },
+        { "id": "meta_growth_diagnostician", "name": "Growth Diagnostician", "path": "meta/growth_diagnostician" },
+        { "id": "meta_incident_coordinator", "name": "Cross-Functional Incident Coordinator", "path": "meta/incident_coordinator" }
+      ]
+    },
+    "skene": {
+      "name": "Skene Codebase Analysis",
+      "description": "AI-powered codebase analysis for PLG growth opportunities (from github.com/SkeneTechnologies/skene-skills)",
+      "skills": [
+        { "id": "skene_analyze_tech_stack", "name": "Tech Stack Analyzer", "path": "skene/analyze_tech_stack" },
+        { "id": "skene_analyze_product_overview", "name": "Product Overview Extractor", "path": "skene/analyze_product_overview" },
+        { "id": "skene_analyze_growth_hubs", "name": "Growth Hubs Analyzer", "path": "skene/analyze_growth_hubs" },
+        { "id": "skene_analyze_features", "name": "Feature Documenter", "path": "skene/analyze_features" },
+        { "id": "skene_generate_growth_manifest", "name": "Growth Manifest Generator", "path": "skene/generate_growth_manifest" },
+        { "id": "skene_generate_growth_template", "name": "Growth Template Generator", "path": "skene/generate_growth_template" }
+      ]
+    },
+    "plg_frameworks": {
+      "name": "PLG Frameworks",
+      "description": "27 AI-powered PLG skills with frameworks from Brian Balfour, Elena Verna, Casey Winters, Phil Carter, Shaun Clowes (from github.com/SkeneTechnologies/plg-skills)",
+      "skills": [
+        { "id": "plgf_strategy", "name": "PLG Strategy Assessment", "path": "plg_frameworks/strategy" },
+        { "id": "plgf_growth_loops", "name": "Growth Loop Designer", "path": "plg_frameworks/growth_loops" },
+        { "id": "plgf_mental_models", "name": "PLG Mental Models", "path": "plg_frameworks/mental_models" },
+        { "id": "plgf_product_led_sales", "name": "Product-Led Sales", "path": "plg_frameworks/product_led_sales" },
+        { "id": "plgf_self_serve_motion", "name": "Self-Serve Motion", "path": "plg_frameworks/self_serve_motion" },
+        { "id": "plgf_activation_metrics", "name": "Activation Metrics", "path": "plg_frameworks/activation_metrics" },
+        { "id": "plgf_product_onboarding", "name": "Product Onboarding", "path": "plg_frameworks/product_onboarding" },
+        { "id": "plgf_signup_flow_cro", "name": "Signup Flow CRO", "path": "plg_frameworks/signup_flow_cro" },
+        { "id": "plgf_engagement_loops", "name": "Engagement Loops", "path": "plg_frameworks/engagement_loops" },
+        { "id": "plgf_retention_analysis", "name": "Retention Analysis", "path": "plg_frameworks/retention_analysis" },
+        { "id": "plgf_feature_adoption", "name": "Feature Adoption", "path": "plg_frameworks/feature_adoption" },
+        { "id": "plgf_pricing_strategy", "name": "Pricing Strategy", "path": "plg_frameworks/pricing_strategy" },
+        { "id": "plgf_feature_gating", "name": "Feature Gating", "path": "plg_frameworks/feature_gating" },
+        { "id": "plgf_trial_optimization", "name": "Trial Optimization", "path": "plg_frameworks/trial_optimization" },
+        { "id": "plgf_expansion_revenue", "name": "Expansion Revenue", "path": "plg_frameworks/expansion_revenue" },
+        { "id": "plgf_usage_based_pricing", "name": "Usage-Based Pricing", "path": "plg_frameworks/usage_based_pricing" },
+        { "id": "plgf_paywall_upgrade_cro", "name": "Paywall Upgrade CRO", "path": "plg_frameworks/paywall_upgrade_cro" },
+        { "id": "plgf_in_product_messaging", "name": "In-Product Messaging", "path": "plg_frameworks/in_product_messaging" },
+        { "id": "plgf_viral_loops", "name": "Viral Loops", "path": "plg_frameworks/viral_loops" },
+        { "id": "plgf_referral_program", "name": "Referral Program", "path": "plg_frameworks/referral_program" },
+        { "id": "plgf_metrics", "name": "PLG Metrics", "path": "plg_frameworks/metrics" },
+        { "id": "plgf_growth_modeling", "name": "Growth Modeling", "path": "plg_frameworks/growth_modeling" },
+        { "id": "plgf_product_analytics", "name": "Product Analytics", "path": "plg_frameworks/product_analytics" },
+        { "id": "plgf_experimentation", "name": "Growth Experimentation", "path": "plg_frameworks/experimentation" },
+        { "id": "plgf_free_tool_strategy", "name": "Free Tool Strategy", "path": "plg_frameworks/free_tool_strategy" },
+        { "id": "plgf_user_segmentation", "name": "User Segmentation", "path": "plg_frameworks/user_segmentation" },
+        { "id": "plgf_ideas", "name": "PLG Ideas Library", "path": "plg_frameworks/ideas" }
+      ]
+    }
+  },
+  
+  "integrations": {
+    "stripe": {
+      "tools": ["stripe.get_customer", "stripe.create_customer", "stripe.get_subscription", "stripe.create_subscription", "stripe.cancel_subscription", "stripe.update_subscription", "stripe.record_usage", "stripe.get_usage", "stripe.create_checkout", "stripe.create_portal", "stripe.get_invoices", "stripe.create_invoice", "stripe.get_dunning_status", "stripe.send_payment_reminder", "stripe.get_prices", "stripe.create_price", "stripe.list_payment_methods", "stripe.update_customer", "stripe.tax.calculate", "stripe.get_customer_balance"]
+    },
+    "vercel": {
+      "tools": ["vercel.list_deployments", "vercel.get_deployment", "vercel.create_deployment", "vercel.promote_deployment", "vercel.rollback_deployment", "vercel.get_web_vitals", "vercel.get_analytics", "vercel.get_edge_config", "vercel.set_edge_config", "vercel.delete_edge_config", "vercel.get_env_vars", "vercel.set_env_var", "vercel.get_logs"]
+    },
+    "resend": {
+      "tools": ["resend.send_email", "resend.send_template", "resend.send_batch", "resend.get_email", "resend.list_emails", "resend.list_templates", "resend.get_template", "resend.create_template", "resend.create_audience", "resend.add_contact", "resend.remove_contact", "resend.list_contacts", "resend.get_stats", "resend.get_domain_status"]
+    },
+    "segment": {
+      "tools": ["segment.get_schema", "segment.track", "segment.identify", "segment.create_audience"]
+    },
+    "clearbit": {
+      "tools": ["clearbit.enrich", "clearbit.reveal"]
+    },
+    "github": {
+      "tools": ["github.get_commits", "github.get_contributors", "github.get_issues", "github.create_issue"]
+    }
+  },
+  
+  "summary": {
+    "total_skills": 339,
+    "total_domains": 17,
+    "core_growth_skills": 266,
+    "marketing_skills": 73,
+    "version_history": [
+      { "version": "1.0.0", "date": "2026-01-28", "skills": 107, "domains": 7 },
+      { "version": "2.0.0", "date": "2026-01-29", "skills": 306, "domains": 15, "notes": "Added 199 new skills across 8 new domains (finops, devex, community, compliance, support_ops, data_ops, people_ops, meta)" },
+      { "version": "2.1.0", "date": "2026-01-29", "skills": 339, "domains": 17, "notes": "Added Skene codebase analysis (6 skills) and PLG Frameworks (27 skills) from SkeneTechnologies GitHub repos" }
+    ]
+  }
+}

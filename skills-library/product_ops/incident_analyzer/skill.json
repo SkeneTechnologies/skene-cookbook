@@ -1,0 +1,122 @@
+{
+  "id": "prodops_incident_analyzer",
+  "version": "1.0.0",
+  "name": "Incident Learning Analyzer",
+  "description": "Analyzes production incidents to extract learnings, identify patterns, and drive reliability improvements.",
+  "domain": "product_ops",
+  "tools": [
+    {
+      "name": "linear.get_issues",
+      "required": true
+    },
+    {
+      "name": "ai.generate",
+      "required": true
+    },
+    {
+      "name": "ai.embed",
+      "required": true
+    },
+    {
+      "name": "vector.search",
+      "required": true
+    },
+    {
+      "name": "slack.get_messages",
+      "required": false
+    },
+    {
+      "name": "notion.create_page",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "prioritization_engine",
+    "documentation_health",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "incidentId": {
+        "type": "string",
+        "description": "Specific incident to analyze"
+      },
+      "period": {
+        "type": "string",
+        "description": "Time period for pattern analysis"
+      },
+      "analysisType": {
+        "type": "string",
+        "enum": [
+          "single",
+          "pattern",
+          "retrospective"
+        ],
+        "description": "Type of analysis"
+      },
+      "includePostmortem": {
+        "type": "boolean",
+        "description": "Generate postmortem document"
+      }
+    }
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "rootCause": {
+        "type": "string"
+      },
+      "contributingFactors": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "actionItems": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "patterns": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "preventionRecommendations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "metrics": {
+    "primary": "incident_recurrence_rate",
+    "benchmarks": {
+      "excellent": "< 5% recurrence",
+      "good": "5-15% recurrence",
+      "needs_improvement": "> 15% recurrence"
+    }
+  },
+  "temperature": 0.1,
+  "tags": [
+    "product_ops",
+    "incidents",
+    "reliability",
+    "postmortem",
+    "learning",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Incident Learning Analyzer"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

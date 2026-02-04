@@ -1,0 +1,137 @@
+{
+  "id": "compliance_breach_response",
+  "version": "1.0.0",
+  "name": "Breach Response Coordinator",
+  "description": "Coordinates data breach response including detection, containment, notification, and regulatory reporting",
+  "domain": "compliance",
+  "tools": [
+    {
+      "name": "security.get_incident",
+      "required": true
+    },
+    {
+      "name": "security.assess_breach",
+      "required": true
+    },
+    {
+      "name": "legal.get_notification_requirements",
+      "required": true
+    },
+    {
+      "name": "messaging.send_notification",
+      "required": true
+    },
+    {
+      "name": "audit.log_breach",
+      "required": true
+    },
+    {
+      "name": "data.get_affected_records",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "gdpr_manager",
+    "vendor_risk",
+    "audit_preparer",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "action": {
+        "type": "string",
+        "enum": [
+          "assess",
+          "contain",
+          "notify",
+          "report",
+          "close"
+        ],
+        "default": "assess"
+      },
+      "incidentId": {
+        "type": "string",
+        "description": "Security incident identifier"
+      },
+      "breachType": {
+        "type": "string",
+        "enum": [
+          "unauthorized_access",
+          "data_exfiltration",
+          "ransomware",
+          "disclosure",
+          "loss"
+        ],
+        "description": "Type of breach"
+      },
+      "dataTypes": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Categories of data affected"
+      },
+      "estimatedRecords": {
+        "type": "number",
+        "description": "Estimated number of records affected"
+      }
+    },
+    "required": [
+      "action",
+      "incidentId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "breachId": {
+        "type": "string"
+      },
+      "severity": {
+        "type": "string"
+      },
+      "notificationRequired": {
+        "type": "boolean"
+      },
+      "notificationDeadlines": {
+        "type": "array"
+      },
+      "affectedIndividuals": {
+        "type": "number"
+      },
+      "regulatoryFilings": {
+        "type": "array"
+      },
+      "remediationStatus": {
+        "type": "object"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "breach_response_time",
+    "benchmarks": {
+      "excellent": "< 24 hours",
+      "good": "24-48 hours",
+      "needs_improvement": "> 48 hours"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "compliance",
+    "breach",
+    "incident-response",
+    "notification",
+    "gdpr",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Breach Response Coordinator"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

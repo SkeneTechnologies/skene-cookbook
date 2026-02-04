@@ -1,0 +1,34 @@
+{
+  "id": "cursor_rules/c-sharp",
+  "version": "1.0.0",
+  "name": "c-sharp",
+  "description": "This guide defines definitive C# coding standards and best practices for our team, covering naming, formatting, modern language features, performance, security, and error handling to ensure consistent, maintainable, and high-quality code.",
+  "domain": "cursor_rules",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "cursor_rules",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "cursor": {
+      "globs": [
+        "**/*"
+      ]
+    },
+    "claude": {
+      "triggers": [
+        "help with c sharp"
+      ]
+    },
+    "skeneflow": {}
+  }
+}

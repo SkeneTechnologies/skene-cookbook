@@ -1,0 +1,71 @@
+{
+  "id": "ai_personalization_engine",
+  "version": "1.0.0",
+  "name": "Personalization Engine",
+  "description": "Delivers personalized content, recommendations, and experiences across touchpoints.",
+  "domain": "ai_ops",
+  "tools": [
+    {
+      "name": "ai.personalize",
+      "required": true
+    },
+    {
+      "name": "lifecycle.get_segment",
+      "required": true
+    },
+    {
+      "name": "analytics.feature_adoption",
+      "required": false
+    },
+    {
+      "name": "vercel.set_edge_config",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "content_delivered",
+    "recommendation_shown",
+    "experience_adapted",
+    "idle"
+  ],
+  "metrics": {
+    "primary": "personalization_engagement_lift",
+    "benchmarks": {
+      "excellent": "> 30%",
+      "good": "15-30%",
+      "needs_improvement": "< 15%"
+    }
+  },
+  "temperature": 0.3,
+  "tags": [
+    "ai_ops",
+    "personalization",
+    "recommendations",
+    "experience",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Personalization Engine"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "ai.classify",
+          "required": false
+        },
+        {
+          "name": "ai.generate",
+          "required": false
+        },
+        {
+          "name": "ai.score_lead",
+          "required": false
+        }
+      ]
+    }
+  }
+}

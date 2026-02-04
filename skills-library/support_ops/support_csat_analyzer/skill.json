@@ -1,0 +1,112 @@
+{
+  "id": "support_csat_analyzer",
+  "version": "1.0.0",
+  "name": "CSAT Analysis Engine",
+  "description": "Analyzes customer satisfaction survey results to identify trends, drivers, and improvement opportunities.",
+  "domain": "support_ops",
+  "tools": [
+    {
+      "name": "feedback.get_surveys",
+      "required": true
+    },
+    {
+      "name": "ai.analyze_text",
+      "required": true
+    },
+    {
+      "name": "analytics.calculate_trends",
+      "required": true
+    },
+    {
+      "name": "support.get_ticket",
+      "required": false
+    },
+    {
+      "name": "crm.get_customer",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "sentiment_tracker",
+    "kb_gap_finder",
+    "proactive_outreach",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "time_period": {
+        "type": "string",
+        "default": "30d"
+      },
+      "segment_by": {
+        "type": "string",
+        "enum": [
+          "agent",
+          "queue",
+          "category",
+          "priority",
+          "customer_tier"
+        ]
+      },
+      "include_verbatims": {
+        "type": "boolean",
+        "default": true
+      },
+      "min_responses": {
+        "type": "number",
+        "default": 10
+      }
+    },
+    "required": []
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "overall_csat": {
+        "type": "number"
+      },
+      "trend": {
+        "type": "string"
+      },
+      "segment_breakdown": {
+        "type": "object"
+      },
+      "top_drivers": {
+        "type": "array"
+      },
+      "improvement_areas": {
+        "type": "array"
+      },
+      "verbatim_themes": {
+        "type": "array"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "csat_score",
+    "benchmarks": {
+      "excellent": "> 4.5",
+      "good": "4.0-4.5",
+      "needs_improvement": "< 4.0"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "support_ops",
+    "csat",
+    "satisfaction",
+    "feedback",
+    "analytics",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with CSAT Analysis Engine"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

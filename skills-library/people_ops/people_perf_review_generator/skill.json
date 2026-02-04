@@ -1,0 +1,134 @@
+{
+  "id": "people_perf_review_generator",
+  "version": "1.0.0",
+  "name": "Performance Review Generator",
+  "description": "Generates comprehensive performance reviews by aggregating feedback, goals, metrics, and peer input into structured evaluations.",
+  "domain": "people_ops",
+  "tools": [
+    {
+      "name": "hr.get_employee_goals",
+      "required": true
+    },
+    {
+      "name": "hr.get_feedback",
+      "required": true
+    },
+    {
+      "name": "hr.get_peer_reviews",
+      "required": true
+    },
+    {
+      "name": "analytics.get_performance_metrics",
+      "required": true
+    },
+    {
+      "name": "ai.generate_review",
+      "required": true
+    },
+    {
+      "name": "hr.get_competency_framework",
+      "required": false
+    },
+    {
+      "name": "hr.save_review_draft",
+      "required": false
+    },
+    {
+      "name": "calibration.get_peers",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "people_comp_benchmarker",
+    "people_skill_gap_analyzer",
+    "people_pulse_analyzer",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "employeeId": {
+        "type": "string",
+        "description": "Employee to generate review for"
+      },
+      "reviewPeriod": {
+        "type": "string",
+        "description": "Performance period (e.g., 2024-H1)"
+      },
+      "reviewType": {
+        "type": "string",
+        "enum": [
+          "annual",
+          "semi_annual",
+          "quarterly",
+          "probation"
+        ]
+      },
+      "includeGoals": {
+        "type": "boolean"
+      },
+      "includePeerFeedback": {
+        "type": "boolean"
+      },
+      "includeMetrics": {
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "employeeId",
+      "reviewPeriod"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "reviewDraft": {
+        "type": "object"
+      },
+      "overallRating": {
+        "type": "string"
+      },
+      "competencyScores": {
+        "type": "object"
+      },
+      "goalAchievement": {
+        "type": "number"
+      },
+      "strengths": {
+        "type": "array"
+      },
+      "developmentAreas": {
+        "type": "array"
+      },
+      "recommendations": {
+        "type": "array"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "review_completion_rate",
+    "benchmarks": {
+      "excellent": "> 98%",
+      "good": "90-98%",
+      "needs_improvement": "< 90%"
+    }
+  },
+  "temperature": 0.3,
+  "tags": [
+    "people_ops",
+    "performance",
+    "review",
+    "feedback",
+    "goals",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Performance Review Generator"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

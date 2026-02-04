@@ -1,0 +1,34 @@
+{
+  "id": "cursor_rules/unreal-engine",
+  "version": "1.0.0",
+  "name": "unreal-engine",
+  "description": "Definitive guidelines for writing consistent, performant, and maintainable C++ and Blueprint code in Unreal Engine 5.x projects.",
+  "domain": "cursor_rules",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "cursor_rules",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "cursor": {
+      "globs": [
+        "**/*"
+      ]
+    },
+    "claude": {
+      "triggers": [
+        "help with unreal engine"
+      ]
+    },
+    "skeneflow": {}
+  }
+}

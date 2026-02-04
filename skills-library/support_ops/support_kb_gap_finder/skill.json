@@ -1,0 +1,106 @@
+{
+  "id": "support_kb_gap_finder",
+  "version": "1.0.0",
+  "name": "Knowledge Base Gap Finder",
+  "description": "Identifies gaps in knowledge base coverage by analyzing support tickets and failed search queries.",
+  "domain": "support_ops",
+  "tools": [
+    {
+      "name": "analytics.get_ticket_topics",
+      "required": true
+    },
+    {
+      "name": "rag.search",
+      "required": true
+    },
+    {
+      "name": "analytics.get_search_logs",
+      "required": true
+    },
+    {
+      "name": "ai.cluster_topics",
+      "required": false
+    },
+    {
+      "name": "support.create_kb_request",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "resolution_suggester",
+    "macros_optimizer",
+    "csat_analyzer",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "time_period": {
+        "type": "string",
+        "default": "30d"
+      },
+      "min_ticket_count": {
+        "type": "number",
+        "default": 5
+      },
+      "coverage_threshold": {
+        "type": "number",
+        "default": 0.7
+      },
+      "include_search_analysis": {
+        "type": "boolean",
+        "default": true
+      }
+    },
+    "required": []
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "gaps_identified": {
+        "type": "array"
+      },
+      "failed_searches": {
+        "type": "array"
+      },
+      "coverage_score": {
+        "type": "number"
+      },
+      "priority_articles_needed": {
+        "type": "array"
+      },
+      "outdated_articles": {
+        "type": "array"
+      },
+      "estimated_ticket_reduction": {
+        "type": "number"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "kb_coverage_score",
+    "benchmarks": {
+      "excellent": "> 90%",
+      "good": "75-90%",
+      "needs_improvement": "< 75%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "support_ops",
+    "knowledge_base",
+    "gap_analysis",
+    "content",
+    "self_service",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Knowledge Base Gap Finder"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}
