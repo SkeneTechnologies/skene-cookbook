@@ -1,27 +1,22 @@
 # Push to New Repository
 
-This folder is a standalone package ready for its own GitHub repository.
+This folder is a standalone package. **npm publish is done.** ✅
 
-## Steps
+## Remaining: Create GitHub repo and push
 
-1. **Create a new repo on GitHub** (e.g. `SkeneTechnologies/skills-directory`)
+1. **Create the repo on GitHub:**
+   - Go to https://github.com/organizations/SkeneTechnologies/repositories/new
+   - Name: `skills-directory`
+   - Description: `800+ AI skills for Claude and Cursor. One command to install.`
+   - Public, no README (we have one)
 
-2. **Add remote and push:**
+2. **Push the code:**
    ```bash
    cd /Users/teemukinos/skene-skills-directory
-   git remote add origin https://github.com/SkeneTechnologies/skills-directory.git
-   git branch -M main
-   git commit -m "Initial commit: Skills Directory"
    git push -u origin main
    ```
 
-3. **Publish to npm:**
-   ```bash
-   npm install
-   npm publish
-   ```
+## Package (published)
 
-## Package
-
-- **Name:** @skene/skills-directory
+- **npm:** https://www.npmjs.com/package/@skene/skills-directory
 - **CLI:** `npx skills-directory install --target all`
