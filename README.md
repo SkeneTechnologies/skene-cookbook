@@ -1,1 +1,1 @@
-# skill-directory
+# Skills Directory
