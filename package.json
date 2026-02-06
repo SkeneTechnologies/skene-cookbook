@@ -41,7 +41,7 @@
     "skills-directory": "./bin/skills-directory.js"
   },
   "scripts": {
-    "postinstall": "node scripts/postinstall.js || true",
+    "postinstall": "node scripts/postinstall.js",
     "install:skills": "node bin/skills-directory.js install --target all",
     "install:cursor": "node bin/skills-directory.js install --target cursor",
     "install:claude": "node bin/skills-directory.js install --target claude"
