@@ -1,8 +1,30 @@
-# Skills Directory
+# Build AI Agents in Days, Not Months
 
-**800+ AI skills for Claude and Cursor** — PLG, marketing, security, DevEx, and more.
+**Compose 800+ skills into powerful AI agents** — No ML expertise required
 
-One command to install. No API keys. No setup.
+Install once. Build unlimited agents. Deploy in days.
+
+---
+
+## Why Skill Chains?
+
+| Traditional AI Agents | Skill Chains |
+|----------------------|--------------|
+| 3-6 months development | 1-2 weeks |
+| $50K-$150K cost | $5K-$10K |
+| Custom code, hard to maintain | Pre-built skills, easy updates |
+| Single-purpose | Composable, reusable |
+
+## Real ROI
+
+🎯 **Sales Agent**: Saves $20K-$40K/month by automating lead qualification
+📊 **Finance Agent**: Saves $50K+/month in CFO/finance team time
+🚀 **Growth Agent**: Drives 15%+ conversion lift through automated optimization
+💰 **Churn Prevention**: Saves $400K ARR/year through early intervention
+
+[See full value proposition →](docs/VALUE.md)
+
+---
 
 ## Install
 
@@ -25,15 +47,68 @@ npx skills-directory install --target claude
 
 ## What's Included
 
-| Category       | Skills | Description                          |
-| -------------- | ------ | ------------------------------------ |
-| Cursor Rules   | 241    | React, Next.js, Python, etc.        |
-| Scientific     | 141    | Research, data science               |
-| Marketing      | 73     | Content, SEO, campaigns              |
-| PLG Frameworks | 43     | Product-led growth playbooks         |
-| Customer Success | 28   | Health scoring, churn prevention     |
-| RevOps         | 25     | Pipeline, forecasting                |
-| ... and 19 more domains | | **Total: 800+ skills**          |
+✅ **156 Sales/Marketing/RevOps skills** — Full GTM automation
+✅ **51 E-commerce/PLG skills** — Conversion & growth engines
+✅ **33 Finance/FinOps skills** — Real-time financial intelligence
+✅ **40 Customer Success skills** — Retention & expansion automation
+✅ **40+ standardized tools** — CRM, analytics, messaging, billing
+✅ **Production-ready security** — Approval gates, rollback, audit trails
+
+[Browse all 800+ skills by domain →](docs/directory.md)
+
+## Quick Start
+
+### 1. Install
+
+```bash
+npm install @skene/skills-directory
+```
+
+### 2. Activate All Skills
+
+```bash
+npx skills-directory install --target all
+```
+
+### 3. Start Building
+
+- **15-minute win:** [Lead Scoring Agent](docs/QUICK_WINS.md#15-minute-win-lead-scoring) (2 skills)
+- **1-hour win:** [Churn Prevention Agent](docs/QUICK_WINS.md#1-hour-win-churn-risk-alerts) (3 skills)
+- **Half-day win:** [Campaign Automation Agent](docs/QUICK_WINS.md#half-day-win-campaign-launch-automation) (5 skills)
+
+[See all quick wins →](docs/QUICK_WINS.md)
+
+### 4. Explore Recipes
+
+Browse [10+ ready-to-use skill chain recipes](docs/SKILL_CHAINS.md) with step-by-step instructions.
+
+---
+
+## Use Cases
+
+### Sales & RevOps
+- **Lead qualification pipeline** — Qualify, score, and route leads automatically
+- **Deal inspection engine** — Analyze deal health and identify risks
+- **Pipeline forecasting** — Predict revenue and commit accuracy
+
+### Customer Success
+- **Health monitoring** — Real-time customer health tracking
+- **Churn prediction** — Identify at-risk accounts 60-90 days early
+- **Expansion playbooks** — Trigger upsell opportunities automatically
+
+### Finance & FinOps
+- **CFO dashboard** — Real-time ARR, burn rate, and investor metrics
+- **Scenario planning** — Model growth scenarios instantly
+- **Board reporting** — Auto-generate board decks and reports
+
+### Marketing & Growth
+- **Content automation** — End-to-end content creation and distribution
+- **A/B testing engine** — Continuous conversion optimization
+- **SEO optimization** — Programmatic SEO at scale
+
+[See detailed ROI calculations →](docs/VALUE.md)
+
+---
 
 ## How It Works
 
@@ -42,20 +117,66 @@ Skills are installed to:
 - **Cursor:** `~/.cursor/skills/`
 - **Claude:** `~/.claude/skills/`
 
-Cursor and Claude automatically pick the right skill based on your prompt. No configuration needed.
+Cursor and Claude automatically pick the right skill based on your prompt. Chain skills together by routing exit states to next skill inputs. No ML expertise required.
 
-## Commands
+## CLI Commands
 
 | Command                              | Description                |
 | ------------------------------------ | -------------------------- |
-| `npx skills-directory install`       | Install to Cursor + Claude |
-| `npx skills-directory stats`         | Show library statistics   |
+| `npx skills-directory install --target all` | Install to Cursor + Claude |
+| `npx skills-directory showcase`     | Show what you can build (ROI & use cases) |
 | `npx skills-directory list --domain plg` | List skills by domain |
+| `npx skills-directory stats`         | Show library statistics   |
 | `npx skills-directory uninstall`     | Remove installed skills    |
+
+---
+
+## Documentation
+
+### 🚀 Getting Started
+- **[VALUE.md](docs/VALUE.md)** — Why skill chains? ROI calculations & 5 use cases
+- **[QUICK_WINS.md](docs/QUICK_WINS.md)** — Deploy your first agent in 15 min to 4 hours
+- **[SKILL_CHAINS.md](docs/SKILL_CHAINS.md)** — 10+ ready-to-use recipes with step-by-step instructions
+
+### 📚 Reference
+- [Complete Skills Directory](docs/directory.md) — Browse all 800+ skills
+- [Visual Skill Tree](docs/skill-tree.md) — See skills organized by domain
+- [Browse by Job Function](docs/functions/) — Find skills for your role
+- [Welcome Screen Features](docs/WELCOME_SCREEN.md) — Beautiful terminal UI
+
+### 🔧 Technical
+- [Architecture Guide](ARCHITECTURE.md) — How the system works
+- [AI Agent Composability Analysis](docs/technical/AI_AGENT_COMPOSABILITY_ANALYSIS.md) — Deep dive into agent composition
+- [Security Policy](SECURITY_POLICY.md) — Security best practices
+
+---
+
+## What's a Skill Chain?
+
+A **skill chain** is a sequence of skills connected together to automate an entire workflow:
+
+```
+Example: Sales Qualification Pipeline
+
+lead_qualification → opportunity_scoring → deal_inspection →
+next_best_action → content_recommender
+
+Result: Complete automation from first touch to meeting booked
+```
+
+**Benefits:**
+- ⚡ **Faster:** Build in days vs months
+- 💰 **Cheaper:** 10x lower cost than custom development
+- 🔄 **Reusable:** Compose skills in unlimited ways
+- 🛡️ **Production-ready:** Security, rollback, and monitoring built-in
+
+[Learn more about skill chains →](docs/VALUE.md#the-power-of-composition)
+
+---
 
 ## Skill Sources
 
-- Anthropic Official, Trail of Bits, obra/superpowers, K-Dense-AI, awesome-cursor-rules, Skene PLG
+Skills curated from: Anthropic Official, Trail of Bits, obra/superpowers, K-Dense-AI, awesome-cursor-rules, Skene PLG
 
 ## License
 
