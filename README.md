@@ -6,6 +6,19 @@ Install once. Build unlimited agents. Deploy in days.
 
 ---
 
+## Who Are You?
+
+Choose your path to get started:
+
+👔 [**Sales Leader**](docs/personas/sales-leader.md) — Automate lead scoring & pipeline management
+🚀 [**Growth PM**](docs/personas/growth-pm.md) — Build PLG activation & engagement flows
+🔬 [**Researcher**](docs/personas/researcher.md) — Scientific tools & data analysis
+💼 [**CFO/Finance**](docs/personas/cfo.md) — Financial intelligence & reporting
+
+Or [browse all 764+ skills →](docs/directory.md)
+
+---
+
 ## Why Skill Chains?
 
 | Traditional AI Agents | Skill Chains |
@@ -153,17 +166,24 @@ Cursor and Claude automatically pick the right skill based on your prompt. Chain
 - **[VALUE.md](docs/VALUE.md)** — Why skill chains? ROI calculations & 5 use cases
 - **[QUICK_WINS.md](docs/QUICK_WINS.md)** — Deploy your first agent in 15 min to 4 hours
 - **[SKILL_CHAINS.md](docs/SKILL_CHAINS.md)** — 10+ ready-to-use recipes with step-by-step instructions
+- **[SHOWCASE.md](docs/SHOWCASE.md)** — Real-world agent examples and case studies
 
 ### 📚 Reference
 - [Complete Skills Directory](docs/directory.md) — Browse all 800+ skills
 - [Visual Skill Tree](docs/skill-tree.md) — See skills organized by domain
 - [Browse by Job Function](docs/functions/) — Find skills for your role
+- [Troubleshooting Guide](docs/TROUBLESHOOTING.md) — Common issues and solutions
 - [Welcome Screen Features](docs/WELCOME_SCREEN.md) — Beautiful terminal UI
 
 ### 🔧 Technical
 - [Architecture Guide](ARCHITECTURE.md) — How the system works
 - [AI Agent Composability Analysis](docs/technical/AI_AGENT_COMPOSABILITY_ANALYSIS.md) — Deep dive into agent composition
 - [Security Policy](SECURITY_POLICY.md) — Security best practices
+
+### 🤝 Community
+- **[Build Your First Skill](docs/BUILD_YOUR_FIRST_SKILL.md)** — Step-by-step skill creation tutorial
+- [Contributing Guidelines](CONTRIBUTING.md) — How to contribute to the library
+- [GitHub Discussions](https://github.com/SkeneTechnologies/skills-directory/discussions) — Ask questions and share ideas
 
 ---
 
