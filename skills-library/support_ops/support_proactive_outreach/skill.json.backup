@@ -1,0 +1,114 @@
+{
+  "id": "support_proactive_outreach",
+  "version": "1.0.0",
+  "name": "Proactive Support Outreach",
+  "description": "Identifies opportunities for proactive customer outreach based on usage patterns, known issues, and risk signals.",
+  "domain": "support_ops",
+  "tools": [
+    {
+      "name": "analytics.get_usage_patterns",
+      "required": true
+    },
+    {
+      "name": "support.get_known_issues",
+      "required": true
+    },
+    {
+      "name": "crm.get_customers",
+      "required": true
+    },
+    {
+      "name": "messaging.send_email",
+      "required": false
+    },
+    {
+      "name": "support.create_task",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "sentiment_tracker",
+    "escalation_predictor",
+    "csat_analyzer",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "outreach_type": {
+        "type": "string",
+        "enum": [
+          "issue_alert",
+          "adoption_help",
+          "check_in",
+          "maintenance"
+        ],
+        "default": "all"
+      },
+      "customer_segment": {
+        "type": "string",
+        "enum": [
+          "all",
+          "enterprise",
+          "at_risk",
+          "new"
+        ]
+      },
+      "max_outreach": {
+        "type": "number",
+        "default": 50
+      },
+      "auto_send": {
+        "type": "boolean",
+        "default": false
+      }
+    },
+    "required": []
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "outreach_candidates": {
+        "type": "array"
+      },
+      "issue_alerts": {
+        "type": "array"
+      },
+      "adoption_opportunities": {
+        "type": "array"
+      },
+      "messages_drafted": {
+        "type": "array"
+      },
+      "expected_impact": {
+        "type": "object"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "ticket_prevention_rate",
+    "benchmarks": {
+      "excellent": "> 30%",
+      "good": "15-30%",
+      "needs_improvement": "< 15%"
+    }
+  },
+  "temperature": 0.3,
+  "tags": [
+    "support_ops",
+    "proactive",
+    "outreach",
+    "prevention",
+    "customer_success",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Proactive Support Outreach"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

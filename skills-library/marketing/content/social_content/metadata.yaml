@@ -1,0 +1,48 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - system
+    - write
+    - update
+    - change
+    - access
+    - personal
+    - read
+    - get
+    - email
+    - analytics
+    - track
+    - log
+    - list
+    - search
+    - sort
+    - format
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.826305'
+    original_risk: Critical
+    changes:
+    - Applied field-level access control and tenant isolation
+categorization:
+  job_function: marketing
+  jtbd:
+    job: '"When the user wants help creating, scheduling, or optimizing social media
+      content for LinkedIn, Twitter/X, Instagram, TikTok, Facebook, or other platforms.
+      Also use when the user mentions ''LinkedIn post,'' ''Twitter thread,'' ''social
+      media,'' ''content calendar,'' ''social scheduling,'' ''engagement,'' or ''viral
+      content.'' This skill covers content creation, repurposing, and platform-specific
+      strategies."'
+    context: When working in marketing domain
+    outcome: Successfully execute social-content
+composability:
+  hints:
+  - 'can_chain_to: support'
+  - has_structured_output

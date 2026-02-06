@@ -1,0 +1,51 @@
+{
+  "id": "marketing_analytics_tracking",
+  "version": "1.0.0",
+  "name": "analytics-tracking",
+  "description": "When the user wants to set up, improve, or audit analytics tracking and measurement. Also use when the user mentions \"set up tracking,\" \"GA4,\" \"Google Analytics,\" \"conversion tracking,\" \"event tracking,\" \"UTM parameters,\" \"tag manager,\" \"GTM,\" \"analytics implementation,\" or \"tracking plan.\" For A/B test measurement, see ab-test-setup.",
+  "domain": "marketing",
+  "category": "analytics",
+  "source": "skene-marketing",
+  "tools": [],
+  "exitStates": [
+    "idle",
+    "support"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {},
+    "required": []
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {}
+  },
+  "temperature": 0.3,
+  "tags": [
+    "marketing",
+    "analytics",
+    "analytics-tracking",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with analytics tracking",
+        "the user mentions \"set up tracking,\" \"ga4,\" \"google analytics,\" \"conversion tracking,\" \"event tracking,\" \"utm parameters,\" \"tag manager,\" \"gtm,\" \"analytics implementation,\" or \"tracking plan"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "resend.send_email",
+          "required": false
+        },
+        {
+          "name": "analytics.track_campaign",
+          "required": false
+        }
+      ]
+    }
+  }
+}

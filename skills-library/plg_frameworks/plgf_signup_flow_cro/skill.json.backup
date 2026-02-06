@@ -1,0 +1,137 @@
+{
+  "id": "plgf_signup_flow_cro",
+  "version": "1.0.0",
+  "name": "Signup Flow CRO",
+  "description": "Field-by-field optimization, social auth analysis, single vs multi-step flows, and mobile optimization",
+  "domain": "plg_frameworks",
+  "tools": [
+    {
+      "name": "analytics.get_funnel",
+      "required": true
+    },
+    {
+      "name": "analytics.get_metrics",
+      "required": true
+    },
+    {
+      "name": "analytics.ab_test",
+      "required": false
+    },
+    {
+      "name": "analytics.track_event",
+      "required": false
+    },
+    {
+      "name": "ui_kit.form",
+      "required": false
+    },
+    {
+      "name": "ui_kit.panel",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "optimization_identified",
+    "ab_test_launched",
+    "flow_optimized",
+    "needs_development",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "productId": {
+        "type": "string",
+        "description": "Product to optimize signup for"
+      },
+      "currentFlowType": {
+        "type": "string",
+        "enum": [
+          "single-step",
+          "multi-step",
+          "progressive"
+        ],
+        "description": "Current signup flow type"
+      },
+      "fieldsCollected": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Current fields in signup form"
+      },
+      "socialAuthEnabled": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Enabled social auth providers"
+      },
+      "mobileTrafficPercent": {
+        "type": "number",
+        "description": "Percentage of mobile traffic"
+      }
+    },
+    "required": [
+      "productId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "fieldAnalysis": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "flowRecommendation": {
+        "type": "string"
+      },
+      "socialAuthAnalysis": {
+        "type": "object"
+      },
+      "mobileOptimizations": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "abTestIdeas": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "projectedLift": {
+        "type": "object"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "signup_conversion_rate",
+    "benchmarks": {
+      "excellent": "> 50%",
+      "good": "30-50%",
+      "needs_improvement": "< 30%"
+    }
+  },
+  "temperature": 0.3,
+  "tags": [
+    "plg_frameworks",
+    "signup",
+    "cro",
+    "conversion",
+    "forms",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Signup Flow CRO"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

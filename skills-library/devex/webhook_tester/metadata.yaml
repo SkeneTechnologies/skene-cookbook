@@ -1,0 +1,41 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - secret
+    - credential
+    - update
+    - authorize
+    - webhook
+    - get
+    - alert
+    - track
+    - log
+    - list
+    - format
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.707612'
+    original_risk: Critical
+    changes:
+    - Migrated to OAuth authentication
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Helps developers test, debug, and validate webhook integrations with payload
+      inspection and delivery verification.
+    context: When working in devex domain
+    outcome: Successfully execute Webhook Testing Assistant
+composability:
+  hints:
+  - 'can_chain_to: error_explainer'
+  - 'can_chain_to: integration_health'
+  - 'can_chain_to: sandbox_manager'
+  - has_structured_output

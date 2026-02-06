@@ -1,0 +1,23 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors:
+    - format
+    - view
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Enforce consistent Python code formatting using Black, automate style checks,
+      and integrate seamlessly into development workflows to eliminate style debates
+      and speed up code reviews.
+    context: When working in cursor_rules domain
+    outcome: Successfully execute black
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

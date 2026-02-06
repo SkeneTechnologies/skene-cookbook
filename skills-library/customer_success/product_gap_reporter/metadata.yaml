@@ -1,0 +1,44 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - eval
+    - update
+    - change
+    - alter
+    - confidential
+    - get
+    - query
+    - analytics
+    - log
+    - monitor
+    - list
+    - search
+    - format
+    - calculate
+    - aggregate
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.833386'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: customer_success
+  jtbd:
+    job: Aggregates and prioritizes customer feature requests and product gaps, providing
+      structured feedback to product teams.
+    context: When working in customer_success domain
+    outcome: Successfully execute Product Gap Reporter
+composability:
+  hints:
+  - 'can_chain_to: health_scoring'
+  - 'can_chain_to: risk_mitigation_playbook'
+  - 'can_chain_to: product_feedback_loop'
+  - has_structured_output

@@ -1,0 +1,42 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - api_key
+    - system
+    - command
+    - write
+    - access
+    - read
+    - fetch
+    - get
+    - message
+    - list
+    - search
+    - format
+    - compute
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.782305'
+    original_risk: Critical
+    changes:
+    - Migrated to OAuth authentication
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Convert files and office documents to Markdown. Supports PDF, DOCX, PPTX,
+      XLSX, images (with OCR), audio (with transcription), HTML, CSV, JSON, XML, ZIP,
+      YouTube URLs, EPubs and more.
+    context: When working in scientific domain
+    outcome: Successfully execute markitdown
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

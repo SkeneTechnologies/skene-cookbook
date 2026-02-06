@@ -1,0 +1,43 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - api_key
+    - update
+    - access
+    - read
+    - fetch
+    - get
+    - email
+    - log
+    - list
+    - search
+    - filter
+    - format
+    - calculate
+    - display
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.784149'
+    original_risk: Critical
+    changes:
+    - Migrated to OAuth authentication
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Comprehensive molecular biology toolkit. Use for sequence manipulation, file
+      parsing (FASTA/GenBank/PDB), phylogenetics, and programmatic NCBI/PubMed access
+      (Bio.Entrez). Best for batch processing, custom bioinformatics pipelines, BLAST
+      automation. For quick lookups use gget; for multi-service integration use bioservices.
+    context: When working in scientific domain
+    outcome: Successfully execute biopython
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

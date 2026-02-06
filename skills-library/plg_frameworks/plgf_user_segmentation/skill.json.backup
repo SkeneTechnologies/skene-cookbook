@@ -1,0 +1,124 @@
+{
+  "id": "plgf_user_segmentation",
+  "version": "1.0.0",
+  "name": "User Segmentation Framework",
+  "description": "Comprehensive user segmentation framework including behavioral cohorts, scoring models, RFM analysis, persona development, and personalization playbooks.",
+  "domain": "plg_frameworks",
+  "tools": [
+    {
+      "name": "analytics.segment",
+      "required": true
+    },
+    {
+      "name": "analytics.cohort",
+      "required": true
+    },
+    {
+      "name": "analytics.get_metrics",
+      "required": true
+    },
+    {
+      "name": "lifecycle.get_segment",
+      "required": true
+    },
+    {
+      "name": "lifecycle.update_segment",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "personalization",
+    "targeting",
+    "lifecycle_management",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "segmentationType": {
+        "type": "string",
+        "enum": [
+          "behavioral",
+          "rfm",
+          "lifecycle",
+          "persona",
+          "value_based"
+        ],
+        "description": "Type of segmentation to perform"
+      },
+      "purpose": {
+        "type": "string",
+        "enum": [
+          "targeting",
+          "personalization",
+          "analysis",
+          "prediction"
+        ],
+        "description": "Purpose of segmentation"
+      }
+    },
+    "required": [
+      "segmentationType"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "segments": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "segmentDistribution": {
+        "type": "object"
+      },
+      "personalizationRules": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "recommendations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "metrics": {
+    "primary": "segment_conversion_lift",
+    "benchmarks": {
+      "excellent": "> 30% lift from personalization",
+      "good": "15-30% lift",
+      "needs_improvement": "< 15% lift"
+    }
+  },
+  "integrations": [
+    "segment",
+    "amplitude",
+    "mixpanel",
+    "customer_io",
+    "braze"
+  ],
+  "temperature": 0,
+  "tags": [
+    "plg",
+    "segmentation",
+    "personalization",
+    "targeting",
+    "cohorts",
+    "rfm",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with User Segmentation Framework"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

@@ -1,0 +1,49 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - delete
+    - remove
+    - financial
+    - execute
+    - system
+    - command
+    - write
+    - update
+    - modify
+    - change
+    - read
+    - get
+    - query
+    - message
+    - track
+    - log
+    - list
+    - search
+    - format
+    - show
+    - view
+    - preview
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.749369'
+    original_risk: Critical
+    changes:
+    - 'Added payment safeguards: preview, approval, limits, rollback'
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Guide for creating effective skills. This skill should be used when users
+      want to create a new skill (or update an existing skill) that extends Claude's
+      capabilities with specialized knowledge, workflows, or tool integrations.
+    context: When working in anthropic_official domain
+    outcome: Successfully execute skill-creator
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

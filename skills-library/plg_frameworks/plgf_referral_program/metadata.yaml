@@ -1,0 +1,47 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - drop
+    - financial
+    - payment
+    - eval
+    - access
+    - personal
+    - get
+    - email
+    - notification
+    - message
+    - analytics
+    - track
+    - log
+    - monitor
+    - list
+    - format
+    - calculate
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.762042'
+    original_risk: Critical
+    changes:
+    - 'Added payment safeguards: preview, approval, limits, rollback'
+categorization:
+  job_function: marketing
+  jtbd:
+    job: Complete framework for designing, launching, and optimizing referral programs
+      including reward calculation, affiliate programs, fraud prevention, and launch
+      playbooks.
+    context: When working in plg_frameworks domain
+    outcome: Successfully execute Referral Program Framework
+composability:
+  hints:
+  - 'can_chain_to: referral_reward'
+  - 'can_chain_to: affiliate_management'
+  - 'can_chain_to: fraud_review'
+  - has_structured_output

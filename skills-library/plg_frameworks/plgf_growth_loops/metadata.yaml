@@ -1,0 +1,37 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors:
+    - system
+    - get
+    - analytics
+    - track
+    - list
+    - search
+    - format
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.804202'
+    original_risk: Critical
+    changes:
+    - Flagged for manual review as potential false positive
+categorization:
+  job_function: marketing
+  jtbd:
+    job: Design and model growth loops including viral, content, paid, and sales loops
+      with S-curve sequencing and compounding math
+    context: When working in plg_frameworks domain
+    outcome: Successfully execute Growth Loop Designer
+composability:
+  hints:
+  - 'can_chain_to: loop_designed'
+  - 'can_chain_to: loop_modeled'
+  - 'can_chain_to: needs_optimization'
+  - 'can_chain_to: insufficient_data'
+  - has_structured_output

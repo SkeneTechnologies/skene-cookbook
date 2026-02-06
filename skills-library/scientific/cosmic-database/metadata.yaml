@@ -1,0 +1,45 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - password
+    - command
+    - update
+    - alter
+    - access
+    - read
+    - fetch
+    - get
+    - retrieve
+    - query
+    - email
+    - log
+    - list
+    - search
+    - filter
+    - format
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.778945'
+    original_risk: Critical
+    changes:
+    - Migrated to OAuth authentication
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Access COSMIC cancer mutation database. Query somatic mutations, Cancer Gene
+      Census, mutational signatures, gene fusions, for cancer research and precision
+      oncology. Requires authentication.
+    context: When working in scientific domain
+    outcome: Successfully execute cosmic-database
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

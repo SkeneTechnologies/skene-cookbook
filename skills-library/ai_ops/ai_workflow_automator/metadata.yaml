@@ -1,0 +1,39 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - execute
+    - eval
+    - system
+    - update
+    - personal
+    - fetch
+    - log
+    - list
+    - format
+    - 'risky_tool: workflow.execute_step'
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.835324'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: hr
+  jtbd:
+    job: Intelligently automates business workflows using AI-powered decision making
+      and orchestration.
+    context: When working in ai_ops domain
+    outcome: Successfully execute Workflow Automation Intelligence
+composability:
+  hints:
+  - 'can_chain_to: completed'
+  - 'can_chain_to: awaiting_input'
+  - 'can_chain_to: failed'
+  - 'can_chain_to: escalated'
+  - has_structured_output

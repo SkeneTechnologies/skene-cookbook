@@ -1,0 +1,75 @@
+{
+  "id": "mon_dunning_automation",
+  "version": "1.0.0",
+  "name": "Dunning Automation",
+  "description": "Automates payment recovery for failed payments and past-due accounts.",
+  "domain": "monetization",
+  "tools": [
+    {
+      "name": "stripe.get_dunning_status",
+      "required": true
+    },
+    {
+      "name": "stripe.send_payment_reminder",
+      "required": true
+    },
+    {
+      "name": "stripe.get_invoices",
+      "required": true
+    },
+    {
+      "name": "resend.send_template",
+      "required": true
+    },
+    {
+      "name": "stripe.create_portal",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "payment_recovered",
+    "account_suspended",
+    "churn_prediction",
+    "idle"
+  ],
+  "metrics": {
+    "primary": "payment_recovery_rate",
+    "benchmarks": {
+      "excellent": "> 80%",
+      "good": "60-80%",
+      "needs_improvement": "< 60%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "monetization",
+    "dunning",
+    "collections",
+    "recovery",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Dunning Automation"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "stripe.get_customer",
+          "required": true
+        },
+        {
+          "name": "stripe.list_subscriptions",
+          "required": false
+        },
+        {
+          "name": "stripe.create_checkout",
+          "required": false
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,39 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - update
+    - get
+    - email
+    - alert
+    - track
+    - log
+    - list
+    - format
+    - summarize
+    - view
+    - 'risky_tool: crm.update_deal'
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.876507'
+    original_risk: High
+    changes:
+    - Added validation, preview mode, and rollback for writes
+categorization:
+  job_function: sales
+  jtbd:
+    job: Orchestrates seamless handoffs between Marketing, Sales, and Customer Success
+      teams.
+    context: When working in revops domain
+    outcome: Successfully execute Handoff Orchestration
+composability:
+  hints:
+  - 'can_chain_to: sales_engaged'
+  - 'can_chain_to: customer_success'
+  - 'can_chain_to: account_management'
+  - has_structured_output

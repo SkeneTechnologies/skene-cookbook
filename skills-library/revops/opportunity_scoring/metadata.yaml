@@ -1,0 +1,44 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - eval
+    - update
+    - change
+    - access
+    - read
+    - get
+    - email
+    - analytics
+    - log
+    - list
+    - filter
+    - sort
+    - format
+    - calculate
+    - view
+    - 'risky_tool: crm.update_deal'
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.835624'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: sales
+  jtbd:
+    job: Scores opportunities using AI-powered analysis of engagement signals, firmographics,
+      and historical patterns.
+    context: When working in revops domain
+    outcome: Successfully execute Opportunity Scoring Engine
+composability:
+  hints:
+  - 'can_chain_to: deal_inspection'
+  - 'can_chain_to: pipeline_health'
+  - 'can_chain_to: forecast_intelligence'
+  - has_structured_output

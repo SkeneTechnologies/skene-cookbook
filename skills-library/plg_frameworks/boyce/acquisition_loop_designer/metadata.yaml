@@ -1,0 +1,40 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - eval
+    - get
+    - email
+    - notification
+    - analytics
+    - track
+    - list
+    - format
+    - calculate
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.843049'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: marketing
+  jtbd:
+    job: 'Designs product-driven growth loops for user acquisition, engagement, and
+      expansion. Based on Dave Boyce''s FREEMIUM framework (Chapters 7 & 12): Small
+      improvements in loops compound to create exponential growth.'
+    context: When working in plg_frameworks domain
+    outcome: Successfully execute Acquisition Loop Designer
+composability:
+  hints:
+  - 'can_chain_to: loop_designed'
+  - 'can_chain_to: loop_metrics_captured'
+  - 'can_chain_to: loop_optimization_needed'
+  - 'can_chain_to: no_loop_opportunity'
+  - has_structured_output

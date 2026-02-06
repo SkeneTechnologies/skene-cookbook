@@ -1,0 +1,117 @@
+{
+  "id": "elg_partner_influenced_revenue",
+  "version": "1.0.0",
+  "name": "Partner Influenced Revenue Tracker",
+  "description": "Tracks and attributes revenue influenced by partner activities, providing comprehensive ecosystem ROI analysis.",
+  "domain": "ecosystem",
+  "tools": [
+    {
+      "name": "analytics.get_attribution",
+      "required": true
+    },
+    {
+      "name": "crm.get_deals",
+      "required": true
+    },
+    {
+      "name": "partner.get_activities",
+      "required": true
+    },
+    {
+      "name": "partner.get_referrals",
+      "required": false
+    },
+    {
+      "name": "crm.update_deal",
+      "required": false
+    },
+    {
+      "name": "analytics.create_report",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "referral_program",
+    "co_sell_trigger",
+    "partner_tier_manager",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "period": {
+        "type": "string",
+        "description": "Reporting period (e.g., 'Q1_2024', 'last_90d')"
+      },
+      "partnerId": {
+        "type": "string",
+        "description": "Specific partner to analyze"
+      },
+      "attributionModel": {
+        "type": "string",
+        "enum": [
+          "first_touch",
+          "last_touch",
+          "linear",
+          "time_decay",
+          "position_based"
+        ]
+      }
+    },
+    "required": [
+      "period"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "total_influenced_revenue": {
+        "type": "number"
+      },
+      "partner_breakdown": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "influence_types": {
+        "type": "object"
+      },
+      "attribution_details": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "yoy_comparison": {
+        "type": "object"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "partner_influenced_revenue",
+    "benchmarks": {
+      "excellent": "> 40%",
+      "good": "25-40%",
+      "needs_improvement": "< 25%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "ecosystem",
+    "partner",
+    "revenue",
+    "attribution",
+    "analytics",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Partner Influenced Revenue Tracker"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

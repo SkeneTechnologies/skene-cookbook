@@ -1,0 +1,43 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - update
+    - change
+    - read
+    - get
+    - analytics
+    - track
+    - log
+    - list
+    - format
+    - calculate
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.763224'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: data
+  jtbd:
+    job: 'Structures and manages cross-functional growth teams for PLG execution.
+      Based on Dave Boyce''s FREEMIUM framework (Chapter 5, with Ben Williams): Growth
+      teams are small, cross-functional teams organized by objective, not function.'
+    context: When working in plg_frameworks domain
+    outcome: Successfully execute Growth Team Orchestrator
+composability:
+  hints:
+  - 'can_chain_to: experiment_designed'
+  - 'can_chain_to: weekly_review_complete'
+  - 'can_chain_to: growth_model_updated'
+  - 'can_chain_to: team_restructure_needed'
+  - has_structured_output

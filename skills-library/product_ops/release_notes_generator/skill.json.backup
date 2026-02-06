@@ -1,0 +1,123 @@
+{
+  "id": "prodops_release_notes_generator",
+  "version": "1.0.0",
+  "name": "Release Notes Generator",
+  "description": "Automatically generates user-friendly release notes from commits, PRs, and tickets with audience-appropriate messaging.",
+  "domain": "product_ops",
+  "tools": [
+    {
+      "name": "github.get_commits",
+      "required": true
+    },
+    {
+      "name": "github.get_pull_requests",
+      "required": true
+    },
+    {
+      "name": "linear.get_issues",
+      "required": false
+    },
+    {
+      "name": "ai.generate",
+      "required": true
+    },
+    {
+      "name": "messaging.send_email",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "documentation_health",
+    "feature_adoption",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "releaseTag": {
+        "type": "string",
+        "description": "Git tag for the release"
+      },
+      "previousTag": {
+        "type": "string",
+        "description": "Previous release tag for comparison"
+      },
+      "audience": {
+        "type": "string",
+        "enum": [
+          "users",
+          "developers",
+          "internal"
+        ],
+        "description": "Target audience for notes"
+      },
+      "format": {
+        "type": "string",
+        "enum": [
+          "markdown",
+          "html",
+          "slack"
+        ],
+        "description": "Output format"
+      }
+    },
+    "required": [
+      "releaseTag"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "releaseNotes": {
+        "type": "string"
+      },
+      "version": {
+        "type": "string"
+      },
+      "highlights": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "breakingChanges": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "deprecations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "metrics": {
+    "primary": "release_documentation_coverage",
+    "benchmarks": {
+      "excellent": "> 95%",
+      "good": "80-95%",
+      "needs_improvement": "< 80%"
+    }
+  },
+  "temperature": 0.3,
+  "tags": [
+    "product_ops",
+    "release",
+    "documentation",
+    "changelog",
+    "communication",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Release Notes Generator"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

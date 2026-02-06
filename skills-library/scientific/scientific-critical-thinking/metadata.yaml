@@ -1,0 +1,47 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - drop
+    - eval
+    - system
+    - write
+    - change
+    - alter
+    - access
+    - personal
+    - sensitive
+    - read
+    - get
+    - log
+    - list
+    - search
+    - sort
+    - format
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.781882'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Evaluate scientific claims and evidence quality. Use for assessing experimental
+      design validity, identifying biases and confounders, applying evidence grading
+      frameworks (GRADE, Cochrane Risk of Bias), or teaching critical analysis. Best
+      for understanding evidence quality, identifying flaws. For formal peer review
+      writing use peer-review.
+    context: When working in scientific domain
+    outcome: Successfully execute scientific-critical-thinking
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

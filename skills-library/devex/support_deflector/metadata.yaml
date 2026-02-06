@@ -1,0 +1,45 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - update
+    - access
+    - authenticate
+    - personal
+    - sensitive
+    - get
+    - query
+    - email
+    - analytics
+    - track
+    - list
+    - search
+    - filter
+    - format
+    - calculate
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.860914'
+    original_risk: High
+    changes:
+    - Applied field-level access control and tenant isolation
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Provides instant answers to common developer questions, reducing support
+      ticket volume while improving developer satisfaction.
+    context: When working in devex domain
+    outcome: Successfully execute Developer Support Deflector
+composability:
+  hints:
+  - 'can_chain_to: error_explainer'
+  - 'can_chain_to: api_onboarding'
+  - 'can_chain_to: code_sample_generator'
+  - 'can_chain_to: human_support'
+  - has_structured_output

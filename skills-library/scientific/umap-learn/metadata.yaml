@@ -1,0 +1,40 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - drop
+    - eval
+    - system
+    - access
+    - read
+    - get
+    - log
+    - list
+    - search
+    - format
+    - calculate
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.777982'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: engineering
+  jtbd:
+    job: UMAP dimensionality reduction. Fast nonlinear manifold learning for 2D/3D
+      visualization, clustering preprocessing (HDBSCAN), supervised/parametric UMAP,
+      for high-dimensional data.
+    context: When working in scientific domain
+    outcome: Successfully execute umap-learn
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

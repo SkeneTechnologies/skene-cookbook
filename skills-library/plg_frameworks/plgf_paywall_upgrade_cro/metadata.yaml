@@ -1,0 +1,45 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - payment
+    - eval
+    - change
+    - access
+    - sensitive
+    - read
+    - get
+    - email
+    - analytics
+    - track
+    - log
+    - list
+    - format
+    - display
+    - show
+    - view
+    - preview
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.772339'
+    original_risk: Critical
+    changes:
+    - 'Added payment safeguards: preview, approval, limits, rollback'
+categorization:
+  job_function: sales
+  jtbd:
+    job: Conversion rate optimization framework for paywalls including feature locks,
+      usage limits, trial expiry, copy frameworks, and mobile patterns.
+    context: When working in plg_frameworks domain
+    outcome: Successfully execute Paywall & Upgrade CRO Framework
+composability:
+  hints:
+  - 'can_chain_to: upgrade_flow'
+  - 'can_chain_to: checkout'
+  - 'can_chain_to: trial_extension'
+  - has_structured_output

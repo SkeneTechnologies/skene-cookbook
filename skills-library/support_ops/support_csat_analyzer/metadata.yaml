@@ -1,0 +1,30 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - change
+    - get
+    - retrieve
+    - analytics
+    - monitor
+    - list
+    - format
+    - calculate
+categorization:
+  job_function: data
+  jtbd:
+    job: Analyzes customer satisfaction survey results to identify trends, drivers,
+      and improvement opportunities.
+    context: When working in support_ops domain
+    outcome: Successfully execute CSAT Analysis Engine
+composability:
+  hints:
+  - 'can_chain_to: sentiment_tracker'
+  - 'can_chain_to: kb_gap_finder'
+  - 'can_chain_to: proactive_outreach'
+  - has_structured_output

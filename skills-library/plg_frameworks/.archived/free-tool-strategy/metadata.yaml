@@ -1,0 +1,52 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - drop
+    - financial
+    - password
+    - eval
+    - write
+    - update
+    - alter
+    - access
+    - get
+    - email
+    - alert
+    - analytics
+    - track
+    - log
+    - monitor
+    - list
+    - search
+    - format
+    - calculate
+    - compute
+    - display
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.767891'
+    original_risk: Critical
+    changes:
+    - Migrated to OAuth authentication
+categorization:
+  job_function: marketing
+  jtbd:
+    job: When the user wants to plan a free tool for acquisition -- including calculators,
+      analyzers, generators, or interactive resources as an engineering-as-marketing
+      strategy. Also use when the user says "free tool," "engineering as marketing,"
+      "lead magnet tool," "free calculator," or "SEO tool." For viral growth, see
+      viral-loops. For PLG strategy, see plg-strategy.
+    context: When working in plg_frameworks domain
+    outcome: Successfully execute free-tool-strategy
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

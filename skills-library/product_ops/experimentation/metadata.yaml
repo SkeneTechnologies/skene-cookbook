@@ -1,0 +1,30 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - get
+    - alert
+    - analytics
+    - track
+    - log
+    - monitor
+    - list
+    - format
+    - calculate
+categorization:
+  job_function: data
+  jtbd:
+    job: Manages A/B tests and feature experiments with statistical rigor, enabling
+      data-driven product decisions.
+    context: When working in product_ops domain
+    outcome: Successfully execute Experimentation Platform
+composability:
+  hints:
+  - 'can_chain_to: feature_adoption'
+  - 'can_chain_to: roadmap_alignment'
+  - has_structured_output

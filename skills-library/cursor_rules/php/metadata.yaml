@@ -1,0 +1,20 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors: []
+categorization:
+  job_function: engineering
+  jtbd:
+    job: This guide provides definitive best practices for writing clean, secure,
+      and maintainable PHP code, strictly adhering to PSR-12 and modern PHP 8.4+ features.
+    context: When working in cursor_rules domain
+    outcome: Successfully execute php
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

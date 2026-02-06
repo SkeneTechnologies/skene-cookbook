@@ -1,0 +1,38 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors:
+    - system
+    - alter
+    - get
+    - retrieve
+    - notification
+    - alert
+    - analytics
+    - log
+    - list
+    - format
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.802920'
+    original_risk: Critical
+    changes:
+    - Flagged for manual review as potential false positive
+categorization:
+  job_function: sales
+  jtbd:
+    job: Routes leads by territory, skill, and capacity for optimal conversion using
+      AI-powered matching.
+    context: When working in revops domain
+    outcome: Successfully execute Intelligent Lead Router
+composability:
+  hints:
+  - 'can_chain_to: lead_qualification'
+  - 'can_chain_to: pipeline_health'
+  - 'can_chain_to: sales_coaching'
+  - has_structured_output

@@ -1,0 +1,132 @@
+{
+  "id": "plg_activation",
+  "version": "1.0.0",
+  "name": "User Activation",
+  "description": "EXECUTION: Guides new users from signup to first value moment, reducing time-to-value and driving activation. Uses lifecycle and messaging tools to orchestrate the activation flow. For strategy and measurement frameworks, see plg_frameworks/activation-metrics.",
+  "domain": "plg",
+  "tools": [
+    {
+      "name": "lifecycle.get_segment",
+      "required": true
+    },
+    {
+      "name": "lifecycle.record_moment",
+      "required": true
+    },
+    {
+      "name": "analytics.funnel",
+      "required": false
+    },
+    {
+      "name": "analytics.track_event",
+      "required": false
+    },
+    {
+      "name": "rag.query",
+      "required": false
+    },
+    {
+      "name": "messaging.send_in_app",
+      "required": false
+    },
+    {
+      "name": "resend.send_template",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "onboarding_flow",
+    "aha_moment_detection",
+    "support",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "userId": {
+        "type": "string",
+        "description": "User to activate"
+      },
+      "source": {
+        "type": "string",
+        "description": "Signup source (organic, paid, referral)"
+      },
+      "plan": {
+        "type": "string",
+        "description": "Current plan tier"
+      }
+    },
+    "required": [
+      "userId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "activationStage": {
+        "type": "string"
+      },
+      "nextAction": {
+        "type": "string"
+      },
+      "timeToValue": {
+        "type": "number"
+      },
+      "blockers": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "metrics": {
+    "primary": "activation_rate",
+    "benchmarks": {
+      "excellent": "> 70%",
+      "good": "50-70%",
+      "needs_improvement": "< 50%"
+    }
+  },
+  "integrations": [
+    "segment",
+    "amplitude",
+    "mixpanel"
+  ],
+  "temperature": 0,
+  "tags": [
+    "plg",
+    "activation",
+    "onboarding",
+    "growth",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with User Activation"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "lifecycle.get_segment",
+          "required": true
+        },
+        {
+          "name": "lifecycle.record_moment",
+          "required": false
+        },
+        {
+          "name": "analytics.track_event",
+          "required": false
+        },
+        {
+          "name": "messaging.send_in_app",
+          "required": false
+        }
+      ]
+    }
+  }
+}

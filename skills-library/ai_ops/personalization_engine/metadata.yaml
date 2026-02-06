@@ -1,0 +1,25 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - pii
+    risk_factors:
+    - personal
+    - get
+    - track
+    - list
+    - format
+categorization:
+  job_function: marketing
+  jtbd:
+    job: Delivers personalized content, recommendations, and experiences across touchpoints.
+    context: When working in ai_ops domain
+    outcome: Successfully execute Personalization Engine
+composability:
+  hints:
+  - 'can_chain_to: content_delivered'
+  - 'can_chain_to: recommendation_shown'
+  - 'can_chain_to: experience_adapted'

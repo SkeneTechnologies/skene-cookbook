@@ -1,0 +1,41 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - execute
+    - system
+    - alter
+    - read
+    - get
+    - log
+    - list
+    - search
+    - format
+    - compute
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.851101'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Multiagent AI system for scientific research assistance that automates research
+      workflows from data analysis to publication. This skill should be used when
+      generating research ideas from datasets, developing research methodologies,
+      executing computational experiments, performing literature searches, or generating
+      publication-ready papers in LaTeX format. Supports end-to-end research pipelines
+      with customizable agent orchestration.
+    context: When working in scientific domain
+    outcome: Successfully execute denario
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

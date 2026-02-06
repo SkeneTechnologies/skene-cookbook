@@ -1,0 +1,21 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors: []
+categorization:
+  job_function: engineering
+  jtbd:
+    job: This guide provides definitive best practices for deploying and managing
+      Amazon EC2 instances, focusing on security, cost optimization, and operational
+      excellence through Infrastructure as Code (IaC).
+    context: When working in cursor_rules domain
+    outcome: Successfully execute amazon-ec2
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

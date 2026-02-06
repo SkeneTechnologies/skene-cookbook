@@ -1,0 +1,40 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - access
+    - read
+    - get
+    - log
+    - list
+    - search
+    - format
+    - display
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.789987'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Low-level plotting library for full customization. Use when you need fine-grained
+      control over every plot element, creating novel plot types, or integrating with
+      specific scientific workflows. Export to PNG/PDF/SVG for publication. For quick
+      statistical plots use seaborn; for interactive plots use plotly; for publication-ready
+      multi-panel figures with journal styling, use scientific-visualization.
+    context: When working in scientific domain
+    outcome: Successfully execute matplotlib
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

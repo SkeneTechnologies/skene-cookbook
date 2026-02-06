@@ -1,0 +1,45 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - system
+    - update
+    - access
+    - permission
+    - sensitive
+    - read
+    - fetch
+    - get
+    - email
+    - analytics
+    - track
+    - list
+    - filter
+    - format
+    - calculate
+    - view
+    - 'risky_tool: partner.update_certification'
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.810737'
+    original_risk: Critical
+    changes:
+    - Applied field-level access control and tenant isolation
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Manages partner enablement programs including training, certification, content
+      delivery, and readiness tracking.
+    context: When working in ecosystem domain
+    outcome: Successfully execute Channel Enablement Manager
+composability:
+  hints:
+  - 'can_chain_to: partner_tier_manager'
+  - 'can_chain_to: co_sell_trigger'
+  - 'can_chain_to: deal_registration'
+  - has_structured_output

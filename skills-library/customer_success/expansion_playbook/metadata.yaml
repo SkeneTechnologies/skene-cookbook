@@ -1,0 +1,33 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - execute
+    - personal
+    - get
+    - track
+    - list
+    - format
+    - show
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.831688'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: customer_success
+  jtbd:
+    job: Identifies expansion opportunities and executes upsell/cross-sell playbooks.
+    context: When working in customer_success domain
+    outcome: Successfully execute Expansion Playbook
+composability:
+  hints:
+  - 'can_chain_to: upgrade_trigger'
+  - 'can_chain_to: handoff_orchestration'
+  - 'can_chain_to: value_realization'

@@ -1,0 +1,21 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors: []
+categorization:
+  job_function: engineering
+  jtbd:
+    job: This guide defines best practices for using the `tqdm` library to implement
+      clear, efficient, and robust progress bars in Python applications, ensuring
+      consistent user feedback and maintainable code.
+    context: When working in cursor_rules domain
+    outcome: Successfully execute tqdm
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

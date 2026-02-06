@@ -1,0 +1,28 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - alter
+    - get
+    - email
+    - message
+    - log
+    - format
+    - show
+categorization:
+  job_function: sales
+  jtbd:
+    job: Schedules optimal meeting times considering availability, timezone, deal
+      priority, and meeting type.
+    context: When working in revops domain
+    outcome: Successfully execute Intelligent Meeting Scheduler
+composability:
+  hints:
+  - 'can_chain_to: deal_inspection'
+  - 'can_chain_to: activity_capture'
+  - has_structured_output

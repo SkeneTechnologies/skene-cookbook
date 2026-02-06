@@ -1,0 +1,105 @@
+{
+  "id": "finops_magic_number",
+  "version": "1.0.0",
+  "name": "Magic Number Calculator",
+  "description": "Calculates SaaS Magic Number to measure sales and marketing efficiency for investment decisions",
+  "domain": "finops",
+  "tools": [
+    {
+      "name": "stripe.get_metrics",
+      "required": true
+    },
+    {
+      "name": "analytics.get_spend",
+      "required": true
+    },
+    {
+      "name": "analytics.calculate",
+      "required": true
+    },
+    {
+      "name": "ai.trend_analysis",
+      "required": false
+    },
+    {
+      "name": "benchmarks.compare",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "cac_calculator",
+    "burn_rate_monitor",
+    "investor_metrics",
+    "scenario_planner",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "period": {
+        "type": "string",
+        "description": "Reporting period (YYYY-QX)"
+      },
+      "include_variants": {
+        "type": "boolean",
+        "default": true
+      },
+      "net_new_arr_only": {
+        "type": "boolean",
+        "default": true
+      }
+    },
+    "required": [
+      "period"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "magic_number": {
+        "type": "number"
+      },
+      "net_magic_number": {
+        "type": "number"
+      },
+      "arr_added": {
+        "type": "number"
+      },
+      "sm_spend": {
+        "type": "number"
+      },
+      "implied_payback": {
+        "type": "number"
+      },
+      "efficiency_rating": {
+        "type": "string"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "magic_number",
+    "benchmarks": {
+      "excellent": "> 1.0",
+      "good": "0.75-1.0",
+      "needs_improvement": "< 0.75"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "finops",
+    "magic-number",
+    "efficiency",
+    "gtm",
+    "investment",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Magic Number Calculator"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

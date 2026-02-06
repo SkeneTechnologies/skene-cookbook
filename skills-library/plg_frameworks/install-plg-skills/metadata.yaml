@@ -1,0 +1,41 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - pii
+    risk_factors:
+    - remove
+    - system
+    - write
+    - update
+    - alter
+    - permission
+    - personal
+    - read
+    - get
+    - message
+    - analytics
+    - log
+    - list
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.773629'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: customer_success
+  jtbd:
+    job: Installs all 27 PLG skills from SkeneTechnologies/plg-skills repository.
+      Clones the repository and copies all skills to the target location (personal
+      or project). Use when the user wants to install PLG skills, add skills from
+      the plg-skills repository, or set up Product-Led Growth skills for Cursor.
+    context: When working in plg_frameworks domain
+    outcome: Successfully execute install-plg-skills
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

@@ -1,0 +1,46 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - drop
+    - credential
+    - system
+    - command
+    - write
+    - update
+    - access
+    - permission
+    - read
+    - get
+    - query
+    - track
+    - log
+    - monitor
+    - list
+    - search
+    - filter
+    - format
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.797176'
+    original_risk: Critical
+    changes:
+    - Migrated to OAuth authentication
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Latch platform for bioinformatics workflows. Build pipelines with Latch SDK,
+      @workflow/@task decorators, deploy serverless workflows, LatchFile/LatchDir,
+      Nextflow/Snakemake integration.
+    context: When working in scientific domain
+    outcome: Successfully execute latchbio-integration
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

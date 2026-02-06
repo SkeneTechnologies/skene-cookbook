@@ -1,0 +1,21 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors: []
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Definitive guidelines for writing high-quality, maintainable, and performant
+      Java code, adhering to modern best practices (Java 21/25) and enterprise standards
+      like Google Java Style.
+    context: When working in cursor_rules domain
+    outcome: Successfully execute java
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

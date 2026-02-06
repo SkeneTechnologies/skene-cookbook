@@ -1,0 +1,134 @@
+{
+  "id": "cs_adoption_score",
+  "version": "1.0.0",
+  "name": "Adoption Score Calculator",
+  "description": "Calculates comprehensive product adoption scores across user engagement, feature utilization, and workflow integration dimensions.",
+  "domain": "customer_success",
+  "tools": [
+    {
+      "name": "analytics.feature_adoption",
+      "required": true
+    },
+    {
+      "name": "analytics.query_events",
+      "required": true
+    },
+    {
+      "name": "lifecycle.get_segment",
+      "required": true
+    },
+    {
+      "name": "stripe.get_usage",
+      "required": false
+    },
+    {
+      "name": "crm.update_account",
+      "required": false
+    },
+    {
+      "name": "messaging.send_in_app",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "health_scoring",
+    "product_adoption_guidance",
+    "expansion_playbook",
+    "churn_prediction",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "accountId": {
+        "type": "string",
+        "description": "Customer account identifier"
+      },
+      "period": {
+        "type": "string",
+        "enum": [
+          "7d",
+          "30d",
+          "90d"
+        ],
+        "default": "30d"
+      },
+      "benchmarkCohort": {
+        "type": "string",
+        "description": "Cohort for comparison"
+      }
+    },
+    "required": [
+      "accountId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "adoptionScore": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 100
+      },
+      "breadth": {
+        "type": "number"
+      },
+      "depth": {
+        "type": "number"
+      },
+      "frequency": {
+        "type": "number"
+      },
+      "stickiness": {
+        "type": "number"
+      },
+      "featureScores": {
+        "type": "object"
+      },
+      "recommendations": {
+        "type": "array"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "avg_adoption_score",
+    "benchmarks": {
+      "excellent": "> 80",
+      "good": "60-80",
+      "needs_improvement": "< 60"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "customer_success",
+    "adoption",
+    "usage",
+    "engagement",
+    "features",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Adoption Score Calculator"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "lifecycle.get_segment",
+          "required": true
+        },
+        {
+          "name": "analytics.get_cohort",
+          "required": false
+        },
+        {
+          "name": "crm.update_account",
+          "required": false
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,28 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors:
+    - read
+    - get
+    - list
+    - display
+    - show
+    - view
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Toolkit for styling artifacts with a theme. These artifacts can be slides,
+      docs, reportings, HTML landing pages, etc. There are 10 pre-set themes with
+      colors/fonts that you can apply to any artifact that has been creating, or can
+      generate a new theme on-the-fly.
+    context: When working in anthropic_official domain
+    outcome: Successfully execute theme-factory
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

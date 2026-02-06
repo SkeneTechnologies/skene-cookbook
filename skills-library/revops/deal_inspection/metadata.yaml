@@ -1,0 +1,45 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - eval
+    - system
+    - update
+    - change
+    - access
+    - confidential
+    - read
+    - get
+    - email
+    - alert
+    - analytics
+    - log
+    - list
+    - format
+    - calculate
+    - view
+    - 'risky_tool: crm.update_deal'
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.835959'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: sales
+  jtbd:
+    job: Conducts thorough deal reviews with MEDDPICC analysis, risk assessment, and
+      actionable coaching.
+    context: When working in revops domain
+    outcome: Successfully execute Deal Inspection Assistant
+composability:
+  hints:
+  - 'can_chain_to: pipeline_health'
+  - 'can_chain_to: sales_coaching'
+  - 'can_chain_to: forecast_intelligence'
+  - has_structured_output

@@ -1,0 +1,49 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - financial
+    - eval
+    - system
+    - command
+    - write
+    - alter
+    - access
+    - read
+    - get
+    - message
+    - log
+    - list
+    - search
+    - sort
+    - format
+    - compute
+    - display
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.785696'
+    original_risk: Critical
+    changes:
+    - 'Added payment safeguards: preview, approval, limits, rollback'
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Core skill for the deep research and writing tool. Write scientific manuscripts
+      in full paragraphs (never bullet points). Use two-stage process with (1) section
+      outlines with key points using research-lookup then (2) convert to flowing prose.
+      IMRAD structure, citations (APA/AMA/Vancouver), figures/tables, reporting guidelines
+      (CONSORT/STROBE/PRISMA), for research papers and journal submissions.
+    context: When working in scientific domain
+    outcome: Successfully execute scientific-writing
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

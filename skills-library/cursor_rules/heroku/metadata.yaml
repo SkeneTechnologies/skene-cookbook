@@ -1,0 +1,22 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors:
+    - log
+categorization:
+  job_function: engineering
+  jtbd:
+    job: This guide outlines essential Heroku best practices, focusing on the Twelve-Factor
+      App methodology, runtime principles, and modern cloud-native development patterns
+      for building robust, scalable, and maintainable applications.
+    context: When working in cursor_rules domain
+    outcome: Successfully execute heroku
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

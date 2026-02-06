@@ -1,0 +1,41 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - write
+    - update
+    - change
+    - alter
+    - access
+    - permission
+    - read
+    - get
+    - track
+    - log
+    - list
+    - format
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.715621'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: security
+  jtbd:
+    job: Verifies code implements exactly what documentation specifies for blockchain
+      audits. Use when comparing code against whitepapers, finding gaps between specs
+      and implementation, or performing compliance checks for protocol implementations.
+    context: When working in security domain
+    outcome: Successfully execute spec-to-code-compliance
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

@@ -1,0 +1,44 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - personal
+    - sensitive
+    - get
+    - email
+    - notification
+    - alert
+    - analytics
+    - track
+    - log
+    - list
+    - filter
+    - format
+    - summarize
+    - view
+    - preview
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.753493'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: marketing
+  jtbd:
+    job: Plans and manages Ask-Me-Anything sessions with product teams, executives,
+      and community leaders.
+    context: When working in community domain
+    outcome: Successfully execute AMA Session Orchestrator
+composability:
+  hints:
+  - 'can_chain_to: event_manager'
+  - 'can_chain_to: content_curator'
+  - 'can_chain_to: forum_moderator'
+  - has_structured_output

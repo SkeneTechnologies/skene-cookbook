@@ -1,0 +1,30 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - get
+    - analytics
+    - track
+    - search
+    - format
+    - calculate
+    - view
+categorization:
+  job_function: marketing
+  jtbd:
+    job: Calculates Customer Acquisition Cost by channel, segment, and cohort for
+      unit economics analysis
+    context: When working in finops domain
+    outcome: Successfully execute CAC Calculator
+composability:
+  hints:
+  - 'can_chain_to: payback_period'
+  - 'can_chain_to: investor_metrics'
+  - 'can_chain_to: magic_number'
+  - 'can_chain_to: ltv_analysis'
+  - has_structured_output

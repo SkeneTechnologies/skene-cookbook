@@ -1,0 +1,39 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - credential
+    - system
+    - write
+    - update
+    - access
+    - read
+    - list
+    - search
+    - filter
+    - format
+    - compute
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.789687'
+    original_risk: Critical
+    changes:
+    - Migrated to OAuth authentication
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Chunked N-D arrays for cloud storage. Compressed arrays, parallel I/O, S3/GCS
+      integration, NumPy/Dask/Xarray compatible, for large-scale scientific computing
+      pipelines.
+    context: When working in scientific domain
+    outcome: Successfully execute zarr-python
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

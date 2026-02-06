@@ -1,0 +1,48 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - execute
+    - system
+    - command
+    - write
+    - update
+    - alter
+    - access
+    - read
+    - fetch
+    - get
+    - query
+    - log
+    - list
+    - search
+    - filter
+    - sort
+    - format
+    - aggregate
+    - view
+    - preview
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.846912'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Query and download public cancer imaging data from NCI Imaging Data Commons
+      using idc-index. Use for accessing large-scale radiology (CT, MR, PET) and pathology
+      datasets for AI training or research. No authentication required. Query by metadata,
+      visualize in browser, check licenses.
+    context: When working in scientific domain
+    outcome: Successfully execute imaging-data-commons
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

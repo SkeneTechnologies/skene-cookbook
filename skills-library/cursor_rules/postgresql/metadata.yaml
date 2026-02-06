@@ -1,0 +1,21 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors: []
+categorization:
+  job_function: design
+  jtbd:
+    job: This guide defines the definitive best practices for writing clean, performant,
+      and maintainable PostgreSQL SQL, focusing on modern conventions and avoiding
+      common pitfalls.
+    context: When working in cursor_rules domain
+    outcome: Successfully execute postgresql
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

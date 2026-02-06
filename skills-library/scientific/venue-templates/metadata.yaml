@@ -1,0 +1,49 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - eval
+    - system
+    - write
+    - update
+    - access
+    - read
+    - get
+    - retrieve
+    - query
+    - email
+    - log
+    - list
+    - search
+    - sort
+    - format
+    - compute
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.790579'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Access comprehensive LaTeX templates, formatting requirements, and submission
+      guidelines for major scientific publication venues (Nature, Science, PLOS, IEEE,
+      ACM), academic conferences (NeurIPS, ICML, CVPR, CHI), research posters, and
+      grant proposals (NSF, NIH, DOE, DARPA). This skill should be used when preparing
+      manuscripts for journal submission, conference papers, research posters, or
+      grant proposals and need venue-specific formatting requirements and templates.
+    context: When working in scientific domain
+    outcome: Successfully execute venue-templates
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

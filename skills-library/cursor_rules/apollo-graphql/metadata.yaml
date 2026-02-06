@@ -1,0 +1,20 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors: []
+categorization:
+  job_function: design
+  jtbd:
+    job: Definitive guidelines for building robust, performant, and maintainable apollo-graphql
+      applications using modern best practices and tooling.
+    context: When working in cursor_rules domain
+    outcome: Successfully execute apollo-graphql
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

@@ -1,0 +1,21 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors:
+    - query
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Definitive guidelines for writing robust, maintainable, and performant Peewee
+      ORM code in Python, covering data modeling, querying, and application structure.
+    context: When working in cursor_rules domain
+    outcome: Successfully execute peewee
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

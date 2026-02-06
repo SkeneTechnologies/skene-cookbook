@@ -1,0 +1,44 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - delete
+    - remove
+    - eval
+    - system
+    - write
+    - update
+    - change
+    - alter
+    - personal
+    - get
+    - retrieve
+    - analytics
+    - monitor
+    - format
+    - view
+    - 'risky_tool: support.update_macro'
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.710057'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: data
+  jtbd:
+    job: Analyzes macro usage patterns to identify optimization opportunities, suggest
+      new macros, and retire ineffective ones.
+    context: When working in support_ops domain
+    outcome: Successfully execute Macros Optimizer
+composability:
+  hints:
+  - 'can_chain_to: first_response'
+  - 'can_chain_to: kb_gap_finder'
+  - 'can_chain_to: resolution_suggester'
+  - has_structured_output

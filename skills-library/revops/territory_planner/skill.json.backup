@@ -1,0 +1,141 @@
+{
+  "id": "revops_territory_planner",
+  "version": "1.0.0",
+  "name": "Territory Planning Engine",
+  "description": "Designs balanced sales territories optimizing for coverage, capacity, and revenue potential.",
+  "domain": "revops",
+  "tools": [
+    {
+      "name": "crm.get_accounts",
+      "required": true
+    },
+    {
+      "name": "crm.get_reps",
+      "required": true
+    },
+    {
+      "name": "analytics.get_market_data",
+      "required": true
+    },
+    {
+      "name": "analytics.get_historical_performance",
+      "required": true
+    },
+    {
+      "name": "ai.cluster_accounts",
+      "required": true
+    },
+    {
+      "name": "ai.optimize_territories",
+      "required": true
+    },
+    {
+      "name": "crm.update_territory",
+      "required": false
+    },
+    {
+      "name": "crm.bulk_reassign",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "quota_setter",
+    "lead_routing",
+    "pipeline_health",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "planningYear": {
+        "type": "number"
+      },
+      "region": {
+        "type": "string"
+      },
+      "segment": {
+        "type": "string",
+        "enum": [
+          "enterprise",
+          "mid-market",
+          "smb",
+          "all"
+        ]
+      },
+      "headcount": {
+        "type": "number",
+        "description": "Number of reps to plan for"
+      },
+      "balanceMetric": {
+        "type": "string",
+        "enum": [
+          "revenue",
+          "accounts",
+          "opportunities"
+        ]
+      }
+    },
+    "required": [
+      "planningYear"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "territories": {
+        "type": "array"
+      },
+      "balanceScore": {
+        "type": "number"
+      },
+      "coverageGaps": {
+        "type": "array"
+      },
+      "revenueProjection": {
+        "type": "object"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "territory_balance_coefficient",
+    "benchmarks": {
+      "excellent": "< 0.15 CV",
+      "good": "0.15-0.25 CV",
+      "needs_improvement": "> 0.25 CV"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "revops",
+    "territory",
+    "planning",
+    "coverage",
+    "capacity",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Territory Planning Engine",
+        "sales pipeline"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "crm.get_pipeline",
+          "required": true
+        },
+        {
+          "name": "crm.list_deals",
+          "required": false
+        },
+        {
+          "name": "analytics.get_forecast",
+          "required": false
+        }
+      ]
+    }
+  }
+}

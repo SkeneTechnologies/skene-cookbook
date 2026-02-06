@@ -1,0 +1,46 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - drop
+    - payment
+    - system
+    - update
+    - access
+    - personal
+    - read
+    - get
+    - email
+    - message
+    - analytics
+    - track
+    - log
+    - list
+    - search
+    - format
+    - show
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.765478'
+    original_risk: Critical
+    changes:
+    - 'Added payment safeguards: preview, approval, limits, rollback'
+categorization:
+  job_function: data
+  jtbd:
+    job: Retention curves, cohort analysis, churn prediction, engagement scoring,
+      and resurrection strategies
+    context: When working in plg_frameworks domain
+    outcome: Successfully execute Retention Analysis
+composability:
+  hints:
+  - 'can_chain_to: analysis_complete'
+  - 'can_chain_to: churn_risk_identified'
+  - 'can_chain_to: resurrection_campaign'
+  - 'can_chain_to: healthy_retention'
+  - has_structured_output

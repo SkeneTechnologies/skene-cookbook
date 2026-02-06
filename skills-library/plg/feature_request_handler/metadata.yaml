@@ -1,0 +1,47 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - eval
+    - system
+    - update
+    - alter
+    - confidential
+    - read
+    - get
+    - query
+    - email
+    - notification
+    - analytics
+    - track
+    - log
+    - list
+    - search
+    - filter
+    - format
+    - view
+    - 'risky_tool: crm.update_contact'
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.821894'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: data
+  jtbd:
+    job: Captures, categorizes, and responds to feature requests while identifying
+      existing solutions and setting appropriate expectations.
+    context: When working in plg domain
+    outcome: Successfully execute Feature Request Handler
+composability:
+  hints:
+  - 'can_chain_to: support'
+  - 'can_chain_to: contextual_help'
+  - 'can_chain_to: activation'
+  - has_structured_output

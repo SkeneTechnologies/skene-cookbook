@@ -1,0 +1,41 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors:
+    - system
+    - access
+    - read
+    - get
+    - query
+    - message
+    - analytics
+    - track
+    - list
+    - search
+    - filter
+    - format
+    - show
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.799558'
+    original_risk: Critical
+    changes:
+    - Flagged for manual review as potential false positive
+categorization:
+  job_function: data
+  jtbd:
+    job: Delivers intelligent, context-aware help content and guidance based on user's
+      current location, action, and history.
+    context: When working in plg domain
+    outcome: Successfully execute Contextual Help Provider
+composability:
+  hints:
+  - 'can_chain_to: support'
+  - 'can_chain_to: interactive_tour'
+  - 'can_chain_to: onboarding_flow'
+  - has_structured_output

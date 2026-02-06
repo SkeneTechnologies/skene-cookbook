@@ -1,0 +1,129 @@
+{
+  "id": "community_event_manager",
+  "version": "1.0.0",
+  "name": "Community Event Manager",
+  "description": "Plans, promotes, and manages community events including meetups, webinars, and virtual gatherings.",
+  "domain": "community",
+  "tools": [
+    {
+      "name": "calendar.create_event",
+      "required": true
+    },
+    {
+      "name": "messaging.send_email",
+      "required": true
+    },
+    {
+      "name": "messaging.send_in_app",
+      "required": false
+    },
+    {
+      "name": "analytics.track_event",
+      "required": true
+    },
+    {
+      "name": "crm.get_segment",
+      "required": false
+    },
+    {
+      "name": "ai.generate",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "ama_orchestrator",
+    "user_group_manager",
+    "swag_manager",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "eventType": {
+        "type": "string",
+        "enum": [
+          "meetup",
+          "webinar",
+          "workshop",
+          "conference",
+          "virtual_hangout"
+        ],
+        "description": "Type of event"
+      },
+      "eventName": {
+        "type": "string",
+        "description": "Name of the event"
+      },
+      "eventDate": {
+        "type": "string",
+        "format": "date-time",
+        "description": "Event date and time"
+      },
+      "targetAudience": {
+        "type": "string",
+        "description": "Target audience segment"
+      },
+      "capacity": {
+        "type": "number",
+        "description": "Maximum attendees"
+      },
+      "speakers": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        },
+        "description": "Event speakers"
+      }
+    },
+    "required": [
+      "eventType",
+      "eventName",
+      "eventDate"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "eventId": {
+        "type": "string"
+      },
+      "registrationCount": {
+        "type": "number"
+      },
+      "promotionPlan": {
+        "type": "object"
+      },
+      "eventMaterials": {
+        "type": "object"
+      },
+      "attendanceRate": {
+        "type": "number"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "event_attendance_rate",
+    "benchmarks": {
+      "excellent": "> 70%",
+      "good": "50-70%",
+      "needs_improvement": "< 50%"
+    }
+  },
+  "temperature": 0.3,
+  "tags": [
+    "events",
+    "meetups",
+    "webinars",
+    "engagement",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Community Event Manager"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

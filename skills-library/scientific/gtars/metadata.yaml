@@ -1,0 +1,42 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - eval
+    - shell
+    - command
+    - access
+    - read
+    - get
+    - query
+    - track
+    - log
+    - search
+    - filter
+    - format
+    - compute
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.850038'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: engineering
+  jtbd:
+    job: High-performance toolkit for genomic interval analysis in Rust with Python
+      bindings. Use when working with genomic regions, BED files, coverage tracks,
+      overlap detection, tokenization for ML models, or fragment analysis in computational
+      genomics and machine learning applications.
+    context: When working in scientific domain
+    outcome: Successfully execute gtars
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

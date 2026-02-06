@@ -1,0 +1,52 @@
+{
+  "id": "marketing_plg_score_explainer",
+  "version": "1.0.0",
+  "name": "plg-score-explainer",
+  "description": "Calculates and explains PLG readiness scores for codebases. Breaks down scoring components, identifies strengths and gaps, and provides actionable recommendations for improvement. Use when interpreting skene-growth analysis results.",
+  "domain": "marketing",
+  "category": "analytics",
+  "source": "skene-marketing",
+  "tools": [],
+  "exitStates": [
+    "idle",
+    "support"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {},
+    "required": []
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {}
+  },
+  "temperature": 0.3,
+  "tags": [
+    "marketing",
+    "analytics",
+    "plg-score-explainer",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with plg score explainer",
+        "growth marketing",
+        "interpreting skene-growth analysis results"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "resend.send_email",
+          "required": false
+        },
+        {
+          "name": "analytics.track_campaign",
+          "required": false
+        }
+      ]
+    }
+  }
+}

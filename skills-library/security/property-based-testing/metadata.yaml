@@ -1,0 +1,39 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - write
+    - access
+    - read
+    - get
+    - message
+    - log
+    - list
+    - sort
+    - format
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.714385'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: security
+  jtbd:
+    job: Provides guidance for property-based testing across multiple languages and
+      smart contracts. Use when writing tests, reviewing code with serialization/validation/parsing
+      patterns, designing features, or when property-based testing would provide stronger
+      coverage than example-based tests.
+    context: When working in security domain
+    outcome: Successfully execute property-based-testing
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

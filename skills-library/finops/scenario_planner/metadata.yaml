@@ -1,0 +1,38 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - financial
+    risk_factors:
+    - financial
+    - update
+    - change
+    - get
+    - analytics
+    - track
+    - monitor
+    - format
+    - calculate
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.711735'
+    original_risk: Critical
+    changes:
+    - 'Added payment safeguards: preview, approval, limits, rollback'
+categorization:
+  job_function: finance
+  jtbd:
+    job: Models financial scenarios to support strategic planning and decision-making
+    context: When working in finops domain
+    outcome: Successfully execute Financial Scenario Planner
+composability:
+  hints:
+  - 'can_chain_to: burn_rate_monitor'
+  - 'can_chain_to: investor_metrics'
+  - 'can_chain_to: rule_of_40'
+  - 'can_chain_to: budget_planning'
+  - has_structured_output

@@ -1,0 +1,45 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - drop
+    - system
+    - write
+    - update
+    - change
+    - read
+    - get
+    - analytics
+    - track
+    - log
+    - monitor
+    - list
+    - format
+    - calculate
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.775865'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: customer_success
+  jtbd:
+    job: When the user wants to design, prioritize, or analyze growth experiments
+      -- including A/B tests, hypothesis frameworks, ICE/RICE scoring, or growth sprints.
+      Also use when the user says "A/B test," "experiment design," "growth sprint,"
+      "experiment prioritization," or "statistical significance." For analytics setup,
+      see product-analytics. For growth modeling, see growth-modeling.
+    context: When working in plg_frameworks domain
+    outcome: Successfully execute growth-experimentation
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

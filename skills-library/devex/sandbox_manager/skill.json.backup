@@ -1,0 +1,120 @@
+{
+  "id": "devex_sandbox_manager",
+  "version": "1.0.0",
+  "name": "Developer Sandbox Manager",
+  "description": "Provisions and manages isolated sandbox environments for safe API experimentation and testing.",
+  "domain": "devex",
+  "tools": [
+    {
+      "name": "sandbox.provision",
+      "required": true
+    },
+    {
+      "name": "sandbox.reset",
+      "required": true
+    },
+    {
+      "name": "sandbox.seed_data",
+      "required": false
+    },
+    {
+      "name": "analytics.track_sandbox",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "api_onboarding",
+    "webhook_tester",
+    "code_sample_generator",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "developer_id": {
+        "type": "string",
+        "description": "Developer requesting sandbox"
+      },
+      "action": {
+        "type": "string",
+        "enum": [
+          "provision",
+          "reset",
+          "extend",
+          "delete",
+          "status"
+        ],
+        "default": "status"
+      },
+      "sandbox_type": {
+        "type": "string",
+        "enum": [
+          "basic",
+          "seeded",
+          "clone"
+        ],
+        "default": "seeded"
+      },
+      "data_preset": {
+        "type": "string",
+        "description": "Preset data to seed"
+      },
+      "expiration_days": {
+        "type": "integer",
+        "default": 30
+      }
+    },
+    "required": [
+      "developer_id"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "sandbox_id": {
+        "type": "string"
+      },
+      "credentials": {
+        "type": "object"
+      },
+      "base_url": {
+        "type": "string"
+      },
+      "seeded_data": {
+        "type": "object"
+      },
+      "expiration": {
+        "type": "string"
+      },
+      "usage_stats": {
+        "type": "object"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "sandbox_activation_rate",
+    "benchmarks": {
+      "excellent": "> 80% developers use sandbox",
+      "good": "50-80% developers use sandbox",
+      "needs_improvement": "< 50% developers use sandbox"
+    }
+  },
+  "temperature": 0.1,
+  "tags": [
+    "devex",
+    "sandbox",
+    "testing",
+    "onboarding",
+    "environment",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Developer Sandbox Manager"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

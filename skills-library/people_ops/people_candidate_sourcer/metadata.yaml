@@ -1,0 +1,43 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - eval
+    - alter
+    - personal
+    - get
+    - query
+    - message
+    - analytics
+    - track
+    - monitor
+    - list
+    - search
+    - filter
+    - sort
+    - format
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.746496'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: legal
+  jtbd:
+    job: Assists recruiters in finding and engaging qualified candidates through intelligent
+      sourcing, outreach generation, and pipeline management.
+    context: When working in people_ops domain
+    outcome: Successfully execute Candidate Sourcing Assistant
+composability:
+  hints:
+  - 'can_chain_to: people_comp_benchmarker'
+  - 'can_chain_to: people_skill_gap_analyzer'
+  - has_structured_output

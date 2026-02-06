@@ -1,0 +1,43 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - update
+    - change
+    - access
+    - read
+    - get
+    - query
+    - message
+    - analytics
+    - track
+    - log
+    - list
+    - format
+    - view
+    - 'risky_tool: crm.update_contact'
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.869371'
+    original_risk: High
+    changes:
+    - Added validation, preview mode, and rollback for writes
+categorization:
+  job_function: customer_success
+  jtbd:
+    job: Identifies potential customer advocates and reference candidates based on
+      satisfaction, engagement, and success signals.
+    context: When working in customer_success domain
+    outcome: Successfully execute Advocacy Identifier
+composability:
+  hints:
+  - 'can_chain_to: stakeholder_mapper'
+  - 'can_chain_to: expansion_playbook'
+  - 'can_chain_to: outcome_tracker'
+  - 'can_chain_to: marketing_handoff'
+  - has_structured_output

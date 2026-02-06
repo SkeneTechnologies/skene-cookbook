@@ -1,0 +1,43 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - eval
+    - change
+    - alter
+    - access
+    - personal
+    - sensitive
+    - get
+    - track
+    - list
+    - sort
+    - format
+    - calculate
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.733889'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: marketing
+  jtbd:
+    job: Analyzes meeting transcripts and recordings to uncover behavioral patterns,
+      communication insights, and actionable feedback. Identifies when you avoid conflict,
+      use filler words, dominate conversations, or miss opportunities to listen. Perfect
+      for professionals seeking to improve their communication and leadership skills.
+    context: When working in marketing domain
+    outcome: Successfully execute meeting-insights-analyzer
+composability:
+  hints:
+  - 'can_chain_to: support'
+  - has_structured_output

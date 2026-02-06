@@ -1,0 +1,39 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - payment
+    - eval
+    - alter
+    - sensitive
+    - get
+    - retrieve
+    - analytics
+    - track
+    - log
+    - list
+    - format
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.758858'
+    original_risk: Critical
+    changes:
+    - 'Added payment safeguards: preview, approval, limits, rollback'
+categorization:
+  job_function: sales
+  jtbd:
+    job: Optimizes discount strategies to maximize conversion while protecting margins
+    context: When working in monetization domain
+    outcome: Successfully execute Discount Optimization Engine
+composability:
+  hints:
+  - 'can_chain_to: discount_approved'
+  - 'can_chain_to: discount_denied'
+  - 'can_chain_to: alternative_offered'
+  - 'can_chain_to: escalation_required'
+  - has_structured_output

@@ -1,0 +1,45 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - api_key
+    - eval
+    - system
+    - command
+    - write
+    - change
+    - alter
+    - access
+    - read
+    - get
+    - query
+    - message
+    - log
+    - search
+    - format
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.777758'
+    original_risk: Critical
+    changes:
+    - Migrated to OAuth authentication
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Look up current research information using Perplexity Sonar Pro Search or
+      Sonar Reasoning Pro models through OpenRouter. Automatically selects the best
+      model based on query complexity. Search academic papers, recent studies, technical
+      documentation, and general research information with citations.
+    context: When working in scientific domain
+    outcome: Successfully execute research-lookup
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

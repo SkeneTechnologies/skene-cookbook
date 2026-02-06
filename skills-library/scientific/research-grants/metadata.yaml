@@ -1,0 +1,46 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - eval
+    - system
+    - write
+    - change
+    - alter
+    - access
+    - read
+    - get
+    - track
+    - log
+    - monitor
+    - list
+    - search
+    - format
+    - calculate
+    - summarize
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.850456'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Write competitive research proposals for NSF, NIH, DOE, DARPA, and Taiwan
+      NSTC. Agency-specific formatting, review criteria, budget preparation, broader
+      impacts, significance statements, innovation narratives, and compliance with
+      submission requirements.
+    context: When working in scientific domain
+    outcome: Successfully execute research-grants
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

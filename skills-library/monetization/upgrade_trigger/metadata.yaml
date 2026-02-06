@@ -1,0 +1,36 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - execute
+    - update
+    - personal
+    - email
+    - message
+    - list
+    - format
+    - show
+    - 'risky_tool: stripe.update_subscription'
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.839845'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: sales
+  jtbd:
+    job: Identifies optimal moments to present upgrade offers and executes upgrade
+      flows.
+    context: When working in monetization domain
+    outcome: Successfully execute Upgrade Trigger
+composability:
+  hints:
+  - 'can_chain_to: checkout'
+  - 'can_chain_to: billing_portal'
+  - 'can_chain_to: expansion_playbook'

@@ -1,0 +1,37 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - execute
+    - command
+    - write
+    - change
+    - read
+    - message
+    - log
+    - list
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.841097'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Use when about to claim work is complete, fixed, or passing, before committing
+      or creating PRs - requires running verification commands and confirming output
+      before making any success claims; evidence before assertions always
+    context: When working in superpowers domain
+    outcome: Successfully execute verification-before-completion
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

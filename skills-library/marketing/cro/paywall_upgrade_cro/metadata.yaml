@@ -1,0 +1,54 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - delete
+    - remove
+    - destroy
+    - payment
+    - system
+    - change
+    - alter
+    - access
+    - personal
+    - read
+    - get
+    - email
+    - alert
+    - analytics
+    - track
+    - log
+    - list
+    - format
+    - summarize
+    - display
+    - show
+    - view
+    - preview
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.740116'
+    original_risk: Critical
+    changes:
+    - 'Added payment safeguards: preview, approval, limits, rollback'
+categorization:
+  job_function: marketing
+  jtbd:
+    job: "When the user wants to create or optimize in-app paywalls, upgrade screens,\
+      \ upsell modals, or feature gates. Also use when the user mentions \"paywall,\"\
+      \ \"upgrade screen,\" \"upgrade modal,\" \"upsell,\" \"feature gate,\" \"convert\
+      \ free to paid,\" \"freemium conversion,\" \"trial expiration screen,\" \"limit\
+      \ reached screen,\" \"plan upgrade prompt,\" or \"in-app pricing.\" Distinct\
+      \ from public pricing pages (see page-cro) \u2014 this skill focuses on in-product\
+      \ upgrade moments where the user has already experienced value."
+    context: When working in marketing domain
+    outcome: Successfully execute paywall-upgrade-cro
+composability:
+  hints:
+  - 'can_chain_to: support'
+  - has_structured_output

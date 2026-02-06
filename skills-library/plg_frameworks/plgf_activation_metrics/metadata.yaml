@@ -1,0 +1,40 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - drop
+    - payment
+    - update
+    - personal
+    - read
+    - get
+    - message
+    - analytics
+    - track
+    - list
+    - format
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.762485'
+    original_risk: Critical
+    changes:
+    - 'Added payment safeguards: preview, approval, limits, rollback'
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Setup/Aha/Habit moments framework (Shaun Clowes), aha moment identification,
+      and time-to-value optimization
+    context: When working in plg_frameworks domain
+    outcome: Successfully execute Activation Metrics
+composability:
+  hints:
+  - 'can_chain_to: aha_identified'
+  - 'can_chain_to: habit_formed'
+  - 'can_chain_to: needs_optimization'
+  - 'can_chain_to: churn_risk'
+  - has_structured_output

@@ -1,0 +1,49 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - drop
+    - financial
+    - eval
+    - change
+    - access
+    - personal
+    - read
+    - get
+    - query
+    - email
+    - analytics
+    - track
+    - log
+    - list
+    - search
+    - format
+    - show
+    - view
+    - preview
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.744187'
+    original_risk: Critical
+    changes:
+    - 'Added payment safeguards: preview, approval, limits, rollback'
+categorization:
+  job_function: marketing
+  jtbd:
+    job: "When the user wants to plan, evaluate, or build a free tool for marketing\
+      \ purposes \u2014 lead generation, SEO value, or brand awareness. Also use when\
+      \ the user mentions \"engineering as marketing,\" \"free tool,\" \"marketing\
+      \ tool,\" \"calculator,\" \"generator,\" \"interactive tool,\" \"lead gen tool,\"\
+      \ \"build a tool for leads,\" or \"free resource.\" This skill bridges engineering\
+      \ and marketing \u2014 useful for founders and technical marketers."
+    context: When working in marketing domain
+    outcome: Successfully execute free-tool-strategy
+composability:
+  hints:
+  - 'can_chain_to: support'
+  - has_structured_output

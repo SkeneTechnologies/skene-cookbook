@@ -1,0 +1,48 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - eval
+    - system
+    - write
+    - update
+    - change
+    - alter
+    - read
+    - get
+    - log
+    - list
+    - search
+    - filter
+    - sort
+    - format
+    - aggregate
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.825140'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: marketing
+  jtbd:
+    job: '"When the user wants to create competitor comparison or alternative pages
+      for SEO and sales enablement. Also use when the user mentions ''alternative
+      page,'' ''vs page,'' ''competitor comparison,'' ''comparison page,'' ''[Product]
+      vs [Product],'' ''[Product] alternative,'' or ''competitive landing pages.''
+      Covers four formats: singular alternative, plural alternatives, you vs competitor,
+      and competitor vs competitor. Emphasizes deep research, modular content architecture,
+      and varied section types beyond feature tables."'
+    context: When working in marketing domain
+    outcome: Successfully execute competitor-alternatives
+composability:
+  hints:
+  - 'can_chain_to: support'
+  - has_structured_output

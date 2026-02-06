@@ -1,0 +1,22 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - access
+categorization:
+  job_function: hr
+  jtbd:
+    job: This guide provides definitive best practices for developing high-performance,
+      maintainable, and accessible Ionic applications using modern TypeScript and
+      web standards.
+    context: When working in cursor_rules domain
+    outcome: Successfully execute ionic
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

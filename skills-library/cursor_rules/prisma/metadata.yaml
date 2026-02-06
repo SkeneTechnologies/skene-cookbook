@@ -1,0 +1,20 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors: []
+categorization:
+  job_function: data
+  jtbd:
+    job: Enforce best practices for Prisma ORM, ensuring type-safe, performant, and
+      maintainable database interactions in modern TypeScript applications.
+    context: When working in cursor_rules domain
+    outcome: Successfully execute prisma
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

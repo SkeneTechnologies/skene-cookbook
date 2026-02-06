@@ -1,0 +1,21 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors: []
+categorization:
+  job_function: security
+  jtbd:
+    job: This guide establishes definitive best practices for integrating Clerk, focusing
+      on robust security, efficient session management, and secure token handling
+      in line with modern OAuth 2.0 (RFC 9700) and JWT (RFC 8725) standards.
+    context: When working in cursor_rules domain
+    outcome: Successfully execute clerk
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

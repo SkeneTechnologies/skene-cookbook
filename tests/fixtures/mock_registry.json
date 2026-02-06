@@ -1,0 +1,28 @@
+{
+  "engineering": [
+    {
+      "skill_id": "test_skill_1",
+      "name": "Data Analyzer",
+      "path": "tests/fixtures/test_skill_1/skill.json"
+    },
+    {
+      "skill_id": "test_skill_2",
+      "name": "Report Generator",
+      "path": "tests/fixtures/test_skill_2/skill.json"
+    }
+  ],
+  "marketing": [
+    {
+      "skill_id": "test_skill_4",
+      "name": "Marketing Campaign Creator",
+      "path": "tests/fixtures/test_skill_4/skill.json"
+    }
+  ],
+  "finops": [
+    {
+      "skill_id": "test_skill_8",
+      "name": "Payment Processor",
+      "path": "tests/fixtures/test_skill_8/skill.json"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - system
+    - command
+    - write
+    - update
+    - read
+    - get
+    - message
+    - log
+    - list
+    - search
+    - format
+    - display
+    - show
+    - view
+    - preview
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.784552'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: design
+  jtbd:
+    job: Create research posters using HTML/CSS that can be exported to PDF or PPTX.
+      Use this skill ONLY when the user explicitly requests PowerPoint/PPTX poster
+      format. For standard research posters, use latex-posters instead. This skill
+      provides modern web-based poster design with responsive layouts and easy visual
+      integration.
+    context: When working in scientific domain
+    outcome: Successfully execute pptx-posters
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

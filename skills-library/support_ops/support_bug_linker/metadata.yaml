@@ -1,0 +1,43 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - update
+    - alter
+    - sensitive
+    - read
+    - get
+    - query
+    - notification
+    - alert
+    - message
+    - track
+    - log
+    - search
+    - format
+    - calculate
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.861519'
+    original_risk: High
+    changes:
+    - Applied field-level access control and tenant isolation
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Automatically links support tickets to existing bug reports and creates new
+      bug reports when patterns emerge.
+    context: When working in support_ops domain
+    outcome: Successfully execute Bug Report Linker
+composability:
+  hints:
+  - 'can_chain_to: resolution_suggester'
+  - 'can_chain_to: escalation_predictor'
+  - 'can_chain_to: kb_gap_finder'
+  - has_structured_output

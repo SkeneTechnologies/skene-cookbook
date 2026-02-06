@@ -1,0 +1,45 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - truncate
+    - command
+    - write
+    - update
+    - change
+    - access
+    - read
+    - get
+    - list
+    - search
+    - format
+    - compute
+    - display
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.791717'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Meta-skill for publication-ready figures. Use when creating journal submission
+      figures requiring multi-panel layouts, significance annotations, error bars,
+      colorblind-safe palettes, and specific journal formatting (Nature, Science,
+      Cell). Orchestrates matplotlib/seaborn/plotly with publication styles. For quick
+      exploration use seaborn or plotly directly.
+    context: When working in scientific domain
+    outcome: Successfully execute scientific-visualization
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

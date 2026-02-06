@@ -1,0 +1,132 @@
+{
+  "id": "cs_csql_generator",
+  "version": "1.0.0",
+  "name": "CS-Qualified Lead Generator",
+  "description": "Identifies and qualifies expansion and upsell opportunities from the customer success perspective, generating CS-Qualified Leads (CSQLs).",
+  "domain": "customer_success",
+  "tools": [
+    {
+      "name": "analytics.feature_adoption",
+      "required": true
+    },
+    {
+      "name": "stripe.get_usage",
+      "required": true
+    },
+    {
+      "name": "lifecycle.get_segment",
+      "required": true
+    },
+    {
+      "name": "crm.get_account",
+      "required": false
+    },
+    {
+      "name": "crm.create_deal",
+      "required": false
+    },
+    {
+      "name": "messaging.send_alert",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "expansion_playbook",
+    "stakeholder_mapper",
+    "health_scoring",
+    "handoff_orchestration",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "accountId": {
+        "type": "string",
+        "description": "Customer account identifier"
+      },
+      "csqlTypes": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": [
+            "upsell",
+            "cross_sell",
+            "seat_expansion",
+            "tier_upgrade"
+          ]
+        }
+      },
+      "minimumScore": {
+        "type": "number",
+        "default": 70,
+        "description": "Minimum qualification score"
+      }
+    },
+    "required": [
+      "accountId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "csqls": {
+        "type": "array"
+      },
+      "totalOpportunityValue": {
+        "type": "number"
+      },
+      "readinessScore": {
+        "type": "number"
+      },
+      "recommendedApproach": {
+        "type": "string"
+      },
+      "handoffDetails": {
+        "type": "object"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "csql_conversion_rate",
+    "benchmarks": {
+      "excellent": "> 40%",
+      "good": "25-40%",
+      "needs_improvement": "< 25%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "customer_success",
+    "csql",
+    "expansion",
+    "leads",
+    "revenue",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with CS Qualified Lead Generator",
+        "customer health",
+        "expansion"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "lifecycle.get_segment",
+          "required": true
+        },
+        {
+          "name": "analytics.get_cohort",
+          "required": false
+        },
+        {
+          "name": "crm.update_account",
+          "required": false
+        }
+      ]
+    }
+  }
+}

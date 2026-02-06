@@ -1,0 +1,127 @@
+{
+  "id": "plgf_growth_loops",
+  "version": "1.0.0",
+  "name": "Growth Loop Designer",
+  "description": "Design and model growth loops including viral, content, paid, and sales loops with S-curve sequencing and compounding math",
+  "domain": "plg_frameworks",
+  "tools": [
+    {
+      "name": "analytics.get_metrics",
+      "required": true
+    },
+    {
+      "name": "analytics.get_cohort",
+      "required": true
+    },
+    {
+      "name": "analytics.track_event",
+      "required": false
+    },
+    {
+      "name": "ui_kit.chart",
+      "required": false
+    },
+    {
+      "name": "ui_kit.panel",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "loop_designed",
+    "loop_modeled",
+    "needs_optimization",
+    "insufficient_data",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "companyId": {
+        "type": "string",
+        "description": "Company or product identifier"
+      },
+      "loopType": {
+        "type": "string",
+        "enum": [
+          "viral",
+          "content",
+          "paid",
+          "sales",
+          "product"
+        ],
+        "description": "Type of growth loop to design"
+      },
+      "currentMetrics": {
+        "type": "object",
+        "description": "Current growth metrics"
+      },
+      "targetGrowthRate": {
+        "type": "number",
+        "description": "Target monthly growth rate percentage"
+      },
+      "budget": {
+        "type": "number",
+        "description": "Available budget for paid loops"
+      }
+    },
+    "required": [
+      "companyId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "loopDesign": {
+        "type": "object"
+      },
+      "quantitativeModel": {
+        "type": "object"
+      },
+      "sCurvePosition": {
+        "type": "string"
+      },
+      "compoundingFactor": {
+        "type": "number"
+      },
+      "loopEfficiency": {
+        "type": "number"
+      },
+      "sequencingRecommendation": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "projections": {
+        "type": "object"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "loop_efficiency_ratio",
+    "benchmarks": {
+      "excellent": "> 2.0",
+      "good": "1.0-2.0",
+      "needs_improvement": "< 1.0"
+    }
+  },
+  "temperature": 0.3,
+  "tags": [
+    "plg_frameworks",
+    "growth_loops",
+    "viral",
+    "compounding",
+    "brian_balfour",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Growth Loop Designer",
+        "growth framework"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

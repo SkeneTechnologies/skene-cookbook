@@ -1,0 +1,148 @@
+{
+  "id": "revops_lead_routing",
+  "version": "1.0.0",
+  "name": "Intelligent Lead Router",
+  "description": "Routes leads by territory, skill, and capacity for optimal conversion using AI-powered matching.",
+  "domain": "revops",
+  "tools": [
+    {
+      "name": "crm.get_reps",
+      "required": true
+    },
+    {
+      "name": "crm.get_rep_capacity",
+      "required": true
+    },
+    {
+      "name": "crm.assign_lead",
+      "required": true
+    },
+    {
+      "name": "crm.get_territories",
+      "required": true
+    },
+    {
+      "name": "crm.log_activity",
+      "required": true
+    },
+    {
+      "name": "ai.match",
+      "required": true
+    },
+    {
+      "name": "analytics.get_rep_performance",
+      "required": false
+    },
+    {
+      "name": "messaging.send_notification",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "lead_qualification",
+    "pipeline_health",
+    "sales_coaching",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "leadId": {
+        "type": "string",
+        "description": "Lead to be routed"
+      },
+      "accountId": {
+        "type": "string"
+      },
+      "leadScore": {
+        "type": "number"
+      },
+      "estimatedDealSize": {
+        "type": "number"
+      },
+      "industry": {
+        "type": "string"
+      },
+      "region": {
+        "type": "string"
+      },
+      "urgency": {
+        "type": "string",
+        "enum": [
+          "low",
+          "medium",
+          "high",
+          "critical"
+        ]
+      }
+    },
+    "required": [
+      "leadId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "assignedRepId": {
+        "type": "string"
+      },
+      "assignedRepName": {
+        "type": "string"
+      },
+      "routingReason": {
+        "type": "string"
+      },
+      "matchScore": {
+        "type": "number"
+      },
+      "expectedResponseTime": {
+        "type": "string"
+      },
+      "fallbackRep": {
+        "type": "string"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "lead_response_time",
+    "benchmarks": {
+      "excellent": "< 5 minutes",
+      "good": "5-15 minutes",
+      "needs_improvement": "> 15 minutes"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "revops",
+    "lead",
+    "routing",
+    "assignment",
+    "territory",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Intelligent Lead Router",
+        "lead qualification"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "crm.get_pipeline",
+          "required": true
+        },
+        {
+          "name": "crm.list_deals",
+          "required": false
+        },
+        {
+          "name": "analytics.get_forecast",
+          "required": false
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,47 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - delete
+    - remove
+    - financial
+    - payment
+    - update
+    - change
+    - access
+    - personal
+    - sensitive
+    - read
+    - get
+    - email
+    - notification
+    - analytics
+    - track
+    - log
+    - list
+    - format
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.722111'
+    original_risk: Critical
+    changes:
+    - 'Added payment safeguards: preview, approval, limits, rollback'
+categorization:
+  job_function: legal
+  jtbd:
+    job: Generates and maintains compliant privacy policies for multiple jurisdictions
+      including GDPR, CCPA, and other regulations
+    context: When working in compliance domain
+    outcome: Successfully execute Privacy Policy Generator
+composability:
+  hints:
+  - 'can_chain_to: consent_manager'
+  - 'can_chain_to: gdpr_manager'
+  - 'can_chain_to: data_retention'
+  - has_structured_output

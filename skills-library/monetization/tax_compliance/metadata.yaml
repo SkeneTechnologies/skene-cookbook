@@ -1,0 +1,44 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - system
+    - update
+    - change
+    - read
+    - get
+    - alert
+    - analytics
+    - track
+    - log
+    - monitor
+    - list
+    - format
+    - calculate
+    - view
+    - 'risky_tool: stripe.update_customer'
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.839536'
+    original_risk: Critical
+    changes:
+    - Added validation, preview mode, and rollback for writes
+categorization:
+  job_function: data
+  jtbd:
+    job: Manages sales tax, VAT, and GST compliance across jurisdictions
+    context: When working in monetization domain
+    outcome: Successfully execute Tax Compliance Assistant
+composability:
+  hints:
+  - 'can_chain_to: tax_calculated'
+  - 'can_chain_to: exemption_applied'
+  - 'can_chain_to: nexus_alert'
+  - 'can_chain_to: filing_due'
+  - 'can_chain_to: audit_flagged'
+  - has_structured_output

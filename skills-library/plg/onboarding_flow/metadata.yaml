@@ -1,0 +1,39 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - pii
+    risk_factors:
+    - drop
+    - personal
+    - read
+    - get
+    - email
+    - analytics
+    - track
+    - log
+    - list
+    - format
+    - show
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.726312'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: data
+  jtbd:
+    job: Orchestrates multi-step onboarding flows with personalization based on user
+      type, plan, and goals.
+    context: When working in plg domain
+    outcome: Successfully execute Onboarding Flow Orchestrator
+composability:
+  hints:
+  - 'can_chain_to: activation'
+  - 'can_chain_to: time_to_value'
+  - 'can_chain_to: support'
+  - has_structured_output

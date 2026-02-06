@@ -1,0 +1,21 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors: []
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Provides definitive guidelines for modern Angular development (2025), focusing
+      on best practices for code structure, component architecture, state management
+      with signals, performance, and type safety.
+    context: When working in cursor_rules domain
+    outcome: Successfully execute angular
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

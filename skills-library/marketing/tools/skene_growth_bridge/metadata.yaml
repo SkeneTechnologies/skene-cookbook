@@ -1,0 +1,25 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors:
+    - message
+    - sort
+    - format
+    - summarize
+    - view
+categorization:
+  job_function: marketing
+  jtbd:
+    job: Use skene-growth outputs to guide marketing work, select the right marketing
+      skills, and produce briefs that map growth insights to execution.
+    context: When working in marketing domain
+    outcome: Successfully execute skene-growth-bridge
+composability:
+  hints:
+  - 'can_chain_to: support'
+  - has_structured_output

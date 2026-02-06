@@ -1,0 +1,40 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - drop
+    - update
+    - access
+    - read
+    - get
+    - query
+    - message
+    - analytics
+    - list
+    - filter
+    - format
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.762789'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: customer_success
+  jtbd:
+    job: Access and apply 42 mental models for Product-Led Growth with challenge-to-model
+      lookup matrix
+    context: When working in plg_frameworks domain
+    outcome: Successfully execute PLG Mental Models
+composability:
+  hints:
+  - 'can_chain_to: model_applied'
+  - 'can_chain_to: models_recommended'
+  - 'can_chain_to: needs_more_context'
+  - has_structured_output

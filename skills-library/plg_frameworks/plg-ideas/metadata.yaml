@@ -1,0 +1,56 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - drop
+    - financial
+    - payment
+    - system
+    - command
+    - change
+    - access
+    - personal
+    - webhook
+    - read
+    - get
+    - email
+    - notification
+    - message
+    - analytics
+    - track
+    - log
+    - list
+    - search
+    - filter
+    - format
+    - summarize
+    - display
+    - show
+    - view
+    - preview
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.761397'
+    original_risk: Critical
+    changes:
+    - 'Added payment safeguards: preview, approval, limits, rollback'
+categorization:
+  job_function: customer_success
+  jtbd:
+    job: When the user wants PLG ideas, tactics, or inspiration -- a mega-reference
+      of 100+ product-led growth strategies organized by category. Also use when the
+      user says "growth ideas," "PLG playbook," "growth tactics," "what should we
+      try," or "growth brainstorm." For PLG strategy, see plg-strategy. For experimentation,
+      see growth-experimentation.
+    context: When working in plg_frameworks domain
+    outcome: Successfully execute plg-ideas
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

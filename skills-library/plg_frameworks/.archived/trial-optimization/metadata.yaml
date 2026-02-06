@@ -1,0 +1,48 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - drop
+    - payment
+    - eval
+    - system
+    - alter
+    - access
+    - personal
+    - read
+    - get
+    - email
+    - notification
+    - analytics
+    - track
+    - log
+    - list
+    - search
+    - format
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.770459'
+    original_risk: Critical
+    changes:
+    - 'Added payment safeguards: preview, approval, limits, rollback'
+categorization:
+  job_function: sales
+  jtbd:
+    job: When the user wants to optimize free trial conversion -- including trial
+      length, trial type selection, expiry flows, or trial email sequences. Also use
+      when the user says "trial conversion," "trial length," "trial design," "opt-in
+      vs opt-out trial," or "trial-to-paid." For activation, see activation-metrics.
+      For feature gating, see feature-gating.
+    context: When working in plg_frameworks domain
+    outcome: Successfully execute trial-optimization
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

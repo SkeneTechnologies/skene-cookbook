@@ -1,0 +1,48 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - password
+    - credential
+    - eval
+    - system
+    - modify
+    - alter
+    - access
+    - authenticate
+    - authorize
+    - permission
+    - read
+    - get
+    - retrieve
+    - email
+    - analytics
+    - track
+    - log
+    - list
+    - search
+    - format
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.796897'
+    original_risk: Critical
+    changes:
+    - Migrated to OAuth authentication
+categorization:
+  job_function: data
+  jtbd:
+    job: Electronic lab notebook API integration. Access notebooks, manage entries/attachments,
+      backup notebooks, integrate with Protocols.io/Jupyter/REDCap, for programmatic
+      ELN workflows.
+    context: When working in scientific domain
+    outcome: Successfully execute labarchive-integration
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

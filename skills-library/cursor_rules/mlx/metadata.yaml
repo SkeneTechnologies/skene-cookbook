@@ -1,0 +1,21 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors: []
+categorization:
+  job_function: hr
+  jtbd:
+    job: This guide provides opinionated, actionable best practices for developing
+      high-performance machine learning applications with MLX on Apple Silicon, focusing
+      on Python and Swift.
+    context: When working in cursor_rules domain
+    outcome: Successfully execute mlx
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

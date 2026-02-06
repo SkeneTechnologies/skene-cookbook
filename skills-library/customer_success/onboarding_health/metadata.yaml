@@ -1,0 +1,46 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - execute
+    - system
+    - access
+    - read
+    - get
+    - retrieve
+    - query
+    - email
+    - alert
+    - analytics
+    - track
+    - log
+    - monitor
+    - list
+    - format
+    - calculate
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.831380'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: customer_success
+  jtbd:
+    job: Monitors customer onboarding progress, identifies blockers, and ensures successful
+      time-to-value during the critical first 90 days.
+    context: When working in customer_success domain
+    outcome: Successfully execute Onboarding Health Monitor
+composability:
+  hints:
+  - 'can_chain_to: success_plan_generator'
+  - 'can_chain_to: product_adoption_guidance'
+  - 'can_chain_to: escalation_manager'
+  - 'can_chain_to: health_scoring'
+  - has_structured_output

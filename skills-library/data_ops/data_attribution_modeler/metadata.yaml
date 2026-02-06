@@ -1,0 +1,41 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - update
+    - change
+    - get
+    - query
+    - email
+    - analytics
+    - track
+    - monitor
+    - list
+    - search
+    - format
+    - calculate
+    - display
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.863315'
+    original_risk: High
+    changes:
+    - Added validation, preview mode, and rollback for writes
+categorization:
+  job_function: data
+  jtbd:
+    job: Builds and compares marketing attribution models to understand channel effectiveness
+      and optimize spend allocation.
+    context: When working in data_ops domain
+    outcome: Successfully execute Attribution Model Builder
+composability:
+  hints:
+  - 'can_chain_to: data_dashboard_builder'
+  - 'can_chain_to: data_experiment_analyzer'
+  - has_structured_output

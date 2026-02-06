@@ -1,0 +1,42 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - payment
+    - eval
+    - alter
+    - read
+    - get
+    - message
+    - log
+    - list
+    - search
+    - format
+    - show
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.763516'
+    original_risk: Critical
+    changes:
+    - 'Added payment safeguards: preview, approval, limits, rollback'
+categorization:
+  job_function: engineering
+  jtbd:
+    job: 'Designs PLG-friendly sidecar products when the core product isn''t PLG-ready.
+      Based on Dave Boyce''s FREEMIUM framework (Chapter 17): Create adjacent tools
+      that become pipeline builders.'
+    context: When working in plg_frameworks domain
+    outcome: Successfully execute Sidecar Product Builder
+composability:
+  hints:
+  - 'can_chain_to: sidecar_concept_ready'
+  - 'can_chain_to: core_product_plg_possible'
+  - 'can_chain_to: no_sidecar_fit'
+  - 'can_chain_to: validation_needed'
+  - has_structured_output

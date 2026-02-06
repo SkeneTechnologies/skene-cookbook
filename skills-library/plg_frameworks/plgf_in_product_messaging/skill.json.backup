@@ -1,0 +1,133 @@
+{
+  "id": "plgf_in_product_messaging",
+  "version": "1.0.0",
+  "name": "In-Product Messaging Framework",
+  "description": "Comprehensive framework for in-product messaging including tooltips, banners, modals, targeting rules, frequency management, and accessibility compliance.",
+  "domain": "plg_frameworks",
+  "tools": [
+    {
+      "name": "messaging.send_in_app",
+      "required": true
+    },
+    {
+      "name": "messaging.get_history",
+      "required": true
+    },
+    {
+      "name": "lifecycle.get_segment",
+      "required": true
+    },
+    {
+      "name": "analytics.track_event",
+      "required": true
+    },
+    {
+      "name": "ab_test.get_variant",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "activation",
+    "upgrade_flow",
+    "feature_adoption",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "userId": {
+        "type": "string",
+        "description": "Target user for messaging"
+      },
+      "messageType": {
+        "type": "string",
+        "enum": [
+          "tooltip",
+          "banner",
+          "modal",
+          "slideout",
+          "notification",
+          "hotspot"
+        ],
+        "description": "Type of message to display"
+      },
+      "objective": {
+        "type": "string",
+        "enum": [
+          "onboarding",
+          "feature_adoption",
+          "upgrade",
+          "announcement",
+          "feedback"
+        ],
+        "description": "Goal of the message"
+      },
+      "priority": {
+        "type": "string",
+        "enum": [
+          "low",
+          "medium",
+          "high",
+          "critical"
+        ],
+        "default": "medium"
+      }
+    },
+    "required": [
+      "userId",
+      "messageType",
+      "objective"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "messageSent": {
+        "type": "boolean"
+      },
+      "messageId": {
+        "type": "string"
+      },
+      "frequencyStatus": {
+        "type": "string"
+      },
+      "expectedEngagement": {
+        "type": "number"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "message_engagement_rate",
+    "benchmarks": {
+      "excellent": "> 40%",
+      "good": "20-40%",
+      "needs_improvement": "< 20%"
+    }
+  },
+  "integrations": [
+    "intercom",
+    "pendo",
+    "appcues",
+    "userflow",
+    "chameleon"
+  ],
+  "temperature": 0.2,
+  "tags": [
+    "plg",
+    "messaging",
+    "in-app",
+    "onboarding",
+    "engagement",
+    "communication",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with In Product Messaging Framework"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

@@ -1,0 +1,32 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - secret
+    - log
+    - filter
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.714099'
+    original_risk: Critical
+    changes:
+    - Migrated to OAuth authentication
+categorization:
+  job_function: security
+  jtbd:
+    job: Detects timing side-channel vulnerabilities in cryptographic code. Use when
+      implementing or reviewing crypto code, encountering division on secrets, secret-dependent
+      branches, or constant-time programming questions in C, C++, Go, Rust, Swift,
+      Java, Kotlin, C#, PHP, JavaScript, TypeScript, Python, or Ruby.
+    context: When working in security domain
+    outcome: Successfully execute constant-time-analysis
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

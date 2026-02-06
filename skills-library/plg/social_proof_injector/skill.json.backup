@@ -1,0 +1,134 @@
+{
+  "id": "plg_social_proof_injector",
+  "version": "1.0.0",
+  "name": "Social Proof Injector",
+  "description": "Strategically surfaces social proof elements like user counts, testimonials, and activity notifications to build trust and drive action.",
+  "domain": "plg",
+  "tools": [
+    {
+      "name": "analytics.get_metrics",
+      "required": true
+    },
+    {
+      "name": "analytics.track_event",
+      "required": true
+    },
+    {
+      "name": "lifecycle.get_segment",
+      "required": false
+    },
+    {
+      "name": "crm.get_account",
+      "required": false
+    },
+    {
+      "name": "ui_kit.notification",
+      "required": false
+    },
+    {
+      "name": "ui_kit.badge",
+      "required": false
+    },
+    {
+      "name": "rag.query",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "activation",
+    "conversion",
+    "viral_loop",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "userId": {
+        "type": "string",
+        "description": "User to show social proof to"
+      },
+      "context": {
+        "type": "string",
+        "description": "Page or action context"
+      },
+      "proofType": {
+        "type": "string",
+        "enum": [
+          "activity",
+          "testimonial",
+          "stats",
+          "logos"
+        ],
+        "description": "Type of social proof"
+      }
+    },
+    "required": [
+      "userId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "proofElements": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "relevanceScore": {
+        "type": "number"
+      },
+      "displayedProof": {
+        "type": "string"
+      },
+      "conversionImpact": {
+        "type": "number"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "social_proof_conversion_lift",
+    "benchmarks": {
+      "excellent": "> 25%",
+      "good": "15-25%",
+      "needs_improvement": "< 15%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "plg",
+    "social-proof",
+    "conversion",
+    "trust",
+    "psychology",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Social Proof Injector"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "lifecycle.get_segment",
+          "required": true
+        },
+        {
+          "name": "lifecycle.record_moment",
+          "required": false
+        },
+        {
+          "name": "analytics.track_event",
+          "required": false
+        },
+        {
+          "name": "messaging.send_in_app",
+          "required": false
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,39 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - drop
+    - system
+    - change
+    - read
+    - get
+    - alert
+    - analytics
+    - track
+    - log
+    - format
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.774772'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: customer_success
+  jtbd:
+    job: Complete PLG metrics stack including North Star framework, leading indicators,
+      cohort analysis, benchmarks by stage, and dashboard design patterns.
+    context: When working in plg_frameworks domain
+    outcome: Successfully execute PLG Metrics Framework
+composability:
+  hints:
+  - 'can_chain_to: dashboard_creation'
+  - 'can_chain_to: metric_alert'
+  - 'can_chain_to: cohort_analysis'
+  - has_structured_output

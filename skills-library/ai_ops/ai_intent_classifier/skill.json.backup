@@ -1,0 +1,113 @@
+{
+  "id": "ai_intent_classifier",
+  "version": "1.0.0",
+  "name": "Intent Classification Engine",
+  "description": "Classifies user/customer intent in real-time for intelligent routing and personalized responses.",
+  "domain": "ai_ops",
+  "tools": [
+    {
+      "name": "ai.classify",
+      "required": true
+    },
+    {
+      "name": "lifecycle.route",
+      "required": true
+    },
+    {
+      "name": "analytics.track_intent",
+      "required": false
+    },
+    {
+      "name": "crm.update_contact",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "support",
+    "sales",
+    "product",
+    "billing",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "message": {
+        "type": "string",
+        "description": "User message to classify"
+      },
+      "context": {
+        "type": "object",
+        "description": "Session and user context"
+      },
+      "history": {
+        "type": "array",
+        "description": "Recent conversation history"
+      }
+    },
+    "required": [
+      "message"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "primary_intent": {
+        "type": "string"
+      },
+      "confidence": {
+        "type": "number"
+      },
+      "secondary_intents": {
+        "type": "array"
+      },
+      "suggested_route": {
+        "type": "string"
+      },
+      "entities": {
+        "type": "array"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "classification_accuracy",
+    "benchmarks": {
+      "excellent": "> 95%",
+      "good": "85-95%",
+      "needs_improvement": "< 85%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "ai_ops",
+    "intent",
+    "classification",
+    "routing",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Intent Classification Engine",
+        "intent classification"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "ai.classify",
+          "required": false
+        },
+        {
+          "name": "ai.generate",
+          "required": false
+        },
+        {
+          "name": "ai.score_lead",
+          "required": false
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,32 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - api_key
+    - update
+    - read
+    - get
+    - log
+    - format
+    - display
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.772587'
+    original_risk: Critical
+    changes:
+    - Migrated to OAuth authentication
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Setup skene-growth dependencies and guide the user through configuration
+    context: When working in plg_frameworks domain
+    outcome: Successfully execute setup-skene-growth
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

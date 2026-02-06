@@ -1,0 +1,52 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - drop
+    - payment
+    - password
+    - eval
+    - change
+    - alter
+    - access
+    - personal
+    - sensitive
+    - read
+    - get
+    - email
+    - message
+    - analytics
+    - track
+    - log
+    - list
+    - search
+    - format
+    - display
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.768110'
+    original_risk: Critical
+    changes:
+    - Migrated to OAuth authentication
+categorization:
+  job_function: data
+  jtbd:
+    job: When the user wants to optimize a signup or registration flow -- including
+      field selection, social auth, single-step vs multi-step forms, or mobile signup.
+      Also use when the user says "signup conversion," "registration form," "reduce
+      signup friction," "signup A/B test," or "signup drop-off." For post-signup onboarding,
+      see product-onboarding. For activation measurement, see activation-metrics.
+    context: When working in plg_frameworks domain
+    outcome: Successfully execute signup-flow-cro
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

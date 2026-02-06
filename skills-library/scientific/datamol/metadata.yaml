@@ -1,0 +1,47 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - system
+    - write
+    - access
+    - read
+    - get
+    - query
+    - log
+    - list
+    - search
+    - filter
+    - sort
+    - format
+    - calculate
+    - compute
+    - display
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.784753'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Pythonic wrapper around RDKit with simplified interface and sensible defaults.
+      Preferred for standard drug discovery including SMILES parsing, standardization,
+      descriptors, fingerprints, clustering, 3D conformers, parallel processing. Returns
+      native rdkit.Chem.Mol objects. For advanced control or custom parameters, use
+      rdkit directly.
+    context: When working in scientific domain
+    outcome: Successfully execute datamol
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

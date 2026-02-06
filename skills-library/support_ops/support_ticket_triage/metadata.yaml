@@ -1,0 +1,39 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - payment
+    - access
+    - get
+    - email
+    - analytics
+    - track
+    - log
+    - list
+    - format
+    - calculate
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.710793'
+    original_risk: Critical
+    changes:
+    - 'Added payment safeguards: preview, approval, limits, rollback'
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Auto-prioritizes and routes support tickets using AI classification based
+      on urgency, customer tier, and issue complexity.
+    context: When working in support_ops domain
+    outcome: Successfully execute Ticket Triage Intelligence
+composability:
+  hints:
+  - 'can_chain_to: first_response'
+  - 'can_chain_to: escalation_predictor'
+  - 'can_chain_to: sla_monitor'
+  - has_structured_output

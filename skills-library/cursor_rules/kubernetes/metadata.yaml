@@ -1,0 +1,21 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors: []
+categorization:
+  job_function: engineering
+  jtbd:
+    job: This guide defines definitive best practices for writing, organizing, and
+      securing Kubernetes manifests and Operators, ensuring maintainable, performant,
+      and reliable cloud-native deployments.
+    context: When working in cursor_rules domain
+    outcome: Successfully execute kubernetes
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

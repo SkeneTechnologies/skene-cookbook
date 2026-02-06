@@ -1,0 +1,124 @@
+{
+  "id": "ai_data_quality_agent",
+  "version": "1.0.0",
+  "name": "Data Quality Agent",
+  "description": "Monitors, validates, and improves data quality across systems using AI-powered analysis.",
+  "domain": "ai_ops",
+  "tools": [
+    {
+      "name": "ai.validate_data",
+      "required": true
+    },
+    {
+      "name": "ai.detect_anomalies",
+      "required": true
+    },
+    {
+      "name": "data.profile",
+      "required": true
+    },
+    {
+      "name": "data.deduplicate",
+      "required": false
+    },
+    {
+      "name": "alerting.notify",
+      "required": false
+    },
+    {
+      "name": "data.repair",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "healthy",
+    "issues_found",
+    "repairs_made",
+    "critical_alert",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "data_source": {
+        "type": "string",
+        "description": "Database, table, or API to analyze"
+      },
+      "validation_rules": {
+        "type": "array",
+        "description": "Custom validation rules"
+      },
+      "sample_size": {
+        "type": "number",
+        "description": "Records to sample (or 'all')"
+      },
+      "auto_repair": {
+        "type": "boolean",
+        "default": false
+      }
+    },
+    "required": [
+      "data_source"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "quality_score": {
+        "type": "number"
+      },
+      "issues": {
+        "type": "array"
+      },
+      "statistics": {
+        "type": "object"
+      },
+      "repairs_made": {
+        "type": "array"
+      },
+      "recommendations": {
+        "type": "array"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "data_quality_score",
+    "benchmarks": {
+      "excellent": "> 98%",
+      "good": "90-98%",
+      "needs_improvement": "< 90%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "ai_ops",
+    "data_quality",
+    "validation",
+    "governance",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Data Quality Agent"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "ai.classify",
+          "required": false
+        },
+        {
+          "name": "ai.generate",
+          "required": false
+        },
+        {
+          "name": "ai.score_lead",
+          "required": false
+        }
+      ]
+    }
+  }
+}

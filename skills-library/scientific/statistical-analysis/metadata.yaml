@@ -1,0 +1,43 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - system
+    - write
+    - change
+    - alter
+    - read
+    - get
+    - log
+    - list
+    - search
+    - format
+    - calculate
+    - compute
+    - summarize
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.850900'
+    original_risk: Critical
+    changes:
+    - Added validation, preview mode, and rollback for writes
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Guided statistical analysis with test selection and reporting. Use when you
+      need help choosing appropriate tests for your data, assumption checking, power
+      analysis, and APA-formatted results. Best for academic research reporting, test
+      selection guidance. For implementing specific models programmatically use statsmodels.
+    context: When working in scientific domain
+    outcome: Successfully execute statistical-analysis
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

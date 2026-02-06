@@ -1,0 +1,41 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - execute
+    - alter
+    - access
+    - personal
+    - read
+    - get
+    - email
+    - analytics
+    - list
+    - search
+    - filter
+    - format
+    - calculate
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.837045'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: data
+  jtbd:
+    job: Recommends the most impactful next action for each deal based on stage, signals,
+      and historical patterns.
+    context: When working in revops domain
+    outcome: Successfully execute Next Best Action Engine
+composability:
+  hints:
+  - 'can_chain_to: deal_inspection'
+  - 'can_chain_to: sales_coaching'
+  - 'can_chain_to: sales_content_recommender'
+  - has_structured_output

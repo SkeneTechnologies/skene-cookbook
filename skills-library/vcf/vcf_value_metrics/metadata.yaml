@@ -1,0 +1,45 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - update
+    - change
+    - read
+    - get
+    - query
+    - analytics
+    - track
+    - log
+    - filter
+    - format
+    - calculate
+    - aggregate
+    - show
+    - view
+    - 'risky_tool: crm.update_record'
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.862551'
+    original_risk: High
+    changes:
+    - Added validation, preview mode, and rollback for writes
+categorization:
+  job_function: customer_success
+  jtbd:
+    job: Builds quantifiable Value Creation Metrics by comparing customer 'before
+      and after' states. Creates the data foundation for ROI calculations and stakeholder-specific
+      value propositions.
+    context: When working in vcf domain
+    outcome: Successfully execute Value Creation Metrics
+composability:
+  hints:
+  - 'can_chain_to: vcf_roi_calculator'
+  - 'can_chain_to: vcf_deal_storytelling'
+  - 'can_chain_to: needs_customer_data'
+  - 'can_chain_to: value_realization'
+  - has_structured_output

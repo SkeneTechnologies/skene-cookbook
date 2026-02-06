@@ -1,0 +1,43 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - drop
+    - update
+    - read
+    - get
+    - retrieve
+    - email
+    - alert
+    - track
+    - monitor
+    - list
+    - search
+    - filter
+    - calculate
+    - view
+    - 'risky_tool: crm.update_deal'
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.757888'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: sales
+  jtbd:
+    job: Monitors pipeline health, identifies at-risk deals, and triggers proactive
+      interventions.
+    context: When working in revops domain
+    outcome: Successfully execute Pipeline Health Monitor
+composability:
+  hints:
+  - 'can_chain_to: deal_intervention'
+  - 'can_chain_to: forecast_intelligence'
+  - 'can_chain_to: sales_coaching'
+  - has_structured_output

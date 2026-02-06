@@ -1,0 +1,47 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - password
+    - api_key
+    - execute
+    - write
+    - access
+    - authenticate
+    - authorize
+    - permission
+    - pii
+    - sensitive
+    - read
+    - get
+    - email
+    - list
+    - search
+    - format
+    - summarize
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.715150'
+    original_risk: Critical
+    changes:
+    - Migrated to OAuth authentication
+categorization:
+  job_function: security
+  jtbd:
+    job: Scans Android APKs for Firebase security misconfigurations including open
+      databases, storage buckets, authentication issues, and exposed cloud functions.
+      Use when analyzing APK files for Firebase vulnerabilities, performing mobile
+      app security audits, or testing Firebase endpoint security. For authorized security
+      research only.
+    context: When working in security domain
+    outcome: Successfully execute firebase-apk-scanner
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

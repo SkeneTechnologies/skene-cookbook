@@ -1,0 +1,32 @@
+{
+  "id": "plg_frameworks/plg-ideas",
+  "version": "1.0.0",
+  "name": "plg-ideas",
+  "description": "When the user wants PLG ideas, tactics, or inspiration -- a mega-reference of 100+ product-led growth strategies organized by category. Also use when the user says \"growth ideas,\" \"PLG playbook,\" \"growth tactics,\" \"what should we try,\" or \"growth brainstorm.\" For PLG strategy, see plg-strategy. For experimentation, see growth-experimentation.",
+  "domain": "plg_frameworks",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "plg_frameworks",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with plg ideas",
+        "growth framework",
+        "the user says \"growth ideas,\" \"plg playbook,\" \"growth tactics,\" \"what should we try,\" or \"growth brainstorm"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

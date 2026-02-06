@@ -1,0 +1,33 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - execute
+    - system
+    - update
+    - track
+    - list
+    - format
+    - 'risky_tool: partner.co_sell_update'
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.806312'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: sales
+  jtbd:
+    job: Initiates and manages co-selling workflows with partners for joint opportunities.
+    context: When working in ecosystem domain
+    outcome: Successfully execute Co-Sell Motion Trigger
+composability:
+  hints:
+  - 'can_chain_to: deal_created'
+  - 'can_chain_to: partner_engaged'
+  - 'can_chain_to: handoff_orchestration'

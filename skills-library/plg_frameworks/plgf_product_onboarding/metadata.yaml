@@ -1,0 +1,43 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - drop
+    - system
+    - access
+    - personal
+    - read
+    - get
+    - analytics
+    - track
+    - log
+    - list
+    - search
+    - format
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.771286'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: customer_success
+  jtbd:
+    job: Onboarding architecture design including interactive tours, checklists, empty
+      states, and progressive disclosure patterns
+    context: When working in plg_frameworks domain
+    outcome: Successfully execute Product Onboarding
+composability:
+  hints:
+  - 'can_chain_to: onboarding_complete'
+  - 'can_chain_to: tour_started'
+  - 'can_chain_to: checklist_assigned'
+  - 'can_chain_to: needs_personalization'
+  - has_structured_output

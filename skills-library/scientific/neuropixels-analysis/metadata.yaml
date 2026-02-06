@@ -1,0 +1,45 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - command
+    - alter
+    - access
+    - read
+    - get
+    - query
+    - log
+    - list
+    - search
+    - filter
+    - sort
+    - format
+    - compute
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.791952'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Neuropixels neural recording analysis. Load SpikeGLX/OpenEphys data, preprocess,
+      motion correction, Kilosort4 spike sorting, quality metrics, Allen/IBL curation,
+      AI-assisted visual analysis, for Neuropixels 1.0/2.0 extracellular electrophysiology.
+      Use when working with neural recordings, spike sorting, extracellular electrophysiology,
+      or when the user mentions Neuropixels, SpikeGLX, Open Ephys, Kilosort, quality
+      metrics, or unit curation.
+    context: When working in scientific domain
+    outcome: Successfully execute neuropixels-analysis
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

@@ -1,0 +1,48 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - system
+    - write
+    - update
+    - alter
+    - access
+    - confidential
+    - read
+    - get
+    - log
+    - monitor
+    - search
+    - sort
+    - format
+    - calculate
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.785931'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Generate professional clinical decision support (CDS) documents for pharmaceutical
+      and clinical research settings, including patient cohort analyses (biomarker-stratified
+      with outcomes) and treatment recommendation reports (evidence-based guidelines
+      with decision algorithms). Supports GRADE evidence grading, statistical analysis
+      (hazard ratios, survival curves, waterfall plots), biomarker integration, and
+      regulatory compliance. Outputs publication-ready LaTeX/PDF format optimized
+      for drug development, clinical research, and evidence synthesis.
+    context: When working in scientific domain
+    outcome: Successfully execute clinical-decision-support
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

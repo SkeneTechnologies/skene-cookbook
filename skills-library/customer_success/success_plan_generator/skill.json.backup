@@ -1,0 +1,137 @@
+{
+  "id": "cs_success_plan_generator",
+  "version": "1.0.0",
+  "name": "Success Plan Architect",
+  "description": "Creates comprehensive, personalized success plans that map customer goals to product capabilities and define clear milestones for value realization.",
+  "domain": "customer_success",
+  "tools": [
+    {
+      "name": "crm.get_account",
+      "required": true
+    },
+    {
+      "name": "crm.get_goals",
+      "required": true
+    },
+    {
+      "name": "analytics.feature_adoption",
+      "required": true
+    },
+    {
+      "name": "crm.get_contacts",
+      "required": false
+    },
+    {
+      "name": "crm.create_task",
+      "required": false
+    },
+    {
+      "name": "messaging.send_email",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "vla_tracker",
+    "onboarding_health",
+    "product_adoption_guidance",
+    "stakeholder_mapper",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "accountId": {
+        "type": "string",
+        "description": "Customer account identifier"
+      },
+      "planType": {
+        "type": "string",
+        "enum": [
+          "onboarding",
+          "expansion",
+          "renewal",
+          "recovery"
+        ]
+      },
+      "timeframe": {
+        "type": "string",
+        "description": "Plan duration (e.g., '90d', '6m', '1y')"
+      },
+      "goals": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "required": [
+      "accountId",
+      "planType"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "planId": {
+        "type": "string"
+      },
+      "phases": {
+        "type": "array"
+      },
+      "milestones": {
+        "type": "array"
+      },
+      "successCriteria": {
+        "type": "array"
+      },
+      "riskFactors": {
+        "type": "array"
+      },
+      "stakeholderRaci": {
+        "type": "object"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "plan_completion_rate",
+    "benchmarks": {
+      "excellent": "> 85%",
+      "good": "70-85%",
+      "needs_improvement": "< 70%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "customer_success",
+    "success_plan",
+    "onboarding",
+    "milestones",
+    "goals",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Success Plan Architect",
+        "customer health"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "lifecycle.get_segment",
+          "required": true
+        },
+        {
+          "name": "analytics.get_cohort",
+          "required": false
+        },
+        {
+          "name": "crm.update_account",
+          "required": false
+        }
+      ]
+    }
+  }
+}

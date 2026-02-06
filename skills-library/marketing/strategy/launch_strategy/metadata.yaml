@@ -1,0 +1,47 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - system
+    - update
+    - change
+    - access
+    - read
+    - get
+    - email
+    - notification
+    - message
+    - analytics
+    - track
+    - log
+    - monitor
+    - list
+    - search
+    - display
+    - view
+    - preview
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.828478'
+    original_risk: Critical
+    changes:
+    - Added validation, preview mode, and rollback for writes
+categorization:
+  job_function: marketing
+  jtbd:
+    job: '"When the user wants to plan a product launch, feature announcement, or
+      release strategy. Also use when the user mentions ''launch,'' ''Product Hunt,''
+      ''feature release,'' ''announcement,'' ''go-to-market,'' ''beta launch,'' ''early
+      access,'' ''waitlist,'' or ''product update.'' This skill covers phased launches,
+      channel strategy, and ongoing launch momentum."'
+    context: When working in marketing domain
+    outcome: Successfully execute launch-strategy
+composability:
+  hints:
+  - 'can_chain_to: support'
+  - has_structured_output

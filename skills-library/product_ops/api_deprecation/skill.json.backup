@@ -1,0 +1,119 @@
+{
+  "id": "prodops_api_deprecation",
+  "version": "1.0.0",
+  "name": "API Deprecation Manager",
+  "description": "Manages API deprecation lifecycle including usage analysis, migration planning, and developer communication.",
+  "domain": "product_ops",
+  "tools": [
+    {
+      "name": "analytics.get_metrics",
+      "required": true
+    },
+    {
+      "name": "messaging.send_email",
+      "required": true
+    },
+    {
+      "name": "github.create_issue",
+      "required": false
+    },
+    {
+      "name": "ai.generate",
+      "required": true
+    },
+    {
+      "name": "slack.send_message",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "documentation_health",
+    "release_notes_generator",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "endpoint": {
+        "type": "string",
+        "description": "API endpoint being deprecated"
+      },
+      "replacementEndpoint": {
+        "type": "string",
+        "description": "New endpoint to migrate to"
+      },
+      "deprecationDate": {
+        "type": "string",
+        "format": "date",
+        "description": "Date of deprecation announcement"
+      },
+      "sunsetDate": {
+        "type": "string",
+        "format": "date",
+        "description": "Date endpoint will be removed"
+      },
+      "action": {
+        "type": "string",
+        "enum": [
+          "analyze",
+          "announce",
+          "remind",
+          "sunset"
+        ],
+        "description": "Deprecation action"
+      }
+    },
+    "required": [
+      "endpoint"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "usageAnalysis": {
+        "type": "object"
+      },
+      "affectedDevelopers": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "migrationProgress": {
+        "type": "object"
+      },
+      "communicationsSent": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      }
+    }
+  },
+  "metrics": {
+    "primary": "migration_completion_rate",
+    "benchmarks": {
+      "excellent": "> 95% before sunset",
+      "good": "80-95% before sunset",
+      "needs_improvement": "< 80% before sunset"
+    }
+  },
+  "temperature": 0.1,
+  "tags": [
+    "product_ops",
+    "api",
+    "deprecation",
+    "migration",
+    "developer_experience",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with API Deprecation Manager"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

@@ -1,0 +1,42 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - drop
+    - eval
+    - update
+    - personal
+    - get
+    - query
+    - message
+    - analytics
+    - track
+    - monitor
+    - list
+    - filter
+    - format
+    - calculate
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.728521'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: data
+  jtbd:
+    job: Identifies and triggers aha moments - the specific actions that correlate
+      with long-term retention.
+    context: When working in plg domain
+    outcome: Successfully execute Aha Moment Detection
+composability:
+  hints:
+  - 'can_chain_to: habit_formation'
+  - 'can_chain_to: upgrade_trigger'
+  - 'can_chain_to: viral_loop'
+  - has_structured_output

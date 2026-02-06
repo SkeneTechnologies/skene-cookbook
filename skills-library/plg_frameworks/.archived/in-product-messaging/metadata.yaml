@@ -1,0 +1,50 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - drop
+    - payment
+    - system
+    - update
+    - change
+    - access
+    - personal
+    - sensitive
+    - read
+    - get
+    - notification
+    - alert
+    - message
+    - analytics
+    - track
+    - log
+    - list
+    - search
+    - format
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.770229'
+    original_risk: Critical
+    changes:
+    - 'Added payment safeguards: preview, approval, limits, rollback'
+categorization:
+  job_function: customer_success
+  jtbd:
+    job: When the user wants to design in-product messages -- including tooltips,
+      banners, modals, slideouts, or notification bells -- without annoying users.
+      Also use when the user says "in-app messages," "product announcements," "nudges,"
+      "contextual help," or "message frequency." For upgrade prompts specifically,
+      see paywall-upgrade-cro. For feature launches, see feature-adoption.
+    context: When working in plg_frameworks domain
+    outcome: Successfully execute in-product-messaging
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

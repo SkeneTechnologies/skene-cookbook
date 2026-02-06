@@ -1,0 +1,22 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors:
+    - read
+categorization:
+  job_function: engineering
+  jtbd:
+    job: This guide defines the definitive Python best practices for our team, focusing
+      on readability, maintainability, and modern development standards. Adhere to
+      these rules for consistent, high-quality Python code.
+    context: When working in cursor_rules domain
+    outcome: Successfully execute python
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

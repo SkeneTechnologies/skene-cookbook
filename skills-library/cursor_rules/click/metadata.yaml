@@ -1,0 +1,28 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - command
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.820123'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: design
+  jtbd:
+    job: This guide outlines definitive best practices for building robust, maintainable,
+      and user-friendly command-line interfaces (CLIs) using the `click` Python library,
+      emphasizing modern patterns and common pitfalls.
+    context: When working in cursor_rules domain
+    outcome: Successfully execute click
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

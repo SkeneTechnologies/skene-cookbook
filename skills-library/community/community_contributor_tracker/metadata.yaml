@@ -1,0 +1,42 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - update
+    - change
+    - read
+    - get
+    - email
+    - message
+    - analytics
+    - track
+    - log
+    - list
+    - format
+    - calculate
+    - view
+    - 'risky_tool: crm.update_contact'
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.871043'
+    original_risk: High
+    changes:
+    - Added validation, preview mode, and rollback for writes
+categorization:
+  job_function: data
+  jtbd:
+    job: Tracks and nurtures open source contributors including PRs, issues, and community
+      contributions.
+    context: When working in community domain
+    outcome: Successfully execute Open Source Contributor Tracker
+composability:
+  hints:
+  - 'can_chain_to: ambassador_program'
+  - 'can_chain_to: swag_manager'
+  - 'can_chain_to: champion_identifier'
+  - has_structured_output

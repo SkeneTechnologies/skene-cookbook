@@ -1,0 +1,136 @@
+{
+  "id": "people_dei_tracker",
+  "version": "1.0.0",
+  "name": "DEI Metrics Tracker",
+  "description": "Tracks diversity, equity, and inclusion metrics across the employee lifecycle to measure progress and identify improvement opportunities.",
+  "domain": "people_ops",
+  "tools": [
+    {
+      "name": "hr.get_demographics",
+      "required": true
+    },
+    {
+      "name": "analytics.calculate_dei_metrics",
+      "required": true
+    },
+    {
+      "name": "hr.get_lifecycle_data",
+      "required": true
+    },
+    {
+      "name": "analytics.analyze_pay_equity",
+      "required": false
+    },
+    {
+      "name": "hr.get_survey_results",
+      "required": false
+    },
+    {
+      "name": "analytics.get_benchmarks",
+      "required": false
+    },
+    {
+      "name": "hr.generate_dei_report",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "people_pulse_analyzer",
+    "people_comp_benchmarker",
+    "people_candidate_sourcer",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "reportType": {
+        "type": "string",
+        "enum": [
+          "snapshot",
+          "trends",
+          "lifecycle",
+          "comprehensive"
+        ]
+      },
+      "scope": {
+        "type": "string",
+        "enum": [
+          "company",
+          "department",
+          "team"
+        ]
+      },
+      "targetId": {
+        "type": "string",
+        "description": "Department or team ID if scoped"
+      },
+      "timePeriod": {
+        "type": "string",
+        "description": "Analysis period"
+      },
+      "dimensions": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "DEI dimensions to analyze"
+      }
+    },
+    "required": [
+      "reportType"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "representationMetrics": {
+        "type": "object"
+      },
+      "lifecycleMetrics": {
+        "type": "object"
+      },
+      "inclusionMetrics": {
+        "type": "object"
+      },
+      "equityMetrics": {
+        "type": "object"
+      },
+      "trends": {
+        "type": "array"
+      },
+      "goals": {
+        "type": "object"
+      },
+      "recommendations": {
+        "type": "array"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "representation_vs_goal",
+    "benchmarks": {
+      "excellent": "Within 5% of goals across dimensions",
+      "good": "Within 10% of goals",
+      "needs_improvement": "> 10% from goals"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "people_ops",
+    "dei",
+    "diversity",
+    "equity",
+    "inclusion",
+    "belonging",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with DEI Metrics Tracker"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

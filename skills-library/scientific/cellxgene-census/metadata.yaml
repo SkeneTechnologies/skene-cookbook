@@ -1,0 +1,42 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - system
+    - change
+    - access
+    - sensitive
+    - read
+    - get
+    - query
+    - log
+    - list
+    - search
+    - filter
+    - format
+    - calculate
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.859992'
+    original_risk: Critical
+    changes:
+    - Applied field-level access control and tenant isolation
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Query the CELLxGENE Census (61M+ cells) programmatically. Use when you need
+      expression data across tissues, diseases, or cell types from the largest curated
+      single-cell atlas. Best for population-scale queries, reference atlas comparisons.
+      For analyzing your own data use scanpy or scvi-tools.
+    context: When working in scientific domain
+    outcome: Successfully execute cellxgene-census
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

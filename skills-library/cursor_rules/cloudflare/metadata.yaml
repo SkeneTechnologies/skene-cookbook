@@ -1,0 +1,21 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors: []
+categorization:
+  job_function: design
+  jtbd:
+    job: Definitive guidelines for building secure, performant, and maintainable applications
+      on Cloudflare's developer platform, emphasizing tiny bundles, edge-first design,
+      and robust security.
+    context: When working in cursor_rules domain
+    outcome: Successfully execute cloudflare
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

@@ -1,0 +1,20 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors: []
+categorization:
+  job_function: operations
+  jtbd:
+    job: Definitive guidelines for writing maintainable, secure, and scalable Terraform
+      configurations. Focuses on structure, naming, state management, and automation.
+    context: When working in cursor_rules domain
+    outcome: Successfully execute terraform
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

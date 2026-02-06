@@ -1,0 +1,35 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - update
+    - confidential
+    - alert
+    - log
+    - list
+    - format
+    - view
+    - 'risky_tool: crm.update_deal'
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.873912'
+    original_risk: High
+    changes:
+    - Added validation, preview mode, and rollback for writes
+categorization:
+  job_function: sales
+  jtbd:
+    job: Analyzes sales and support conversations for insights, coaching, and deal
+      intelligence.
+    context: When working in ai_ops domain
+    outcome: Successfully execute Conversation Intelligence
+composability:
+  hints:
+  - 'can_chain_to: deal_update'
+  - 'can_chain_to: coaching_alert'
+  - 'can_chain_to: escalation'

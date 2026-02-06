@@ -1,0 +1,138 @@
+{
+  "id": "plgf_expansion_revenue",
+  "version": "1.0.0",
+  "name": "Expansion Revenue Framework",
+  "description": "Comprehensive framework for driving Net Revenue Retention (NRR) through expansion signals, in-product upgrade triggers, and account health scoring.",
+  "domain": "plg_frameworks",
+  "tools": [
+    {
+      "name": "analytics.get_metrics",
+      "required": true
+    },
+    {
+      "name": "analytics.cohort",
+      "required": true
+    },
+    {
+      "name": "lifecycle.get_segment",
+      "required": true
+    },
+    {
+      "name": "stripe.get_subscription",
+      "required": false
+    },
+    {
+      "name": "stripe.update_subscription",
+      "required": false
+    },
+    {
+      "name": "crm.update_account",
+      "required": false
+    },
+    {
+      "name": "messaging.send_in_app",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "upgrade_flow",
+    "pql_scoring",
+    "customer_success",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "accountId": {
+        "type": "string",
+        "description": "Account to analyze for expansion"
+      },
+      "userId": {
+        "type": "string",
+        "description": "Primary user to engage"
+      },
+      "analysisType": {
+        "type": "string",
+        "enum": [
+          "signal_detection",
+          "health_scoring",
+          "expansion_opportunity",
+          "nrr_analysis"
+        ],
+        "description": "Type of expansion analysis to perform"
+      },
+      "timeframe": {
+        "type": "string",
+        "default": "90d"
+      }
+    },
+    "required": [
+      "accountId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "nrrScore": {
+        "type": "number"
+      },
+      "expansionSignals": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "accountHealthScore": {
+        "type": "number"
+      },
+      "recommendedActions": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "expansionPotential": {
+        "type": "string",
+        "enum": [
+          "high",
+          "medium",
+          "low"
+        ]
+      }
+    }
+  },
+  "metrics": {
+    "primary": "net_revenue_retention",
+    "benchmarks": {
+      "excellent": "> 130%",
+      "good": "110-130%",
+      "needs_improvement": "< 110%"
+    }
+  },
+  "integrations": [
+    "stripe",
+    "salesforce",
+    "hubspot",
+    "segment",
+    "amplitude"
+  ],
+  "temperature": 0,
+  "tags": [
+    "plg",
+    "expansion",
+    "nrr",
+    "revenue",
+    "growth",
+    "monetization",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Expansion Revenue Framework"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

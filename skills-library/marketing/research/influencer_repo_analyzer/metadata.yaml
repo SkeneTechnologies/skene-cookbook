@@ -1,0 +1,35 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - pii
+    risk_factors:
+    - personal
+    - read
+    - get
+    - message
+    - track
+    - log
+    - list
+    - search
+    - format
+    - calculate
+    - show
+    - view
+    - preview
+categorization:
+  job_function: marketing
+  jtbd:
+    job: Analyzes influencer open source repositories using skene-growth to generate
+      personalized PLG reports and outreach context. Creates value-first content showing
+      what skene-growth discovered about their codebase. Use when preparing personalized
+      outreach to developer influencers.
+    context: When working in marketing domain
+    outcome: Successfully execute influencer-repo-analyzer
+composability:
+  hints:
+  - 'can_chain_to: support'
+  - has_structured_output

@@ -1,0 +1,43 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - truncate
+    - credential
+    - update
+    - change
+    - alter
+    - access
+    - read
+    - get
+    - analytics
+    - track
+    - log
+    - search
+    - format
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.741644'
+    original_risk: Critical
+    changes:
+    - Migrated to OAuth authentication
+categorization:
+  job_function: marketing
+  jtbd:
+    job: When the user wants to audit, review, or diagnose SEO issues on their site.
+      Also use when the user mentions "SEO audit," "technical SEO," "why am I not
+      ranking," "SEO issues," "on-page SEO," "meta tags review," or "SEO health check."
+      For building pages at scale to target keywords, see programmatic-seo. For adding
+      structured data, see schema-markup.
+    context: When working in marketing domain
+    outcome: Successfully execute seo-audit
+composability:
+  hints:
+  - 'can_chain_to: support'
+  - has_structured_output

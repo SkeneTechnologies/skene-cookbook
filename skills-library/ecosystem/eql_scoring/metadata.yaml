@@ -1,0 +1,32 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors:
+    - system
+    - track
+    - list
+    - format
+    - calculate
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.797455'
+    original_risk: Critical
+    changes:
+    - Flagged for manual review as potential false positive
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Identifies and scores Ecosystem-Qualified Leads (EQLs) from partner and integration
+      signals.
+    context: When working in ecosystem domain
+    outcome: Successfully execute Ecosystem-Qualified Lead Scoring
+composability:
+  hints:
+  - 'can_chain_to: lead_qualification'
+  - 'can_chain_to: co_sell_trigger'
+  - 'can_chain_to: sales_handoff'

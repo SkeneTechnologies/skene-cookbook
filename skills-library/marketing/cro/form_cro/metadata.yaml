@@ -1,0 +1,49 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - drop
+    - change
+    - alter
+    - personal
+    - sensitive
+    - get
+    - email
+    - message
+    - analytics
+    - track
+    - log
+    - list
+    - search
+    - format
+    - summarize
+    - display
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.740931'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: marketing
+  jtbd:
+    job: "When the user wants to optimize any form that is NOT signup/registration\
+      \ \u2014 including lead capture forms, contact forms, demo request forms, application\
+      \ forms, survey forms, or checkout forms. Also use when the user mentions \"\
+      form optimization,\" \"lead form conversions,\" \"form friction,\" \"form fields,\"\
+      \ \"form completion rate,\" or \"contact form.\" For signup/registration forms,\
+      \ see signup-flow-cro. For popups containing forms, see popup-cro."
+    context: When working in marketing domain
+    outcome: Successfully execute form-cro
+composability:
+  hints:
+  - 'can_chain_to: support'
+  - has_structured_output

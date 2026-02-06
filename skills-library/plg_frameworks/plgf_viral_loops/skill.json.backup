@@ -1,0 +1,127 @@
+{
+  "id": "plgf_viral_loops",
+  "version": "1.0.0",
+  "name": "Viral Loops Framework",
+  "description": "Comprehensive framework for designing and optimizing viral loops including loop types, K-factor mathematics, network effects, invite mechanics, and viral content design.",
+  "domain": "plg_frameworks",
+  "tools": [
+    {
+      "name": "analytics.get_metrics",
+      "required": true
+    },
+    {
+      "name": "analytics.cohort",
+      "required": true
+    },
+    {
+      "name": "analytics.track_event",
+      "required": true
+    },
+    {
+      "name": "lifecycle.get_segment",
+      "required": false
+    },
+    {
+      "name": "messaging.send_in_app",
+      "required": false
+    },
+    {
+      "name": "resend.send_template",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "referral_program",
+    "network_effects",
+    "content_sharing",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "analysisType": {
+        "type": "string",
+        "enum": [
+          "loop_design",
+          "k_factor_analysis",
+          "invite_optimization",
+          "content_virality"
+        ],
+        "description": "Type of viral loop analysis"
+      },
+      "loopType": {
+        "type": "string",
+        "enum": [
+          "inherent",
+          "collaborative",
+          "word_of_mouth",
+          "incentivized",
+          "content",
+          "network"
+        ],
+        "description": "Type of viral loop to design/analyze"
+      },
+      "productCategory": {
+        "type": "string",
+        "description": "Product category for benchmarking"
+      }
+    },
+    "required": [
+      "analysisType"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "viralCoefficient": {
+        "type": "number"
+      },
+      "cycleTime": {
+        "type": "number"
+      },
+      "loopDesign": {
+        "type": "object"
+      },
+      "optimizationRecommendations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "metrics": {
+    "primary": "viral_coefficient",
+    "benchmarks": {
+      "excellent": "> 1.0 (exponential growth)",
+      "good": "0.5-1.0 (amplified growth)",
+      "needs_improvement": "< 0.5 (limited virality)"
+    }
+  },
+  "integrations": [
+    "segment",
+    "amplitude",
+    "mixpanel",
+    "branch",
+    "appsflyer"
+  ],
+  "temperature": 0,
+  "tags": [
+    "plg",
+    "viral",
+    "growth",
+    "acquisition",
+    "network-effects",
+    "referral",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Viral Loops Framework"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

@@ -1,0 +1,41 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - payment
+    - update
+    - alter
+    - access
+    - sensitive
+    - get
+    - alert
+    - analytics
+    - track
+    - log
+    - list
+    - format
+    - calculate
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.756833'
+    original_risk: Critical
+    changes:
+    - 'Added payment safeguards: preview, approval, limits, rollback'
+categorization:
+  job_function: sales
+  jtbd:
+    job: Provides real-time pricing guidance based on deal context, competitive dynamics,
+      and win rate optimization.
+    context: When working in revops domain
+    outcome: Successfully execute Pricing Guidance Engine
+composability:
+  hints:
+  - 'can_chain_to: cpq_quote_generator'
+  - 'can_chain_to: deal_inspection'
+  - 'can_chain_to: competitive_intel'
+  - has_structured_output

@@ -1,0 +1,149 @@
+{
+  "id": "data_dashboard_builder",
+  "version": "1.0.0",
+  "name": "Dashboard Builder",
+  "description": "Creates and configures analytics dashboards based on business requirements, automatically selecting appropriate visualizations and metrics.",
+  "domain": "data_ops",
+  "tools": [
+    {
+      "name": "metabase.create_dashboard",
+      "required": true
+    },
+    {
+      "name": "metabase.create_card",
+      "required": true
+    },
+    {
+      "name": "warehouse.query",
+      "required": true
+    },
+    {
+      "name": "ai.analyze",
+      "required": true
+    },
+    {
+      "name": "looker.create_look",
+      "required": false
+    },
+    {
+      "name": "tableau.create_workbook",
+      "required": false
+    },
+    {
+      "name": "slack.send_message",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "data_anomaly_alerter",
+    "data_cohort_builder",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "type": "string",
+        "description": "Dashboard name"
+      },
+      "description": {
+        "type": "string",
+        "description": "What this dashboard should show"
+      },
+      "audience": {
+        "type": "string",
+        "description": "Who will use this dashboard"
+      },
+      "metrics": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Key metrics to include"
+      },
+      "dimensions": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Breakdown dimensions"
+      },
+      "time_range": {
+        "type": "string",
+        "description": "Default time range"
+      },
+      "refresh_frequency": {
+        "type": "string",
+        "description": "How often to refresh data"
+      },
+      "platform": {
+        "type": "string",
+        "enum": [
+          "metabase",
+          "looker",
+          "tableau"
+        ],
+        "default": "metabase"
+      }
+    },
+    "required": [
+      "name",
+      "description"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "dashboard_id": {
+        "type": "string"
+      },
+      "dashboard_url": {
+        "type": "string"
+      },
+      "cards": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "queries": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "suggested_improvements": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "metrics": {
+    "primary": "dashboard_adoption_rate",
+    "benchmarks": {
+      "excellent": "> 80% weekly active viewers",
+      "good": "50-80% weekly active viewers",
+      "needs_improvement": "< 50% weekly active viewers"
+    }
+  },
+  "temperature": 0.3,
+  "tags": [
+    "data_ops",
+    "dashboards",
+    "visualization",
+    "bi",
+    "reporting",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Dashboard Builder"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

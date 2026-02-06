@@ -1,0 +1,42 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - drop
+    - change
+    - get
+    - retrieve
+    - email
+    - alert
+    - message
+    - analytics
+    - track
+    - log
+    - monitor
+    - format
+    - calculate
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.711080'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: customer_success
+  jtbd:
+    job: Predicts ticket escalation probability using ML models and historical patterns
+      to enable proactive intervention.
+    context: When working in support_ops domain
+    outcome: Successfully execute Escalation Predictor
+composability:
+  hints:
+  - 'can_chain_to: sla_monitor'
+  - 'can_chain_to: resolution_suggester'
+  - 'can_chain_to: proactive_outreach'
+  - has_structured_output

@@ -1,0 +1,40 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - eval
+    - system
+    - change
+    - read
+    - get
+    - log
+    - list
+    - search
+    - format
+    - compute
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.854909'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Automated LLM-driven hypothesis generation and testing on tabular datasets.
+      Use when you want to systematically explore hypotheses about patterns in empirical
+      data (e.g., deception detection, content analysis). Combines literature insights
+      with data-driven hypothesis testing. For manual hypothesis formulation use hypothesis-generation;
+      for creative ideation use scientific-brainstorming.
+    context: When working in scientific domain
+    outcome: Successfully execute hypogenic
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

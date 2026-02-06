@@ -1,0 +1,45 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - change
+    - access
+    - read
+    - get
+    - email
+    - message
+    - analytics
+    - track
+    - log
+    - monitor
+    - list
+    - search
+    - aggregate
+    - display
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.866558'
+    original_risk: High
+    changes:
+    - Added validation, preview mode, and rollback for writes
+categorization:
+  job_function: marketing
+  jtbd:
+    job: '"When the user wants help with paid advertising campaigns on Google Ads,
+      Meta (Facebook/Instagram), LinkedIn, Twitter/X, or other ad platforms. Also
+      use when the user mentions ''PPC,'' ''paid media,'' ''ad copy,'' ''ad creative,''
+      ''ROAS,'' ''CPA,'' ''ad campaign,'' ''retargeting,'' or ''audience targeting.''
+      This skill covers campaign strategy, ad creation, audience targeting, and optimization."'
+    context: When working in marketing domain
+    outcome: Successfully execute paid-ads
+composability:
+  hints:
+  - 'can_chain_to: support'
+  - has_structured_output

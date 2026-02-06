@@ -1,0 +1,38 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - eval
+    - read
+    - get
+    - analytics
+    - track
+    - list
+    - format
+    - calculate
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.773067'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: operations
+  jtbd:
+    job: PLG readiness assessment using Four Fits, Racecar framework, Motions x Levers
+      model, and PLG maturity model with freemium vs trial decision tree
+    context: When working in plg_frameworks domain
+    outcome: Successfully execute PLG Strategy Assessment
+composability:
+  hints:
+  - 'can_chain_to: strategy_complete'
+  - 'can_chain_to: needs_sales_motion'
+  - 'can_chain_to: needs_product_changes'
+  - 'can_chain_to: hybrid_recommended'
+  - has_structured_output

@@ -1,0 +1,131 @@
+{
+  "id": "mon_mrr_movement_tracker",
+  "version": "1.0.0",
+  "name": "MRR Movement Tracker",
+  "description": "Tracks MRR changes including new, expansion, contraction, churn, and reactivation",
+  "domain": "monetization",
+  "tools": [
+    {
+      "name": "stripe.list_subscriptions",
+      "required": true
+    },
+    {
+      "name": "analytics.mrr_movement",
+      "required": true
+    },
+    {
+      "name": "analytics.cohort",
+      "required": true
+    },
+    {
+      "name": "ai.trend_analysis",
+      "required": false
+    },
+    {
+      "name": "crm.list_accounts",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "report_generated",
+    "anomaly_detected",
+    "alert_triggered",
+    "forecast_updated",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "period": {
+        "type": "string",
+        "description": "Reporting period (YYYY-MM)"
+      },
+      "granularity": {
+        "type": "string",
+        "enum": [
+          "daily",
+          "weekly",
+          "monthly"
+        ],
+        "default": "monthly"
+      },
+      "segment": {
+        "type": "string",
+        "description": "Optional segment filter"
+      }
+    },
+    "required": [
+      "period"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "starting_mrr": {
+        "type": "number"
+      },
+      "ending_mrr": {
+        "type": "number"
+      },
+      "new_mrr": {
+        "type": "number"
+      },
+      "expansion_mrr": {
+        "type": "number"
+      },
+      "contraction_mrr": {
+        "type": "number"
+      },
+      "churn_mrr": {
+        "type": "number"
+      },
+      "reactivation_mrr": {
+        "type": "number"
+      },
+      "net_change": {
+        "type": "number"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "net_mrr_growth",
+    "benchmarks": {
+      "excellent": "> 10%/mo",
+      "good": "5-10%/mo",
+      "needs_improvement": "< 5%/mo"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "monetization",
+    "mrr",
+    "saas-metrics",
+    "revenue",
+    "growth",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with MRR Movement Tracker"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "stripe.get_customer",
+          "required": true
+        },
+        {
+          "name": "stripe.list_subscriptions",
+          "required": false
+        },
+        {
+          "name": "stripe.create_checkout",
+          "required": false
+        }
+      ]
+    }
+  }
+}

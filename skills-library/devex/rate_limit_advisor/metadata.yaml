@@ -1,0 +1,30 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - change
+    - get
+    - alert
+    - analytics
+    - track
+    - monitor
+    - list
+    - format
+categorization:
+  job_function: data
+  jtbd:
+    job: Monitors API usage patterns, predicts rate limit issues, and provides optimization
+      recommendations.
+    context: When working in devex domain
+    outcome: Successfully execute Rate Limit Advisor
+composability:
+  hints:
+  - 'can_chain_to: latency_advisor'
+  - 'can_chain_to: support_deflector'
+  - 'can_chain_to: integration_health'
+  - has_structured_output

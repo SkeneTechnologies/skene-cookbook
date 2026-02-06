@@ -1,0 +1,257 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://skene.ai/schemas/workflow_blueprint.json",
+  "title": "Workflow Blueprint",
+  "description": "Schema for defining multi-skill workflow chains with orchestration logic",
+  "type": "object",
+  "required": ["id", "name", "description", "chain_sequence"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^workflow_[a-z0-9_]+$",
+      "description": "Unique workflow identifier"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable workflow name"
+    },
+    "description": {
+      "type": "string",
+      "description": "What this workflow accomplishes end-to-end"
+    },
+    "category": {
+      "type": "string",
+      "description": "Workflow category (e.g., 'Partner Onboarding', 'Lead Qualification')"
+    },
+    "chain_sequence": {
+      "type": "array",
+      "description": "Ordered sequence of skill execution steps",
+      "items": {
+        "type": "object",
+        "required": ["step_id", "skill_id", "action"],
+        "properties": {
+          "step_id": {
+            "type": "string",
+            "description": "Unique identifier for this step in the chain"
+          },
+          "skill_id": {
+            "type": "string",
+            "description": "The skill to execute at this step"
+          },
+          "action": {
+            "type": "string",
+            "description": "Specific action/method within the skill"
+          },
+          "input_mapping": {
+            "type": "object",
+            "description": "How to map previous outputs to this step's input",
+            "properties": {
+              "from_step": {
+                "type": "string",
+                "description": "Step ID to pull data from"
+              },
+              "field_mappings": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "string"
+                }
+              },
+              "static_values": {
+                "type": "object"
+              }
+            }
+          },
+          "conditions": {
+            "type": "object",
+            "description": "Conditional execution logic",
+            "properties": {
+              "execute_if": {
+                "type": "string",
+                "description": "JSONPath or expression to evaluate"
+              },
+              "skip_if": {
+                "type": "string"
+              }
+            }
+          },
+          "error_handling": {
+            "type": "object",
+            "properties": {
+              "on_failure": {
+                "type": "string",
+                "enum": ["stop", "continue", "retry", "fallback"],
+                "default": "stop"
+              },
+              "max_retries": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 5
+              },
+              "fallback_step": {
+                "type": "string",
+                "description": "Alternate step to execute on failure"
+              },
+              "rollback_steps": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Steps to undo on failure"
+              }
+            }
+          },
+          "timeout_seconds": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 3600
+          }
+        }
+      }
+    },
+    "logic_gates": {
+      "type": "object",
+      "description": "Branching and parallel execution logic",
+      "properties": {
+        "parallel_groups": {
+          "type": "array",
+          "description": "Steps that can execute in parallel",
+          "items": {
+            "type": "object",
+            "properties": {
+              "group_id": {
+                "type": "string"
+              },
+              "step_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "wait_for_all": {
+                "type": "boolean",
+                "description": "Whether to wait for all steps or continue after first completion"
+              }
+            }
+          }
+        },
+        "decision_points": {
+          "type": "array",
+          "description": "Conditional branching points",
+          "items": {
+            "type": "object",
+            "properties": {
+              "decision_id": {
+                "type": "string"
+              },
+              "after_step": {
+                "type": "string"
+              },
+              "conditions": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "if": {
+                      "type": "string",
+                      "description": "Condition expression"
+                    },
+                    "then_step": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "default_step": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "error_handling": {
+      "type": "object",
+      "properties": {
+        "global_timeout_seconds": {
+          "type": "integer"
+        },
+        "failure_notification": {
+          "type": "object",
+          "properties": {
+            "channels": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": ["email", "slack", "webhook"]
+              }
+            },
+            "recipients": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "security_context": {
+      "type": "object",
+      "properties": {
+        "max_risk_level": {
+          "type": "string",
+          "enum": ["Low", "Medium", "High", "Critical"],
+          "description": "Maximum allowed risk level for skills in this workflow"
+        },
+        "requires_approval": {
+          "type": "boolean",
+          "description": "Whether entire workflow requires human approval before execution"
+        },
+        "approval_at_steps": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Steps requiring individual approval"
+        }
+      }
+    },
+    "input_schema": {
+      "type": "object",
+      "description": "JSON Schema for workflow input parameters"
+    },
+    "output_schema": {
+      "type": "object",
+      "description": "JSON Schema for final workflow output"
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "author": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "estimated_duration_seconds": {
+          "type": "integer"
+        }
+      }
+    }
+  }
+}

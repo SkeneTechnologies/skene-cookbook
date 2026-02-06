@@ -1,0 +1,42 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - access
+    - get
+    - email
+    - message
+    - analytics
+    - track
+    - log
+    - list
+    - search
+    - format
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.775672'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: customer_success
+  jtbd:
+    job: Adoption lifecycle analysis, discovery mechanisms, stickiness analysis, and
+      deprecation communication
+    context: When working in plg_frameworks domain
+    outcome: Successfully execute Feature Adoption
+composability:
+  hints:
+  - 'can_chain_to: adoption_analyzed'
+  - 'can_chain_to: discovery_optimized'
+  - 'can_chain_to: deprecation_planned'
+  - 'can_chain_to: feature_sticky'
+  - has_structured_output

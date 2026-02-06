@@ -1,0 +1,46 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - financial
+    - payment
+    - execute
+    - system
+    - change
+    - personal
+    - read
+    - get
+    - email
+    - track
+    - log
+    - list
+    - sort
+    - format
+    - show
+    - view
+    - preview
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.738768'
+    original_risk: Critical
+    changes:
+    - 'Added payment safeguards: preview, approval, limits, rollback'
+categorization:
+  job_function: marketing
+  jtbd:
+    job: Automatically organizes invoices and receipts for tax preparation by reading
+      messy files, extracting key information, renaming them consistently, and sorting
+      them into logical folders. Turns hours of manual bookkeeping into minutes of
+      automated organization.
+    context: When working in marketing domain
+    outcome: Successfully execute invoice-organizer
+composability:
+  hints:
+  - 'can_chain_to: support'
+  - has_structured_output

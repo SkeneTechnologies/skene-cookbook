@@ -1,0 +1,119 @@
+{
+  "id": "elg_ecosystem_intelligence",
+  "version": "1.0.0",
+  "name": "Ecosystem Intelligence",
+  "description": "Aggregates and analyzes ecosystem data to provide strategic insights on partner performance, market trends, and competitive dynamics.",
+  "domain": "ecosystem",
+  "tools": [
+    {
+      "name": "analytics.get_ecosystem_metrics",
+      "required": true
+    },
+    {
+      "name": "partner.get_all",
+      "required": true
+    },
+    {
+      "name": "analytics.get_trends",
+      "required": true
+    },
+    {
+      "name": "ai.analyze_patterns",
+      "required": false
+    },
+    {
+      "name": "analytics.create_report",
+      "required": false
+    },
+    {
+      "name": "messaging.send_email",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "tech_partner_finder",
+    "partner_tier_manager",
+    "partner_influenced_revenue",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "reportType": {
+        "type": "string",
+        "enum": [
+          "executive",
+          "operational",
+          "strategic",
+          "competitive"
+        ]
+      },
+      "period": {
+        "type": "string",
+        "description": "Analysis period"
+      },
+      "focus": {
+        "type": "string",
+        "description": "Specific area to analyze"
+      }
+    },
+    "required": [
+      "reportType"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "ecosystem_health": {
+        "type": "object"
+      },
+      "partner_insights": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "trends": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "competitive_analysis": {
+        "type": "object"
+      },
+      "recommendations": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      }
+    }
+  },
+  "metrics": {
+    "primary": "ecosystem_health_score",
+    "benchmarks": {
+      "excellent": "> 85",
+      "good": "70-85",
+      "needs_improvement": "< 70"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "ecosystem",
+    "intelligence",
+    "analytics",
+    "strategy",
+    "insights",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Ecosystem Intelligence"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

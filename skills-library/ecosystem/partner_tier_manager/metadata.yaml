@@ -1,0 +1,45 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - eval
+    - system
+    - update
+    - change
+    - access
+    - fetch
+    - get
+    - email
+    - notification
+    - track
+    - log
+    - list
+    - sort
+    - format
+    - calculate
+    - view
+    - 'risky_tool: partner.update_tier'
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.807586'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: customer_success
+  jtbd:
+    job: Manages partner tier classifications, evaluates tier progression, and tracks
+      tier-based benefits and requirements.
+    context: When working in ecosystem domain
+    outcome: Successfully execute Partner Tier Manager
+composability:
+  hints:
+  - 'can_chain_to: channel_enablement'
+  - 'can_chain_to: deal_registration'
+  - 'can_chain_to: mdf_tracker'
+  - has_structured_output

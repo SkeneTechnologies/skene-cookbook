@@ -1,0 +1,31 @@
+{
+  "id": "superpowers/using-superpowers",
+  "version": "1.0.0",
+  "name": "using-superpowers",
+  "description": "Use when starting any conversation - establishes how to find and use skills, requiring Skill tool invocation before ANY response including clarifying questions",
+  "domain": "superpowers",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "superpowers",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with using superpowers",
+        "starting any conversation - establishes how to find and use skills, requiring skill tool invocation before any response including clarifying questions"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

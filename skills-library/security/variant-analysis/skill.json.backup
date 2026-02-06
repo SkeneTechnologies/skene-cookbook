@@ -1,0 +1,33 @@
+{
+  "id": "security/variant-analysis",
+  "version": "1.0.0",
+  "name": "variant-analysis",
+  "description": "Find similar vulnerabilities and bugs across codebases using pattern-based analysis. Use when hunting bug variants, building CodeQL/Semgrep queries, analyzing security vulnerabilities, or performing systematic code audits after finding an initial issue.",
+  "domain": "security",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "security",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with variant analysis",
+        "security audit",
+        "code security",
+        "hunting bug variants, building codeql/semgrep queries, analyzing security vulnerabilities, or performing systematic code audits after finding an initial issue"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

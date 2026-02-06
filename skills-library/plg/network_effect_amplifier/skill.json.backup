@@ -1,0 +1,134 @@
+{
+  "id": "plg_network_effect_amplifier",
+  "version": "1.0.0",
+  "name": "Network Effect Amplifier",
+  "description": "Identifies and accelerates network effects by encouraging collaborative behaviors, invitations, and cross-user interactions that increase product value.",
+  "domain": "plg",
+  "tools": [
+    {
+      "name": "lifecycle.get_segment",
+      "required": true
+    },
+    {
+      "name": "analytics.track_event",
+      "required": true
+    },
+    {
+      "name": "analytics.get_metrics",
+      "required": true
+    },
+    {
+      "name": "crm.get_account",
+      "required": false
+    },
+    {
+      "name": "messaging.send_in_app",
+      "required": false
+    },
+    {
+      "name": "resend.send_template",
+      "required": false
+    },
+    {
+      "name": "lifecycle.record_moment",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "viral_loop",
+    "activation",
+    "self_serve_expansion",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "userId": {
+        "type": "string",
+        "description": "User to amplify network for"
+      },
+      "networkType": {
+        "type": "string",
+        "enum": [
+          "direct",
+          "indirect",
+          "platform"
+        ],
+        "description": "Type of network effect"
+      },
+      "triggerEvent": {
+        "type": "string",
+        "description": "Event that triggered network opportunity"
+      }
+    },
+    "required": [
+      "userId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "networkScore": {
+        "type": "number"
+      },
+      "connectionCount": {
+        "type": "number"
+      },
+      "networkValueMultiplier": {
+        "type": "number"
+      },
+      "recommendedAction": {
+        "type": "string"
+      },
+      "invitePotential": {
+        "type": "number"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "network_density",
+    "benchmarks": {
+      "excellent": "> 0.4",
+      "good": "0.2-0.4",
+      "needs_improvement": "< 0.2"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "plg",
+    "network-effect",
+    "viral",
+    "collaboration",
+    "growth",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Network Effect Amplifier",
+        "increase conversion"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "lifecycle.get_segment",
+          "required": true
+        },
+        {
+          "name": "lifecycle.record_moment",
+          "required": false
+        },
+        {
+          "name": "analytics.track_event",
+          "required": false
+        },
+        {
+          "name": "messaging.send_in_app",
+          "required": false
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,41 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - change
+    - read
+    - get
+    - retrieve
+    - query
+    - analytics
+    - track
+    - log
+    - list
+    - format
+    - calculate
+    - 'risky_tool: crm.update_account'
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.869070'
+    original_risk: High
+    changes:
+    - Added validation, preview mode, and rollback for writes
+categorization:
+  job_function: customer_success
+  jtbd:
+    job: Measures and optimizes the time from customer onboarding to measurable business
+      impact and value realization.
+    context: When working in customer_success domain
+    outcome: Successfully execute Time to Impact Calculator
+composability:
+  hints:
+  - 'can_chain_to: onboarding_health'
+  - 'can_chain_to: outcome_tracker'
+  - 'can_chain_to: vla_tracker'
+  - 'can_chain_to: health_scoring'
+  - has_structured_output

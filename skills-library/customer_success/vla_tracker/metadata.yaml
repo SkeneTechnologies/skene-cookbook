@@ -1,0 +1,42 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - drop
+    - modify
+    - get
+    - retrieve
+    - alert
+    - analytics
+    - track
+    - monitor
+    - list
+    - format
+    - calculate
+    - view
+    - 'risky_tool: crm.update_account'
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.752917'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: customer_success
+  jtbd:
+    job: Defines and tracks VLA outcomes aligned with customer business objectives,
+      ensuring measurable value delivery throughout the customer lifecycle.
+    context: When working in customer_success domain
+    outcome: Successfully execute Value-Level Agreement Manager
+composability:
+  hints:
+  - 'can_chain_to: health_scoring'
+  - 'can_chain_to: expansion_playbook'
+  - 'can_chain_to: outcome_tracker'
+  - 'can_chain_to: quarterly_business_review'
+  - has_structured_output

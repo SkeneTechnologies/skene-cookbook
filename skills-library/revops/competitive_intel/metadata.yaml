@@ -1,0 +1,43 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - eval
+    - update
+    - change
+    - sensitive
+    - read
+    - get
+    - alert
+    - analytics
+    - track
+    - list
+    - search
+    - filter
+    - sort
+    - format
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.836666'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: data
+  jtbd:
+    job: Tracks competitive landscape, win/loss patterns against competitors, and
+      provides real-time battle card intelligence.
+    context: When working in revops domain
+    outcome: Successfully execute Competitive Intelligence Tracker
+composability:
+  hints:
+  - 'can_chain_to: win_loss_analyzer'
+  - 'can_chain_to: sales_content_recommender'
+  - 'can_chain_to: pricing_guidance'
+  - has_structured_output

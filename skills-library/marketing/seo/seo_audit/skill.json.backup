@@ -1,0 +1,51 @@
+{
+  "id": "marketing_seo_audit",
+  "version": "1.0.0",
+  "name": "seo-audit",
+  "description": "When the user wants to audit, review, or diagnose SEO issues on their site. Also use when the user mentions \"SEO audit,\" \"technical SEO,\" \"why am I not ranking,\" \"SEO issues,\" \"on-page SEO,\" \"meta tags review,\" or \"SEO health check.\" For building pages at scale to target keywords, see programmatic-seo. For adding structured data, see schema-markup.",
+  "domain": "marketing",
+  "category": "seo",
+  "source": "skene-marketing",
+  "tools": [],
+  "exitStates": [
+    "idle",
+    "support"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {},
+    "required": []
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {}
+  },
+  "temperature": 0.3,
+  "tags": [
+    "marketing",
+    "seo",
+    "seo-audit",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with seo audit",
+        "the user mentions \"seo audit,\" \"technical seo,\" \"why am i not ranking,\" \"seo issues,\" \"on-page seo,\" \"meta tags review,\" or \"seo health check"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "resend.send_email",
+          "required": false
+        },
+        {
+          "name": "analytics.track_campaign",
+          "required": false
+        }
+      ]
+    }
+  }
+}

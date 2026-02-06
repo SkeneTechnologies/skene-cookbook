@@ -1,0 +1,125 @@
+{
+  "id": "plgf_product_led_sales",
+  "version": "1.0.0",
+  "name": "Product-Led Sales",
+  "description": "Design PQL/PQA scoring models, sales handoff workflows, segment-based approaches, and CRM integration patterns",
+  "domain": "plg_frameworks",
+  "tools": [
+    {
+      "name": "analytics.get_metrics",
+      "required": true
+    },
+    {
+      "name": "crm.get_customer_data",
+      "required": true
+    },
+    {
+      "name": "crm.update_record",
+      "required": false
+    },
+    {
+      "name": "lifecycle.get_segment",
+      "required": true
+    },
+    {
+      "name": "messaging.send_notification",
+      "required": false
+    },
+    {
+      "name": "ui_kit.panel",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "pql_scored",
+    "sales_handoff",
+    "self_serve",
+    "nurture_sequence",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "userId": {
+        "type": "string",
+        "description": "User or account to evaluate"
+      },
+      "accountId": {
+        "type": "string",
+        "description": "Account identifier for B2B"
+      },
+      "productUsageData": {
+        "type": "object",
+        "description": "Product usage signals"
+      },
+      "evaluationType": {
+        "type": "string",
+        "enum": [
+          "pql",
+          "pqa",
+          "both"
+        ],
+        "description": "Type of qualification to evaluate"
+      }
+    },
+    "required": [
+      "userId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "pqlScore": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 100
+      },
+      "pqaScore": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 100
+      },
+      "qualificationSignals": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "recommendedAction": {
+        "type": "string"
+      },
+      "salesHandoffPackage": {
+        "type": "object"
+      },
+      "segmentAssignment": {
+        "type": "string"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "pql_to_customer_rate",
+    "benchmarks": {
+      "excellent": "> 25%",
+      "good": "15-25%",
+      "needs_improvement": "< 15%"
+    }
+  },
+  "temperature": 0.2,
+  "tags": [
+    "plg_frameworks",
+    "product_led_sales",
+    "pql",
+    "pqa",
+    "elena_verna",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Product Led Sales"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

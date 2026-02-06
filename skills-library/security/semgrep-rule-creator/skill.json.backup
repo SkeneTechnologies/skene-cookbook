@@ -1,0 +1,33 @@
+{
+  "id": "security/semgrep-rule-creator",
+  "version": "1.0.0",
+  "name": "semgrep-rule-creator",
+  "description": "Creates custom Semgrep rules for detecting security vulnerabilities, bug patterns, and code patterns. Use when writing Semgrep rules or building custom static analysis detections.",
+  "domain": "security",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "security",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with semgrep rule creator",
+        "security audit",
+        "code security",
+        "writing semgrep rules or building custom static analysis detections"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

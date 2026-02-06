@@ -1,0 +1,41 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - eval
+    - write
+    - alter
+    - access
+    - read
+    - get
+    - retrieve
+    - query
+    - log
+    - list
+    - search
+    - filter
+    - format
+    - summarize
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.849788'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: operations
+  jtbd:
+    job: Query PubChem via PUG-REST API/PubChemPy (110M+ compounds). Search by name/CID/SMILES,
+      retrieve properties, similarity/substructure searches, bioactivity, for cheminformatics.
+    context: When working in scientific domain
+    outcome: Successfully execute pubchem-database
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

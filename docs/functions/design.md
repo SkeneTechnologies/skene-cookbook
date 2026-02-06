@@ -1,0 +1,100 @@
+# Design Skills
+
+**Total Skills:** 77
+
+## Risk Distribution
+
+| Risk Level | Count |
+|------------|-------|
+| 🔴 Critical | 9 |
+| 🔵 Medium | 2 |
+| 🟢 Low | 66 |
+
+---
+
+## Skills
+
+| # | Skill ID | Risk | Job to be Done |
+|---|----------|------|----------------|
+| 1 | `cursor_rules/llama-index` | 🟢 Low | Definitive guidelines for building production-ready LlamaIndex applications, emphasizing modularity, type safety, cloud services, and robust testing. |
+| 2 | `cursor_rules/zod` | 🟢 Low | This guide outlines definitive best practices for using Zod in TypeScript projects, ensuring robust runtime validation, superior type safety, and maintainable schemas. |
+| 3 | `cursor_rules/flask` | 🟢 Low | This guide provides definitive, opinionated best practices for building robust, scalable, and maintainable Flask applications, emphasizing modern patterns and common pitfalls. |
+| 4 | `cursor_rules/tortoise-orm` | 🟢 Low | Definitive guidelines for using Tortoise ORM effectively, focusing on async patterns, robust model design, efficient querying, and production-ready migrations. |
+| 5 | `cursor_rules/postgresql` | 🟢 Low | This guide defines the definitive best practices for writing clean, performant, and maintainable PostgreSQL SQL, focusing on modern conventions and avoiding common pitfalls. |
+| 6 | `cursor_rules/crewai` | 🔴 Critical | Definitive guidelines for building robust, maintainable, and scalable multi-agent systems using CrewAI, focusing on modularity, clear role definition, and disciplined LLM configuration. |
+| 7 | `cursor_rules/react-redux` | 🟢 Low | Definitive guidelines for building robust, performant, and maintainable React-Redux applications using modern Redux Toolkit practices. |
+| 8 | `cursor_rules/pony` | 🟢 Low | Definitive guidelines for writing efficient, maintainable, and secure Python applications using Pony ORM. |
+| 9 | `cursor_rules/chakra-ui` | 🟢 Low | This guide provides opinionated, actionable best practices for using Chakra UI effectively, focusing on token-first theming, responsive design, component architecture, and performance for React 18+ applications. |
+| 10 | `cursor_rules/trio` | 🟢 Low | This guide enforces best practices for using Trio, Python's structured concurrency library, ensuring robust, type-safe, and performant asynchronous applications. |
+| 11 | `cursor_rules/cypress` | 🟢 Low | This guide defines definitive best practices for writing maintainable, performant, and reliable Cypress end-to-end tests, leveraging modern patterns and avoiding common pitfalls. |
+| 12 | `cursor_rules/typer` | 🔴 Critical | Definitive guidelines for building robust, maintainable, and user-friendly command-line interfaces with Typer, emphasizing modern Python type hints and modular design. |
+| 13 | `cursor_rules/css` | 🔵 Medium | Definitive guidelines for writing maintainable, performant, and accessible CSS. Focus on modern practices, robust architecture, and efficient styling patterns. |
+| 14 | `cursor_rules/express` | 🟢 Low | This guide defines definitive best practices for building robust, scalable, and secure Express.js applications, emphasizing modern patterns and common pitfalls. |
+| 15 | `cursor_rules/langchain` | 🟢 Low | Definitive guidelines for writing maintainable, performant, and robust LangChain applications using modern best practices (LCEL, LangGraph, Pydantic, `create_agent`). |
+| 16 | `cursor_rules/junit` | 🟢 Low | This guide provides definitive, opinionated best practices for writing high-quality, maintainable, and effective unit tests using JUnit 5 (Jupiter) in Java projects. |
+| 17 | `cursor_rules/material-ui` | 🟢 Low | Provides definitive guidelines for building scalable, performant, and maintainable React applications using Material-UI (MUI), focusing on modern best practices. |
+| 18 | `cursor_rules/pyramid` | 🟢 Low | This guide provides opinionated, actionable best practices for building modern, maintainable, and performant applications with the Pyramid web framework. |
+| 19 | `cursor_rules/smolagents` | 🟢 Low | Definitive guidelines for building robust, performant, and maintainable AI agents using smolagents, focusing on practical patterns and avoiding common pitfalls. |
+| 20 | `cursor_rules/circleci` | 🟢 Low | This guide provides opinionated, actionable best practices for writing maintainable, secure, and performant CircleCI configurations and orbs. |
+| 21 | `cursor_rules/phoenix` | 🟢 Low | Provides definitive guidelines for building robust, maintainable, and performant Phoenix applications using modern Elixir best practices, focusing on context-driven design, strict formatting, and effective testing. |
+| 22 | `cursor_rules/cloudflare` | 🟢 Low | Definitive guidelines for building secure, performant, and maintainable applications on Cloudflare's developer platform, emphasizing tiny bundles, edge-first design, and robust security. |
+| 23 | `cursor_rules/jetpack-compose` | 🟢 Low | Definitive guidelines for writing clean, performant, and maintainable Jetpack Compose UI code, emphasizing best practices for component design, state management, and modifier usage. |
+| 24 | `cursor_rules/llamaindex-js` | 🟢 Low | Definitive guidelines for writing robust, performant, and maintainable `llamaindex-js` applications using modern TypeScript best practices. |
+| 25 | `cursor_rules/click` | 🔴 Critical | This guide outlines definitive best practices for building robust, maintainable, and user-friendly command-line interfaces (CLIs) using the `click` Python library, emphasizing modern patterns and common pitfalls. |
+| 26 | `cursor_rules/pyside` | 🟢 Low | Definitive guide for building modern, maintainable, and performant PySide6 applications using best practices like UI/logic separation, modern controls, and robust type safety. |
+| 27 | `cursor_rules/aws-lambda` | 🟢 Low | Definitive guidelines for writing secure, performant, and maintainable AWS Lambda functions using modern best practices. |
+| 28 | `cursor_rules/isort` | 🟢 Low | This guide provides definitive rules for configuring and using isort to maintain consistent, readable, and merge-conflict-free Python import statements. |
+| 29 | `cursor_rules/tkinter` | 🟢 Low | Definitive guidelines for building modern, maintainable, and performant Tkinter applications using best practices, ttk, and ttkbootstrap. |
+| 30 | `cursor_rules/sqlite` | 🟢 Low | Definitive guidelines for writing robust, performant, and secure SQLite code. Focuses on schema design, query optimization, and transaction management. |
+| 31 | `cursor_rules/htmx` | 🔵 Medium | This guide provides definitive, opinionated best practices for using htmx, focusing on declarative markup, secure server interaction, and efficient UI updates for modern web applications. |
+| 32 | `cursor_rules/playwright` | 🟢 Low | Definitive guidelines for writing robust, maintainable, and high-quality end-to-end tests with Playwright in TypeScript. |
+| 33 | `cursor_rules/mongodb` | 🟢 Low | This guide provides definitive best practices for designing, querying, and maintaining MongoDB databases to ensure high performance, scalability, and maintainability in cloud-native applications. |
+| 34 | `cursor_rules/sveltekit` | 🟢 Low | Definitive guidelines for building scalable, performant, and maintainable SvelteKit applications using modern best practices, TypeScript, and Svelte 5 runes. |
+| 35 | `cursor_rules/behave` | 🟢 Low | Definitive guidelines for writing maintainable, readable, and effective BDD tests with behave in Python, emphasizing thin steps, clear Gherkin, and robust fixture management. |
+| 36 | `cursor_rules/flutter` | 🟢 Low | Definitive guidelines for writing high-quality, performant, and maintainable Flutter applications using modern Dart 3.10+ practices. |
+| 37 | `cursor_rules/poetry` | 🟢 Low | Definitive guidelines for using Poetry for Python dependency management, packaging, and project structure, emphasizing modern best practices as of 2025. |
+| 38 | `cursor_rules/httpx` | 🟢 Low | This guide outlines definitive best practices for using httpx, Python's modern HTTP client, ensuring robust, performant, and maintainable network interactions in both synchronous and asynchronous applications. |
+| 39 | `cursor_rules/firebase` | 🟢 Low | This guide provides definitive, opinionated best practices for building secure, performant, and maintainable applications with Firebase, focusing on modern patterns and avoiding common pitfalls. |
+| 40 | `cursor_rules/apollo-graphql` | 🟢 Low | Definitive guidelines for building robust, performant, and maintainable apollo-graphql applications using modern best practices and tooling. |
+| 41 | `cursor_rules/detox` | 🟢 Low | This guide provides definitive, opinionated best practices for writing reliable, maintainable, and performant end-to-end tests with Detox in React Native applications. |
+| 42 | `cursor_rules/mypy` | 🟢 Low | This guide provides definitive, actionable best practices for using mypy to ensure robust static type checking in Python projects, focusing on modern patterns and common pitfalls. |
+| 43 | `cursor_rules/sphinx` | 🟢 Low | This rule file provides opinionated, practical guidelines for setting up, writing, and maintaining Python project documentation using Sphinx, emphasizing modern best practices, clear structure, and automated validation. |
+| 44 | `cursor_rules/rich` | 🟢 Low | Definitive guidelines for building robust, maintainable, and visually appealing Python CLI applications using the rich library. |
+| 45 | `cursor_rules/fiber` | 🟢 Low | Definitive guidelines for writing high-performance, secure, and maintainable Fiber applications in Go. Focuses on context immutability, robust error handling, and modular design. |
+| 46 | `cursor_rules/nuxt` | 🟢 Low | This guide provides definitive, actionable best practices for building robust, performant, and secure Nuxt applications, emphasizing modern patterns and common pitfalls. |
+| 47 | `cursor_rules/react-mobx` | 🟢 Low | This guide provides opinionated, actionable best practices for building scalable and performant React applications using MobX, focusing on modern patterns and React Compiler compatibility. |
+| 48 | `cursor_rules/mobx` | 🟢 Low | Definitive guidelines for structuring MobX applications with React, focusing on predictable state management, optimal rendering, and modern best practices. |
+| 49 | `cursor_rules/hypothesis` | 🟢 Low | Definitive guidelines for writing robust, maintainable, and performant property-based tests using Hypothesis with Python and pytest. |
+| 50 | `cursor_rules/mkdocs` | 🟢 Low | Definitive guidelines for writing, structuring, and maintaining high-quality MkDocs documentation using modern best practices and Material for MkDocs. |
+| 51 | `cursor_rules/mockito` | 🟢 Low | This guide provides definitive best practices for writing robust, maintainable, and readable unit tests using Mockito with JUnit 5, focusing on modern patterns and common pitfalls. |
+| 52 | `cursor_rules/rocket` | 🟢 Low | Definitive guidelines for building robust, performant, and maintainable backend services with Rocket 0.5+, focusing on modern Rust async patterns, API design, and testing. |
+| 53 | `cursor_rules/nestjs` | 🟢 Low | This guide provides opinionated, actionable best practices for building robust, scalable, and maintainable NestJS applications using TypeScript, emphasizing modern patterns and common pitfalls. |
+| 54 | `cursor_rules/socket-io` | 🟢 Low | Definitive guidelines for building robust, performant, and maintainable real-time applications using Socket.IO v4.x, emphasizing modern JavaScript practices and common pitfalls. |
+| 55 | `cursor_rules/langchain-js` | 🟢 Low | This guide provides opinionated, actionable best practices for building robust and maintainable LLM applications with langchain-js, emphasizing modularity, type safety, observability, and testing. |
+| 56 | `cursor_rules/esbuild` | 🟢 Low | Definitive guidelines for configuring and using esbuild to achieve ultra-fast, optimized, and production-ready JavaScript/TypeScript builds. |
+| 57 | `cursor_rules/zsh` | 🟢 Low | This guide defines the definitive best practices for writing Zsh scripts and configuration files, ensuring consistency, robustness, and maintainability across our projects. |
+| 58 | `cursor_rules/pydantic` | 🟢 Low | Definitive guidelines for writing robust, maintainable, and performant pydantic models in Python, focusing on v2.12.5 best practices. |
+| 59 | `cursor_rules/auth0` | 🟢 Low | Definitive guidelines for integrating Auth0 securely and efficiently, preventing common identity attacks, and leveraging modern authentication patterns. |
+| 60 | `cursor_rules/electron` | 🟢 Low | This guide provides opinionated, actionable best practices for building secure, performant, and maintainable Electron applications using modern patterns and consistent tooling. |
+| 61 | `cursor_rules/redux` | 🟢 Low | This guide defines the definitive best practices for using Redux in our projects, mandating Redux Toolkit (RTK) for all state management logic to ensure consistency, maintainability, and optimal performance. |
+| 62 | `cursor_rules/react` | 🟢 Low | Definitive guidelines for writing idiomatic, maintainable, and performant React applications using modern best practices and TypeScript. |
+| 63 | `cursor_rules/axios` | 🟢 Low | Definitive guidelines for using axios to build robust, maintainable, and performant HTTP clients in JavaScript/React applications. |
+| 64 | `cursor_rules/elk-stack` | 🟢 Low | Definitive guidelines for emitting, structuring, and managing logs within the ELK stack, ensuring robust observability and efficient troubleshooting. |
+| 65 | `cursor_rules/bottle` | 🟢 Low | Definitive guidelines for building maintainable, secure, and performant Bottle applications in 2025, emphasizing modern Python best practices. |
+| 66 | `cursor_rules/laravel` | 🟢 Low | Definitive guide for writing clean, performant, and secure Laravel applications, emphasizing modern best practices and common pitfalls. |
+| 67 | `cursor_rules/openai` | 🟢 Low | This guide provides definitive, actionable best practices for developing with the OpenAI API, covering prompt engineering, robust client usage, agent design, and testing. |
+| 68 | `cursor_rules/spring` | 🟢 Low | Definitive guidelines for building robust, maintainable, and performant Spring Boot applications using modern best practices. |
+| 69 | `cursor_rules/ant-design` | 🟢 Low | Definitive guidelines for building consistent, performant, and maintainable UIs with Ant Design v6.x, focusing on design tokens, layout, and component usage. |
+| 70 | `cursor_rules/jest` | 🟢 Low | Definitive guidelines for writing robust, maintainable, and performant Jest tests in JavaScript and TypeScript projects. |
+| 71 | `cursor_rules/guzzle` | 🟢 Low | Definitive guidelines for using Guzzle HTTP client in PHP, focusing on robust client configuration, effective middleware, PSR-18 interoperability, and testability. |
+| 72 | `anthropic_official/algorithmic-art` | 🔴 Critical | Creating algorithmic art using p5.js with seeded randomness and interactive parameter exploration. Use this when users request creating art using code, generative art, algorithmic art, flow fields, or particle systems. Create original algorithmic art rather than copying existing artists' work to avoid copyright violations. |
+| 73 | `anthropic_official/canvas-design` | 🔴 Critical | Create beautiful visual art in .png and .pdf documents using design philosophy. You should use this skill when the user asks to create a poster, piece of art, design, or other static piece. Create original visual designs, never copying existing artists' work to avoid copyright violations. |
+| 74 | `anthropic_official/frontend-design` | 🔴 Critical | Create distinctive, production-grade frontend interfaces with high design quality. Use this skill when the user asks to build web components, pages, artifacts, posters, or applications (examples include websites, landing pages, dashboards, React components, HTML/CSS layouts, or when styling/beautifying any web UI). Generates creative, polished code and UI design that avoids generic AI aesthetics. |
+| 75 | `anthropic_official/brand-guidelines` | 🔴 Critical | Applies Anthropic's official brand colors and typography to any sort of artifact that may benefit from having Anthropic's look-and-feel. Use it when brand colors or style guidelines, visual formatting, or company design standards apply. |
+| 76 | `superpowers/brainstorming` | 🔴 Critical | "You MUST use this before any creative work - creating features, building components, adding functionality, or modifying behavior. Explores user intent, requirements and design before implementation." |
+| 77 | `scientific/pptx-posters` | 🔴 Critical | Create research posters using HTML/CSS that can be exported to PDF or PPTX. Use this skill ONLY when the user explicitly requests PowerPoint/PPTX poster format. For standard research posters, use latex-posters instead. This skill provides modern web-based poster design with responsive layouts and easy visual integration. |
+
+---
+
+[← Back to Directory](../directory.md)
+

@@ -1,0 +1,119 @@
+{
+  "id": "cs_product_adoption_guidance",
+  "version": "1.0.0",
+  "name": "Product Adoption Coach",
+  "description": "Provides personalized product adoption guidance, recommending features and workflows that align with customer goals and use cases.",
+  "domain": "customer_success",
+  "tools": [
+    {
+      "name": "analytics.feature_adoption",
+      "required": true
+    },
+    {
+      "name": "crm.get_goals",
+      "required": true
+    },
+    {
+      "name": "crm.get_account",
+      "required": true
+    },
+    {
+      "name": "analytics.query_events",
+      "required": false
+    },
+    {
+      "name": "messaging.send_in_app",
+      "required": false
+    },
+    {
+      "name": "messaging.send_email",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "adoption_score",
+    "success_plan_generator",
+    "expansion_playbook",
+    "training_orchestrator",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "accountId": {
+        "type": "string",
+        "description": "Customer account identifier"
+      },
+      "userId": {
+        "type": "string",
+        "description": "Specific user for personalization"
+      },
+      "focusArea": {
+        "type": "string",
+        "description": "Specific product area to focus on"
+      }
+    },
+    "required": [
+      "accountId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "recommendations": {
+        "type": "array"
+      },
+      "learningPath": {
+        "type": "array"
+      },
+      "nextBestAction": {
+        "type": "object"
+      },
+      "estimatedImpact": {
+        "type": "object"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "feature_activation_rate",
+    "benchmarks": {
+      "excellent": "> 70%",
+      "good": "50-70%",
+      "needs_improvement": "< 50%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "customer_success",
+    "adoption",
+    "guidance",
+    "coaching",
+    "features",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Product Adoption Coach",
+        "customer health"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "lifecycle.get_segment",
+          "required": true
+        },
+        {
+          "name": "analytics.get_cohort",
+          "required": false
+        },
+        {
+          "name": "crm.update_account",
+          "required": false
+        }
+      ]
+    }
+  }
+}

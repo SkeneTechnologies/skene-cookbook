@@ -1,0 +1,35 @@
+# Legal Skills
+
+**Total Skills:** 13
+
+## Risk Distribution
+
+| Risk Level | Count |
+|------------|-------|
+| 🔴 Critical | 12 |
+| 🔵 Medium | 1 |
+
+---
+
+## Skills
+
+| # | Skill ID | Risk | Job to be Done |
+|---|----------|------|----------------|
+| 1 | `compliance_pii_detector` | 🔴 Critical | Scans data stores, documents, and code repositories to detect and classify personally identifiable information |
+| 2 | `compliance_privacy_policy` | 🔴 Critical | Generates and maintains compliant privacy policies for multiple jurisdictions including GDPR, CCPA, and other regulations |
+| 3 | `compliance_consent_manager` | 🔴 Critical | Manages user consent preferences, consent collection, and preference synchronization across systems |
+| 4 | `compliance_data_retention` | 🔴 Critical | Manages data retention policies and automated data lifecycle enforcement across all systems |
+| 5 | `compliance_audit_preparer` | 🔴 Critical | Prepares organizations for compliance audits by organizing evidence, identifying gaps, and coordinating audit activities |
+| 6 | `compliance_breach_response` | 🔴 Critical | Coordinates data breach response including detection, containment, notification, and regulatory reporting |
+| 7 | `compliance_vendor_risk` | 🔴 Critical | Assesses and monitors third-party vendor security and compliance risks throughout the vendor lifecycle |
+| 8 | `data_privacy_scanner` | 🔴 Critical | Scans analytics data and tracking implementations for privacy compliance issues, PII leaks, and consent violations. |
+| 9 | `people_candidate_sourcer` | 🔴 Critical | Assists recruiters in finding and engaging qualified candidates through intelligent sourcing, outreach generation, and pipeline management. |
+| 10 | `people_skill_gap_analyzer` | 🔵 Medium | Identifies skill gaps across teams and individuals, maps current capabilities against future needs, and recommends development paths. |
+| 11 | `anthropic_official/slack-gif-creator` | 🔴 Critical | Knowledge and utilities for creating animated GIFs optimized for Slack. Provides constraints, validation tools, and animation concepts. Use when users request animated GIFs for Slack like "make me a GIF of X doing Y for Slack." |
+| 12 | `scientific/iso-13485-certification` | 🔴 Critical | Comprehensive toolkit for preparing ISO 13485 certification documentation for medical device Quality Management Systems. Use when users need help with ISO 13485 QMS documentation, including (1) conducting gap analysis of existing documentation, (2) creating Quality Manuals, (3) developing required procedures and work instructions, (4) preparing Medical Device Files, (5) understanding ISO 13485 requirements, or (6) identifying missing documentation for medical device certification. Also use when users mention medical device regulations, QMS certification, FDA QMSR, EU MDR, or need help with quality system documentation. |
+| 13 | `scientific/peer-review` | 🔴 Critical | Structured manuscript/grant review with checklist-based evaluation. Use when writing formal peer reviews with specific criteria methodology assessment, statistical validity, reporting standards compliance (CONSORT/STROBE), and constructive feedback. Best for actual review writing, manuscript revision. For evaluating claims/evidence quality use scientific-critical-thinking; for quantitative scoring frameworks use scholar-evaluation. |
+
+---
+
+[← Back to Directory](../directory.md)
+

@@ -1,0 +1,119 @@
+{
+  "id": "elg_mdf_tracker",
+  "version": "1.0.0",
+  "name": "MDF Allocation Tracker",
+  "description": "Manages Market Development Fund allocation, requests, approval, and ROI tracking for partner marketing investments.",
+  "domain": "ecosystem",
+  "tools": [
+    {
+      "name": "mdf.get_budget",
+      "required": true
+    },
+    {
+      "name": "mdf.get_requests",
+      "required": true
+    },
+    {
+      "name": "mdf.submit_request",
+      "required": true
+    },
+    {
+      "name": "mdf.approve_request",
+      "required": true
+    },
+    {
+      "name": "mdf.submit_claim",
+      "required": false
+    },
+    {
+      "name": "analytics.get_campaign_roi",
+      "required": false
+    },
+    {
+      "name": "messaging.send_email",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "joint_marketing",
+    "partner_tier_manager",
+    "partner_influenced_revenue",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "partnerId": {
+        "type": "string",
+        "description": "Partner requesting/using MDF"
+      },
+      "action": {
+        "type": "string",
+        "enum": [
+          "check_budget",
+          "request",
+          "approve",
+          "claim",
+          "report"
+        ]
+      },
+      "requestData": {
+        "type": "object",
+        "description": "MDF request details"
+      }
+    },
+    "required": [
+      "partnerId",
+      "action"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "available_budget": {
+        "type": "number"
+      },
+      "allocated": {
+        "type": "number"
+      },
+      "spent": {
+        "type": "number"
+      },
+      "pending_requests": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "roi_summary": {
+        "type": "object"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "mdf_roi",
+    "benchmarks": {
+      "excellent": "> 8x",
+      "good": "5-8x",
+      "needs_improvement": "< 5x"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "ecosystem",
+    "partner",
+    "mdf",
+    "marketing",
+    "budget",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with MDF Allocation Tracker"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

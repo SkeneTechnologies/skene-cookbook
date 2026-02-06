@@ -1,0 +1,121 @@
+{
+  "id": "community_forum_moderator",
+  "version": "1.0.0",
+  "name": "Forum Moderation Assistant",
+  "description": "Assists with community forum moderation including content review, user management, and maintaining healthy discussions.",
+  "domain": "community",
+  "tools": [
+    {
+      "name": "ai.moderate",
+      "required": true
+    },
+    {
+      "name": "ai.classify",
+      "required": true
+    },
+    {
+      "name": "messaging.send_notification",
+      "required": true
+    },
+    {
+      "name": "crm.update_contact",
+      "required": false
+    },
+    {
+      "name": "analytics.track_event",
+      "required": true
+    },
+    {
+      "name": "rag.query",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "content_curator",
+    "champion_identifier",
+    "support_escalation",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "action": {
+        "type": "string",
+        "enum": [
+          "review",
+          "flag",
+          "respond",
+          "escalate",
+          "report"
+        ],
+        "description": "Moderation action"
+      },
+      "contentId": {
+        "type": "string",
+        "description": "Content to moderate"
+      },
+      "contentType": {
+        "type": "string",
+        "enum": [
+          "post",
+          "comment",
+          "profile",
+          "message"
+        ],
+        "description": "Type of content"
+      },
+      "reportReason": {
+        "type": "string",
+        "description": "Reason for report if flagged"
+      }
+    },
+    "required": [
+      "action"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "moderationDecision": {
+        "type": "string"
+      },
+      "actionTaken": {
+        "type": "string"
+      },
+      "violationType": {
+        "type": "string"
+      },
+      "userNotified": {
+        "type": "boolean"
+      },
+      "escalated": {
+        "type": "boolean"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "moderation_accuracy",
+    "benchmarks": {
+      "excellent": "> 95%",
+      "good": "90-95%",
+      "needs_improvement": "< 90%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "moderation",
+    "forum",
+    "safety",
+    "compliance",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Forum Moderation Assistant"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

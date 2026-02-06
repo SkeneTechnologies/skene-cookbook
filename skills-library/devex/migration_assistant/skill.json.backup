@@ -1,0 +1,118 @@
+{
+  "id": "devex_migration_assistant",
+  "version": "1.0.0",
+  "name": "API Migration Assistant",
+  "description": "Guides developers through API version migrations with automated code analysis and transformation suggestions.",
+  "domain": "devex",
+  "tools": [
+    {
+      "name": "ai.analyze_code",
+      "required": true
+    },
+    {
+      "name": "ai.generate_migration",
+      "required": true
+    },
+    {
+      "name": "docs.get_changelog",
+      "required": true
+    },
+    {
+      "name": "code.transform",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "sdk_version_monitor",
+    "changelog_tracker",
+    "error_explainer",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "developer_id": {
+        "type": "string",
+        "description": "Developer requesting migration"
+      },
+      "source_version": {
+        "type": "string",
+        "description": "Current API/SDK version"
+      },
+      "target_version": {
+        "type": "string",
+        "description": "Target API/SDK version"
+      },
+      "code_snippet": {
+        "type": "string",
+        "description": "Code to migrate (optional)"
+      },
+      "language": {
+        "type": "string",
+        "description": "Programming language"
+      }
+    },
+    "required": [
+      "source_version",
+      "target_version"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "breaking_changes": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "migration_steps": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "code_transformations": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "estimated_effort": {
+        "type": "object"
+      },
+      "testing_checklist": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "metrics": {
+    "primary": "migration_success_rate",
+    "benchmarks": {
+      "excellent": "> 95% successful migrations",
+      "good": "85-95% successful migrations",
+      "needs_improvement": "< 85% successful migrations"
+    }
+  },
+  "temperature": 0.2,
+  "tags": [
+    "devex",
+    "migration",
+    "versioning",
+    "upgrade",
+    "compatibility",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with API Migration Assistant"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

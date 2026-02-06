@@ -1,0 +1,129 @@
+{
+  "id": "compliance_audit_preparer",
+  "version": "1.0.0",
+  "name": "Audit Preparation Assistant",
+  "description": "Prepares organizations for compliance audits by organizing evidence, identifying gaps, and coordinating audit activities",
+  "domain": "compliance",
+  "tools": [
+    {
+      "name": "compliance.get_framework",
+      "required": true
+    },
+    {
+      "name": "compliance.collect_evidence",
+      "required": true
+    },
+    {
+      "name": "compliance.check_gaps",
+      "required": true
+    },
+    {
+      "name": "audit.schedule_interviews",
+      "required": false
+    },
+    {
+      "name": "storage.upload_evidence",
+      "required": false
+    },
+    {
+      "name": "messaging.send_request",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "soc2_tracker",
+    "access_reviewer",
+    "vendor_risk",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "action": {
+        "type": "string",
+        "enum": [
+          "prepare",
+          "collect",
+          "gap_analysis",
+          "schedule",
+          "report"
+        ],
+        "default": "prepare"
+      },
+      "framework": {
+        "type": "string",
+        "enum": [
+          "soc2",
+          "iso27001",
+          "hipaa",
+          "pci-dss",
+          "gdpr",
+          "soc1"
+        ],
+        "description": "Audit framework"
+      },
+      "auditPeriod": {
+        "type": "string",
+        "description": "Audit period (e.g., 2024-01 to 2024-12)"
+      },
+      "auditDate": {
+        "type": "string",
+        "description": "Scheduled audit start date"
+      },
+      "auditor": {
+        "type": "string",
+        "description": "Auditing firm name"
+      }
+    },
+    "required": [
+      "action",
+      "framework"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "readinessScore": {
+        "type": "number"
+      },
+      "evidenceStatus": {
+        "type": "object"
+      },
+      "gaps": {
+        "type": "array"
+      },
+      "schedule": {
+        "type": "object"
+      },
+      "actionItems": {
+        "type": "array"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "audit_readiness_score",
+    "benchmarks": {
+      "excellent": "> 95%",
+      "good": "85-95%",
+      "needs_improvement": "< 85%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "compliance",
+    "audit",
+    "evidence",
+    "soc2",
+    "iso27001",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Audit Preparation Assistant"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

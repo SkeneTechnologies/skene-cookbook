@@ -1,0 +1,41 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - drop
+    - financial
+    - system
+    - change
+    - access
+    - alert
+    - track
+    - log
+    - monitor
+    - list
+    - format
+    - calculate
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.755408'
+    original_risk: Critical
+    changes:
+    - 'Added payment safeguards: preview, approval, limits, rollback'
+categorization:
+  job_function: finance
+  jtbd:
+    job: Detects unusual patterns in user behavior, system metrics, and business data
+      to identify issues early.
+    context: When working in ai_ops domain
+    outcome: Successfully execute Behavioral Anomaly Detector
+composability:
+  hints:
+  - 'can_chain_to: anomaly_detected'
+  - 'can_chain_to: alert_triggered'
+  - 'can_chain_to: normal'
+  - 'can_chain_to: investigating'
+  - has_structured_output

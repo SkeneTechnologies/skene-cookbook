@@ -1,0 +1,48 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - drop
+    - payment
+    - system
+    - update
+    - modify
+    - change
+    - access
+    - read
+    - get
+    - email
+    - notification
+    - message
+    - analytics
+    - track
+    - log
+    - monitor
+    - list
+    - format
+    - show
+    - view
+    - preview
+    - 'risky_tool: fs.write'
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.717934'
+    original_risk: Critical
+    changes:
+    - 'Added payment safeguards: preview, approval, limits, rollback'
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Generates PLG growth strategies and playbooks based on analysis, providing
+      customized templates for activation, monetization, and viral growth
+    context: When working in skene domain
+    outcome: Successfully execute Growth Template Generator
+composability:
+  hints:
+  - 'can_chain_to: analyze_tech_stack'
+  - has_structured_output

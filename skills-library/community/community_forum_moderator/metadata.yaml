@@ -1,0 +1,41 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - personal
+    - read
+    - get
+    - email
+    - notification
+    - message
+    - analytics
+    - track
+    - list
+    - format
+    - view
+    - 'risky_tool: crm.update_contact'
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.754089'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: data
+  jtbd:
+    job: Assists with community forum moderation including content review, user management,
+      and maintaining healthy discussions.
+    context: When working in community domain
+    outcome: Successfully execute Forum Moderation Assistant
+composability:
+  hints:
+  - 'can_chain_to: content_curator'
+  - 'can_chain_to: champion_identifier'
+  - 'can_chain_to: support_escalation'
+  - has_structured_output

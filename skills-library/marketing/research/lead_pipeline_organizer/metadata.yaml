@@ -1,0 +1,45 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - update
+    - change
+    - personal
+    - read
+    - get
+    - email
+    - message
+    - analytics
+    - track
+    - monitor
+    - list
+    - search
+    - filter
+    - sort
+    - format
+    - calculate
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.863643'
+    original_risk: High
+    changes:
+    - Applied field-level access control and tenant isolation
+categorization:
+  job_function: marketing
+  jtbd:
+    job: Organizes leads and pipeline according to campaign objectives. Analyzes lead
+      progress against objectives (resonates, tries, shares), prioritizes leads, creates
+      pipeline views, and suggests next actions based on objective alignment.
+    context: When working in marketing domain
+    outcome: Successfully execute lead-pipeline-organizer
+composability:
+  hints:
+  - 'can_chain_to: support'
+  - has_structured_output

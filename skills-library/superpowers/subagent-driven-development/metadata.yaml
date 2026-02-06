@@ -1,0 +1,36 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - execute
+    - system
+    - command
+    - write
+    - alter
+    - read
+    - get
+    - format
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.761124'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: operations
+  jtbd:
+    job: Use when executing implementation plans with independent tasks in the current
+      session
+    context: When working in superpowers domain
+    outcome: Successfully execute subagent-driven-development
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

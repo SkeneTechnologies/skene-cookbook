@@ -1,0 +1,42 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - execute
+    - access
+    - read
+    - get
+    - track
+    - log
+    - monitor
+    - list
+    - search
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.779715'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Comprehensive toolkit for protein language models including ESM3 (generative
+      multimodal protein design across sequence, structure, and function) and ESM
+      C (efficient protein embeddings and representations). Use this skill when working
+      with protein sequences, structures, or function prediction; designing novel
+      proteins; generating protein embeddings; performing inverse folding; or conducting
+      protein engineering tasks. Supports both local model usage and cloud-based Forge
+      API for scalable inference.
+    context: When working in scientific domain
+    outcome: Successfully execute esm
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

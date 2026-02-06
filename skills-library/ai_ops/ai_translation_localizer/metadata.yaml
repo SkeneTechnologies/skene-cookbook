@@ -1,0 +1,37 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - change
+    - sensitive
+    - get
+    - log
+    - list
+    - format
+    - view
+    - 'risky_tool: cms.update_content'
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.873115'
+    original_risk: High
+    changes:
+    - Applied field-level access control and tenant isolation
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Translates and localizes content while preserving context, tone, and cultural
+      nuances.
+    context: When working in ai_ops domain
+    outcome: Successfully execute Translation & Localization Engine
+composability:
+  hints:
+  - 'can_chain_to: translated'
+  - 'can_chain_to: localized'
+  - 'can_chain_to: needs_review'
+  - 'can_chain_to: unsupported_language'
+  - has_structured_output

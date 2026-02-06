@@ -1,0 +1,52 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - password
+    - secret
+    - credential
+    - api_key
+    - eval
+    - command
+    - update
+    - change
+    - access
+    - sensitive
+    - read
+    - fetch
+    - get
+    - retrieve
+    - query
+    - email
+    - log
+    - list
+    - search
+    - filter
+    - format
+    - display
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.786734'
+    original_risk: Critical
+    changes:
+    - Migrated to OAuth authentication
+categorization:
+  job_function: engineering
+  jtbd:
+    job: '"Fast CLI/Python queries to 20+ bioinformatics databases. Use for quick
+      lookups: gene info, BLAST searches, AlphaFold structures, enrichment analysis.
+      Best for interactive exploration, simple queries. For batch processing or advanced
+      BLAST use biopython; for multi-database Python workflows use bioservices."'
+    context: When working in scientific domain
+    outcome: Successfully execute gget
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

@@ -1,0 +1,21 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors: []
+categorization:
+  job_function: hr
+  jtbd:
+    job: This guide provides opinionated, actionable best practices for writing high-performance,
+      maintainable, and robust DuckDB SQL queries and scripts, focusing on modern
+      analytical workloads.
+    context: When working in cursor_rules domain
+    outcome: Successfully execute duckdb
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

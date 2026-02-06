@@ -1,0 +1,43 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - financial
+    - update
+    - change
+    - read
+    - get
+    - retrieve
+    - alert
+    - message
+    - analytics
+    - log
+    - monitor
+    - list
+    - filter
+    - format
+    - calculate
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.709599'
+    original_risk: Critical
+    changes:
+    - 'Added payment safeguards: preview, approval, limits, rollback'
+categorization:
+  job_function: data
+  jtbd:
+    job: Monitors SLA compliance in real-time, predicts breaches, and triggers escalations
+      to ensure service level commitments.
+    context: When working in support_ops domain
+    outcome: Successfully execute SLA Monitor
+composability:
+  hints:
+  - 'can_chain_to: queue_balancer'
+  - 'can_chain_to: escalation_predictor'
+  - 'can_chain_to: ticket_triage'
+  - has_structured_output

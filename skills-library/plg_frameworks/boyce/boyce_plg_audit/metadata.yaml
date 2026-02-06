@@ -1,0 +1,40 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - eval
+    - change
+    - read
+    - get
+    - analytics
+    - track
+    - list
+    - format
+    - calculate
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.842213'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: data
+  jtbd:
+    job: Comprehensive PLG audit synthesizing all frameworks from Dave Boyce's FREEMIUM
+      book. Evaluates First Impact, Growth Teams, Pricing, Loops, Retention, Multi-GTM,
+      and more.
+    context: When working in plg_frameworks domain
+    outcome: Successfully execute Boyce PLG Audit
+composability:
+  hints:
+  - 'can_chain_to: audit_complete'
+  - 'can_chain_to: critical_gaps_found'
+  - 'can_chain_to: plg_healthy'
+  - 'can_chain_to: plg_transformation_needed'
+  - has_structured_output

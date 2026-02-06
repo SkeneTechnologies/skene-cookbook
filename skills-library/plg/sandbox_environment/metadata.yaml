@@ -1,0 +1,42 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - delete
+    - eval
+    - update
+    - pii
+    - read
+    - get
+    - email
+    - analytics
+    - track
+    - list
+    - format
+    - show
+    - view
+    - preview
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.726851'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: data
+  jtbd:
+    job: Provisions and manages isolated sandbox environments with sample data for
+      safe product exploration without commitment.
+    context: When working in plg domain
+    outcome: Successfully execute Sandbox Environment Provisioner
+composability:
+  hints:
+  - 'can_chain_to: activation'
+  - 'can_chain_to: onboarding_flow'
+  - 'can_chain_to: time_to_value'
+  - has_structured_output

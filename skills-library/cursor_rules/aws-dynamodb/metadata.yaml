@@ -1,0 +1,21 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors: []
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Provides definitive best practices and actionable code examples for interacting
+      with AWS DynamoDB using the AWS SDK v3, focusing on data modeling, performance,
+      security, and common pitfalls.
+    context: When working in cursor_rules domain
+    outcome: Successfully execute aws-dynamodb
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

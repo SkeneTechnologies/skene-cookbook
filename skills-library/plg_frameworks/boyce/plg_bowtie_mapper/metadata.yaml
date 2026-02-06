@@ -1,0 +1,42 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - payment
+    - update
+    - get
+    - email
+    - analytics
+    - track
+    - log
+    - list
+    - format
+    - calculate
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.765172'
+    original_risk: Critical
+    changes:
+    - 'Added payment safeguards: preview, approval, limits, rollback'
+categorization:
+  job_function: finance
+  jtbd:
+    job: 'Maps and optimizes the PLG Bowtie funnel that reorders customer actions
+      for product-led acquisition. Based on Dave Boyce''s FREEMIUM framework (Chapter
+      7): In PLG, customers experience the product before purchasing.'
+    context: When working in plg_frameworks domain
+    outcome: Successfully execute PLG Bowtie Mapper
+composability:
+  hints:
+  - 'can_chain_to: bowtie_mapped'
+  - 'can_chain_to: bottleneck_identified'
+  - 'can_chain_to: optimization_needed'
+  - 'can_chain_to: healthy_flow'
+  - has_structured_output

@@ -1,0 +1,32 @@
+{
+  "id": "scientific/benchling-integration",
+  "version": "1.0.0",
+  "name": "benchling-integration",
+  "description": "Benchling R&D platform integration. Access registry (DNA, proteins), inventory, ELN entries, workflows via API, build Benchling Apps, query Data Warehouse, for lab data management automation.",
+  "domain": "scientific",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "scientific",
+    "imported",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "license": "Unknown",
+      "triggers": [
+        "help with benchling integration",
+        "data analysis"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

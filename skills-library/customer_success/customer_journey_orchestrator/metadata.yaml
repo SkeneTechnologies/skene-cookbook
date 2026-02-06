@@ -1,0 +1,44 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - pii
+    risk_factors:
+    - drop
+    - execute
+    - eval
+    - system
+    - personal
+    - read
+    - get
+    - query
+    - email
+    - analytics
+    - track
+    - monitor
+    - list
+    - format
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.752669'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: customer_success
+  jtbd:
+    job: Orchestrates personalized customer journeys across lifecycle stages, triggering
+      contextual touchpoints and interventions.
+    context: When working in customer_success domain
+    outcome: Successfully execute Journey Orchestrator
+composability:
+  hints:
+  - 'can_chain_to: onboarding_health'
+  - 'can_chain_to: product_adoption_guidance'
+  - 'can_chain_to: expansion_playbook'
+  - 'can_chain_to: renewal_orchestration'
+  - has_structured_output

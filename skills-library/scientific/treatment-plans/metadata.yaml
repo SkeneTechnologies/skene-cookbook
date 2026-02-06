@@ -1,0 +1,54 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - credential
+    - eval
+    - system
+    - command
+    - write
+    - update
+    - modify
+    - change
+    - alter
+    - access
+    - authenticate
+    - personal
+    - read
+    - get
+    - alert
+    - track
+    - log
+    - monitor
+    - list
+    - search
+    - format
+    - summarize
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.784939'
+    original_risk: Critical
+    changes:
+    - Migrated to OAuth authentication
+categorization:
+  job_function: executive
+  jtbd:
+    job: Generate concise (3-4 page), focused medical treatment plans in LaTeX/PDF
+      format for all clinical specialties. Supports general medical treatment, rehabilitation
+      therapy, mental health care, chronic disease management, perioperative care,
+      and pain management. Includes SMART goal frameworks, evidence-based interventions
+      with minimal text citations, regulatory compliance (HIPAA), and professional
+      formatting. Prioritizes brevity and clinical actionability.
+    context: When working in scientific domain
+    outcome: Successfully execute treatment-plans
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

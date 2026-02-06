@@ -1,0 +1,139 @@
+{
+  "id": "plg_onboarding_flow",
+  "version": "1.0.0",
+  "name": "Onboarding Flow Orchestrator",
+  "description": "Orchestrates multi-step onboarding flows with personalization based on user type, plan, and goals.",
+  "domain": "plg",
+  "tools": [
+    {
+      "name": "lifecycle.get_segment",
+      "required": true
+    },
+    {
+      "name": "lifecycle.record_moment",
+      "required": true
+    },
+    {
+      "name": "analytics.funnel",
+      "required": true
+    },
+    {
+      "name": "analytics.track_event",
+      "required": true
+    },
+    {
+      "name": "ui.show_buttons",
+      "required": false
+    },
+    {
+      "name": "ui.collect_input",
+      "required": false
+    },
+    {
+      "name": "rag.query",
+      "required": false
+    },
+    {
+      "name": "vercel.get_edge_config",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "activation",
+    "time_to_value",
+    "support",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "userId": {
+        "type": "string"
+      },
+      "userType": {
+        "type": "string",
+        "enum": [
+          "individual",
+          "team",
+          "enterprise"
+        ]
+      },
+      "goals": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "currentStep": {
+        "type": "number"
+      }
+    },
+    "required": [
+      "userId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "currentStep": {
+        "type": "number"
+      },
+      "totalSteps": {
+        "type": "number"
+      },
+      "stepContent": {
+        "type": "object"
+      },
+      "progress": {
+        "type": "number"
+      },
+      "canSkip": {
+        "type": "boolean"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "onboarding_completion_rate",
+    "benchmarks": {
+      "excellent": "> 85%",
+      "good": "70-85%",
+      "needs_improvement": "< 70%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "plg",
+    "onboarding",
+    "activation",
+    "flow",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Onboarding Flow Orchestrator"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "lifecycle.get_segment",
+          "required": true
+        },
+        {
+          "name": "lifecycle.record_moment",
+          "required": false
+        },
+        {
+          "name": "analytics.track_event",
+          "required": false
+        },
+        {
+          "name": "messaging.send_in_app",
+          "required": false
+        }
+      ]
+    }
+  }
+}

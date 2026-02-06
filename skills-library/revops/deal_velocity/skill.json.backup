@@ -1,0 +1,126 @@
+{
+  "id": "revops_deal_velocity",
+  "version": "1.0.0",
+  "name": "Deal Velocity Optimizer",
+  "description": "Analyzes and optimizes deal velocity to accelerate sales cycles and improve conversion rates.",
+  "domain": "revops",
+  "tools": [
+    {
+      "name": "crm.get_deal_velocity",
+      "required": true
+    },
+    {
+      "name": "crm.get_pipeline",
+      "required": true
+    },
+    {
+      "name": "crm.get_activities",
+      "required": true
+    },
+    {
+      "name": "analytics.funnel",
+      "required": true
+    },
+    {
+      "name": "ai.summarize_conversation",
+      "required": false
+    },
+    {
+      "name": "messaging.send_alert",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "deal_intervention",
+    "sales_coaching",
+    "process_optimization",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "dealId": {
+        "type": "string"
+      },
+      "analysisScope": {
+        "type": "string",
+        "enum": [
+          "deal",
+          "rep",
+          "team",
+          "segment"
+        ]
+      },
+      "period": {
+        "type": "string",
+        "enum": [
+          "30d",
+          "90d",
+          "year"
+        ]
+      }
+    }
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "velocity": {
+        "type": "number"
+      },
+      "cycleTime": {
+        "type": "number"
+      },
+      "stageConversion": {
+        "type": "object"
+      },
+      "bottlenecks": {
+        "type": "array"
+      },
+      "recommendations": {
+        "type": "array"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "sales_velocity",
+    "benchmarks": {
+      "excellent": "> $50K/day",
+      "good": "$25K-$50K/day",
+      "needs_improvement": "< $25K/day"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "revops",
+    "velocity",
+    "optimization",
+    "sales",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Deal Velocity Optimizer",
+        "sales pipeline",
+        "deal velocity"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "crm.get_pipeline",
+          "required": true
+        },
+        {
+          "name": "crm.list_deals",
+          "required": false
+        },
+        {
+          "name": "analytics.get_forecast",
+          "required": false
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,20 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors: []
+categorization:
+  job_function: design
+  jtbd:
+    job: This guide provides definitive, opinionated best practices for writing reliable,
+      maintainable, and performant end-to-end tests with Detox in React Native applications.
+    context: When working in cursor_rules domain
+    outcome: Successfully execute detox
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

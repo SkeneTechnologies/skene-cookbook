@@ -1,0 +1,44 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - financial
+    - eval
+    - system
+    - write
+    - change
+    - access
+    - read
+    - get
+    - track
+    - log
+    - list
+    - search
+    - format
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.787950'
+    original_risk: Critical
+    changes:
+    - 'Added payment safeguards: preview, approval, limits, rollback'
+categorization:
+  job_function: finance
+  jtbd:
+    job: Generate comprehensive market research reports (50+ pages) in the style of
+      top consulting firms (McKinsey, BCG, Gartner). Features professional LaTeX formatting,
+      extensive visual generation with scientific-schematics and generate-image, deep
+      integration with research-lookup for data gathering, and multi-framework strategic
+      analysis including Porter Five Forces, PESTLE, SWOT, TAM/SAM/SOM, and BCG Matrix.
+    context: When working in scientific domain
+    outcome: Successfully execute market-research-reports
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

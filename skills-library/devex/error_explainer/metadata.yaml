@@ -1,0 +1,46 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - credential
+    - update
+    - authorize
+    - permission
+    - sensitive
+    - read
+    - get
+    - retrieve
+    - query
+    - message
+    - analytics
+    - track
+    - list
+    - search
+    - filter
+    - format
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.708188'
+    original_risk: Critical
+    changes:
+    - Migrated to OAuth authentication
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Provides human-readable explanations for API errors with contextual troubleshooting
+      steps and code fixes.
+    context: When working in devex domain
+    outcome: Successfully execute Error Explainer
+composability:
+  hints:
+  - 'can_chain_to: support_deflector'
+  - 'can_chain_to: api_onboarding'
+  - 'can_chain_to: code_sample_generator'
+  - has_structured_output

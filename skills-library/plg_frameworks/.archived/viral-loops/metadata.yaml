@@ -1,0 +1,52 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - drop
+    - destroy
+    - system
+    - write
+    - change
+    - alter
+    - personal
+    - read
+    - get
+    - email
+    - message
+    - analytics
+    - track
+    - log
+    - list
+    - search
+    - format
+    - calculate
+    - display
+    - show
+    - view
+    - preview
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.766673'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: marketing
+  jtbd:
+    job: 'STRATEGY: Design product-driven viral growth -- including invite mechanics,
+      collaboration loops, embedding loops, and network effects. Use when discussing
+      K-factor, viral coefficient, invite flows, sharing mechanics, or network effects.
+      For executing viral loops with tools, see plg/viral_loop. For structured referral
+      programs, see referral-program. For growth loop design, see growth-loops.'
+    context: When working in plg_frameworks domain
+    outcome: Successfully execute viral-loops
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

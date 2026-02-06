@@ -1,0 +1,45 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - system
+    - update
+    - authorize
+    - personal
+    - read
+    - get
+    - email
+    - notification
+    - alert
+    - message
+    - track
+    - log
+    - monitor
+    - list
+    - format
+    - calculate
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.807253'
+    original_risk: Critical
+    changes:
+    - Applied field-level access control and tenant isolation
+categorization:
+  job_function: sales
+  jtbd:
+    job: Manages partner deal registration workflow including submission, approval,
+      protection, and expiration tracking.
+    context: When working in ecosystem domain
+    outcome: Successfully execute Deal Registration Manager
+composability:
+  hints:
+  - 'can_chain_to: co_sell_trigger'
+  - 'can_chain_to: referral_program'
+  - 'can_chain_to: partner_tier_manager'
+  - has_structured_output

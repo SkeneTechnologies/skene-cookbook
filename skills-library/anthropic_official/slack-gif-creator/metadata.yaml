@@ -1,0 +1,36 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - update
+    - read
+    - get
+    - message
+    - log
+    - list
+    - filter
+    - calculate
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.749808'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: legal
+  jtbd:
+    job: Knowledge and utilities for creating animated GIFs optimized for Slack. Provides
+      constraints, validation tools, and animation concepts. Use when users request
+      animated GIFs for Slack like "make me a GIF of X doing Y for Slack."
+    context: When working in anthropic_official domain
+    outcome: Successfully execute slack-gif-creator
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

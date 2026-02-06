@@ -1,0 +1,42 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - eval
+    - write
+    - access
+    - read
+    - fetch
+    - get
+    - retrieve
+    - query
+    - log
+    - list
+    - search
+    - format
+    - compute
+    - display
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.859068'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Access RCSB PDB for 3D protein/nucleic acid structures. Search by text/sequence/structure,
+      download coordinates (PDB/mmCIF), retrieve metadata, for structural biology
+      and drug discovery.
+    context: When working in scientific domain
+    outcome: Successfully execute pdb-database
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

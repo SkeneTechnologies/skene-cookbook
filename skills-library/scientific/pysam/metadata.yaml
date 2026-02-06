@@ -1,0 +1,44 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - execute
+    - system
+    - command
+    - write
+    - modify
+    - access
+    - read
+    - fetch
+    - get
+    - query
+    - track
+    - search
+    - filter
+    - sort
+    - format
+    - calculate
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.854633'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: operations
+  jtbd:
+    job: Genomic file toolkit. Read/write SAM/BAM/CRAM alignments, VCF/BCF variants,
+      FASTA/FASTQ sequences, extract regions, calculate coverage, for NGS data processing
+      pipelines.
+    context: When working in scientific domain
+    outcome: Successfully execute pysam
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

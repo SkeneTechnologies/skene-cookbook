@@ -1,0 +1,48 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - system
+    - update
+    - personal
+    - read
+    - get
+    - email
+    - notification
+    - alert
+    - analytics
+    - track
+    - log
+    - monitor
+    - list
+    - search
+    - format
+    - calculate
+    - aggregate
+    - view
+    - 'risky_tool: crm.update_record'
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.844973'
+    original_risk: Critical
+    changes:
+    - Applied field-level access control and tenant isolation
+categorization:
+  job_function: data
+  jtbd:
+    job: Design PQL/PQA scoring models, sales handoff workflows, segment-based approaches,
+      and CRM integration patterns
+    context: When working in plg_frameworks domain
+    outcome: Successfully execute Product-Led Sales
+composability:
+  hints:
+  - 'can_chain_to: pql_scored'
+  - 'can_chain_to: sales_handoff'
+  - 'can_chain_to: self_serve'
+  - 'can_chain_to: nurture_sequence'
+  - has_structured_output

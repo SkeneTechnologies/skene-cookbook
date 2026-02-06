@@ -1,0 +1,50 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - drop
+    - change
+    - permission
+    - personal
+    - get
+    - email
+    - notification
+    - message
+    - analytics
+    - track
+    - log
+    - monitor
+    - list
+    - search
+    - format
+    - display
+    - show
+    - view
+    - preview
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.741174'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: marketing
+  jtbd:
+    job: When the user wants to optimize post-signup onboarding, user activation,
+      first-run experience, or time-to-value. Also use when the user mentions "onboarding
+      flow," "activation rate," "user activation," "first-run experience," "empty
+      states," "onboarding checklist," "aha moment," or "new user experience." For
+      signup/registration optimization, see signup-flow-cro. For ongoing email sequences,
+      see email-sequence.
+    context: When working in marketing domain
+    outcome: Successfully execute onboarding-cro
+composability:
+  hints:
+  - 'can_chain_to: support'
+  - has_structured_output

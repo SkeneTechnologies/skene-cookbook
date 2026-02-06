@@ -1,0 +1,44 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - drop
+    - eval
+    - system
+    - access
+    - read
+    - get
+    - log
+    - monitor
+    - search
+    - filter
+    - sort
+    - format
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.787197'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Comprehensive healthcare AI toolkit for developing, testing, and deploying
+      machine learning models with clinical data. This skill should be used when working
+      with electronic health records (EHR), clinical prediction tasks (mortality,
+      readmission, drug recommendation), medical coding systems (ICD, NDC, ATC), physiological
+      signals (EEG, ECG), healthcare datasets (MIMIC-III/IV, eICU, OMOP), or implementing
+      deep learning models for healthcare applications (RETAIN, SafeDrug, Transformer,
+      GNN).
+    context: When working in scientific domain
+    outcome: Successfully execute pyhealth
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

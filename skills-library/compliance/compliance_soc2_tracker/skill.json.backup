@@ -1,0 +1,133 @@
+{
+  "id": "compliance_soc2_tracker",
+  "version": "1.0.0",
+  "name": "SOC 2 Compliance Tracker",
+  "description": "Monitors and manages SOC 2 compliance status across Trust Service Criteria with continuous control monitoring",
+  "domain": "compliance",
+  "tools": [
+    {
+      "name": "compliance.get_controls",
+      "required": true
+    },
+    {
+      "name": "compliance.run_evidence_check",
+      "required": true
+    },
+    {
+      "name": "audit.get_logs",
+      "required": true
+    },
+    {
+      "name": "security.get_scan_results",
+      "required": false
+    },
+    {
+      "name": "hr.get_training_status",
+      "required": false
+    },
+    {
+      "name": "messaging.send_alert",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "audit_preparer",
+    "access_reviewer",
+    "vendor_risk",
+    "breach_response",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "action": {
+        "type": "string",
+        "enum": [
+          "status_check",
+          "evidence_collection",
+          "gap_analysis",
+          "audit_prep"
+        ],
+        "default": "status_check"
+      },
+      "trustCriteria": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": [
+            "security",
+            "availability",
+            "processing_integrity",
+            "confidentiality",
+            "privacy"
+          ]
+        }
+      },
+      "scope": {
+        "type": "string",
+        "enum": [
+          "all",
+          "critical",
+          "failing"
+        ],
+        "default": "all"
+      },
+      "auditPeriod": {
+        "type": "string",
+        "description": "Audit period in format YYYY-MM to YYYY-MM"
+      }
+    },
+    "required": [
+      "action"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "overallStatus": {
+        "type": "string"
+      },
+      "controlsAssessed": {
+        "type": "number"
+      },
+      "controlsPassing": {
+        "type": "number"
+      },
+      "gaps": {
+        "type": "array"
+      },
+      "evidenceStatus": {
+        "type": "object"
+      },
+      "recommendations": {
+        "type": "array"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "control_effectiveness",
+    "benchmarks": {
+      "excellent": "> 98%",
+      "good": "95-98%",
+      "needs_improvement": "< 95%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "compliance",
+    "soc2",
+    "audit",
+    "security",
+    "trust-services",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with SOC 2 Compliance Tracker"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

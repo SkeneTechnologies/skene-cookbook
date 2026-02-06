@@ -1,0 +1,43 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - drop
+    - update
+    - personal
+    - confidential
+    - read
+    - get
+    - email
+    - alert
+    - message
+    - analytics
+    - track
+    - list
+    - filter
+    - format
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.709144'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: customer_success
+  jtbd:
+    job: Identifies opportunities for proactive customer outreach based on usage patterns,
+      known issues, and risk signals.
+    context: When working in support_ops domain
+    outcome: Successfully execute Proactive Support Outreach
+composability:
+  hints:
+  - 'can_chain_to: sentiment_tracker'
+  - 'can_chain_to: escalation_predictor'
+  - 'can_chain_to: csat_analyzer'
+  - has_structured_output

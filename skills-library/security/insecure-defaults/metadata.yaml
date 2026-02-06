@@ -1,0 +1,42 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - password
+    - secret
+    - credential
+    - execute
+    - access
+    - authorize
+    - permission
+    - read
+    - fetch
+    - get
+    - log
+    - list
+    - search
+    - format
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.714902'
+    original_risk: Critical
+    changes:
+    - Migrated to OAuth authentication
+categorization:
+  job_function: security
+  jtbd:
+    job: '"Detects fail-open insecure defaults (hardcoded secrets, weak auth, permissive
+      security) that allow apps to run insecurely in production. Use when auditing
+      security, reviewing config management, or analyzing environment variable handling."'
+    context: When working in security domain
+    outcome: Successfully execute insecure-defaults
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

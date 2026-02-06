@@ -1,0 +1,41 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - financial
+    risk_factors:
+    - system
+    - change
+    - get
+    - analytics
+    - track
+    - log
+    - list
+    - filter
+    - sort
+    - format
+    - calculate
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.815011'
+    original_risk: Critical
+    changes:
+    - Added validation, preview mode, and rollback for writes
+categorization:
+  job_function: sales
+  jtbd:
+    job: Analyzes ARR movements including new, expansion, contraction, and churn for
+      revenue visibility
+    context: When working in finops domain
+    outcome: Successfully execute ARR Waterfall Analyzer
+composability:
+  hints:
+  - 'can_chain_to: ndr_tracker'
+  - 'can_chain_to: investor_metrics'
+  - 'can_chain_to: churn_analysis'
+  - 'can_chain_to: report_generated'
+  - has_structured_output

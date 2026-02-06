@@ -1,0 +1,29 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors:
+    - system
+    - read
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.798713'
+    original_risk: Critical
+    changes:
+    - Flagged for manual review as potential false positive
+categorization:
+  job_function: engineering
+  jtbd:
+    job: This guide defines the definitive best practices for writing TensorFlow code,
+      focusing on `tf.keras` for models, `tf.data` for input pipelines, and `@tf.function`
+      for performance, ensuring reproducible, scalable, and production-ready ML systems.
+    context: When working in cursor_rules domain
+    outcome: Successfully execute tensorflow
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

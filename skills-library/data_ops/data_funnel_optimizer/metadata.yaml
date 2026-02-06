@@ -1,0 +1,40 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - drop
+    - change
+    - read
+    - get
+    - query
+    - analytics
+    - track
+    - list
+    - search
+    - format
+    - calculate
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.733475'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: data
+  jtbd:
+    job: Analyzes conversion funnels, identifies drop-off points, and recommends optimizations
+      to improve conversion rates.
+    context: When working in data_ops domain
+    outcome: Successfully execute Funnel Optimization Engine
+composability:
+  hints:
+  - 'can_chain_to: data_experiment_analyzer'
+  - 'can_chain_to: data_cohort_builder'
+  - 'can_chain_to: data_dashboard_builder'
+  - has_structured_output

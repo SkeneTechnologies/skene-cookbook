@@ -1,0 +1,126 @@
+{
+  "id": "people_comp_benchmarker",
+  "version": "1.0.0",
+  "name": "Compensation Benchmarker",
+  "description": "Analyzes compensation data against market benchmarks to ensure competitive and equitable pay practices.",
+  "domain": "people_ops",
+  "tools": [
+    {
+      "name": "hr.get_employee_comp",
+      "required": true
+    },
+    {
+      "name": "compensation.get_market_data",
+      "required": true
+    },
+    {
+      "name": "analytics.analyze_pay_equity",
+      "required": true
+    },
+    {
+      "name": "hr.get_job_architecture",
+      "required": false
+    },
+    {
+      "name": "compensation.get_ranges",
+      "required": false
+    },
+    {
+      "name": "analytics.model_scenarios",
+      "required": false
+    },
+    {
+      "name": "hr.generate_offer",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "people_perf_review_generator",
+    "people_candidate_sourcer",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "analysisType": {
+        "type": "string",
+        "enum": [
+          "individual",
+          "role",
+          "team",
+          "company_wide"
+        ]
+      },
+      "employeeId": {
+        "type": "string",
+        "description": "Employee ID for individual analysis"
+      },
+      "roleId": {
+        "type": "string",
+        "description": "Role/job code for role analysis"
+      },
+      "includeBenefits": {
+        "type": "boolean",
+        "description": "Include total rewards in analysis"
+      },
+      "marketSources": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "required": [
+      "analysisType"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "marketPosition": {
+        "type": "number"
+      },
+      "compaRatio": {
+        "type": "number"
+      },
+      "marketData": {
+        "type": "object"
+      },
+      "payEquityAnalysis": {
+        "type": "object"
+      },
+      "recommendations": {
+        "type": "array"
+      },
+      "budgetImpact": {
+        "type": "number"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "market_competitiveness_ratio",
+    "benchmarks": {
+      "excellent": "95-105% of market median",
+      "good": "90-94% or 106-110%",
+      "needs_improvement": "< 90% or > 110%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "people_ops",
+    "compensation",
+    "benchmarking",
+    "pay_equity",
+    "total_rewards",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Compensation Benchmarker"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

@@ -1,0 +1,46 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - write
+    - modify
+    - change
+    - alter
+    - read
+    - get
+    - query
+    - analytics
+    - track
+    - monitor
+    - list
+    - search
+    - filter
+    - sort
+    - format
+    - calculate
+    - compute
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.732944'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: data
+  jtbd:
+    job: Analyzes and optimizes data warehouse queries, identifying slow queries and
+      recommending performance improvements.
+    context: When working in data_ops domain
+    outcome: Successfully execute Query Optimizer
+composability:
+  hints:
+  - 'can_chain_to: data_etl_monitor'
+  - 'can_chain_to: data_dashboard_builder'
+  - has_structured_output

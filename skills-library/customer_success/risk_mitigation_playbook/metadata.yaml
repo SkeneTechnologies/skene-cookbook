@@ -1,0 +1,46 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - drop
+    - financial
+    - execute
+    - eval
+    - change
+    - get
+    - query
+    - alert
+    - message
+    - analytics
+    - track
+    - log
+    - monitor
+    - list
+    - format
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.752336'
+    original_risk: Critical
+    changes:
+    - 'Added payment safeguards: preview, approval, limits, rollback'
+categorization:
+  job_function: customer_success
+  jtbd:
+    job: Identifies at-risk accounts and executes structured intervention playbooks
+      to prevent churn and restore customer health.
+    context: When working in customer_success domain
+    outcome: Successfully execute Risk Mitigation Playbook
+composability:
+  hints:
+  - 'can_chain_to: health_scoring'
+  - 'can_chain_to: escalation_manager'
+  - 'can_chain_to: churn_prediction'
+  - 'can_chain_to: success_plan_generator'
+  - has_structured_output

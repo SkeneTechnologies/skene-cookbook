@@ -1,0 +1,48 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - pii
+    risk_factors:
+    - truncate
+    - financial
+    - payment
+    - credential
+    - system
+    - update
+    - change
+    - access
+    - pii
+    - personal
+    - sensitive
+    - confidential
+    - get
+    - email
+    - alert
+    - analytics
+    - log
+    - list
+    - format
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.721009'
+    original_risk: Critical
+    changes:
+    - Migrated to OAuth authentication
+categorization:
+  job_function: legal
+  jtbd:
+    job: Scans data stores, documents, and code repositories to detect and classify
+      personally identifiable information
+    context: When working in compliance domain
+    outcome: Successfully execute PII Detection Scanner
+composability:
+  hints:
+  - 'can_chain_to: gdpr_manager'
+  - 'can_chain_to: data_retention'
+  - 'can_chain_to: access_reviewer'
+  - has_structured_output

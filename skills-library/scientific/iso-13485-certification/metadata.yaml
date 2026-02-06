@@ -1,0 +1,48 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - system
+    - write
+    - update
+    - change
+    - read
+    - get
+    - log
+    - monitor
+    - list
+    - search
+    - format
+    - calculate
+    - summarize
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.779239'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: legal
+  jtbd:
+    job: Comprehensive toolkit for preparing ISO 13485 certification documentation
+      for medical device Quality Management Systems. Use when users need help with
+      ISO 13485 QMS documentation, including (1) conducting gap analysis of existing
+      documentation, (2) creating Quality Manuals, (3) developing required procedures
+      and work instructions, (4) preparing Medical Device Files, (5) understanding
+      ISO 13485 requirements, or (6) identifying missing documentation for medical
+      device certification. Also use when users mention medical device regulations,
+      QMS certification, FDA QMSR, EU MDR, or need help with quality system documentation.
+    context: When working in scientific domain
+    outcome: Successfully execute iso-13485-certification
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

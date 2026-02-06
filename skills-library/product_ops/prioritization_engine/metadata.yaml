@@ -1,0 +1,40 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - update
+    - get
+    - analytics
+    - log
+    - list
+    - search
+    - filter
+    - sort
+    - format
+    - calculate
+    - view
+    - 'risky_tool: linear.update_issue'
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.705405'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: data
+  jtbd:
+    job: Applies prioritization frameworks (RICE, ICE, weighted scoring) to rank features
+      and initiatives objectively.
+    context: When working in product_ops domain
+    outcome: Successfully execute Prioritization Engine
+composability:
+  hints:
+  - 'can_chain_to: roadmap_alignment'
+  - 'can_chain_to: impact_analyzer'
+  - has_structured_output

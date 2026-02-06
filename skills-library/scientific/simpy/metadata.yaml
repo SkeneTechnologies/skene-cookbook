@@ -1,0 +1,41 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - eval
+    - system
+    - read
+    - get
+    - track
+    - log
+    - monitor
+    - search
+    - filter
+    - calculate
+    - compute
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.854154'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: data
+  jtbd:
+    job: Process-based discrete-event simulation framework in Python. Use this skill
+      when building simulations of systems with processes, queues, resources, and
+      time-based events such as manufacturing systems, service operations, network
+      traffic, logistics, or any system where entities interact with shared resources
+      over time.
+    context: When working in scientific domain
+    outcome: Successfully execute simpy
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

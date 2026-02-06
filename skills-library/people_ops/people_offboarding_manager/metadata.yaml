@@ -1,0 +1,45 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - credential
+    - execute
+    - system
+    - update
+    - change
+    - access
+    - confidential
+    - get
+    - retrieve
+    - email
+    - notification
+    - message
+    - track
+    - list
+    - format
+    - calculate
+    - aggregate
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.746200'
+    original_risk: Critical
+    changes:
+    - Migrated to OAuth authentication
+categorization:
+  job_function: data
+  jtbd:
+    job: Manages employee departures with compliance-focused checklists, knowledge
+      transfer, and exit interview analysis.
+    context: When working in people_ops domain
+    outcome: Successfully execute Offboarding Manager
+composability:
+  hints:
+  - 'can_chain_to: people_pulse_analyzer'
+  - 'can_chain_to: people_candidate_sourcer'
+  - has_structured_output

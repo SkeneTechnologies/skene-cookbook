@@ -1,0 +1,44 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - credential
+    - system
+    - change
+    - fetch
+    - get
+    - notification
+    - alert
+    - message
+    - analytics
+    - track
+    - log
+    - monitor
+    - list
+    - sort
+    - format
+    - calculate
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.702375'
+    original_risk: Critical
+    changes:
+    - Migrated to OAuth authentication
+categorization:
+  job_function: data
+  jtbd:
+    job: Monitors the health, performance, and usage of partner integrations to ensure
+      reliability and identify optimization opportunities.
+    context: When working in ecosystem domain
+    outcome: Successfully execute Integration Health Monitor
+composability:
+  hints:
+  - 'can_chain_to: tech_partner_finder'
+  - 'can_chain_to: partner_tier_manager'
+  - 'can_chain_to: support'
+  - has_structured_output

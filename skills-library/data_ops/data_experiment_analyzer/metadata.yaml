@@ -1,0 +1,35 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - change
+    - fetch
+    - get
+    - query
+    - analytics
+    - monitor
+    - list
+    - filter
+    - format
+    - calculate
+    - aggregate
+    - show
+    - view
+categorization:
+  job_function: data
+  jtbd:
+    job: Analyzes A/B test and experiment results with statistical rigor, determining
+      winners and providing actionable insights.
+    context: When working in data_ops domain
+    outcome: Successfully execute Experiment Results Analyzer
+composability:
+  hints:
+  - 'can_chain_to: data_funnel_optimizer'
+  - 'can_chain_to: data_cohort_builder'
+  - 'can_chain_to: data_dashboard_builder'
+  - has_structured_output

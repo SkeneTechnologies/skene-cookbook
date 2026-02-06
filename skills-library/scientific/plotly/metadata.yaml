@@ -1,0 +1,36 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - drop
+    - financial
+    - write
+    - update
+    - read
+    - log
+    - search
+    - display
+    - show
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.785138'
+    original_risk: Critical
+    changes:
+    - 'Added payment safeguards: preview, approval, limits, rollback'
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Interactive visualization library. Use when you need hover info, zoom, pan,
+      or web-embeddable charts. Best for dashboards, exploratory analysis, and presentations.
+      For static publication figures use matplotlib or scientific-visualization.
+    context: When working in scientific domain
+    outcome: Successfully execute plotly
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

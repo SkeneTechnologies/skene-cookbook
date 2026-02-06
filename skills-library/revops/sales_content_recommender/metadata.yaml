@@ -1,0 +1,42 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - update
+    - permission
+    - read
+    - get
+    - email
+    - analytics
+    - track
+    - log
+    - list
+    - search
+    - filter
+    - sort
+    - format
+    - view
+    - preview
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.875829'
+    original_risk: High
+    changes:
+    - Added validation, preview mode, and rollback for writes
+categorization:
+  job_function: data
+  jtbd:
+    job: Recommends relevant sales collateral, case studies, and battle cards based
+      on deal context and buyer journey.
+    context: When working in revops domain
+    outcome: Successfully execute Sales Content Recommender
+composability:
+  hints:
+  - 'can_chain_to: deal_inspection'
+  - 'can_chain_to: competitive_intel'
+  - has_structured_output

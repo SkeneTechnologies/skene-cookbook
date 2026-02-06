@@ -1,0 +1,41 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - eval
+    - change
+    - access
+    - read
+    - get
+    - query
+    - analytics
+    - track
+    - list
+    - filter
+    - format
+    - calculate
+    - show
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.823290'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: data
+  jtbd:
+    job: Intelligently reveals advanced features and complexity only when users are
+      ready, preventing overwhelm while enabling power users.
+    context: When working in plg domain
+    outcome: Successfully execute Progressive Disclosure Manager
+composability:
+  hints:
+  - 'can_chain_to: activation'
+  - 'can_chain_to: aha_moment_detection'
+  - 'can_chain_to: self_serve_expansion'
+  - has_structured_output

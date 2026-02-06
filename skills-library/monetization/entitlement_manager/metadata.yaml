@@ -1,0 +1,43 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - update
+    - change
+    - access
+    - get
+    - retrieve
+    - email
+    - notification
+    - alert
+    - analytics
+    - track
+    - log
+    - list
+    - format
+    - 'risky_tool: entitlements.update'
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.876942'
+    original_risk: High
+    changes:
+    - Added validation, preview mode, and rollback for writes
+categorization:
+  job_function: data
+  jtbd:
+    job: Manages feature access, usage limits, and plan entitlements in real-time
+    context: When working in monetization domain
+    outcome: Successfully execute Entitlement Manager
+composability:
+  hints:
+  - 'can_chain_to: access_granted'
+  - 'can_chain_to: access_denied'
+  - 'can_chain_to: upgrade_required'
+  - 'can_chain_to: limit_reached'
+  - 'can_chain_to: trial_extended'
+  - has_structured_output

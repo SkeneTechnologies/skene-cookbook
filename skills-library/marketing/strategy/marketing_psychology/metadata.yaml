@@ -1,0 +1,46 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - drop
+    - credential
+    - system
+    - write
+    - change
+    - alter
+    - access
+    - personal
+    - read
+    - get
+    - email
+    - analytics
+    - log
+    - list
+    - format
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.743185'
+    original_risk: Critical
+    changes:
+    - Migrated to OAuth authentication
+categorization:
+  job_function: marketing
+  jtbd:
+    job: '"When the user wants to apply psychological principles, mental models, or
+      behavioral science to marketing. Also use when the user mentions ''psychology,''
+      ''mental models,'' ''cognitive bias,'' ''persuasion,'' ''behavioral science,''
+      ''why people buy,'' ''decision-making,'' or ''consumer behavior.'' This skill
+      provides 70+ mental models organized for marketing application."'
+    context: When working in marketing domain
+    outcome: Successfully execute marketing-psychology
+composability:
+  hints:
+  - 'can_chain_to: support'
+  - has_structured_output

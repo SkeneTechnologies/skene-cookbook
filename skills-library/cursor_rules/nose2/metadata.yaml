@@ -1,0 +1,21 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors: []
+categorization:
+  job_function: engineering
+  jtbd:
+    job: This rule file provides opinionated best practices for writing, organizing,
+      and configuring tests using nose2, emphasizing modern Python development workflows
+      and common pitfalls.
+    context: When working in cursor_rules domain
+    outcome: Successfully execute nose2
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

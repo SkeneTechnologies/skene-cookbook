@@ -1,0 +1,43 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - eval
+    - system
+    - read
+    - get
+    - log
+    - search
+    - format
+    - calculate
+    - compute
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.847133'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Use this skill when working with symbolic mathematics in Python. This skill
+      should be used for symbolic computation tasks including solving equations algebraically,
+      performing calculus operations (derivatives, integrals, limits), manipulating
+      algebraic expressions, working with matrices symbolically, physics calculations,
+      number theory problems, geometry computations, and generating executable code
+      from mathematical expressions. Apply this skill when the user needs exact symbolic
+      results rather than numerical approximations, or when working with mathematical
+      formulas that contain variables and parameters.
+    context: When working in scientific domain
+    outcome: Successfully execute sympy
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

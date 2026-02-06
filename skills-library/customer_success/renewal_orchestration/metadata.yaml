@@ -1,0 +1,35 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - execute
+    - get
+    - query
+    - track
+    - monitor
+    - list
+    - format
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.832901'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: customer_success
+  jtbd:
+    job: Orchestrates the renewal process from early warning to close, maximizing
+      GRR and NRR.
+    context: When working in customer_success domain
+    outcome: Successfully execute Renewal Orchestration
+composability:
+  hints:
+  - 'can_chain_to: renewal_complete'
+  - 'can_chain_to: churn_prediction'
+  - 'can_chain_to: expansion_playbook'

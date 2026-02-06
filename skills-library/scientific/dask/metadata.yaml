@@ -1,0 +1,43 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - delete
+    - drop
+    - execute
+    - read
+    - get
+    - analytics
+    - log
+    - monitor
+    - search
+    - filter
+    - format
+    - compute
+    - aggregate
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.778666'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Distributed computing for larger-than-RAM pandas/NumPy workflows. Use when
+      you need to scale existing pandas/NumPy code beyond memory or across clusters.
+      Best for parallel file processing, distributed ML, integration with existing
+      pandas code. For out-of-core analytics on single machine use vaex; for in-memory
+      speed use polars.
+    context: When working in scientific domain
+    outcome: Successfully execute dask
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

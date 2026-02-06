@@ -1,0 +1,118 @@
+#!/bin/bash
+#
+# Workflow Chain Visualizer
+# Generates visual diagrams of skill chains using Mermaid
+#
+
+set -e
+
+WORKFLOW_FILE="$1"
+OUTPUT_FILE="${2:-workflow-diagram.md}"
+
+if [ -z "$WORKFLOW_FILE" ]; then
+    echo "Usage: $0 <workflow-file.yaml> [output-file.md]"
+    echo ""
+    echo "Example:"
+    echo "  $0 registry/blueprints/example_workflow.yaml"
+    exit 1
+fi
+
+if [ ! -f "$WORKFLOW_FILE" ]; then
+    echo "Error: Workflow file not found: $WORKFLOW_FILE"
+    exit 1
+fi
+
+echo "🔗 Generating workflow visualization..."
+echo "   Input: $WORKFLOW_FILE"
+echo "   Output: $OUTPUT_FILE"
+
+# Generate Mermaid diagram using Python
+python3 << EOF
+import yaml
+import sys
+from pathlib import Path
+
+# Load workflow
+with open('$WORKFLOW_FILE', 'r') as f:
+    workflow = yaml.safe_load(f)
+
+# Generate Mermaid markdown
+output = []
+output.append(f"# Workflow: {workflow.get('name', 'Unnamed')}\n")
+output.append(f"**Version:** {workflow.get('version', '1.0.0')}\n\n")
+output.append(f"{workflow.get('description', '')}\n\n")
+
+output.append("## Workflow Diagram\n\n")
+output.append("```mermaid\n")
+output.append("graph TD\n")
+
+# Generate nodes for each step
+steps = workflow.get('chain_sequence', [])
+for i, step in enumerate(steps):
+    step_id = step.get('step_id', f'step_{i}')
+    skill_id = step.get('skill_id', 'unknown')
+    action = step.get('action', 'execute')
+
+    # Node definition
+    label = f"{step_id}\\n{skill_id}\\n{action}"
+    output.append(f"    {step_id}[{label}]\n")
+
+    # Connect to next step
+    if i < len(steps) - 1:
+        next_step = steps[i + 1].get('step_id', f'step_{i+1}')
+
+        # Check for conditional
+        if 'conditions' in step:
+            output.append(f"    {step_id} -->|conditional| {next_step}\n")
+        else:
+            output.append(f"    {step_id} --> {next_step}\n")
+
+    # Error handling
+    if 'error_handling' in step:
+        on_failure = step['error_handling'].get('on_failure', 'stop')
+        if on_failure == 'fallback' and 'fallback_step' in step['error_handling']:
+            fallback = step['error_handling']['fallback_step']
+            output.append(f"    {step_id} -.->|error| {fallback}\n")
+
+# Add parallel groups
+if 'logic_gates' in workflow and 'parallel_groups' in workflow['logic_gates']:
+    for group in workflow['logic_gates']['parallel_groups']:
+        group_id = group.get('group_id', 'parallel')
+        steps_in_group = group.get('step_ids', [])
+        if len(steps_in_group) > 1:
+            output.append(f"\n    subgraph {group_id}[Parallel Execution]\n")
+            for step_id in steps_in_group:
+                output.append(f"        {step_id}\n")
+            output.append(f"    end\n")
+
+output.append("```\n\n")
+
+# Add step details
+output.append("## Step Details\n\n")
+for i, step in enumerate(steps, 1):
+    step_id = step.get('step_id', f'step_{i}')
+    skill_id = step.get('skill_id', 'unknown')
+    action = step.get('action', 'execute')
+
+    output.append(f"### {i}. {step_id}\n\n")
+    output.append(f"- **Skill:** {skill_id}\n")
+    output.append(f"- **Action:** {action}\n")
+
+    if 'timeout_seconds' in step:
+        output.append(f"- **Timeout:** {step['timeout_seconds']}s\n")
+
+    if 'error_handling' in step:
+        output.append(f"- **On Failure:** {step['error_handling'].get('on_failure', 'stop')}\n")
+
+    output.append("\n")
+
+# Write output
+with open('$OUTPUT_FILE', 'w') as f:
+    f.writelines(output)
+
+print(f"✅ Diagram generated: $OUTPUT_FILE")
+EOF
+
+echo ""
+echo "✅ Workflow visualization complete!"
+echo "   View the diagram: cat $OUTPUT_FILE"

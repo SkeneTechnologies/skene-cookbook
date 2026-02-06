@@ -1,0 +1,50 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - eval
+    - system
+    - write
+    - update
+    - alter
+    - access
+    - read
+    - fetch
+    - get
+    - retrieve
+    - query
+    - alert
+    - track
+    - log
+    - list
+    - search
+    - filter
+    - sort
+    - format
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.781676'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Comprehensive citation management for academic research. Search Google Scholar
+      and PubMed for papers, extract accurate metadata, validate citations, and generate
+      properly formatted BibTeX entries. This skill should be used when you need to
+      find papers, verify citation information, convert DOIs to BibTeX, or ensure
+      reference accuracy in scientific writing.
+    context: When working in scientific domain
+    outcome: Successfully execute citation-management
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

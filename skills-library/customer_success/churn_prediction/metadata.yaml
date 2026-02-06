@@ -1,0 +1,38 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - drop
+    - payment
+    - get
+    - query
+    - alert
+    - track
+    - log
+    - monitor
+    - list
+    - format
+    - calculate
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.751548'
+    original_risk: Critical
+    changes:
+    - 'Added payment safeguards: preview, approval, limits, rollback'
+categorization:
+  job_function: customer_success
+  jtbd:
+    job: Predicts churn risk using behavioral signals and triggers proactive retention
+      interventions.
+    context: When working in customer_success domain
+    outcome: Successfully execute Churn Prediction
+composability:
+  hints:
+  - 'can_chain_to: retention_play'
+  - 'can_chain_to: executive_escalation'
+  - 'can_chain_to: win_back'

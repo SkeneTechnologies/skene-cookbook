@@ -1,0 +1,43 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors:
+    - system
+    - read
+    - fetch
+    - get
+    - retrieve
+    - query
+    - track
+    - log
+    - monitor
+    - list
+    - search
+    - filter
+    - format
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.805215'
+    original_risk: Critical
+    changes:
+    - Flagged for manual review as potential false positive
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Efficient database search tool for bioRxiv preprint server. Use this skill
+      when searching for life sciences preprints by keywords, authors, date ranges,
+      or categories, retrieving paper metadata, downloading PDFs, or conducting literature
+      reviews.
+    context: When working in scientific domain
+    outcome: Successfully execute biorxiv-database
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

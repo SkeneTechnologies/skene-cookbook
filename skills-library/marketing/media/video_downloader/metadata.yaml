@@ -1,0 +1,25 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors:
+    - fetch
+    - list
+    - format
+categorization:
+  job_function: marketing
+  jtbd:
+    job: Download YouTube videos with customizable quality and format options. Use
+      this skill when the user asks to download, save, or grab YouTube videos. Supports
+      various quality settings (best, 1080p, 720p, 480p, 360p), multiple formats (mp4,
+      webm, mkv), and audio-only downloads as MP3.
+    context: When working in marketing domain
+    outcome: Successfully execute youtube-downloader
+composability:
+  hints:
+  - 'can_chain_to: support'
+  - has_structured_output

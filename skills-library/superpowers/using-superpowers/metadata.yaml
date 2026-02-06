@@ -1,0 +1,32 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - write
+    - access
+    - read
+    - message
+    - list
+    - format
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.877493'
+    original_risk: High
+    changes:
+    - Added validation, preview mode, and rollback for writes
+categorization:
+  job_function: operations
+  jtbd:
+    job: Use when starting any conversation - establishes how to find and use skills,
+      requiring Skill tool invocation before ANY response including clarifying questions
+    context: When working in superpowers domain
+    outcome: Successfully execute using-superpowers
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

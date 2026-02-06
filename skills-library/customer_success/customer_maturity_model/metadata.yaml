@@ -1,0 +1,41 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - eval
+    - system
+    - read
+    - get
+    - query
+    - analytics
+    - track
+    - list
+    - format
+    - calculate
+    - view
+    - 'risky_tool: crm.update_account'
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.831079'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: customer_success
+  jtbd:
+    job: Assesses customer maturity across multiple dimensions to guide engagement
+      strategies and identify growth opportunities.
+    context: When working in customer_success domain
+    outcome: Successfully execute Customer Maturity Assessor
+composability:
+  hints:
+  - 'can_chain_to: success_plan_generator'
+  - 'can_chain_to: product_adoption_guidance'
+  - 'can_chain_to: expansion_playbook'
+  - 'can_chain_to: customer_journey_orchestrator'
+  - has_structured_output

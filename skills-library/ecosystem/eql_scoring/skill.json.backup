@@ -1,0 +1,56 @@
+{
+  "id": "elg_eql_scoring",
+  "version": "1.0.0",
+  "name": "Ecosystem-Qualified Lead Scoring",
+  "description": "Identifies and scores Ecosystem-Qualified Leads (EQLs) from partner and integration signals.",
+  "domain": "ecosystem",
+  "tools": [
+    {
+      "name": "partner.eql_score",
+      "required": true
+    },
+    {
+      "name": "partner.account_map",
+      "required": false
+    },
+    {
+      "name": "analytics.query_events",
+      "required": false
+    },
+    {
+      "name": "crm.create_deal",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "lead_qualification",
+    "co_sell_trigger",
+    "sales_handoff",
+    "idle"
+  ],
+  "metrics": {
+    "primary": "eql_conversion_rate",
+    "benchmarks": {
+      "excellent": "> 40%",
+      "good": "25-40%",
+      "needs_improvement": "< 25%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "ecosystem",
+    "eql",
+    "scoring",
+    "leads",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Ecosystem Qualified Lead Scoring"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

@@ -1,0 +1,35 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - financial
+    risk_factors:
+    - get
+    - email
+    - analytics
+    - track
+    - log
+    - list
+    - search
+    - filter
+    - sort
+    - format
+    - calculate
+    - aggregate
+    - view
+categorization:
+  job_function: data
+  jtbd:
+    job: Tracks and attributes revenue to marketing campaigns, channels, and touchpoints
+      using multi-touch attribution models.
+    context: When working in revops domain
+    outcome: Successfully execute Revenue Attribution Tracker
+composability:
+  hints:
+  - 'can_chain_to: win_loss_analyzer'
+  - 'can_chain_to: pipeline_health'
+  - 'can_chain_to: marketing_roi'
+  - has_structured_output

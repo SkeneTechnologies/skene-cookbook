@@ -1,0 +1,34 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - change
+    - read
+    - get
+    - alert
+    - analytics
+    - track
+    - monitor
+    - list
+    - format
+    - calculate
+    - view
+categorization:
+  job_function: customer_success
+  jtbd:
+    job: Tracks executive sponsor engagement and alignment, ensuring strategic partnership
+      at the highest levels of customer organizations.
+    context: When working in customer_success domain
+    outcome: Successfully execute Executive Sponsor Tracker
+composability:
+  hints:
+  - 'can_chain_to: stakeholder_mapper'
+  - 'can_chain_to: quarterly_business_review'
+  - 'can_chain_to: churn_prediction'
+  - 'can_chain_to: renewal_orchestration'
+  - has_structured_output

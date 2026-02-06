@@ -1,0 +1,44 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - drop
+    - system
+    - update
+    - access
+    - read
+    - get
+    - email
+    - track
+    - log
+    - list
+    - search
+    - format
+    - calculate
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.766899'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: sales
+  jtbd:
+    job: When the user wants to design, map, or quantitatively model growth loops
+      -- including viral, content, paid, or sales loops. Also use when the user says
+      "growth flywheel," "compounding growth," "loop modeling," "S-curve sequencing,"
+      or "growth engine." For viral-specific loop design, see viral-loops. For quantitative
+      forecasting, see growth-modeling.
+    context: When working in plg_frameworks domain
+    outcome: Successfully execute growth-loops
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

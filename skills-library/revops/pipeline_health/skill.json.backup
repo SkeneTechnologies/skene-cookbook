@@ -1,0 +1,127 @@
+{
+  "id": "revops_pipeline_health",
+  "version": "1.0.0",
+  "name": "Pipeline Health Monitor",
+  "description": "Monitors pipeline health, identifies at-risk deals, and triggers proactive interventions.",
+  "domain": "revops",
+  "tools": [
+    {
+      "name": "crm.get_pipeline",
+      "required": true
+    },
+    {
+      "name": "crm.get_deal_velocity",
+      "required": true
+    },
+    {
+      "name": "crm.update_deal",
+      "required": false
+    },
+    {
+      "name": "crm.get_activities",
+      "required": true
+    },
+    {
+      "name": "analytics.get_metrics",
+      "required": false
+    },
+    {
+      "name": "messaging.send_alert",
+      "required": false
+    },
+    {
+      "name": "ai.summarize_conversation",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "deal_intervention",
+    "forecast_intelligence",
+    "sales_coaching",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "ownerId": {
+        "type": "string",
+        "description": "Filter by sales rep"
+      },
+      "minDealSize": {
+        "type": "number"
+      },
+      "stage": {
+        "type": "string"
+      },
+      "riskLevel": {
+        "type": "string",
+        "enum": [
+          "all",
+          "at_risk",
+          "critical"
+        ]
+      }
+    }
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "pipelineValue": {
+        "type": "number"
+      },
+      "weightedPipeline": {
+        "type": "number"
+      },
+      "coverageRatio": {
+        "type": "number"
+      },
+      "atRiskDeals": {
+        "type": "array"
+      },
+      "healthScore": {
+        "type": "number"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "pipeline_coverage_ratio",
+    "benchmarks": {
+      "healthy": "> 3x",
+      "at_risk": "2-3x",
+      "critical": "< 2x"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "revops",
+    "pipeline",
+    "forecasting",
+    "deals",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Pipeline Health Monitor",
+        "deal velocity"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "crm.get_pipeline",
+          "required": true
+        },
+        {
+          "name": "crm.list_deals",
+          "required": false
+        },
+        {
+          "name": "analytics.get_forecast",
+          "required": false
+        }
+      ]
+    }
+  }
+}

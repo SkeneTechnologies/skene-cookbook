@@ -1,0 +1,39 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - financial
+    risk_factors:
+    - financial
+    - system
+    - change
+    - get
+    - analytics
+    - track
+    - log
+    - format
+    - compute
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.713200'
+    original_risk: Critical
+    changes:
+    - 'Added payment safeguards: preview, approval, limits, rollback'
+categorization:
+  job_function: data
+  jtbd:
+    job: Allocates expenses across departments, products, and cost centers for accurate
+      financial reporting
+    context: When working in finops domain
+    outcome: Successfully execute Expense Allocation Engine
+composability:
+  hints:
+  - 'can_chain_to: gross_margin'
+  - 'can_chain_to: burn_rate_monitor'
+  - 'can_chain_to: budget_review'
+  - 'can_chain_to: cost_optimization'
+  - has_structured_output

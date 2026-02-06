@@ -1,0 +1,132 @@
+{
+  "id": "plgf_self_serve_motion",
+  "version": "1.0.0",
+  "name": "Self-Serve Motion",
+  "description": "Friction audit, in-product checkout optimization, payment flow analysis, and removing 'contact sales' gates",
+  "domain": "plg_frameworks",
+  "tools": [
+    {
+      "name": "analytics.get_funnel",
+      "required": true
+    },
+    {
+      "name": "analytics.get_metrics",
+      "required": true
+    },
+    {
+      "name": "analytics.track_event",
+      "required": false
+    },
+    {
+      "name": "stripe.get_checkout_data",
+      "required": false
+    },
+    {
+      "name": "ui_kit.panel",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "friction_identified",
+    "checkout_optimized",
+    "gates_removed",
+    "needs_sales_assist",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "productId": {
+        "type": "string",
+        "description": "Product or feature to analyze"
+      },
+      "funnelStage": {
+        "type": "string",
+        "enum": [
+          "signup",
+          "activation",
+          "checkout",
+          "upgrade"
+        ],
+        "description": "Funnel stage to audit"
+      },
+      "currentGates": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Current sales gates in place"
+      },
+      "targetSegment": {
+        "type": "string",
+        "description": "Target customer segment"
+      }
+    },
+    "required": [
+      "productId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "frictionAudit": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "gateAnalysis": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "checkoutOptimizations": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "selfServeScore": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 100
+      },
+      "recommendations": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "projectedImpact": {
+        "type": "object"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "self_serve_conversion_rate",
+    "benchmarks": {
+      "excellent": "> 5%",
+      "good": "2-5%",
+      "needs_improvement": "< 2%"
+    }
+  },
+  "temperature": 0.3,
+  "tags": [
+    "plg_frameworks",
+    "self_serve",
+    "checkout",
+    "friction",
+    "conversion",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Self Serve Motion"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

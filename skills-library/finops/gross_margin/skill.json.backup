@@ -1,0 +1,114 @@
+{
+  "id": "finops_gross_margin",
+  "version": "1.0.0",
+  "name": "Gross Margin Analyzer",
+  "description": "Analyzes gross margin by product, customer segment, and cost component for profitability optimization",
+  "domain": "finops",
+  "tools": [
+    {
+      "name": "accounting.get_cogs",
+      "required": true
+    },
+    {
+      "name": "analytics.get_revenue",
+      "required": true
+    },
+    {
+      "name": "analytics.calculate",
+      "required": true
+    },
+    {
+      "name": "infrastructure.get_costs",
+      "required": false
+    },
+    {
+      "name": "benchmarks.compare",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "rule_of_40",
+    "investor_metrics",
+    "expense_allocator",
+    "pricing_optimization",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "period": {
+        "type": "string",
+        "description": "Reporting period (YYYY-MM or YYYY-QX)"
+      },
+      "breakdown_by": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "default": [
+          "product",
+          "segment"
+        ]
+      },
+      "include_cogs_detail": {
+        "type": "boolean",
+        "default": true
+      }
+    },
+    "required": [
+      "period"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "gross_margin_percent": {
+        "type": "number"
+      },
+      "gross_profit": {
+        "type": "number"
+      },
+      "revenue": {
+        "type": "number"
+      },
+      "cogs": {
+        "type": "number"
+      },
+      "margin_by_product": {
+        "type": "object"
+      },
+      "margin_by_segment": {
+        "type": "object"
+      },
+      "margin_trend": {
+        "type": "array"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "gross_margin_percent",
+    "benchmarks": {
+      "excellent": "> 80%",
+      "good": "70-80%",
+      "needs_improvement": "< 70%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "finops",
+    "gross-margin",
+    "profitability",
+    "cogs",
+    "unit-economics",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Gross Margin Analyzer"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

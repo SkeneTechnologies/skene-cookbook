@@ -1,0 +1,37 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - drop
+    - update
+    - get
+    - analytics
+    - track
+    - list
+    - search
+    - format
+    - calculate
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.758263'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: data
+  jtbd:
+    job: Analyzes lifetime value by cohort to optimize acquisition and retention strategies
+    context: When working in monetization domain
+    outcome: Successfully execute Cohort LTV Analyzer
+composability:
+  hints:
+  - 'can_chain_to: analysis_complete'
+  - 'can_chain_to: segment_identified'
+  - 'can_chain_to: action_recommended'
+  - 'can_chain_to: model_updated'
+  - has_structured_output

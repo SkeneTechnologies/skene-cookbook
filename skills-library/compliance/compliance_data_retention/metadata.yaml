@@ -1,0 +1,48 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - delete
+    - remove
+    - financial
+    - execute
+    - system
+    - update
+    - change
+    - access
+    - authorize
+    - pii
+    - personal
+    - read
+    - get
+    - email
+    - alert
+    - log
+    - list
+    - format
+    - view
+    - 'risky_tool: data.delete'
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.722441'
+    original_risk: Critical
+    changes:
+    - 'Added payment safeguards: preview, approval, limits, rollback'
+categorization:
+  job_function: legal
+  jtbd:
+    job: Manages data retention policies and automated data lifecycle enforcement
+      across all systems
+    context: When working in compliance domain
+    outcome: Successfully execute Data Retention Manager
+composability:
+  hints:
+  - 'can_chain_to: gdpr_manager'
+  - 'can_chain_to: audit_preparer'
+  - 'can_chain_to: pii_detector'
+  - has_structured_output

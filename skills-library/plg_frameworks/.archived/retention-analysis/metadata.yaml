@@ -1,0 +1,50 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - drop
+    - payment
+    - eval
+    - update
+    - change
+    - alter
+    - read
+    - get
+    - email
+    - notification
+    - alert
+    - message
+    - analytics
+    - track
+    - log
+    - monitor
+    - list
+    - format
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.768369'
+    original_risk: Critical
+    changes:
+    - 'Added payment safeguards: preview, approval, limits, rollback'
+categorization:
+  job_function: customer_success
+  jtbd:
+    job: When the user wants to analyze, diagnose, or improve user retention -- including
+      cohort analysis, churn prediction, engagement scoring, or resurrection campaigns.
+      Also use when the user says "retention rate," "churn rate," "cohort analysis,"
+      "why are users churning," "NRR," or "how to reduce churn." For engagement loops,
+      see engagement-loops. For activation, see activation-metrics.
+    context: When working in plg_frameworks domain
+    outcome: Successfully execute retention-analysis
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

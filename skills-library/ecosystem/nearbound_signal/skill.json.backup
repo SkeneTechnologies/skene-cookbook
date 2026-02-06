@@ -1,0 +1,116 @@
+{
+  "id": "elg_nearbound_signal",
+  "version": "1.0.0",
+  "name": "Nearbound Signal Detector",
+  "description": "Identifies partner-influenced opportunities from ecosystem signals including overlapping accounts, shared contacts, and partner activity data.",
+  "domain": "ecosystem",
+  "tools": [
+    {
+      "name": "partner.get_overlaps",
+      "required": true
+    },
+    {
+      "name": "partner.get_signals",
+      "required": true
+    },
+    {
+      "name": "crm.get_account",
+      "required": true
+    },
+    {
+      "name": "crm.update_deal",
+      "required": true
+    },
+    {
+      "name": "analytics.get_metrics",
+      "required": false
+    },
+    {
+      "name": "messaging.send_alert",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "co_sell_trigger",
+    "partner_mapping",
+    "deal_registration",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "accountId": {
+        "type": "string",
+        "description": "Account to analyze for nearbound signals"
+      },
+      "dealId": {
+        "type": "string",
+        "description": "Optional deal to enrich with partner data"
+      },
+      "signalThreshold": {
+        "type": "number",
+        "description": "Minimum signal strength (0-100)"
+      }
+    },
+    "required": [
+      "accountId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "nearbound_score": {
+        "type": "number"
+      },
+      "partner_overlaps": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "recommended_partners": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "signal_strength": {
+        "type": "string",
+        "enum": [
+          "hot",
+          "warm",
+          "cold"
+        ]
+      },
+      "recommended_action": {
+        "type": "string"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "partner_influenced_pipeline",
+    "benchmarks": {
+      "excellent": "> $5M",
+      "good": "$2M-$5M",
+      "needs_improvement": "< $2M"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "ecosystem",
+    "partner",
+    "nearbound",
+    "signals",
+    "overlay",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Nearbound Signal Detector"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

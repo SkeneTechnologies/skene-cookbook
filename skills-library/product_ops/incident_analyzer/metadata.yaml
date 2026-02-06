@@ -1,0 +1,43 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - system
+    - change
+    - sensitive
+    - read
+    - get
+    - query
+    - alert
+    - message
+    - track
+    - log
+    - monitor
+    - list
+    - search
+    - filter
+    - format
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.813330'
+    original_risk: Critical
+    changes:
+    - Applied field-level access control and tenant isolation
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Analyzes production incidents to extract learnings, identify patterns, and
+      drive reliability improvements.
+    context: When working in product_ops domain
+    outcome: Successfully execute Incident Learning Analyzer
+composability:
+  hints:
+  - 'can_chain_to: prioritization_engine'
+  - 'can_chain_to: documentation_health'
+  - has_structured_output

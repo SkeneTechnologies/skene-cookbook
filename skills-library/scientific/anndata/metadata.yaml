@@ -1,0 +1,42 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - system
+    - command
+    - write
+    - alter
+    - access
+    - read
+    - get
+    - track
+    - log
+    - list
+    - search
+    - filter
+    - format
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.845488'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: operations
+  jtbd:
+    job: "Data structure for annotated matrices in single-cell analysis. Use when\
+      \ working with .h5ad files or integrating with the scverse ecosystem. This is\
+      \ the data format skill\u2014for analysis workflows use scanpy; for probabilistic\
+      \ models use scvi-tools; for population-scale queries use cellxgene-census."
+    context: When working in scientific domain
+    outcome: Successfully execute anndata
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

@@ -1,0 +1,21 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors: []
+categorization:
+  job_function: engineering
+  jtbd:
+    job: This guide defines best practices for integrating and utilizing FFmpeg within
+      our applications, emphasizing API-first development, secure and reproducible
+      builds, and optimal multimedia encoding techniques for quality and performance.
+    context: When working in cursor_rules domain
+    outcome: Successfully execute ffmpeg
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

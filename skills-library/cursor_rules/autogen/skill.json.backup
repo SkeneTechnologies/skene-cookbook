@@ -1,0 +1,34 @@
+{
+  "id": "cursor_rules/autogen",
+  "version": "1.0.0",
+  "name": "autogen",
+  "description": "This guide provides opinionated best practices for structuring, optimizing, and testing autogen multi-agent systems to ensure maintainability, reproducibility, and cost-efficiency.",
+  "domain": "cursor_rules",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "cursor_rules",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "cursor": {
+      "globs": [
+        "**/*.py"
+      ]
+    },
+    "claude": {
+      "triggers": [
+        "help with autogen"
+      ]
+    },
+    "skeneflow": {}
+  }
+}

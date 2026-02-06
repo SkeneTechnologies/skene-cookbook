@@ -1,0 +1,42 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - change
+    - sensitive
+    - read
+    - get
+    - log
+    - list
+    - search
+    - format
+    - compute
+    - aggregate
+    - display
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.780345'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Statistical visualization with pandas integration. Use for quick exploration
+      of distributions, relationships, and categorical comparisons with attractive
+      defaults. Best for box plots, violin plots, pair plots, heatmaps. Built on matplotlib.
+      For interactive plots use plotly; for publication styling use scientific-visualization.
+    context: When working in scientific domain
+    outcome: Successfully execute seaborn
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

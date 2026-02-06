@@ -1,0 +1,39 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - pii
+    risk_factors:
+    - update
+    - personal
+    - read
+    - get
+    - retrieve
+    - analytics
+    - track
+    - list
+    - format
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.870752'
+    original_risk: High
+    changes:
+    - Applied field-level access control and tenant isolation
+categorization:
+  job_function: customer_success
+  jtbd:
+    job: Creates comprehensive, personalized success plans that map customer goals
+      to product capabilities and define clear milestones for value realization.
+    context: When working in customer_success domain
+    outcome: Successfully execute Success Plan Architect
+composability:
+  hints:
+  - 'can_chain_to: vla_tracker'
+  - 'can_chain_to: onboarding_health'
+  - 'can_chain_to: product_adoption_guidance'
+  - 'can_chain_to: stakeholder_mapper'
+  - has_structured_output

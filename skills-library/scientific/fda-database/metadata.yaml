@@ -1,0 +1,41 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - api_key
+    - access
+    - read
+    - get
+    - query
+    - email
+    - notification
+    - track
+    - log
+    - monitor
+    - list
+    - search
+    - format
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.783948'
+    original_risk: Critical
+    changes:
+    - Migrated to OAuth authentication
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Query openFDA API for drugs, devices, adverse events, recalls, regulatory
+      submissions (510k, PMA), substance identification (UNII), for FDA regulatory
+      data analysis and safety research.
+    context: When working in scientific domain
+    outcome: Successfully execute fda-database
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

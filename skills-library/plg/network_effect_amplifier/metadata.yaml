@@ -1,0 +1,37 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - execute
+    - get
+    - email
+    - analytics
+    - track
+    - list
+    - format
+    - calculate
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.824796'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: customer_success
+  jtbd:
+    job: Identifies and accelerates network effects by encouraging collaborative behaviors,
+      invitations, and cross-user interactions that increase product value.
+    context: When working in plg domain
+    outcome: Successfully execute Network Effect Amplifier
+composability:
+  hints:
+  - 'can_chain_to: viral_loop'
+  - 'can_chain_to: activation'
+  - 'can_chain_to: self_serve_expansion'
+  - has_structured_output

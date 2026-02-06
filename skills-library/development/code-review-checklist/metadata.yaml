@@ -1,0 +1,41 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - secret
+    - credential
+    - system
+    - command
+    - change
+    - permission
+    - sensitive
+    - read
+    - log
+    - list
+    - format
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.718628'
+    original_risk: Critical
+    changes:
+    - Migrated to OAuth authentication
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Systematic code review checklist covering correctness, security, performance,
+      maintainability, and style. Use when reviewing PRs, doing code audits, or before
+      merging changes.
+    context: When working in development domain
+    outcome: Successfully execute Code Review Checklist
+composability:
+  hints:
+  - 'can_chain_to: approved'
+  - 'can_chain_to: changes_requested'
+  - 'can_chain_to: needs_discussion'
+  - has_structured_output

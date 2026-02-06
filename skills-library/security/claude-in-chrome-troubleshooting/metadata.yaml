@@ -1,0 +1,26 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - update
+    - read
+    - get
+    - format
+    - show
+categorization:
+  job_function: security
+  jtbd:
+    job: Diagnose and fix Claude in Chrome MCP extension connectivity issues. Use
+      when mcp__claude-in-chrome__* tools fail, return "Browser extension is not connected",
+      or behave erratically.
+    context: When working in security domain
+    outcome: Successfully execute claude-in-chrome-troubleshooting
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

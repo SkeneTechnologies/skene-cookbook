@@ -1,0 +1,24 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors:
+    - read
+    - search
+    - format
+categorization:
+  job_function: operations
+  jtbd:
+    job: Scientific document processing and creation skills including PDF, DOCX, LaTeX,
+      and research paper formatting. Use for processing scientific papers, creating
+      publications, and managing references.
+    context: When working in scientific domain
+    outcome: Successfully execute document-skills
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

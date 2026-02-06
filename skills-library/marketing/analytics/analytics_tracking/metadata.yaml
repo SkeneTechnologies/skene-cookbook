@@ -1,0 +1,48 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - payment
+    - system
+    - update
+    - change
+    - pii
+    - read
+    - query
+    - email
+    - analytics
+    - track
+    - log
+    - monitor
+    - list
+    - search
+    - format
+    - aggregate
+    - view
+    - preview
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.742364'
+    original_risk: Critical
+    changes:
+    - 'Added payment safeguards: preview, approval, limits, rollback'
+categorization:
+  job_function: marketing
+  jtbd:
+    job: When the user wants to set up, improve, or audit analytics tracking and measurement.
+      Also use when the user mentions "set up tracking," "GA4," "Google Analytics,"
+      "conversion tracking," "event tracking," "UTM parameters," "tag manager," "GTM,"
+      "analytics implementation," or "tracking plan." For A/B test measurement, see
+      ab-test-setup.
+    context: When working in marketing domain
+    outcome: Successfully execute analytics-tracking
+composability:
+  hints:
+  - 'can_chain_to: support'
+  - has_structured_output

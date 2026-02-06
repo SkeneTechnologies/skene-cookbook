@@ -1,0 +1,45 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - financial
+    - payment
+    - system
+    - modify
+    - change
+    - access
+    - sensitive
+    - read
+    - get
+    - email
+    - track
+    - log
+    - monitor
+    - list
+    - search
+    - format
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.722745'
+    original_risk: Critical
+    changes:
+    - 'Added payment safeguards: preview, approval, limits, rollback'
+categorization:
+  job_function: legal
+  jtbd:
+    job: Prepares organizations for compliance audits by organizing evidence, identifying
+      gaps, and coordinating audit activities
+    context: When working in compliance domain
+    outcome: Successfully execute Audit Preparation Assistant
+composability:
+  hints:
+  - 'can_chain_to: soc2_tracker'
+  - 'can_chain_to: access_reviewer'
+  - 'can_chain_to: vendor_risk'
+  - has_structured_output

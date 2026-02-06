@@ -1,0 +1,12 @@
+{
+  "metadata": {
+    "generated_at": "2026-02-05"
+  },
+  "summary": {
+    "chainable_patterns": 323,
+    "missing_workflow_links": 5,
+    "job_functions": 13,
+    "blueprints_generated": 6
+  },
+  "status": "Chain analysis complete"
+}

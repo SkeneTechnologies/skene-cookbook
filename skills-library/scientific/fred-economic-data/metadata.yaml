@@ -1,0 +1,49 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - financial
+    risk_factors:
+    - financial
+    - api_key
+    - eval
+    - update
+    - change
+    - access
+    - read
+    - fetch
+    - get
+    - retrieve
+    - query
+    - message
+    - log
+    - monitor
+    - search
+    - filter
+    - sort
+    - format
+    - aggregate
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.779483'
+    original_risk: Critical
+    changes:
+    - Migrated to OAuth authentication
+categorization:
+  job_function: data
+  jtbd:
+    job: Query FRED (Federal Reserve Economic Data) API for 800,000+ economic time
+      series from 100+ sources. Access GDP, unemployment, inflation, interest rates,
+      exchange rates, housing, and regional data. Use for macroeconomic analysis,
+      financial research, policy studies, economic forecasting, and academic research
+      requiring U.S. and international economic indicators.
+    context: When working in scientific domain
+    outcome: Successfully execute fred-economic-data
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

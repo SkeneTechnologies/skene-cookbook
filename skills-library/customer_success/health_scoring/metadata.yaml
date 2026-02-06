@@ -1,0 +1,41 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - drop
+    - financial
+    - payment
+    - update
+    - get
+    - query
+    - alert
+    - analytics
+    - monitor
+    - list
+    - format
+    - calculate
+    - compute
+    - 'risky_tool: crm.update_account'
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.750092'
+    original_risk: Critical
+    changes:
+    - 'Added payment safeguards: preview, approval, limits, rollback'
+categorization:
+  job_function: customer_success
+  jtbd:
+    job: Calculates and monitors customer health scores to predict retention and identify
+      at-risk accounts.
+    context: When working in customer_success domain
+    outcome: Successfully execute Customer Health Scoring
+composability:
+  hints:
+  - 'can_chain_to: churn_prediction'
+  - 'can_chain_to: expansion_playbook'
+  - 'can_chain_to: renewal_orchestration'

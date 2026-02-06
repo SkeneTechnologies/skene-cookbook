@@ -1,0 +1,47 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - execute
+    - write
+    - update
+    - change
+    - alter
+    - access
+    - read
+    - fetch
+    - get
+    - track
+    - list
+    - search
+    - format
+    - summarize
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.748264'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Guide users through a structured workflow for co-authoring documentation.
+      Use when user wants to write documentation, proposals, technical specs, decision
+      docs, or similar structured content. This workflow helps users efficiently transfer
+      context, refine content through iteration, and verify the doc works for readers.
+      Trigger when user mentions writing docs, creating proposals, drafting specs,
+      or similar documentation tasks.
+    context: When working in anthropic_official domain
+    outcome: Successfully execute doc-coauthoring
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

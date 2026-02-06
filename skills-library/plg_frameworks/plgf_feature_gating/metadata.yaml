@@ -1,0 +1,48 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - eval
+    - change
+    - access
+    - personal
+    - read
+    - get
+    - query
+    - email
+    - analytics
+    - log
+    - monitor
+    - list
+    - filter
+    - format
+    - compute
+    - show
+    - view
+    - preview
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.771032'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: data
+  jtbd:
+    job: Gate types (hard/soft/usage/time/team), reverse trials (Elena Verna), and
+      competitive free tier analysis
+    context: When working in plg_frameworks domain
+    outcome: Successfully execute Feature Gating
+composability:
+  hints:
+  - 'can_chain_to: gates_designed'
+  - 'can_chain_to: reverse_trial_implemented'
+  - 'can_chain_to: gates_optimized'
+  - 'can_chain_to: competitive_analysis_complete'
+  - has_structured_output

@@ -1,0 +1,41 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - update
+    - change
+    - access
+    - read
+    - get
+    - message
+    - track
+    - log
+    - monitor
+    - list
+    - search
+    - format
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.864408'
+    original_risk: High
+    changes:
+    - Added validation, preview mode, and rollback for writes
+categorization:
+  job_function: marketing
+  jtbd:
+    job: Extracts and analyzes competitors' ads from ad libraries (Facebook, LinkedIn,
+      etc.) to understand what messaging, problems, and creative approaches are working.
+      Helps inspire and improve your own ad campaigns.
+    context: When working in marketing domain
+    outcome: Successfully execute competitive-ads-extractor
+composability:
+  hints:
+  - 'can_chain_to: support'
+  - has_structured_output

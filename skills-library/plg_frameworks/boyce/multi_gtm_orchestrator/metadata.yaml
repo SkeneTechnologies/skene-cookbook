@@ -1,0 +1,33 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - financial
+    risk_factors:
+    - access
+    - read
+    - get
+    - analytics
+    - track
+    - monitor
+    - list
+    - format
+    - calculate
+categorization:
+  job_function: sales
+  jtbd:
+    job: 'Orchestrates multiple GTM motions (PLG + Sales) in parallel. Based on Dave
+      Boyce''s FREEMIUM framework (Chapter 13): Run your multi-GTM business like a
+      lean revenue factory.'
+    context: When working in plg_frameworks domain
+    outcome: Successfully execute Multi-GTM Orchestrator
+composability:
+  hints:
+  - 'can_chain_to: gtm_balanced'
+  - 'can_chain_to: plg_dominant'
+  - 'can_chain_to: sales_dominant'
+  - 'can_chain_to: rebalance_needed'
+  - has_structured_output

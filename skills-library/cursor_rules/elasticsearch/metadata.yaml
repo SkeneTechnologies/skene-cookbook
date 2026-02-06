@@ -1,0 +1,23 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors:
+    - query
+    - search
+categorization:
+  job_function: engineering
+  jtbd:
+    job: This rule file guides developers on best practices for using Elasticsearch,
+      focusing on data modeling, query optimization, performance, and code structure
+      for robust, high-performance search applications.
+    context: When working in cursor_rules domain
+    outcome: Successfully execute elasticsearch
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

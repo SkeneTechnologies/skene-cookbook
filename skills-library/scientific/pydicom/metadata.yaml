@@ -1,0 +1,49 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - system
+    - write
+    - update
+    - modify
+    - alter
+    - access
+    - sensitive
+    - read
+    - get
+    - log
+    - list
+    - search
+    - sort
+    - format
+    - display
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.782096'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Python library for working with DICOM (Digital Imaging and Communications
+      in Medicine) files. Use this skill when reading, writing, or modifying medical
+      imaging data in DICOM format, extracting pixel data from medical images (CT,
+      MRI, X-ray, ultrasound), anonymizing DICOM files, working with DICOM metadata
+      and tags, converting DICOM images to other formats, handling compressed DICOM
+      data, or processing medical imaging datasets. Applies to tasks involving medical
+      image analysis, PACS systems, radiology workflows, and healthcare imaging applications.
+    context: When working in scientific domain
+    outcome: Successfully execute pydicom
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

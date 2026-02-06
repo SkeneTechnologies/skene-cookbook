@@ -1,0 +1,140 @@
+{
+  "id": "mon_discount_optimizer",
+  "version": "1.0.0",
+  "name": "Discount Optimization Engine",
+  "description": "Optimizes discount strategies to maximize conversion while protecting margins",
+  "domain": "monetization",
+  "tools": [
+    {
+      "name": "stripe.create_coupon",
+      "required": true
+    },
+    {
+      "name": "stripe.get_coupon",
+      "required": true
+    },
+    {
+      "name": "analytics.get_metrics",
+      "required": true
+    },
+    {
+      "name": "ai.ltv_prediction",
+      "required": true
+    },
+    {
+      "name": "crm.get_account",
+      "required": false
+    },
+    {
+      "name": "analytics.cohort",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "discount_approved",
+    "discount_denied",
+    "alternative_offered",
+    "escalation_required",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "account_id": {
+        "type": "string",
+        "description": "Account requesting discount"
+      },
+      "requested_discount": {
+        "type": "number",
+        "description": "Discount percentage requested"
+      },
+      "reason": {
+        "type": "string",
+        "enum": [
+          "competitive",
+          "budget",
+          "multi_year",
+          "expansion",
+          "retention"
+        ]
+      },
+      "deal_context": {
+        "type": "object",
+        "description": "Additional deal information"
+      }
+    },
+    "required": [
+      "account_id",
+      "requested_discount",
+      "reason"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "approved_discount": {
+        "type": "number"
+      },
+      "discount_type": {
+        "type": "string",
+        "enum": [
+          "percentage",
+          "fixed",
+          "extended_trial",
+          "feature_credit"
+        ]
+      },
+      "conditions": {
+        "type": "array",
+        "description": "Terms attached to discount"
+      },
+      "ltv_impact": {
+        "type": "number"
+      },
+      "margin_impact": {
+        "type": "number"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "discount_roi",
+    "benchmarks": {
+      "excellent": "> 3x LTV impact",
+      "good": "1.5-3x",
+      "needs_improvement": "< 1.5x"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "monetization",
+    "discounts",
+    "pricing",
+    "negotiation",
+    "margins",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Discount Optimization Engine"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "stripe.get_customer",
+          "required": true
+        },
+        {
+          "name": "stripe.list_subscriptions",
+          "required": false
+        },
+        {
+          "name": "stripe.create_checkout",
+          "required": false
+        }
+      ]
+    }
+  }
+}

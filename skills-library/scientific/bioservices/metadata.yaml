@@ -1,0 +1,42 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - execute
+    - eval
+    - access
+    - read
+    - get
+    - retrieve
+    - query
+    - email
+    - log
+    - list
+    - search
+    - format
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.851996'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Unified Python interface to 40+ bioinformatics services. Use when querying
+      multiple databases (UniProt, KEGG, ChEMBL, Reactome) in a single workflow with
+      consistent API. Best for cross-database analysis, ID mapping across services.
+      For quick single-database lookups use gget; for sequence/file manipulation use
+      biopython.
+    context: When working in scientific domain
+    outcome: Successfully execute bioservices
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

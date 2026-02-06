@@ -1,0 +1,52 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - drop
+    - eval
+    - system
+    - update
+    - change
+    - alter
+    - access
+    - read
+    - get
+    - email
+    - analytics
+    - track
+    - log
+    - monitor
+    - list
+    - search
+    - filter
+    - sort
+    - format
+    - aggregate
+    - show
+    - view
+    - preview
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.741403'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: marketing
+  jtbd:
+    job: When the user wants to create SEO-driven pages at scale using templates and
+      data. Also use when the user mentions "programmatic SEO," "template pages,"
+      "pages at scale," "directory pages," "location pages," "[keyword] + [city] pages,"
+      "comparison pages," "integration pages," or "building many pages for SEO." For
+      auditing existing SEO issues, see seo-audit.
+    context: When working in marketing domain
+    outcome: Successfully execute programmatic-seo
+composability:
+  hints:
+  - 'can_chain_to: support'
+  - has_structured_output

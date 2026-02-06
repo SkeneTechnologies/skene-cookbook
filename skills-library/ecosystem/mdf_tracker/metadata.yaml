@@ -1,0 +1,42 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - payment
+    - system
+    - get
+    - email
+    - alert
+    - message
+    - analytics
+    - track
+    - log
+    - list
+    - format
+    - calculate
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.701958'
+    original_risk: Critical
+    changes:
+    - 'Added payment safeguards: preview, approval, limits, rollback'
+categorization:
+  job_function: finance
+  jtbd:
+    job: Manages Market Development Fund allocation, requests, approval, and ROI tracking
+      for partner marketing investments.
+    context: When working in ecosystem domain
+    outcome: Successfully execute MDF Allocation Tracker
+composability:
+  hints:
+  - 'can_chain_to: joint_marketing'
+  - 'can_chain_to: partner_tier_manager'
+  - 'can_chain_to: partner_influenced_revenue'
+  - has_structured_output

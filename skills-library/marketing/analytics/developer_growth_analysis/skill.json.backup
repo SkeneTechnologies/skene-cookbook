@@ -1,0 +1,51 @@
+{
+  "id": "marketing_developer_growth_analysis",
+  "version": "1.0.0",
+  "name": "developer-growth-analysis",
+  "description": "Analyzes your recent Claude Code chat history to identify coding patterns, development gaps, and areas for improvement, curates relevant learning resources from HackerNews, and automatically sends a personalized growth report to your Slack DMs.",
+  "domain": "marketing",
+  "category": "analytics",
+  "source": "skene-marketing",
+  "tools": [],
+  "exitStates": [
+    "idle",
+    "support"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {},
+    "required": []
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {}
+  },
+  "temperature": 0.3,
+  "tags": [
+    "marketing",
+    "analytics",
+    "developer-growth-analysis",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with developer growth analysis",
+        "growth marketing"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "resend.send_email",
+          "required": false
+        },
+        {
+          "name": "analytics.track_campaign",
+          "required": false
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,37 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - eval
+    - read
+    - query
+    - log
+    - list
+    - search
+    - format
+    - calculate
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.813040'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: data
+  jtbd:
+    job: Synthesizes insights from user interviews into actionable product recommendations
+      with thematic analysis.
+    context: When working in product_ops domain
+    outcome: Successfully execute User Interview Synthesizer
+composability:
+  hints:
+  - 'can_chain_to: roadmap_alignment'
+  - 'can_chain_to: prioritization_engine'
+  - 'can_chain_to: feedback_synthesis'
+  - has_structured_output

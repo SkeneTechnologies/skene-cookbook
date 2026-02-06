@@ -1,0 +1,22 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors:
+    - log
+categorization:
+  job_function: design
+  jtbd:
+    job: This guide defines the definitive best practices for using Redux in our projects,
+      mandating Redux Toolkit (RTK) for all state management logic to ensure consistency,
+      maintainability, and optimal performance.
+    context: When working in cursor_rules domain
+    outcome: Successfully execute redux
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

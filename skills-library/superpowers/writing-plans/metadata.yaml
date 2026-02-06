@@ -1,0 +1,31 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - command
+    - write
+    - modify
+    - log
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.840857'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Use when you have a spec or requirements for a multi-step task, before touching
+      code
+    context: When working in superpowers domain
+    outcome: Successfully execute writing-plans
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

@@ -1,0 +1,37 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - pii
+    risk_factors:
+    - execute
+    - change
+    - personal
+    - get
+    - retrieve
+    - alert
+    - track
+    - list
+    - format
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.832553'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: customer_success
+  jtbd:
+    job: Automates NPS survey follow-up with personalized responses based on score
+      and feedback.
+    context: When working in customer_success domain
+    outcome: Successfully execute NPS Follow-up Automation
+composability:
+  hints:
+  - 'can_chain_to: churn_prediction'
+  - 'can_chain_to: advocacy'
+  - 'can_chain_to: support_escalation'

@@ -1,0 +1,127 @@
+{
+  "id": "revops_next_best_action",
+  "version": "1.0.0",
+  "name": "Next Best Action Engine",
+  "description": "Recommends the most impactful next action for each deal based on stage, signals, and historical patterns.",
+  "domain": "revops",
+  "tools": [
+    {
+      "name": "crm.get_deal",
+      "required": true
+    },
+    {
+      "name": "crm.get_activities",
+      "required": true
+    },
+    {
+      "name": "ai.recommend_action",
+      "required": true
+    },
+    {
+      "name": "analytics.get_winning_actions",
+      "required": true
+    },
+    {
+      "name": "content.get_templates",
+      "required": false
+    },
+    {
+      "name": "crm.create_task",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "deal_inspection",
+    "sales_coaching",
+    "sales_content_recommender",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "dealId": {
+        "type": "string"
+      },
+      "actionType": {
+        "type": "string",
+        "enum": [
+          "any",
+          "outreach",
+          "internal",
+          "content",
+          "meeting"
+        ]
+      },
+      "urgency": {
+        "type": "string",
+        "enum": [
+          "immediate",
+          "today",
+          "this_week"
+        ]
+      }
+    },
+    "required": [
+      "dealId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "recommendedAction": {
+        "type": "object"
+      },
+      "alternativeActions": {
+        "type": "array"
+      },
+      "expectedImpact": {
+        "type": "string"
+      },
+      "actionTemplate": {
+        "type": "object"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "action_effectiveness",
+    "benchmarks": {
+      "excellent": "> 40% action-to-advance rate",
+      "good": "25-40% action-to-advance rate",
+      "needs_improvement": "< 25% action-to-advance rate"
+    }
+  },
+  "temperature": 0.1,
+  "tags": [
+    "revops",
+    "next-best-action",
+    "guidance",
+    "coaching",
+    "ai",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Next Best Action Engine",
+        "deal velocity"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "crm.get_pipeline",
+          "required": true
+        },
+        {
+          "name": "crm.list_deals",
+          "required": false
+        },
+        {
+          "name": "analytics.get_forecast",
+          "required": false
+        }
+      ]
+    }
+  }
+}

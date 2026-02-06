@@ -1,0 +1,39 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - eval
+    - read
+    - get
+    - email
+    - alert
+    - track
+    - list
+    - filter
+    - format
+    - calculate
+    - 'risky_tool: crm.update_contact'
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.836329'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: sales
+  jtbd:
+    job: Tracks and optimizes multi-stakeholder engagement to reduce single-threading
+      risk.
+    context: When working in revops domain
+    outcome: Successfully execute Multi-Threading Tracker
+composability:
+  hints:
+  - 'can_chain_to: deal_inspection'
+  - 'can_chain_to: next_best_action'
+  - 'can_chain_to: pipeline_health'
+  - has_structured_output

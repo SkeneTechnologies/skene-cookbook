@@ -1,0 +1,32 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors:
+    - system
+    - log
+    - display
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.802559'
+    original_risk: Critical
+    changes:
+    - Flagged for manual review as potential false positive
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Suite of tools for creating elaborate, multi-component claude.ai HTML artifacts
+      using modern frontend web technologies (React, Tailwind CSS, shadcn/ui). Use
+      for complex artifacts requiring state management, routing, or shadcn/ui components
+      - not for simple single-file HTML/JSX artifacts.
+    context: When working in anthropic_official domain
+    outcome: Successfully execute web-artifacts-builder
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

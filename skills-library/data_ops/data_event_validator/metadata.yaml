@@ -1,0 +1,43 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - update
+    - modify
+    - change
+    - pii
+    - sensitive
+    - fetch
+    - get
+    - query
+    - alert
+    - message
+    - analytics
+    - track
+    - list
+    - format
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.730841'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: data
+  jtbd:
+    job: Validates tracking event schemas for data quality, ensuring events conform
+      to specifications and catching issues before they pollute analytics.
+    context: When working in data_ops domain
+    outcome: Successfully execute Event Schema Validator
+composability:
+  hints:
+  - 'can_chain_to: data_anomaly_alerter'
+  - 'can_chain_to: data_dashboard_builder'
+  - has_structured_output

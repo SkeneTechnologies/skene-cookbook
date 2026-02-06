@@ -1,0 +1,31 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - update
+    - read
+    - get
+    - analytics
+    - log
+    - monitor
+    - list
+    - format
+    - view
+categorization:
+  job_function: legal
+  jtbd:
+    job: Identifies skill gaps across teams and individuals, maps current capabilities
+      against future needs, and recommends development paths.
+    context: When working in people_ops domain
+    outcome: Successfully execute Skills Gap Analyzer
+composability:
+  hints:
+  - 'can_chain_to: people_perf_review_generator'
+  - 'can_chain_to: people_candidate_sourcer'
+  - 'can_chain_to: people_onboarding_checklist'
+  - has_structured_output

@@ -1,0 +1,41 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - payment
+    - eval
+    - update
+    - get
+    - retrieve
+    - track
+    - log
+    - list
+    - format
+    - calculate
+    - view
+    - 'risky_tool: crm.update_deal'
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.756546'
+    original_risk: Critical
+    changes:
+    - 'Added payment safeguards: preview, approval, limits, rollback'
+categorization:
+  job_function: sales
+  jtbd:
+    job: Generates accurate, compliant quotes with intelligent product configuration,
+      pricing rules, and approval workflows.
+    context: When working in revops domain
+    outcome: Successfully execute CPQ Quote Architect
+composability:
+  hints:
+  - 'can_chain_to: deal_inspection'
+  - 'can_chain_to: pricing_guidance'
+  - 'can_chain_to: approval_workflow'
+  - has_structured_output

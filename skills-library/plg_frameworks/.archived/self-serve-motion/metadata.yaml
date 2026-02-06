@@ -1,0 +1,52 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - drop
+    - destroy
+    - payment
+    - eval
+    - modify
+    - change
+    - alter
+    - access
+    - permission
+    - read
+    - get
+    - email
+    - notification
+    - track
+    - log
+    - list
+    - search
+    - format
+    - calculate
+    - display
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.766116'
+    original_risk: Critical
+    changes:
+    - 'Added payment safeguards: preview, approval, limits, rollback'
+categorization:
+  job_function: finance
+  jtbd:
+    job: When the user wants to reduce friction in the self-serve buying experience,
+      optimize in-product checkout, remove "contact sales" gates, or design self-serve
+      onboarding and support. Also use when the user says "frictionless," "self-service,"
+      "remove sales gates," "no-demo experience," or "friction audit." For signup
+      flow optimization, see signup-flow-cro. For pricing page design, see pricing-strategy.
+    context: When working in plg_frameworks domain
+    outcome: Successfully execute self-serve-motion
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

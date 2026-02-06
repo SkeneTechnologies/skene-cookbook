@@ -1,0 +1,49 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - destroy
+    - payment
+    - eval
+    - system
+    - change
+    - alter
+    - access
+    - personal
+    - read
+    - get
+    - analytics
+    - track
+    - log
+    - list
+    - search
+    - format
+    - display
+    - show
+    - view
+    - preview
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.769023'
+    original_risk: Critical
+    changes:
+    - 'Added payment safeguards: preview, approval, limits, rollback'
+categorization:
+  job_function: data
+  jtbd:
+    job: When the user wants to optimize in-app paywalls, upgrade screens, or upgrade
+      prompts -- including feature locks, usage limit walls, trial expiration screens,
+      or context-triggered upsells. Also use when the user says "paywall design,"
+      "upgrade conversion," "upgrade modal," or "upsell prompt." For feature gating
+      strategy, see feature-gating. For in-product messaging, see in-product-messaging.
+    context: When working in plg_frameworks domain
+    outcome: Successfully execute paywall-upgrade-cro
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

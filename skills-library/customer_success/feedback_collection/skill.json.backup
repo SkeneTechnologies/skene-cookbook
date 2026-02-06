@@ -1,0 +1,111 @@
+{
+  "id": "customer_success/feedback_collection",
+  "version": "1.0.0",
+  "name": "Feedback Collection",
+  "description": "Collects structured user feedback through a conversational flow, stores responses, and transitions back to IDLE state upon completion.",
+  "domain": "customer_success",
+
+  "tools": [
+    {
+      "name": "ui.show_buttons",
+      "required": true,
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "prompt": { "type": "string", "description": "Question to display" },
+          "buttons": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": { "type": "string" },
+                "label": { "type": "string" },
+                "value": { "type": "string" }
+              },
+              "required": ["id", "label"]
+            }
+          }
+        },
+        "required": ["prompt", "buttons"]
+      }
+    },
+    {
+      "name": "ui.collect_input",
+      "required": true,
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "prompt": { "type": "string" },
+          "inputType": {
+            "type": "string",
+            "enum": ["text", "textarea", "number", "rating"]
+          },
+          "placeholder": { "type": "string" },
+          "required": { "type": "boolean" }
+        },
+        "required": ["prompt", "inputType"]
+      }
+    },
+    {
+      "name": "data.write",
+      "required": true,
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "collection": { "type": "string" },
+          "document": { "type": "object" }
+        },
+        "required": ["collection", "document"]
+      }
+    },
+    {
+      "name": "messaging.send_notification",
+      "required": false,
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "type": { "type": "string", "enum": ["success", "info", "warning"] },
+          "message": { "type": "string" }
+        },
+        "required": ["type", "message"]
+      }
+    }
+  ],
+
+  "exitStates": [
+    "idle",
+    "feedback_thankyou",
+    "error_recovery"
+  ],
+
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "feedbackType": {
+        "type": "string",
+        "enum": ["general", "feature_request", "bug_report", "satisfaction"],
+        "description": "Type of feedback to collect"
+      },
+      "context": {
+        "type": "object",
+        "description": "Optional context about what prompted the feedback"
+      }
+    }
+  },
+
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "feedbackId": { "type": "string" },
+      "rating": { "type": "number" },
+      "category": { "type": "string" },
+      "comments": { "type": "string" },
+      "completed": { "type": "boolean" }
+    }
+  },
+
+  "temperature": 0,
+  "tags": ["feedback", "user-engagement", "data-collection"],
+  "author": "SkeneFlow",
+  "deprecated": false
+}

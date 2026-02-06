@@ -1,0 +1,47 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - drop
+    - eval
+    - system
+    - update
+    - change
+    - personal
+    - read
+    - get
+    - retrieve
+    - alert
+    - message
+    - analytics
+    - track
+    - monitor
+    - sort
+    - format
+    - calculate
+    - view
+    - 'risky_tool: crm.update_health_score'
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.710492'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: data
+  jtbd:
+    job: Tracks and analyzes sentiment across ticket conversations to identify at-risk
+      interactions and trending issues.
+    context: When working in support_ops domain
+    outcome: Successfully execute Ticket Sentiment Tracker
+composability:
+  hints:
+  - 'can_chain_to: escalation_predictor'
+  - 'can_chain_to: csat_analyzer'
+  - 'can_chain_to: proactive_outreach'
+  - has_structured_output

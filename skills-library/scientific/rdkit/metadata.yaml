@@ -1,0 +1,51 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - execute
+    - system
+    - write
+    - change
+    - alter
+    - access
+    - read
+    - get
+    - query
+    - message
+    - log
+    - list
+    - search
+    - filter
+    - sort
+    - format
+    - calculate
+    - compute
+    - display
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.793393'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: operations
+  jtbd:
+    job: Cheminformatics toolkit for fine-grained molecular control. SMILES/SDF parsing,
+      descriptors (MW, LogP, TPSA), fingerprints, substructure search, 2D/3D generation,
+      similarity, reactions. For standard workflows with simpler interface, use datamol
+      (wrapper around RDKit). Use rdkit for advanced control, custom sanitization,
+      specialized algorithms.
+    context: When working in scientific domain
+    outcome: Successfully execute rdkit
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

@@ -1,0 +1,40 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - delete
+    - remove
+    - drop
+    - change
+    - personal
+    - read
+    - email
+    - message
+    - log
+    - list
+    - filter
+    - format
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.735954'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: marketing
+  jtbd:
+    job: Applies humanization rules to outbound messages to make them feel natural
+      and authentic. Removes patterns that trigger spam filters or feel robotic. Use
+      when polishing outreach messages before sending.
+    context: When working in marketing domain
+    outcome: Successfully execute humanization-engine
+composability:
+  hints:
+  - 'can_chain_to: support'
+  - has_structured_output

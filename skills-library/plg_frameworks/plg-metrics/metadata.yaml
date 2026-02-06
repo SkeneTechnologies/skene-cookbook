@@ -1,0 +1,46 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - drop
+    - payment
+    - eval
+    - system
+    - change
+    - read
+    - get
+    - notification
+    - alert
+    - message
+    - analytics
+    - track
+    - log
+    - list
+    - filter
+    - format
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.772806'
+    original_risk: Critical
+    changes:
+    - 'Added payment safeguards: preview, approval, limits, rollback'
+categorization:
+  job_function: data
+  jtbd:
+    job: When the user wants to define PLG metrics, build a growth dashboard, or set
+      KPI targets -- including activation rate, free-to-paid conversion, NRR, or North
+      Star metric. Also use when the user says "PLG dashboard," "growth KPIs," "metric
+      definitions," or "PLG benchmarks." For activation-specific metrics, see activation-metrics.
+      For analytics setup, see product-analytics.
+    context: When working in plg_frameworks domain
+    outcome: Successfully execute plg-metrics
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

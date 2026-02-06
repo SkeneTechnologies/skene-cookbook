@@ -1,0 +1,35 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - update
+    - change
+    - get
+    - message
+    - log
+    - list
+    - format
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.705037'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Automatically generates user-friendly release notes from commits, PRs, and
+      tickets with audience-appropriate messaging.
+    context: When working in product_ops domain
+    outcome: Successfully execute Release Notes Generator
+composability:
+  hints:
+  - 'can_chain_to: documentation_health'
+  - 'can_chain_to: feature_adoption'
+  - has_structured_output

@@ -1,0 +1,21 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors: []
+categorization:
+  job_function: engineering
+  jtbd:
+    job: This guide provides definitive, actionable best practices for configuring
+      and using pyright (and basedpyright) to ensure robust, type-safe Python codebases
+      in 2025.
+    context: When working in cursor_rules domain
+    outcome: Successfully execute pyright
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

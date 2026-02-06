@@ -1,0 +1,42 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - system
+    - update
+    - change
+    - access
+    - personal
+    - get
+    - email
+    - alert
+    - analytics
+    - track
+    - log
+    - list
+    - format
+    - 'risky_tool: consent.update_preference'
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.819175'
+    original_risk: Critical
+    changes:
+    - Applied field-level access control and tenant isolation
+categorization:
+  job_function: legal
+  jtbd:
+    job: Manages user consent preferences, consent collection, and preference synchronization
+      across systems
+    context: When working in compliance domain
+    outcome: Successfully execute Consent Preference Manager
+composability:
+  hints:
+  - 'can_chain_to: privacy_policy'
+  - 'can_chain_to: gdpr_manager'
+  - 'can_chain_to: data_retention'
+  - has_structured_output

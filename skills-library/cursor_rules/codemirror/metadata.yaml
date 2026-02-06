@@ -1,0 +1,21 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors: []
+categorization:
+  job_function: engineering
+  jtbd:
+    job: This guide defines best practices for building and maintaining CodeMirror
+      6-based editors, focusing on modularity, immutable state, extension-driven configuration,
+      and modern JavaScript/TypeScript patterns.
+    context: When working in cursor_rules domain
+    outcome: Successfully execute codemirror
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

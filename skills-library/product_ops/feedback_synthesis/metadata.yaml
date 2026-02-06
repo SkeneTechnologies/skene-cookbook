@@ -1,0 +1,26 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors:
+    - get
+    - list
+    - format
+    - calculate
+    - aggregate
+    - view
+categorization:
+  job_function: data
+  jtbd:
+    job: Aggregates and synthesizes customer feedback into actionable product insights.
+    context: When working in product_ops domain
+    outcome: Successfully execute Feedback Synthesis
+composability:
+  hints:
+  - 'can_chain_to: roadmap_alignment'
+  - 'can_chain_to: feature_request_prioritization'
+  - 'can_chain_to: product_review'

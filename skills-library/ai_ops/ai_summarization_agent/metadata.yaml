@@ -1,0 +1,32 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - read
+    - get
+    - email
+    - log
+    - list
+    - format
+    - summarize
+    - view
+    - preview
+categorization:
+  job_function: data
+  jtbd:
+    job: Generates concise, accurate summaries from long-form content including documents,
+      threads, and reports.
+    context: When working in ai_ops domain
+    outcome: Successfully execute Summarization Agent
+composability:
+  hints:
+  - 'can_chain_to: summary_generated'
+  - 'can_chain_to: multi_format'
+  - 'can_chain_to: too_short'
+  - 'can_chain_to: requires_context'
+  - has_structured_output

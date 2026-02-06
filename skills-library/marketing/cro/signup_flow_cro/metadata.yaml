@@ -1,0 +1,48 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - drop
+    - password
+    - update
+    - change
+    - alter
+    - access
+    - personal
+    - read
+    - get
+    - email
+    - message
+    - analytics
+    - track
+    - log
+    - list
+    - format
+    - display
+    - show
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.739735'
+    original_risk: Critical
+    changes:
+    - Migrated to OAuth authentication
+categorization:
+  job_function: marketing
+  jtbd:
+    job: When the user wants to optimize signup, registration, account creation, or
+      trial activation flows. Also use when the user mentions "signup conversions,"
+      "registration friction," "signup form optimization," "free trial signup," "reduce
+      signup dropoff," or "account creation flow." For post-signup onboarding, see
+      onboarding-cro. For lead capture forms (not account creation), see form-cro.
+    context: When working in marketing domain
+    outcome: Successfully execute signup-flow-cro
+composability:
+  hints:
+  - 'can_chain_to: support'
+  - has_structured_output

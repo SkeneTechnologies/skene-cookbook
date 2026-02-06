@@ -1,0 +1,43 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - secret
+    - api_key
+    - execute
+    - command
+    - update
+    - change
+    - read
+    - fetch
+    - get
+    - message
+    - track
+    - log
+    - list
+    - format
+    - 'risky_tool: code.execute_sandbox'
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.707334'
+    original_risk: Critical
+    changes:
+    - Migrated to OAuth authentication
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Generates working code samples for API endpoints in multiple languages with
+      best practices and error handling.
+    context: When working in devex domain
+    outcome: Successfully execute Code Sample Generator
+composability:
+  hints:
+  - 'can_chain_to: api_onboarding'
+  - 'can_chain_to: error_explainer'
+  - 'can_chain_to: webhook_tester'
+  - has_structured_output

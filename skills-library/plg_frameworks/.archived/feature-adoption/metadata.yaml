@@ -1,0 +1,53 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - drop
+    - eval
+    - system
+    - write
+    - update
+    - change
+    - alter
+    - access
+    - sensitive
+    - read
+    - get
+    - email
+    - notification
+    - message
+    - analytics
+    - track
+    - log
+    - monitor
+    - list
+    - search
+    - format
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.769682'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: customer_success
+  jtbd:
+    job: When the user wants to drive adoption of a specific feature -- including
+      launch planning, discovery mechanisms, adoption funnels, or feature deprecation.
+      Also use when the user says "feature launch," "feature rollout," "underused
+      features," "feature stickiness," or "how to get users to use a feature." For
+      in-product messaging, see in-product-messaging. For onboarding, see product-onboarding.
+    context: When working in plg_frameworks domain
+    outcome: Successfully execute feature-adoption
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

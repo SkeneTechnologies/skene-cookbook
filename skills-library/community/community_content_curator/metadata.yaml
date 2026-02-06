@@ -1,0 +1,35 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - permission
+    - read
+    - get
+    - query
+    - email
+    - analytics
+    - track
+    - list
+    - filter
+    - format
+    - summarize
+    - show
+    - view
+categorization:
+  job_function: data
+  jtbd:
+    job: Curates, organizes, and surfaces the best community-generated content for
+      maximum visibility and engagement.
+    context: When working in community domain
+    outcome: Successfully execute Community Content Curator
+composability:
+  hints:
+  - 'can_chain_to: ugc_curator'
+  - 'can_chain_to: champion_identifier'
+  - 'can_chain_to: forum_moderator'
+  - has_structured_output

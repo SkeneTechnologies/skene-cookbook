@@ -1,0 +1,37 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - execute
+    - system
+    - access
+    - get
+    - list
+    - display
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.830333'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: design
+  jtbd:
+    job: Create distinctive, production-grade frontend interfaces with high design
+      quality. Use this skill when the user asks to build web components, pages, artifacts,
+      posters, or applications (examples include websites, landing pages, dashboards,
+      React components, HTML/CSS layouts, or when styling/beautifying any web UI).
+      Generates creative, polished code and UI design that avoids generic AI aesthetics.
+    context: When working in anthropic_official domain
+    outcome: Successfully execute frontend-design
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

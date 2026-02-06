@@ -1,0 +1,29 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - confidential
+    risk_factors:
+    - get
+    - message
+    - analytics
+    - track
+    - monitor
+    - list
+    - filter
+    - format
+categorization:
+  job_function: data
+  jtbd:
+    job: Tracks internal usage of the product, collecting feedback from employees
+      to improve quality and empathy.
+    context: When working in product_ops domain
+    outcome: Successfully execute Internal Dogfooding Tracker
+composability:
+  hints:
+  - 'can_chain_to: feedback_synthesis'
+  - 'can_chain_to: prioritization_engine'
+  - has_structured_output

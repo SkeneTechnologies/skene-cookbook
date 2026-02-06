@@ -1,0 +1,38 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - update
+    - change
+    - personal
+    - read
+    - get
+    - message
+    - list
+    - format
+    - calculate
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.867420'
+    original_risk: High
+    changes:
+    - Applied field-level access control and tenant isolation
+categorization:
+  job_function: marketing
+  jtbd:
+    job: Defines and refines campaign objectives with strategic framing, success metrics,
+      guardrails, and theory frameworks. Auto-generates objectives from context or
+      helps craft new ones. Use when starting a new campaign, pivoting strategy, or
+      refining goals.
+    context: When working in marketing domain
+    outcome: Successfully execute objective-strategist
+composability:
+  hints:
+  - 'can_chain_to: support'
+  - has_structured_output

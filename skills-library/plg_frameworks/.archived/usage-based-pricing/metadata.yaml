@@ -1,0 +1,51 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - financial
+    risk_factors:
+    - drop
+    - financial
+    - eval
+    - system
+    - change
+    - alter
+    - get
+    - query
+    - email
+    - notification
+    - alert
+    - message
+    - analytics
+    - track
+    - log
+    - monitor
+    - list
+    - search
+    - format
+    - compute
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.769937'
+    original_risk: Critical
+    changes:
+    - 'Added payment safeguards: preview, approval, limits, rollback'
+categorization:
+  job_function: finance
+  jtbd:
+    job: When the user wants to design or implement usage-based, consumption, or metered
+      pricing -- including credit systems, overage handling, or billing infrastructure.
+      Also use when the user says "pay per use," "metered billing," "credit system,"
+      "usage pricing," or "consumption pricing." For broader pricing strategy, see
+      pricing-strategy. For expansion, see expansion-revenue.
+    context: When working in plg_frameworks domain
+    outcome: Successfully execute usage-based-pricing
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

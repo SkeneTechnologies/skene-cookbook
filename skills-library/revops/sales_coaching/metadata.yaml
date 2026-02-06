@@ -1,0 +1,33 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - personal
+    - get
+    - email
+    - analytics
+    - track
+    - list
+    - filter
+    - sort
+    - format
+    - calculate
+    - view
+categorization:
+  job_function: sales
+  jtbd:
+    job: Provides AI-powered coaching insights based on call analysis, deal patterns,
+      and performance metrics.
+    context: When working in revops domain
+    outcome: Successfully execute Sales Coaching Intelligence
+composability:
+  hints:
+  - 'can_chain_to: deal_inspection'
+  - 'can_chain_to: win_loss_analyzer'
+  - 'can_chain_to: pipeline_health'
+  - has_structured_output

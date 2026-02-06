@@ -1,0 +1,32 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - update
+    - list
+    - format
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.704485'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: executive
+  jtbd:
+    job: Aligns product roadmap with customer feedback, business goals, and market
+      demands.
+    context: When working in product_ops domain
+    outcome: Successfully execute Roadmap Alignment
+composability:
+  hints:
+  - 'can_chain_to: prioritization_complete'
+  - 'can_chain_to: stakeholder_review'
+  - 'can_chain_to: sprint_planning'

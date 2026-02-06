@@ -1,0 +1,49 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - drop
+    - payment
+    - update
+    - change
+    - alter
+    - access
+    - personal
+    - read
+    - get
+    - email
+    - notification
+    - track
+    - log
+    - list
+    - format
+    - calculate
+    - summarize
+    - show
+    - view
+    - preview
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.737891'
+    original_risk: Critical
+    changes:
+    - 'Added payment safeguards: preview, approval, limits, rollback'
+categorization:
+  job_function: marketing
+  jtbd:
+    job: When the user wants to create or optimize an email sequence, drip campaign,
+      automated email flow, or lifecycle email program. Also use when the user mentions
+      "email sequence," "drip campaign," "nurture sequence," "onboarding emails,"
+      "welcome sequence," "re-engagement emails," "email automation," or "lifecycle
+      emails." For in-app onboarding, see onboarding-cro.
+    context: When working in marketing domain
+    outcome: Successfully execute email-sequence
+composability:
+  hints:
+  - 'can_chain_to: support'
+  - has_structured_output

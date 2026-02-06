@@ -1,0 +1,32 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - get
+    - retrieve
+    - email
+    - notification
+    - alert
+    - analytics
+    - track
+    - monitor
+    - format
+categorization:
+  job_function: data
+  jtbd:
+    job: Predicts usage overages and proactively notifies customers before billing
+      surprises
+    context: When working in monetization domain
+    outcome: Successfully execute Overage Predictor
+composability:
+  hints:
+  - 'can_chain_to: overage_alert_sent'
+  - 'can_chain_to: upgrade_recommended'
+  - 'can_chain_to: usage_normal'
+  - 'can_chain_to: limit_reached'
+  - has_structured_output

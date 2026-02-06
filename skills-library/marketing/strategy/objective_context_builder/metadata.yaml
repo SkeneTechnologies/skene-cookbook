@@ -1,0 +1,40 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - write
+    - update
+    - sensitive
+    - read
+    - get
+    - track
+    - list
+    - filter
+    - format
+    - calculate
+    - aggregate
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.867023'
+    original_risk: High
+    changes:
+    - Applied field-level access control and tenant isolation
+categorization:
+  job_function: marketing
+  jtbd:
+    job: Aggregates all campaign data (signals, leads, experiments, product context,
+      PLG reports) into a unified snapshot. Creates a comprehensive context document
+      that synthesizes patterns and priorities. Use when preparing for campaign planning,
+      daily briefings, or strategic decisions.
+    context: When working in marketing domain
+    outcome: Successfully execute objective-context-builder
+composability:
+  hints:
+  - 'can_chain_to: support'
+  - has_structured_output

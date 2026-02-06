@@ -1,0 +1,44 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - system
+    - update
+    - change
+    - access
+    - permission
+    - pii
+    - sensitive
+    - get
+    - email
+    - alert
+    - log
+    - monitor
+    - list
+    - format
+    - calculate
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.834698'
+    original_risk: Critical
+    changes:
+    - Applied field-level access control and tenant isolation
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Monitors, validates, and improves data quality across systems using AI-powered
+      analysis.
+    context: When working in ai_ops domain
+    outcome: Successfully execute Data Quality Agent
+composability:
+  hints:
+  - 'can_chain_to: healthy'
+  - 'can_chain_to: issues_found'
+  - 'can_chain_to: repairs_made'
+  - 'can_chain_to: critical_alert'
+  - has_structured_output

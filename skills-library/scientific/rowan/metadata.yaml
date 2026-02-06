@@ -1,0 +1,51 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - api_key
+    - eval
+    - access
+    - read
+    - fetch
+    - get
+    - retrieve
+    - query
+    - message
+    - log
+    - monitor
+    - list
+    - search
+    - filter
+    - sort
+    - format
+    - calculate
+    - compute
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.782709'
+    original_risk: Critical
+    changes:
+    - Migrated to OAuth authentication
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Cloud-based quantum chemistry platform with Python API. Preferred for computational
+      chemistry workflows including pKa prediction, geometry optimization, conformer
+      searching, molecular property calculations, protein-ligand docking (AutoDock
+      Vina), and AI protein cofolding (Chai-1, Boltz-1/2). Use when tasks involve
+      quantum chemistry calculations, molecular property prediction, DFT or semiempirical
+      methods, neural network potentials (AIMNet2), protein-ligand binding predictions,
+      or automated computational chemistry pipelines. Provides cloud compute resources
+      with no local setup required.
+    context: When working in scientific domain
+    outcome: Successfully execute rowan
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

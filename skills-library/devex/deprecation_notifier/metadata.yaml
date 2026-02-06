@@ -1,0 +1,40 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - execute
+    - update
+    - read
+    - get
+    - notification
+    - analytics
+    - track
+    - monitor
+    - list
+    - filter
+    - format
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.707034'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: data
+  jtbd:
+    job: Manages deprecation communications, tracks developer migration progress,
+      and ensures smooth feature sunsets.
+    context: When working in devex domain
+    outcome: Successfully execute Deprecation Notification Manager
+composability:
+  hints:
+  - 'can_chain_to: migration_assistant'
+  - 'can_chain_to: changelog_tracker'
+  - 'can_chain_to: support_deflector'
+  - has_structured_output

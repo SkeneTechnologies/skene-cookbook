@@ -1,0 +1,37 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - system
+    - command
+    - change
+    - alter
+    - permission
+    - read
+    - get
+    - track
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.840125'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Use when starting feature work that needs isolation from current workspace
+      or before executing implementation plans - creates isolated git worktrees with
+      smart directory selection and safety verification
+    context: When working in superpowers domain
+    outcome: Successfully execute using-git-worktrees
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

@@ -1,0 +1,32 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - get
+    - email
+    - alert
+    - analytics
+    - track
+    - monitor
+    - format
+    - calculate
+    - view
+categorization:
+  job_function: sales
+  jtbd:
+    job: Tracks minimum commitments, consumption vs commitment, and true-up obligations
+    context: When working in monetization domain
+    outcome: Successfully execute Commitment Tracker
+composability:
+  hints:
+  - 'can_chain_to: on_track'
+  - 'can_chain_to: under_consumption'
+  - 'can_chain_to: over_consumption'
+  - 'can_chain_to: true_up_due'
+  - 'can_chain_to: renegotiation_recommended'
+  - has_structured_output

@@ -1,0 +1,35 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - financial
+    risk_factors:
+    - execute
+    - get
+    - analytics
+    - track
+    - monitor
+    - list
+    - format
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.838807'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: data
+  jtbd:
+    job: Designs, executes, and analyzes pricing experiments to optimize revenue
+    context: When working in monetization domain
+    outcome: Successfully execute Price Experimentation Engine
+composability:
+  hints:
+  - 'can_chain_to: experiment_running'
+  - 'can_chain_to: experiment_concluded'
+  - 'can_chain_to: winner_deployed'
+  - 'can_chain_to: rollback_initiated'
+  - has_structured_output

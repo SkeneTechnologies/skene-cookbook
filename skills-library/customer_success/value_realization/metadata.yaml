@@ -1,0 +1,28 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - get
+    - query
+    - track
+    - log
+    - list
+    - format
+    - calculate
+categorization:
+  job_function: customer_success
+  jtbd:
+    job: Tracks and documents customer value realization against defined success criteria
+      (VLAs).
+    context: When working in customer_success domain
+    outcome: Successfully execute Value Realization Tracker
+composability:
+  hints:
+  - 'can_chain_to: expansion_playbook'
+  - 'can_chain_to: case_study'
+  - 'can_chain_to: advocacy'

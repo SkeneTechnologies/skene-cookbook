@@ -1,0 +1,115 @@
+{
+  "id": "elg_tech_partner_finder",
+  "version": "1.0.0",
+  "name": "Tech Partner Finder",
+  "description": "Identifies and evaluates potential technology partners based on product synergies, market overlap, and integration opportunities.",
+  "domain": "ecosystem",
+  "tools": [
+    {
+      "name": "partner.search_potential",
+      "required": true
+    },
+    {
+      "name": "analytics.get_tech_stack",
+      "required": true
+    },
+    {
+      "name": "crm.get_accounts",
+      "required": true
+    },
+    {
+      "name": "partner.create_prospect",
+      "required": false
+    },
+    {
+      "name": "ai.analyze_fit",
+      "required": false
+    },
+    {
+      "name": "messaging.send_email",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "partner_outreach",
+    "integration_planning",
+    "partner_tier_manager",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "category": {
+        "type": "string",
+        "description": "Technology category to search"
+      },
+      "useCase": {
+        "type": "string",
+        "description": "Integration use case"
+      },
+      "minOverlap": {
+        "type": "number",
+        "description": "Minimum customer overlap percentage"
+      },
+      "excludeExisting": {
+        "type": "boolean",
+        "description": "Exclude existing partners"
+      }
+    },
+    "required": [
+      "category"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "partner_candidates": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "fit_scores": {
+        "type": "object"
+      },
+      "integration_opportunities": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "recommended_outreach": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      }
+    }
+  },
+  "metrics": {
+    "primary": "partner_acquisition_rate",
+    "benchmarks": {
+      "excellent": "> 40%",
+      "good": "25-40%",
+      "needs_improvement": "< 25%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "ecosystem",
+    "partner",
+    "technology",
+    "integration",
+    "discovery",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Tech Partner Finder"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

@@ -1,0 +1,33 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - access
+    - read
+    - get
+    - query
+    - analytics
+    - track
+    - list
+    - filter
+    - format
+    - calculate
+    - show
+categorization:
+  job_function: operations
+  jtbd:
+    job: Measures and optimizes product usage depth, identifying power users and opportunities
+      to deepen engagement across features.
+    context: When working in plg domain
+    outcome: Successfully execute Usage Depth Analyzer
+composability:
+  hints:
+  - 'can_chain_to: activation'
+  - 'can_chain_to: progressive_disclosure'
+  - 'can_chain_to: churn_prevention'
+  - has_structured_output

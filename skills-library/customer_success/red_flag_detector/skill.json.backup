@@ -1,0 +1,138 @@
+{
+  "id": "cs_red_flag_detector",
+  "version": "1.0.0",
+  "name": "Red Flag Detector",
+  "description": "Proactively detects early warning signs of customer issues, churn risk, or dissatisfaction before they escalate.",
+  "domain": "customer_success",
+  "tools": [
+    {
+      "name": "analytics.query_events",
+      "required": true
+    },
+    {
+      "name": "lifecycle.get_segment",
+      "required": true
+    },
+    {
+      "name": "crm.get_interactions",
+      "required": true
+    },
+    {
+      "name": "feedback.get_surveys",
+      "required": false
+    },
+    {
+      "name": "messaging.send_alert",
+      "required": false
+    },
+    {
+      "name": "crm.update_account",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "risk_mitigation_playbook",
+    "health_scoring",
+    "escalation_manager",
+    "churn_prediction",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "accountId": {
+        "type": "string",
+        "description": "Customer account identifier"
+      },
+      "sensitivityLevel": {
+        "type": "string",
+        "enum": [
+          "high",
+          "medium",
+          "low"
+        ],
+        "default": "medium"
+      },
+      "flagCategories": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": [
+            "usage",
+            "engagement",
+            "sentiment",
+            "financial",
+            "competitive",
+            "organizational"
+          ]
+        }
+      }
+    },
+    "required": [
+      "accountId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "redFlags": {
+        "type": "array"
+      },
+      "riskLevel": {
+        "type": "string"
+      },
+      "urgency": {
+        "type": "string"
+      },
+      "recommendedActions": {
+        "type": "array"
+      },
+      "monitoringPlan": {
+        "type": "object"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "early_detection_rate",
+    "benchmarks": {
+      "excellent": "> 85%",
+      "good": "70-85%",
+      "needs_improvement": "< 70%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "customer_success",
+    "risk",
+    "early_warning",
+    "churn",
+    "detection",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Red Flag Detector",
+        "customer health",
+        "churn prevention"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "lifecycle.get_segment",
+          "required": true
+        },
+        {
+          "name": "analytics.get_cohort",
+          "required": false
+        },
+        {
+          "name": "crm.update_account",
+          "required": false
+        }
+      ]
+    }
+  }
+}

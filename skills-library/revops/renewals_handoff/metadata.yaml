@@ -1,0 +1,34 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - get
+    - email
+    - alert
+    - analytics
+    - track
+    - monitor
+    - list
+    - filter
+    - sort
+    - format
+    - calculate
+    - view
+categorization:
+  job_function: sales
+  jtbd:
+    job: Orchestrates seamless handoff from sales to customer success and manages
+      renewal pipeline.
+    context: When working in revops domain
+    outcome: Successfully execute Renewals Handoff Orchestrator
+composability:
+  hints:
+  - 'can_chain_to: pipeline_health'
+  - 'can_chain_to: customer_success'
+  - 'can_chain_to: churn_prevention'
+  - has_structured_output

@@ -1,0 +1,42 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - financial
+    risk_factors:
+    - execute
+    - eval
+    - update
+    - personal
+    - read
+    - get
+    - analytics
+    - track
+    - list
+    - search
+    - format
+    - calculate
+    - 'risky_tool: stripe.update_subscription'
+    - 'risky_tool: crm.update_account'
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.841369'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: customer_success
+  jtbd:
+    job: Comprehensive framework for driving Net Revenue Retention (NRR) through expansion
+      signals, in-product upgrade triggers, and account health scoring.
+    context: When working in plg_frameworks domain
+    outcome: Successfully execute Expansion Revenue Framework
+composability:
+  hints:
+  - 'can_chain_to: upgrade_flow'
+  - 'can_chain_to: pql_scoring'
+  - 'can_chain_to: customer_success'
+  - has_structured_output

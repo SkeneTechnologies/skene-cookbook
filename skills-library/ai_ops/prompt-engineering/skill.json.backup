@@ -1,0 +1,81 @@
+{
+  "id": "ai_ops/prompt-engineering",
+  "version": "1.0.0",
+  "name": "Prompt Engineering",
+  "description": "Best practices for writing effective AI prompts. Use when crafting prompts for LLMs, creating system prompts, designing agent instructions, or optimizing AI outputs.",
+  "domain": "ai_ops",
+  "source": "native",
+  "tools": [],
+  "exitStates": [
+    "prompt_ready",
+    "needs_refinement"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "task": {
+        "type": "string",
+        "description": "What the prompt should accomplish"
+      },
+      "context": {
+        "type": "string",
+        "description": "Background information"
+      },
+      "constraints": {
+        "type": "array",
+        "description": "Requirements or limitations"
+      }
+    },
+    "required": [
+      "task"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "prompt": {
+        "type": "string"
+      },
+      "variations": {
+        "type": "array"
+      },
+      "testCases": {
+        "type": "array"
+      }
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "ai_ops",
+    "prompts",
+    "llm",
+    "optimization",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Prompt Engineering",
+        "prompt engineering",
+        "crafting prompts for llms, creating system prompts, designing agent instructions, or optimizing ai outputs"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "ai.classify",
+          "required": false
+        },
+        {
+          "name": "ai.generate",
+          "required": false
+        },
+        {
+          "name": "ai.score_lead",
+          "required": false
+        }
+      ]
+    }
+  }
+}

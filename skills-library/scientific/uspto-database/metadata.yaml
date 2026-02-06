@@ -1,0 +1,44 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - payment
+    - api_key
+    - eval
+    - system
+    - change
+    - access
+    - read
+    - get
+    - retrieve
+    - query
+    - alert
+    - track
+    - log
+    - monitor
+    - search
+    - format
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.776475'
+    original_risk: Critical
+    changes:
+    - Migrated to OAuth authentication
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Access USPTO APIs for patent/trademark searches, examination history (PEDS),
+      assignments, citations, office actions, TSDR, for IP analysis and prior art
+      searches.
+    context: When working in scientific domain
+    outcome: Successfully execute uspto-database
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

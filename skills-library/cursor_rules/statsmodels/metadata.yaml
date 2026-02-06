@@ -1,0 +1,21 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors: []
+categorization:
+  job_function: engineering
+  jtbd:
+    job: This guide provides opinionated, actionable best practices for using statsmodels
+      in Python, focusing on code organization, common patterns, performance, and
+      modern development workflows to ensure robust and reproducible statistical analysis.
+    context: When working in cursor_rules domain
+    outcome: Successfully execute statsmodels
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

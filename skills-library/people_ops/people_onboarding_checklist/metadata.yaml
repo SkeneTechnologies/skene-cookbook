@@ -1,0 +1,48 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - credential
+    - eval
+    - system
+    - update
+    - access
+    - personal
+    - read
+    - get
+    - retrieve
+    - email
+    - notification
+    - alert
+    - message
+    - track
+    - log
+    - monitor
+    - list
+    - format
+    - view
+    - 'risky_tool: hr.update_status'
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.746816'
+    original_risk: Critical
+    changes:
+    - Migrated to OAuth authentication
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Manages new hire onboarding with automated checklists, task assignments,
+      and progress tracking to ensure a smooth first 90 days.
+    context: When working in people_ops domain
+    outcome: Successfully execute Employee Onboarding Orchestrator
+composability:
+  hints:
+  - 'can_chain_to: people_pulse_analyzer'
+  - 'can_chain_to: people_perf_review_generator'
+  - 'can_chain_to: people_skill_gap_analyzer'
+  - has_structured_output

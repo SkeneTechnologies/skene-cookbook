@@ -1,0 +1,21 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors: []
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Definitive guidelines for writing maintainable, performant, and secure Django
+      applications, emphasizing modern best practices, clear code organization, and
+      efficient patterns.
+    context: When working in cursor_rules domain
+    outcome: Successfully execute django
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

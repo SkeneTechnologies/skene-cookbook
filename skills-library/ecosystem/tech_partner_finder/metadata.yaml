@@ -1,0 +1,44 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - eval
+    - system
+    - permission
+    - read
+    - get
+    - email
+    - alert
+    - analytics
+    - log
+    - list
+    - search
+    - filter
+    - sort
+    - format
+    - calculate
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.812079'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: sales
+  jtbd:
+    job: Identifies and evaluates potential technology partners based on product synergies,
+      market overlap, and integration opportunities.
+    context: When working in ecosystem domain
+    outcome: Successfully execute Tech Partner Finder
+composability:
+  hints:
+  - 'can_chain_to: partner_outreach'
+  - 'can_chain_to: integration_planning'
+  - 'can_chain_to: partner_tier_manager'
+  - has_structured_output

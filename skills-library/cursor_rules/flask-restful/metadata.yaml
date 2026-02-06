@@ -1,0 +1,21 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors: []
+categorization:
+  job_function: engineering
+  jtbd:
+    job: This guide defines definitive best practices for building robust, maintainable,
+      and modern REST APIs using Flask-RESTful, emphasizing Pydantic for validation
+      and clear architectural patterns.
+    context: When working in cursor_rules domain
+    outcome: Successfully execute flask-restful
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

@@ -1,0 +1,47 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - drop
+    - financial
+    - payment
+    - eval
+    - change
+    - alter
+    - get
+    - query
+    - email
+    - alert
+    - analytics
+    - track
+    - log
+    - monitor
+    - list
+    - format
+    - view
+    - 'risky_tool: crm.update_account'
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.751789'
+    original_risk: Critical
+    changes:
+    - 'Added payment safeguards: preview, approval, limits, rollback'
+categorization:
+  job_function: customer_success
+  jtbd:
+    job: Proactively detects early warning signs of customer issues, churn risk, or
+      dissatisfaction before they escalate.
+    context: When working in customer_success domain
+    outcome: Successfully execute Red Flag Detector
+composability:
+  hints:
+  - 'can_chain_to: risk_mitigation_playbook'
+  - 'can_chain_to: health_scoring'
+  - 'can_chain_to: escalation_manager'
+  - 'can_chain_to: churn_prediction'
+  - has_structured_output

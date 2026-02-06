@@ -1,0 +1,38 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - eval
+    - change
+    - read
+    - fetch
+    - message
+    - list
+    - search
+    - filter
+    - format
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.830566'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Guide for creating high-quality MCP (Model Context Protocol) servers that
+      enable LLMs to interact with external services through well-designed tools.
+      Use when building MCP servers to integrate external APIs or services, whether
+      in Python (FastMCP) or Node/TypeScript (MCP SDK).
+    context: When working in anthropic_official domain
+    outcome: Successfully execute mcp-builder
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

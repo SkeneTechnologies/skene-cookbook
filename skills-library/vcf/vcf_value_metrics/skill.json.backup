@@ -1,0 +1,175 @@
+{
+  "id": "vcf_value_metrics",
+  "version": "1.0.0",
+  "name": "Value Creation Metrics",
+  "description": "Builds quantifiable Value Creation Metrics by comparing customer 'before and after' states. Creates the data foundation for ROI calculations and stakeholder-specific value propositions.",
+  "domain": "vcf",
+  "tools": [
+    {
+      "name": "crm.get_customer_data",
+      "required": true
+    },
+    {
+      "name": "analytics.get_metrics",
+      "required": true
+    },
+    {
+      "name": "analytics.aggregate",
+      "required": true
+    },
+    {
+      "name": "crm.update_record",
+      "required": true
+    },
+    {
+      "name": "ai.calculate",
+      "required": false
+    },
+    {
+      "name": "rag.query",
+      "required": false,
+      "description": "Query existing customer value data"
+    }
+  ],
+  "exitStates": [
+    "vcf_roi_calculator",
+    "vcf_deal_storytelling",
+    "needs_customer_data",
+    "value_realization",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "dealId": {
+        "type": "string"
+      },
+      "accountId": {
+        "type": "string"
+      },
+      "valuePyramid": {
+        "type": "object",
+        "description": "Output from vcf_value_discovery"
+      },
+      "prospectCurrentState": {
+        "type": "object",
+        "description": "Quantitative data about prospect's current situation"
+      },
+      "industry": {
+        "type": "string"
+      },
+      "companySize": {
+        "type": "string",
+        "enum": [
+          "smb",
+          "mid_market",
+          "enterprise"
+        ]
+      }
+    },
+    "required": [
+      "dealId",
+      "valuePyramid"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "valueCreationMetrics": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "metricName": {
+              "type": "string"
+            },
+            "category": {
+              "type": "string",
+              "enum": [
+                "time_savings",
+                "cost_reduction",
+                "revenue_increase",
+                "risk_mitigation",
+                "quality_improvement"
+              ]
+            },
+            "benchmark": {
+              "type": "number",
+              "description": "Average improvement from existing customers"
+            },
+            "benchmarkUnit": {
+              "type": "string"
+            },
+            "applicableStakeholders": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "dataSource": {
+              "type": "string"
+            },
+            "confidence": {
+              "type": "string",
+              "enum": [
+                "high",
+                "medium",
+                "low"
+              ]
+            }
+          }
+        }
+      },
+      "prospectValueProjection": {
+        "type": "object",
+        "properties": {
+          "beforeState": {
+            "type": "object"
+          },
+          "afterState": {
+            "type": "object"
+          },
+          "totalValueCreated": {
+            "type": "number"
+          },
+          "valueByStakeholder": {
+            "type": "object"
+          }
+        }
+      },
+      "metricsGaps": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "metrics": {
+    "primary": "value_quantification_coverage",
+    "benchmarks": {
+      "excellent": "All priority problems quantified with high-confidence metrics",
+      "good": "Key stakeholder value quantified, some estimates used",
+      "needs_improvement": "Missing quantification for Champion or Economic Buyer value"
+    }
+  },
+  "temperature": 0.1,
+  "tags": [
+    "vcf",
+    "value-creation",
+    "metrics",
+    "roi",
+    "quantification",
+    "enterprise-sales",
+    "experimental"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Value Creation Metrics"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

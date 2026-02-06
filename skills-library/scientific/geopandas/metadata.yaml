@@ -1,0 +1,44 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - system
+    - write
+    - modify
+    - read
+    - get
+    - log
+    - search
+    - filter
+    - format
+    - calculate
+    - aggregate
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.848463'
+    original_risk: Critical
+    changes:
+    - Added validation, preview mode, and rollback for writes
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Python library for working with geospatial vector data including shapefiles,
+      GeoJSON, and GeoPackage files. Use when working with geographic data for spatial
+      analysis, geometric operations, coordinate transformations, spatial joins, overlay
+      operations, choropleth mapping, or any task involving reading/writing/analyzing
+      vector geographic data. Supports PostGIS databases, interactive maps, and integration
+      with matplotlib/folium/cartopy. Use for tasks like buffer analysis, spatial
+      joins between datasets, dissolving boundaries, clipping data, calculating areas/distances,
+      reprojecting coordinate systems, creating maps, or converting between spatial
+      file formats.
+    context: When working in scientific domain
+    outcome: Successfully execute geopandas
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

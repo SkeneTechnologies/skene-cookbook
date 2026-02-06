@@ -1,0 +1,33 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors:
+    - system
+    - alert
+    - track
+    - list
+    - format
+    - compute
+    - aggregate
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.803518'
+    original_risk: Critical
+    changes:
+    - Flagged for manual review as potential false positive
+categorization:
+  job_function: data
+  jtbd:
+    job: Tracks and reports usage for consumption-based billing models.
+    context: When working in monetization domain
+    outcome: Successfully execute Usage Metering
+composability:
+  hints:
+  - 'can_chain_to: limit_notification'
+  - 'can_chain_to: upgrade_trigger'
+  - 'can_chain_to: billing_reconciliation'

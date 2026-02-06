@@ -1,0 +1,42 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - eval
+    - system
+    - command
+    - write
+    - alter
+    - read
+    - fetch
+    - get
+    - alert
+    - message
+    - track
+    - list
+    - format
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.713719'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: security
+  jtbd:
+    job: Creates custom Semgrep rules for detecting security vulnerabilities, bug
+      patterns, and code patterns. Use when writing Semgrep rules or building custom
+      static analysis detections.
+    context: When working in security domain
+    outcome: Successfully execute semgrep-rule-creator
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

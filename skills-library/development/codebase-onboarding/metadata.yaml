@@ -1,0 +1,36 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - system
+    - command
+    - read
+    - log
+    - list
+    - search
+    - format
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.817844'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Systematic approach to understanding a new codebase. Use when joining a project,
+      exploring unfamiliar code, or helping someone understand a repo structure.
+    context: When working in development domain
+    outcome: Successfully execute Codebase Onboarding
+composability:
+  hints:
+  - 'can_chain_to: understood'
+  - 'can_chain_to: needs_more_exploration'
+  - has_structured_output

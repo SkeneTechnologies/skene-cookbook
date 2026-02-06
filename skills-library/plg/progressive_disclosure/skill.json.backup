@@ -1,0 +1,134 @@
+{
+  "id": "plg_progressive_disclosure",
+  "version": "1.0.0",
+  "name": "Progressive Disclosure Manager",
+  "description": "Intelligently reveals advanced features and complexity only when users are ready, preventing overwhelm while enabling power users.",
+  "domain": "plg",
+  "tools": [
+    {
+      "name": "lifecycle.get_segment",
+      "required": true
+    },
+    {
+      "name": "analytics.track_event",
+      "required": true
+    },
+    {
+      "name": "analytics.get_metrics",
+      "required": true
+    },
+    {
+      "name": "ui_kit.feature_gate",
+      "required": true
+    },
+    {
+      "name": "lifecycle.record_moment",
+      "required": false
+    },
+    {
+      "name": "messaging.send_in_app",
+      "required": false
+    },
+    {
+      "name": "rag.query",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "activation",
+    "aha_moment_detection",
+    "self_serve_expansion",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "userId": {
+        "type": "string",
+        "description": "User to evaluate"
+      },
+      "featureArea": {
+        "type": "string",
+        "description": "Product area to assess"
+      },
+      "checkUnlocks": {
+        "type": "boolean",
+        "description": "Whether to check for new feature unlocks"
+      }
+    },
+    "required": [
+      "userId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "proficiencyLevel": {
+        "type": "string",
+        "enum": [
+          "beginner",
+          "intermediate",
+          "advanced",
+          "expert"
+        ]
+      },
+      "unlockedFeatures": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "nextUnlock": {
+        "type": "object"
+      },
+      "recommendedDisclosure": {
+        "type": "string"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "feature_adoption_rate",
+    "benchmarks": {
+      "excellent": "> 70%",
+      "good": "50-70%",
+      "needs_improvement": "< 50%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "plg",
+    "ux",
+    "feature-management",
+    "complexity",
+    "onboarding",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Progressive Disclosure Manager"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "lifecycle.get_segment",
+          "required": true
+        },
+        {
+          "name": "lifecycle.record_moment",
+          "required": false
+        },
+        {
+          "name": "analytics.track_event",
+          "required": false
+        },
+        {
+          "name": "messaging.send_in_app",
+          "required": false
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,43 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - system
+    - change
+    - get
+    - email
+    - alert
+    - message
+    - analytics
+    - track
+    - list
+    - format
+    - compute
+    - aggregate
+    - display
+    - show
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.845258'
+    original_risk: Critical
+    changes:
+    - Added validation, preview mode, and rollback for writes
+categorization:
+  job_function: data
+  jtbd:
+    job: Comprehensive framework for implementing consumption-based pricing models
+      including credit systems, overage handling, AI product pricing, and billing
+      infrastructure.
+    context: When working in plg_frameworks domain
+    outcome: Successfully execute Usage-Based Pricing Framework
+composability:
+  hints:
+  - 'can_chain_to: billing_optimization'
+  - 'can_chain_to: overage_handling'
+  - 'can_chain_to: plan_recommendation'
+  - has_structured_output

@@ -1,0 +1,45 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - delete
+    - remove
+    - payment
+    - password
+    - credential
+    - api_key
+    - system
+    - pii
+    - webhook
+    - get
+    - email
+    - analytics
+    - track
+    - log
+    - list
+    - format
+    - show
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.708499'
+    original_risk: Critical
+    changes:
+    - Migrated to OAuth authentication
+categorization:
+  job_function: data
+  jtbd:
+    job: Provisions and manages isolated sandbox environments for safe API experimentation
+      and testing.
+    context: When working in devex domain
+    outcome: Successfully execute Developer Sandbox Manager
+composability:
+  hints:
+  - 'can_chain_to: api_onboarding'
+  - 'can_chain_to: webhook_tester'
+  - 'can_chain_to: code_sample_generator'
+  - has_structured_output

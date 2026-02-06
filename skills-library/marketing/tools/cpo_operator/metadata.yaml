@@ -1,0 +1,31 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - system
+    - update
+    - change
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.825919'
+    original_risk: Critical
+    changes:
+    - Added validation, preview mode, and rollback for writes
+categorization:
+  job_function: marketing
+  jtbd:
+    job: '"Use when the user wants CPO-level objective setting, KPI definition, roadmap
+      tradeoffs, and execution planning. This skill turns a primary goal into a measurable
+      objective, release plan, and feedback loops with guardrails."'
+    context: When working in marketing domain
+    outcome: Successfully execute cpo-operator
+composability:
+  hints:
+  - 'can_chain_to: support'
+  - has_structured_output

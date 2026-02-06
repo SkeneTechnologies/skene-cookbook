@@ -1,0 +1,44 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - system
+    - write
+    - alter
+    - access
+    - read
+    - get
+    - log
+    - search
+    - filter
+    - format
+    - calculate
+    - compute
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.795655'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Standard single-cell RNA-seq analysis pipeline. Use for QC, normalization,
+      dimensionality reduction (PCA/UMAP/t-SNE), clustering, differential expression,
+      and visualization. Best for exploratory scRNA-seq analysis with established
+      workflows. For deep learning models use scvi-tools; for data format questions
+      use anndata.
+    context: When working in scientific domain
+    outcome: Successfully execute scanpy
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'
