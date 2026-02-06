@@ -5,67 +5,164 @@
   "description": "Designs product-driven growth loops for user acquisition, engagement, and expansion. Based on Dave Boyce's FREEMIUM framework (Chapters 7 & 12): Small improvements in loops compound to create exponential growth.",
   "domain": "plg_frameworks",
   "author": "Dave Boyce (FREEMIUM, Stanford University Press)",
-  
   "tools": [
-    { "name": "analytics.funnel", "required": true },
-    { "name": "analytics.get_usage", "required": true },
-    { "name": "analytics.track_event", "required": false },
-    { "name": "lifecycle.get_segment", "required": false },
-    { "name": "messaging.send_in_app", "required": false }
+    {
+      "name": "analytics.funnel",
+      "required": true
+    },
+    {
+      "name": "analytics.get_usage",
+      "required": true
+    },
+    {
+      "name": "analytics.track_event",
+      "required": false
+    },
+    {
+      "name": "lifecycle.get_segment",
+      "required": false
+    },
+    {
+      "name": "messaging.send_in_app",
+      "required": false
+    }
   ],
-  
-  "exitStates": ["loop_designed", "loop_metrics_captured", "loop_optimization_needed", "no_loop_opportunity"],
-  
+  "exitStates": [
+    "loop_designed",
+    "loop_metrics_captured",
+    "loop_optimization_needed",
+    "no_loop_opportunity"
+  ],
   "inputSchema": {
     "type": "object",
     "properties": {
-      "loopType": { 
-        "type": "string", 
-        "enum": ["acquisition", "engagement", "expansion"],
+      "loopType": {
+        "type": "string",
+        "enum": [
+          "acquisition",
+          "engagement",
+          "expansion"
+        ],
         "description": "Type of growth loop to design"
       },
       "productContext": {
         "type": "object",
         "properties": {
-          "collaborativeFeatures": { "type": "boolean" },
-          "shareableOutput": { "type": "boolean" },
-          "networkEffects": { "type": "boolean" }
+          "collaborativeFeatures": {
+            "type": "boolean"
+          },
+          "shareableOutput": {
+            "type": "boolean"
+          },
+          "networkEffects": {
+            "type": "boolean"
+          }
         }
       },
-      "currentLoops": { "type": "array", "items": { "type": "string" } }
+      "currentLoops": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
     },
-    "required": ["loopType"]
+    "required": [
+      "loopType"
+    ]
   },
-  
   "outputSchema": {
     "type": "object",
     "properties": {
       "loopDesign": {
         "type": "object",
         "properties": {
-          "name": { "type": "string" },
-          "type": { "type": "string" },
-          "steps": { "type": "array", "items": { "type": "string" } },
-          "metrics": { "type": "array", "items": { "type": "string" } }
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "steps": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "metrics": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
         }
       },
-      "kFactor": { "type": "number", "description": "Viral coefficient estimate" },
-      "compoundEffect": { "type": "number" },
-      "implementationSteps": { "type": "array", "items": { "type": "string" } }
+      "kFactor": {
+        "type": "number",
+        "description": "Viral coefficient estimate"
+      },
+      "compoundEffect": {
+        "type": "number"
+      },
+      "implementationSteps": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
     }
   },
-  
   "metrics": {
     "primary": "k_factor",
-    "secondary": ["loop_completion_rate", "invites_per_user", "organic_acquisition_pct"],
+    "secondary": [
+      "loop_completion_rate",
+      "invites_per_user",
+      "organic_acquisition_pct"
+    ],
     "benchmarks": {
       "excellent": "K > 0.5, Organic > 60%",
       "good": "K 0.2-0.5, Organic 40-60%",
       "needs_improvement": "K < 0.2, Organic < 40%"
     }
   },
-  
-  "integrations": ["segment", "amplitude", "mixpanel"],
+  "integrations": [
+    "segment",
+    "amplitude",
+    "mixpanel"
+  ],
   "temperature": 0.3,
-  "tags": ["plg", "growth-loops", "viral", "acquisition", "boyce", "freemium", "compound-growth"]
+  "tags": [
+    "plg",
+    "growth-loops",
+    "viral",
+    "acquisition",
+    "boyce",
+    "freemium",
+    "compound-growth"
+  ],
+  "security_controls": {
+    "execution_environment": {
+      "type": "sandboxed_container",
+      "resource_limits": {
+        "cpu_cores": 1,
+        "memory_mb": 512,
+        "timeout_seconds": 30,
+        "disk_mb": 100
+      },
+      "security": {
+        "network_access": false,
+        "filesystem": "read_only",
+        "user": "non_root",
+        "allowed_commands": [
+          "node",
+          "python3",
+          "npm"
+        ],
+        "blocked_syscalls": [
+          "exec",
+          "fork",
+          "kill"
+        ]
+      }
+    }
+  }
 }

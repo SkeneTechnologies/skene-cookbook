@@ -1,0 +1,49 @@
+{
+  "id": "plg_frameworks/in-product-messaging",
+  "version": "1.0.0",
+  "name": "in-product-messaging",
+  "description": "When the user wants to design in-product messages -- including tooltips, banners, modals, slideouts, or notification bells -- without annoying users. Also use when the user says \"in-app messages,\" \"product announcements,\" \"nudges,\" \"contextual help,\" or \"message frequency.\" For upgrade prompts specifically, see paywall-upgrade-cro. For feature launches, see feature-adoption.",
+  "domain": "plg_frameworks",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "plg_frameworks",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with in product messaging",
+        "feature adoption",
+        "the user says \"in-app messages,\" \"product announcements,\" \"nudges,\" \"contextual help,\" or \"message frequency"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "security_controls": {
+    "payment_controls": {
+      "preview_mode": true,
+      "per_transaction_approval": true,
+      "amount_limits": {
+        "max_per_transaction": 50000,
+        "daily_limit": 200000,
+        "additional_approval_threshold": 25000
+      },
+      "rollback": {
+        "enabled": true,
+        "window_seconds": 3600
+      },
+      "two_phase_commit": true,
+      "audit_logging": "detailed"
+    }
+  }
+}

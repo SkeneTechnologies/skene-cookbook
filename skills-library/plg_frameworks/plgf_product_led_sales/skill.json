@@ -121,5 +121,20 @@
     },
     "cursor": {},
     "skeneflow": {}
+  },
+  "security_controls": {
+    "data_access": {
+      "field_level_control": true,
+      "allowed_fields": [
+        "id",
+        "name",
+        "email",
+        "created_at"
+      ],
+      "tenant_isolation": true,
+      "time_window_days": 90,
+      "read_only": false,
+      "pii_redaction": true
+    }
   }
 }

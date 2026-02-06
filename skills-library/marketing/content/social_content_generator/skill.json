@@ -2,7 +2,7 @@
   "id": "marketing_social_content_generator",
   "version": "1.0.0",
   "name": "social-content-generator",
-  "description": "Generates platform-optimized social media posts (Twitter/X, LinkedIn) from campaign objectives and context. Creates ready-to-post content batches with hooks, value propositions, and CTAs aligned with skene-growth positioning. Use when creating daily social content.",
+  "description": "Generates platform-optimized social media posts (Twitter/X, LinkedIn) from campaign objectives and context. Creates ready-to-post content batches with hooks, value propositions, and CTAs aligned with developer-first positioning. Use when creating daily social content.",
   "domain": "marketing",
   "category": "content",
   "source": "skene-marketing",
@@ -48,6 +48,20 @@
           "required": false
         }
       ]
+    }
+  },
+  "security_controls": {
+    "delete_operations": {
+      "soft_delete": true,
+      "retention_period_days": 30,
+      "undelete_capable": true,
+      "backup_before_delete": true,
+      "multi_party_approval": true,
+      "confirmation_required": {
+        "enabled": true,
+        "show_impact": true,
+        "require_reason": true
+      }
     }
   }
 }

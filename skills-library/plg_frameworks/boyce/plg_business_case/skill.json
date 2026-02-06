@@ -5,88 +5,201 @@
   "description": "Builds executive-ready PLG investment cases with fit assessment, resource planning, and ROI projections. Based on Dave Boyce's FREEMIUM framework (Chapter 4): PLG is a 1-3 year strategic investment, not a quick tactic.",
   "domain": "plg_frameworks",
   "author": "Dave Boyce (FREEMIUM, Stanford University Press)",
-  
   "tools": [
-    { "name": "analytics.get_usage", "required": true },
-    { "name": "stripe.get_revenue_metrics", "required": true },
-    { "name": "crm.get_pipeline", "required": false },
-    { "name": "ai.analyze", "required": false },
-    { "name": "rag.query", "required": false }
+    {
+      "name": "analytics.get_usage",
+      "required": true
+    },
+    {
+      "name": "stripe.get_revenue_metrics",
+      "required": true
+    },
+    {
+      "name": "crm.get_pipeline",
+      "required": false
+    },
+    {
+      "name": "ai.analyze",
+      "required": false
+    },
+    {
+      "name": "rag.query",
+      "required": false
+    }
   ],
-  
-  "exitStates": ["business_case_ready", "fit_assessment_failed", "insufficient_data", "executive_review_needed"],
-  
+  "exitStates": [
+    "business_case_ready",
+    "fit_assessment_failed",
+    "insufficient_data",
+    "executive_review_needed"
+  ],
   "inputSchema": {
     "type": "object",
     "properties": {
       "companyContext": {
         "type": "object",
         "properties": {
-          "currentGTM": { "type": "string", "enum": ["sales_led", "marketing_led", "plg_nascent", "hybrid"] },
-          "arr": { "type": "number", "description": "Current ARR in dollars" },
-          "headcount": { "type": "number" },
-          "productType": { "type": "string" }
+          "currentGTM": {
+            "type": "string",
+            "enum": [
+              "sales_led",
+              "marketing_led",
+              "plg_nascent",
+              "hybrid"
+            ]
+          },
+          "arr": {
+            "type": "number",
+            "description": "Current ARR in dollars"
+          },
+          "headcount": {
+            "type": "number"
+          },
+          "productType": {
+            "type": "string"
+          }
         }
       },
       "plgHypothesis": {
         "type": "object",
         "properties": {
-          "targetMarket": { "type": "string" },
-          "persona": { "type": "string" },
-          "jtbd": { "type": "string" },
-          "targetFreeUsers": { "type": "number" },
-          "targetConversionRate": { "type": "number" },
-          "targetPrice": { "type": "number" }
+          "targetMarket": {
+            "type": "string"
+          },
+          "persona": {
+            "type": "string"
+          },
+          "jtbd": {
+            "type": "string"
+          },
+          "targetFreeUsers": {
+            "type": "number"
+          },
+          "targetConversionRate": {
+            "type": "number"
+          },
+          "targetPrice": {
+            "type": "number"
+          }
         }
       }
     },
-    "required": ["companyContext"]
+    "required": [
+      "companyContext"
+    ]
   },
-  
   "outputSchema": {
     "type": "object",
     "properties": {
-      "fitAssessment": { 
+      "fitAssessment": {
         "type": "object",
         "properties": {
-          "overallFit": { "type": "string", "enum": ["strong", "moderate", "weak"] },
-          "marketFit": { "type": "number" },
-          "productFit": { "type": "number" },
-          "orgFit": { "type": "number" }
+          "overallFit": {
+            "type": "string",
+            "enum": [
+              "strong",
+              "moderate",
+              "weak"
+            ]
+          },
+          "marketFit": {
+            "type": "number"
+          },
+          "productFit": {
+            "type": "number"
+          },
+          "orgFit": {
+            "type": "number"
+          }
         }
       },
       "investmentRequired": {
         "type": "object",
         "properties": {
-          "teamSize": { "type": "number" },
-          "timeline": { "type": "string" },
-          "estimatedCost": { "type": "number" }
+          "teamSize": {
+            "type": "number"
+          },
+          "timeline": {
+            "type": "string"
+          },
+          "estimatedCost": {
+            "type": "number"
+          }
         }
       },
       "projectedReturns": {
         "type": "object",
         "properties": {
-          "year1": { "type": "number" },
-          "year3": { "type": "number" },
-          "year5": { "type": "number" }
+          "year1": {
+            "type": "number"
+          },
+          "year3": {
+            "type": "number"
+          },
+          "year5": {
+            "type": "number"
+          }
         }
       },
-      "keyDecisions": { "type": "array", "items": { "type": "string" } },
-      "risks": { "type": "array", "items": { "type": "string" } }
+      "keyDecisions": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "risks": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
     }
   },
-  
   "metrics": {
     "primary": "plg_fit_score",
-    "secondary": ["projected_roi", "time_to_pmf", "resource_efficiency"],
+    "secondary": [
+      "projected_roi",
+      "time_to_pmf",
+      "resource_efficiency"
+    ],
     "benchmarks": {
       "excellent": "Fit > 80, ROI > 5x in Y3",
       "good": "Fit 60-80, ROI 3-5x in Y3",
       "needs_improvement": "Fit < 60, ROI < 3x in Y3"
     }
   },
-  
-  "integrations": ["stripe", "salesforce", "hubspot"],
+  "integrations": [
+    "stripe",
+    "salesforce",
+    "hubspot"
+  ],
   "temperature": 0.2,
-  "tags": ["plg", "strategy", "business-case", "executive", "boyce", "freemium", "investment"]
+  "tags": [
+    "plg",
+    "strategy",
+    "business-case",
+    "executive",
+    "boyce",
+    "freemium",
+    "investment"
+  ],
+  "security_controls": {
+    "write_operations": {
+      "preview_mode": true,
+      "validation": {
+        "input_schema": true,
+        "business_rules": true,
+        "data_integrity": true
+      },
+      "rollback": {
+        "enabled": true,
+        "window_seconds": 1800
+      },
+      "audit": {
+        "log_before_state": true,
+        "log_after_state": true,
+        "track_user": true
+      }
+    }
+  }
 }

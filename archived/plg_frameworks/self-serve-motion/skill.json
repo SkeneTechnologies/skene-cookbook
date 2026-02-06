@@ -1,0 +1,49 @@
+{
+  "id": "plg_frameworks/self-serve-motion",
+  "version": "1.0.0",
+  "name": "self-serve-motion",
+  "description": "When the user wants to reduce friction in the self-serve buying experience, optimize in-product checkout, remove \"contact sales\" gates, or design self-serve onboarding and support. Also use when the user says \"frictionless,\" \"self-service,\" \"remove sales gates,\" \"no-demo experience,\" or \"friction audit.\" For signup flow optimization, see signup-flow-cro. For pricing page design, see pricing-strategy.",
+  "domain": "plg_frameworks",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "plg_frameworks",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with self serve motion",
+        "pricing strategy",
+        "the user says \"frictionless,\" \"self-service,\" \"remove sales gates,\" \"no-demo experience,\" or \"friction audit"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "security_controls": {
+    "payment_controls": {
+      "preview_mode": true,
+      "per_transaction_approval": true,
+      "amount_limits": {
+        "max_per_transaction": 50000,
+        "daily_limit": 200000,
+        "additional_approval_threshold": 25000
+      },
+      "rollback": {
+        "enabled": true,
+        "window_seconds": 3600
+      },
+      "two_phase_commit": true,
+      "audit_logging": "detailed"
+    }
+  }
+}

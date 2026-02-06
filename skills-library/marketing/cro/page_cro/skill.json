@@ -2,7 +2,7 @@
   "id": "marketing_page_cro",
   "version": "1.0.0",
   "name": "page-cro",
-  "description": "When the user wants to optimize, improve, or increase conversions on any marketing page — including homepage, landing pages, pricing pages, feature pages, or blog posts. Also use when the user says \"CRO,\" \"conversion rate optimization,\" \"this page isn't converting,\" \"improve conversions,\" or \"why isn't this page working.\" For signup/registration flows, see signup-flow-cro. For post-signup activation, see onboarding-cro. For forms outside of signup, see form-cro. For popups/modals, see popup-cro.",
+  "description": "When the user wants to optimize, improve, or increase conversions on any marketing page \u2014 including homepage, landing pages, pricing pages, feature pages, or blog posts. Also use when the user says \"CRO,\" \"conversion rate optimization,\" \"this page isn't converting,\" \"improve conversions,\" or \"why isn't this page working.\" For signup/registration flows, see signup-flow-cro. For post-signup activation, see onboarding-cro. For forms outside of signup, see form-cro. For popups/modals, see popup-cro.",
   "domain": "marketing",
   "category": "cro",
   "source": "skene-marketing",
@@ -46,6 +46,20 @@
           "required": false
         }
       ]
+    }
+  },
+  "security_controls": {
+    "delete_operations": {
+      "soft_delete": true,
+      "retention_period_days": 30,
+      "undelete_capable": true,
+      "backup_before_delete": true,
+      "multi_party_approval": true,
+      "confirmation_required": {
+        "enabled": true,
+        "show_impact": true,
+        "require_reason": true
+      }
     }
   }
 }

@@ -57,19 +57,23 @@ async function main() {
     case 'install':
       await handleInstall();
       break;
-    
+
     case 'uninstall':
       await handleUninstall();
       break;
-    
+
+    case 'status':
+      await handleStatus();
+      break;
+
     case 'export':
       await handleExport();
       break;
-    
+
     case 'stats':
       await handleStats();
       break;
-    
+
     case 'list':
       await handleList();
       break;
@@ -175,15 +179,101 @@ async function handleInstall() {
 
 async function handleUninstall() {
   const target = (parsedArgs['target'] as InstallTarget) || 'all';
-  
+
   console.log(`\n🗑️  Uninstalling Skene Skills from ${target}...\n`);
-  
+
   await uninstall(target, {
     cursorPath: parsedArgs['cursor-path'] as string,
     claudePath: parsedArgs['claude-path'] as string,
   });
-  
+
   console.log('\n✅ Uninstallation complete!\n');
+}
+
+async function handleStatus() {
+  const { homedir } = await import('node:os');
+  const { existsSync, readFileSync } = await import('node:fs');
+
+  console.log(chalk.bold.white('\n📊 Skills Installation Status\n'));
+
+  const paths = getDefaultPaths({
+    cursorPath: parsedArgs['cursor-path'] as string,
+    claudePath: parsedArgs['claude-path'] as string,
+  });
+
+  // Check Claude installation
+  const claudeManifestPath = join(paths.claude, 'skene-skills.json');
+  if (existsSync(claudeManifestPath)) {
+    try {
+      const manifest = JSON.parse(readFileSync(claudeManifestPath, 'utf8'));
+      console.log(chalk.green('✅ Claude Skills Installed'));
+      console.log(chalk.dim(`   Skills: `) + chalk.white(manifest.skills.length));
+      console.log(chalk.dim(`   Generated: `) + chalk.white(new Date(manifest.generated).toLocaleString()));
+      console.log(chalk.dim(`   Location: `) + chalk.cyan(paths.claude));
+
+      // Verify files exist
+      let intact = 0;
+      for (const skill of manifest.skills) {
+        // Use the path from manifest, or fallback to old format (domain/name)
+        const skillPath = skill.path
+          ? join(paths.claude, skill.path)
+          : join(paths.claude, skill.domain, skill.name, 'SKILL.md');
+        if (existsSync(skillPath)) {
+          intact++;
+        }
+      }
+      console.log(chalk.dim(`   Files intact: `) + chalk.white(`${intact}/${manifest.skills.length}`));
+
+      if (intact < manifest.skills.length) {
+        console.log(chalk.yellow(`   ⚠️  ${manifest.skills.length - intact} skill files are missing`));
+      }
+    } catch (error) {
+      console.log(chalk.red('❌ Claude Skills - Manifest corrupted'));
+      console.log(chalk.dim(`   Error: `) + chalk.red((error as Error).message));
+    }
+  } else {
+    console.log(chalk.red('❌ Claude Skills Not Installed'));
+    console.log(chalk.dim(`   Expected at: `) + chalk.cyan(claudeManifestPath));
+  }
+
+  console.log();
+
+  // Check Cursor installation
+  const cursorManifestPath = join(paths.cursor, 'skene-skills.json');
+  if (existsSync(cursorManifestPath)) {
+    try {
+      const manifest = JSON.parse(readFileSync(cursorManifestPath, 'utf8'));
+      console.log(chalk.green('✅ Cursor Skills Installed'));
+      console.log(chalk.dim(`   Skills: `) + chalk.white(manifest.rules.length));
+      console.log(chalk.dim(`   Generated: `) + chalk.white(new Date(manifest.generated).toLocaleString()));
+      console.log(chalk.dim(`   Location: `) + chalk.cyan(paths.cursor));
+
+      // Verify files exist
+      let intact = 0;
+      for (const rule of manifest.rules) {
+        const rulePath = join(paths.cursor, rule.file);
+        if (existsSync(rulePath)) {
+          intact++;
+        }
+      }
+      console.log(chalk.dim(`   Files intact: `) + chalk.white(`${intact}/${manifest.rules.length}`));
+
+      if (intact < manifest.rules.length) {
+        console.log(chalk.yellow(`   ⚠️  ${manifest.rules.length - intact} skill files are missing`));
+      }
+    } catch (error) {
+      console.log(chalk.red('❌ Cursor Skills - Manifest corrupted'));
+      console.log(chalk.dim(`   Error: `) + chalk.red((error as Error).message));
+    }
+  } else {
+    console.log(chalk.red('❌ Cursor Skills Not Installed'));
+    console.log(chalk.dim(`   Expected at: `) + chalk.cyan(cursorManifestPath));
+  }
+
+  console.log();
+  console.log(chalk.dim('💡 To reinstall: ') + chalk.cyan('npx skills-directory install --target all'));
+  console.log(chalk.dim('💡 To uninstall: ') + chalk.cyan('npx skills-directory uninstall --target all'));
+  console.log();
 }
 
 async function handleExport() {
@@ -376,6 +466,7 @@ function printHelp() {
   console.log(chalk.bold.white('Commands:'));
   console.log(chalk.dim('  install [options]     ') + 'Install skills to Claude/Cursor');
   console.log(chalk.dim('  uninstall [options]   ') + 'Remove installed skills');
+  console.log(chalk.dim('  status                ') + 'Check installation status and verify files');
   console.log(chalk.dim('  export [options]      ') + 'Export skills to a specific format');
   console.log(chalk.dim('  stats                 ') + 'Show library statistics');
   console.log(chalk.dim('  list [options]        ') + 'List available skills');
@@ -400,6 +491,7 @@ function printHelp() {
 
   console.log(chalk.bold.white('\nExamples:'));
   console.log(chalk.cyan('  $ npx skills-directory install --target all'));
+  console.log(chalk.cyan('  $ npx skills-directory status'));
   console.log(chalk.cyan('  $ npx skills-directory install --target cursor --domain plg'));
   console.log(chalk.cyan('  $ npx skills-directory showcase'));
   console.log(chalk.cyan('  $ npx skills-directory list --domain plg'));

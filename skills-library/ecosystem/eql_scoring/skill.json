@@ -52,5 +52,12 @@
     },
     "cursor": {},
     "skeneflow": {}
+  },
+  "security_controls": {
+    "review_note": {
+      "flagged_as": "false_positive",
+      "requires_manual_review": true,
+      "review_date": "2026-02-05T14:36:53.797305"
+    }
   }
 }

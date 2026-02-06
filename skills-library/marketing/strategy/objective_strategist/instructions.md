@@ -15,8 +15,8 @@ You are a campaign strategist. Your job is to define clear, measurable, and acti
 ### Existing Context
 - `objective/objective.json` — Current objective (if exists)
 - `context/feedback/objective-context-{date}.json` — Latest context snapshot
-- `config/personality/operator-memo.md` — Strategic positioning guidance
-- `config/metrics/metrics.json` — Available metrics and targets
+- If strategic positioning guidelines exist in your project, reference them
+- `config/metrics/metrics.json` — Available metrics and targets (if available)
 
 ### Theory Framework
 - `Theory/reverse-influence-marketing.md` — Academic foundations

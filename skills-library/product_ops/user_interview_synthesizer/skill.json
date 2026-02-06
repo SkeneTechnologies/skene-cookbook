@@ -114,5 +114,31 @@
     },
     "cursor": {},
     "skeneflow": {}
+  },
+  "security_controls": {
+    "execution_environment": {
+      "type": "sandboxed_container",
+      "resource_limits": {
+        "cpu_cores": 1,
+        "memory_mb": 512,
+        "timeout_seconds": 30,
+        "disk_mb": 100
+      },
+      "security": {
+        "network_access": false,
+        "filesystem": "read_only",
+        "user": "non_root",
+        "allowed_commands": [
+          "node",
+          "python3",
+          "npm"
+        ],
+        "blocked_syscalls": [
+          "exec",
+          "fork",
+          "kill"
+        ]
+      }
+    }
   }
 }

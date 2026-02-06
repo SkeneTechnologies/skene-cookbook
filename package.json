@@ -44,7 +44,8 @@
     "postinstall": "node scripts/postinstall.cjs",
     "install:skills": "node bin/skills-directory.js install --target all",
     "install:cursor": "node bin/skills-directory.js install --target cursor",
-    "install:claude": "node bin/skills-directory.js install --target claude"
+    "install:claude": "node bin/skills-directory.js install --target claude",
+    "status": "node bin/skills-directory.js status"
   },
   "peerDependenciesMeta": {
     "zod": {

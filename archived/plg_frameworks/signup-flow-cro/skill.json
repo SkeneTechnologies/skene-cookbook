@@ -1,0 +1,42 @@
+{
+  "id": "plg_frameworks/signup-flow-cro",
+  "version": "1.0.0",
+  "name": "signup-flow-cro",
+  "description": "When the user wants to optimize a signup or registration flow -- including field selection, social auth, single-step vs multi-step forms, or mobile signup. Also use when the user says \"signup conversion,\" \"registration form,\" \"reduce signup friction,\" \"signup A/B test,\" or \"signup drop-off.\" For post-signup onboarding, see product-onboarding. For activation measurement, see activation-metrics.",
+  "domain": "plg_frameworks",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "plg_frameworks",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with signup flow cro",
+        "the user says \"signup conversion,\" \"registration form,\" \"reduce signup friction,\" \"signup a/b test,\" or \"signup drop-off"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "security_controls": {
+    "authentication": {
+      "method": "oauth",
+      "provider": "managed_identity",
+      "scopes": [
+        "read:data",
+        "write:data"
+      ],
+      "token_lifetime": 3600
+    }
+  }
+}

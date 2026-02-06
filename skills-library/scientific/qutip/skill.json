@@ -2,7 +2,7 @@
   "id": "scientific/qutip",
   "version": "1.0.0",
   "name": "qutip",
-  "description": "Quantum physics simulation library for open quantum systems. Use when studying master equations, Lindblad dynamics, decoherence, quantum optics, or cavity QED. Best for physics research, open system dynamics, and educational simulations. NOT for circuit-based quantum computing—use qiskit, cirq, or pennylane for quantum algorithms and hardware execution.",
+  "description": "Quantum physics simulation library for open quantum systems. Use when studying master equations, Lindblad dynamics, decoherence, quantum optics, or cavity QED. Best for physics research, open system dynamics, and educational simulations. NOT for circuit-based quantum computing\u2014use qiskit, cirq, or pennylane for quantum algorithms and hardware execution.",
   "domain": "scientific",
   "source": "external",
   "tools": [],
@@ -29,5 +29,19 @@
     },
     "cursor": {},
     "skeneflow": {}
+  },
+  "security_controls": {
+    "delete_operations": {
+      "soft_delete": true,
+      "retention_period_days": 30,
+      "undelete_capable": true,
+      "backup_before_delete": true,
+      "multi_party_approval": true,
+      "confirmation_required": {
+        "enabled": true,
+        "show_impact": true,
+        "require_reason": true
+      }
+    }
   }
 }

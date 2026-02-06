@@ -107,5 +107,24 @@
     },
     "cursor": {},
     "skeneflow": {}
+  },
+  "security_controls": {
+    "write_operations": {
+      "preview_mode": true,
+      "validation": {
+        "input_schema": true,
+        "business_rules": true,
+        "data_integrity": true
+      },
+      "rollback": {
+        "enabled": true,
+        "window_seconds": 1800
+      },
+      "audit": {
+        "log_before_state": true,
+        "log_after_state": true,
+        "track_user": true
+      }
+    }
   }
 }

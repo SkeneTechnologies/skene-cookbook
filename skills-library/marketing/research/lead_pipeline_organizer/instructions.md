@@ -354,5 +354,4 @@ Provide results in this structure:
 ## Related Skills
 
 - **lead-research-assistant**: For finding new leads
-- **skene-growth-bridge**: For understanding product context
 - **email-sequence**: For creating follow-up sequences

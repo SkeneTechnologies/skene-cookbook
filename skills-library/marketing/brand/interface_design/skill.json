@@ -2,7 +2,7 @@
   "id": "marketing_interface_design",
   "version": "1.0.0",
   "name": "interface-design",
-  "description": "This skill is for interface design — dashboards, admin panels, apps, tools, and interactive products. NOT for marketing design (landing pages, marketing sites, campaigns).",
+  "description": "This skill is for interface design \u2014 dashboards, admin panels, apps, tools, and interactive products. NOT for marketing design (landing pages, marketing sites, campaigns).",
   "domain": "marketing",
   "category": "brand",
   "source": "skene-marketing",
@@ -46,6 +46,23 @@
           "required": false
         }
       ]
+    }
+  },
+  "security_controls": {
+    "payment_controls": {
+      "preview_mode": true,
+      "per_transaction_approval": true,
+      "amount_limits": {
+        "max_per_transaction": 50000,
+        "daily_limit": 200000,
+        "additional_approval_threshold": 25000
+      },
+      "rollback": {
+        "enabled": true,
+        "window_seconds": 3600
+      },
+      "two_phase_commit": true,
+      "audit_logging": "detailed"
     }
   }
 }

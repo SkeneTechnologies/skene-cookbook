@@ -1,0 +1,43 @@
+{
+  "id": "plg_frameworks/free-tool-strategy",
+  "version": "1.0.0",
+  "name": "free-tool-strategy",
+  "description": "When the user wants to plan a free tool for acquisition -- including calculators, analyzers, generators, or interactive resources as an engineering-as-marketing strategy. Also use when the user says \"free tool,\" \"engineering as marketing,\" \"lead magnet tool,\" \"free calculator,\" or \"SEO tool.\" For viral growth, see viral-loops. For PLG strategy, see plg-strategy.",
+  "domain": "plg_frameworks",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "plg_frameworks",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with free tool strategy",
+        "growth framework",
+        "the user says \"free tool,\" \"engineering as marketing,\" \"lead magnet tool,\" \"free calculator,\" or \"seo tool"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "security_controls": {
+    "authentication": {
+      "method": "oauth",
+      "provider": "managed_identity",
+      "scopes": [
+        "read:data",
+        "write:data"
+      ],
+      "token_lifetime": 3600
+    }
+  }
+}

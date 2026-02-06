@@ -5,54 +5,99 @@
   "description": "Structures and manages cross-functional growth teams for PLG execution. Based on Dave Boyce's FREEMIUM framework (Chapter 5, with Ben Williams): Growth teams are small, cross-functional teams organized by objective, not function.",
   "domain": "plg_frameworks",
   "author": "Dave Boyce & Ben Williams (FREEMIUM, Stanford University Press)",
-  
   "tools": [
-    { "name": "analytics.funnel", "required": true },
-    { "name": "analytics.cohort", "required": true },
-    { "name": "analytics.track_event", "required": false },
-    { "name": "crm.get_activities", "required": false },
-    { "name": "ai.analyze", "required": false }
+    {
+      "name": "analytics.funnel",
+      "required": true
+    },
+    {
+      "name": "analytics.cohort",
+      "required": true
+    },
+    {
+      "name": "analytics.track_event",
+      "required": false
+    },
+    {
+      "name": "crm.get_activities",
+      "required": false
+    },
+    {
+      "name": "ai.analyze",
+      "required": false
+    }
   ],
-  
-  "exitStates": ["experiment_designed", "weekly_review_complete", "growth_model_updated", "team_restructure_needed"],
-  
+  "exitStates": [
+    "experiment_designed",
+    "weekly_review_complete",
+    "growth_model_updated",
+    "team_restructure_needed"
+  ],
   "inputSchema": {
     "type": "object",
     "properties": {
-      "teamFocus": { 
-        "type": "string", 
-        "enum": ["acquisition", "activation", "monetization", "retention", "expansion"],
+      "teamFocus": {
+        "type": "string",
+        "enum": [
+          "acquisition",
+          "activation",
+          "monetization",
+          "retention",
+          "expansion"
+        ],
         "description": "Primary growth lever this team owns"
       },
       "currentMetrics": {
         "type": "object",
         "properties": {
-          "primaryMetric": { "type": "string" },
-          "currentValue": { "type": "number" },
-          "targetValue": { "type": "number" }
+          "primaryMetric": {
+            "type": "string"
+          },
+          "currentValue": {
+            "type": "number"
+          },
+          "targetValue": {
+            "type": "number"
+          }
         }
       },
       "experimentContext": {
         "type": "object",
         "properties": {
-          "hypothesis": { "type": "string" },
-          "lever": { "type": "string" },
-          "expectedImpact": { "type": "number" }
+          "hypothesis": {
+            "type": "string"
+          },
+          "lever": {
+            "type": "string"
+          },
+          "expectedImpact": {
+            "type": "number"
+          }
         }
       }
     },
-    "required": ["teamFocus"]
+    "required": [
+      "teamFocus"
+    ]
   },
-  
   "outputSchema": {
     "type": "object",
     "properties": {
       "growthModelStatus": {
         "type": "object",
         "properties": {
-          "leverScores": { "type": "object" },
-          "biggestOpportunity": { "type": "string" },
-          "blockers": { "type": "array", "items": { "type": "string" } }
+          "leverScores": {
+            "type": "object"
+          },
+          "biggestOpportunity": {
+            "type": "string"
+          },
+          "blockers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
         }
       },
       "experimentQueue": {
@@ -60,30 +105,77 @@
         "items": {
           "type": "object",
           "properties": {
-            "name": { "type": "string" },
-            "hypothesis": { "type": "string" },
-            "expectedImpact": { "type": "number" },
-            "effort": { "type": "string" },
-            "priority": { "type": "number" }
+            "name": {
+              "type": "string"
+            },
+            "hypothesis": {
+              "type": "string"
+            },
+            "expectedImpact": {
+              "type": "number"
+            },
+            "effort": {
+              "type": "string"
+            },
+            "priority": {
+              "type": "number"
+            }
           }
         }
       },
-      "weeklyAgenda": { "type": "array", "items": { "type": "string" } },
-      "teamHealth": { "type": "object" }
+      "weeklyAgenda": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "teamHealth": {
+        "type": "object"
+      }
     }
   },
-  
   "metrics": {
     "primary": "experiments_per_week",
-    "secondary": ["win_rate", "cumulative_impact", "velocity"],
+    "secondary": [
+      "win_rate",
+      "cumulative_impact",
+      "velocity"
+    ],
     "benchmarks": {
       "excellent": "> 3 experiments/week, > 30% win rate",
       "good": "2-3 experiments/week, 20-30% win rate",
       "needs_improvement": "< 2 experiments/week, < 20% win rate"
     }
   },
-  
-  "integrations": ["amplitude", "mixpanel", "posthog", "jira", "linear"],
+  "integrations": [
+    "amplitude",
+    "mixpanel",
+    "posthog",
+    "jira",
+    "linear"
+  ],
   "temperature": 0.1,
-  "tags": ["plg", "growth-team", "experimentation", "boyce", "freemium", "ben-williams", "snyk"]
+  "tags": [
+    "plg",
+    "growth-team",
+    "experimentation",
+    "boyce",
+    "freemium",
+    "ben-williams",
+    "snyk"
+  ],
+  "security_controls": {
+    "delete_operations": {
+      "soft_delete": true,
+      "retention_period_days": 30,
+      "undelete_capable": true,
+      "backup_before_delete": true,
+      "multi_party_approval": true,
+      "confirmation_required": {
+        "enabled": true,
+        "show_impact": true,
+        "require_reason": true
+      }
+    }
+  }
 }

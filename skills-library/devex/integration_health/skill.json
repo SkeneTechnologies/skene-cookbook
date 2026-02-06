@@ -103,5 +103,16 @@
     },
     "cursor": {},
     "skeneflow": {}
+  },
+  "security_controls": {
+    "authentication": {
+      "method": "oauth",
+      "provider": "managed_identity",
+      "scopes": [
+        "read:data",
+        "write:data"
+      ],
+      "token_lifetime": 3600
+    }
   }
 }

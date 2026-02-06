@@ -5,53 +5,135 @@
   "description": "Optimizes the #1 critical event that drives compound growth in PLG. Based on Dave Boyce's FREEMIUM framework (Chapter 8): First Impact must be delivered within minutes or hours to prevent user abandonment.",
   "domain": "plg_frameworks",
   "author": "Dave Boyce (FREEMIUM, Stanford University Press)",
-  
   "tools": [
-    { "name": "lifecycle.get_segment", "required": true },
-    { "name": "lifecycle.record_moment", "required": true },
-    { "name": "analytics.funnel", "required": true },
-    { "name": "analytics.cohort", "required": true },
-    { "name": "analytics.track_event", "required": false },
-    { "name": "messaging.send_in_app", "required": false },
-    { "name": "rag.query", "required": false }
+    {
+      "name": "lifecycle.get_segment",
+      "required": true
+    },
+    {
+      "name": "lifecycle.record_moment",
+      "required": true
+    },
+    {
+      "name": "analytics.funnel",
+      "required": true
+    },
+    {
+      "name": "analytics.cohort",
+      "required": true
+    },
+    {
+      "name": "analytics.track_event",
+      "required": false
+    },
+    {
+      "name": "messaging.send_in_app",
+      "required": false
+    },
+    {
+      "name": "rag.query",
+      "required": false
+    }
   ],
-  
-  "exitStates": ["first_impact_achieved", "activation_blocked", "support_needed", "churned"],
-  
+  "exitStates": [
+    "first_impact_achieved",
+    "activation_blocked",
+    "support_needed",
+    "churned"
+  ],
   "inputSchema": {
     "type": "object",
     "properties": {
-      "userId": { "type": "string", "description": "User to optimize for First Impact" },
-      "productType": { "type": "string", "description": "Type of product (collaboration, productivity, analytics, etc.)" },
-      "targetTimeToFirstImpact": { "type": "number", "description": "Target time in minutes to achieve First Impact" },
-      "currentOnboardingStage": { "type": "string", "description": "Current stage in onboarding flow" }
+      "userId": {
+        "type": "string",
+        "description": "User to optimize for First Impact"
+      },
+      "productType": {
+        "type": "string",
+        "description": "Type of product (collaboration, productivity, analytics, etc.)"
+      },
+      "targetTimeToFirstImpact": {
+        "type": "number",
+        "description": "Target time in minutes to achieve First Impact"
+      },
+      "currentOnboardingStage": {
+        "type": "string",
+        "description": "Current stage in onboarding flow"
+      }
     },
-    "required": ["userId"]
+    "required": [
+      "userId"
+    ]
   },
-  
   "outputSchema": {
     "type": "object",
     "properties": {
-      "firstImpactAchieved": { "type": "boolean" },
-      "timeToFirstImpact": { "type": "number", "description": "Minutes from signup to First Impact" },
-      "firstImpactSuccessRate": { "type": "number", "description": "Boyce's FISR metric (0-100)" },
-      "blockers": { "type": "array", "items": { "type": "string" } },
-      "nextAction": { "type": "string" },
-      "correlatedRetentionProbability": { "type": "number" }
+      "firstImpactAchieved": {
+        "type": "boolean"
+      },
+      "timeToFirstImpact": {
+        "type": "number",
+        "description": "Minutes from signup to First Impact"
+      },
+      "firstImpactSuccessRate": {
+        "type": "number",
+        "description": "Boyce's FISR metric (0-100)"
+      },
+      "blockers": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "nextAction": {
+        "type": "string"
+      },
+      "correlatedRetentionProbability": {
+        "type": "number"
+      }
     }
   },
-  
   "metrics": {
     "primary": "first_impact_success_rate",
-    "secondary": ["time_to_first_impact", "activation_rate", "d7_retention"],
+    "secondary": [
+      "time_to_first_impact",
+      "activation_rate",
+      "d7_retention"
+    ],
     "benchmarks": {
       "excellent": "FISR > 80%, TTFI < 5 min",
       "good": "FISR 60-80%, TTFI 5-15 min",
       "needs_improvement": "FISR < 60%, TTFI > 15 min"
     }
   },
-  
-  "integrations": ["segment", "amplitude", "mixpanel", "posthog"],
+  "integrations": [
+    "segment",
+    "amplitude",
+    "mixpanel",
+    "posthog"
+  ],
   "temperature": 0,
-  "tags": ["plg", "activation", "first-impact", "boyce", "freemium", "onboarding", "retention"]
+  "tags": [
+    "plg",
+    "activation",
+    "first-impact",
+    "boyce",
+    "freemium",
+    "onboarding",
+    "retention"
+  ],
+  "security_controls": {
+    "delete_operations": {
+      "soft_delete": true,
+      "retention_period_days": 30,
+      "undelete_capable": true,
+      "backup_before_delete": true,
+      "multi_party_approval": true,
+      "confirmation_required": {
+        "enabled": true,
+        "show_impact": true,
+        "require_reason": true
+      }
+    }
+  }
 }

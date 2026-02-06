@@ -4,7 +4,6 @@
   "name": "Feedback Collection",
   "description": "Collects structured user feedback through a conversational flow, stores responses, and transitions back to IDLE state upon completion.",
   "domain": "customer_success",
-
   "tools": [
     {
       "name": "ui.show_buttons",
@@ -12,21 +11,36 @@
       "inputSchema": {
         "type": "object",
         "properties": {
-          "prompt": { "type": "string", "description": "Question to display" },
+          "prompt": {
+            "type": "string",
+            "description": "Question to display"
+          },
           "buttons": {
             "type": "array",
             "items": {
               "type": "object",
               "properties": {
-                "id": { "type": "string" },
-                "label": { "type": "string" },
-                "value": { "type": "string" }
+                "id": {
+                  "type": "string"
+                },
+                "label": {
+                  "type": "string"
+                },
+                "value": {
+                  "type": "string"
+                }
               },
-              "required": ["id", "label"]
+              "required": [
+                "id",
+                "label"
+              ]
             }
           }
         },
-        "required": ["prompt", "buttons"]
+        "required": [
+          "prompt",
+          "buttons"
+        ]
       }
     },
     {
@@ -35,15 +49,29 @@
       "inputSchema": {
         "type": "object",
         "properties": {
-          "prompt": { "type": "string" },
+          "prompt": {
+            "type": "string"
+          },
           "inputType": {
             "type": "string",
-            "enum": ["text", "textarea", "number", "rating"]
+            "enum": [
+              "text",
+              "textarea",
+              "number",
+              "rating"
+            ]
           },
-          "placeholder": { "type": "string" },
-          "required": { "type": "boolean" }
+          "placeholder": {
+            "type": "string"
+          },
+          "required": {
+            "type": "boolean"
+          }
         },
-        "required": ["prompt", "inputType"]
+        "required": [
+          "prompt",
+          "inputType"
+        ]
       }
     },
     {
@@ -52,10 +80,17 @@
       "inputSchema": {
         "type": "object",
         "properties": {
-          "collection": { "type": "string" },
-          "document": { "type": "object" }
+          "collection": {
+            "type": "string"
+          },
+          "document": {
+            "type": "object"
+          }
         },
-        "required": ["collection", "document"]
+        "required": [
+          "collection",
+          "document"
+        ]
       }
     },
     {
@@ -64,26 +99,41 @@
       "inputSchema": {
         "type": "object",
         "properties": {
-          "type": { "type": "string", "enum": ["success", "info", "warning"] },
-          "message": { "type": "string" }
+          "type": {
+            "type": "string",
+            "enum": [
+              "success",
+              "info",
+              "warning"
+            ]
+          },
+          "message": {
+            "type": "string"
+          }
         },
-        "required": ["type", "message"]
+        "required": [
+          "type",
+          "message"
+        ]
       }
     }
   ],
-
   "exitStates": [
     "idle",
     "feedback_thankyou",
     "error_recovery"
   ],
-
   "inputSchema": {
     "type": "object",
     "properties": {
       "feedbackType": {
         "type": "string",
-        "enum": ["general", "feature_request", "bug_report", "satisfaction"],
+        "enum": [
+          "general",
+          "feature_request",
+          "bug_report",
+          "satisfaction"
+        ],
         "description": "Type of feedback to collect"
       },
       "context": {
@@ -92,20 +142,47 @@
       }
     }
   },
-
   "outputSchema": {
     "type": "object",
     "properties": {
-      "feedbackId": { "type": "string" },
-      "rating": { "type": "number" },
-      "category": { "type": "string" },
-      "comments": { "type": "string" },
-      "completed": { "type": "boolean" }
+      "feedbackId": {
+        "type": "string"
+      },
+      "rating": {
+        "type": "number"
+      },
+      "category": {
+        "type": "string"
+      },
+      "comments": {
+        "type": "string"
+      },
+      "completed": {
+        "type": "boolean"
+      }
     }
   },
-
   "temperature": 0,
-  "tags": ["feedback", "user-engagement", "data-collection"],
+  "tags": [
+    "feedback",
+    "user-engagement",
+    "data-collection"
+  ],
   "author": "SkeneFlow",
-  "deprecated": false
+  "deprecated": false,
+  "security_controls": {
+    "data_access": {
+      "field_level_control": true,
+      "allowed_fields": [
+        "id",
+        "name",
+        "email",
+        "created_at"
+      ],
+      "tenant_isolation": true,
+      "time_window_days": 90,
+      "read_only": false,
+      "pii_redaction": true
+    }
+  }
 }

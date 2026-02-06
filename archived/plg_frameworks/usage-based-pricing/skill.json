@@ -1,0 +1,49 @@
+{
+  "id": "plg_frameworks/usage-based-pricing",
+  "version": "1.0.0",
+  "name": "usage-based-pricing",
+  "description": "When the user wants to design or implement usage-based, consumption, or metered pricing -- including credit systems, overage handling, or billing infrastructure. Also use when the user says \"pay per use,\" \"metered billing,\" \"credit system,\" \"usage pricing,\" or \"consumption pricing.\" For broader pricing strategy, see pricing-strategy. For expansion, see expansion-revenue.",
+  "domain": "plg_frameworks",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "plg_frameworks",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with usage based pricing",
+        "pricing strategy",
+        "the user says \"pay per use,\" \"metered billing,\" \"credit system,\" \"usage pricing,\" or \"consumption pricing"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "security_controls": {
+    "payment_controls": {
+      "preview_mode": true,
+      "per_transaction_approval": true,
+      "amount_limits": {
+        "max_per_transaction": 50000,
+        "daily_limit": 200000,
+        "additional_approval_threshold": 25000
+      },
+      "rollback": {
+        "enabled": true,
+        "window_seconds": 3600
+      },
+      "two_phase_commit": true,
+      "audit_logging": "detailed"
+    }
+  }
+}

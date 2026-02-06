@@ -180,7 +180,7 @@ Hi McKay,
 
 I hope this message finds you well. I wanted to reach out because I recently came across your repository, mckays-app-template, and was impressed by its architecture.
 
-I believe you might find value in our PLG analysis tool, skene-growth. It analyzes codebases to identify growth opportunities.
+I believe you might find value in our developer tool. It helps identify opportunities for improvement.
 
 Would you be interested in learning more?
 
@@ -196,7 +196,7 @@ McKay,
 
 Been exploring mckays-app-template - the way you've structured the auth flow is smart.
 
-Ran our PLG analyzer on it (skene-growth) and found some interesting patterns. Happy to share the report if you're curious.
+Ran our analyzer on it and found some interesting patterns. Happy to share the report if you're curious.
 
 - Teemu
 
