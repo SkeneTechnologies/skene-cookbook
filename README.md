@@ -32,7 +32,26 @@ Install once. Build unlimited agents. Deploy in days.
 npm install @skene/skills-directory
 ```
 
-## Activate Skills
+✨ **Skills are automatically activated** during install!
+They're installed to both Cursor (`~/.cursor/skills/`) and Claude (`~/.claude/skills/`)
+
+### Auto-Activation Behavior
+
+**Auto-install runs on first install** for local development environments.
+
+**Automatically skips in:**
+- CI/CD environments (GitHub Actions, CircleCI, Jenkins, etc.)
+- Docker containers
+- When `--ignore-scripts` flag is used
+
+**To manually skip:**
+```bash
+SKIP_SKILLS_INSTALL=true npm install @skene/skills-directory
+```
+
+### Manual Installation
+
+To install or reinstall skills manually:
 
 ```bash
 # Install to Cursor and Claude
@@ -58,19 +77,15 @@ npx skills-directory install --target claude
 
 ## Quick Start
 
-### 1. Install
+### 1. Install (Skills Auto-Activate!)
 
 ```bash
 npm install @skene/skills-directory
 ```
 
-### 2. Activate All Skills
+Skills are automatically installed to Cursor and Claude during this step.
 
-```bash
-npx skills-directory install --target all
-```
-
-### 3. Start Building
+### 2. Start Building
 
 - **15-minute win:** [Lead Scoring Agent](docs/QUICK_WINS.md#15-minute-win-lead-scoring) (2 skills)
 - **1-hour win:** [Churn Prevention Agent](docs/QUICK_WINS.md#1-hour-win-churn-risk-alerts) (3 skills)
@@ -78,7 +93,7 @@ npx skills-directory install --target all
 
 [See all quick wins →](docs/QUICK_WINS.md)
 
-### 4. Explore Recipes
+### 3. Explore Recipes
 
 Browse [10+ ready-to-use skill chain recipes](docs/SKILL_CHAINS.md) with step-by-step instructions.
 
