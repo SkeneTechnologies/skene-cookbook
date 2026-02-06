@@ -1,0 +1,48 @@
+{
+  "id": "plg_frameworks/feature-gating",
+  "version": "1.0.0",
+  "name": "feature-gating",
+  "description": "When the user wants to decide what features to gate vs keep free, design usage limits, implement reverse trials, or plan a free tier. Also use when the user says \"what should be free,\" \"feature gate,\" \"paywall placement,\" \"usage limits,\" or \"reverse trial.\" For pricing strategy, see pricing-strategy. For upgrade screens, see paywall-upgrade-cro.",
+  "domain": "plg_frameworks",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "plg_frameworks",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with feature gating",
+        "pricing strategy",
+        "trial optimization",
+        "feature adoption",
+        "the user says \"what should be free,\" \"feature gate,\" \"paywall placement,\" \"usage limits,\" or \"reverse trial"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "security_controls": {
+    "delete_operations": {
+      "soft_delete": true,
+      "retention_period_days": 30,
+      "undelete_capable": true,
+      "backup_before_delete": true,
+      "multi_party_approval": true,
+      "confirmation_required": {
+        "enabled": true,
+        "show_impact": true,
+        "require_reason": true
+      }
+    }
+  }
+}

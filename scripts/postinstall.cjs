@@ -62,17 +62,18 @@ function displayWelcome() {
   const maxLineLength = Math.max(...messageLines.map(line => stripAnsi(line).length));
   const boxWidth = Math.max(maxLineLength + 4, 60);
 
-  console.log('');
-  console.log(cyan(box.topLeft + box.horizontal.repeat(boxWidth - 2) + box.topRight));
+  // Use console.error() so npm shows the message even when installing as a dependency
+  console.error('');
+  console.error(cyan(box.topLeft + box.horizontal.repeat(boxWidth - 2) + box.topRight));
 
   messageLines.forEach(line => {
     const strippedLine = stripAnsi(line);
     const padding = ' '.repeat(Math.max(0, boxWidth - strippedLine.length - 4));
-    console.log(cyan(box.vertical) + '  ' + line + padding + cyan(box.vertical));
+    console.error(cyan(box.vertical) + '  ' + line + padding + cyan(box.vertical));
   });
 
-  console.log(cyan(box.bottomLeft + box.horizontal.repeat(boxWidth - 2) + box.bottomRight));
-  console.log('');
+  console.error(cyan(box.bottomLeft + box.horizontal.repeat(boxWidth - 2) + box.bottomRight));
+  console.error('');
 }
 
 // Check if we should skip installation
@@ -143,9 +144,9 @@ function isAlreadyInstalled() {
 
 // Run auto-installation
 async function runAutoInstall() {
-  console.log(cyan('\n🚀 Auto-installing skills to Cursor and Claude...\n'));
-  console.log(dim('   This happens once during first install.'));
-  console.log(dim('   To skip: set SKIP_SKILLS_INSTALL=true\n'));
+  console.error(cyan('\n🚀 Auto-installing skills to Cursor and Claude...\n'));
+  console.error(dim('   This happens once during first install.'));
+  console.error(dim('   To skip: set SKIP_SKILLS_INSTALL=true\n'));
 
   return new Promise((resolve) => {
     const cliPath = join(__dirname, 'skill-converter', 'cli.ts');
@@ -156,17 +157,17 @@ async function runAutoInstall() {
 
     child.on('exit', (code) => {
       if (code === 0) {
-        console.log(green('\n✅ Skills auto-installed successfully!\n'));
+        console.error(green('\n✅ Skills auto-installed successfully!\n'));
       } else {
-        console.log(yellow('\n⚠️  Auto-install encountered issues.'));
-        console.log(dim('   Run manually: ') + cyan('npx skills-directory install --target all\n'));
+        console.error(yellow('\n⚠️  Auto-install encountered issues.'));
+        console.error(dim('   Run manually: ') + cyan('npx skills-directory install --target all\n'));
       }
       resolve(code);
     });
 
     child.on('error', (error) => {
-      console.log(yellow('\n⚠️  Could not auto-install skills: ') + error.message);
-      console.log(dim('   Run manually: ') + cyan('npx skills-directory install --target all\n'));
+      console.error(yellow('\n⚠️  Could not auto-install skills: ') + error.message);
+      console.error(dim('   Run manually: ') + cyan('npx skills-directory install --target all\n'));
       resolve(1);
     });
   });
@@ -180,16 +181,42 @@ async function main() {
   // Check if we should skip installation
   const skipCheck = shouldSkipInstall();
   if (skipCheck.skip) {
-    console.log(yellow('⏭️  Skipping skill auto-installation'));
-    console.log(dim(`   Reason: ${skipCheck.reason}`));
-    console.log(dim('   To install manually: ') + cyan('npx skills-directory install --target all\n'));
+    console.error(yellow('⏭️  Skipping skill auto-installation'));
+    console.error(dim(`   Reason: ${skipCheck.reason}`));
+    console.error(dim('   To install manually: ') + cyan('npx skills-directory install --target all\n'));
     return;
   }
 
   // Check if already installed
   if (isAlreadyInstalled()) {
-    console.log(green('✅ Skills already installed!'));
-    console.log(dim('   To reinstall: ') + cyan('npx skills-directory install --target all\n'));
+    console.error(green('✅ Skills already installed!'));
+
+    // Show where they're installed
+    const home = homedir();
+    const claudeManifest = join(home, '.claude', 'skills', 'skene-skills.json');
+    const cursorManifest = join(home, '.cursor', 'skills', 'skene-skills.json');
+
+    if (fs.existsSync(claudeManifest)) {
+      try {
+        const manifest = JSON.parse(fs.readFileSync(claudeManifest, 'utf8'));
+        console.error(dim('   • Claude: ') + white(`${manifest.skills.length} skills`));
+      } catch {
+        console.error(dim('   • Claude: ') + white('installed'));
+      }
+    }
+
+    if (fs.existsSync(cursorManifest)) {
+      try {
+        const manifest = JSON.parse(fs.readFileSync(cursorManifest, 'utf8'));
+        console.error(dim('   • Cursor: ') + white(`${manifest.rules.length} skills`));
+      } catch {
+        console.error(dim('   • Cursor: ') + white('installed'));
+      }
+    }
+
+    console.error();
+    console.error(dim('   Check status: ') + cyan('npx skills-directory status'));
+    console.error(dim('   To reinstall: ') + cyan('npx skills-directory install --target all\n'));
     return;
   }
 
@@ -200,7 +227,7 @@ async function main() {
 // Run with error handling - never fail npm install
 main().catch((error) => {
   console.error(yellow('\n⚠️  Postinstall error: ') + error.message);
-  console.log(dim('   Skills can be installed manually: ') + cyan('npx skills-directory install --target all\n'));
+  console.error(dim('   Skills can be installed manually: ') + cyan('npx skills-directory install --target all\n'));
   // Always exit successfully to not break npm install
   process.exit(0);
 });

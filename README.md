@@ -1,6 +1,6 @@
 # Build AI Agents in Days, Not Months
 
-**Compose 800+ skills into powerful AI agents** — No ML expertise required
+**Compose 760+ skills into powerful AI agents** — No ML expertise required
 
 Install once. Build unlimited agents. Deploy in days.
 
@@ -73,7 +73,7 @@ npx skills-directory install --target claude
 ✅ **40+ standardized tools** — CRM, analytics, messaging, billing
 ✅ **Production-ready security** — Approval gates, rollback, audit trails
 
-[Browse all 800+ skills by domain →](docs/directory.md)
+[Browse all 760+ skills by domain →](docs/directory.md)
 
 ## Quick Start
 
@@ -139,6 +139,7 @@ Cursor and Claude automatically pick the right skill based on your prompt. Chain
 | Command                              | Description                |
 | ------------------------------------ | -------------------------- |
 | `npx skills-directory install --target all` | Install to Cursor + Claude |
+| `npx skills-directory status`        | Check installation status & verify files |
 | `npx skills-directory showcase`     | Show what you can build (ROI & use cases) |
 | `npx skills-directory list --domain plg` | List skills by domain |
 | `npx skills-directory stats`         | Show library statistics   |
@@ -195,6 +196,39 @@ If you don't see the "What can you build today?" message after installation:
 - The message may have been hidden by npm warnings
 - You can manually verify installation: `npx skills-directory install --target all`
 - Check that the package installed correctly: `npm ls @skene/skills-directory`
+
+### Verifying Installation
+
+To check if skills are installed and verify file integrity:
+
+```bash
+npx skills-directory status
+```
+
+This will show:
+- ✅ Whether Claude and Cursor skills are installed
+- 📊 Number of skills installed
+- 📅 Installation date
+- 🔍 File integrity check (all files present)
+
+**Example output:**
+```
+📊 Skills Installation Status
+
+✅ Claude Skills Installed
+   Skills: 773
+   Generated: 2/5/2026, 12:14:02 PM
+   Location: /Users/username/.claude/skills
+   Files intact: 773/773
+
+✅ Cursor Skills Installed
+   Skills: 773
+   Generated: 2/6/2026, 12:36:21 AM
+   Location: /Users/username/.cursor/skills
+   Files intact: 773/773
+```
+
+**Skills persist between sessions** — Once installed, skills remain in `~/.claude/skills/` and `~/.cursor/skills/` permanently. You don't need to reinstall them between sessions or terminal restarts.
 
 ---
 

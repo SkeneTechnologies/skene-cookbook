@@ -104,5 +104,19 @@
     },
     "cursor": {},
     "skeneflow": {}
+  },
+  "security_controls": {
+    "delete_operations": {
+      "soft_delete": true,
+      "retention_period_days": 30,
+      "undelete_capable": true,
+      "backup_before_delete": true,
+      "multi_party_approval": true,
+      "confirmation_required": {
+        "enabled": true,
+        "show_impact": true,
+        "require_reason": true
+      }
+    }
   }
 }

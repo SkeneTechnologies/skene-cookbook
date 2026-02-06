@@ -5,52 +5,127 @@
   "description": "Designs the human-machine GTM stack for AI-augmented go-to-market. Based on Dave Boyce's FREEMIUM framework (Chapter 19): AI will blend with PLG to accelerate GTM de-laboring.",
   "domain": "plg_frameworks",
   "author": "Dave Boyce (FREEMIUM, Stanford University Press)",
-  
   "tools": [
-    { "name": "ai.analyze", "required": true },
-    { "name": "analytics.get_usage", "required": false },
-    { "name": "crm.get_activities", "required": false },
-    { "name": "messaging.send_in_app", "required": false }
+    {
+      "name": "ai.analyze",
+      "required": true
+    },
+    {
+      "name": "analytics.get_usage",
+      "required": false
+    },
+    {
+      "name": "crm.get_activities",
+      "required": false
+    },
+    {
+      "name": "messaging.send_in_app",
+      "required": false
+    }
   ],
-  
-  "exitStates": ["automation_designed", "human_touch_needed", "ai_assist_ready", "not_automatable"],
-  
+  "exitStates": [
+    "automation_designed",
+    "human_touch_needed",
+    "ai_assist_ready",
+    "not_automatable"
+  ],
   "inputSchema": {
     "type": "object",
     "properties": {
-      "gtmActivities": { "type": "array", "items": { "type": "string" } },
-      "currentAutomation": { "type": "object" },
-      "buyerPreferences": { "type": "object" }
+      "gtmActivities": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "currentAutomation": {
+        "type": "object"
+      },
+      "buyerPreferences": {
+        "type": "object"
+      }
     }
   },
-  
   "outputSchema": {
     "type": "object",
     "properties": {
       "automationMap": {
         "type": "object",
         "properties": {
-          "fullyAutomated": { "type": "array", "items": { "type": "string" } },
-          "aiAssisted": { "type": "array", "items": { "type": "string" } },
-          "humanRequired": { "type": "array", "items": { "type": "string" } }
+          "fullyAutomated": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "aiAssisted": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "humanRequired": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
         }
       },
-      "gtmStackDesign": { "type": "object" },
-      "recommendations": { "type": "array", "items": { "type": "string" } }
+      "gtmStackDesign": {
+        "type": "object"
+      },
+      "recommendations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
     }
   },
-  
   "metrics": {
     "primary": "gtm_automation_rate",
-    "secondary": ["revenue_per_gtm_fte", "buyer_satisfaction", "response_time"],
+    "secondary": [
+      "revenue_per_gtm_fte",
+      "buyer_satisfaction",
+      "response_time"
+    ],
     "benchmarks": {
       "excellent": "Automation > 70%, 2x revenue/FTE",
       "good": "Automation 50-70%, 1.5x revenue/FTE",
       "needs_improvement": "Automation < 50%, flat revenue/FTE"
     }
   },
-  
-  "integrations": ["openai", "anthropic", "salesforce"],
+  "integrations": [
+    "openai",
+    "anthropic",
+    "salesforce"
+  ],
   "temperature": 0.3,
-  "tags": ["plg", "ai", "automation", "gtm", "boyce", "freemium", "future-of-work"]
+  "tags": [
+    "plg",
+    "ai",
+    "automation",
+    "gtm",
+    "boyce",
+    "freemium",
+    "future-of-work"
+  ],
+  "security_controls": {
+    "payment_controls": {
+      "preview_mode": true,
+      "per_transaction_approval": true,
+      "amount_limits": {
+        "max_per_transaction": 50000,
+        "daily_limit": 200000,
+        "additional_approval_threshold": 25000
+      },
+      "rollback": {
+        "enabled": true,
+        "window_seconds": 3600
+      },
+      "two_phase_commit": true,
+      "audit_logging": "detailed"
+    }
+  }
 }

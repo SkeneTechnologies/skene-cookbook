@@ -126,5 +126,22 @@
     },
     "cursor": {},
     "skeneflow": {}
+  },
+  "security_controls": {
+    "payment_controls": {
+      "preview_mode": true,
+      "per_transaction_approval": true,
+      "amount_limits": {
+        "max_per_transaction": 50000,
+        "daily_limit": 200000,
+        "additional_approval_threshold": 25000
+      },
+      "rollback": {
+        "enabled": true,
+        "window_seconds": 3600
+      },
+      "two_phase_commit": true,
+      "audit_logging": "detailed"
+    }
   }
 }

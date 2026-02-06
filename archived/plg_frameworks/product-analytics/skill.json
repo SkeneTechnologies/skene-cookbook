@@ -1,0 +1,49 @@
+{
+  "id": "plg_frameworks/product-analytics",
+  "version": "1.0.0",
+  "name": "product-analytics",
+  "description": "When the user wants to set up product analytics -- including event taxonomy, tracking plans, funnel analysis, or tool selection (Mixpanel, Amplitude, PostHog). Also use when the user says \"event tracking,\" \"analytics setup,\" \"tracking plan,\" \"analytics implementation,\" or \"user identification.\" For PLG metrics, see plg-metrics. For experimentation, see growth-experimentation.",
+  "domain": "plg_frameworks",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "plg_frameworks",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with product analytics",
+        "growth framework",
+        "the user says \"event tracking,\" \"analytics setup,\" \"tracking plan,\" \"analytics implementation,\" or \"user identification"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "security_controls": {
+    "payment_controls": {
+      "preview_mode": true,
+      "per_transaction_approval": true,
+      "amount_limits": {
+        "max_per_transaction": 50000,
+        "daily_limit": 200000,
+        "additional_approval_threshold": 25000
+      },
+      "rollback": {
+        "enabled": true,
+        "window_seconds": 3600
+      },
+      "two_phase_commit": true,
+      "audit_logging": "detailed"
+    }
+  }
+}

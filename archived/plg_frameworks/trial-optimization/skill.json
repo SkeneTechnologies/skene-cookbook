@@ -1,0 +1,50 @@
+{
+  "id": "plg_frameworks/trial-optimization",
+  "version": "1.0.0",
+  "name": "trial-optimization",
+  "description": "When the user wants to optimize free trial conversion -- including trial length, trial type selection, expiry flows, or trial email sequences. Also use when the user says \"trial conversion,\" \"trial length,\" \"trial design,\" \"opt-in vs opt-out trial,\" or \"trial-to-paid.\" For activation, see activation-metrics. For feature gating, see feature-gating.",
+  "domain": "plg_frameworks",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "plg_frameworks",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with trial optimization",
+        "trial optimization",
+        "feature adoption",
+        "the user says \"trial conversion,\" \"trial length,\" \"trial design,\" \"opt-in vs opt-out trial,\" or \"trial-to-paid"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "security_controls": {
+    "payment_controls": {
+      "preview_mode": true,
+      "per_transaction_approval": true,
+      "amount_limits": {
+        "max_per_transaction": 50000,
+        "daily_limit": 200000,
+        "additional_approval_threshold": 25000
+      },
+      "rollback": {
+        "enabled": true,
+        "window_seconds": 3600
+      },
+      "two_phase_commit": true,
+      "audit_logging": "detailed"
+    }
+  }
+}

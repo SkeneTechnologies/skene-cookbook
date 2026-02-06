@@ -5,57 +5,123 @@
   "description": "Designs PLG-friendly sidecar products when the core product isn't PLG-ready. Based on Dave Boyce's FREEMIUM framework (Chapter 17): Create adjacent tools that become pipeline builders.",
   "domain": "plg_frameworks",
   "author": "Dave Boyce (FREEMIUM, Stanford University Press)",
-  
   "tools": [
-    { "name": "analytics.get_usage", "required": false },
-    { "name": "ai.analyze", "required": false },
-    { "name": "rag.query", "required": false }
+    {
+      "name": "analytics.get_usage",
+      "required": false
+    },
+    {
+      "name": "ai.analyze",
+      "required": false
+    },
+    {
+      "name": "rag.query",
+      "required": false
+    }
   ],
-  
-  "exitStates": ["sidecar_concept_ready", "core_product_plg_possible", "no_sidecar_fit", "validation_needed"],
-  
+  "exitStates": [
+    "sidecar_concept_ready",
+    "core_product_plg_possible",
+    "no_sidecar_fit",
+    "validation_needed"
+  ],
   "inputSchema": {
     "type": "object",
     "properties": {
-      "coreProduct": { "type": "string", "description": "Description of core product" },
-      "targetPersona": { "type": "string" },
-      "adjacentProblems": { "type": "array", "items": { "type": "string" } },
-      "existingTools": { "type": "array", "items": { "type": "string" } }
+      "coreProduct": {
+        "type": "string",
+        "description": "Description of core product"
+      },
+      "targetPersona": {
+        "type": "string"
+      },
+      "adjacentProblems": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "existingTools": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
     }
   },
-  
   "outputSchema": {
     "type": "object",
     "properties": {
-      "sidecarConcepts": { 
-        "type": "array", 
-        "items": { 
+      "sidecarConcepts": {
+        "type": "array",
+        "items": {
           "type": "object",
           "properties": {
-            "name": { "type": "string" },
-            "type": { "type": "string" },
-            "problemSolved": { "type": "string" },
-            "connectionToCore": { "type": "string" },
-            "estimatedEffort": { "type": "string" }
+            "name": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string"
+            },
+            "problemSolved": {
+              "type": "string"
+            },
+            "connectionToCore": {
+              "type": "string"
+            },
+            "estimatedEffort": {
+              "type": "string"
+            }
           }
         }
       },
-      "recommendedSidecar": { "type": "object" },
-      "pipelineModel": { "type": "string" }
+      "recommendedSidecar": {
+        "type": "object"
+      },
+      "pipelineModel": {
+        "type": "string"
+      }
     }
   },
-  
   "metrics": {
     "primary": "sidecar_to_core_conversion",
-    "secondary": ["sidecar_users", "pipeline_generated", "brand_awareness"],
+    "secondary": [
+      "sidecar_users",
+      "pipeline_generated",
+      "brand_awareness"
+    ],
     "benchmarks": {
-      "excellent": "Sidecar → Core > 5%, Top pipeline source",
-      "good": "Sidecar → Core 2-5%, Significant pipeline",
-      "needs_improvement": "Sidecar → Core < 2%, Minimal pipeline"
+      "excellent": "Sidecar \u2192 Core > 5%, Top pipeline source",
+      "good": "Sidecar \u2192 Core 2-5%, Significant pipeline",
+      "needs_improvement": "Sidecar \u2192 Core < 2%, Minimal pipeline"
     }
   },
-  
   "integrations": [],
   "temperature": 0.4,
-  "tags": ["plg", "sidecar", "pipeline", "free-tool", "boyce", "freemium", "engineering-marketing"]
+  "tags": [
+    "plg",
+    "sidecar",
+    "pipeline",
+    "free-tool",
+    "boyce",
+    "freemium",
+    "engineering-marketing"
+  ],
+  "security_controls": {
+    "payment_controls": {
+      "preview_mode": true,
+      "per_transaction_approval": true,
+      "amount_limits": {
+        "max_per_transaction": 50000,
+        "daily_limit": 200000,
+        "additional_approval_threshold": 25000
+      },
+      "rollback": {
+        "enabled": true,
+        "window_seconds": 3600
+      },
+      "two_phase_commit": true,
+      "audit_logging": "detailed"
+    }
+  }
 }

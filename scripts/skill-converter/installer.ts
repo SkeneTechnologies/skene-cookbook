@@ -16,23 +16,23 @@ import { exportSkill, exportFlatCursorRules } from './exporter.js';
 /**
  * Get default paths for different platforms
  */
-export function getDefaultPaths(): {
-  cursorRules: string;
-  cursorSkills: string;
-  claudeSkills: string;
-  skeneflowRegistry: string;
+export function getDefaultPaths(options?: {
+  cursorPath?: string;
+  claudePath?: string;
+}): {
+  cursor: string;
+  claude: string;
+  skeneflow: string;
 } {
   const home = homedir();
-  
+
   return {
-    // Cursor rules directory (workspace-level, will use cwd)
-    cursorRules: join(process.cwd(), '.cursor', 'rules'),
     // Cursor skills directory (user-level)
-    cursorSkills: join(home, '.cursor', 'skills'),
+    cursor: options?.cursorPath || join(home, '.cursor', 'skills'),
     // Claude skills directory
-    claudeSkills: join(home, '.claude', 'skills'),
+    claude: options?.claudePath || join(home, '.claude', 'skills'),
     // SkeneFlow registry
-    skeneflowRegistry: join(process.cwd(), 'skills-library'),
+    skeneflow: join(process.cwd(), 'skills-library'),
   };
 }
 
@@ -137,16 +137,23 @@ export async function generateClaudeManifest(
     version: '1.0.0',
     generated: new Date().toISOString(),
     source: 'skene-skills',
-    skills: skills.map(skill => ({
-      id: skill.manifest.id,
-      name: skill.manifest.name,
-      description: skill.manifest.description,
-      domain: skill.manifest.domain,
-      path: join(skill.manifest.domain, skill.manifest.name, 'SKILL.md'),
-      triggers: skill.manifest.platforms?.claude?.triggers || [],
-    })),
+    skills: skills.map(skill => {
+      // Use same directory name logic as exporter
+      const skillDir = basename(dirname(skill.sourcePath)) === skill.manifest.domain
+        ? basename(skill.sourcePath)
+        : skill.manifest.id.split('/').pop() || skill.manifest.id;
+
+      return {
+        id: skill.manifest.id,
+        name: skill.manifest.name,
+        description: skill.manifest.description,
+        domain: skill.manifest.domain,
+        path: join(skill.manifest.domain, skillDir, 'SKILL.md'),
+        triggers: skill.manifest.platforms?.claude?.triggers || [],
+      };
+    }),
   };
-  
+
   await writeFile(outputPath, JSON.stringify(manifest, null, 2));
 }
 
@@ -157,43 +164,55 @@ export async function installAll(
   skills: LoadedSkill[],
   options: InstallOptions
 ): Promise<{
-  cursor?: { installed: number; path: string };
-  claude?: { installed: number; path: string };
+  cursor?: { installed: number; path: string; verified?: boolean };
+  claude?: { installed: number; path: string; verified?: boolean };
   skeneflow?: { registered: number };
 }> {
   const results: {
-    cursor?: { installed: number; path: string };
-    claude?: { installed: number; path: string };
+    cursor?: { installed: number; path: string; verified?: boolean };
+    claude?: { installed: number; path: string; verified?: boolean };
     skeneflow?: { registered: number };
   } = {};
-  
-  const defaultPaths = getDefaultPaths();
-  
+
+  const defaultPaths = getDefaultPaths({
+    cursorPath: options.cursorPath,
+    claudePath: options.claudePath,
+  });
+
   // Install to Cursor
   if (options.target === 'cursor' || options.target === 'all') {
-    const cursorPath = options.cursorPath || defaultPaths.cursorSkills;
+    const cursorPath = defaultPaths.cursor;
     results.cursor = await installToCursor(skills, {
       outputDir: cursorPath,
       useSymlinks: options.symlink,
       flat: true, // Use flat structure for easier discovery
     });
-    
+
     // Generate manifest
     await generateCursorManifest(skills, join(cursorPath, 'skene-skills.json'));
+
+    // Verify installation
+    results.cursor.verified = await verifyCursorInstallation(cursorPath, skills);
   }
-  
+
   // Install to Claude
   if (options.target === 'claude' || options.target === 'all') {
-    const claudePath = options.claudePath || defaultPaths.claudeSkills;
+    const claudePath = defaultPaths.claude;
     results.claude = await installToClaude(skills, {
       outputDir: claudePath,
       useSymlinks: options.symlink,
     });
-    
+
     // Generate manifest
     await generateClaudeManifest(skills, join(claudePath, 'skene-skills.json'));
+
+    // Verify installation
+    results.claude.verified = await verifyClaudeInstallation(claudePath, skills);
+
+    // Create installation marker
+    await createInstallationMarker(claudePath, skills.length);
   }
-  
+
   // Register with SkeneFlow
   if (options.target === 'skeneflow' || options.target === 'all') {
     // SkeneFlow uses the native skill format, so we just need to ensure
@@ -201,7 +220,7 @@ export async function installAll(
     results.skeneflow = { registered: skills.length };
     console.log(`Registered ${skills.length} skills with SkeneFlow`);
   }
-  
+
   return results;
 }
 
@@ -215,15 +234,15 @@ export async function uninstall(
     claudePath?: string;
   } = {}
 ): Promise<void> {
-  const defaultPaths = getDefaultPaths();
-  
+  const defaultPaths = getDefaultPaths(options);
+
   if (target === 'cursor' || target === 'all') {
-    const cursorPath = options.cursorPath || defaultPaths.cursorSkills;
+    const cursorPath = defaultPaths.cursor;
     try {
       // Remove skene-skills files (those with skene- prefix or from manifest)
       const manifestPath = join(cursorPath, 'skene-skills.json');
       const manifest = JSON.parse(await readFile(manifestPath, 'utf-8'));
-      
+
       for (const rule of manifest.rules) {
         const filePath = join(cursorPath, rule.file);
         try {
@@ -232,20 +251,20 @@ export async function uninstall(
           // File doesn't exist
         }
       }
-      
+
       await rm(manifestPath);
       console.log(`Uninstalled Cursor skills from ${cursorPath}`);
     } catch {
       console.log(`No Cursor skills to uninstall at ${cursorPath}`);
     }
   }
-  
+
   if (target === 'claude' || target === 'all') {
-    const claudePath = options.claudePath || defaultPaths.claudeSkills;
+    const claudePath = defaultPaths.claude;
     try {
       const manifestPath = join(claudePath, 'skene-skills.json');
       const manifest = JSON.parse(await readFile(manifestPath, 'utf-8'));
-      
+
       for (const skill of manifest.skills) {
         const dirPath = join(claudePath, skill.domain, skill.name);
         try {
@@ -254,11 +273,121 @@ export async function uninstall(
           // Directory doesn't exist
         }
       }
-      
+
       await rm(manifestPath);
+
+      // Remove installation marker
+      try {
+        await rm(join(claudePath, '.skene-installation'));
+      } catch {
+        // Marker doesn't exist
+      }
+
       console.log(`Uninstalled Claude skills from ${claudePath}`);
     } catch {
       console.log(`No Claude skills to uninstall at ${claudePath}`);
     }
+  }
+}
+
+/**
+ * Verify Claude installation integrity
+ */
+async function verifyClaudeInstallation(
+  installPath: string,
+  skills: LoadedSkill[]
+): Promise<boolean> {
+  const manifestPath = join(installPath, 'skene-skills.json');
+
+  try {
+    // Check if manifest exists and is valid
+    const manifestContent = await readFile(manifestPath, 'utf-8');
+    const manifest = JSON.parse(manifestContent);
+
+    // Check if all skill files exist
+    let missingFiles = 0;
+    for (const skill of manifest.skills) {
+      // Use the path from manifest, or fallback to old format (domain/name) for backward compatibility
+      const skillPath = skill.path
+        ? join(installPath, skill.path)
+        : join(installPath, skill.domain, skill.name, 'SKILL.md');
+      try {
+        await stat(skillPath);
+      } catch {
+        missingFiles++;
+      }
+    }
+
+    if (missingFiles > 0) {
+      console.error(`⚠️  Warning: ${missingFiles} skill files are missing`);
+      return false;
+    }
+
+    console.log('✅ Installation verified');
+    return true;
+  } catch (error) {
+    console.error('⚠️  Warning: Could not verify installation:', (error as Error).message);
+    return false;
+  }
+}
+
+/**
+ * Verify Cursor installation integrity
+ */
+async function verifyCursorInstallation(
+  installPath: string,
+  skills: LoadedSkill[]
+): Promise<boolean> {
+  const manifestPath = join(installPath, 'skene-skills.json');
+
+  try {
+    // Check if manifest exists and is valid
+    const manifestContent = await readFile(manifestPath, 'utf-8');
+    const manifest = JSON.parse(manifestContent);
+
+    // Check if all rule files exist
+    let missingFiles = 0;
+    for (const rule of manifest.rules) {
+      const rulePath = join(installPath, rule.file);
+      try {
+        await stat(rulePath);
+      } catch {
+        missingFiles++;
+      }
+    }
+
+    if (missingFiles > 0) {
+      console.error(`⚠️  Warning: ${missingFiles} rule files are missing`);
+      return false;
+    }
+
+    console.log('✅ Installation verified');
+    return true;
+  } catch (error) {
+    console.error('⚠️  Warning: Could not verify installation:', (error as Error).message);
+    return false;
+  }
+}
+
+/**
+ * Create installation marker file
+ */
+async function createInstallationMarker(
+  installPath: string,
+  skillCount: number
+): Promise<void> {
+  try {
+    const marker = {
+      installed: new Date().toISOString(),
+      version: '1.0.0',
+      platform: process.platform,
+      skillCount,
+    };
+
+    const markerPath = join(installPath, '.skene-installation');
+    await writeFile(markerPath, JSON.stringify(marker, null, 2));
+  } catch (error) {
+    // Non-critical error, just log it
+    console.error('Warning: Could not create installation marker:', (error as Error).message);
   }
 }

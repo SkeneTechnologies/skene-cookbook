@@ -5,76 +5,204 @@
   "description": "Comprehensive PLG audit synthesizing all frameworks from Dave Boyce's FREEMIUM book. Evaluates First Impact, Growth Teams, Pricing, Loops, Retention, Multi-GTM, and more.",
   "domain": "plg_frameworks",
   "author": "Dave Boyce (FREEMIUM, Stanford University Press)",
-  
   "tools": [
-    { "name": "analytics.funnel", "required": true },
-    { "name": "analytics.cohort", "required": true },
-    { "name": "analytics.get_usage", "required": true },
-    { "name": "stripe.get_revenue_metrics", "required": true },
-    { "name": "lifecycle.get_segment", "required": false },
-    { "name": "crm.get_pipeline", "required": false },
-    { "name": "ai.analyze", "required": false }
+    {
+      "name": "analytics.funnel",
+      "required": true
+    },
+    {
+      "name": "analytics.cohort",
+      "required": true
+    },
+    {
+      "name": "analytics.get_usage",
+      "required": true
+    },
+    {
+      "name": "stripe.get_revenue_metrics",
+      "required": true
+    },
+    {
+      "name": "lifecycle.get_segment",
+      "required": false
+    },
+    {
+      "name": "crm.get_pipeline",
+      "required": false
+    },
+    {
+      "name": "ai.analyze",
+      "required": false
+    }
   ],
-  
-  "exitStates": ["audit_complete", "critical_gaps_found", "plg_healthy", "plg_transformation_needed"],
-  
+  "exitStates": [
+    "audit_complete",
+    "critical_gaps_found",
+    "plg_healthy",
+    "plg_transformation_needed"
+  ],
   "inputSchema": {
     "type": "object",
     "properties": {
       "companyContext": {
         "type": "object",
         "properties": {
-          "name": { "type": "string" },
-          "arr": { "type": "number" },
-          "stage": { "type": "string", "enum": ["early", "growth", "scale", "enterprise"] },
-          "currentGtm": { "type": "array", "items": { "type": "string" } }
+          "name": {
+            "type": "string"
+          },
+          "arr": {
+            "type": "number"
+          },
+          "stage": {
+            "type": "string",
+            "enum": [
+              "early",
+              "growth",
+              "scale",
+              "enterprise"
+            ]
+          },
+          "currentGtm": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
         }
       },
       "auditFocus": {
         "type": "array",
-        "items": { 
-          "type": "string", 
-          "enum": ["first_impact", "growth_teams", "bowtie", "pricing", "loops", "retention", "pls", "multi_gtm", "all"]
+        "items": {
+          "type": "string",
+          "enum": [
+            "first_impact",
+            "growth_teams",
+            "bowtie",
+            "pricing",
+            "loops",
+            "retention",
+            "pls",
+            "multi_gtm",
+            "all"
+          ]
         }
       }
     },
-    "required": ["companyContext"]
+    "required": [
+      "companyContext"
+    ]
   },
-  
   "outputSchema": {
     "type": "object",
     "properties": {
-      "overallScore": { "type": "number", "description": "Overall PLG maturity score (0-100)" },
+      "overallScore": {
+        "type": "number",
+        "description": "Overall PLG maturity score (0-100)"
+      },
       "dimensionScores": {
         "type": "object",
         "properties": {
-          "firstImpact": { "type": "number" },
-          "growthTeams": { "type": "number" },
-          "bowtie": { "type": "number" },
-          "pricing": { "type": "number" },
-          "loops": { "type": "number" },
-          "retention": { "type": "number" },
-          "productLedSales": { "type": "number" },
-          "multiGtm": { "type": "number" }
+          "firstImpact": {
+            "type": "number"
+          },
+          "growthTeams": {
+            "type": "number"
+          },
+          "bowtie": {
+            "type": "number"
+          },
+          "pricing": {
+            "type": "number"
+          },
+          "loops": {
+            "type": "number"
+          },
+          "retention": {
+            "type": "number"
+          },
+          "productLedSales": {
+            "type": "number"
+          },
+          "multiGtm": {
+            "type": "number"
+          }
         }
       },
-      "criticalGaps": { "type": "array", "items": { "type": "string" } },
-      "quickWins": { "type": "array", "items": { "type": "string" } },
-      "strategicInitiatives": { "type": "array", "items": { "type": "string" } }
+      "criticalGaps": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "quickWins": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "strategicInitiatives": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
     }
   },
-  
   "metrics": {
     "primary": "plg_maturity_score",
-    "secondary": ["first_impact_rate", "activation_rate", "dau_mau", "free_to_paid", "nrr"],
+    "secondary": [
+      "first_impact_rate",
+      "activation_rate",
+      "dau_mau",
+      "free_to_paid",
+      "nrr"
+    ],
     "benchmarks": {
       "excellent": "PLG Maturity > 80",
       "good": "PLG Maturity 60-80",
       "needs_improvement": "PLG Maturity < 60"
     }
   },
-  
-  "integrations": ["amplitude", "mixpanel", "stripe", "salesforce"],
+  "integrations": [
+    "amplitude",
+    "mixpanel",
+    "stripe",
+    "salesforce"
+  ],
   "temperature": 0.1,
-  "tags": ["plg", "audit", "comprehensive", "boyce", "freemium", "maturity-assessment", "strategy"]
+  "tags": [
+    "plg",
+    "audit",
+    "comprehensive",
+    "boyce",
+    "freemium",
+    "maturity-assessment",
+    "strategy"
+  ],
+  "security_controls": {
+    "execution_environment": {
+      "type": "sandboxed_container",
+      "resource_limits": {
+        "cpu_cores": 1,
+        "memory_mb": 512,
+        "timeout_seconds": 30,
+        "disk_mb": 100
+      },
+      "security": {
+        "network_access": false,
+        "filesystem": "read_only",
+        "user": "non_root",
+        "allowed_commands": [
+          "node",
+          "python3",
+          "npm"
+        ],
+        "blocked_syscalls": [
+          "exec",
+          "fork",
+          "kill"
+        ]
+      }
+    }
+  }
 }

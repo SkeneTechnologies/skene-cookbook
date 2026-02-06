@@ -2,7 +2,7 @@
   "id": "marketing_free_tool_strategy",
   "version": "1.0.0",
   "name": "free-tool-strategy",
-  "description": "When the user wants to plan, evaluate, or build a free tool for marketing purposes — lead generation, SEO value, or brand awareness. Also use when the user mentions \"engineering as marketing,\" \"free tool,\" \"marketing tool,\" \"calculator,\" \"generator,\" \"interactive tool,\" \"lead gen tool,\" \"build a tool for leads,\" or \"free resource.\" This skill bridges engineering and marketing — useful for founders and technical marketers.",
+  "description": "When the user wants to plan, evaluate, or build a free tool for marketing purposes \u2014 lead generation, SEO value, or brand awareness. Also use when the user mentions \"engineering as marketing,\" \"free tool,\" \"marketing tool,\" \"calculator,\" \"generator,\" \"interactive tool,\" \"lead gen tool,\" \"build a tool for leads,\" or \"free resource.\" This skill bridges engineering and marketing \u2014 useful for founders and technical marketers.",
   "domain": "marketing",
   "category": "strategy",
   "source": "skene-marketing",
@@ -46,6 +46,23 @@
           "required": false
         }
       ]
+    }
+  },
+  "security_controls": {
+    "payment_controls": {
+      "preview_mode": true,
+      "per_transaction_approval": true,
+      "amount_limits": {
+        "max_per_transaction": 50000,
+        "daily_limit": 200000,
+        "additional_approval_threshold": 25000
+      },
+      "rollback": {
+        "enabled": true,
+        "window_seconds": 3600
+      },
+      "two_phase_commit": true,
+      "audit_logging": "detailed"
     }
   }
 }

@@ -2,57 +2,131 @@
   "id": "boyce_plg_pricing_architect",
   "version": "1.0.0",
   "name": "PLG Pricing Architect",
-  "description": "Designs PLG-native pricing with Free→Pro→Team→Enterprise tiers. Based on Dave Boyce's FREEMIUM framework (Chapter 10): Price according to what the customer values, not arbitrary units.",
+  "description": "Designs PLG-native pricing with Free\u2192Pro\u2192Team\u2192Enterprise tiers. Based on Dave Boyce's FREEMIUM framework (Chapter 10): Price according to what the customer values, not arbitrary units.",
   "domain": "plg_frameworks",
   "author": "Dave Boyce (FREEMIUM, Stanford University Press)",
-  
   "tools": [
-    { "name": "stripe.get_pricing", "required": true },
-    { "name": "stripe.get_revenue_metrics", "required": true },
-    { "name": "analytics.get_usage", "required": true },
-    { "name": "analytics.cohort", "required": false },
-    { "name": "ai.analyze", "required": false }
+    {
+      "name": "stripe.get_pricing",
+      "required": true
+    },
+    {
+      "name": "stripe.get_revenue_metrics",
+      "required": true
+    },
+    {
+      "name": "analytics.get_usage",
+      "required": true
+    },
+    {
+      "name": "analytics.cohort",
+      "required": false
+    },
+    {
+      "name": "ai.analyze",
+      "required": false
+    }
   ],
-  
-  "exitStates": ["pricing_recommendation_ready", "pricing_experiment_designed", "enterprise_pricing_needed", "insufficient_data"],
-  
+  "exitStates": [
+    "pricing_recommendation_ready",
+    "pricing_experiment_designed",
+    "enterprise_pricing_needed",
+    "insufficient_data"
+  ],
   "inputSchema": {
     "type": "object",
     "properties": {
       "currentPricing": {
         "type": "object",
         "properties": {
-          "tiers": { "type": "array", "items": { "type": "object" } },
-          "pricingMetric": { "type": "string" },
-          "conversionRate": { "type": "number" }
+          "tiers": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "pricingMetric": {
+            "type": "string"
+          },
+          "conversionRate": {
+            "type": "number"
+          }
         }
       },
-      "productType": { "type": "string" },
-      "targetSegments": { "type": "array", "items": { "type": "string" } }
+      "productType": {
+        "type": "string"
+      },
+      "targetSegments": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
     }
   },
-  
   "outputSchema": {
     "type": "object",
     "properties": {
-      "recommendedTiers": { "type": "array", "items": { "type": "object" } },
-      "pricingMetric": { "type": "string" },
-      "valueAlignment": { "type": "number" },
-      "projectedImpact": { "type": "object" }
+      "recommendedTiers": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "pricingMetric": {
+        "type": "string"
+      },
+      "valueAlignment": {
+        "type": "number"
+      },
+      "projectedImpact": {
+        "type": "object"
+      }
     }
   },
-  
   "metrics": {
     "primary": "free_to_paid_conversion",
-    "secondary": ["arpu", "expansion_rate", "pricing_clarity_score"],
+    "secondary": [
+      "arpu",
+      "expansion_rate",
+      "pricing_clarity_score"
+    ],
     "benchmarks": {
       "excellent": "Conversion > 5%, ARPU growth > 20% YoY",
       "good": "Conversion 3-5%, ARPU growth 10-20% YoY",
       "needs_improvement": "Conversion < 3%, ARPU flat"
     }
   },
-  
-  "integrations": ["stripe", "chargebee", "recurly"],
+  "integrations": [
+    "stripe",
+    "chargebee",
+    "recurly"
+  ],
   "temperature": 0.2,
-  "tags": ["plg", "pricing", "monetization", "boyce", "freemium", "tiers", "enterprise"]
+  "tags": [
+    "plg",
+    "pricing",
+    "monetization",
+    "boyce",
+    "freemium",
+    "tiers",
+    "enterprise"
+  ],
+  "security_controls": {
+    "payment_controls": {
+      "preview_mode": true,
+      "per_transaction_approval": true,
+      "amount_limits": {
+        "max_per_transaction": 50000,
+        "daily_limit": 200000,
+        "additional_approval_threshold": 25000
+      },
+      "rollback": {
+        "enabled": true,
+        "window_seconds": 3600
+      },
+      "two_phase_commit": true,
+      "audit_logging": "detailed"
+    }
+  }
 }
