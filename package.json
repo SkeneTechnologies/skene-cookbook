@@ -41,12 +41,23 @@
     "skills-directory": "./bin/skills-directory.js"
   },
   "scripts": {
-    "postinstall": "echo '\n✅ Installed! Run: npx skills-directory install --target all\n'",
+    "postinstall": "node scripts/postinstall.js || true",
     "install:skills": "node bin/skills-directory.js install --target all",
     "install:cursor": "node bin/skills-directory.js install --target cursor",
     "install:claude": "node bin/skills-directory.js install --target claude"
   },
+  "peerDependenciesMeta": {
+    "zod": {
+      "optional": true
+    },
+    "react": {
+      "optional": true
+    }
+  },
   "dependencies": {
-    "tsx": "^4.21.0"
+    "tsx": "^4.21.0",
+    "chalk": "^5.3.0",
+    "boxen": "^7.1.1",
+    "terminal-size": "^4.0.0"
   }
 }

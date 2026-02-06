@@ -151,6 +151,38 @@ Cursor and Claude automatically pick the right skill based on your prompt. Chain
 
 ---
 
+## Troubleshooting
+
+### Peer Dependency Warnings
+
+If you see peer dependency warnings for `zod` or `react` when installing `@skene/skills-directory`, these are **safe to ignore**. They come from other packages in your project, not from skills-directory itself.
+
+**Why this happens:**
+- Skills Directory has no zod or react dependencies
+- Warnings appear when your project has version conflicts with other installed packages
+- Common culprits: AI SDK packages requiring zod v3 vs v4, or React 18 vs 19
+
+**To resolve (optional):**
+```bash
+# Check which packages have conflicts
+npm ls zod
+npm ls react
+
+# Update conflicting packages or use --legacy-peer-deps
+npm install --legacy-peer-deps
+```
+
+**Note:** These warnings don't affect Skills Directory functionality at all.
+
+### Post-install Message Not Showing
+
+If you don't see the "What can you build today?" message after installation:
+- The message may have been hidden by npm warnings
+- You can manually verify installation: `npx skills-directory install --target all`
+- Check that the package installed correctly: `npm ls @skene/skills-directory`
+
+---
+
 ## What's a Skill Chain?
 
 A **skill chain** is a sequence of skills connected together to automate an entire workflow:
