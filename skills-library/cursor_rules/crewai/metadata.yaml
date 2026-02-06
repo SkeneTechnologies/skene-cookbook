@@ -1,0 +1,28 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors:
+    - system
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.798123'
+    original_risk: Critical
+    changes:
+    - Flagged for manual review as potential false positive
+categorization:
+  job_function: design
+  jtbd:
+    job: Definitive guidelines for building robust, maintainable, and scalable multi-agent
+      systems using CrewAI, focusing on modularity, clear role definition, and disciplined
+      LLM configuration.
+    context: When working in cursor_rules domain
+    outcome: Successfully execute crewai
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

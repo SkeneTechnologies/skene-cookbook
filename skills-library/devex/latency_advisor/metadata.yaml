@@ -1,0 +1,30 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - change
+    - get
+    - analytics
+    - track
+    - monitor
+    - list
+    - format
+    - view
+categorization:
+  job_function: data
+  jtbd:
+    job: Analyzes API call patterns and provides recommendations to reduce latency
+      and improve response times.
+    context: When working in devex domain
+    outcome: Successfully execute Latency Optimization Advisor
+composability:
+  hints:
+  - 'can_chain_to: rate_limit_advisor'
+  - 'can_chain_to: integration_health'
+  - 'can_chain_to: code_sample_generator'
+  - has_structured_output

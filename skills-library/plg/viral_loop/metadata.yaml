@@ -1,0 +1,42 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - drop
+    - personal
+    - read
+    - get
+    - email
+    - analytics
+    - track
+    - monitor
+    - list
+    - format
+    - calculate
+    - show
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.727297'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: data
+  jtbd:
+    job: 'EXECUTION: Triggers and optimizes viral loops for organic user acquisition
+      through referrals, invites, and sharing. Uses lifecycle, analytics, and messaging
+      tools to orchestrate the viral flow. For strategy and design frameworks, see
+      plg_frameworks/viral-loops.'
+    context: When working in plg domain
+    outcome: Successfully execute Viral Loop Orchestrator
+composability:
+  hints:
+  - 'can_chain_to: referral_program'
+  - 'can_chain_to: advocacy'
+  - 'can_chain_to: community'
+  - has_structured_output

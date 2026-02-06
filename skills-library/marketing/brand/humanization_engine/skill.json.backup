@@ -1,0 +1,51 @@
+{
+  "id": "marketing_humanization_engine",
+  "version": "1.0.0",
+  "name": "humanization-engine",
+  "description": "Applies humanization rules to outbound messages to make them feel natural and authentic. Removes patterns that trigger spam filters or feel robotic. Use when polishing outreach messages before sending.",
+  "domain": "marketing",
+  "category": "brand",
+  "source": "skene-marketing",
+  "tools": [],
+  "exitStates": [
+    "idle",
+    "support"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {},
+    "required": []
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {}
+  },
+  "temperature": 0.3,
+  "tags": [
+    "marketing",
+    "brand",
+    "humanization-engine",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with humanization engine",
+        "polishing outreach messages before sending"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "resend.send_email",
+          "required": false
+        },
+        {
+          "name": "analytics.track_campaign",
+          "required": false
+        }
+      ]
+    }
+  }
+}

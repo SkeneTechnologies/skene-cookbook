@@ -1,0 +1,40 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - financial
+    risk_factors:
+    - drop
+    - financial
+    - update
+    - get
+    - alert
+    - analytics
+    - track
+    - monitor
+    - list
+    - format
+    - calculate
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.711422'
+    original_risk: Critical
+    changes:
+    - 'Added payment safeguards: preview, approval, limits, rollback'
+categorization:
+  job_function: finance
+  jtbd:
+    job: Tracks cash burn rate and runway to optimize financial sustainability and
+      planning
+    context: When working in finops domain
+    outcome: Successfully execute Burn Rate Monitor
+composability:
+  hints:
+  - 'can_chain_to: scenario_planner'
+  - 'can_chain_to: expense_allocator'
+  - 'can_chain_to: investor_metrics'
+  - 'can_chain_to: alert_triggered'
+  - has_structured_output

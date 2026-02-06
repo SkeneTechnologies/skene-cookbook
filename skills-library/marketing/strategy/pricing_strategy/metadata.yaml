@@ -1,0 +1,48 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - payment
+    - eval
+    - update
+    - change
+    - alter
+    - access
+    - read
+    - get
+    - email
+    - message
+    - analytics
+    - track
+    - log
+    - monitor
+    - list
+    - search
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.744475'
+    original_risk: Critical
+    changes:
+    - 'Added payment safeguards: preview, approval, limits, rollback'
+categorization:
+  job_function: marketing
+  jtbd:
+    job: '"When the user wants help with pricing decisions, packaging, or monetization
+      strategy. Also use when the user mentions ''pricing,'' ''pricing tiers,'' ''freemium,''
+      ''free trial,'' ''packaging,'' ''price increase,'' ''value metric,'' ''Van Westendorp,''
+      ''willingness to pay,'' or ''monetization.'' This skill covers pricing research,
+      tier structure, and packaging strategy."'
+    context: When working in marketing domain
+    outcome: Successfully execute pricing-strategy
+composability:
+  hints:
+  - 'can_chain_to: support'
+  - has_structured_output

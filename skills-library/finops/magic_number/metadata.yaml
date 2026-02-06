@@ -1,0 +1,36 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - update
+    - change
+    - get
+    - analytics
+    - track
+    - format
+    - calculate
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.861786'
+    original_risk: High
+    changes:
+    - Added validation, preview mode, and rollback for writes
+categorization:
+  job_function: data
+  jtbd:
+    job: Calculates SaaS Magic Number to measure sales and marketing efficiency for
+      investment decisions
+    context: When working in finops domain
+    outcome: Successfully execute Magic Number Calculator
+composability:
+  hints:
+  - 'can_chain_to: cac_calculator'
+  - 'can_chain_to: burn_rate_monitor'
+  - 'can_chain_to: investor_metrics'
+  - 'can_chain_to: scenario_planner'
+  - has_structured_output

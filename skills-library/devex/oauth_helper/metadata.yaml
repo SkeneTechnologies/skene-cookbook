@@ -1,0 +1,44 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - secret
+    - credential
+    - command
+    - change
+    - access
+    - authenticate
+    - authorize
+    - permission
+    - read
+    - get
+    - track
+    - log
+    - list
+    - format
+    - display
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.706732'
+    original_risk: Critical
+    changes:
+    - Migrated to OAuth authentication
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Guides developers through OAuth configuration with step-by-step setup, token
+      management, and troubleshooting.
+    context: When working in devex domain
+    outcome: Successfully execute OAuth Setup Helper
+composability:
+  hints:
+  - 'can_chain_to: api_onboarding'
+  - 'can_chain_to: error_explainer'
+  - 'can_chain_to: sandbox_manager'
+  - has_structured_output

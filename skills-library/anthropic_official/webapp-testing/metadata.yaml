@@ -1,0 +1,33 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - execute
+    - write
+    - read
+    - log
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.830088'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: operations
+  jtbd:
+    job: Toolkit for interacting with and testing local web applications using Playwright.
+      Supports verifying frontend functionality, debugging UI behavior, capturing
+      browser screenshots, and viewing browser logs.
+    context: When working in anthropic_official domain
+    outcome: Successfully execute webapp-testing
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

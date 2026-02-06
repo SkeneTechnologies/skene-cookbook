@@ -1,0 +1,44 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - eval
+    - write
+    - update
+    - access
+    - read
+    - get
+    - retrieve
+    - query
+    - email
+    - track
+    - monitor
+    - search
+    - filter
+    - sort
+    - format
+    - summarize
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.857218'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Query ClinicalTrials.gov via API v2. Search trials by condition, drug, location,
+      status, or phase. Retrieve trial details by NCT ID, export data, for clinical
+      research and patient matching.
+    context: When working in scientific domain
+    outcome: Successfully execute clinicaltrials-database
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

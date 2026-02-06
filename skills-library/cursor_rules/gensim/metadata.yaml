@@ -1,0 +1,21 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors: []
+categorization:
+  job_function: engineering
+  jtbd:
+    job: This guide outlines definitive best practices for using the gensim library,
+      focusing on reproducibility, efficient corpus construction, robust model training,
+      and maintainable code for NLP topic modeling tasks.
+    context: When working in cursor_rules domain
+    outcome: Successfully execute gensim
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

@@ -1,0 +1,44 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - delete
+    - system
+    - shell
+    - write
+    - update
+    - modify
+    - access
+    - read
+    - get
+    - list
+    - search
+    - filter
+    - format
+    - display
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.749586'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: engineering
+  jtbd:
+    job: '"Presentation creation, editing, and analysis. When Claude needs to work
+      with presentations (.pptx files) for: (1) Creating new presentations, (2) Modifying
+      or editing content, (3) Working with layouts, (4) Adding comments or speaker
+      notes, or any other presentation tasks"'
+    context: When working in anthropic_official domain
+    outcome: Successfully execute pptx
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

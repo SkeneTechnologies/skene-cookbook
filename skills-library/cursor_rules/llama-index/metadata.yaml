@@ -1,0 +1,21 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors:
+    - read
+categorization:
+  job_function: design
+  jtbd:
+    job: Definitive guidelines for building production-ready LlamaIndex applications,
+      emphasizing modularity, type safety, cloud services, and robust testing.
+    context: When working in cursor_rules domain
+    outcome: Successfully execute llama-index
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

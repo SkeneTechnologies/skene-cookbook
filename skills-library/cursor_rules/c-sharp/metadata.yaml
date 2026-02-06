@@ -1,0 +1,23 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors:
+    - format
+categorization:
+  job_function: engineering
+  jtbd:
+    job: This guide defines definitive C# coding standards and best practices for
+      our team, covering naming, formatting, modern language features, performance,
+      security, and error handling to ensure consistent, maintainable, and high-quality
+      code.
+    context: When working in cursor_rules domain
+    outcome: Successfully execute c-sharp
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

@@ -1,0 +1,50 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - delete
+    - remove
+    - financial
+    - execute
+    - system
+    - command
+    - modify
+    - change
+    - personal
+    - sensitive
+    - read
+    - get
+    - log
+    - list
+    - search
+    - sort
+    - format
+    - compute
+    - summarize
+    - display
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.739313'
+    original_risk: Critical
+    changes:
+    - 'Added payment safeguards: preview, approval, limits, rollback'
+categorization:
+  job_function: marketing
+  jtbd:
+    job: Intelligently organizes your files and folders across your computer by understanding
+      context, finding duplicates, suggesting better structures, and automating cleanup
+      tasks. Reduces cognitive load and keeps your digital workspace tidy without
+      manual effort.
+    context: When working in marketing domain
+    outcome: Successfully execute file-organizer
+composability:
+  hints:
+  - 'can_chain_to: support'
+  - has_structured_output

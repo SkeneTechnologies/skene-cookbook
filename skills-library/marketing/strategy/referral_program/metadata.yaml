@@ -1,0 +1,46 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - drop
+    - payment
+    - system
+    - write
+    - update
+    - access
+    - personal
+    - read
+    - get
+    - email
+    - analytics
+    - track
+    - log
+    - monitor
+    - list
+    - calculate
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.743637'
+    original_risk: Critical
+    changes:
+    - 'Added payment safeguards: preview, approval, limits, rollback'
+categorization:
+  job_function: marketing
+  jtbd:
+    job: '"When the user wants to create, optimize, or analyze a referral program,
+      affiliate program, or word-of-mouth strategy. Also use when the user mentions
+      ''referral,'' ''affiliate,'' ''ambassador,'' ''word of mouth,'' ''viral loop,''
+      ''refer a friend,'' or ''partner program.'' This skill covers program design,
+      incentive structure, and growth optimization."'
+    context: When working in marketing domain
+    outcome: Successfully execute referral-program
+composability:
+  hints:
+  - 'can_chain_to: support'
+  - has_structured_output

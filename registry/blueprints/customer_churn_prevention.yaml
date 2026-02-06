@@ -1,0 +1,23 @@
+id: workflow_customer_churn_prevention
+version: 1.0.0
+name: Proactive Churn Prevention
+description: Detect at-risk customers and intervene
+category: JTBD Workflow
+chain_sequence:
+- step_id: step_1
+  skill_id: cs_health_scoring
+  action: execute
+  timeout_seconds: 300
+- step_id: step_2
+  skill_id: cs_churn_prediction
+  action: execute
+  timeout_seconds: 300
+- step_id: step_3
+  skill_id: cs_nps_followup
+  action: execute
+  timeout_seconds: 300
+metadata:
+  author: Chain Architect
+  created_at: '2026-02-05T15:24:13.211498'
+  jtbd_pattern: customer_churn_prevention
+  auto_generated: true

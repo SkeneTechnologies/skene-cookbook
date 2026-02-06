@@ -1,0 +1,120 @@
+{
+  "id": "devex_webhook_tester",
+  "version": "1.0.0",
+  "name": "Webhook Testing Assistant",
+  "description": "Helps developers test, debug, and validate webhook integrations with payload inspection and delivery verification.",
+  "domain": "devex",
+  "tools": [
+    {
+      "name": "webhook.send_test",
+      "required": true
+    },
+    {
+      "name": "webhook.inspect_delivery",
+      "required": true
+    },
+    {
+      "name": "webhook.validate_signature",
+      "required": true
+    },
+    {
+      "name": "ai.diagnose_webhook",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "error_explainer",
+    "integration_health",
+    "sandbox_manager",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "webhook_url": {
+        "type": "string",
+        "description": "Endpoint to send webhook to"
+      },
+      "event_type": {
+        "type": "string",
+        "description": "Type of webhook event to test"
+      },
+      "payload_override": {
+        "type": "object",
+        "description": "Custom payload fields"
+      },
+      "action": {
+        "type": "string",
+        "enum": [
+          "send_test",
+          "inspect",
+          "validate",
+          "diagnose"
+        ],
+        "default": "send_test"
+      },
+      "developer_id": {
+        "type": "string",
+        "description": "Developer for context"
+      }
+    },
+    "required": [
+      "webhook_url"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "delivery_result": {
+        "type": "object"
+      },
+      "payload_sent": {
+        "type": "object"
+      },
+      "response_received": {
+        "type": "object"
+      },
+      "signature_valid": {
+        "type": "boolean"
+      },
+      "issues_found": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "recommendations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "metrics": {
+    "primary": "webhook_delivery_success_rate",
+    "benchmarks": {
+      "excellent": "> 99% successful deliveries",
+      "good": "95-99% successful deliveries",
+      "needs_improvement": "< 95% successful deliveries"
+    }
+  },
+  "temperature": 0.1,
+  "tags": [
+    "devex",
+    "webhooks",
+    "testing",
+    "integration",
+    "debugging",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Webhook Testing Assistant"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

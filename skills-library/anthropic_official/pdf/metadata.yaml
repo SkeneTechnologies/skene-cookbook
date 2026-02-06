@@ -1,0 +1,35 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - password
+    - command
+    - write
+    - read
+    - get
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.748811'
+    original_risk: Critical
+    changes:
+    - Migrated to OAuth authentication
+categorization:
+  job_function: data
+  jtbd:
+    job: Comprehensive PDF manipulation toolkit for extracting text and tables, creating
+      new PDFs, merging/splitting documents, and handling forms. When Claude needs
+      to fill in a PDF form or programmatically process, generate, or analyze PDF
+      documents at scale.
+    context: When working in anthropic_official domain
+    outcome: Successfully execute pdf
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

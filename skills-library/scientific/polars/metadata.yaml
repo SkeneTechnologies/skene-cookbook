@@ -1,0 +1,43 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - drop
+    - execute
+    - eval
+    - system
+    - write
+    - modify
+    - read
+    - get
+    - query
+    - list
+    - search
+    - filter
+    - format
+    - compute
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.795120'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: operations
+  jtbd:
+    job: Fast in-memory DataFrame library for datasets that fit in RAM. Use when pandas
+      is too slow but data still fits in memory. Lazy evaluation, parallel execution,
+      Apache Arrow backend. Best for 1-100GB datasets, ETL pipelines, faster pandas
+      replacement. For larger-than-RAM data use dask or vaex.
+    context: When working in scientific domain
+    outcome: Successfully execute polars
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

@@ -1,0 +1,20 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors: []
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Enforce modern, performant, and secure GraphQL schema design and operation
+      best practices for maintainable and scalable APIs.
+    context: When working in cursor_rules domain
+    outcome: Successfully execute graphql
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

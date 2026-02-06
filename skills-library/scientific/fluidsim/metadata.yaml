@@ -1,0 +1,38 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - execute
+    - system
+    - access
+    - read
+    - get
+    - list
+    - search
+    - format
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.848705'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Framework for computational fluid dynamics simulations using Python. Use
+      when running fluid dynamics simulations including Navier-Stokes equations (2D/3D),
+      shallow water equations, stratified flows, or when analyzing turbulence, vortex
+      dynamics, or geophysical flows. Provides pseudospectral methods with FFT, HPC
+      support, and comprehensive output analysis.
+    context: When working in scientific domain
+    outcome: Successfully execute fluidsim
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

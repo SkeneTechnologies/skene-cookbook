@@ -1,0 +1,44 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - delete
+    - execute
+    - change
+    - access
+    - get
+    - email
+    - message
+    - analytics
+    - track
+    - log
+    - list
+    - format
+    - calculate
+    - show
+    - view
+    - preview
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.729484'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: data
+  jtbd:
+    job: Manages reverse trial experiences where users start with full premium access
+      and gracefully transition to free tier, maximizing conversion through loss aversion.
+    context: When working in plg domain
+    outcome: Successfully execute Reverse Trial Orchestrator
+composability:
+  hints:
+  - 'can_chain_to: monetization'
+  - 'can_chain_to: activation'
+  - 'can_chain_to: churn_prevention'
+  - has_structured_output

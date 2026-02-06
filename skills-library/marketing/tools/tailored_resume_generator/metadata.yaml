@@ -1,0 +1,43 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - system
+    - modify
+    - change
+    - alter
+    - personal
+    - read
+    - get
+    - query
+    - email
+    - analytics
+    - track
+    - log
+    - list
+    - format
+    - compute
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.734331'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: marketing
+  jtbd:
+    job: Analyzes job descriptions and generates tailored resumes that highlight relevant
+      experience, skills, and achievements to maximize interview chances
+    context: When working in marketing domain
+    outcome: Successfully execute tailored-resume-generator
+composability:
+  hints:
+  - 'can_chain_to: support'
+  - has_structured_output

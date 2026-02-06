@@ -1,0 +1,39 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - update
+    - change
+    - get
+    - query
+    - analytics
+    - log
+    - list
+    - search
+    - filter
+    - format
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.861228'
+    original_risk: High
+    changes:
+    - Added validation, preview mode, and rollback for writes
+categorization:
+  job_function: customer_success
+  jtbd:
+    job: Identifies gaps in knowledge base coverage by analyzing support tickets and
+      failed search queries.
+    context: When working in support_ops domain
+    outcome: Successfully execute Knowledge Base Gap Finder
+composability:
+  hints:
+  - 'can_chain_to: resolution_suggester'
+  - 'can_chain_to: macros_optimizer'
+  - 'can_chain_to: csat_analyzer'
+  - has_structured_output

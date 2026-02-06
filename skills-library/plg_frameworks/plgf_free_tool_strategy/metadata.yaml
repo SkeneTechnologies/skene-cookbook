@@ -1,0 +1,45 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - eval
+    - write
+    - update
+    - change
+    - alter
+    - personal
+    - get
+    - email
+    - analytics
+    - track
+    - log
+    - list
+    - search
+    - format
+    - aggregate
+    - view
+    - preview
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.844407'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: marketing
+  jtbd:
+    job: Engineering-as-marketing framework for building free tools including tool
+      evaluation scorecard, ROI projection, SEO strategy, and conversion optimization.
+    context: When working in plg_frameworks domain
+    outcome: Successfully execute Free Tool Strategy Framework
+composability:
+  hints:
+  - 'can_chain_to: tool_development'
+  - 'can_chain_to: seo_optimization'
+  - 'can_chain_to: conversion_flow'
+  - has_structured_output

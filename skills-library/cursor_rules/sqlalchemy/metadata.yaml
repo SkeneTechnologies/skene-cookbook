@@ -1,0 +1,20 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors: []
+categorization:
+  job_function: data
+  jtbd:
+    job: This guide enforces modern SQLAlchemy 2.x best practices for Python applications,
+      ensuring type-safe, performant, and maintainable database interactions.
+    context: When working in cursor_rules domain
+    outcome: Successfully execute sqlalchemy
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

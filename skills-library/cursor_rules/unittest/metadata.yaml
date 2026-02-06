@@ -1,0 +1,20 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors: []
+categorization:
+  job_function: hr
+  jtbd:
+    job: Definitive guidelines for writing robust, maintainable, and idiomatic `unittest`
+      tests in Python. Focuses on structure, naming, assertions, mocking, and performance.
+    context: When working in cursor_rules domain
+    outcome: Successfully execute unittest
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

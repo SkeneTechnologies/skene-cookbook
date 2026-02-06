@@ -1,0 +1,46 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - drop
+    - change
+    - access
+    - permission
+    - pii
+    - read
+    - get
+    - query
+    - email
+    - alert
+    - analytics
+    - log
+    - list
+    - filter
+    - format
+    - display
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.731224'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: customer_success
+  jtbd:
+    job: Creates and configures analytics dashboards based on business requirements,
+      automatically selecting appropriate visualizations and metrics.
+    context: When working in data_ops domain
+    outcome: Successfully execute Dashboard Builder
+composability:
+  hints:
+  - 'can_chain_to: data_anomaly_alerter'
+  - 'can_chain_to: data_cohort_builder'
+  - has_structured_output

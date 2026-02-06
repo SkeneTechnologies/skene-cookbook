@@ -1,0 +1,221 @@
+name: Lint & Build Documentation
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate-schemas:
+    runs-on: ubuntu-latest
+    name: Validate JSON/YAML Schemas
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pyyaml jsonschema
+
+      - name: Validate skill.json files
+        run: |
+          python scripts/validate_schemas.py --type skills
+
+      - name: Validate metadata.yaml files
+        run: |
+          python scripts/validate_schemas.py --type metadata
+
+      - name: Validate workflow blueprints
+        run: |
+          python scripts/validate_schemas.py --type workflows
+
+  build-docs:
+    runs-on: ubuntu-latest
+    name: Build Documentation
+    needs: validate-schemas
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pyyaml
+
+      - name: Generate documentation
+        run: |
+          python scripts/generate_docs.py
+
+      - name: Check for documentation changes
+        run: |
+          git diff --exit-code docs/ || echo "Documentation updated"
+
+      - name: Upload documentation artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: generated-docs
+          path: docs/
+
+  security-scan:
+    runs-on: ubuntu-latest
+    name: Security Analysis
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pyyaml
+
+      - name: Run security analysis
+        run: |
+          python scripts/analyze_skills.py --action analyze
+
+      - name: Check for Critical risks
+        run: |
+          python -c "
+          import json
+          with open('registry/job_functions/index.json', 'r') as f:
+              data = json.load(f)
+
+          critical = 0
+          for func, skills in data.items():
+              for skill in skills:
+                  if skill['risk_level'] == 'Critical':
+                      critical += 1
+
+          print(f'Critical risk skills: {critical}')
+          if critical > 0:
+              print('⚠️  Warning: Critical risk skills detected')
+              exit(1)
+          else:
+              print('✅ No critical risk skills')
+          "
+
+      - name: Upload security report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: security-report
+          path: reports/security_analysis.md
+
+  test:
+    runs-on: ubuntu-latest
+    name: Run Tests & Coverage
+    needs: validate-schemas
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements-test.txt
+
+      - name: Run unit tests
+        run: |
+          pytest tests/unit -v --cov=scripts --cov=. --cov-report=xml --cov-report=term-missing --cov-report=html -m "not slow"
+
+      - name: Run integration tests
+        run: |
+          pytest tests/integration -v --tb=short -m "not slow"
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          file: ./coverage.xml
+          flags: unittests
+          fail_ci_if_error: false
+
+      - name: Check coverage threshold
+        run: |
+          python -c "
+          import xml.etree.ElementTree as ET
+          tree = ET.parse('coverage.xml')
+          coverage = float(tree.getroot().attrib['line-rate']) * 100
+          print(f'Coverage: {coverage:.2f}%')
+          if coverage < 80:
+              print('⚠️  Warning: Coverage below 80%')
+              exit(1)
+          else:
+              print('✅ Coverage meets threshold')
+          "
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-results
+          path: htmlcov/
+
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: coverage-report
+          path: coverage.xml
+
+  update-badges:
+    runs-on: ubuntu-latest
+    name: Update README Badges
+    needs: [validate-schemas, security-scan, test]
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Calculate badge values
+        id: badges
+        run: |
+          python -c "
+          import json
+          with open('registry/job_functions/index.json', 'r') as f:
+              data = json.load(f)
+
+          total = sum(len(skills) for skills in data.values())
+          critical = sum(1 for func, skills in data.items() for skill in skills if skill['risk_level'] == 'Critical')
+
+          security_coverage = ((total - critical) / total * 100) if total else 0
+
+          print(f'::set-output name=total_skills::{total}')
+          print(f'::set-output name=security_coverage::{security_coverage:.1f}')
+          "
+
+      - name: Comment badge values
+        run: |
+          echo "Total Skills: ${{ steps.badges.outputs.total_skills }}"
+          echo "Security Coverage: ${{ steps.badges.outputs.security_coverage }}%"

@@ -1,0 +1,42 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - payment
+    - eval
+    - system
+    - update
+    - get
+    - email
+    - analytics
+    - track
+    - log
+    - list
+    - format
+    - calculate
+    - view
+    - preview
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.702804'
+    original_risk: Critical
+    changes:
+    - 'Added payment safeguards: preview, approval, limits, rollback'
+categorization:
+  job_function: sales
+  jtbd:
+    job: Manages partner referral programs including lead tracking, commission calculation,
+      payout processing, and referral analytics.
+    context: When working in ecosystem domain
+    outcome: Successfully execute Partner Referral Manager
+composability:
+  hints:
+  - 'can_chain_to: lead_qualification'
+  - 'can_chain_to: co_sell_trigger'
+  - 'can_chain_to: partner_influenced_revenue'
+  - has_structured_output

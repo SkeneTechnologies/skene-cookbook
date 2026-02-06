@@ -1,0 +1,40 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - delete
+    - remove
+    - secret
+    - system
+    - shell
+    - command
+    - update
+    - alter
+    - read
+    - get
+    - list
+    - sort
+    - format
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.716327'
+    original_risk: Critical
+    changes:
+    - Migrated to OAuth authentication
+categorization:
+  job_function: security
+  jtbd:
+    job: Configures Python projects with modern tooling (uv, ruff, ty). Use when creating
+      projects, writing standalone scripts, or migrating from pip/Poetry/mypy/black.
+    context: When working in security domain
+    outcome: Successfully execute modern-python
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

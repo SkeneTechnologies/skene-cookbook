@@ -1,0 +1,135 @@
+{
+  "id": "ai_content_generator",
+  "version": "1.0.0",
+  "name": "Dynamic Content Generator",
+  "description": "Generates personalized, context-aware content for emails, in-app messages, and marketing materials.",
+  "domain": "ai_ops",
+  "tools": [
+    {
+      "name": "ai.generate_content",
+      "required": true
+    },
+    {
+      "name": "ai.personalize",
+      "required": true
+    },
+    {
+      "name": "lifecycle.get_segment",
+      "required": true
+    },
+    {
+      "name": "messaging.send",
+      "required": false
+    },
+    {
+      "name": "analytics.track_content",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "content_generated",
+    "content_sent",
+    "requires_review",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "content_type": {
+        "type": "string",
+        "enum": [
+          "email",
+          "in_app",
+          "push",
+          "sms",
+          "social"
+        ]
+      },
+      "purpose": {
+        "type": "string",
+        "description": "Content goal (onboarding, activation, retention, etc.)"
+      },
+      "audience": {
+        "type": "object",
+        "description": "Target audience details"
+      },
+      "tone": {
+        "type": "string",
+        "enum": [
+          "professional",
+          "friendly",
+          "urgent",
+          "celebratory"
+        ]
+      },
+      "variables": {
+        "type": "object",
+        "description": "Dynamic variables to inject"
+      }
+    },
+    "required": [
+      "content_type",
+      "purpose"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "subject": {
+        "type": "string"
+      },
+      "body": {
+        "type": "string"
+      },
+      "cta": {
+        "type": "object"
+      },
+      "variants": {
+        "type": "array"
+      },
+      "personalization_applied": {
+        "type": "array"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "content_engagement_rate",
+    "benchmarks": {
+      "excellent": "> 25%",
+      "good": "15-25%",
+      "needs_improvement": "< 15%"
+    }
+  },
+  "temperature": 0.7,
+  "tags": [
+    "ai_ops",
+    "content",
+    "generation",
+    "personalization",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Dynamic Content Generator"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "ai.classify",
+          "required": false
+        },
+        {
+          "name": "ai.generate",
+          "required": false
+        },
+        {
+          "name": "ai.score_lead",
+          "required": false
+        }
+      ]
+    }
+  }
+}

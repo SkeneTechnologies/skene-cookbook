@@ -1,0 +1,122 @@
+{
+  "id": "finops_benchmark_comparator",
+  "version": "1.0.0",
+  "name": "Benchmark Comparator",
+  "description": "Compares company metrics against industry benchmarks and peer cohorts for strategic positioning",
+  "domain": "finops",
+  "tools": [
+    {
+      "name": "analytics.get_metrics",
+      "required": true
+    },
+    {
+      "name": "benchmarks.fetch",
+      "required": true
+    },
+    {
+      "name": "benchmarks.compare",
+      "required": true
+    },
+    {
+      "name": "ai.analyze_gaps",
+      "required": false
+    },
+    {
+      "name": "visualize.percentile_chart",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "investor_metrics",
+    "rule_of_40",
+    "scenario_planner",
+    "strategic_planning",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "period": {
+        "type": "string",
+        "description": "Reporting period (YYYY-MM or YYYY-QX)"
+      },
+      "benchmark_sources": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "default": [
+          "openview",
+          "bessemer",
+          "keybanc"
+        ]
+      },
+      "peer_criteria": {
+        "type": "object",
+        "properties": {
+          "arr_range": {
+            "type": "string"
+          },
+          "stage": {
+            "type": "string"
+          },
+          "industry": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "required": [
+      "period"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "overall_percentile": {
+        "type": "number"
+      },
+      "metric_percentiles": {
+        "type": "object"
+      },
+      "strengths": {
+        "type": "array"
+      },
+      "improvement_areas": {
+        "type": "array"
+      },
+      "peer_comparison": {
+        "type": "object"
+      },
+      "recommendations": {
+        "type": "array"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "overall_benchmark_percentile",
+    "benchmarks": {
+      "top_tier": "> 75th",
+      "solid": "50-75th",
+      "below_average": "< 50th"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "finops",
+    "benchmarking",
+    "competitive-analysis",
+    "strategic-planning",
+    "peer-comparison",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Benchmark Comparator"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

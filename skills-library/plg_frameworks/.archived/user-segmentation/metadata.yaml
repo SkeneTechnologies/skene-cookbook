@@ -1,0 +1,50 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - pii
+    risk_factors:
+    - drop
+    - payment
+    - eval
+    - update
+    - alter
+    - access
+    - personal
+    - read
+    - get
+    - email
+    - message
+    - analytics
+    - track
+    - log
+    - monitor
+    - list
+    - sort
+    - format
+    - calculate
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.769245'
+    original_risk: Critical
+    changes:
+    - 'Added payment safeguards: preview, approval, limits, rollback'
+categorization:
+  job_function: customer_success
+  jtbd:
+    job: When the user wants to segment users for personalized experiences -- including
+      behavioral cohorts, engagement scoring, churn risk scoring, or ICP refinement.
+      Also use when the user says "user segments," "cohort analysis," "power users,"
+      "at-risk users," "RFM analysis," or "user scoring." For product-led sales, see
+      product-led-sales. For retention, see retention-analysis.
+    context: When working in plg_frameworks domain
+    outcome: Successfully execute user-segmentation
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

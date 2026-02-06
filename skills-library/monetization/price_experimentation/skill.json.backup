@@ -1,0 +1,145 @@
+{
+  "id": "mon_price_experimentation",
+  "version": "1.0.0",
+  "name": "Price Experimentation Engine",
+  "description": "Designs, executes, and analyzes pricing experiments to optimize revenue",
+  "domain": "monetization",
+  "tools": [
+    {
+      "name": "stripe.create_price",
+      "required": true
+    },
+    {
+      "name": "stripe.get_subscription",
+      "required": true
+    },
+    {
+      "name": "analytics.ab_test",
+      "required": true
+    },
+    {
+      "name": "analytics.get_metrics",
+      "required": true
+    },
+    {
+      "name": "ai.statistical_significance",
+      "required": true
+    },
+    {
+      "name": "crm.segment_accounts",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "experiment_running",
+    "experiment_concluded",
+    "winner_deployed",
+    "rollback_initiated",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "experiment_type": {
+        "type": "string",
+        "enum": [
+          "price_point",
+          "packaging",
+          "discount",
+          "trial_length",
+          "value_metric"
+        ]
+      },
+      "hypothesis": {
+        "type": "string",
+        "description": "What we expect to prove"
+      },
+      "control": {
+        "type": "object",
+        "description": "Current pricing configuration"
+      },
+      "variants": {
+        "type": "array",
+        "description": "Test variants to compare"
+      },
+      "success_metric": {
+        "type": "string",
+        "default": "conversion_rate"
+      },
+      "min_sample_size": {
+        "type": "integer",
+        "default": 1000
+      }
+    },
+    "required": [
+      "experiment_type",
+      "hypothesis",
+      "variants"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "experiment_id": {
+        "type": "string"
+      },
+      "status": {
+        "type": "string"
+      },
+      "results": {
+        "type": "object",
+        "description": "Statistical results by variant"
+      },
+      "winner": {
+        "type": "string",
+        "description": "Winning variant if significant"
+      },
+      "recommendation": {
+        "type": "string"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "experiment_success_rate",
+    "benchmarks": {
+      "excellent": "> 40%",
+      "good": "20-40%",
+      "needs_improvement": "< 20%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "monetization",
+    "pricing",
+    "experimentation",
+    "ab-testing",
+    "optimization",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Price Experimentation Engine",
+        "pricing",
+        "revenue optimization"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "stripe.get_customer",
+          "required": true
+        },
+        {
+          "name": "stripe.list_subscriptions",
+          "required": false
+        },
+        {
+          "name": "stripe.create_checkout",
+          "required": false
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "id": "devex_integration_health",
+  "version": "1.0.0",
+  "name": "Integration Health Scorer",
+  "description": "Scores and monitors the health of developer integrations based on usage patterns, error rates, and best practices.",
+  "domain": "devex",
+  "tools": [
+    {
+      "name": "analytics.get_integration_metrics",
+      "required": true
+    },
+    {
+      "name": "ai.analyze_health",
+      "required": true
+    },
+    {
+      "name": "messaging.send_alert",
+      "required": false
+    },
+    {
+      "name": "docs.get_best_practices",
+      "required": true
+    }
+  ],
+  "exitStates": [
+    "error_explainer",
+    "rate_limit_advisor",
+    "support_deflector",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "developer_id": {
+        "type": "string",
+        "description": "Developer or integration to analyze"
+      },
+      "time_range": {
+        "type": "object",
+        "description": "Analysis period"
+      },
+      "include_recommendations": {
+        "type": "boolean",
+        "default": true
+      },
+      "alert_on_issues": {
+        "type": "boolean",
+        "default": false
+      }
+    },
+    "required": [
+      "developer_id"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "health_score": {
+        "type": "number"
+      },
+      "dimension_scores": {
+        "type": "object"
+      },
+      "issues": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "recommendations": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "trend": {
+        "type": "string"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "average_integration_health_score",
+    "benchmarks": {
+      "excellent": "> 90 health score",
+      "good": "70-90 health score",
+      "needs_improvement": "< 70 health score"
+    }
+  },
+  "temperature": 0.1,
+  "tags": [
+    "devex",
+    "health",
+    "monitoring",
+    "integration",
+    "scoring",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Integration Health Scorer"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

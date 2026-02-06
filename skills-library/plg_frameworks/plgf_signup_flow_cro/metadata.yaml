@@ -1,0 +1,44 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - drop
+    - password
+    - system
+    - change
+    - alter
+    - access
+    - personal
+    - get
+    - email
+    - analytics
+    - monitor
+    - list
+    - format
+    - show
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.775136'
+    original_risk: Critical
+    changes:
+    - Migrated to OAuth authentication
+categorization:
+  job_function: data
+  jtbd:
+    job: Field-by-field optimization, social auth analysis, single vs multi-step flows,
+      and mobile optimization
+    context: When working in plg_frameworks domain
+    outcome: Successfully execute Signup Flow CRO
+composability:
+  hints:
+  - 'can_chain_to: optimization_identified'
+  - 'can_chain_to: ab_test_launched'
+  - 'can_chain_to: flow_optimized'
+  - 'can_chain_to: needs_development'
+  - has_structured_output

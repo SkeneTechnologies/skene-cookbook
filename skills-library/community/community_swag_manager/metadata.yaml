@@ -1,0 +1,40 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - eval
+    - access
+    - get
+    - email
+    - notification
+    - alert
+    - message
+    - analytics
+    - track
+    - list
+    - format
+    - calculate
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.833740'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: data
+  jtbd:
+    job: Manages community swag inventory, distribution, and fulfillment for events,
+      rewards, and recognition programs.
+    context: When working in community domain
+    outcome: Successfully execute Swag Distribution Manager
+composability:
+  hints:
+  - 'can_chain_to: event_manager'
+  - 'can_chain_to: ambassador_program'
+  - 'can_chain_to: champion_identifier'
+  - has_structured_output

@@ -1,0 +1,47 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - eval
+    - system
+    - write
+    - update
+    - change
+    - read
+    - get
+    - query
+    - analytics
+    - track
+    - log
+    - monitor
+    - list
+    - search
+    - format
+    - aggregate
+    - display
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.827669'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: marketing
+  jtbd:
+    job: When the user wants to add, fix, or optimize schema markup and structured
+      data on their site. Also use when the user mentions "schema markup," "structured
+      data," "JSON-LD," "rich snippets," "schema.org," "FAQ schema," "product schema,"
+      "review schema," or "breadcrumb schema." For broader SEO issues, see seo-audit.
+    context: When working in marketing domain
+    outcome: Successfully execute schema-markup
+composability:
+  hints:
+  - 'can_chain_to: support'
+  - has_structured_output

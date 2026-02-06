@@ -1,0 +1,119 @@
+{
+  "id": "elg_partner_tier_manager",
+  "version": "1.0.0",
+  "name": "Partner Tier Manager",
+  "description": "Manages partner tier classifications, evaluates tier progression, and tracks tier-based benefits and requirements.",
+  "domain": "ecosystem",
+  "tools": [
+    {
+      "name": "partner.get",
+      "required": true
+    },
+    {
+      "name": "partner.get_performance",
+      "required": true
+    },
+    {
+      "name": "partner.update_tier",
+      "required": true
+    },
+    {
+      "name": "partner.get_tier_requirements",
+      "required": true
+    },
+    {
+      "name": "analytics.get_metrics",
+      "required": false
+    },
+    {
+      "name": "messaging.send_email",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "channel_enablement",
+    "deal_registration",
+    "mdf_tracker",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "partnerId": {
+        "type": "string",
+        "description": "Partner to evaluate"
+      },
+      "action": {
+        "type": "string",
+        "enum": [
+          "evaluate",
+          "promote",
+          "demote",
+          "report"
+        ]
+      },
+      "evaluationPeriod": {
+        "type": "string",
+        "description": "Period for evaluation"
+      }
+    },
+    "required": [
+      "partnerId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "current_tier": {
+        "type": "string"
+      },
+      "tier_score": {
+        "type": "number"
+      },
+      "qualification_status": {
+        "type": "object"
+      },
+      "next_tier_gap": {
+        "type": "object"
+      },
+      "benefits": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "recommendations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "metrics": {
+    "primary": "partner_tier_distribution",
+    "benchmarks": {
+      "excellent": "> 20% Gold+",
+      "good": "15-20% Gold+",
+      "needs_improvement": "< 15% Gold+"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "ecosystem",
+    "partner",
+    "tier",
+    "classification",
+    "benefits",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Partner Tier Manager"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

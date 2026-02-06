@@ -1,0 +1,22 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors: []
+categorization:
+  job_function: engineering
+  jtbd:
+    job: This guide provides opinionated, actionable best practices for writing robust,
+      performant, and maintainable Puppeteer scripts for web scraping, automation,
+      and testing. It emphasizes modern patterns like `page.locator()` and efficient
+      resource management.
+    context: When working in cursor_rules domain
+    outcome: Successfully execute puppeteer
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

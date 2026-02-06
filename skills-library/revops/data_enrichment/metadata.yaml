@@ -1,0 +1,45 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - pii
+    risk_factors:
+    - write
+    - update
+    - change
+    - personal
+    - get
+    - query
+    - email
+    - analytics
+    - track
+    - log
+    - list
+    - search
+    - filter
+    - format
+    - calculate
+    - view
+    - 'risky_tool: crm.update_records'
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.876131'
+    original_risk: High
+    changes:
+    - Applied field-level access control and tenant isolation
+categorization:
+  job_function: data
+  jtbd:
+    job: Automatically enriches lead, contact, and account data using multiple data
+      sources for improved targeting and personalization.
+    context: When working in revops domain
+    outcome: Successfully execute Data Enrichment Pipeline
+composability:
+  hints:
+  - 'can_chain_to: lead_qualification'
+  - 'can_chain_to: territory_planner'
+  - 'can_chain_to: lead_routing'
+  - has_structured_output

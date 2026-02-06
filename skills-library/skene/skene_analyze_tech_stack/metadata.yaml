@@ -1,0 +1,43 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - payment
+    - execute
+    - modify
+    - access
+    - read
+    - email
+    - analytics
+    - track
+    - log
+    - monitor
+    - list
+    - search
+    - format
+    - calculate
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.716658'
+    original_risk: Critical
+    changes:
+    - 'Added payment safeguards: preview, approval, limits, rollback'
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Detects technology stack including framework, language, database, and services
+      by scanning package files, configuration, and source code patterns
+    context: When working in skene domain
+    outcome: Successfully execute Tech Stack Analyzer
+composability:
+  hints:
+  - 'can_chain_to: analyze_growth_hubs'
+  - 'can_chain_to: analyze_features'
+  - has_structured_output

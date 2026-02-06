@@ -1,0 +1,21 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors: []
+categorization:
+  job_function: hr
+  jtbd:
+    job: This guide provides opinionated, actionable best practices for developing
+      high-performance, maintainable, and secure applications using Turbopack as the
+      default bundler in Next.js 16+.
+    context: When working in cursor_rules domain
+    outcome: Successfully execute turbopack
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

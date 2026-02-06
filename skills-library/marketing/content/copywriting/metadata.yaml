@@ -1,0 +1,48 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - write
+    - update
+    - alter
+    - access
+    - personal
+    - read
+    - get
+    - email
+    - message
+    - analytics
+    - log
+    - list
+    - search
+    - format
+    - show
+    - view
+    - preview
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.736642'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: marketing
+  jtbd:
+    job: "When the user wants to write, rewrite, or improve marketing copy for any\
+      \ page \u2014 including homepage, landing pages, pricing pages, feature pages,\
+      \ about pages, or product pages. Also use when the user says \"write copy for,\"\
+      \ \"improve this copy,\" \"rewrite this page,\" \"marketing copy,\" \"headline\
+      \ help,\" or \"CTA copy.\" For email copy, see email-sequence. For popup copy,\
+      \ see popup-cro."
+    context: When working in marketing domain
+    outcome: Successfully execute copywriting
+composability:
+  hints:
+  - 'can_chain_to: support'
+  - has_structured_output

@@ -1,0 +1,42 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - modify
+    - change
+    - sensitive
+    - get
+    - message
+    - analytics
+    - track
+    - log
+    - monitor
+    - list
+    - search
+    - format
+    - calculate
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.866116'
+    original_risk: High
+    changes:
+    - Applied field-level access control and tenant isolation
+categorization:
+  job_function: marketing
+  jtbd:
+    job: When the user wants to plan, design, or implement an A/B test or experiment.
+      Also use when the user mentions "A/B test," "split test," "experiment," "test
+      this change," "variant copy," "multivariate test," or "hypothesis." For tracking
+      implementation, see analytics-tracking.
+    context: When working in marketing domain
+    outcome: Successfully execute ab-test-setup
+composability:
+  hints:
+  - 'can_chain_to: support'
+  - has_structured_output

@@ -1,0 +1,40 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - execute
+    - update
+    - change
+    - get
+    - notification
+    - message
+    - analytics
+    - log
+    - monitor
+    - list
+    - format
+    - calculate
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.814138'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: data
+  jtbd:
+    job: Optimizes ticket distribution across agents and queues to balance workload
+      and maintain SLA compliance.
+    context: When working in support_ops domain
+    outcome: Successfully execute Queue Load Balancer
+composability:
+  hints:
+  - 'can_chain_to: sla_monitor'
+  - 'can_chain_to: ticket_triage'
+  - 'can_chain_to: escalation_predictor'
+  - has_structured_output

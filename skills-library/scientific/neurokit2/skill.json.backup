@@ -1,0 +1,33 @@
+{
+  "id": "scientific/neurokit2",
+  "version": "1.0.0",
+  "name": "neurokit2",
+  "description": "Comprehensive biosignal processing toolkit for analyzing physiological data including ECG, EEG, EDA, RSP, PPG, EMG, and EOG signals. Use this skill when processing cardiovascular signals, brain activity, electrodermal responses, respiratory patterns, muscle activity, or eye movements. Applicable for heart rate variability analysis, event-related potentials, complexity measures, autonomic nervous system assessment, psychophysiology research, and multi-modal physiological signal integration.",
+  "domain": "scientific",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "scientific",
+    "imported",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "license": "MIT license",
+      "triggers": [
+        "help with neurokit2",
+        "data analysis",
+        "research"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

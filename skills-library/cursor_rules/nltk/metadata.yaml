@@ -1,0 +1,21 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors: []
+categorization:
+  job_function: engineering
+  jtbd:
+    job: This guide provides definitive, actionable best practices for writing maintainable,
+      performant, and type-safe NLTK code in Python, emphasizing modern patterns and
+      avoiding common pitfalls.
+    context: When working in cursor_rules domain
+    outcome: Successfully execute nltk
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

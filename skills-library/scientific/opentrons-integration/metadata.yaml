@@ -1,0 +1,44 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - drop
+    - execute
+    - command
+    - write
+    - update
+    - access
+    - read
+    - get
+    - email
+    - track
+    - log
+    - list
+    - search
+    - display
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.783407'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Official Opentrons Protocol API for OT-2 and Flex robots. Use when writing
+      protocols specifically for Opentrons hardware with full access to Protocol API
+      v2 features. Best for production Opentrons protocols, official API compatibility.
+      For multi-vendor automation or broader equipment control use pylabrobot.
+    context: When working in scientific domain
+    outcome: Successfully execute opentrons-integration
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

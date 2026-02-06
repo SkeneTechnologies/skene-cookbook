@@ -1,0 +1,42 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - execute
+    - system
+    - write
+    - change
+    - alter
+    - read
+    - search
+    - filter
+    - format
+    - display
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.788903'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: operations
+  jtbd:
+    job: MATLAB and GNU Octave numerical computing for matrix operations, data analysis,
+      visualization, and scientific computing. Use when writing MATLAB/Octave scripts
+      for linear algebra, signal processing, image processing, differential equations,
+      optimization, statistics, or creating scientific visualizations. Also use when
+      the user needs help with MATLAB syntax, functions, or wants to convert between
+      MATLAB and Python code. Scripts can be executed with MATLAB or the open-source
+      GNU Octave interpreter.
+    context: When working in scientific domain
+    outcome: Successfully execute matlab
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

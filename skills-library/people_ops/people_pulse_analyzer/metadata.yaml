@@ -1,0 +1,44 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - drop
+    - change
+    - access
+    - get
+    - retrieve
+    - alert
+    - analytics
+    - track
+    - log
+    - monitor
+    - list
+    - filter
+    - format
+    - calculate
+    - aggregate
+    - show
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.747932'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: data
+  jtbd:
+    job: Analyzes employee pulse surveys, engagement data, and sentiment to surface
+      actionable insights and early warning signals.
+    context: When working in people_ops domain
+    outcome: Successfully execute Employee Pulse Analyzer
+composability:
+  hints:
+  - 'can_chain_to: people_perf_review_generator'
+  - 'can_chain_to: people_skill_gap_analyzer'
+  - 'can_chain_to: people_dei_tracker'
+  - has_structured_output

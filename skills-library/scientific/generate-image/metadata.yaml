@@ -1,0 +1,43 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - api_key
+    - system
+    - change
+    - read
+    - get
+    - message
+    - log
+    - list
+    - search
+    - sort
+    - format
+    - view
+    - preview
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.792312'
+    original_risk: Critical
+    changes:
+    - Migrated to OAuth authentication
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Generate or edit images using AI models (FLUX, Gemini). Use for general-purpose
+      image generation including photos, illustrations, artwork, visual assets, concept
+      art, and any image that is not a technical diagram or schematic. For flowcharts,
+      circuits, pathways, and technical diagrams, use the scientific-schematics skill
+      instead.
+    context: When working in scientific domain
+    outcome: Successfully execute generate-image
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

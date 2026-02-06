@@ -1,0 +1,44 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - eval
+    - system
+    - write
+    - alter
+    - access
+    - read
+    - fetch
+    - get
+    - log
+    - monitor
+    - search
+    - format
+    - summarize
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.855856'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: data
+  jtbd:
+    job: Structured hypothesis formulation from observations. Use when you have experimental
+      observations or data and need to formulate testable hypotheses with predictions,
+      propose mechanisms, and design experiments to test them. Follows scientific
+      method framework. For open-ended ideation use scientific-brainstorming; for
+      automated LLM-driven hypothesis testing on datasets use hypogenic.
+    context: When working in scientific domain
+    outcome: Successfully execute hypothesis-generation
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

@@ -1,0 +1,35 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - alter
+    - personal
+    - get
+    - log
+    - list
+    - search
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.865393'
+    original_risk: High
+    changes:
+    - Applied field-level access control and tenant isolation
+categorization:
+  job_function: marketing
+  jtbd:
+    job: Generates creative domain name ideas for your project and checks availability
+      across multiple TLDs (.com, .io, .dev, .ai, etc.). Saves hours of brainstorming
+      and manual checking.
+    context: When working in marketing domain
+    outcome: Successfully execute domain-name-brainstormer
+composability:
+  hints:
+  - 'can_chain_to: support'
+  - has_structured_output

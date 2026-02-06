@@ -1,0 +1,36 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - modify
+    - change
+    - read
+    - track
+    - log
+    - monitor
+    - search
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.878422'
+    original_risk: High
+    changes:
+    - Added validation, preview mode, and rollback for writes
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Deep learning framework (PyTorch Lightning). Organize PyTorch code into LightningModules,
+      configure Trainers for multi-GPU/TPU, implement data pipelines, callbacks, logging
+      (W&B, TensorBoard), distributed training (DDP, FSDP, DeepSpeed), for scalable
+      neural network training.
+    context: When working in scientific domain
+    outcome: Successfully execute pytorch-lightning
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

@@ -1,0 +1,40 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - financial
+    risk_factors:
+    - financial
+    - update
+    - change
+    - read
+    - get
+    - track
+    - log
+    - list
+    - filter
+    - format
+    - calculate
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.768583'
+    original_risk: Critical
+    changes:
+    - 'Added payment safeguards: preview, approval, limits, rollback'
+categorization:
+  job_function: finance
+  jtbd:
+    job: When the user wants to build quantitative growth models -- including loop-based
+      models, sensitivity analysis, revenue forecasting, or unit economics. Also use
+      when the user says "growth forecast," "revenue model," "CAC LTV," "growth projections,"
+      or "financial model." For growth loops, see growth-loops. For PLG metrics, see
+      plg-metrics.
+    context: When working in plg_frameworks domain
+    outcome: Successfully execute growth-modeling
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

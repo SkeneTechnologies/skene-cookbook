@@ -1,0 +1,41 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - payment
+    - password
+    - system
+    - read
+    - get
+    - query
+    - email
+    - notification
+    - analytics
+    - track
+    - log
+    - list
+    - format
+    - calculate
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.742823'
+    original_risk: Critical
+    changes:
+    - Migrated to OAuth authentication
+categorization:
+  job_function: marketing
+  jtbd:
+    job: Calculates and explains PLG readiness scores for codebases. Breaks down scoring
+      components, identifies strengths and gaps, and provides actionable recommendations
+      for improvement. Use when interpreting skene-growth analysis results.
+    context: When working in marketing domain
+    outcome: Successfully execute plg-score-explainer
+composability:
+  hints:
+  - 'can_chain_to: support'
+  - has_structured_output

@@ -1,0 +1,26 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors:
+    - read
+    - list
+    - format
+    - calculate
+    - aggregate
+    - view
+categorization:
+  job_function: data
+  jtbd:
+    job: Aggregates Voice of Customer data from all touchpoints into unified insights.
+    context: When working in product_ops domain
+    outcome: Successfully execute Voice of Customer Aggregation
+composability:
+  hints:
+  - 'can_chain_to: feedback_synthesis'
+  - 'can_chain_to: executive_report'
+  - 'can_chain_to: product_review'

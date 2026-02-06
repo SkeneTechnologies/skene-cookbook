@@ -1,0 +1,36 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - delete
+    - remove
+    - execute
+    - command
+    - change
+    - get
+    - list
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.760196'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Use when implementation is complete, all tests pass, and you need to decide
+      how to integrate the work - guides completion of development work by presenting
+      structured options for merge, PR, or cleanup
+    context: When working in superpowers domain
+    outcome: Successfully execute finishing-a-development-branch
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

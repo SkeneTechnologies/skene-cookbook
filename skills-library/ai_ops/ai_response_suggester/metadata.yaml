@@ -1,0 +1,37 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - alter
+    - personal
+    - get
+    - message
+    - search
+    - format
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.872815'
+    original_risk: High
+    changes:
+    - Applied field-level access control and tenant isolation
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Suggests contextual responses for support agents and sales reps based on
+      conversation context.
+    context: When working in ai_ops domain
+    outcome: Successfully execute Response Suggestion Engine
+composability:
+  hints:
+  - 'can_chain_to: suggestion_provided'
+  - 'can_chain_to: multiple_options'
+  - 'can_chain_to: escalate'
+  - 'can_chain_to: no_suggestion'
+  - has_structured_output

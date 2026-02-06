@@ -1,0 +1,43 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - execute
+    - eval
+    - alter
+    - read
+    - get
+    - query
+    - analytics
+    - track
+    - list
+    - format
+    - calculate
+    - show
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.763806'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: data
+  jtbd:
+    job: 'Optimizes the #1 critical event that drives compound growth in PLG. Based
+      on Dave Boyce''s FREEMIUM framework (Chapter 8): First Impact must be delivered
+      within minutes or hours to prevent user abandonment.'
+    context: When working in plg_frameworks domain
+    outcome: Successfully execute First Impact Optimizer
+composability:
+  hints:
+  - 'can_chain_to: first_impact_achieved'
+  - 'can_chain_to: activation_blocked'
+  - 'can_chain_to: support_needed'
+  - 'can_chain_to: churned'
+  - has_structured_output

@@ -1,0 +1,130 @@
+{
+  "id": "people_candidate_sourcer",
+  "version": "1.0.0",
+  "name": "Candidate Sourcing Assistant",
+  "description": "Assists recruiters in finding and engaging qualified candidates through intelligent sourcing, outreach generation, and pipeline management.",
+  "domain": "people_ops",
+  "tools": [
+    {
+      "name": "ats.get_job_requirements",
+      "required": true
+    },
+    {
+      "name": "sourcing.search_profiles",
+      "required": true
+    },
+    {
+      "name": "ai.match_candidates",
+      "required": true
+    },
+    {
+      "name": "ai.generate_outreach",
+      "required": true
+    },
+    {
+      "name": "ats.get_pipeline",
+      "required": false
+    },
+    {
+      "name": "ats.add_candidate",
+      "required": false
+    },
+    {
+      "name": "messaging.send_sequence",
+      "required": false
+    },
+    {
+      "name": "analytics.get_sourcing_metrics",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "people_comp_benchmarker",
+    "people_skill_gap_analyzer",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "jobId": {
+        "type": "string",
+        "description": "Job requisition identifier"
+      },
+      "sourcingPlatforms": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Platforms to search"
+      },
+      "targetCount": {
+        "type": "number",
+        "description": "Number of candidates to source"
+      },
+      "diversitySourcing": {
+        "type": "boolean",
+        "description": "Prioritize diversity in sourcing"
+      },
+      "experienceRange": {
+        "type": "object",
+        "properties": {
+          "min": {
+            "type": "number"
+          },
+          "max": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "required": [
+      "jobId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "candidates": {
+        "type": "array"
+      },
+      "matchScores": {
+        "type": "object"
+      },
+      "outreachDrafts": {
+        "type": "array"
+      },
+      "pipelineStatus": {
+        "type": "object"
+      },
+      "sourcingMetrics": {
+        "type": "object"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "qualified_candidates_sourced",
+    "benchmarks": {
+      "excellent": "> 30 per week",
+      "good": "20-30 per week",
+      "needs_improvement": "< 20 per week"
+    }
+  },
+  "temperature": 0.4,
+  "tags": [
+    "people_ops",
+    "recruiting",
+    "sourcing",
+    "talent_acquisition",
+    "outreach",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Candidate Sourcing Assistant"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

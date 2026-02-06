@@ -1,0 +1,34 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - system
+    - change
+    - get
+    - track
+    - monitor
+    - list
+    - format
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.810993'
+    original_risk: Critical
+    changes:
+    - Added validation, preview mode, and rollback for writes
+categorization:
+  job_function: sales
+  jtbd:
+    job: Manages marketplace listings and tracks integration-driven growth.
+    context: When working in ecosystem domain
+    outcome: Successfully execute Marketplace Integration Manager
+composability:
+  hints:
+  - 'can_chain_to: eql_scoring'
+  - 'can_chain_to: activation'
+  - 'can_chain_to: expansion_playbook'

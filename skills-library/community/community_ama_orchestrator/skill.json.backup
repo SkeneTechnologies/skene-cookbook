@@ -1,0 +1,124 @@
+{
+  "id": "community_ama_orchestrator",
+  "version": "1.0.0",
+  "name": "AMA Session Orchestrator",
+  "description": "Plans and manages Ask-Me-Anything sessions with product teams, executives, and community leaders.",
+  "domain": "community",
+  "tools": [
+    {
+      "name": "calendar.create_event",
+      "required": true
+    },
+    {
+      "name": "messaging.send_notification",
+      "required": true
+    },
+    {
+      "name": "ai.moderate",
+      "required": true
+    },
+    {
+      "name": "ai.summarize",
+      "required": true
+    },
+    {
+      "name": "analytics.track_event",
+      "required": true
+    },
+    {
+      "name": "rag.index",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "event_manager",
+    "content_curator",
+    "forum_moderator",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "amaHost": {
+        "type": "object",
+        "description": "Host details (name, role, bio)"
+      },
+      "topic": {
+        "type": "string",
+        "description": "AMA topic or theme"
+      },
+      "scheduledTime": {
+        "type": "string",
+        "format": "date-time",
+        "description": "AMA date and time"
+      },
+      "duration": {
+        "type": "number",
+        "description": "Duration in minutes"
+      },
+      "format": {
+        "type": "string",
+        "enum": [
+          "live",
+          "async",
+          "hybrid"
+        ],
+        "description": "AMA format"
+      },
+      "platform": {
+        "type": "string",
+        "description": "Platform (forum, discord, twitter)"
+      }
+    },
+    "required": [
+      "amaHost",
+      "topic",
+      "scheduledTime"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "amaId": {
+        "type": "string"
+      },
+      "questionsReceived": {
+        "type": "number"
+      },
+      "questionsAnswered": {
+        "type": "number"
+      },
+      "participants": {
+        "type": "number"
+      },
+      "summaryGenerated": {
+        "type": "boolean"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "question_answer_rate",
+    "benchmarks": {
+      "excellent": "> 80%",
+      "good": "60-80%",
+      "needs_improvement": "< 60%"
+    }
+  },
+  "temperature": 0.2,
+  "tags": [
+    "ama",
+    "engagement",
+    "q&a",
+    "executives",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with AMA Session Orchestrator"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

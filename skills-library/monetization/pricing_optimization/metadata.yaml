@@ -1,0 +1,24 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - financial
+    risk_factors:
+    - change
+    - monitor
+    - list
+    - format
+categorization:
+  job_function: sales
+  jtbd:
+    job: Analyzes pricing effectiveness and recommends optimizations for revenue growth.
+    context: When working in monetization domain
+    outcome: Successfully execute Pricing Optimization
+composability:
+  hints:
+  - 'can_chain_to: pricing_test'
+  - 'can_chain_to: tier_restructure'
+  - 'can_chain_to: value_metric_update'

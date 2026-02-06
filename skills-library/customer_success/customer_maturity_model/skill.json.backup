@@ -1,0 +1,138 @@
+{
+  "id": "cs_customer_maturity_model",
+  "version": "1.0.0",
+  "name": "Customer Maturity Assessor",
+  "description": "Assesses customer maturity across multiple dimensions to guide engagement strategies and identify growth opportunities.",
+  "domain": "customer_success",
+  "tools": [
+    {
+      "name": "analytics.feature_adoption",
+      "required": true
+    },
+    {
+      "name": "crm.get_account",
+      "required": true
+    },
+    {
+      "name": "analytics.query_events",
+      "required": true
+    },
+    {
+      "name": "crm.get_goals",
+      "required": false
+    },
+    {
+      "name": "feedback.get_surveys",
+      "required": false
+    },
+    {
+      "name": "crm.update_account",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "success_plan_generator",
+    "product_adoption_guidance",
+    "expansion_playbook",
+    "customer_journey_orchestrator",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "accountId": {
+        "type": "string",
+        "description": "Customer account identifier"
+      },
+      "maturityDimensions": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": [
+            "usage",
+            "governance",
+            "integration",
+            "innovation",
+            "value_realization"
+          ]
+        }
+      },
+      "includeRoadmap": {
+        "type": "boolean",
+        "default": true
+      }
+    },
+    "required": [
+      "accountId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "overallMaturity": {
+        "type": "string",
+        "enum": [
+          "initial",
+          "developing",
+          "established",
+          "optimizing",
+          "leading"
+        ]
+      },
+      "maturityScore": {
+        "type": "number"
+      },
+      "dimensionScores": {
+        "type": "object"
+      },
+      "maturityRoadmap": {
+        "type": "array"
+      },
+      "recommendations": {
+        "type": "array"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "maturity_progression_rate",
+    "benchmarks": {
+      "excellent": "> 80%",
+      "good": "60-80%",
+      "needs_improvement": "< 60%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "customer_success",
+    "maturity",
+    "assessment",
+    "growth",
+    "best_practices",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Customer Maturity Assessor",
+        "customer health"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "lifecycle.get_segment",
+          "required": true
+        },
+        {
+          "name": "analytics.get_cohort",
+          "required": false
+        },
+        {
+          "name": "crm.update_account",
+          "required": false
+        }
+      ]
+    }
+  }
+}

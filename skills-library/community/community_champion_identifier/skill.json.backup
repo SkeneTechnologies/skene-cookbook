@@ -1,0 +1,119 @@
+{
+  "id": "community_champion_identifier",
+  "version": "1.0.0",
+  "name": "Champion Identifier",
+  "description": "Finds and nurtures community champions based on engagement signals, activity patterns, and influence metrics.",
+  "domain": "community",
+  "tools": [
+    {
+      "name": "analytics.get_engagement",
+      "required": true
+    },
+    {
+      "name": "ai.score",
+      "required": true
+    },
+    {
+      "name": "crm.get_contact",
+      "required": false
+    },
+    {
+      "name": "crm.update_contact",
+      "required": false
+    },
+    {
+      "name": "messaging.send_email",
+      "required": false
+    },
+    {
+      "name": "analytics.track_event",
+      "required": true
+    }
+  ],
+  "exitStates": [
+    "ambassador_program",
+    "event_manager",
+    "case_study_finder",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "userId": {
+        "type": "string",
+        "description": "User ID to evaluate"
+      },
+      "timeRange": {
+        "type": "string",
+        "enum": [
+          "7d",
+          "30d",
+          "90d"
+        ],
+        "description": "Analysis time range"
+      },
+      "minEngagementScore": {
+        "type": "number",
+        "description": "Minimum engagement score threshold"
+      },
+      "communityPlatform": {
+        "type": "string",
+        "description": "Platform to analyze (forum, discord, slack)"
+      }
+    },
+    "required": [
+      "userId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "championScore": {
+        "type": "number"
+      },
+      "engagementMetrics": {
+        "type": "object"
+      },
+      "influenceIndicators": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "recommendedActions": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "nextBestState": {
+        "type": "string"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "champion_activation_rate",
+    "benchmarks": {
+      "excellent": "> 25%",
+      "good": "15-25%",
+      "needs_improvement": "< 15%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "champion",
+    "engagement",
+    "advocacy",
+    "identification",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Champion Identifier"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

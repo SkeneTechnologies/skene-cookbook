@@ -1,0 +1,136 @@
+{
+  "id": "ai_meeting_intelligence",
+  "version": "1.0.0",
+  "name": "Meeting Intelligence Agent",
+  "description": "Analyzes meeting recordings and transcripts to extract insights, action items, and deal intelligence.",
+  "domain": "ai_ops",
+  "tools": [
+    {
+      "name": "ai.transcribe",
+      "required": true
+    },
+    {
+      "name": "ai.summarize",
+      "required": true
+    },
+    {
+      "name": "ai.extract_actions",
+      "required": true
+    },
+    {
+      "name": "crm.update_deal",
+      "required": false
+    },
+    {
+      "name": "tasks.create",
+      "required": false
+    },
+    {
+      "name": "messaging.send_summary",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "summary_generated",
+    "actions_created",
+    "deal_updated",
+    "coaching_flagged",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "transcript": {
+        "type": "string",
+        "description": "Meeting transcript"
+      },
+      "recording_url": {
+        "type": "string",
+        "description": "URL to meeting recording"
+      },
+      "meeting_type": {
+        "type": "string",
+        "enum": [
+          "sales",
+          "support",
+          "internal",
+          "customer_success"
+        ]
+      },
+      "participants": {
+        "type": "array",
+        "description": "Meeting attendees"
+      },
+      "deal_id": {
+        "type": "string",
+        "description": "Associated deal ID"
+      }
+    },
+    "required": [
+      "transcript"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "summary": {
+        "type": "string"
+      },
+      "key_moments": {
+        "type": "array"
+      },
+      "action_items": {
+        "type": "array"
+      },
+      "sentiment": {
+        "type": "object"
+      },
+      "deal_signals": {
+        "type": "array"
+      },
+      "coaching_notes": {
+        "type": "array"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "action_item_accuracy",
+    "benchmarks": {
+      "excellent": "> 95%",
+      "good": "85-95%",
+      "needs_improvement": "< 85%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "ai_ops",
+    "meeting",
+    "intelligence",
+    "transcription",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Meeting Intelligence Agent"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "ai.classify",
+          "required": false
+        },
+        {
+          "name": "ai.generate",
+          "required": false
+        },
+        {
+          "name": "ai.score_lead",
+          "required": false
+        }
+      ]
+    }
+  }
+}

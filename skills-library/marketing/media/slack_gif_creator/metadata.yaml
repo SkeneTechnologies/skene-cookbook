@@ -1,0 +1,35 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - system
+    - update
+    - modify
+    - read
+    - get
+    - message
+    - calculate
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.828939'
+    original_risk: Critical
+    changes:
+    - Added validation, preview mode, and rollback for writes
+categorization:
+  job_function: marketing
+  jtbd:
+    job: Toolkit for creating animated GIFs optimized for Slack, with validators for
+      size constraints and composable animation primitives. This skill applies when
+      users request animated GIFs or emoji animations for Slack from descriptions
+      like "make me a GIF for Slack of X doing Y".
+    context: When working in marketing domain
+    outcome: Successfully execute slack-gif-creator
+composability:
+  hints:
+  - 'can_chain_to: support'
+  - has_structured_output

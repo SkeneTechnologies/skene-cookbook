@@ -1,0 +1,21 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors: []
+categorization:
+  job_function: hr
+  jtbd:
+    job: Definitive guidelines for configuring and using Vim/Neovim as a high-performance,
+      terminal-centric IDE, emphasizing modern practices, efficient plugin management,
+      and advanced workflows.
+    context: When working in cursor_rules domain
+    outcome: Successfully execute vim
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

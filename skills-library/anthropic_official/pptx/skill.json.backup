@@ -1,0 +1,36 @@
+{
+  "id": "anthropic_official/pptx",
+  "version": "1.0.0",
+  "name": "pptx",
+  "description": "\"Presentation creation, editing, and analysis. When Claude needs to work with presentations (.pptx files) for: (1) Creating new presentations, (2) Modifying or editing content, (3) Working with layouts, (4) Adding comments or speaker notes, or any other presentation tasks\"",
+  "domain": "anthropic_official",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "anthropic_official",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "license": "Proprietary. LICENSE.txt has complete terms",
+      "triggers": [
+        "help with pptx",
+        "presentation"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "categories": [
+    "marketing",
+    "marketing/documents"
+  ]
+}

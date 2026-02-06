@@ -1,0 +1,52 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - payment
+    - execute
+    - system
+    - write
+    - update
+    - change
+    - alter
+    - access
+    - personal
+    - sensitive
+    - read
+    - get
+    - email
+    - message
+    - analytics
+    - log
+    - list
+    - search
+    - format
+    - aggregate
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.743416'
+    original_risk: Critical
+    changes:
+    - 'Added payment safeguards: preview, approval, limits, rollback'
+categorization:
+  job_function: marketing
+  jtbd:
+    job: '"When the user needs marketing ideas, inspiration, or strategies for their
+      SaaS or software product. Also use when the user asks for ''marketing ideas,''
+      ''growth ideas,'' ''how to market,'' ''marketing strategies,'' ''marketing tactics,''
+      ''ways to promote,'' or ''ideas to grow.'' This skill provides 140 proven marketing
+      approaches organized by category."'
+    context: When working in marketing domain
+    outcome: Successfully execute marketing-ideas
+composability:
+  hints:
+  - 'can_chain_to: support'
+  - has_structured_output

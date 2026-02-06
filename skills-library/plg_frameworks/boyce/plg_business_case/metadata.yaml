@@ -1,0 +1,39 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - change
+    - alter
+    - access
+    - read
+    - get
+    - analytics
+    - list
+    - format
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.877826'
+    original_risk: High
+    changes:
+    - Added validation, preview mode, and rollback for writes
+categorization:
+  job_function: data
+  jtbd:
+    job: 'Builds executive-ready PLG investment cases with fit assessment, resource
+      planning, and ROI projections. Based on Dave Boyce''s FREEMIUM framework (Chapter
+      4): PLG is a 1-3 year strategic investment, not a quick tactic.'
+    context: When working in plg_frameworks domain
+    outcome: Successfully execute PLG Business Case Builder
+composability:
+  hints:
+  - 'can_chain_to: business_case_ready'
+  - 'can_chain_to: fit_assessment_failed'
+  - 'can_chain_to: insufficient_data'
+  - 'can_chain_to: executive_review_needed'
+  - has_structured_output

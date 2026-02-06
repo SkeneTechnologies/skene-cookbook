@@ -1,0 +1,45 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - update
+    - change
+    - alter
+    - access
+    - read
+    - get
+    - log
+    - monitor
+    - list
+    - filter
+    - sort
+    - format
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.719090'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Creating interactive data visualisations using d3.js. This skill should be
+      used when creating custom charts, graphs, network diagrams, geographic visualisations,
+      or any complex SVG-based data visualisation that requires fine-grained control
+      over visual elements, transitions, or interactions. Use this for bespoke visualisations
+      beyond standard charting libraries, whether in React, Vue, Svelte, vanilla JavaScript,
+      or any other environment.
+    context: When working in development domain
+    outcome: Successfully execute d3js
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

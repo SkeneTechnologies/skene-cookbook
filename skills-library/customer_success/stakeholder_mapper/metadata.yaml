@@ -1,0 +1,47 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - financial
+    - eval
+    - update
+    - change
+    - access
+    - read
+    - get
+    - retrieve
+    - query
+    - alert
+    - analytics
+    - track
+    - log
+    - monitor
+    - list
+    - format
+    - view
+    - 'risky_tool: crm.update_contact'
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.752067'
+    original_risk: Critical
+    changes:
+    - 'Added payment safeguards: preview, approval, limits, rollback'
+categorization:
+  job_function: customer_success
+  jtbd:
+    job: Maps and tracks stakeholder relationships within customer organizations,
+      identifying champions, detractors, and relationship gaps.
+    context: When working in customer_success domain
+    outcome: Successfully execute Stakeholder Relationship Mapper
+composability:
+  hints:
+  - 'can_chain_to: executive_alignment'
+  - 'can_chain_to: success_plan_generator'
+  - 'can_chain_to: churn_prediction'
+  - 'can_chain_to: expansion_playbook'
+  - has_structured_output

@@ -1,0 +1,42 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - drop
+    - system
+    - read
+    - get
+    - track
+    - log
+    - monitor
+    - list
+    - search
+    - format
+    - calculate
+    - compute
+    - display
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.787642'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Google quantum computing framework. Use when targeting Google Quantum AI
+      hardware, designing noise-aware circuits, or running quantum characterization
+      experiments. Best for Google hardware, noise modeling, and low-level circuit
+      design. For IBM hardware use qiskit; for quantum ML with autodiff use pennylane;
+      for physics simulations use qutip.
+    context: When working in scientific domain
+    outcome: Successfully execute cirq
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

@@ -1,0 +1,44 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - system
+    - access
+    - read
+    - get
+    - track
+    - log
+    - monitor
+    - list
+    - search
+    - filter
+    - format
+    - display
+    - show
+    - view
+    - preview
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.782510'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: data
+  jtbd:
+    job: Lightweight WSI tile extraction and preprocessing. Use for basic slide processing
+      tissue detection, tile extraction, stain normalization for H&E images. Best
+      for simple pipelines, dataset preparation, quick tile-based analysis. For advanced
+      spatial proteomics, multiplexed imaging, or deep learning pipelines use pathml.
+    context: When working in scientific domain
+    outcome: Successfully execute histolab
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

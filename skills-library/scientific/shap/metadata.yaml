@@ -1,0 +1,46 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - system
+    - change
+    - alter
+    - read
+    - track
+    - log
+    - monitor
+    - search
+    - sort
+    - format
+    - calculate
+    - compute
+    - display
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.846450'
+    original_risk: Critical
+    changes:
+    - Added validation, preview mode, and rollback for writes
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Model interpretability and explainability using SHAP (SHapley Additive exPlanations).
+      Use this skill when explaining machine learning model predictions, computing
+      feature importance, generating SHAP plots (waterfall, beeswarm, bar, scatter,
+      force, heatmap), debugging models, analyzing model bias or fairness, comparing
+      models, or implementing explainable AI. Works with tree-based models (XGBoost,
+      LightGBM, Random Forest), deep learning (TensorFlow, PyTorch), linear models,
+      and any black-box model.
+    context: When working in scientific domain
+    outcome: Successfully execute shap
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

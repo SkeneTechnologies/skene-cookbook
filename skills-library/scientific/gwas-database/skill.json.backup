@@ -1,0 +1,32 @@
+{
+  "id": "scientific/gwas-database",
+  "version": "1.0.0",
+  "name": "gwas-database",
+  "description": "Query NHGRI-EBI GWAS Catalog for SNP-trait associations. Search variants by rs ID, disease/trait, gene, retrieve p-values and summary statistics, for genetic epidemiology and polygenic risk scores.",
+  "domain": "scientific",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "scientific",
+    "imported",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "license": "Unknown",
+      "triggers": [
+        "help with gwas database",
+        "statistics"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

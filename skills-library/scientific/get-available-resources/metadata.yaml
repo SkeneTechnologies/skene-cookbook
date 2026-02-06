@@ -1,0 +1,43 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - execute
+    - system
+    - change
+    - permission
+    - read
+    - get
+    - log
+    - search
+    - format
+    - compute
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.847634'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: engineering
+  jtbd:
+    job: This skill should be used at the start of any computationally intensive scientific
+      task to detect and report available system resources (CPU cores, GPUs, memory,
+      disk space). It creates a JSON file with resource information and strategic
+      recommendations that inform computational approach decisions such as whether
+      to use parallel processing (joblib, multiprocessing), out-of-core computing
+      (Dask, Zarr), GPU acceleration (PyTorch, JAX), or memory-efficient strategies.
+      Use this skill before running analyses, training models, processing large datasets,
+      or any task where resource constraints matter.
+    context: When working in scientific domain
+    outcome: Successfully execute get-available-resources
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

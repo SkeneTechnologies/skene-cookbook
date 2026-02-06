@@ -1,0 +1,47 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - execute
+    - eval
+    - update
+    - change
+    - read
+    - get
+    - alert
+    - message
+    - analytics
+    - track
+    - log
+    - monitor
+    - list
+    - calculate
+    - show
+    - 'risky_tool: crm.update_account'
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.842773'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: sales
+  jtbd:
+    job: 'Hybrid PLG+Sales motion using product usage signals to generate and qualify
+      sales pipeline. Based on Dave Boyce''s FREEMIUM framework (Chapters 14-15):
+      ''To maximize Enterprise Sales, you need a self-service happy path.'''
+    context: When working in plg_frameworks domain
+    outcome: Successfully execute Product-Led Sales (PLS)
+composability:
+  hints:
+  - 'can_chain_to: sales_engaged'
+  - 'can_chain_to: self_service_continue'
+  - 'can_chain_to: pqa_qualified'
+  - 'can_chain_to: activation_assist_needed'
+  - 'can_chain_to: not_ready'
+  - has_structured_output

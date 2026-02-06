@@ -1,0 +1,40 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - execute
+    - system
+    - access
+    - read
+    - get
+    - log
+    - monitor
+    - search
+    - compute
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.858296'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Hardware-agnostic quantum ML framework with automatic differentiation. Use
+      when training quantum circuits via gradients, building hybrid quantum-classical
+      models, or needing device portability across IBM/Google/Rigetti/IonQ. Best for
+      variational algorithms (VQE, QAOA), quantum neural networks, and integration
+      with PyTorch/JAX/TensorFlow. For hardware-specific optimizations use qiskit
+      (IBM) or cirq (Google); for open quantum systems use qutip.
+    context: When working in scientific domain
+    outcome: Successfully execute pennylane
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

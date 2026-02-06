@@ -1,0 +1,29 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - update
+    - get
+    - analytics
+    - track
+    - log
+    - format
+    - calculate
+categorization:
+  job_function: data
+  jtbd:
+    job: Tracks growth + profitability metric against SaaS benchmarks to measure business
+      health
+    context: When working in finops domain
+    outcome: Successfully execute Rule of 40 Calculator
+composability:
+  hints:
+  - 'can_chain_to: investor_metrics'
+  - 'can_chain_to: scenario_planner'
+  - 'can_chain_to: benchmark_comparator'
+  - has_structured_output

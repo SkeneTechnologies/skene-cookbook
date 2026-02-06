@@ -1,0 +1,140 @@
+{
+  "id": "plg_trial_extension_evaluator",
+  "version": "1.0.0",
+  "name": "Trial Extension Evaluator",
+  "description": "Evaluates trial extension requests and proactively identifies users who would benefit from extended trials to maximize conversion.",
+  "domain": "plg",
+  "tools": [
+    {
+      "name": "stripe.get_subscription",
+      "required": true
+    },
+    {
+      "name": "analytics.get_metrics",
+      "required": true
+    },
+    {
+      "name": "lifecycle.get_segment",
+      "required": true
+    },
+    {
+      "name": "crm.get_account",
+      "required": false
+    },
+    {
+      "name": "stripe.update_subscription",
+      "required": false
+    },
+    {
+      "name": "messaging.send_in_app",
+      "required": false
+    },
+    {
+      "name": "resend.send_template",
+      "required": false
+    },
+    {
+      "name": "lifecycle.record_moment",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "reverse_trial",
+    "monetization",
+    "activation",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "userId": {
+        "type": "string",
+        "description": "User requesting/eligible for extension"
+      },
+      "extensionReason": {
+        "type": "string",
+        "description": "Reason for extension request"
+      },
+      "evaluationType": {
+        "type": "string",
+        "enum": [
+          "request",
+          "proactive",
+          "automated"
+        ],
+        "description": "Type of extension evaluation"
+      }
+    },
+    "required": [
+      "userId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "extensionGranted": {
+        "type": "boolean"
+      },
+      "extensionDays": {
+        "type": "number"
+      },
+      "extensionReason": {
+        "type": "string"
+      },
+      "conversionProbability": {
+        "type": "number"
+      },
+      "conditions": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "metrics": {
+    "primary": "extension_to_conversion_rate",
+    "benchmarks": {
+      "excellent": "> 40%",
+      "good": "25-40%",
+      "needs_improvement": "< 25%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "plg",
+    "trial",
+    "extension",
+    "conversion",
+    "monetization",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Trial Extension Evaluator"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "lifecycle.get_segment",
+          "required": true
+        },
+        {
+          "name": "lifecycle.record_moment",
+          "required": false
+        },
+        {
+          "name": "analytics.track_event",
+          "required": false
+        },
+        {
+          "name": "messaging.send_in_app",
+          "required": false
+        }
+      ]
+    }
+  }
+}

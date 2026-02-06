@@ -1,0 +1,21 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors: []
+categorization:
+  job_function: hr
+  jtbd:
+    job: This guide defines definitive best practices for Next.js applications, focusing
+      on the `app` directory, Server Components, performance, and maintainability.
+      Follow these rules to build robust, scalable, and performant Next.js projects.
+    context: When working in cursor_rules domain
+    outcome: Successfully execute next-js
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

@@ -1,0 +1,45 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - api_key
+    - eval
+    - system
+    - write
+    - access
+    - personal
+    - read
+    - get
+    - log
+    - list
+    - search
+    - format
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.777270'
+    original_risk: Critical
+    changes:
+    - Migrated to OAuth authentication
+categorization:
+  job_function: engineering
+  jtbd:
+    job: This skill should be used when converting academic papers into promotional
+      and presentation formats including interactive websites (Paper2Web), presentation
+      videos (Paper2Video), and conference posters (Paper2Poster). Use this skill
+      for tasks involving paper dissemination, conference preparation, creating explorable
+      academic homepages, generating video abstracts, or producing print-ready posters
+      from LaTeX or PDF sources.
+    context: When working in scientific domain
+    outcome: Successfully execute paper-2-web
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

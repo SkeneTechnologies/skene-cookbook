@@ -1,0 +1,45 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - drop
+    - eval
+    - update
+    - access
+    - personal
+    - read
+    - get
+    - analytics
+    - track
+    - log
+    - monitor
+    - list
+    - format
+    - calculate
+    - show
+    - view
+    - 'risky_tool: crm.update_contact'
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.754364'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: customer_success
+  jtbd:
+    job: Finds and nurtures community champions based on engagement signals, activity
+      patterns, and influence metrics.
+    context: When working in community domain
+    outcome: Successfully execute Champion Identifier
+composability:
+  hints:
+  - 'can_chain_to: ambassador_program'
+  - 'can_chain_to: event_manager'
+  - 'can_chain_to: case_study_finder'
+  - has_structured_output

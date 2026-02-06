@@ -1,0 +1,48 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - drop
+    - eval
+    - system
+    - modify
+    - change
+    - alter
+    - access
+    - read
+    - get
+    - email
+    - notification
+    - message
+    - track
+    - log
+    - list
+    - search
+    - format
+    - show
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.773915'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: customer_success
+  jtbd:
+    job: When the user needs mental models or frameworks for PLG decisions -- including
+      product-channel fit, time-to-value, network effects, habit loops, or pricing
+      psychology. Also use when the user asks "what framework should I use," "how
+      should I think about this," or references a specific model like "adjacent user
+      theory" or "bowling alley framework." For comprehensive PLG strategy, see plg-strategy.
+      For growth loops, see growth-loops.
+    context: When working in plg_frameworks domain
+    outcome: Successfully execute plg-mental-models
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

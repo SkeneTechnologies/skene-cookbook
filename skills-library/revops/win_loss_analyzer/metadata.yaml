@@ -1,0 +1,34 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - access
+    - read
+    - get
+    - retrieve
+    - email
+    - analytics
+    - list
+    - filter
+    - sort
+    - format
+    - calculate
+    - view
+categorization:
+  job_function: data
+  jtbd:
+    job: Analyzes closed deals to extract actionable insights on win/loss patterns
+      and competitive dynamics.
+    context: When working in revops domain
+    outcome: Successfully execute Win/Loss Analysis Engine
+composability:
+  hints:
+  - 'can_chain_to: sales_coaching'
+  - 'can_chain_to: competitive_intel'
+  - 'can_chain_to: product_feedback'
+  - has_structured_output

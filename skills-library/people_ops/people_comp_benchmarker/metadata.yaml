@@ -1,0 +1,37 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - update
+    - change
+    - access
+    - get
+    - retrieve
+    - analytics
+    - log
+    - monitor
+    - format
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.867874'
+    original_risk: High
+    changes:
+    - Added validation, preview mode, and rollback for writes
+categorization:
+  job_function: data
+  jtbd:
+    job: Analyzes compensation data against market benchmarks to ensure competitive
+      and equitable pay practices.
+    context: When working in people_ops domain
+    outcome: Successfully execute Compensation Benchmarker
+composability:
+  hints:
+  - 'can_chain_to: people_perf_review_generator'
+  - 'can_chain_to: people_candidate_sourcer'
+  - has_structured_output

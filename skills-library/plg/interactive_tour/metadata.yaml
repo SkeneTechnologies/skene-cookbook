@@ -1,0 +1,38 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - drop
+    - access
+    - read
+    - get
+    - query
+    - analytics
+    - track
+    - list
+    - format
+    - show
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.729048'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: data
+  jtbd:
+    job: Creates dynamic step-by-step product walkthroughs with contextual guidance
+      that adapts to user behavior and feature familiarity.
+    context: When working in plg domain
+    outcome: Successfully execute Interactive Tour Architect
+composability:
+  hints:
+  - 'can_chain_to: onboarding_flow'
+  - 'can_chain_to: activation'
+  - 'can_chain_to: support'
+  - has_structured_output

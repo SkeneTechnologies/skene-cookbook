@@ -1,0 +1,133 @@
+{
+  "id": "plg_personalized_checklist",
+  "version": "1.0.0",
+  "name": "Personalized Checklist Builder",
+  "description": "Creates dynamic, personalized onboarding and task checklists based on user goals, role, and behavior patterns.",
+  "domain": "plg",
+  "tools": [
+    {
+      "name": "lifecycle.get_segment",
+      "required": true
+    },
+    {
+      "name": "analytics.track_event",
+      "required": true
+    },
+    {
+      "name": "ui_kit.checklist",
+      "required": true
+    },
+    {
+      "name": "rag.query",
+      "required": false
+    },
+    {
+      "name": "lifecycle.record_moment",
+      "required": false
+    },
+    {
+      "name": "messaging.send_in_app",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "activation",
+    "onboarding_flow",
+    "quick_win_generator",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "userId": {
+        "type": "string",
+        "description": "User to build checklist for"
+      },
+      "checklistType": {
+        "type": "string",
+        "enum": [
+          "onboarding",
+          "feature",
+          "goal",
+          "custom"
+        ],
+        "description": "Type of checklist"
+      },
+      "goals": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "User's stated goals"
+      }
+    },
+    "required": [
+      "userId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "checklistId": {
+        "type": "string"
+      },
+      "items": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "completionRate": {
+        "type": "number"
+      },
+      "estimatedTime": {
+        "type": "number"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "checklist_completion_rate",
+    "benchmarks": {
+      "excellent": "> 75%",
+      "good": "55-75%",
+      "needs_improvement": "< 55%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "plg",
+    "onboarding",
+    "checklist",
+    "personalization",
+    "activation",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Personalized Checklist Builder"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "lifecycle.get_segment",
+          "required": true
+        },
+        {
+          "name": "lifecycle.record_moment",
+          "required": false
+        },
+        {
+          "name": "analytics.track_event",
+          "required": false
+        },
+        {
+          "name": "messaging.send_in_app",
+          "required": false
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,132 @@
+{
+  "id": "ai_document_parser",
+  "version": "1.0.0",
+  "name": "Document Intelligence Parser",
+  "description": "Extracts structured data from unstructured documents including contracts, invoices, and forms.",
+  "domain": "ai_ops",
+  "tools": [
+    {
+      "name": "ai.extract_document",
+      "required": true
+    },
+    {
+      "name": "ai.ocr",
+      "required": false
+    },
+    {
+      "name": "ai.classify_document",
+      "required": true
+    },
+    {
+      "name": "storage.save",
+      "required": false
+    },
+    {
+      "name": "crm.update_record",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "extracted",
+    "needs_review",
+    "failed",
+    "stored",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "document_url": {
+        "type": "string",
+        "description": "URL or path to document"
+      },
+      "document_type": {
+        "type": "string",
+        "enum": [
+          "contract",
+          "invoice",
+          "form",
+          "id",
+          "receipt",
+          "auto"
+        ]
+      },
+      "extract_fields": {
+        "type": "array",
+        "description": "Specific fields to extract"
+      },
+      "output_format": {
+        "type": "string",
+        "enum": [
+          "json",
+          "csv",
+          "crm_record"
+        ]
+      }
+    },
+    "required": [
+      "document_url"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "document_type": {
+        "type": "string"
+      },
+      "extracted_data": {
+        "type": "object"
+      },
+      "confidence_scores": {
+        "type": "object"
+      },
+      "requires_review": {
+        "type": "array"
+      },
+      "raw_text": {
+        "type": "string"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "extraction_accuracy",
+    "benchmarks": {
+      "excellent": "> 98%",
+      "good": "90-98%",
+      "needs_improvement": "< 90%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "ai_ops",
+    "document",
+    "parsing",
+    "extraction",
+    "ocr",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Document Intelligence Parser"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "ai.classify",
+          "required": false
+        },
+        {
+          "name": "ai.generate",
+          "required": false
+        },
+        {
+          "name": "ai.score_lead",
+          "required": false
+        }
+      ]
+    }
+  }
+}

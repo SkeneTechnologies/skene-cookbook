@@ -1,0 +1,35 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - access
+    - read
+    - get
+    - query
+    - analytics
+    - track
+    - log
+    - monitor
+    - list
+    - format
+    - calculate
+    - view
+categorization:
+  job_function: customer_success
+  jtbd:
+    job: Tracks and optimizes adoption across multiple products or modules, identifying
+      cross-sell opportunities and adoption gaps.
+    context: When working in customer_success domain
+    outcome: Successfully execute Multi-Product Adoption Tracker
+composability:
+  hints:
+  - 'can_chain_to: expansion_playbook'
+  - 'can_chain_to: csql_generator'
+  - 'can_chain_to: product_adoption_guidance'
+  - 'can_chain_to: health_scoring'
+  - has_structured_output

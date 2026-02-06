@@ -1,0 +1,20 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors: []
+categorization:
+  job_function: design
+  jtbd:
+    job: Definitive guidelines for writing secure, performant, and maintainable AWS
+      Lambda functions using modern best practices.
+    context: When working in cursor_rules domain
+    outcome: Successfully execute aws-lambda
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

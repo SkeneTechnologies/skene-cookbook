@@ -1,0 +1,43 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - system
+    - update
+    - fetch
+    - get
+    - query
+    - email
+    - alert
+    - track
+    - log
+    - monitor
+    - list
+    - filter
+    - format
+    - calculate
+    - 'risky_tool: crm.update_deal'
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.810422'
+    original_risk: Critical
+    changes:
+    - Added validation, preview mode, and rollback for writes
+categorization:
+  job_function: sales
+  jtbd:
+    job: Identifies partner-influenced opportunities from ecosystem signals including
+      overlapping accounts, shared contacts, and partner activity data.
+    context: When working in ecosystem domain
+    outcome: Successfully execute Nearbound Signal Detector
+composability:
+  hints:
+  - 'can_chain_to: co_sell_trigger'
+  - 'can_chain_to: partner_mapping'
+  - 'can_chain_to: deal_registration'
+  - has_structured_output

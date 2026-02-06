@@ -1,0 +1,43 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - execute
+    - eval
+    - update
+    - change
+    - sensitive
+    - read
+    - get
+    - message
+    - analytics
+    - track
+    - log
+    - list
+    - format
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.834404'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: data
+  jtbd:
+    job: Manages conversational AI flows, context, and handoffs between bot and human
+      agents.
+    context: When working in ai_ops domain
+    outcome: Successfully execute Chatbot Orchestrator
+composability:
+  hints:
+  - 'can_chain_to: response_sent'
+  - 'can_chain_to: handoff_initiated'
+  - 'can_chain_to: escalated'
+  - 'can_chain_to: conversation_ended'
+  - has_structured_output

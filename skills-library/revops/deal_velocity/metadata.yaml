@@ -1,0 +1,36 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - drop
+    - change
+    - get
+    - analytics
+    - track
+    - list
+    - sort
+    - calculate
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.757108'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: sales
+  jtbd:
+    job: Analyzes and optimizes deal velocity to accelerate sales cycles and improve
+      conversion rates.
+    context: When working in revops domain
+    outcome: Successfully execute Deal Velocity Optimizer
+composability:
+  hints:
+  - 'can_chain_to: deal_intervention'
+  - 'can_chain_to: sales_coaching'
+  - 'can_chain_to: process_optimization'
+  - has_structured_output

@@ -1,0 +1,42 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - execute
+    - eval
+    - system
+    - update
+    - get
+    - email
+    - analytics
+    - track
+    - list
+    - format
+    - calculate
+    - show
+    - view
+    - 'risky_tool: stripe.update_subscription'
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.822262'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: data
+  jtbd:
+    job: Evaluates trial extension requests and proactively identifies users who would
+      benefit from extended trials to maximize conversion.
+    context: When working in plg domain
+    outcome: Successfully execute Trial Extension Evaluator
+composability:
+  hints:
+  - 'can_chain_to: reverse_trial'
+  - 'can_chain_to: monetization'
+  - 'can_chain_to: activation'
+  - has_structured_output

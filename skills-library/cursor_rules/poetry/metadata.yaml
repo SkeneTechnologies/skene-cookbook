@@ -1,0 +1,20 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors: []
+categorization:
+  job_function: design
+  jtbd:
+    job: Definitive guidelines for using Poetry for Python dependency management,
+      packaging, and project structure, emphasizing modern best practices as of 2025.
+    context: When working in cursor_rules domain
+    outcome: Successfully execute poetry
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

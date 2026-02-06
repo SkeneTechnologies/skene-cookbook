@@ -1,0 +1,49 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - drop
+    - financial
+    - payment
+    - system
+    - change
+    - access
+    - permission
+    - sensitive
+    - read
+    - get
+    - analytics
+    - track
+    - log
+    - list
+    - format
+    - aggregate
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.720435'
+    original_risk: Critical
+    changes:
+    - 'Added payment safeguards: preview, approval, limits, rollback'
+categorization:
+  job_function: data
+  jtbd:
+    job: Aggregates complete customer view from Customer Success, Support, Product
+      Analytics, and Billing for holistic account intelligence
+    context: When working in meta domain
+    outcome: Successfully execute Customer 360 Aggregator
+composability:
+  hints:
+  - 'can_chain_to: healthy'
+  - 'can_chain_to: attention_needed'
+  - 'can_chain_to: at_risk'
+  - 'can_chain_to: expansion_ready'
+  - 'can_chain_to: renewal_focus'
+  - 'can_chain_to: escalation_required'
+  - has_structured_output

@@ -1,0 +1,35 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - access
+    - read
+    - log
+    - list
+    - search
+    - format
+    - calculate
+    - summarize
+    - show
+    - view
+categorization:
+  job_function: data
+  jtbd:
+    job: Perform comprehensive exploratory data analysis on scientific data files
+      across 200+ file formats. This skill should be used when analyzing any scientific
+      data file to understand its structure, content, quality, and characteristics.
+      Automatically detects file type and generates detailed markdown reports with
+      format-specific analysis, quality metrics, and downstream analysis recommendations.
+      Covers chemistry, bioinformatics, microscopy, spectroscopy, proteomics, metabolomics,
+      and general scientific data formats.
+    context: When working in scientific domain
+    outcome: Successfully execute exploratory-data-analysis
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

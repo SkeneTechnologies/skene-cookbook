@@ -1,0 +1,41 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors:
+    - system
+    - access
+    - read
+    - get
+    - query
+    - alert
+    - track
+    - log
+    - list
+    - search
+    - filter
+    - format
+    - calculate
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.805510'
+    original_risk: Critical
+    changes:
+    - Flagged for manual review as potential false positive
+categorization:
+  job_function: data
+  jtbd:
+    job: Medicinal chemistry filters. Apply drug-likeness rules (Lipinski, Veber),
+      PAINS filters, structural alerts, complexity metrics, for compound prioritization
+      and library filtering.
+    context: When working in scientific domain
+    outcome: Successfully execute medchem
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

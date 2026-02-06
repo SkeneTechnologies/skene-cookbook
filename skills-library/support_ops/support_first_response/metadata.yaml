@@ -1,0 +1,43 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - pii
+    risk_factors:
+    - eval
+    - update
+    - personal
+    - sensitive
+    - read
+    - get
+    - retrieve
+    - query
+    - list
+    - search
+    - filter
+    - format
+    - summarize
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.814426'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Generates personalized, context-aware first responses to support tickets
+      using AI and knowledge base retrieval.
+    context: When working in support_ops domain
+    outcome: Successfully execute First Response Generator
+composability:
+  hints:
+  - 'can_chain_to: resolution_suggester'
+  - 'can_chain_to: escalation_predictor'
+  - 'can_chain_to: kb_gap_finder'
+  - has_structured_output

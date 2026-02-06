@@ -1,0 +1,119 @@
+{
+  "id": "finops_expense_allocator",
+  "version": "1.0.0",
+  "name": "Expense Allocation Engine",
+  "description": "Allocates expenses across departments, products, and cost centers for accurate financial reporting",
+  "domain": "finops",
+  "tools": [
+    {
+      "name": "accounting.get_expenses",
+      "required": true
+    },
+    {
+      "name": "analytics.allocate",
+      "required": true
+    },
+    {
+      "name": "hr.get_headcount",
+      "required": true
+    },
+    {
+      "name": "infrastructure.get_usage",
+      "required": false
+    },
+    {
+      "name": "reporting.generate",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "gross_margin",
+    "burn_rate_monitor",
+    "budget_review",
+    "cost_optimization",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "period": {
+        "type": "string",
+        "description": "Reporting period (YYYY-MM)"
+      },
+      "allocation_basis": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "default": [
+          "headcount",
+          "revenue",
+          "usage"
+        ]
+      },
+      "dimensions": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "default": [
+          "department",
+          "product",
+          "customer_segment"
+        ]
+      }
+    },
+    "required": [
+      "period"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "total_expenses": {
+        "type": "number"
+      },
+      "allocated_by_department": {
+        "type": "object"
+      },
+      "allocated_by_product": {
+        "type": "object"
+      },
+      "allocated_by_segment": {
+        "type": "object"
+      },
+      "unallocated": {
+        "type": "number"
+      },
+      "allocation_accuracy": {
+        "type": "number"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "allocation_accuracy",
+    "benchmarks": {
+      "excellent": "> 95%",
+      "good": "90-95%",
+      "needs_improvement": "< 90%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "finops",
+    "expense-allocation",
+    "cost-accounting",
+    "profitability",
+    "reporting",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Expense Allocation Engine"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

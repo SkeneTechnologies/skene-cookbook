@@ -1,0 +1,51 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - execute
+    - eval
+    - system
+    - write
+    - access
+    - read
+    - fetch
+    - get
+    - retrieve
+    - query
+    - log
+    - list
+    - search
+    - filter
+    - sort
+    - format
+    - aggregate
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.786972'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Conduct comprehensive, systematic literature reviews using multiple academic
+      databases (PubMed, arXiv, bioRxiv, Semantic Scholar, etc.). This skill should
+      be used when conducting systematic literature reviews, meta-analyses, research
+      synthesis, or comprehensive literature searches across biomedical, scientific,
+      and technical domains. Creates professionally formatted markdown documents and
+      PDFs with verified citations in multiple citation styles (APA, Nature, Vancouver,
+      etc.).
+    context: When working in scientific domain
+    outcome: Successfully execute literature-review
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

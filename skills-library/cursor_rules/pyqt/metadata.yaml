@@ -1,0 +1,23 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors:
+    - read
+    - view
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Enforce modern, maintainable, and performant PyQt application development
+      standards by leveraging Qt Designer, Model-View architecture, and responsive
+      threading.
+    context: When working in cursor_rules domain
+    outcome: Successfully execute pyqt
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

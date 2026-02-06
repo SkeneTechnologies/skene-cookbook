@@ -1,0 +1,110 @@
+{
+  "id": "finops_investor_metrics",
+  "version": "1.0.0",
+  "name": "Investor Metrics Dashboard",
+  "description": "Compiles key SaaS metrics for investor reporting, board meetings, and fundraising",
+  "domain": "finops",
+  "tools": [
+    {
+      "name": "analytics.get_metrics",
+      "required": true
+    },
+    {
+      "name": "stripe.get_financials",
+      "required": true
+    },
+    {
+      "name": "crm.get_pipeline",
+      "required": true
+    },
+    {
+      "name": "benchmarks.compare",
+      "required": true
+    },
+    {
+      "name": "ai.generate_narrative",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "rule_of_40",
+    "scenario_planner",
+    "board_deck",
+    "fundraise_mode",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "period": {
+        "type": "string",
+        "description": "Reporting period (YYYY-MM or YYYY-QX)"
+      },
+      "audience": {
+        "type": "string",
+        "enum": [
+          "board",
+          "investor",
+          "internal"
+        ],
+        "default": "board"
+      },
+      "include_benchmarks": {
+        "type": "boolean",
+        "default": true
+      }
+    },
+    "required": [
+      "period"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "arr_metrics": {
+        "type": "object"
+      },
+      "growth_metrics": {
+        "type": "object"
+      },
+      "efficiency_metrics": {
+        "type": "object"
+      },
+      "retention_metrics": {
+        "type": "object"
+      },
+      "financial_health": {
+        "type": "object"
+      },
+      "benchmark_comparison": {
+        "type": "object"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "investor_readiness_score",
+    "benchmarks": {
+      "fundraise_ready": "> 80",
+      "solid": "60-80",
+      "needs_work": "< 60"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "finops",
+    "investor-relations",
+    "board-reporting",
+    "saas-metrics",
+    "fundraising",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Investor Metrics Dashboard"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

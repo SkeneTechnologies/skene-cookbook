@@ -1,0 +1,42 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - financial
+    risk_factors:
+    - eval
+    - access
+    - personal
+    - read
+    - get
+    - email
+    - analytics
+    - track
+    - log
+    - monitor
+    - list
+    - format
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.843763'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: sales
+  jtbd:
+    job: When the user wants to layer sales onto a PLG motion, build PQL scoring,
+      design sales handoffs from product usage signals, or plan a hybrid PLG + sales
+      model. Also use when the user says "product-led sales," "PQL," "PQA," "when
+      to add sales to PLG," or "enterprise PLG." For broader PLG strategy, see plg-strategy.
+      For expansion revenue, see expansion-revenue.
+    context: When working in plg_frameworks domain
+    outcome: Successfully execute product-led-sales
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

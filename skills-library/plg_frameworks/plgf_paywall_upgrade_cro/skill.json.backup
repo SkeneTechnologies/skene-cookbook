@@ -1,0 +1,128 @@
+{
+  "id": "plgf_paywall_upgrade_cro",
+  "version": "1.0.0",
+  "name": "Paywall & Upgrade CRO Framework",
+  "description": "Conversion rate optimization framework for paywalls including feature locks, usage limits, trial expiry, copy frameworks, and mobile patterns.",
+  "domain": "plg_frameworks",
+  "tools": [
+    {
+      "name": "analytics.funnel",
+      "required": true
+    },
+    {
+      "name": "analytics.track_event",
+      "required": true
+    },
+    {
+      "name": "lifecycle.get_segment",
+      "required": true
+    },
+    {
+      "name": "messaging.send_in_app",
+      "required": false
+    },
+    {
+      "name": "ab_test.get_variant",
+      "required": false
+    },
+    {
+      "name": "ab_test.track_conversion",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "upgrade_flow",
+    "checkout",
+    "trial_extension",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "userId": {
+        "type": "string",
+        "description": "User encountering paywall"
+      },
+      "paywallType": {
+        "type": "string",
+        "enum": [
+          "feature_lock",
+          "usage_limit",
+          "trial_expiry",
+          "premium_upsell"
+        ],
+        "description": "Type of paywall triggered"
+      },
+      "context": {
+        "type": "string",
+        "description": "Where/how paywall was triggered"
+      },
+      "platform": {
+        "type": "string",
+        "enum": [
+          "web",
+          "ios",
+          "android"
+        ],
+        "default": "web"
+      }
+    },
+    "required": [
+      "userId",
+      "paywallType"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "paywallVariant": {
+        "type": "string"
+      },
+      "copyVariant": {
+        "type": "object"
+      },
+      "conversionProbability": {
+        "type": "number"
+      },
+      "recommendedAction": {
+        "type": "string"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "paywall_conversion_rate",
+    "benchmarks": {
+      "excellent": "> 8%",
+      "good": "4-8%",
+      "needs_improvement": "< 4%"
+    }
+  },
+  "integrations": [
+    "stripe",
+    "revenuecat",
+    "adapty",
+    "amplitude",
+    "mixpanel"
+  ],
+  "temperature": 0.3,
+  "tags": [
+    "plg",
+    "conversion",
+    "paywall",
+    "upgrade",
+    "cro",
+    "monetization",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Paywall & Upgrade CRO Framework",
+        "trial optimization",
+        "feature adoption"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

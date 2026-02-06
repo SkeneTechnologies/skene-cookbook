@@ -1,0 +1,52 @@
+{
+  "id": "marketing_marketing_ideas",
+  "version": "1.0.0",
+  "name": "marketing-ideas",
+  "description": "\"When the user needs marketing ideas, inspiration, or strategies for their SaaS or software product. Also use when the user asks for 'marketing ideas,' 'growth ideas,' 'how to market,' 'marketing strategies,' 'marketing tactics,' 'ways to promote,' or 'ideas to grow.' This skill provides 140 proven marketing approaches organized by category.\"",
+  "domain": "marketing",
+  "category": "strategy",
+  "source": "skene-marketing",
+  "tools": [],
+  "exitStates": [
+    "idle",
+    "support"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {},
+    "required": []
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {}
+  },
+  "temperature": 0.3,
+  "tags": [
+    "marketing",
+    "strategy",
+    "marketing-ideas",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with marketing ideas",
+        "growth marketing",
+        "the user asks for 'marketing ideas,' 'growth ideas,' 'how to market,' 'marketing strategies,' 'marketing tactics,' 'ways to promote,' or 'ideas to grow"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "resend.send_email",
+          "required": false
+        },
+        {
+          "name": "analytics.track_campaign",
+          "required": false
+        }
+      ]
+    }
+  }
+}

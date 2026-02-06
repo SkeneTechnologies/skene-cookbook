@@ -1,0 +1,129 @@
+{
+  "id": "revops_commit_accuracy",
+  "version": "1.0.0",
+  "name": "Commit Accuracy Tracker",
+  "description": "Tracks and improves forecast commit accuracy by analyzing historical patterns and deal signals.",
+  "domain": "revops",
+  "tools": [
+    {
+      "name": "crm.get_pipeline",
+      "required": true
+    },
+    {
+      "name": "crm.get_forecast_history",
+      "required": true
+    },
+    {
+      "name": "analytics.get_commit_patterns",
+      "required": true
+    },
+    {
+      "name": "ai.predict_outcome",
+      "required": true
+    },
+    {
+      "name": "crm.get_rep_performance",
+      "required": false
+    },
+    {
+      "name": "messaging.send_alert",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "forecast_intelligence",
+    "deal_inspection",
+    "sales_coaching",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "period": {
+        "type": "string",
+        "description": "Forecast period (e.g., 'Q1-2026')"
+      },
+      "ownerId": {
+        "type": "string",
+        "description": "Filter by rep"
+      },
+      "segment": {
+        "type": "string"
+      },
+      "category": {
+        "type": "string",
+        "enum": [
+          "commit",
+          "best_case",
+          "pipeline",
+          "all"
+        ]
+      }
+    },
+    "required": [
+      "period"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "commitAmount": {
+        "type": "number"
+      },
+      "predictedClose": {
+        "type": "number"
+      },
+      "accuracyScore": {
+        "type": "number"
+      },
+      "atRiskDeals": {
+        "type": "array"
+      },
+      "recommendations": {
+        "type": "array"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "forecast_accuracy",
+    "benchmarks": {
+      "excellent": "> 90% accuracy",
+      "good": "80-90% accuracy",
+      "needs_improvement": "< 80% accuracy"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "revops",
+    "forecast",
+    "commit",
+    "accuracy",
+    "prediction",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Commit Accuracy Tracker",
+        "deal velocity"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "crm.get_pipeline",
+          "required": true
+        },
+        {
+          "name": "crm.list_deals",
+          "required": false
+        },
+        {
+          "name": "analytics.get_forecast",
+          "required": false
+        }
+      ]
+    }
+  }
+}

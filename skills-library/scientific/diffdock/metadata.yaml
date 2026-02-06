@@ -1,0 +1,41 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - system
+    - command
+    - alter
+    - read
+    - get
+    - log
+    - list
+    - search
+    - filter
+    - format
+    - compute
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.786146'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Diffusion-based molecular docking. Predict protein-ligand binding poses from
+      PDB/SMILES, confidence scores, virtual screening, for structure-based drug design.
+      Not for affinity prediction.
+    context: When working in scientific domain
+    outcome: Successfully execute diffdock
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

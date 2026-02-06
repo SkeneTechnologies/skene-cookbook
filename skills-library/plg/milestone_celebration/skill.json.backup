@@ -1,0 +1,121 @@
+{
+  "id": "plg_milestone_celebration",
+  "version": "1.0.0",
+  "name": "Milestone Celebration Engine",
+  "description": "Detects user achievements and milestones, delivering personalized celebrations that reinforce positive behaviors and drive continued engagement.",
+  "domain": "plg",
+  "tools": [
+    {
+      "name": "lifecycle.get_segment",
+      "required": true
+    },
+    {
+      "name": "analytics.track_event",
+      "required": true
+    },
+    {
+      "name": "lifecycle.record_moment",
+      "required": true
+    },
+    {
+      "name": "ui_kit.celebration",
+      "required": false
+    },
+    {
+      "name": "messaging.send_in_app",
+      "required": false
+    },
+    {
+      "name": "resend.send_template",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "habit_loop_builder",
+    "viral_loop",
+    "activation",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "userId": {
+        "type": "string",
+        "description": "User who achieved milestone"
+      },
+      "milestoneType": {
+        "type": "string",
+        "description": "Type of milestone achieved"
+      },
+      "milestoneValue": {
+        "type": "number",
+        "description": "Numeric value of milestone"
+      }
+    },
+    "required": [
+      "userId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "celebrationType": {
+        "type": "string"
+      },
+      "messageDelivered": {
+        "type": "string"
+      },
+      "nextMilestone": {
+        "type": "object"
+      },
+      "sharingOffered": {
+        "type": "boolean"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "post_milestone_engagement",
+    "benchmarks": {
+      "excellent": "> 80%",
+      "good": "60-80%",
+      "needs_improvement": "< 60%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "plg",
+    "engagement",
+    "gamification",
+    "celebration",
+    "retention",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Milestone Celebration Engine"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "lifecycle.get_segment",
+          "required": true
+        },
+        {
+          "name": "lifecycle.record_moment",
+          "required": false
+        },
+        {
+          "name": "analytics.track_event",
+          "required": false
+        },
+        {
+          "name": "messaging.send_in_app",
+          "required": false
+        }
+      ]
+    }
+  }
+}

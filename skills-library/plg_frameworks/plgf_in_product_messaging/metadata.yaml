@@ -1,0 +1,46 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - drop
+    - system
+    - access
+    - personal
+    - read
+    - get
+    - alert
+    - message
+    - analytics
+    - track
+    - log
+    - list
+    - filter
+    - format
+    - calculate
+    - display
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.775430'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: data
+  jtbd:
+    job: Comprehensive framework for in-product messaging including tooltips, banners,
+      modals, targeting rules, frequency management, and accessibility compliance.
+    context: When working in plg_frameworks domain
+    outcome: Successfully execute In-Product Messaging Framework
+composability:
+  hints:
+  - 'can_chain_to: activation'
+  - 'can_chain_to: upgrade_flow'
+  - 'can_chain_to: feature_adoption'
+  - has_structured_output

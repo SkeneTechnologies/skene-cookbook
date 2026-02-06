@@ -1,0 +1,42 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - system
+    - personal
+    - get
+    - email
+    - notification
+    - message
+    - analytics
+    - track
+    - monitor
+    - list
+    - search
+    - format
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.761681'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: marketing
+  jtbd:
+    job: Design manufactured vs environment loops using Trigger-Action-Reward-Investment
+      (Nir Eyal Hook Model) with notification strategy
+    context: When working in plg_frameworks domain
+    outcome: Successfully execute Engagement Loops
+composability:
+  hints:
+  - 'can_chain_to: loop_designed'
+  - 'can_chain_to: notification_scheduled'
+  - 'can_chain_to: habit_forming'
+  - 'can_chain_to: needs_refinement'
+  - has_structured_output

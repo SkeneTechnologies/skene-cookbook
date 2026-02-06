@@ -1,0 +1,31 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - get
+    - email
+    - alert
+    - analytics
+    - track
+    - list
+    - format
+    - view
+categorization:
+  job_function: data
+  jtbd:
+    job: Tracks prepaid credits, consumption, expiration, and balance management
+    context: When working in monetization domain
+    outcome: Successfully execute Credits Balance Tracker
+composability:
+  hints:
+  - 'can_chain_to: balance_healthy'
+  - 'can_chain_to: low_balance_alert'
+  - 'can_chain_to: credits_expiring'
+  - 'can_chain_to: top_up_recommended'
+  - 'can_chain_to: credits_exhausted'
+  - has_structured_output

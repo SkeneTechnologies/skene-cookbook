@@ -1,0 +1,41 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - write
+    - change
+    - sensitive
+    - confidential
+    - read
+    - get
+    - email
+    - analytics
+    - track
+    - list
+    - filter
+    - format
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.872522'
+    original_risk: High
+    changes:
+    - Applied field-level access control and tenant isolation
+categorization:
+  job_function: marketing
+  jtbd:
+    job: Identifies and qualifies community members as potential case study candidates
+      based on success signals and story potential.
+    context: When working in community domain
+    outcome: Successfully execute Case Study Candidate Finder
+composability:
+  hints:
+  - 'can_chain_to: content_curator'
+  - 'can_chain_to: champion_identifier'
+  - 'can_chain_to: ugc_curator'
+  - has_structured_output

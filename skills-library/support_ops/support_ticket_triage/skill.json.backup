@@ -1,0 +1,139 @@
+{
+  "id": "support_ticket_triage",
+  "version": "1.0.0",
+  "name": "Ticket Triage Intelligence",
+  "description": "Auto-prioritizes and routes support tickets using AI classification based on urgency, customer tier, and issue complexity.",
+  "domain": "support_ops",
+  "tools": [
+    {
+      "name": "ai.classify",
+      "required": true
+    },
+    {
+      "name": "support.route",
+      "required": true
+    },
+    {
+      "name": "support.set_priority",
+      "required": true
+    },
+    {
+      "name": "crm.get_customer",
+      "required": false
+    },
+    {
+      "name": "analytics.track_triage",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "first_response",
+    "escalation_predictor",
+    "sla_monitor",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "ticket_id": {
+        "type": "string",
+        "description": "Unique ticket identifier"
+      },
+      "subject": {
+        "type": "string",
+        "description": "Ticket subject line"
+      },
+      "body": {
+        "type": "string",
+        "description": "Ticket body content"
+      },
+      "customer_id": {
+        "type": "string",
+        "description": "Customer account identifier"
+      },
+      "channel": {
+        "type": "string",
+        "enum": [
+          "email",
+          "chat",
+          "phone",
+          "form",
+          "social"
+        ]
+      },
+      "attachments": {
+        "type": "array",
+        "description": "List of attachment references"
+      }
+    },
+    "required": [
+      "ticket_id",
+      "subject",
+      "body"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "ticket_id": {
+        "type": "string"
+      },
+      "category": {
+        "type": "string"
+      },
+      "subcategory": {
+        "type": "string"
+      },
+      "priority": {
+        "type": "string",
+        "enum": [
+          "critical",
+          "high",
+          "medium",
+          "low"
+        ]
+      },
+      "assigned_queue": {
+        "type": "string"
+      },
+      "assigned_agent": {
+        "type": "string"
+      },
+      "confidence_score": {
+        "type": "number"
+      },
+      "sla_deadline": {
+        "type": "string"
+      },
+      "tags": {
+        "type": "array"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "triage_accuracy",
+    "benchmarks": {
+      "excellent": "> 95%",
+      "good": "85-95%",
+      "needs_improvement": "< 85%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "support_ops",
+    "ticket",
+    "triage",
+    "routing",
+    "prioritization",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Ticket Triage Intelligence"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

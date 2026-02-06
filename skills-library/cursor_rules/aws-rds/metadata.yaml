@@ -1,0 +1,20 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors: []
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Definitive guidelines for secure, performant, and maintainable database development
+      and operations with AWS RDS, emphasizing modern best practices and common anti-patterns.
+    context: When working in cursor_rules domain
+    outcome: Successfully execute aws-rds
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

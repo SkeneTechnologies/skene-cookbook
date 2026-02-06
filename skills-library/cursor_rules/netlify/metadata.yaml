@@ -1,0 +1,22 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors: []
+categorization:
+  job_function: engineering
+  jtbd:
+    job: This guide provides opinionated, actionable best practices for building,
+      deploying, and maintaining high-performance, secure, and scalable Jamstack applications
+      on Netlify. It focuses on modern workflows, code quality, and leveraging Netlify's
+      edge-first architecture.
+    context: When working in cursor_rules domain
+    outcome: Successfully execute netlify
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

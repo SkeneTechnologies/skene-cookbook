@@ -1,0 +1,44 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - api_key
+    - system
+    - change
+    - access
+    - sensitive
+    - read
+    - get
+    - query
+    - log
+    - monitor
+    - search
+    - format
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.777556'
+    original_risk: Critical
+    changes:
+    - Migrated to OAuth authentication
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Perform AI-powered web searches with real-time information using Perplexity
+      models via LiteLLM and OpenRouter. This skill should be used when conducting
+      web searches for current information, finding recent scientific literature,
+      getting grounded answers with source citations, or accessing information beyond
+      the model knowledge cutoff. Provides access to multiple Perplexity models including
+      Sonar Pro, Sonar Pro Search (advanced agentic search), and Sonar Reasoning Pro
+      through a single OpenRouter API key.
+    context: When working in scientific domain
+    outcome: Successfully execute perplexity-search
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

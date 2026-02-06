@@ -1,0 +1,33 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - change
+    - get
+    - retrieve
+    - email
+    - track
+    - log
+    - list
+    - format
+    - calculate
+    - view
+categorization:
+  job_function: customer_success
+  jtbd:
+    job: Generates clear, detailed explanations of invoice line items and billing
+      changes
+    context: When working in monetization domain
+    outcome: Successfully execute Invoice Explainer
+composability:
+  hints:
+  - 'can_chain_to: explanation_sent'
+  - 'can_chain_to: dispute_flagged'
+  - 'can_chain_to: correction_needed'
+  - 'can_chain_to: acknowledged'
+  - has_structured_output

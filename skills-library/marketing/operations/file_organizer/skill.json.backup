@@ -1,0 +1,50 @@
+{
+  "id": "marketing_file_organizer",
+  "version": "1.0.0",
+  "name": "file-organizer",
+  "description": "Intelligently organizes your files and folders across your computer by understanding context, finding duplicates, suggesting better structures, and automating cleanup tasks. Reduces cognitive load and keeps your digital workspace tidy without manual effort.",
+  "domain": "marketing",
+  "category": "operations",
+  "source": "skene-marketing",
+  "tools": [],
+  "exitStates": [
+    "idle",
+    "support"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {},
+    "required": []
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {}
+  },
+  "temperature": 0.3,
+  "tags": [
+    "marketing",
+    "operations",
+    "file-organizer",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with file organizer"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "resend.send_email",
+          "required": false
+        },
+        {
+          "name": "analytics.track_campaign",
+          "required": false
+        }
+      ]
+    }
+  }
+}

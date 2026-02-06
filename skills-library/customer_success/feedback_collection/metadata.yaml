@@ -1,0 +1,40 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - write
+    - access
+    - pii
+    - personal
+    - get
+    - email
+    - notification
+    - message
+    - log
+    - list
+    - format
+    - show
+    - 'risky_tool: data.write'
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.869698'
+    original_risk: High
+    changes:
+    - Applied field-level access control and tenant isolation
+categorization:
+  job_function: customer_success
+  jtbd:
+    job: Collects structured user feedback through a conversational flow, stores responses,
+      and transitions back to IDLE state upon completion.
+    context: When working in customer_success domain
+    outcome: Successfully execute Feedback Collection
+composability:
+  hints:
+  - 'can_chain_to: feedback_thankyou'
+  - 'can_chain_to: error_recovery'
+  - has_structured_output

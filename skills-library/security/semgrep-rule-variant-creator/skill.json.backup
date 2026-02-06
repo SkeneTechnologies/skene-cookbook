@@ -1,0 +1,31 @@
+{
+  "id": "security/semgrep-rule-variant-creator",
+  "version": "1.0.0",
+  "name": "semgrep-rule-variant-creator",
+  "description": "Creates language variants of existing Semgrep rules. Use when porting a Semgrep rule to specified target languages. Takes an existing rule and target languages as input, produces independent rule+test directories for each language.",
+  "domain": "security",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "security",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with semgrep rule variant creator",
+        "porting a semgrep rule to specified target languages"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

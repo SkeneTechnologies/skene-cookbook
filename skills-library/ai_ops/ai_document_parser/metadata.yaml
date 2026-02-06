@@ -1,0 +1,39 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - financial
+    - pii
+    - sensitive
+    - read
+    - log
+    - list
+    - format
+    - view
+    - preview
+    - 'risky_tool: crm.update_record'
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.754691'
+    original_risk: Critical
+    changes:
+    - 'Added payment safeguards: preview, approval, limits, rollback'
+categorization:
+  job_function: customer_success
+  jtbd:
+    job: Extracts structured data from unstructured documents including contracts,
+      invoices, and forms.
+    context: When working in ai_ops domain
+    outcome: Successfully execute Document Intelligence Parser
+composability:
+  hints:
+  - 'can_chain_to: extracted'
+  - 'can_chain_to: needs_review'
+  - 'can_chain_to: failed'
+  - 'can_chain_to: stored'
+  - has_structured_output

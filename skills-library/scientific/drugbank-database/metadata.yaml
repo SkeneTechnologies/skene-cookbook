@@ -1,0 +1,44 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - password
+    - credential
+    - update
+    - access
+    - read
+    - get
+    - retrieve
+    - query
+    - log
+    - search
+    - filter
+    - format
+    - calculate
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.782957'
+    original_risk: Critical
+    changes:
+    - Migrated to OAuth authentication
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Access and analyze comprehensive drug information from the DrugBank database
+      including drug properties, interactions, targets, pathways, chemical structures,
+      and pharmacology data. This skill should be used when working with pharmaceutical
+      data, drug discovery research, pharmacology studies, drug-drug interaction analysis,
+      target identification, chemical similarity searches, ADMET predictions, or any
+      task requiring detailed drug and drug target information from DrugBank.
+    context: When working in scientific domain
+    outcome: Successfully execute drugbank-database
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

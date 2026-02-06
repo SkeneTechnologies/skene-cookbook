@@ -1,0 +1,48 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - delete
+    - financial
+    - payment
+    - execute
+    - system
+    - access
+    - personal
+    - read
+    - get
+    - email
+    - notification
+    - analytics
+    - log
+    - list
+    - search
+    - format
+    - calculate
+    - view
+    - 'risky_tool: data.delete'
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.721639'
+    original_risk: Critical
+    changes:
+    - 'Added payment safeguards: preview, approval, limits, rollback'
+categorization:
+  job_function: finance
+  jtbd:
+    job: Manages data subject requests and GDPR compliance workflows including DSARs,
+      consent records, and data processing activities
+    context: When working in compliance domain
+    outcome: Successfully execute GDPR Compliance Manager
+composability:
+  hints:
+  - 'can_chain_to: privacy_policy'
+  - 'can_chain_to: consent_manager'
+  - 'can_chain_to: data_retention'
+  - 'can_chain_to: breach_response'
+  - has_structured_output

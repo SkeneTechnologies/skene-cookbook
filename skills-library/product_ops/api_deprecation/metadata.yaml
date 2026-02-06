@@ -1,0 +1,43 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - api_key
+    - execute
+    - update
+    - change
+    - read
+    - get
+    - email
+    - analytics
+    - track
+    - log
+    - monitor
+    - list
+    - format
+    - calculate
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.703794'
+    original_risk: Critical
+    changes:
+    - Migrated to OAuth authentication
+categorization:
+  job_function: data
+  jtbd:
+    job: Manages API deprecation lifecycle including usage analysis, migration planning,
+      and developer communication.
+    context: When working in product_ops domain
+    outcome: Successfully execute API Deprecation Manager
+composability:
+  hints:
+  - 'can_chain_to: documentation_health'
+  - 'can_chain_to: release_notes_generator'
+  - has_structured_output

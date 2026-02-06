@@ -1,0 +1,46 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - eval
+    - command
+    - update
+    - change
+    - access
+    - read
+    - fetch
+    - get
+    - retrieve
+    - query
+    - email
+    - track
+    - log
+    - list
+    - search
+    - filter
+    - format
+    - aggregate
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.849545'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Query NCBI ClinVar for variant clinical significance. Search by gene/position,
+      interpret pathogenicity classifications, access via E-utilities API or FTP,
+      annotate VCFs, for genomic medicine.
+    context: When working in scientific domain
+    outcome: Successfully execute clinvar-database
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

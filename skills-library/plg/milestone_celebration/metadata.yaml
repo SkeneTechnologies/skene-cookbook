@@ -1,0 +1,42 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - pii
+    risk_factors:
+    - eval
+    - write
+    - personal
+    - read
+    - get
+    - email
+    - message
+    - analytics
+    - track
+    - log
+    - list
+    - format
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.823899'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: marketing
+  jtbd:
+    job: Detects user achievements and milestones, delivering personalized celebrations
+      that reinforce positive behaviors and drive continued engagement.
+    context: When working in plg domain
+    outcome: Successfully execute Milestone Celebration Engine
+composability:
+  hints:
+  - 'can_chain_to: habit_loop_builder'
+  - 'can_chain_to: viral_loop'
+  - 'can_chain_to: activation'
+  - has_structured_output

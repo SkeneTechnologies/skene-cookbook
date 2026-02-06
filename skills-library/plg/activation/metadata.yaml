@@ -1,0 +1,44 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - drop
+    - execute
+    - personal
+    - read
+    - get
+    - query
+    - email
+    - message
+    - analytics
+    - track
+    - log
+    - list
+    - format
+    - show
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.727996'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: customer_success
+  jtbd:
+    job: 'EXECUTION: Guides new users from signup to first value moment, reducing
+      time-to-value and driving activation. Uses lifecycle and messaging tools to
+      orchestrate the activation flow. For strategy and measurement frameworks, see
+      plg_frameworks/activation-metrics.'
+    context: When working in plg domain
+    outcome: Successfully execute User Activation
+composability:
+  hints:
+  - 'can_chain_to: onboarding_flow'
+  - 'can_chain_to: aha_moment_detection'
+  - 'can_chain_to: support'
+  - has_structured_output

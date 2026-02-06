@@ -1,0 +1,40 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - eval
+    - system
+    - access
+    - read
+    - get
+    - retrieve
+    - query
+    - log
+    - list
+    - search
+    - format
+    - compute
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.853442'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: operations
+  jtbd:
+    job: Query Reactome REST API for pathway analysis, enrichment, gene-pathway mapping,
+      disease pathways, molecular interactions, expression analysis, for systems biology
+      studies.
+    context: When working in scientific domain
+    outcome: Successfully execute reactome-database
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

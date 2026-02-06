@@ -1,0 +1,51 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - financial
+    - execute
+    - eval
+    - system
+    - write
+    - change
+    - access
+    - pii
+    - personal
+    - sensitive
+    - confidential
+    - read
+    - get
+    - email
+    - notification
+    - alert
+    - analytics
+    - track
+    - log
+    - monitor
+    - list
+    - format
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.723966'
+    original_risk: Critical
+    changes:
+    - 'Added payment safeguards: preview, approval, limits, rollback'
+categorization:
+  job_function: legal
+  jtbd:
+    job: Assesses and monitors third-party vendor security and compliance risks throughout
+      the vendor lifecycle
+    context: When working in compliance domain
+    outcome: Successfully execute Vendor Risk Assessor
+composability:
+  hints:
+  - 'can_chain_to: soc2_tracker'
+  - 'can_chain_to: audit_preparer'
+  - 'can_chain_to: breach_response'
+  - has_structured_output

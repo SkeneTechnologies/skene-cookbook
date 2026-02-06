@@ -1,0 +1,42 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - drop
+    - execute
+    - write
+    - update
+    - change
+    - read
+    - email
+    - message
+    - analytics
+    - track
+    - list
+    - format
+    - calculate
+    - summarize
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.738165'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: marketing
+  jtbd:
+    job: Compiles signals, analytics, leads, experiments, and outreach data into executive
+      summaries and daily reports. Generates both structured data and human-readable
+      narratives. Use at the end of each day or when asked to summarize campaign performance.
+    context: When working in marketing domain
+    outcome: Successfully execute daily-report-summarizer
+composability:
+  hints:
+  - 'can_chain_to: support'
+  - has_structured_output

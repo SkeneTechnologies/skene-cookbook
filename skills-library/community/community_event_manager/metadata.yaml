@@ -1,0 +1,41 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - credential
+    - get
+    - email
+    - message
+    - analytics
+    - track
+    - log
+    - list
+    - format
+    - calculate
+    - show
+    - view
+    - preview
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.753194'
+    original_risk: Critical
+    changes:
+    - Migrated to OAuth authentication
+categorization:
+  job_function: data
+  jtbd:
+    job: Plans, promotes, and manages community events including meetups, webinars,
+      and virtual gatherings.
+    context: When working in community domain
+    outcome: Successfully execute Community Event Manager
+composability:
+  hints:
+  - 'can_chain_to: ama_orchestrator'
+  - 'can_chain_to: user_group_manager'
+  - 'can_chain_to: swag_manager'
+  - has_structured_output

@@ -1,0 +1,30 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - financial
+    risk_factors:
+    - change
+    - get
+    - retrieve
+    - analytics
+    - track
+    - list
+    - format
+    - view
+categorization:
+  job_function: data
+  jtbd:
+    job: Assists with ASC 606 compliant revenue recognition and reporting
+    context: When working in monetization domain
+    outcome: Successfully execute Revenue Recognition Assistant
+composability:
+  hints:
+  - 'can_chain_to: recognition_scheduled'
+  - 'can_chain_to: manual_review_required'
+  - 'can_chain_to: compliance_alert'
+  - 'can_chain_to: report_generated'
+  - has_structured_output

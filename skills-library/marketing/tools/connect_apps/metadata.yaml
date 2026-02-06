@@ -1,0 +1,34 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - execute
+    - authorize
+    - permission
+    - get
+    - email
+    - message
+    - log
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.825463'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: marketing
+  jtbd:
+    job: Connect Claude to external apps like Gmail, Slack, GitHub. Use this skill
+      when the user wants to send emails, create issues, post messages, or take actions
+      in external services.
+    context: When working in marketing domain
+    outcome: Successfully execute connect-apps
+composability:
+  hints:
+  - 'can_chain_to: support'
+  - has_structured_output

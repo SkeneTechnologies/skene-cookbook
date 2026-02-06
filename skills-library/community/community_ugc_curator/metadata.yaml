@@ -1,0 +1,45 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - update
+    - permission
+    - personal
+    - get
+    - email
+    - notification
+    - analytics
+    - track
+    - log
+    - list
+    - search
+    - format
+    - display
+    - show
+    - view
+    - preview
+    - 'risky_tool: crm.update_contact'
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.871492'
+    original_risk: High
+    changes:
+    - Applied field-level access control and tenant isolation
+categorization:
+  job_function: marketing
+  jtbd:
+    job: Discovers, curates, and amplifies user-generated content including social
+      posts, reviews, and testimonials.
+    context: When working in community domain
+    outcome: Successfully execute User-Generated Content Curator
+composability:
+  hints:
+  - 'can_chain_to: content_curator'
+  - 'can_chain_to: champion_identifier'
+  - 'can_chain_to: case_study_finder'
+  - has_structured_output

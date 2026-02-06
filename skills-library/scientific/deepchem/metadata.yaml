@@ -1,0 +1,40 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - drop
+    - eval
+    - access
+    - read
+    - get
+    - message
+    - log
+    - list
+    - search
+    - format
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.788671'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Molecular ML with diverse featurizers and pre-built datasets. Use for property
+      prediction (ADMET, toxicity) with traditional ML or GNNs when you want extensive
+      featurization options and MoleculeNet benchmarks. Best for quick experiments
+      with pre-trained models, diverse molecular representations. For graph-first
+      PyTorch workflows use torchdrug; for benchmark datasets use pytdc.
+    context: When working in scientific domain
+    outcome: Successfully execute deepchem
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

@@ -1,0 +1,21 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors:
+    - log
+categorization:
+  job_function: hr
+  jtbd:
+    job: Enforce modern Gradle build practices for Java and Android projects, focusing
+      on Kotlin DSL, modularity, version catalogs, and performance optimizations.
+    context: When working in cursor_rules domain
+    outcome: Successfully execute gradle
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

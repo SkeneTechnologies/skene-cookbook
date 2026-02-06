@@ -1,0 +1,32 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - update
+    - read
+    - get
+    - analytics
+    - track
+    - log
+    - monitor
+    - list
+    - format
+    - calculate
+    - view
+categorization:
+  job_function: customer_success
+  jtbd:
+    job: Manages product localization including translation coverage, quality monitoring,
+      and locale-specific feature rollouts.
+    context: When working in product_ops domain
+    outcome: Successfully execute Localization Manager
+composability:
+  hints:
+  - 'can_chain_to: documentation_health'
+  - 'can_chain_to: feature_adoption'
+  - has_structured_output

@@ -1,0 +1,24 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - update
+    - read
+    - list
+    - format
+    - view
+categorization:
+  job_function: marketing
+  jtbd:
+    job: Replace with description of the skill and when Claude should use it.
+    context: When working in marketing domain
+    outcome: Successfully execute template-skill
+composability:
+  hints:
+  - 'can_chain_to: support'
+  - has_structured_output

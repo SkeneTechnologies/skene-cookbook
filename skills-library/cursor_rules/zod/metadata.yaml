@@ -1,0 +1,21 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors: []
+categorization:
+  job_function: design
+  jtbd:
+    job: This guide outlines definitive best practices for using Zod in TypeScript
+      projects, ensuring robust runtime validation, superior type safety, and maintainable
+      schemas.
+    context: When working in cursor_rules domain
+    outcome: Successfully execute zod
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

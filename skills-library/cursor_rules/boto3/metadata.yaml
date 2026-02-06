@@ -1,0 +1,21 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors: []
+categorization:
+  job_function: engineering
+  jtbd:
+    job: This rule file guides developers on writing idiomatic, high-performance,
+      and type-safe boto3 code, emphasizing client reuse, proper pagination, batch
+      operations, and robust testing strategies.
+    context: When working in cursor_rules domain
+    outcome: Successfully execute boto3
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

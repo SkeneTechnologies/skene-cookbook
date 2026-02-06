@@ -1,0 +1,43 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - eval
+    - system
+    - update
+    - access
+    - personal
+    - read
+    - get
+    - log
+    - list
+    - sort
+    - format
+    - view
+    - 'risky_tool: crm.update_record'
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.820859'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Maps the buying chain using the Miller Heiman model to identify User Buyers,
+      Technical Buyers, Champions, and Economic Buyers. Foundation for Value Creation
+      Framework deals.
+    context: When working in vcf domain
+    outcome: Successfully execute Value Creation Stakeholder Mapping
+composability:
+  hints:
+  - 'can_chain_to: vcf_value_discovery'
+  - 'can_chain_to: champion_development'
+  - 'can_chain_to: deal_blocked'
+  - 'can_chain_to: needs_more_contacts'
+  - has_structured_output

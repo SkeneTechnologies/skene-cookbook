@@ -1,0 +1,21 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors: []
+categorization:
+  job_function: design
+  jtbd:
+    job: This guide provides opinionated, actionable best practices for building scalable
+      and performant React applications using MobX, focusing on modern patterns and
+      React Compiler compatibility.
+    context: When working in cursor_rules domain
+    outcome: Successfully execute react-mobx
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

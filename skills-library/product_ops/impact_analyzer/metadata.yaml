@@ -1,0 +1,31 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - change
+    - get
+    - analytics
+    - track
+    - log
+    - list
+    - format
+    - calculate
+    - view
+categorization:
+  job_function: data
+  jtbd:
+    job: Analyzes the impact of shipped features on key metrics and business outcomes
+      with causal inference methods.
+    context: When working in product_ops domain
+    outcome: Successfully execute Feature Impact Analyzer
+composability:
+  hints:
+  - 'can_chain_to: feature_adoption'
+  - 'can_chain_to: roadmap_alignment'
+  - 'can_chain_to: prioritization_engine'
+  - has_structured_output

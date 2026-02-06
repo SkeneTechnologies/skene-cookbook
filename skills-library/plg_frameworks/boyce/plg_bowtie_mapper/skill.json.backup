@@ -1,0 +1,49 @@
+{
+  "id": "boyce_plg_bowtie_mapper",
+  "version": "1.0.0",
+  "name": "PLG Bowtie Mapper",
+  "description": "Maps and optimizes the PLG Bowtie funnel that reorders customer actions for product-led acquisition. Based on Dave Boyce's FREEMIUM framework (Chapter 7): In PLG, customers experience the product before purchasing.",
+  "domain": "plg_frameworks",
+  "author": "Dave Boyce (FREEMIUM, Stanford University Press)",
+  
+  "tools": [
+    { "name": "analytics.funnel", "required": true },
+    { "name": "analytics.get_usage", "required": true },
+    { "name": "analytics.cohort", "required": false },
+    { "name": "crm.get_pipeline", "required": false }
+  ],
+  
+  "exitStates": ["bowtie_mapped", "bottleneck_identified", "optimization_needed", "healthy_flow"],
+  
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "timeframe": { "type": "string" },
+      "segment": { "type": "string" }
+    }
+  },
+  
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "bowtieStages": { "type": "array", "items": { "type": "object" } },
+      "conversionRates": { "type": "object" },
+      "bottlenecks": { "type": "array", "items": { "type": "string" } },
+      "recommendations": { "type": "array", "items": { "type": "string" } }
+    }
+  },
+  
+  "metrics": {
+    "primary": "visitor_to_paid_rate",
+    "secondary": ["activation_rate", "expansion_rate", "nrr"],
+    "benchmarks": {
+      "excellent": "Visitor→Paid > 2%, NRR > 120%",
+      "good": "Visitor→Paid 1-2%, NRR 100-120%",
+      "needs_improvement": "Visitor→Paid < 1%, NRR < 100%"
+    }
+  },
+  
+  "integrations": ["amplitude", "mixpanel", "segment"],
+  "temperature": 0,
+  "tags": ["plg", "funnel", "bowtie", "acquisition", "boyce", "freemium"]
+}

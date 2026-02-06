@@ -1,0 +1,40 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - truncate
+    - destroy
+    - system
+    - read
+    - track
+    - list
+    - search
+    - format
+    - compute
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.787426'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: operations
+  jtbd:
+    job: "Quantum physics simulation library for open quantum systems. Use when studying\
+      \ master equations, Lindblad dynamics, decoherence, quantum optics, or cavity\
+      \ QED. Best for physics research, open system dynamics, and educational simulations.\
+      \ NOT for circuit-based quantum computing\u2014use qiskit, cirq, or pennylane\
+      \ for quantum algorithms and hardware execution."
+    context: When working in scientific domain
+    outcome: Successfully execute qutip
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

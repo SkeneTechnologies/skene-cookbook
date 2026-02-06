@@ -1,0 +1,40 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - system
+    - command
+    - write
+    - change
+    - access
+    - read
+    - get
+    - log
+    - list
+    - format
+    - calculate
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.714635'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: security
+  jtbd:
+    job: Performs security-focused differential review of code changes (PRs, commits,
+      diffs). Adapts analysis depth to codebase size, uses git history for context,
+      and generates comprehensive security reports.
+    context: When working in security domain
+    outcome: Successfully execute differential-review
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

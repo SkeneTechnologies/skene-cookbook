@@ -1,0 +1,42 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - delete
+    - eval
+    - update
+    - authorize
+    - personal
+    - read
+    - get
+    - email
+    - message
+    - list
+    - filter
+    - sort
+    - format
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.756240'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Automatically captures and enriches sales activities from email, calendar,
+      and calls for complete deal visibility.
+    context: When working in revops domain
+    outcome: Successfully execute Activity Capture Intelligence
+composability:
+  hints:
+  - 'can_chain_to: deal_inspection'
+  - 'can_chain_to: pipeline_health'
+  - 'can_chain_to: next_best_action'
+  - has_structured_output

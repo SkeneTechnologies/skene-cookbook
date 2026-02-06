@@ -1,0 +1,80 @@
+{
+  "id": "cs_health_scoring",
+  "version": "1.0.0",
+  "name": "Customer Health Scoring",
+  "description": "Calculates and monitors customer health scores to predict retention and identify at-risk accounts.",
+  "domain": "customer_success",
+  "tools": [
+    {
+      "name": "lifecycle.get_segment",
+      "required": true
+    },
+    {
+      "name": "analytics.query_events",
+      "required": true
+    },
+    {
+      "name": "analytics.feature_adoption",
+      "required": true
+    },
+    {
+      "name": "stripe.get_usage",
+      "required": false
+    },
+    {
+      "name": "crm.update_account",
+      "required": false
+    },
+    {
+      "name": "messaging.send_alert",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "churn_prediction",
+    "expansion_playbook",
+    "renewal_orchestration",
+    "idle"
+  ],
+  "metrics": {
+    "primary": "avg_health_score",
+    "benchmarks": {
+      "excellent": "> 80",
+      "good": "60-80",
+      "needs_improvement": "< 60"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "customer_success",
+    "health",
+    "retention",
+    "scoring",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Customer Health Scoring",
+        "customer health"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "lifecycle.get_segment",
+          "required": true
+        },
+        {
+          "name": "analytics.get_cohort",
+          "required": false
+        },
+        {
+          "name": "crm.update_account",
+          "required": false
+        }
+      ]
+    }
+  }
+}

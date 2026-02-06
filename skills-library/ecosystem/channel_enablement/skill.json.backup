@@ -1,0 +1,120 @@
+{
+  "id": "elg_channel_enablement",
+  "version": "1.0.0",
+  "name": "Channel Enablement Manager",
+  "description": "Manages partner enablement programs including training, certification, content delivery, and readiness tracking.",
+  "domain": "ecosystem",
+  "tools": [
+    {
+      "name": "partner.get",
+      "required": true
+    },
+    {
+      "name": "partner.get_enablement_status",
+      "required": true
+    },
+    {
+      "name": "partner.assign_training",
+      "required": true
+    },
+    {
+      "name": "partner.update_certification",
+      "required": true
+    },
+    {
+      "name": "crm.get_contacts",
+      "required": false
+    },
+    {
+      "name": "messaging.send_email",
+      "required": false
+    },
+    {
+      "name": "analytics.track_event",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "partner_tier_manager",
+    "co_sell_trigger",
+    "deal_registration",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "partnerId": {
+        "type": "string",
+        "description": "Partner to enable"
+      },
+      "enablementType": {
+        "type": "string",
+        "enum": [
+          "onboarding",
+          "certification",
+          "product_update",
+          "sales_play"
+        ]
+      },
+      "trackId": {
+        "type": "string",
+        "description": "Specific enablement track"
+      }
+    },
+    "required": [
+      "partnerId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "enablement_status": {
+        "type": "object"
+      },
+      "completion_rate": {
+        "type": "number"
+      },
+      "certifications": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "recommended_training": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "readiness_score": {
+        "type": "number"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "partner_readiness_score",
+    "benchmarks": {
+      "excellent": "> 85%",
+      "good": "70-85%",
+      "needs_improvement": "< 70%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "ecosystem",
+    "partner",
+    "enablement",
+    "training",
+    "certification",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Channel Enablement Manager"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

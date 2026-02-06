@@ -1,0 +1,42 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - change
+    - alter
+    - access
+    - get
+    - email
+    - analytics
+    - log
+    - monitor
+    - list
+    - search
+    - format
+    - compute
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.878088'
+    original_risk: High
+    changes:
+    - Added validation, preview mode, and rollback for writes
+categorization:
+  job_function: marketing
+  jtbd:
+    job: 5 Ps framework (Phil Carter), value metrics, Good-Better-Best tiers, freemium
+      design, and price research methods
+    context: When working in plg_frameworks domain
+    outcome: Successfully execute Pricing Strategy
+composability:
+  hints:
+  - 'can_chain_to: pricing_recommended'
+  - 'can_chain_to: tiers_designed'
+  - 'can_chain_to: research_needed'
+  - 'can_chain_to: freemium_designed'
+  - has_structured_output

@@ -1,0 +1,42 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - system
+    - write
+    - update
+    - modify
+    - change
+    - access
+    - read
+    - get
+    - track
+    - log
+    - format
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.830775'
+    original_risk: Critical
+    changes:
+    - Added validation, preview mode, and rollback for writes
+categorization:
+  job_function: operations
+  jtbd:
+    job: '"Comprehensive document creation, editing, and analysis with support for
+      tracked changes, comments, formatting preservation, and text extraction. When
+      Claude needs to work with professional documents (.docx files) for: (1) Creating
+      new documents, (2) Modifying or editing content, (3) Working with tracked changes,
+      (4) Adding comments, or any other document tasks"'
+    context: When working in anthropic_official domain
+    outcome: Successfully execute docx
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

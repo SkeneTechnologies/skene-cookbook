@@ -1,0 +1,125 @@
+{
+  "id": "plgf_product_analytics",
+  "version": "1.0.0",
+  "name": "Product Analytics Framework",
+  "description": "Complete product analytics framework including event taxonomy design, tool setup (Mixpanel/Amplitude/PostHog), funnel analysis, cohort analysis, and behavioral analytics.",
+  "domain": "plg_frameworks",
+  "tools": [
+    {
+      "name": "analytics.track_event",
+      "required": true
+    },
+    {
+      "name": "analytics.funnel",
+      "required": true
+    },
+    {
+      "name": "analytics.cohort",
+      "required": true
+    },
+    {
+      "name": "analytics.get_metrics",
+      "required": true
+    },
+    {
+      "name": "analytics.segment",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "funnel_optimization",
+    "cohort_analysis",
+    "behavioral_insight",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "analysisType": {
+        "type": "string",
+        "enum": [
+          "taxonomy_design",
+          "funnel_analysis",
+          "cohort_analysis",
+          "behavioral",
+          "retention"
+        ],
+        "description": "Type of analytics analysis"
+      },
+      "tool": {
+        "type": "string",
+        "enum": [
+          "amplitude",
+          "mixpanel",
+          "posthog",
+          "segment",
+          "heap"
+        ],
+        "description": "Analytics tool in use"
+      },
+      "focusArea": {
+        "type": "string",
+        "description": "Specific feature or flow to analyze"
+      }
+    },
+    "required": [
+      "analysisType"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "eventTaxonomy": {
+        "type": "object"
+      },
+      "funnelAnalysis": {
+        "type": "object"
+      },
+      "cohortInsights": {
+        "type": "object"
+      },
+      "recommendations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "metrics": {
+    "primary": "data_quality_score",
+    "benchmarks": {
+      "excellent": "> 95% event coverage, < 1% data issues",
+      "good": "> 80% coverage, < 5% issues",
+      "needs_improvement": "< 80% coverage or > 5% issues"
+    }
+  },
+  "integrations": [
+    "amplitude",
+    "mixpanel",
+    "posthog",
+    "segment",
+    "heap",
+    "google_analytics"
+  ],
+  "temperature": 0,
+  "tags": [
+    "plg",
+    "analytics",
+    "product",
+    "events",
+    "funnel",
+    "cohort",
+    "behavioral",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Product Analytics Framework"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

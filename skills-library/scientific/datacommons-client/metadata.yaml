@@ -1,0 +1,44 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - api_key
+    - eval
+    - access
+    - read
+    - fetch
+    - get
+    - retrieve
+    - query
+    - list
+    - search
+    - filter
+    - format
+    - aggregate
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.792967'
+    original_risk: Critical
+    changes:
+    - Migrated to OAuth authentication
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Work with Data Commons, a platform providing programmatic access to public
+      statistical data from global sources. Use this skill when working with demographic
+      data, economic indicators, health statistics, environmental data, or any public
+      datasets available through Data Commons. Applicable for querying population
+      statistics, GDP figures, unemployment rates, disease prevalence, geographic
+      entity resolution, and exploring relationships between statistical entities.
+    context: When working in scientific domain
+    outcome: Successfully execute datacommons-client
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

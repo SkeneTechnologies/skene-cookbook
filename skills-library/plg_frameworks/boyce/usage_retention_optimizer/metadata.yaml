@@ -1,0 +1,41 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - system
+    - change
+    - get
+    - email
+    - notification
+    - analytics
+    - track
+    - list
+    - filter
+    - format
+    - calculate
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.842503'
+    original_risk: Critical
+    changes:
+    - Added validation, preview mode, and rollback for writes
+categorization:
+  job_function: customer_success
+  jtbd:
+    job: 'Optimizes DAU/WAU/MAU retention through habit formation and cohort analysis.
+      Based on Dave Boyce''s FREEMIUM framework (Chapter 11): Usage retention is more
+      important than dollar retention.'
+    context: When working in plg_frameworks domain
+    outcome: Successfully execute Usage Retention Optimizer
+composability:
+  hints:
+  - 'can_chain_to: retention_healthy'
+  - 'can_chain_to: habit_loop_needed'
+  - 'can_chain_to: reactivation_needed'
+  - 'can_chain_to: churn_risk_high'
+  - has_structured_output

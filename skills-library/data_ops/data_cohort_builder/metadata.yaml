@@ -1,0 +1,40 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - change
+    - pii
+    - personal
+    - read
+    - get
+    - query
+    - email
+    - alert
+    - log
+    - list
+    - filter
+    - format
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.862927'
+    original_risk: High
+    changes:
+    - Applied field-level access control and tenant isolation
+categorization:
+  job_function: customer_success
+  jtbd:
+    job: Creates and manages user cohorts based on behavioral, demographic, and custom
+      criteria for targeted analysis and campaigns.
+    context: When working in data_ops domain
+    outcome: Successfully execute Cohort Builder
+composability:
+  hints:
+  - 'can_chain_to: data_funnel_optimizer'
+  - 'can_chain_to: data_experiment_analyzer'
+  - 'can_chain_to: data_dashboard_builder'
+  - has_structured_output

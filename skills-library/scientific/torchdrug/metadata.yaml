@@ -1,0 +1,40 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - eval
+    - access
+    - read
+    - get
+    - query
+    - log
+    - list
+    - search
+    - filter
+    - format
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.855616'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: engineering
+  jtbd:
+    job: PyTorch-native graph neural networks for molecules and proteins. Use when
+      building custom GNN architectures for drug discovery, protein modeling, or knowledge
+      graph reasoning. Best for custom model development, protein property prediction,
+      retrosynthesis. For pre-trained models and diverse featurizers use deepchem;
+      for benchmark datasets use pytdc.
+    context: When working in scientific domain
+    outcome: Successfully execute torchdrug
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

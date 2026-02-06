@@ -1,0 +1,42 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - execute
+    - alter
+    - personal
+    - get
+    - email
+    - alert
+    - message
+    - analytics
+    - track
+    - log
+    - monitor
+    - list
+    - calculate
+    - show
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.824270'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: data
+  jtbd:
+    job: Monitors and optimizes time-to-value, identifying blockers and accelerating
+      first value achievement.
+    context: When working in plg domain
+    outcome: Successfully execute Time-to-Value Optimizer
+composability:
+  hints:
+  - 'can_chain_to: aha_moment_detection'
+  - 'can_chain_to: support'
+  - 'can_chain_to: activation'
+  - has_structured_output

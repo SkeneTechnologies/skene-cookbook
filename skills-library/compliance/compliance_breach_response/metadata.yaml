@@ -1,0 +1,47 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - financial
+    - password
+    - credential
+    - execute
+    - system
+    - access
+    - authorize
+    - pii
+    - sensitive
+    - read
+    - get
+    - email
+    - notification
+    - alert
+    - log
+    - monitor
+    - list
+    - format
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.723282'
+    original_risk: Critical
+    changes:
+    - Migrated to OAuth authentication
+categorization:
+  job_function: legal
+  jtbd:
+    job: Coordinates data breach response including detection, containment, notification,
+      and regulatory reporting
+    context: When working in compliance domain
+    outcome: Successfully execute Breach Response Coordinator
+composability:
+  hints:
+  - 'can_chain_to: gdpr_manager'
+  - 'can_chain_to: vendor_risk'
+  - 'can_chain_to: audit_preparer'
+  - has_structured_output

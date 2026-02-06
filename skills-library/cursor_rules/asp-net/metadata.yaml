@@ -1,0 +1,21 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors: []
+categorization:
+  job_function: hr
+  jtbd:
+    job: This guide provides opinionated, actionable best practices for building high-performance,
+      maintainable, and secure ASP.NET Core 9+ applications, focusing on modern C#
+      patterns and common pitfalls.
+    context: When working in cursor_rules domain
+    outcome: Successfully execute asp-net
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

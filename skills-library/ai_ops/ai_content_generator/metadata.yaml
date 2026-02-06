@@ -1,0 +1,38 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - pii
+    risk_factors:
+    - alter
+    - personal
+    - sensitive
+    - email
+    - alert
+    - message
+    - list
+    - format
+    - view
+    - preview
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.874840'
+    original_risk: High
+    changes:
+    - Applied field-level access control and tenant isolation
+categorization:
+  job_function: marketing
+  jtbd:
+    job: Generates personalized, context-aware content for emails, in-app messages,
+      and marketing materials.
+    context: When working in ai_ops domain
+    outcome: Successfully execute Dynamic Content Generator
+composability:
+  hints:
+  - 'can_chain_to: content_generated'
+  - 'can_chain_to: content_sent'
+  - 'can_chain_to: requires_review'
+  - has_structured_output

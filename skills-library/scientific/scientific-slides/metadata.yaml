@@ -1,0 +1,50 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - financial
+    - api_key
+    - system
+    - write
+    - update
+    - modify
+    - alter
+    - access
+    - personal
+    - read
+    - get
+    - message
+    - log
+    - monitor
+    - list
+    - search
+    - sort
+    - format
+    - compute
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.791349'
+    original_risk: Critical
+    changes:
+    - Migrated to OAuth authentication
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Build slide decks and presentations for research talks. Use this for making
+      PowerPoint slides, conference presentations, seminar talks, research presentations,
+      thesis defense slides, or any scientific talk. Provides slide structure, design
+      templates, timing guidance, and visual validation. Works with PowerPoint and
+      LaTeX Beamer.
+    context: When working in scientific domain
+    outcome: Successfully execute scientific-slides
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

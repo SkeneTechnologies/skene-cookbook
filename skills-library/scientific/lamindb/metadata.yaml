@@ -1,0 +1,50 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - eval
+    - system
+    - access
+    - authenticate
+    - permission
+    - personal
+    - read
+    - get
+    - query
+    - track
+    - log
+    - list
+    - search
+    - filter
+    - format
+    - compute
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.850258'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: engineering
+  jtbd:
+    job: This skill should be used when working with LaminDB, an open-source data
+      framework for biology that makes data queryable, traceable, reproducible, and
+      FAIR. Use when managing biological datasets (scRNA-seq, spatial, flow cytometry,
+      etc.), tracking computational workflows, curating and validating data with biological
+      ontologies, building data lakehouses, or ensuring data lineage and reproducibility
+      in biological research. Covers data management, annotation, ontologies (genes,
+      cell types, diseases, tissues), schema validation, integrations with workflow
+      managers (Nextflow, Snakemake) and MLOps platforms (W&B, MLflow), and deployment
+      strategies.
+    context: When working in scientific domain
+    outcome: Successfully execute lamindb
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

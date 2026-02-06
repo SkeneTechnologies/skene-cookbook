@@ -1,0 +1,46 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - payment
+    - system
+    - change
+    - alter
+    - personal
+    - read
+    - get
+    - email
+    - notification
+    - track
+    - list
+    - search
+    - filter
+    - format
+    - show
+    - view
+    - preview
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.774516'
+    original_risk: Critical
+    changes:
+    - 'Added payment safeguards: preview, approval, limits, rollback'
+categorization:
+  job_function: marketing
+  jtbd:
+    job: Curated library of 108 PLG tactics organized by category, filterable by difficulty,
+      impact, and PLG lever. A reference guide for growth ideation.
+    context: When working in plg_frameworks domain
+    outcome: Successfully execute PLG Ideas Library
+composability:
+  hints:
+  - 'can_chain_to: experiment_design'
+  - 'can_chain_to: implementation'
+  - 'can_chain_to: prioritization'
+  - has_structured_output

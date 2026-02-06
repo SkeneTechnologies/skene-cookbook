@@ -1,0 +1,47 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - pii
+    risk_factors:
+    - remove
+    - financial
+    - credit_card
+    - update
+    - access
+    - permission
+    - pii
+    - sensitive
+    - get
+    - query
+    - email
+    - alert
+    - analytics
+    - track
+    - log
+    - list
+    - filter
+    - format
+    - calculate
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.732148'
+    original_risk: Critical
+    changes:
+    - 'Added payment safeguards: preview, approval, limits, rollback'
+categorization:
+  job_function: legal
+  jtbd:
+    job: Scans analytics data and tracking implementations for privacy compliance
+      issues, PII leaks, and consent violations.
+    context: When working in data_ops domain
+    outcome: Successfully execute Analytics Privacy Scanner
+composability:
+  hints:
+  - 'can_chain_to: data_event_validator'
+  - has_structured_output

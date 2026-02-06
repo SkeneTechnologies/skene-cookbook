@@ -1,0 +1,39 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - delete
+    - remove
+    - system
+    - write
+    - change
+    - permission
+    - read
+    - get
+    - email
+    - message
+    - list
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.759698'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Use when implementing any feature or bugfix, before writing implementation
+      code
+    context: When working in superpowers domain
+    outcome: Successfully execute test-driven-development
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

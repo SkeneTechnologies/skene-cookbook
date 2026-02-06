@@ -1,0 +1,47 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - eval
+    - write
+    - change
+    - access
+    - read
+    - get
+    - query
+    - email
+    - track
+    - log
+    - list
+    - search
+    - filter
+    - sort
+    - format
+    - display
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.855154'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Query and analyze scholarly literature using the OpenAlex database. This
+      skill should be used when searching for academic papers, analyzing research
+      trends, finding works by authors or institutions, tracking citations, discovering
+      open access publications, or conducting bibliometric analysis across 240M+ scholarly
+      works. Use for literature searches, research output analysis, citation analysis,
+      and academic database queries.
+    context: When working in scientific domain
+    outcome: Successfully execute openalex-database
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

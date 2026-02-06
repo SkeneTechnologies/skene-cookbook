@@ -1,0 +1,51 @@
+{
+  "id": "marketing_competitive_ads_extractor",
+  "version": "1.0.0",
+  "name": "competitive-ads-extractor",
+  "description": "Extracts and analyzes competitors' ads from ad libraries (Facebook, LinkedIn, etc.) to understand what messaging, problems, and creative approaches are working. Helps inspire and improve your own ad campaigns.",
+  "domain": "marketing",
+  "category": "research",
+  "source": "skene-marketing",
+  "tools": [],
+  "exitStates": [
+    "idle",
+    "support"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {},
+    "required": []
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {}
+  },
+  "temperature": 0.3,
+  "tags": [
+    "marketing",
+    "research",
+    "competitive-ads-extractor",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with competitive ads extractor",
+        "campaigns"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "resend.send_email",
+          "required": false
+        },
+        {
+          "name": "analytics.track_campaign",
+          "required": false
+        }
+      ]
+    }
+  }
+}

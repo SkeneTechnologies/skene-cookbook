@@ -1,0 +1,38 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - payment
+    - third_party
+    - get
+    - analytics
+    - track
+    - log
+    - format
+    - calculate
+    - compute
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.712508'
+    original_risk: Critical
+    changes:
+    - 'Added payment safeguards: preview, approval, limits, rollback'
+categorization:
+  job_function: data
+  jtbd:
+    job: Analyzes gross margin by product, customer segment, and cost component for
+      profitability optimization
+    context: When working in finops domain
+    outcome: Successfully execute Gross Margin Analyzer
+composability:
+  hints:
+  - 'can_chain_to: rule_of_40'
+  - 'can_chain_to: investor_metrics'
+  - 'can_chain_to: expense_allocator'
+  - 'can_chain_to: pricing_optimization'
+  - has_structured_output

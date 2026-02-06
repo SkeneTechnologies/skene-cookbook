@@ -1,0 +1,45 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - financial
+    risk_factors:
+    - drop
+    - financial
+    - payment
+    - update
+    - modify
+    - change
+    - read
+    - get
+    - retrieve
+    - alert
+    - analytics
+    - track
+    - log
+    - list
+    - format
+    - calculate
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.759148'
+    original_risk: Critical
+    changes:
+    - 'Added payment safeguards: preview, approval, limits, rollback'
+categorization:
+  job_function: sales
+  jtbd:
+    job: Tracks total contract value, recognized revenue, and remaining obligations
+    context: When working in monetization domain
+    outcome: Successfully execute Contract Value Tracker
+composability:
+  hints:
+  - 'can_chain_to: contract_healthy'
+  - 'can_chain_to: renewal_approaching'
+  - 'can_chain_to: expansion_opportunity'
+  - 'can_chain_to: at_risk'
+  - has_structured_output

@@ -1,0 +1,32 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - update
+    - read
+    - get
+    - message
+    - analytics
+    - track
+    - list
+    - format
+    - calculate
+    - show
+categorization:
+  job_function: sales
+  jtbd:
+    job: Identifies and enables account expansion opportunities through seat additions,
+      plan upgrades, and add-on purchases without sales involvement.
+    context: When working in plg domain
+    outcome: Successfully execute Self-Serve Expansion Engine
+composability:
+  hints:
+  - 'can_chain_to: monetization'
+  - 'can_chain_to: pql_scoring'
+  - 'can_chain_to: support'
+  - has_structured_output

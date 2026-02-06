@@ -1,0 +1,33 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors:
+    - system
+    - access
+    - read
+    - sort
+    - format
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.801860'
+    original_risk: Critical
+    changes:
+    - Flagged for manual review as potential false positive
+categorization:
+  job_function: design
+  jtbd:
+    job: Applies Anthropic's official brand colors and typography to any sort of artifact
+      that may benefit from having Anthropic's look-and-feel. Use it when brand colors
+      or style guidelines, visual formatting, or company design standards apply.
+    context: When working in anthropic_official domain
+    outcome: Successfully execute brand-guidelines
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

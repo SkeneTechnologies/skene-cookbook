@@ -1,0 +1,48 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - delete
+    - api_key
+    - execute
+    - shell
+    - command
+    - update
+    - change
+    - read
+    - fetch
+    - get
+    - retrieve
+    - query
+    - message
+    - log
+    - search
+    - filter
+    - format
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.738426'
+    original_risk: Critical
+    changes:
+    - Migrated to OAuth authentication
+categorization:
+  job_function: marketing
+  jtbd:
+    job: Debug LangChain and LangGraph agents by fetching execution traces from LangSmith
+      Studio. Use when debugging agent behavior, investigating errors, analyzing tool
+      calls, checking memory operations, or examining agent performance. Automatically
+      fetches recent traces and analyzes execution patterns. Requires langsmith-fetch
+      CLI installed.
+    context: When working in marketing domain
+    outcome: Successfully execute langsmith-fetch
+composability:
+  hints:
+  - 'can_chain_to: support'
+  - has_structured_output

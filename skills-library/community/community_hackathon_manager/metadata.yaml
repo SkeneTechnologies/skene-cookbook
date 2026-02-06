@@ -1,0 +1,40 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - execute
+    - read
+    - get
+    - email
+    - notification
+    - analytics
+    - track
+    - log
+    - list
+    - format
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.834093'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Plans, manages, and executes community hackathons including registration,
+      team formation, judging, and prizes.
+    context: When working in community domain
+    outcome: Successfully execute Hackathon Orchestrator
+composability:
+  hints:
+  - 'can_chain_to: swag_manager'
+  - 'can_chain_to: contributor_tracker'
+  - 'can_chain_to: case_study_finder'
+  - has_structured_output

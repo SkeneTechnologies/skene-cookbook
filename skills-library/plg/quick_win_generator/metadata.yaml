@@ -1,0 +1,33 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - personal
+    - read
+    - get
+    - query
+    - analytics
+    - track
+    - list
+    - filter
+    - format
+    - display
+    - show
+categorization:
+  job_function: data
+  jtbd:
+    job: Identifies and surfaces immediate value opportunities that users can achieve
+      within minutes, building momentum and confidence.
+    context: When working in plg domain
+    outcome: Successfully execute Quick Win Identifier
+composability:
+  hints:
+  - 'can_chain_to: activation'
+  - 'can_chain_to: aha_moment_detection'
+  - 'can_chain_to: onboarding_flow'
+  - has_structured_output

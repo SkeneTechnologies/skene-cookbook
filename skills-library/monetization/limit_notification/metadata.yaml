@@ -1,0 +1,26 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - personal
+    - email
+    - notification
+    - alert
+    - message
+    - list
+    - format
+categorization:
+  job_function: finance
+  jtbd:
+    job: Proactively notifies users when approaching or exceeding usage limits.
+    context: When working in monetization domain
+    outcome: Successfully execute Usage Limit Notification
+composability:
+  hints:
+  - 'can_chain_to: upgrade_trigger'
+  - 'can_chain_to: support'

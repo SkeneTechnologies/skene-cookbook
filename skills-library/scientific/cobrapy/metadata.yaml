@@ -1,0 +1,43 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - secret
+    - system
+    - write
+    - modify
+    - change
+    - access
+    - read
+    - get
+    - query
+    - log
+    - list
+    - search
+    - format
+    - calculate
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.783195'
+    original_risk: Critical
+    changes:
+    - Migrated to OAuth authentication
+categorization:
+  job_function: operations
+  jtbd:
+    job: Constraint-based metabolic modeling (COBRA). FBA, FVA, gene knockouts, flux
+      sampling, SBML models, for systems biology and metabolic engineering analysis.
+    context: When working in scientific domain
+    outcome: Successfully execute cobrapy
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

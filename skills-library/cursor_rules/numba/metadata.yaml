@@ -1,0 +1,21 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors:
+    - get
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Definitive guidelines for writing high-performance, maintainable, and robust
+      Numba-accelerated Python code, covering CPU and GPU targets.
+    context: When working in cursor_rules domain
+    outcome: Successfully execute numba
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

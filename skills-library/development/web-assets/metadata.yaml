@@ -1,0 +1,45 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - system
+    - update
+    - change
+    - access
+    - read
+    - get
+    - message
+    - log
+    - search
+    - format
+    - calculate
+    - compute
+    - display
+    - show
+    - view
+    - preview
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.817550'
+    original_risk: Critical
+    changes:
+    - Added validation, preview mode, and rollback for writes
+categorization:
+  job_function: marketing
+  jtbd:
+    job: Generate web assets including favicons, app icons (PWA), and social media
+      meta images (Open Graph) for Facebook, Twitter, WhatsApp, and LinkedIn. Use
+      when users need icons, favicons, social sharing images, or Open Graph images
+      from logos or text slogans. Handles image resizing, text-to-image generation,
+      and provides proper HTML meta tags.
+    context: When working in development domain
+    outcome: Successfully execute web-assets
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

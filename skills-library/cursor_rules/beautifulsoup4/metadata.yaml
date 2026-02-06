@@ -1,0 +1,21 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors: []
+categorization:
+  job_function: engineering
+  jtbd:
+    job: This guide provides opinionated, actionable, and example-driven best practices
+      for using beautifulsoup4 in Python web scraping projects, focusing on modern
+      techniques and common pitfalls.
+    context: When working in cursor_rules domain
+    outcome: Successfully execute beautifulsoup4
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

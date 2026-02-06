@@ -1,0 +1,108 @@
+{
+  "id": "finops_burn_rate_monitor",
+  "version": "1.0.0",
+  "name": "Burn Rate Monitor",
+  "description": "Tracks cash burn rate and runway to optimize financial sustainability and planning",
+  "domain": "finops",
+  "tools": [
+    {
+      "name": "accounting.get_cash_flow",
+      "required": true
+    },
+    {
+      "name": "analytics.calculate",
+      "required": true
+    },
+    {
+      "name": "banking.get_balances",
+      "required": true
+    },
+    {
+      "name": "ai.forecast",
+      "required": false
+    },
+    {
+      "name": "alerts.configure",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "scenario_planner",
+    "expense_allocator",
+    "investor_metrics",
+    "alert_triggered",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "period": {
+        "type": "string",
+        "description": "Reporting period (YYYY-MM)"
+      },
+      "lookback_months": {
+        "type": "integer",
+        "default": 6
+      },
+      "runway_threshold_months": {
+        "type": "integer",
+        "default": 12
+      }
+    },
+    "required": [
+      "period"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "gross_burn": {
+        "type": "number"
+      },
+      "net_burn": {
+        "type": "number"
+      },
+      "cash_balance": {
+        "type": "number"
+      },
+      "runway_months": {
+        "type": "number"
+      },
+      "burn_trend": {
+        "type": "string"
+      },
+      "runway_at_current_burn": {
+        "type": "number"
+      },
+      "runway_at_projected_burn": {
+        "type": "number"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "runway_months",
+    "benchmarks": {
+      "safe": "> 18 months",
+      "adequate": "12-18 months",
+      "critical": "< 12 months"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "finops",
+    "burn-rate",
+    "runway",
+    "cash-management",
+    "forecasting",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Burn Rate Monitor"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

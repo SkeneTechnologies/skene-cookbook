@@ -1,0 +1,39 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - eval
+    - change
+    - read
+    - get
+    - log
+    - search
+    - format
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.856196'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: engineering
+  jtbd:
+    job: This skill should be used for time series machine learning tasks including
+      classification, regression, clustering, forecasting, anomaly detection, segmentation,
+      and similarity search. Use when working with temporal data, sequential patterns,
+      or time-indexed observations requiring specialized algorithms beyond standard
+      ML approaches. Particularly suited for univariate and multivariate time series
+      analysis with scikit-learn compatible APIs.
+    context: When working in scientific domain
+    outcome: Successfully execute aeon
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

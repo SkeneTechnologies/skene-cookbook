@@ -1,0 +1,43 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - financial
+    risk_factors:
+    - system
+    - update
+    - change
+    - fetch
+    - get
+    - analytics
+    - track
+    - log
+    - sort
+    - format
+    - calculate
+    - aggregate
+    - show
+    - view
+    - 'risky_tool: crm.update_deal'
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.806658'
+    original_risk: Critical
+    changes:
+    - Added validation, preview mode, and rollback for writes
+categorization:
+  job_function: data
+  jtbd:
+    job: Tracks and attributes revenue influenced by partner activities, providing
+      comprehensive ecosystem ROI analysis.
+    context: When working in ecosystem domain
+    outcome: Successfully execute Partner Influenced Revenue Tracker
+composability:
+  hints:
+  - 'can_chain_to: referral_program'
+  - 'can_chain_to: co_sell_trigger'
+  - 'can_chain_to: partner_tier_manager'
+  - has_structured_output

@@ -1,0 +1,44 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - password
+    - execute
+    - system
+    - command
+    - write
+    - get
+    - email
+    - message
+    - track
+    - log
+    - list
+    - format
+    - display
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.718364'
+    original_risk: Critical
+    changes:
+    - Migrated to OAuth authentication
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Complete browser automation with Playwright. Auto-detects dev servers, writes
+      clean test scripts to /tmp. Test pages, fill forms, take screenshots, check
+      responsive design, validate UX, test login flows, check links, automate any
+      browser task. Use when user wants to test websites, automate browser interactions,
+      validate web functionality, or perform any browser-based testing.
+    context: When working in development domain
+    outcome: Successfully execute playwright
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

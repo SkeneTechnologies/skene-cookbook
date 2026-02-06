@@ -1,0 +1,30 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - change
+    - get
+    - message
+    - analytics
+    - log
+    - list
+    - format
+    - calculate
+categorization:
+  job_function: sales
+  jtbd:
+    job: Sets fair, achievable quotas using historical performance, market data, and
+      territory potential.
+    context: When working in revops domain
+    outcome: Successfully execute Quota Setting Intelligence
+composability:
+  hints:
+  - 'can_chain_to: territory_planner'
+  - 'can_chain_to: forecast_intelligence'
+  - 'can_chain_to: sales_coaching'
+  - has_structured_output

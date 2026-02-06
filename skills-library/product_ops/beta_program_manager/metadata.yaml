@@ -1,0 +1,41 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - drop
+    - update
+    - access
+    - read
+    - get
+    - email
+    - analytics
+    - track
+    - monitor
+    - list
+    - filter
+    - format
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.703418'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: customer_success
+  jtbd:
+    job: Manages beta programs including participant selection, feature rollout, feedback
+      collection, and graduation criteria.
+    context: When working in product_ops domain
+    outcome: Successfully execute Beta Program Manager
+composability:
+  hints:
+  - 'can_chain_to: feature_adoption'
+  - 'can_chain_to: experimentation'
+  - 'can_chain_to: feedback_synthesis'
+  - has_structured_output

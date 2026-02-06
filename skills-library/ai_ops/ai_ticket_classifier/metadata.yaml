@@ -1,0 +1,39 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - payment
+    - access
+    - sensitive
+    - get
+    - email
+    - log
+    - list
+    - format
+    - calculate
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.755957'
+    original_risk: Critical
+    changes:
+    - 'Added payment safeguards: preview, approval, limits, rollback'
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Automatically classifies, prioritizes, and routes support tickets using AI
+      analysis.
+    context: When working in ai_ops domain
+    outcome: Successfully execute Support Ticket Classifier
+composability:
+  hints:
+  - 'can_chain_to: routed'
+  - 'can_chain_to: escalated'
+  - 'can_chain_to: auto_resolved'
+  - 'can_chain_to: needs_info'
+  - has_structured_output

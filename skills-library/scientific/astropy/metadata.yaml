@@ -1,0 +1,49 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - system
+    - write
+    - modify
+    - access
+    - read
+    - get
+    - query
+    - log
+    - list
+    - search
+    - filter
+    - sort
+    - format
+    - calculate
+    - compute
+    - aggregate
+    - display
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.856489'
+    original_risk: Critical
+    changes:
+    - Added validation, preview mode, and rollback for writes
+categorization:
+  job_function: operations
+  jtbd:
+    job: Comprehensive Python library for astronomy and astrophysics. This skill should
+      be used when working with astronomical data including celestial coordinates,
+      physical units, FITS files, cosmological calculations, time systems, tables,
+      world coordinate systems (WCS), and astronomical data analysis. Use when tasks
+      involve coordinate transformations, unit conversions, FITS file manipulation,
+      cosmological distance calculations, time scale conversions, or astronomical
+      data processing.
+    context: When working in scientific domain
+    outcome: Successfully execute astropy
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

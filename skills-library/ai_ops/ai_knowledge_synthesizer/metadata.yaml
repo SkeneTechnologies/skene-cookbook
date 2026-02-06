@@ -1,0 +1,31 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - update
+    - query
+    - track
+    - log
+    - list
+    - search
+    - filter
+    - format
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Synthesizes information from multiple knowledge sources to provide comprehensive,
+      accurate answers.
+    context: When working in ai_ops domain
+    outcome: Successfully execute Knowledge Synthesizer
+composability:
+  hints:
+  - 'can_chain_to: answer_provided'
+  - 'can_chain_to: sources_cited'
+  - 'can_chain_to: escalate_to_human'
+  - 'can_chain_to: no_answer'
+  - has_structured_output

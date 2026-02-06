@@ -1,0 +1,34 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - write
+    - update
+    - email
+    - track
+    - list
+    - format
+    - view
+    - 'risky_tool: crm.update_account'
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.874479'
+    original_risk: High
+    changes:
+    - Added validation, preview mode, and rollback for writes
+categorization:
+  job_function: marketing
+  jtbd:
+    job: Uses machine learning to predict lead quality and conversion likelihood.
+    context: When working in ai_ops domain
+    outcome: Successfully execute Predictive Lead Scoring
+composability:
+  hints:
+  - 'can_chain_to: lead_qualification'
+  - 'can_chain_to: sales_handoff'
+  - 'can_chain_to: nurture'

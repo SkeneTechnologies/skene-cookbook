@@ -1,0 +1,131 @@
+{
+  "id": "data_cohort_builder",
+  "version": "1.0.0",
+  "name": "Cohort Builder",
+  "description": "Creates and manages user cohorts based on behavioral, demographic, and custom criteria for targeted analysis and campaigns.",
+  "domain": "data_ops",
+  "tools": [
+    {
+      "name": "warehouse.query",
+      "required": true
+    },
+    {
+      "name": "segment.create_audience",
+      "required": false
+    },
+    {
+      "name": "amplitude.create_cohort",
+      "required": false
+    },
+    {
+      "name": "ai.analyze",
+      "required": true
+    },
+    {
+      "name": "crm.sync_list",
+      "required": false
+    },
+    {
+      "name": "marketing.create_audience",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "data_funnel_optimizer",
+    "data_experiment_analyzer",
+    "data_dashboard_builder",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "type": "string",
+        "description": "Cohort name"
+      },
+      "description": {
+        "type": "string",
+        "description": "What defines this cohort"
+      },
+      "criteria": {
+        "type": "object",
+        "description": "Filter criteria for cohort membership"
+      },
+      "base_table": {
+        "type": "string",
+        "description": "User table to query"
+      },
+      "lookback_days": {
+        "type": "number",
+        "default": 90
+      },
+      "refresh_frequency": {
+        "type": "string",
+        "default": "daily"
+      },
+      "sync_to": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Platforms to sync cohort to"
+      }
+    },
+    "required": [
+      "name",
+      "description"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "cohort_id": {
+        "type": "string"
+      },
+      "user_count": {
+        "type": "number"
+      },
+      "query": {
+        "type": "string"
+      },
+      "criteria_breakdown": {
+        "type": "object"
+      },
+      "overlap_analysis": {
+        "type": "object"
+      },
+      "synced_to": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "metrics": {
+    "primary": "cohort_stability",
+    "benchmarks": {
+      "excellent": "> 80% member retention week-over-week",
+      "good": "60-80% retention",
+      "needs_improvement": "< 60% retention (too volatile)"
+    }
+  },
+  "temperature": 0.2,
+  "tags": [
+    "data_ops",
+    "cohorts",
+    "segmentation",
+    "audiences",
+    "targeting",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Cohort Builder"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

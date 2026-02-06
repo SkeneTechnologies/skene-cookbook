@@ -1,0 +1,39 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - pii
+    risk_factors:
+    - permission
+    - personal
+    - get
+    - retrieve
+    - query
+    - analytics
+    - track
+    - list
+    - format
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.869974'
+    original_risk: High
+    changes:
+    - Applied field-level access control and tenant isolation
+categorization:
+  job_function: data
+  jtbd:
+    job: Provides personalized product adoption guidance, recommending features and
+      workflows that align with customer goals and use cases.
+    context: When working in customer_success domain
+    outcome: Successfully execute Product Adoption Coach
+composability:
+  hints:
+  - 'can_chain_to: adoption_score'
+  - 'can_chain_to: success_plan_generator'
+  - 'can_chain_to: expansion_playbook'
+  - 'can_chain_to: training_orchestrator'
+  - has_structured_output

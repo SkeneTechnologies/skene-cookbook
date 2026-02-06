@@ -1,0 +1,33 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - confidential
+    risk_factors:
+    - write
+    - update
+    - sort
+    - format
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.868310'
+    original_risk: High
+    changes:
+    - Added validation, preview mode, and rollback for writes
+categorization:
+  job_function: marketing
+  jtbd:
+    job: A set of resources to help me write all kinds of internal communications,
+      using the formats that my company likes to use. Claude should use this skill
+      whenever asked to write some sort of internal communications (status reports,
+      leadership updates, 3P updates, company newsletters, FAQs, incident reports,
+      project updates, etc.).
+    context: When working in anthropic_official domain
+    outcome: Successfully execute internal-comms
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

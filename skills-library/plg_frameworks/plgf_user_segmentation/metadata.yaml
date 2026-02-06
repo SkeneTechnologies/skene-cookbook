@@ -1,0 +1,45 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - pii
+    risk_factors:
+    - system
+    - update
+    - change
+    - access
+    - personal
+    - read
+    - get
+    - email
+    - alert
+    - message
+    - analytics
+    - list
+    - search
+    - format
+    - calculate
+    - view
+    - 'risky_tool: lifecycle.update_segment'
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.841626'
+    original_risk: Critical
+    changes:
+    - Applied field-level access control and tenant isolation
+categorization:
+  job_function: customer_success
+  jtbd:
+    job: Comprehensive user segmentation framework including behavioral cohorts, scoring
+      models, RFM analysis, persona development, and personalization playbooks.
+    context: When working in plg_frameworks domain
+    outcome: Successfully execute User Segmentation Framework
+composability:
+  hints:
+  - 'can_chain_to: personalization'
+  - 'can_chain_to: targeting'
+  - 'can_chain_to: lifecycle_management'
+  - has_structured_output

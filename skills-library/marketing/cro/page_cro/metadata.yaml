@@ -1,0 +1,49 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - eval
+    - write
+    - change
+    - alter
+    - personal
+    - read
+    - get
+    - email
+    - message
+    - log
+    - list
+    - search
+    - filter
+    - format
+    - display
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.740671'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: marketing
+  jtbd:
+    job: "When the user wants to optimize, improve, or increase conversions on any\
+      \ marketing page \u2014 including homepage, landing pages, pricing pages, feature\
+      \ pages, or blog posts. Also use when the user says \"CRO,\" \"conversion rate\
+      \ optimization,\" \"this page isn't converting,\" \"improve conversions,\" or\
+      \ \"why isn't this page working.\" For signup/registration flows, see signup-flow-cro.\
+      \ For post-signup activation, see onboarding-cro. For forms outside of signup,\
+      \ see form-cro. For popups/modals, see popup-cro."
+    context: When working in marketing domain
+    outcome: Successfully execute page-cro
+composability:
+  hints:
+  - 'can_chain_to: support'
+  - has_structured_output

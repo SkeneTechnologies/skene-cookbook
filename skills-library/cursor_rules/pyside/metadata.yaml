@@ -1,0 +1,22 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors:
+    - log
+categorization:
+  job_function: design
+  jtbd:
+    job: Definitive guide for building modern, maintainable, and performant PySide6
+      applications using best practices like UI/logic separation, modern controls,
+      and robust type safety.
+    context: When working in cursor_rules domain
+    outcome: Successfully execute pyside
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

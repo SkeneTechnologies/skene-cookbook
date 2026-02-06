@@ -1,0 +1,50 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - payment
+    - eval
+    - update
+    - change
+    - alter
+    - access
+    - read
+    - get
+    - email
+    - analytics
+    - track
+    - log
+    - list
+    - search
+    - format
+    - compute
+    - display
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.767655'
+    original_risk: Critical
+    changes:
+    - 'Added payment safeguards: preview, approval, limits, rollback'
+categorization:
+  job_function: finance
+  jtbd:
+    job: When the user wants to design or optimize pricing, packaging, or monetization
+      -- including tier structure, freemium design, value metrics, or price research.
+      Also use when the user says "pricing page," "how to price," "freemium vs free
+      trial," "Good-Better-Best tiers," or "value-based pricing." For feature gating,
+      see feature-gating. For trial optimization, see trial-optimization. For usage-based
+      models, see usage-based-pricing.
+    context: When working in plg_frameworks domain
+    outcome: Successfully execute pricing-strategy
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

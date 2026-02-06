@@ -1,0 +1,38 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - financial
+    risk_factors:
+    - update
+    - change
+    - get
+    - analytics
+    - track
+    - log
+    - list
+    - filter
+    - calculate
+    - show
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.875507'
+    original_risk: High
+    changes:
+    - Added validation, preview mode, and rollback for writes
+categorization:
+  job_function: sales
+  jtbd:
+    job: AI-powered revenue forecasting with deal-level predictions, risk analysis,
+      and scenario modeling.
+    context: When working in revops domain
+    outcome: Successfully execute Forecast Intelligence
+composability:
+  hints:
+  - 'can_chain_to: pipeline_health'
+  - 'can_chain_to: quota_planning'
+  - 'can_chain_to: board_reporting'
+  - has_structured_output

@@ -1,0 +1,42 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - drop
+    - change
+    - read
+    - get
+    - query
+    - alert
+    - analytics
+    - log
+    - list
+    - format
+    - calculate
+    - compute
+    - 'risky_tool: crm.update_account'
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.750387'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: customer_success
+  jtbd:
+    job: Calculates comprehensive product adoption scores across user engagement,
+      feature utilization, and workflow integration dimensions.
+    context: When working in customer_success domain
+    outcome: Successfully execute Adoption Score Calculator
+composability:
+  hints:
+  - 'can_chain_to: health_scoring'
+  - 'can_chain_to: product_adoption_guidance'
+  - 'can_chain_to: expansion_playbook'
+  - 'can_chain_to: churn_prediction'
+  - has_structured_output

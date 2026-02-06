@@ -1,0 +1,42 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - drop
+    - update
+    - change
+    - access
+    - get
+    - email
+    - analytics
+    - track
+    - list
+    - filter
+    - format
+    - calculate
+    - view
+    - 'risky_tool: crm.update_contact'
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.753797'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: customer_success
+  jtbd:
+    job: Manages regional and interest-based user groups, supporting local community
+      leaders and coordinating activities.
+    context: When working in community domain
+    outcome: Successfully execute User Group Manager
+composability:
+  hints:
+  - 'can_chain_to: event_manager'
+  - 'can_chain_to: ambassador_program'
+  - 'can_chain_to: champion_identifier'
+  - has_structured_output

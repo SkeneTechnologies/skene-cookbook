@@ -1,0 +1,130 @@
+{
+  "id": "data_privacy_scanner",
+  "version": "1.0.0",
+  "name": "Analytics Privacy Scanner",
+  "description": "Scans analytics data and tracking implementations for privacy compliance issues, PII leaks, and consent violations.",
+  "domain": "data_ops",
+  "tools": [
+    {
+      "name": "warehouse.query",
+      "required": true
+    },
+    {
+      "name": "ai.classify",
+      "required": true
+    },
+    {
+      "name": "segment.get_schema",
+      "required": false
+    },
+    {
+      "name": "analytics.get_events",
+      "required": false
+    },
+    {
+      "name": "alerting.send",
+      "required": true
+    },
+    {
+      "name": "linear.create_issue",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "data_event_validator",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "scan_scope": {
+        "type": "string",
+        "enum": [
+          "events",
+          "warehouse",
+          "both"
+        ],
+        "default": "both"
+      },
+      "regulations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "GDPR, CCPA, HIPAA, etc."
+      },
+      "pii_types": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Types of PII to detect"
+      },
+      "sample_size": {
+        "type": "number",
+        "default": 10000
+      },
+      "include_recommendations": {
+        "type": "boolean",
+        "default": true
+      }
+    },
+    "required": []
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "pii_findings": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "consent_issues": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "compliance_score": {
+        "type": "number"
+      },
+      "risk_assessment": {
+        "type": "object"
+      },
+      "remediation_plan": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      }
+    }
+  },
+  "metrics": {
+    "primary": "pii_exposure_rate",
+    "benchmarks": {
+      "excellent": "0% PII in analytics, 100% consent compliance",
+      "good": "< 0.1% PII exposure, > 95% consent compliance",
+      "needs_improvement": "> 0.1% PII exposure or < 95% consent compliance"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "data_ops",
+    "privacy",
+    "compliance",
+    "gdpr",
+    "pii",
+    "security",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Analytics Privacy Scanner"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

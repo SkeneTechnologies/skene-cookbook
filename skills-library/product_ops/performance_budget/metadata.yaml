@@ -1,0 +1,38 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - change
+    - get
+    - alert
+    - message
+    - analytics
+    - track
+    - monitor
+    - list
+    - format
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.705694'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: data
+  jtbd:
+    job: Monitors web performance against defined budgets, alerting on regressions
+      and tracking Core Web Vitals.
+    context: When working in product_ops domain
+    outcome: Successfully execute Performance Budget Monitor
+composability:
+  hints:
+  - 'can_chain_to: experimentation'
+  - 'can_chain_to: incident_analyzer'
+  - has_structured_output

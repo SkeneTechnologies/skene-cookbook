@@ -1,0 +1,23 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors:
+    - read
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Definitive guidelines for writing high-quality, performant, and maintainable
+      ROS 2 code, leveraging modern C++ and Python best practices, `ament` tooling,
+      and efficient architectural patterns like node composition and multithreaded
+      executors.
+    context: When working in cursor_rules domain
+    outcome: Successfully execute ros
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

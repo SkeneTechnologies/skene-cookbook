@@ -1,0 +1,43 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - drop
+    - execute
+    - modify
+    - change
+    - alter
+    - personal
+    - get
+    - query
+    - message
+    - analytics
+    - track
+    - list
+    - format
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.751318'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: customer_success
+  jtbd:
+    job: Intelligently selects and recommends the optimal CS playbook based on customer
+      situation, signals, and historical effectiveness.
+    context: When working in customer_success domain
+    outcome: Successfully execute Playbook Selector
+composability:
+  hints:
+  - 'can_chain_to: risk_mitigation_playbook'
+  - 'can_chain_to: expansion_playbook'
+  - 'can_chain_to: onboarding_health'
+  - 'can_chain_to: success_plan_generator'
+  - has_structured_output

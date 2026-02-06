@@ -1,0 +1,43 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - write
+    - update
+    - change
+    - access
+    - get
+    - email
+    - analytics
+    - track
+    - log
+    - list
+    - filter
+    - format
+    - calculate
+    - view
+    - 'risky_tool: crm.update_contact'
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.872171'
+    original_risk: High
+    changes:
+    - Added validation, preview mode, and rollback for writes
+categorization:
+  job_function: customer_success
+  jtbd:
+    job: Manages the community ambassador program including recruitment, onboarding,
+      activities, and rewards.
+    context: When working in community domain
+    outcome: Successfully execute Ambassador Program Manager
+composability:
+  hints:
+  - 'can_chain_to: swag_manager'
+  - 'can_chain_to: event_manager'
+  - 'can_chain_to: champion_identifier'
+  - has_structured_output

@@ -1,0 +1,52 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - delete
+    - remove
+    - destroy
+    - eval
+    - change
+    - access
+    - permission
+    - personal
+    - read
+    - get
+    - email
+    - notification
+    - message
+    - analytics
+    - track
+    - log
+    - list
+    - search
+    - format
+    - compute
+    - show
+    - view
+    - preview
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.768799'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: sales
+  jtbd:
+    job: When the user wants to decide what features to gate vs keep free, design
+      usage limits, implement reverse trials, or plan a free tier. Also use when the
+      user says "what should be free," "feature gate," "paywall placement," "usage
+      limits," or "reverse trial." For pricing strategy, see pricing-strategy. For
+      upgrade screens, see paywall-upgrade-cro.
+    context: When working in plg_frameworks domain
+    outcome: Successfully execute feature-gating
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

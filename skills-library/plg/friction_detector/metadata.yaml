@@ -1,0 +1,40 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - drop
+    - system
+    - alter
+    - read
+    - get
+    - analytics
+    - track
+    - monitor
+    - list
+    - format
+    - calculate
+    - show
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.728778'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: data
+  jtbd:
+    job: Identifies and analyzes user experience friction points through behavioral
+      signals, enabling proactive intervention and UX optimization.
+    context: When working in plg domain
+    outcome: Successfully execute Friction Point Detector
+composability:
+  hints:
+  - 'can_chain_to: support'
+  - 'can_chain_to: contextual_help'
+  - 'can_chain_to: onboarding_flow'
+  - has_structured_output

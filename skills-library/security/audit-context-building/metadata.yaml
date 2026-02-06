@@ -1,0 +1,39 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - system
+    - write
+    - update
+    - change
+    - read
+    - get
+    - message
+    - track
+    - log
+    - list
+    - format
+    - summarize
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.816568'
+    original_risk: Critical
+    changes:
+    - Added validation, preview mode, and rollback for writes
+categorization:
+  job_function: security
+  jtbd:
+    job: Enables ultra-granular, line-by-line code analysis to build deep architectural
+      context before vulnerability or bug finding.
+    context: When working in security domain
+    outcome: Successfully execute audit-context-building
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

@@ -1,0 +1,49 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - financial
+    risk_factors:
+    - remove
+    - drop
+    - payment
+    - eval
+    - modify
+    - change
+    - alter
+    - access
+    - read
+    - get
+    - email
+    - analytics
+    - track
+    - monitor
+    - list
+    - format
+    - calculate
+    - display
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.772099'
+    original_risk: Critical
+    changes:
+    - 'Added payment safeguards: preview, approval, limits, rollback'
+categorization:
+  job_function: finance
+  jtbd:
+    job: Friction audit, in-product checkout optimization, payment flow analysis,
+      and removing 'contact sales' gates
+    context: When working in plg_frameworks domain
+    outcome: Successfully execute Self-Serve Motion
+composability:
+  hints:
+  - 'can_chain_to: friction_identified'
+  - 'can_chain_to: checkout_optimized'
+  - 'can_chain_to: gates_removed'
+  - 'can_chain_to: needs_sales_assist'
+  - has_structured_output

@@ -1,0 +1,21 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors: []
+categorization:
+  job_function: design
+  jtbd:
+    job: This guide outlines definitive best practices for using httpx, Python's modern
+      HTTP client, ensuring robust, performant, and maintainable network interactions
+      in both synchronous and asynchronous applications.
+    context: When working in cursor_rules domain
+    outcome: Successfully execute httpx
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

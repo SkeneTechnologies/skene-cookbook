@@ -1,0 +1,46 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - drop
+    - payment
+    - execute
+    - eval
+    - system
+    - command
+    - write
+    - update
+    - change
+    - alter
+    - personal
+    - read
+    - get
+    - track
+    - list
+    - format
+    - display
+    - show
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.735684'
+    original_risk: Critical
+    changes:
+    - 'Added payment safeguards: preview, approval, limits, rollback'
+categorization:
+  job_function: marketing
+  jtbd:
+    job: "This skill is for interface design \u2014 dashboards, admin panels, apps,\
+      \ tools, and interactive products. NOT for marketing design (landing pages,\
+      \ marketing sites, campaigns)."
+    context: When working in marketing domain
+    outcome: Successfully execute interface-design
+composability:
+  hints:
+  - 'can_chain_to: support'
+  - has_structured_output

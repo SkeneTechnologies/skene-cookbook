@@ -1,0 +1,45 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - system
+    - change
+    - access
+    - authorize
+    - personal
+    - confidential
+    - read
+    - get
+    - alert
+    - track
+    - log
+    - monitor
+    - list
+    - format
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.721355'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: data
+  jtbd:
+    job: Monitors and manages SOC 2 compliance status across Trust Service Criteria
+      with continuous control monitoring
+    context: When working in compliance domain
+    outcome: Successfully execute SOC 2 Compliance Tracker
+composability:
+  hints:
+  - 'can_chain_to: audit_preparer'
+  - 'can_chain_to: access_reviewer'
+  - 'can_chain_to: vendor_risk'
+  - 'can_chain_to: breach_response'
+  - has_structured_output

@@ -1,0 +1,42 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - financial
+    - payment
+    - change
+    - read
+    - get
+    - retrieve
+    - alert
+    - analytics
+    - track
+    - monitor
+    - list
+    - format
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.750771'
+    original_risk: Critical
+    changes:
+    - 'Added payment safeguards: preview, approval, limits, rollback'
+categorization:
+  job_function: customer_success
+  jtbd:
+    job: Analyzes contract terms, tracks obligations, and provides insights for renewal
+      and expansion conversations.
+    context: When working in customer_success domain
+    outcome: Successfully execute Contract Intelligence
+composability:
+  hints:
+  - 'can_chain_to: renewal_orchestration'
+  - 'can_chain_to: expansion_playbook'
+  - 'can_chain_to: quarterly_business_review'
+  - 'can_chain_to: csql_generator'
+  - has_structured_output

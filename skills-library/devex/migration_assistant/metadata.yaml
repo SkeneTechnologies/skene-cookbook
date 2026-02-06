@@ -1,0 +1,41 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - command
+    - update
+    - change
+    - personal
+    - webhook
+    - get
+    - retrieve
+    - track
+    - log
+    - list
+    - format
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.707913'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Guides developers through API version migrations with automated code analysis
+      and transformation suggestions.
+    context: When working in devex domain
+    outcome: Successfully execute API Migration Assistant
+composability:
+  hints:
+  - 'can_chain_to: sdk_version_monitor'
+  - 'can_chain_to: changelog_tracker'
+  - 'can_chain_to: error_explainer'
+  - has_structured_output

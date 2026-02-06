@@ -1,0 +1,48 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - command
+    - change
+    - alter
+    - access
+    - personal
+    - sensitive
+    - read
+    - get
+    - email
+    - alert
+    - message
+    - track
+    - log
+    - list
+    - search
+    - format
+    - show
+    - view
+    - preview
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.827292'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: marketing
+  jtbd:
+    job: When the user wants to create or optimize popups, modals, overlays, slide-ins,
+      or banners for conversion purposes. Also use when the user mentions "exit intent,"
+      "popup conversions," "modal optimization," "lead capture popup," "email popup,"
+      "announcement banner," or "overlay." For forms outside of popups, see form-cro.
+      For general page conversion optimization, see page-cro.
+    context: When working in marketing domain
+    outcome: Successfully execute popup-cro
+composability:
+  hints:
+  - 'can_chain_to: support'
+  - has_structured_output

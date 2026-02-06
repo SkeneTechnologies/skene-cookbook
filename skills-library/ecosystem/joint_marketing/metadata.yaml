@@ -1,0 +1,40 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - execute
+    - system
+    - write
+    - read
+    - get
+    - email
+    - analytics
+    - track
+    - list
+    - format
+    - calculate
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.811717'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: marketing
+  jtbd:
+    job: Coordinates joint marketing initiatives with partners including co-branded
+      campaigns, webinars, content, and events.
+    context: When working in ecosystem domain
+    outcome: Successfully execute Joint Marketing Orchestrator
+composability:
+  hints:
+  - 'can_chain_to: mdf_tracker'
+  - 'can_chain_to: partner_influenced_revenue'
+  - 'can_chain_to: nearbound_signal'
+  - has_structured_output

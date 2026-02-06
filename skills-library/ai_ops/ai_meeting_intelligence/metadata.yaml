@@ -1,0 +1,38 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - financial
+    - change
+    - alter
+    - authorize
+    - confidential
+    - get
+    - format
+    - view
+    - 'risky_tool: crm.update_deal'
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.755674'
+    original_risk: Critical
+    changes:
+    - 'Added payment safeguards: preview, approval, limits, rollback'
+categorization:
+  job_function: sales
+  jtbd:
+    job: Analyzes meeting recordings and transcripts to extract insights, action items,
+      and deal intelligence.
+    context: When working in ai_ops domain
+    outcome: Successfully execute Meeting Intelligence Agent
+composability:
+  hints:
+  - 'can_chain_to: summary_generated'
+  - 'can_chain_to: actions_created'
+  - 'can_chain_to: deal_updated'
+  - 'can_chain_to: coaching_flagged'
+  - has_structured_output

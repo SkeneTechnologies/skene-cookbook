@@ -1,0 +1,31 @@
+{
+  "id": "scientific/pymc",
+  "version": "1.0.0",
+  "name": "pymc",
+  "description": "Bayesian modeling with PyMC. Build hierarchical models, MCMC (NUTS), variational inference, LOO/WAIC comparison, posterior checks, for probabilistic programming and inference.",
+  "domain": "scientific",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "scientific",
+    "imported",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "license": "Apache License, Version 2.0",
+      "triggers": [
+        "help with pymc"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

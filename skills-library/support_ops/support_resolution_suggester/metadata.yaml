@@ -1,0 +1,42 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - system
+    - update
+    - change
+    - alter
+    - access
+    - get
+    - query
+    - analytics
+    - log
+    - list
+    - search
+    - filter
+    - format
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.814697'
+    original_risk: Critical
+    changes:
+    - Added validation, preview mode, and rollback for writes
+categorization:
+  job_function: data
+  jtbd:
+    job: Suggests optimal resolutions for support tickets by analyzing similar past
+      cases and knowledge base content.
+    context: When working in support_ops domain
+    outcome: Successfully execute Resolution Suggester
+composability:
+  hints:
+  - 'can_chain_to: first_response'
+  - 'can_chain_to: kb_gap_finder'
+  - 'can_chain_to: macros_optimizer'
+  - has_structured_output

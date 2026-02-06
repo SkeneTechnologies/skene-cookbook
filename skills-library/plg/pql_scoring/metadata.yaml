@@ -1,0 +1,41 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - eval
+    - personal
+    - read
+    - get
+    - query
+    - email
+    - alert
+    - analytics
+    - log
+    - list
+    - calculate
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.822757'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: sales
+  jtbd:
+    job: Identifies and scores Product-Qualified Leads (PQLs) based on product usage
+      patterns and engagement signals.
+    context: When working in plg domain
+    outcome: Successfully execute Product-Qualified Lead Scoring
+composability:
+  hints:
+  - 'can_chain_to: sales_handoff'
+  - 'can_chain_to: upgrade_trigger'
+  - 'can_chain_to: nurture'
+  - has_structured_output

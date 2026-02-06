@@ -1,0 +1,43 @@
+id: workflow_sales_automated
+version: 1.0.0
+name: Lead Qualification Pipeline
+description: Qualify, score, route, and follow up on leads
+category: Sales
+chain_sequence:
+- step_id: step_1_lead_scoring
+  skill_id: elg_referral_program
+  action: execute
+  description: Execute lead scoring
+  timeout_seconds: 300
+  error_handling:
+    on_failure: stop
+    max_retries: 2
+- step_id: step_2_qualification
+  skill_id: elg_deal_registration
+  action: execute
+  description: Execute qualification
+  timeout_seconds: 300
+  error_handling:
+    on_failure: continue
+    max_retries: 2
+- step_id: step_3_routing
+  skill_id: elg_referral_program
+  action: execute
+  description: Execute routing
+  timeout_seconds: 300
+  error_handling:
+    on_failure: continue
+    max_retries: 2
+- step_id: step_4_follow_up
+  skill_id: elg_nearbound_signal
+  action: execute
+  description: Execute follow up
+  timeout_seconds: 300
+  error_handling:
+    on_failure: continue
+    max_retries: 2
+metadata:
+  author: Chain Architect
+  created_at: '2026-02-05T15:24:13.203445'
+  job_function: sales
+  auto_generated: true

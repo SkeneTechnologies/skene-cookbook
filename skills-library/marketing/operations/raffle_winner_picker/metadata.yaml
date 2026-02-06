@@ -1,0 +1,28 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - access
+    - read
+    - email
+    - list
+    - format
+    - display
+    - show
+    - view
+categorization:
+  job_function: marketing
+  jtbd:
+    job: Picks random winners from lists, spreadsheets, or Google Sheets for giveaways,
+      raffles, and contests. Ensures fair, unbiased selection with transparency.
+    context: When working in marketing domain
+    outcome: Successfully execute raffle-winner-picker
+composability:
+  hints:
+  - 'can_chain_to: support'
+  - has_structured_output

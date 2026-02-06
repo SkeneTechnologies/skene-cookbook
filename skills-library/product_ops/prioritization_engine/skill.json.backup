@@ -1,0 +1,121 @@
+{
+  "id": "prodops_prioritization_engine",
+  "version": "1.0.0",
+  "name": "Prioritization Engine",
+  "description": "Applies prioritization frameworks (RICE, ICE, weighted scoring) to rank features and initiatives objectively.",
+  "domain": "product_ops",
+  "tools": [
+    {
+      "name": "linear.get_issues",
+      "required": true
+    },
+    {
+      "name": "linear.update_issue",
+      "required": true
+    },
+    {
+      "name": "analytics.get_metrics",
+      "required": false
+    },
+    {
+      "name": "ai.generate",
+      "required": true
+    },
+    {
+      "name": "notion.query_database",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "roadmap_alignment",
+    "impact_analyzer",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "items": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        },
+        "description": "Items to prioritize"
+      },
+      "framework": {
+        "type": "string",
+        "enum": [
+          "rice",
+          "ice",
+          "weighted",
+          "kano",
+          "moscow"
+        ],
+        "description": "Prioritization framework"
+      },
+      "constraints": {
+        "type": "object",
+        "description": "Resource and timeline constraints"
+      },
+      "weights": {
+        "type": "object",
+        "description": "Custom weights for weighted scoring"
+      }
+    },
+    "required": [
+      "items",
+      "framework"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "rankedItems": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "scores": {
+        "type": "object"
+      },
+      "tradeoffs": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "recommendations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "metrics": {
+    "primary": "prioritization_accuracy",
+    "benchmarks": {
+      "excellent": "> 80% shipped items high priority",
+      "good": "60-80%",
+      "needs_improvement": "< 60%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "product_ops",
+    "prioritization",
+    "roadmap",
+    "planning",
+    "rice",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Prioritization Engine"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

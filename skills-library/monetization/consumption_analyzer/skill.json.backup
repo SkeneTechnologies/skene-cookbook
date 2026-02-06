@@ -1,0 +1,141 @@
+{
+  "id": "mon_consumption_analyzer",
+  "version": "1.0.0",
+  "name": "Consumption Pattern Analyzer",
+  "description": "Analyzes usage trends for billing optimization and forecasting",
+  "domain": "monetization",
+  "tools": [
+    {
+      "name": "stripe.get_usage",
+      "required": true
+    },
+    {
+      "name": "stripe.get_subscription",
+      "required": true
+    },
+    {
+      "name": "analytics.get_metrics",
+      "required": true
+    },
+    {
+      "name": "ai.forecast",
+      "required": true
+    },
+    {
+      "name": "analytics.cohort",
+      "required": false
+    },
+    {
+      "name": "crm.get_account",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "upgrade_trigger",
+    "limit_notification",
+    "consumption_alert",
+    "forecast_ready",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "account_id": {
+        "type": "string",
+        "description": "Account to analyze"
+      },
+      "period": {
+        "type": "string",
+        "enum": [
+          "7d",
+          "30d",
+          "90d",
+          "ytd"
+        ],
+        "default": "30d"
+      },
+      "dimensions": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Usage dimensions to analyze"
+      }
+    },
+    "required": [
+      "account_id"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "current_usage": {
+        "type": "object",
+        "description": "Current period usage by dimension"
+      },
+      "trend": {
+        "type": "string",
+        "enum": [
+          "increasing",
+          "stable",
+          "decreasing"
+        ]
+      },
+      "forecast": {
+        "type": "object",
+        "description": "Projected usage for next period"
+      },
+      "anomalies": {
+        "type": "array",
+        "description": "Detected usage anomalies"
+      },
+      "recommendations": {
+        "type": "array",
+        "description": "Billing optimization suggestions"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "forecast_accuracy",
+    "benchmarks": {
+      "excellent": "> 95%",
+      "good": "85-95%",
+      "needs_improvement": "< 85%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "monetization",
+    "billing",
+    "usage",
+    "forecasting",
+    "analytics",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Consumption Pattern Analyzer",
+        "billing",
+        "usage metering"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "stripe.get_customer",
+          "required": true
+        },
+        {
+          "name": "stripe.list_subscriptions",
+          "required": false
+        },
+        {
+          "name": "stripe.create_checkout",
+          "required": false
+        }
+      ]
+    }
+  }
+}

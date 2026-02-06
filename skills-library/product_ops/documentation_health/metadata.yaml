@@ -1,0 +1,38 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - update
+    - change
+    - get
+    - analytics
+    - track
+    - log
+    - monitor
+    - list
+    - search
+    - format
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.860475'
+    original_risk: High
+    changes:
+    - Added validation, preview mode, and rollback for writes
+categorization:
+  job_function: data
+  jtbd:
+    job: Monitors documentation coverage, accuracy, and freshness to ensure product
+      documentation remains helpful and current.
+    context: When working in product_ops domain
+    outcome: Successfully execute Documentation Health Monitor
+composability:
+  hints:
+  - 'can_chain_to: release_notes_generator'
+  - 'can_chain_to: feedback_synthesis'
+  - has_structured_output

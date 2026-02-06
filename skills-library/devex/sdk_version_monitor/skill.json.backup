@@ -1,0 +1,114 @@
+{
+  "id": "devex_sdk_version_monitor",
+  "version": "1.0.0",
+  "name": "SDK Version Monitor",
+  "description": "Monitors SDK usage across developers, identifies outdated versions, and proactively notifies about updates and security patches.",
+  "domain": "devex",
+  "tools": [
+    {
+      "name": "analytics.get_sdk_metrics",
+      "required": true
+    },
+    {
+      "name": "messaging.send_notification",
+      "required": true
+    },
+    {
+      "name": "github.get_releases",
+      "required": true
+    },
+    {
+      "name": "security.check_vulnerabilities",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "migration_assistant",
+    "changelog_tracker",
+    "deprecation_notifier",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "sdk_name": {
+        "type": "string",
+        "description": "SDK to monitor (or 'all')"
+      },
+      "action": {
+        "type": "string",
+        "enum": [
+          "analyze",
+          "notify",
+          "report"
+        ],
+        "default": "analyze"
+      },
+      "version_threshold": {
+        "type": "integer",
+        "description": "Number of major versions behind to flag",
+        "default": 2
+      },
+      "include_security": {
+        "type": "boolean",
+        "default": true
+      }
+    },
+    "required": []
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "sdk_distribution": {
+        "type": "object"
+      },
+      "outdated_developers": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "security_alerts": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "notification_summary": {
+        "type": "object"
+      },
+      "recommendations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "metrics": {
+    "primary": "sdk_version_currency",
+    "benchmarks": {
+      "excellent": "> 90% on latest or latest-1",
+      "good": "70-90% on latest or latest-1",
+      "needs_improvement": "< 70% on latest or latest-1"
+    }
+  },
+  "temperature": 0.1,
+  "tags": [
+    "devex",
+    "sdk",
+    "versioning",
+    "security",
+    "monitoring",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with SDK Version Monitor"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

@@ -1,0 +1,40 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - pii
+    risk_factors:
+    - drop
+    - write
+    - personal
+    - read
+    - get
+    - email
+    - message
+    - log
+    - list
+    - format
+    - view
+    - preview
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.741886'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: marketing
+  jtbd:
+    job: Creates hyper-personalized outreach messages (DMs, emails) with stack-aware
+      P.S. lines, category-specific angles, and enrichment-based personalization.
+      Applies copywriting principles to generate messages that resonate. Use when
+      preparing personalized outreach to specific leads.
+    context: When working in marketing domain
+    outcome: Successfully execute outreach-personalizer
+composability:
+  hints:
+  - 'can_chain_to: support'
+  - has_structured_output

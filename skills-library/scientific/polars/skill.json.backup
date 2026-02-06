@@ -1,0 +1,33 @@
+{
+  "id": "scientific/polars",
+  "version": "1.0.0",
+  "name": "polars",
+  "description": "Fast in-memory DataFrame library for datasets that fit in RAM. Use when pandas is too slow but data still fits in memory. Lazy evaluation, parallel execution, Apache Arrow backend. Best for 1-100GB datasets, ETL pipelines, faster pandas replacement. For larger-than-RAM data use dask or vaex.",
+  "domain": "scientific",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "scientific",
+    "imported",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "license": "https://github.com/pola-rs/polars/blob/main/LICENSE",
+      "triggers": [
+        "help with polars",
+        "data analysis",
+        "pandas is too slow but data still fits in memory"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

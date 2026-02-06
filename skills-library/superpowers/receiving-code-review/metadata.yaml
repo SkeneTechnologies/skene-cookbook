@@ -1,0 +1,41 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - delete
+    - remove
+    - drop
+    - eval
+    - write
+    - change
+    - read
+    - get
+    - track
+    - log
+    - filter
+    - format
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.760680'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Use when receiving code review feedback, before implementing suggestions,
+      especially if feedback seems unclear or technically questionable - requires
+      technical rigor and verification, not performative agreement or blind implementation
+    context: When working in superpowers domain
+    outcome: Successfully execute receiving-code-review
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

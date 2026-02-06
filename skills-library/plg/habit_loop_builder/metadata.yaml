@@ -1,0 +1,39 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - alter
+    - read
+    - get
+    - notification
+    - message
+    - analytics
+    - track
+    - list
+    - format
+    - calculate
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.725253'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: data
+  jtbd:
+    job: Designs and reinforces product usage habits through cue-routine-reward cycles,
+      driving sustainable engagement and retention.
+    context: When working in plg domain
+    outcome: Successfully execute Habit Loop Builder
+composability:
+  hints:
+  - 'can_chain_to: activation'
+  - 'can_chain_to: retention'
+  - 'can_chain_to: churn_prevention'
+  - has_structured_output

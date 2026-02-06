@@ -1,0 +1,39 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - system
+    - update
+    - change
+    - access
+    - read
+    - get
+    - track
+    - log
+    - list
+    - format
+    - calculate
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.812743'
+    original_risk: Critical
+    changes:
+    - Added validation, preview mode, and rollback for writes
+categorization:
+  job_function: data
+  jtbd:
+    job: Audits product accessibility compliance against WCAG standards and tracks
+      remediation progress.
+    context: When working in product_ops domain
+    outcome: Successfully execute Accessibility Auditor
+composability:
+  hints:
+  - 'can_chain_to: prioritization_engine'
+  - 'can_chain_to: documentation_health'
+  - has_structured_output

@@ -1,0 +1,59 @@
+{
+  "id": "boyce_usage_retention_optimizer",
+  "version": "1.0.0",
+  "name": "Usage Retention Optimizer",
+  "description": "Optimizes DAU/WAU/MAU retention through habit formation and cohort analysis. Based on Dave Boyce's FREEMIUM framework (Chapter 11): Usage retention is more important than dollar retention.",
+  "domain": "plg_frameworks",
+  "author": "Dave Boyce (FREEMIUM, Stanford University Press)",
+  
+  "tools": [
+    { "name": "analytics.cohort", "required": true },
+    { "name": "analytics.get_usage", "required": true },
+    { "name": "lifecycle.get_segment", "required": true },
+    { "name": "analytics.retention_curve", "required": false },
+    { "name": "messaging.send_in_app", "required": false }
+  ],
+  
+  "exitStates": ["retention_healthy", "habit_loop_needed", "reactivation_needed", "churn_risk_high"],
+  
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "userId": { "type": "string" },
+      "cohortId": { "type": "string" },
+      "timeframe": { "type": "string", "enum": ["7d", "30d", "90d"] }
+    }
+  },
+  
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "retentionMetrics": {
+        "type": "object",
+        "properties": {
+          "dauWauRatio": { "type": "number" },
+          "dauMauRatio": { "type": "number" },
+          "d7Retention": { "type": "number" },
+          "d30Retention": { "type": "number" }
+        }
+      },
+      "habitIndicators": { "type": "object" },
+      "correlatedActions": { "type": "array", "items": { "type": "object" } },
+      "recommendations": { "type": "array", "items": { "type": "string" } }
+    }
+  },
+  
+  "metrics": {
+    "primary": "dau_mau_ratio",
+    "secondary": ["d7_retention", "d30_retention", "session_frequency"],
+    "benchmarks": {
+      "excellent": "DAU/MAU > 50%, D30 > 40%",
+      "good": "DAU/MAU 25-50%, D30 20-40%",
+      "needs_improvement": "DAU/MAU < 25%, D30 < 20%"
+    }
+  },
+  
+  "integrations": ["amplitude", "mixpanel", "posthog"],
+  "temperature": 0,
+  "tags": ["plg", "retention", "habit", "dau-mau", "boyce", "freemium", "cohort-analysis"]
+}

@@ -1,0 +1,22 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors:
+    - read
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Definitive guidelines for writing robust, maintainable, and readable Selenium
+      automation scripts in Python, focusing on modern best practices for testing
+      and web scraping.
+    context: When working in cursor_rules domain
+    outcome: Successfully execute selenium
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

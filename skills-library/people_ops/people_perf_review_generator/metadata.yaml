@@ -1,0 +1,42 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - eval
+    - change
+    - personal
+    - confidential
+    - read
+    - get
+    - retrieve
+    - alert
+    - analytics
+    - list
+    - format
+    - calculate
+    - aggregate
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.829317'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: executive
+  jtbd:
+    job: Generates comprehensive performance reviews by aggregating feedback, goals,
+      metrics, and peer input into structured evaluations.
+    context: When working in people_ops domain
+    outcome: Successfully execute Performance Review Generator
+composability:
+  hints:
+  - 'can_chain_to: people_comp_benchmarker'
+  - 'can_chain_to: people_skill_gap_analyzer'
+  - 'can_chain_to: people_pulse_analyzer'
+  - has_structured_output

@@ -1,0 +1,45 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - truncate
+    - eval
+    - system
+    - update
+    - modify
+    - access
+    - read
+    - get
+    - log
+    - monitor
+    - list
+    - search
+    - format
+    - compute
+    - display
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.793703'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: operations
+  jtbd:
+    job: Production-ready reinforcement learning algorithms (PPO, SAC, DQN, TD3, DDPG,
+      A2C) with scikit-learn-like API. Use for standard RL experiments, quick prototyping,
+      and well-documented algorithm implementations. Best for single-agent RL with
+      Gymnasium environments. For high-performance parallel training, multi-agent
+      systems, or custom vectorized environments, use pufferlib instead.
+    context: When working in scientific domain
+    outcome: Successfully execute stable-baselines3
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

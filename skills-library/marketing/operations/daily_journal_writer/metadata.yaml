@@ -1,0 +1,44 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - execute
+    - write
+    - update
+    - access
+    - personal
+    - read
+    - get
+    - message
+    - analytics
+    - track
+    - list
+    - format
+    - calculate
+    - aggregate
+    - summarize
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.826979'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: marketing
+  jtbd:
+    job: Generates structured daily activity journals tracking accomplishments, plans,
+      metrics, and insights. Creates narrative-style entries that document campaign
+      progress, skill executions, outreach status, and priorities. Use at the end
+      of each day or when reviewing campaign progress.
+    context: When working in marketing domain
+    outcome: Successfully execute daily-journal-writer
+composability:
+  hints:
+  - 'can_chain_to: support'
+  - has_structured_output

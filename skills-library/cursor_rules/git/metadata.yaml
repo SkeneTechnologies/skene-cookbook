@@ -1,0 +1,21 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors: []
+categorization:
+  job_function: engineering
+  jtbd:
+    job: This guide defines the definitive Git best practices for our team, ensuring
+      clean history, efficient collaboration, and high code quality through structured
+      workflows, commit standards, and automated hooks.
+    context: When working in cursor_rules domain
+    outcome: Successfully execute git
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

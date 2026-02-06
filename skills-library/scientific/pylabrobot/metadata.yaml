@@ -1,0 +1,40 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - drop
+    - system
+    - change
+    - access
+    - read
+    - get
+    - track
+    - monitor
+    - search
+    - format
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.794043'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Vendor-agnostic lab automation framework. Use when controlling multiple equipment
+      types (Hamilton, Tecan, Opentrons, plate readers, pumps) or needing unified
+      programming across different vendors. Best for complex workflows, multi-vendor
+      setups, simulation. For Opentrons-only protocols with official API, opentrons-integration
+      may be simpler.
+    context: When working in scientific domain
+    outcome: Successfully execute pylabrobot
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

@@ -1,0 +1,53 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - password
+    - secret
+    - credential
+    - api_key
+    - execute
+    - system
+    - write
+    - update
+    - change
+    - access
+    - permission
+    - read
+    - get
+    - query
+    - email
+    - notification
+    - analytics
+    - log
+    - monitor
+    - list
+    - search
+    - filter
+    - format
+    - aggregate
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.776057'
+    original_risk: Critical
+    changes:
+    - Migrated to OAuth authentication
+categorization:
+  job_function: operations
+  jtbd:
+    job: Benchling R&D platform integration. Access registry (DNA, proteins), inventory,
+      ELN entries, workflows via API, build Benchling Apps, query Data Warehouse,
+      for lab data management automation.
+    context: When working in scientific domain
+    outcome: Successfully execute benchling-integration
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

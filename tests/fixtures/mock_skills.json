@@ -1,0 +1,244 @@
+[
+  {
+    "skill_id": "test_skill_1",
+    "name": "Data Analyzer",
+    "description": "Analyzes data files and generates insights",
+    "version": "1.0.0",
+    "verified": true,
+    "job_function": "engineering",
+    "domains": ["data", "analytics"],
+    "instructions": "Load data, perform analysis, generate report",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "data_file": {"type": "string", "description": "Path to data file"},
+        "analysis_type": {"type": "string"}
+      }
+    },
+    "output_schema": {
+      "type": "object",
+      "properties": {
+        "report": {"type": "string", "description": "Analysis report"},
+        "insights": {"type": "array"}
+      }
+    },
+    "tools": [{"name": "read_file"}],
+    "exitStates": [
+      {"state": "complete", "description": "Analysis complete", "nextSkills": ["test_skill_2"]}
+    ]
+  },
+  {
+    "skill_id": "test_skill_2",
+    "name": "Report Generator",
+    "description": "Generates formatted reports from analysis results",
+    "version": "1.0.0",
+    "verified": true,
+    "job_function": "engineering",
+    "domains": ["reporting"],
+    "instructions": "Format analysis results into report",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "report": {"type": "string", "description": "Raw report data"},
+        "format": {"type": "string"}
+      }
+    },
+    "output_schema": {
+      "type": "object",
+      "properties": {
+        "formatted_report": {"type": "string", "description": "Formatted report file"}
+      }
+    },
+    "tools": [{"name": "write_file"}],
+    "exitStates": [
+      {"state": "complete", "description": "Report generated"}
+    ]
+  },
+  {
+    "skill_id": "test_skill_3",
+    "name": "User Delete Manager",
+    "description": "Delete user accounts and associated data",
+    "version": "1.0.0",
+    "verified": false,
+    "job_function": "engineering",
+    "domains": ["admin", "users"],
+    "instructions": "Delete user password hash, payment information, and account data",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "user_id": {"type": "string"}
+      }
+    },
+    "output_schema": {
+      "type": "object",
+      "properties": {
+        "deleted": {"type": "boolean"}
+      }
+    },
+    "tools": [{"name": "database_delete"}, {"name": "admin_panel"}],
+    "exitStates": []
+  },
+  {
+    "skill_id": "test_skill_4",
+    "name": "Marketing Campaign Creator",
+    "description": "Create and launch marketing campaigns",
+    "version": "1.0.0",
+    "verified": true,
+    "job_function": "marketing",
+    "domains": ["campaigns", "automation"],
+    "instructions": "Design campaign, set targeting, launch",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "campaign_name": {"type": "string"},
+        "target_audience": {"type": "object"}
+      }
+    },
+    "output_schema": {
+      "type": "object",
+      "properties": {
+        "campaign_id": {"type": "string"},
+        "status": {"type": "string"}
+      }
+    },
+    "tools": [{"name": "marketing_platform"}],
+    "exitStates": [
+      {"state": "launched", "description": "Campaign launched"}
+    ]
+  },
+  {
+    "skill_id": "test_skill_5",
+    "name": "Content Reader",
+    "description": "Read and parse content files",
+    "version": "1.0.0",
+    "verified": true,
+    "job_function": "content",
+    "domains": ["content", "reading"],
+    "instructions": "Read file contents safely",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "file_path": {"type": "string", "description": "Path to file"}
+      }
+    },
+    "output_schema": {
+      "type": "object",
+      "properties": {
+        "content": {"type": "string", "description": "File contents"}
+      }
+    },
+    "tools": [{"name": "read"}],
+    "exitStates": []
+  },
+  {
+    "skill_id": "test_skill_6",
+    "name": "Incomplete Skill",
+    "description": "A skill without proper I/O schemas",
+    "version": "1.0.0",
+    "verified": false,
+    "job_function": "engineering",
+    "domains": ["testing"],
+    "instructions": "This skill has no I/O schemas"
+  },
+  {
+    "skill_id": "test_skill_7",
+    "name": "Data Processor",
+    "description": "Process data files and transform formats",
+    "version": "1.0.0",
+    "verified": true,
+    "job_function": "engineering",
+    "domains": ["data"],
+    "instructions": "Load data file, process it, output result",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "data": {"type": "string", "description": "Input data"}
+      }
+    },
+    "output_schema": {
+      "type": "object",
+      "properties": {
+        "data": {"type": "string", "description": "Processed data"}
+      }
+    },
+    "tools": [{"name": "transform"}],
+    "exitStates": [
+      {"state": "complete", "description": "Processing complete", "nextSkills": ["test_skill_1"]}
+    ]
+  },
+  {
+    "skill_id": "test_skill_8",
+    "name": "Payment Processor",
+    "description": "Process credit card payments securely",
+    "version": "1.0.0",
+    "verified": true,
+    "job_function": "finops",
+    "domains": ["payments", "finance"],
+    "instructions": "Process payment with credit card information",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "amount": {"type": "number"},
+        "card_number": {"type": "string"}
+      }
+    },
+    "output_schema": {
+      "type": "object",
+      "properties": {
+        "transaction_id": {"type": "string"},
+        "status": {"type": "string"}
+      }
+    },
+    "tools": [{"name": "stripe_api"}],
+    "exitStates": []
+  },
+  {
+    "skill_id": "test_skill_9",
+    "name": "URL Fetcher",
+    "description": "Fetch content from URLs",
+    "version": "1.0.0",
+    "verified": true,
+    "job_function": "engineering",
+    "domains": ["web", "scraping"],
+    "instructions": "Fetch content from provided URL",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "url": {"type": "string", "description": "URL to fetch"}
+      }
+    },
+    "output_schema": {
+      "type": "object",
+      "properties": {
+        "content": {"type": "string", "description": "Fetched content"},
+        "url": {"type": "string"}
+      }
+    },
+    "tools": [{"name": "web_fetch"}],
+    "exitStates": []
+  },
+  {
+    "skill_id": "test_skill_10",
+    "name": "Similar to Data Analyzer",
+    "description": "Analyzes data files and generates insights with similar functionality",
+    "version": "1.0.0",
+    "verified": false,
+    "job_function": "engineering",
+    "domains": ["data", "analytics"],
+    "instructions": "Load data, perform analysis, generate insights report",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "data_file": {"type": "string"}
+      }
+    },
+    "output_schema": {
+      "type": "object",
+      "properties": {
+        "report": {"type": "string"}
+      }
+    },
+    "tools": [{"name": "read_file"}],
+    "exitStates": []
+  }
+]

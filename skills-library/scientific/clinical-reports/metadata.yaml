@@ -1,0 +1,51 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - drop
+    - payment
+    - eval
+    - system
+    - shell
+    - write
+    - change
+    - alter
+    - access
+    - sensitive
+    - read
+    - email
+    - notification
+    - log
+    - monitor
+    - list
+    - search
+    - sort
+    - format
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.790868'
+    original_risk: Critical
+    changes:
+    - 'Added payment safeguards: preview, approval, limits, rollback'
+categorization:
+  job_function: operations
+  jtbd:
+    job: Write comprehensive clinical reports including case reports (CARE guidelines),
+      diagnostic reports (radiology/pathology/lab), clinical trial reports (ICH-E3,
+      SAE, CSR), and patient documentation (SOAP, H&P, discharge summaries). Full
+      support with templates, regulatory compliance (HIPAA, FDA, ICH-GCP), and validation
+      tools.
+    context: When working in scientific domain
+    outcome: Successfully execute clinical-reports
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

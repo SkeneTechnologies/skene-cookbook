@@ -1,0 +1,42 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - payment
+    - system
+    - personal
+    - get
+    - email
+    - track
+    - log
+    - monitor
+    - list
+    - format
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.764468'
+    original_risk: Critical
+    changes:
+    - 'Added payment safeguards: preview, approval, limits, rollback'
+categorization:
+  job_function: customer_success
+  jtbd:
+    job: 'Designs the human-machine GTM stack for AI-augmented go-to-market. Based
+      on Dave Boyce''s FREEMIUM framework (Chapter 19): AI will blend with PLG to
+      accelerate GTM de-laboring.'
+    context: When working in plg_frameworks domain
+    outcome: Successfully execute AI GTM Automator
+composability:
+  hints:
+  - 'can_chain_to: automation_designed'
+  - 'can_chain_to: human_touch_needed'
+  - 'can_chain_to: ai_assist_ready'
+  - 'can_chain_to: not_automatable'
+  - has_structured_output

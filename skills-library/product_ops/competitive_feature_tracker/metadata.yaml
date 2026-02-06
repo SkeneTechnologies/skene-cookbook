@@ -1,0 +1,43 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - eval
+    - system
+    - update
+    - change
+    - alter
+    - access
+    - get
+    - alert
+    - message
+    - track
+    - log
+    - monitor
+    - list
+    - filter
+    - format
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.813630'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Monitors competitor feature releases and market positioning to inform product
+      strategy and differentiation.
+    context: When working in product_ops domain
+    outcome: Successfully execute Competitive Feature Tracker
+composability:
+  hints:
+  - 'can_chain_to: roadmap_alignment'
+  - 'can_chain_to: prioritization_engine'
+  - has_structured_output

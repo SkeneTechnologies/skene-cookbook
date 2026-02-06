@@ -1,0 +1,38 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - financial
+    - update
+    - change
+    - read
+    - get
+    - analytics
+    - track
+    - log
+    - format
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.712804'
+    original_risk: Critical
+    changes:
+    - 'Added payment safeguards: preview, approval, limits, rollback'
+categorization:
+  job_function: sales
+  jtbd:
+    job: Compiles key SaaS metrics for investor reporting, board meetings, and fundraising
+    context: When working in finops domain
+    outcome: Successfully execute Investor Metrics Dashboard
+composability:
+  hints:
+  - 'can_chain_to: rule_of_40'
+  - 'can_chain_to: scenario_planner'
+  - 'can_chain_to: board_deck'
+  - 'can_chain_to: fundraise_mode'
+  - has_structured_output

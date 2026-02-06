@@ -1,0 +1,127 @@
+{
+  "id": "revops_stage_duration",
+  "version": "1.0.0",
+  "name": "Stage Duration Analyzer",
+  "description": "Analyzes deal stage durations to identify bottlenecks, optimize sales process, and improve forecasting.",
+  "domain": "revops",
+  "tools": [
+    {
+      "name": "crm.get_deals",
+      "required": true
+    },
+    {
+      "name": "crm.get_stage_history",
+      "required": true
+    },
+    {
+      "name": "analytics.calculate_benchmarks",
+      "required": true
+    },
+    {
+      "name": "ai.identify_bottlenecks",
+      "required": true
+    },
+    {
+      "name": "analytics.create_report",
+      "required": false
+    },
+    {
+      "name": "messaging.send_alert",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "pipeline_health",
+    "deal_inspection",
+    "sales_coaching",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "period": {
+        "type": "string"
+      },
+      "segment": {
+        "type": "string"
+      },
+      "stage": {
+        "type": "string",
+        "description": "Focus on specific stage"
+      },
+      "repId": {
+        "type": "string"
+      },
+      "alertOnAnomaly": {
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "period"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "avgCycleDays": {
+        "type": "number"
+      },
+      "stageMetrics": {
+        "type": "array"
+      },
+      "bottlenecks": {
+        "type": "array"
+      },
+      "anomalies": {
+        "type": "array"
+      },
+      "recommendations": {
+        "type": "array"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "sales_cycle_efficiency",
+    "benchmarks": {
+      "excellent": "< 80% of historical avg",
+      "good": "80-100% of historical avg",
+      "needs_improvement": "> 100% of historical avg"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "revops",
+    "stage",
+    "duration",
+    "process",
+    "bottleneck",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Stage Duration Analyzer",
+        "sales pipeline",
+        "forecasting",
+        "deal velocity"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "crm.get_pipeline",
+          "required": true
+        },
+        {
+          "name": "crm.list_deals",
+          "required": false
+        },
+        {
+          "name": "analytics.get_forecast",
+          "required": false
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "id": "scientific/cellxgene-census",
+  "version": "1.0.0",
+  "name": "cellxgene-census",
+  "description": "Query the CELLxGENE Census (61M+ cells) programmatically. Use when you need expression data across tissues, diseases, or cell types from the largest curated single-cell atlas. Best for population-scale queries, reference atlas comparisons. For analyzing your own data use scanpy or scvi-tools.",
+  "domain": "scientific",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "scientific",
+    "imported",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "license": "Unknown",
+      "triggers": [
+        "help with cellxgene census",
+        "data analysis",
+        "you need expression data across tissues, diseases, or cell types from the largest curated single-cell atlas"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

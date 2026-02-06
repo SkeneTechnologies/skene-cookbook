@@ -1,0 +1,20 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors: []
+categorization:
+  job_function: operations
+  jtbd:
+    job: Enforce modern TypeScript best practices for robust, type-safe JavaScript
+      applications, focusing on strictness, clear type definitions, and runtime validation.
+    context: When working in cursor_rules domain
+    outcome: Successfully execute typescript
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

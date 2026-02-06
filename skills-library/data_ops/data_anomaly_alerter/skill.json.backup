@@ -1,0 +1,140 @@
+{
+  "id": "data_anomaly_alerter",
+  "version": "1.0.0",
+  "name": "Metric Anomaly Alerter",
+  "description": "Detects anomalies in key metrics using statistical methods and ML, alerting teams to significant deviations.",
+  "domain": "data_ops",
+  "tools": [
+    {
+      "name": "warehouse.query",
+      "required": true
+    },
+    {
+      "name": "ai.detect_anomaly",
+      "required": true
+    },
+    {
+      "name": "alerting.send",
+      "required": true
+    },
+    {
+      "name": "pagerduty.create_incident",
+      "required": false
+    },
+    {
+      "name": "slack.send_message",
+      "required": false
+    },
+    {
+      "name": "linear.create_issue",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "data_dashboard_builder",
+    "data_etl_monitor",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "metrics": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Metrics to monitor"
+      },
+      "sensitivity": {
+        "type": "string",
+        "enum": [
+          "low",
+          "medium",
+          "high"
+        ],
+        "default": "medium"
+      },
+      "detection_method": {
+        "type": "string",
+        "enum": [
+          "zscore",
+          "mad",
+          "isolation_forest",
+          "prophet"
+        ],
+        "default": "zscore"
+      },
+      "lookback_period": {
+        "type": "string",
+        "default": "30d",
+        "description": "Historical data for baseline"
+      },
+      "alert_channels": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Where to send alerts"
+      },
+      "business_hours_only": {
+        "type": "boolean",
+        "default": false
+      }
+    },
+    "required": [
+      "metrics"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "anomalies_detected": {
+        "type": "number"
+      },
+      "anomalies": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "alerts_sent": {
+        "type": "number"
+      },
+      "metric_health": {
+        "type": "object"
+      },
+      "recommendations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "metrics": {
+    "primary": "anomaly_detection_accuracy",
+    "benchmarks": {
+      "excellent": "> 95% true positive rate, < 5% false positive",
+      "good": "85-95% true positive, 5-15% false positive",
+      "needs_improvement": "< 85% true positive or > 15% false positive"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "data_ops",
+    "anomaly_detection",
+    "alerting",
+    "monitoring",
+    "ml",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Metric Anomaly Alerter"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

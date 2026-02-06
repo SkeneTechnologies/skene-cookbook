@@ -1,0 +1,47 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - eval
+    - system
+    - update
+    - change
+    - access
+    - read
+    - get
+    - email
+    - notification
+    - analytics
+    - track
+    - log
+    - list
+    - search
+    - format
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.843308'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: customer_success
+  jtbd:
+    job: When the user wants to assess PLG readiness, design a product-led growth
+      strategy, choose between freemium and free trial, evaluate PLG maturity, or
+      plan a hybrid PLG + sales model. Also use when the user says "should we do PLG,"
+      "PLG vs sales-led," "growth motions," "PLG audit," or "go-to-market strategy."
+      For specific mental models, see plg-mental-models. For growth loop design, see
+      growth-loops.
+    context: When working in plg_frameworks domain
+    outcome: Successfully execute plg-strategy
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

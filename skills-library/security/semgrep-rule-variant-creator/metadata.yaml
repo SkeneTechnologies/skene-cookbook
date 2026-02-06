@@ -1,0 +1,40 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - command
+    - write
+    - update
+    - change
+    - read
+    - fetch
+    - get
+    - query
+    - message
+    - log
+    - search
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.817320'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: security
+  jtbd:
+    job: Creates language variants of existing Semgrep rules. Use when porting a Semgrep
+      rule to specified target languages. Takes an existing rule and target languages
+      as input, produces independent rule+test directories for each language.
+    context: When working in security domain
+    outcome: Successfully execute semgrep-rule-variant-creator
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

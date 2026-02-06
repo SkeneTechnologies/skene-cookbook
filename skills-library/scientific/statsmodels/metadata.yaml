@@ -1,0 +1,41 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - drop
+    - eval
+    - alter
+    - read
+    - get
+    - log
+    - search
+    - filter
+    - sort
+    - format
+    - calculate
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.795417'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Statistical models library for Python. Use when you need specific model classes
+      (OLS, GLM, mixed models, ARIMA) with detailed diagnostics, residuals, and inference.
+      Best for econometrics, time series, rigorous inference with coefficient tables.
+      For guided statistical test selection with APA reporting use statistical-analysis.
+    context: When working in scientific domain
+    outcome: Successfully execute statsmodels
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

@@ -1,0 +1,39 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - financial
+    risk_factors:
+    - payment
+    - update
+    - get
+    - retrieve
+    - email
+    - analytics
+    - track
+    - log
+    - list
+    - format
+    - 'risky_tool: stripe.update_customer'
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.759429'
+    original_risk: Critical
+    changes:
+    - 'Added payment safeguards: preview, approval, limits, rollback'
+categorization:
+  job_function: finance
+  jtbd:
+    job: Optimizes payment methods to reduce failed payments and processing costs
+    context: When working in monetization domain
+    outcome: Successfully execute Payment Method Optimizer
+composability:
+  hints:
+  - 'can_chain_to: payment_updated'
+  - 'can_chain_to: card_expiring_notified'
+  - 'can_chain_to: backup_added'
+  - 'can_chain_to: intervention_needed'
+  - has_structured_output

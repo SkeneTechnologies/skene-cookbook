@@ -1,0 +1,63 @@
+{
+  "id": "development/code-review-checklist",
+  "version": "1.0.0",
+  "name": "Code Review Checklist",
+  "description": "Systematic code review checklist covering correctness, security, performance, maintainability, and style. Use when reviewing PRs, doing code audits, or before merging changes.",
+  "domain": "development",
+  "source": "native",
+  "tools": [],
+  "exitStates": [
+    "approved",
+    "changes_requested",
+    "needs_discussion"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "code": {
+        "type": "string",
+        "description": "Code to review"
+      },
+      "context": {
+        "type": "string",
+        "description": "PR description or context"
+      }
+    },
+    "required": [
+      "code"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "verdict": {
+        "type": "string"
+      },
+      "issues": {
+        "type": "array"
+      },
+      "suggestions": {
+        "type": "array"
+      }
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "development",
+    "code-review",
+    "quality",
+    "best-practices",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Code Review Checklist",
+        "code review",
+        "reviewing prs, doing code audits, or before merging changes"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

@@ -1,0 +1,43 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - update
+    - change
+    - get
+    - retrieve
+    - query
+    - email
+    - alert
+    - analytics
+    - list
+    - format
+    - calculate
+    - aggregate
+    - view
+    - 'risky_tool: crm.update_account'
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.868778'
+    original_risk: High
+    changes:
+    - Added validation, preview mode, and rollback for writes
+categorization:
+  job_function: customer_success
+  jtbd:
+    job: Analyzes customer sentiment across all touchpoints to identify satisfaction
+      trends, detect early warning signs, and guide proactive engagement.
+    context: When working in customer_success domain
+    outcome: Successfully execute Customer Sentiment Analyzer
+composability:
+  hints:
+  - 'can_chain_to: health_scoring'
+  - 'can_chain_to: escalation_manager'
+  - 'can_chain_to: risk_mitigation_playbook'
+  - 'can_chain_to: nps_followup'
+  - has_structured_output

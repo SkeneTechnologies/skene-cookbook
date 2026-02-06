@@ -1,0 +1,32 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - financial
+    risk_factors:
+    - change
+    - get
+    - analytics
+    - track
+    - log
+    - filter
+    - sort
+    - format
+    - calculate
+categorization:
+  job_function: data
+  jtbd:
+    job: Tracks Net Dollar Retention to measure revenue expansion efficiency and customer
+      value growth
+    context: When working in finops domain
+    outcome: Successfully execute Net Dollar Retention Tracker
+composability:
+  hints:
+  - 'can_chain_to: arr_waterfall'
+  - 'can_chain_to: investor_metrics'
+  - 'can_chain_to: churn_analysis'
+  - 'can_chain_to: expansion_playbook'
+  - has_structured_output

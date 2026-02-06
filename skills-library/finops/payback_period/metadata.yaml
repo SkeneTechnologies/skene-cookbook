@@ -1,0 +1,30 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - update
+    - get
+    - analytics
+    - track
+    - search
+    - format
+    - calculate
+categorization:
+  job_function: data
+  jtbd:
+    job: Calculates CAC payback period to measure go-to-market efficiency and capital
+      requirements
+    context: When working in finops domain
+    outcome: Successfully execute CAC Payback Calculator
+composability:
+  hints:
+  - 'can_chain_to: cac_calculator'
+  - 'can_chain_to: magic_number'
+  - 'can_chain_to: investor_metrics'
+  - 'can_chain_to: burn_rate_monitor'
+  - has_structured_output

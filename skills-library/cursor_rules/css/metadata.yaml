@@ -1,0 +1,21 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - access
+categorization:
+  job_function: design
+  jtbd:
+    job: Definitive guidelines for writing maintainable, performant, and accessible
+      CSS. Focus on modern practices, robust architecture, and efficient styling patterns.
+    context: When working in cursor_rules domain
+    outcome: Successfully execute css
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

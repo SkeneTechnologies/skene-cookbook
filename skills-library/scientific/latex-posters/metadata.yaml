@@ -1,0 +1,47 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - system
+    - command
+    - write
+    - alter
+    - access
+    - read
+    - get
+    - email
+    - message
+    - log
+    - monitor
+    - list
+    - search
+    - format
+    - display
+    - show
+    - view
+    - preview
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.789474'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Create professional research posters in LaTeX using beamerposter, tikzposter,
+      or baposter. Support for conference presentations, academic posters, and scientific
+      communication. Includes layout design, color schemes, multi-column formats,
+      figure integration, and poster-specific best practices for visual communication.
+    context: When working in scientific domain
+    outcome: Successfully execute latex-posters
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

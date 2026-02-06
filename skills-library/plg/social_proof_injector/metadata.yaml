@@ -1,0 +1,47 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - eval
+    - update
+    - permission
+    - personal
+    - get
+    - query
+    - notification
+    - message
+    - analytics
+    - track
+    - log
+    - list
+    - filter
+    - format
+    - calculate
+    - display
+    - show
+    - view
+    - preview
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.823605'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: marketing
+  jtbd:
+    job: Strategically surfaces social proof elements like user counts, testimonials,
+      and activity notifications to build trust and drive action.
+    context: When working in plg domain
+    outcome: Successfully execute Social Proof Injector
+composability:
+  hints:
+  - 'can_chain_to: activation'
+  - 'can_chain_to: conversion'
+  - 'can_chain_to: viral_loop'
+  - has_structured_output

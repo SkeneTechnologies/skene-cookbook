@@ -1,0 +1,75 @@
+{
+  "id": "ai_conversation_intelligence",
+  "version": "1.0.0",
+  "name": "Conversation Intelligence",
+  "description": "Analyzes sales and support conversations for insights, coaching, and deal intelligence.",
+  "domain": "ai_ops",
+  "tools": [
+    {
+      "name": "ai.summarize_conversation",
+      "required": true
+    },
+    {
+      "name": "ai.analyze_sentiment",
+      "required": true
+    },
+    {
+      "name": "ai.detect_intent",
+      "required": false
+    },
+    {
+      "name": "crm.log_activity",
+      "required": true
+    },
+    {
+      "name": "crm.update_deal",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "deal_update",
+    "coaching_alert",
+    "escalation",
+    "idle"
+  ],
+  "metrics": {
+    "primary": "conversation_analysis_accuracy",
+    "benchmarks": {
+      "excellent": "> 90%",
+      "good": "80-90%",
+      "needs_improvement": "< 80%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "ai_ops",
+    "conversation",
+    "intelligence",
+    "coaching",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Conversation Intelligence"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "ai.classify",
+          "required": false
+        },
+        {
+          "name": "ai.generate",
+          "required": false
+        },
+        {
+          "name": "ai.score_lead",
+          "required": false
+        }
+      ]
+    }
+  }
+}

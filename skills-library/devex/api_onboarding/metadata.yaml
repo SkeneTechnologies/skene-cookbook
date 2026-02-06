@@ -1,0 +1,44 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - pii
+    risk_factors:
+    - credential
+    - command
+    - update
+    - change
+    - authorize
+    - personal
+    - fetch
+    - get
+    - query
+    - analytics
+    - track
+    - list
+    - filter
+    - format
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.708818'
+    original_risk: Critical
+    changes:
+    - Migrated to OAuth authentication
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Creates personalized API getting-started guides based on developer's tech
+      stack and use case for faster time-to-first-call.
+    context: When working in devex domain
+    outcome: Successfully execute API Quick Start Generator
+composability:
+  hints:
+  - 'can_chain_to: sdk_version_monitor'
+  - 'can_chain_to: webhook_tester'
+  - 'can_chain_to: code_sample_generator'
+  - has_structured_output

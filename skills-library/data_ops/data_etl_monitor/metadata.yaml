@@ -1,0 +1,42 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - credential
+    - eval
+    - update
+    - change
+    - permission
+    - get
+    - query
+    - alert
+    - message
+    - track
+    - log
+    - monitor
+    - list
+    - filter
+    - format
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.731598'
+    original_risk: Critical
+    changes:
+    - Migrated to OAuth authentication
+categorization:
+  job_function: data
+  jtbd:
+    job: Monitors ETL/ELT pipeline health, detects failures and delays, and ensures
+      data freshness SLAs are met.
+    context: When working in data_ops domain
+    outcome: Successfully execute ETL Pipeline Monitor
+composability:
+  hints:
+  - 'can_chain_to: data_anomaly_alerter'
+  - 'can_chain_to: data_warehouse_optimizer'
+  - has_structured_output

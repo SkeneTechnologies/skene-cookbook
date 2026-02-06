@@ -1,0 +1,46 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - api_key
+    - eval
+    - system
+    - command
+    - write
+    - access
+    - read
+    - get
+    - log
+    - list
+    - search
+    - sort
+    - format
+    - display
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.779955'
+    original_risk: Critical
+    changes:
+    - Migrated to OAuth authentication
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Create publication-quality scientific diagrams using Nano Banana Pro AI with
+      smart iterative refinement. Uses Gemini 3 Pro for quality review. Only regenerates
+      if quality is below threshold for your document type. Specialized in neural
+      network architectures, system diagrams, flowcharts, biological pathways, and
+      complex scientific visualizations.
+    context: When working in scientific domain
+    outcome: Successfully execute scientific-schematics
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

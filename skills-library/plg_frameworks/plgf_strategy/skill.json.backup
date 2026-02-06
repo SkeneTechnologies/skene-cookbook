@@ -1,0 +1,140 @@
+{
+  "id": "plgf_strategy",
+  "version": "1.0.0",
+  "name": "PLG Strategy Assessment",
+  "description": "PLG readiness assessment using Four Fits, Racecar framework, Motions x Levers model, and PLG maturity model with freemium vs trial decision tree",
+  "domain": "plg_frameworks",
+  "tools": [
+    {
+      "name": "analytics.get_metrics",
+      "required": true
+    },
+    {
+      "name": "rag.query",
+      "required": true
+    },
+    {
+      "name": "crm.get_customer_data",
+      "required": false
+    },
+    {
+      "name": "analytics.get_cohort",
+      "required": false
+    },
+    {
+      "name": "ui_kit.panel",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "strategy_complete",
+    "needs_sales_motion",
+    "needs_product_changes",
+    "hybrid_recommended",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "companyId": {
+        "type": "string",
+        "description": "Company or product identifier"
+      },
+      "currentStage": {
+        "type": "string",
+        "enum": [
+          "pre-launch",
+          "early",
+          "growth",
+          "scale"
+        ],
+        "description": "Current company stage"
+      },
+      "existingMotion": {
+        "type": "string",
+        "enum": [
+          "none",
+          "sales-led",
+          "plg",
+          "hybrid"
+        ],
+        "description": "Current go-to-market motion"
+      },
+      "targetMarket": {
+        "type": "string",
+        "description": "Target market segment (SMB, mid-market, enterprise)"
+      },
+      "productCategory": {
+        "type": "string",
+        "description": "Product category or type"
+      }
+    },
+    "required": [
+      "companyId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "plgReadinessScore": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 100
+      },
+      "fourFitsAnalysis": {
+        "type": "object"
+      },
+      "racecarFramework": {
+        "type": "object"
+      },
+      "maturityLevel": {
+        "type": "string",
+        "enum": [
+          "nascent",
+          "developing",
+          "scaling",
+          "optimized"
+        ]
+      },
+      "recommendedMotion": {
+        "type": "string"
+      },
+      "freemiumVsTrialRecommendation": {
+        "type": "string"
+      },
+      "actionPlan": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      }
+    }
+  },
+  "metrics": {
+    "primary": "plg_readiness_score",
+    "benchmarks": {
+      "excellent": "> 80",
+      "good": "60-80",
+      "needs_improvement": "< 60"
+    }
+  },
+  "temperature": 0.3,
+  "tags": [
+    "plg_frameworks",
+    "strategy",
+    "four_fits",
+    "racecar",
+    "brian_balfour",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with PLG Strategy Assessment",
+        "trial optimization"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

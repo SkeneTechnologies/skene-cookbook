@@ -1,0 +1,21 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors: []
+categorization:
+  job_function: engineering
+  jtbd:
+    job: This guide defines our team's definitive best practices for writing fast,
+      reliable, and maintainable tests using pytest, ensuring consistency and high
+      code quality across projects.
+    context: When working in cursor_rules domain
+    outcome: Successfully execute pytest
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

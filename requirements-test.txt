@@ -1,0 +1,18 @@
+# Core testing
+pytest==7.4.3
+pytest-cov==4.1.0
+pytest-mock==3.12.0
+pytest-xdist==3.5.0
+
+# Mocking & testing utilities
+responses==0.24.1
+freezegun==1.4.0
+faker==20.1.0
+
+# Keep main dependencies for testing
+sentence-transformers==2.2.2
+scikit-learn==1.3.2
+rich==13.7.0
+pyfiglet==1.0.2
+pyyaml==6.0.1
+numpy==1.26.2

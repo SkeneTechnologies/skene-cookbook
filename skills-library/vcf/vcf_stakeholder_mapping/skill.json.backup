@@ -1,0 +1,222 @@
+{
+  "id": "vcf_stakeholder_mapping",
+  "version": "1.0.0",
+  "name": "Value Creation Stakeholder Mapping",
+  "description": "Maps the buying chain using the Miller Heiman model to identify User Buyers, Technical Buyers, Champions, and Economic Buyers. Foundation for Value Creation Framework deals.",
+  "domain": "vcf",
+  "tools": [
+    {
+      "name": "crm.get_customer_data",
+      "required": true
+    },
+    {
+      "name": "crm.get_contacts",
+      "required": true
+    },
+    {
+      "name": "crm.update_record",
+      "required": true
+    },
+    {
+      "name": "crm.create_activity",
+      "required": false
+    },
+    {
+      "name": "ai.enrich_contact",
+      "required": false
+    },
+    {
+      "name": "ai.extract_insights",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "vcf_value_discovery",
+    "champion_development",
+    "deal_blocked",
+    "needs_more_contacts",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "dealId": {
+        "type": "string",
+        "description": "CRM deal/opportunity ID"
+      },
+      "accountId": {
+        "type": "string",
+        "description": "CRM account ID"
+      },
+      "dealSize": {
+        "type": "number",
+        "description": "Estimated deal value in dollars"
+      },
+      "existingContacts": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "contactId": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string"
+            },
+            "department": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "discoveryNotes": {
+        "type": "string",
+        "description": "Notes from discovery calls"
+      }
+    },
+    "required": [
+      "dealId",
+      "accountId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "stakeholderMap": {
+        "type": "object",
+        "properties": {
+          "userBuyers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/stakeholder"
+            }
+          },
+          "technicalBuyers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/stakeholder"
+            }
+          },
+          "champions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/stakeholder"
+            }
+          },
+          "economicBuyers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/stakeholder"
+            }
+          }
+        }
+      },
+      "gaps": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "riskLevel": {
+        "type": "string",
+        "enum": [
+          "low",
+          "medium",
+          "high"
+        ]
+      },
+      "nextActions": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "definitions": {
+      "stakeholder": {
+        "type": "object",
+        "properties": {
+          "contactId": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "user_buyer",
+              "technical_buyer",
+              "champion",
+              "economic_buyer"
+            ]
+          },
+          "influence": {
+            "type": "string",
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ]
+          },
+          "sentiment": {
+            "type": "string",
+            "enum": [
+              "negative",
+              "neutral",
+              "positive",
+              "champion"
+            ]
+          },
+          "accessLevel": {
+            "type": "string",
+            "enum": [
+              "no_access",
+              "indirect",
+              "direct"
+            ]
+          },
+          "priorities": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  },
+  "metrics": {
+    "primary": "stakeholder_coverage",
+    "benchmarks": {
+      "excellent": "All 4 roles identified with direct access to Champion + EB",
+      "good": "3+ roles identified, Champion access confirmed",
+      "needs_improvement": "Missing Champion or Economic Buyer"
+    }
+  },
+  "temperature": 0.2,
+  "tags": [
+    "vcf",
+    "value-creation",
+    "stakeholder",
+    "miller-heiman",
+    "enterprise-sales",
+    "discovery",
+    "experimental"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Value Creation Stakeholder Mapping"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

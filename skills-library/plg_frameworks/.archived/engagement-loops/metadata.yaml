@@ -1,0 +1,51 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - drop
+    - destroy
+    - system
+    - update
+    - change
+    - personal
+    - sensitive
+    - read
+    - get
+    - email
+    - notification
+    - alert
+    - message
+    - analytics
+    - log
+    - monitor
+    - search
+    - filter
+    - format
+    - calculate
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.769469'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: data
+  jtbd:
+    job: When the user wants to design engagement loops that drive repeated product
+      usage -- including notification strategy, habit formation, or re-engagement
+      triggers. Also use when the user says "DAU/MAU," "habit loop," "trigger action
+      reward," "engagement framework," or "how to bring users back." For retention
+      analysis, see retention-analysis. For feature adoption, see feature-adoption.
+    context: When working in plg_frameworks domain
+    outcome: Successfully execute engagement-loops
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

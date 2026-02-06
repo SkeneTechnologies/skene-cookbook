@@ -1,0 +1,38 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - pii
+    risk_factors:
+    - personal
+    - read
+    - message
+    - track
+    - log
+    - list
+    - format
+    - calculate
+    - 'risky_tool: crm.update_contact'
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.873399'
+    original_risk: High
+    changes:
+    - Applied field-level access control and tenant isolation
+categorization:
+  job_function: customer_success
+  jtbd:
+    job: Classifies user/customer intent in real-time for intelligent routing and
+      personalized responses.
+    context: When working in ai_ops domain
+    outcome: Successfully execute Intent Classification Engine
+composability:
+  hints:
+  - 'can_chain_to: support'
+  - 'can_chain_to: sales'
+  - 'can_chain_to: product'
+  - 'can_chain_to: billing'
+  - has_structured_output

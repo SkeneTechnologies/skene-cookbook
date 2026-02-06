@@ -1,0 +1,30 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors:
+    - read
+    - get
+    - list
+    - search
+    - filter
+    - format
+    - view
+categorization:
+  job_function: operations
+  jtbd:
+    job: Infer gene regulatory networks (GRNs) from gene expression data using scalable
+      algorithms (GRNBoost2, GENIE3). Use when analyzing transcriptomics data (bulk
+      RNA-seq, single-cell RNA-seq) to identify transcription factor-target gene relationships
+      and regulatory interactions. Supports distributed computation for large-scale
+      datasets.
+    context: When working in scientific domain
+    outcome: Successfully execute arboreto
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

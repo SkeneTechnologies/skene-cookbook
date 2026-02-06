@@ -1,0 +1,38 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - alter
+    - personal
+    - sensitive
+    - read
+    - get
+    - analytics
+    - list
+    - filter
+    - format
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.864080'
+    original_risk: High
+    changes:
+    - Applied field-level access control and tenant isolation
+categorization:
+  job_function: marketing
+  jtbd:
+    job: Analyzes social listening signals to extract insights, match posts to hypotheses,
+      identify trends, and surface opportunities. Goes beyond counting to synthesize
+      what signals mean for campaign strategy. Use when reviewing social listening
+      data.
+    context: When working in marketing domain
+    outcome: Successfully execute social-listening-analyzer
+composability:
+  hints:
+  - 'can_chain_to: support'
+  - has_structured_output

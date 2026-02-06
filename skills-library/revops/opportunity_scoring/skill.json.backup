@@ -1,0 +1,130 @@
+{
+  "id": "revops_opportunity_scoring",
+  "version": "1.0.0",
+  "name": "Opportunity Scoring Engine",
+  "description": "Scores opportunities using AI-powered analysis of engagement signals, firmographics, and historical patterns.",
+  "domain": "revops",
+  "tools": [
+    {
+      "name": "crm.get_deal",
+      "required": true
+    },
+    {
+      "name": "crm.get_account",
+      "required": true
+    },
+    {
+      "name": "crm.get_activities",
+      "required": true
+    },
+    {
+      "name": "analytics.get_engagement_signals",
+      "required": true
+    },
+    {
+      "name": "ai.score_opportunity",
+      "required": true
+    },
+    {
+      "name": "analytics.get_similar_deals",
+      "required": false
+    },
+    {
+      "name": "crm.update_deal",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "deal_inspection",
+    "pipeline_health",
+    "forecast_intelligence",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "dealId": {
+        "type": "string"
+      },
+      "scoringModel": {
+        "type": "string",
+        "enum": [
+          "standard",
+          "enterprise",
+          "velocity",
+          "custom"
+        ]
+      },
+      "includeExplanation": {
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "dealId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "overallScore": {
+        "type": "number"
+      },
+      "componentScores": {
+        "type": "object"
+      },
+      "winProbability": {
+        "type": "number"
+      },
+      "scoreDrivers": {
+        "type": "array"
+      },
+      "scoreDetractors": {
+        "type": "array"
+      },
+      "recommendations": {
+        "type": "array"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "score_to_outcome_correlation",
+    "benchmarks": {
+      "excellent": "> 0.80 correlation",
+      "good": "0.65-0.80 correlation",
+      "needs_improvement": "< 0.65 correlation"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "revops",
+    "opportunity",
+    "scoring",
+    "forecasting",
+    "ai",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Opportunity Scoring Engine"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "crm.get_pipeline",
+          "required": true
+        },
+        {
+          "name": "crm.list_deals",
+          "required": false
+        },
+        {
+          "name": "analytics.get_forecast",
+          "required": false
+        }
+      ]
+    }
+  }
+}

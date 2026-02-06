@@ -1,0 +1,32 @@
+{
+  "id": "scientific/pytorch-lightning",
+  "version": "1.0.0",
+  "name": "pytorch-lightning",
+  "description": "Deep learning framework (PyTorch Lightning). Organize PyTorch code into LightningModules, configure Trainers for multi-GPU/TPU, implement data pipelines, callbacks, logging (W&B, TensorBoard), distributed training (DDP, FSDP, DeepSpeed), for scalable neural network training.",
+  "domain": "scientific",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "scientific",
+    "imported",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "license": "Apache-2.0 license",
+      "triggers": [
+        "help with pytorch lightning",
+        "data analysis"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

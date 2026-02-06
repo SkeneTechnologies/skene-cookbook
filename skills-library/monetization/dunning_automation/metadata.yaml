@@ -1,0 +1,35 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - financial
+    risk_factors:
+    - payment
+    - execute
+    - system
+    - update
+    - get
+    - email
+    - alert
+    - list
+    - format
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.758556'
+    original_risk: Critical
+    changes:
+    - 'Added payment safeguards: preview, approval, limits, rollback'
+categorization:
+  job_function: finance
+  jtbd:
+    job: Automates payment recovery for failed payments and past-due accounts.
+    context: When working in monetization domain
+    outcome: Successfully execute Dunning Automation
+composability:
+  hints:
+  - 'can_chain_to: payment_recovered'
+  - 'can_chain_to: account_suspended'
+  - 'can_chain_to: churn_prediction'

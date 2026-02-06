@@ -1,0 +1,21 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors: []
+categorization:
+  job_function: sales
+  jtbd:
+    job: This guide provides opinionated, actionable best practices for using LightGBM
+      in production-grade Python ML pipelines, focusing on performance, reproducibility,
+      and maintainability.
+    context: When working in cursor_rules domain
+    outcome: Successfully execute lightgbm
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

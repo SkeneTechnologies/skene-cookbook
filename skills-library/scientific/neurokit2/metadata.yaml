@@ -1,0 +1,43 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - system
+    - change
+    - access
+    - read
+    - track
+    - log
+    - monitor
+    - search
+    - filter
+    - format
+    - compute
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.851347'
+    original_risk: Critical
+    changes:
+    - Added validation, preview mode, and rollback for writes
+categorization:
+  job_function: operations
+  jtbd:
+    job: Comprehensive biosignal processing toolkit for analyzing physiological data
+      including ECG, EEG, EDA, RSP, PPG, EMG, and EOG signals. Use this skill when
+      processing cardiovascular signals, brain activity, electrodermal responses,
+      respiratory patterns, muscle activity, or eye movements. Applicable for heart
+      rate variability analysis, event-related potentials, complexity measures, autonomic
+      nervous system assessment, psychophysiology research, and multi-modal physiological
+      signal integration.
+    context: When working in scientific domain
+    outcome: Successfully execute neurokit2
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

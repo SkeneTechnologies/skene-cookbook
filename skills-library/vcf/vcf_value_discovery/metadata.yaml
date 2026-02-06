@@ -1,0 +1,43 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - eval
+    - system
+    - update
+    - change
+    - personal
+    - read
+    - get
+    - email
+    - log
+    - list
+    - format
+    - calculate
+    - view
+    - 'risky_tool: crm.update_record'
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.821455'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: executive
+  jtbd:
+    job: Conducts stakeholder-specific value discovery to understand priorities, problems,
+      and success metrics using the Value Pyramid framework.
+    context: When working in vcf domain
+    outcome: Successfully execute Value Creation Discovery
+composability:
+  hints:
+  - 'can_chain_to: vcf_value_metrics'
+  - 'can_chain_to: vcf_roi_calculator'
+  - 'can_chain_to: needs_more_discovery'
+  - 'can_chain_to: deal_not_qualified'
+  - has_structured_output

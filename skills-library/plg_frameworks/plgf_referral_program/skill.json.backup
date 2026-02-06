@@ -1,0 +1,140 @@
+{
+  "id": "plgf_referral_program",
+  "version": "1.0.0",
+  "name": "Referral Program Framework",
+  "description": "Complete framework for designing, launching, and optimizing referral programs including reward calculation, affiliate programs, fraud prevention, and launch playbooks.",
+  "domain": "plg_frameworks",
+  "tools": [
+    {
+      "name": "analytics.get_metrics",
+      "required": true
+    },
+    {
+      "name": "analytics.track_event",
+      "required": true
+    },
+    {
+      "name": "lifecycle.get_segment",
+      "required": true
+    },
+    {
+      "name": "stripe.create_coupon",
+      "required": false
+    },
+    {
+      "name": "stripe.apply_credit",
+      "required": false
+    },
+    {
+      "name": "messaging.send_in_app",
+      "required": false
+    },
+    {
+      "name": "resend.send_template",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "referral_reward",
+    "affiliate_management",
+    "fraud_review",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "programType": {
+        "type": "string",
+        "enum": [
+          "single_sided",
+          "double_sided",
+          "tiered",
+          "affiliate"
+        ],
+        "description": "Type of referral program"
+      },
+      "phase": {
+        "type": "string",
+        "enum": [
+          "design",
+          "launch",
+          "optimize",
+          "scale"
+        ],
+        "description": "Program lifecycle phase"
+      },
+      "rewardType": {
+        "type": "string",
+        "enum": [
+          "credit",
+          "discount",
+          "cash",
+          "product",
+          "subscription"
+        ],
+        "description": "Type of reward to offer"
+      },
+      "targetCAC": {
+        "type": "number",
+        "description": "Target customer acquisition cost"
+      }
+    },
+    "required": [
+      "programType"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "programDesign": {
+        "type": "object"
+      },
+      "rewardStructure": {
+        "type": "object"
+      },
+      "projectedMetrics": {
+        "type": "object"
+      },
+      "launchChecklist": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "metrics": {
+    "primary": "referral_conversion_rate",
+    "benchmarks": {
+      "excellent": "> 15%",
+      "good": "8-15%",
+      "needs_improvement": "< 8%"
+    }
+  },
+  "integrations": [
+    "rewardful",
+    "referralrock",
+    "friendbuy",
+    "stripe",
+    "segment"
+  ],
+  "temperature": 0,
+  "tags": [
+    "plg",
+    "referral",
+    "growth",
+    "acquisition",
+    "rewards",
+    "affiliate",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Referral Program Framework"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

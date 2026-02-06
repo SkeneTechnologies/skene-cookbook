@@ -1,0 +1,25 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - read
+    - get
+    - log
+    - show
+    - view
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Use when completing tasks, implementing major features, or before merging
+      to verify work meets requirements
+    context: When working in superpowers domain
+    outcome: Successfully execute requesting-code-review
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

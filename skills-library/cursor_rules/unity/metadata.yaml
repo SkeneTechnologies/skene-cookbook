@@ -1,0 +1,21 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors: []
+categorization:
+  job_function: engineering
+  jtbd:
+    job: This guide provides opinionated, actionable best practices for Unity C# development,
+      focusing on code organization, performance, and common pitfalls to ensure a
+      clean, maintainable, and performant codebase.
+    context: When working in cursor_rules domain
+    outcome: Successfully execute unity
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

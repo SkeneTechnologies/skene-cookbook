@@ -1,0 +1,44 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - drop
+    - system
+    - update
+    - change
+    - access
+    - get
+    - retrieve
+    - analytics
+    - track
+    - log
+    - list
+    - format
+    - calculate
+    - compute
+    - aggregate
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.745835'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: data
+  jtbd:
+    job: Tracks diversity, equity, and inclusion metrics across the employee lifecycle
+      to measure progress and identify improvement opportunities.
+    context: When working in people_ops domain
+    outcome: Successfully execute DEI Metrics Tracker
+composability:
+  hints:
+  - 'can_chain_to: people_pulse_analyzer'
+  - 'can_chain_to: people_comp_benchmarker'
+  - 'can_chain_to: people_candidate_sourcer'
+  - has_structured_output

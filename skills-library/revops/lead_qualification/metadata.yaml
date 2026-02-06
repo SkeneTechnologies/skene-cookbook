@@ -1,0 +1,39 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - eval
+    - get
+    - query
+    - email
+    - analytics
+    - track
+    - log
+    - list
+    - format
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.837452'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: sales
+  jtbd:
+    job: Qualifies leads using BANT, MEDDIC, or custom frameworks, combining firmographic
+      and behavioral signals.
+    context: When working in revops domain
+    outcome: Successfully execute Lead Qualification Engine
+composability:
+  hints:
+  - 'can_chain_to: pipeline_health'
+  - 'can_chain_to: handoff_orchestration'
+  - 'can_chain_to: nurture'
+  - 'can_chain_to: disqualified'
+  - has_structured_output

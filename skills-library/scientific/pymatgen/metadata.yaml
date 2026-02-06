@@ -1,0 +1,44 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - api_key
+    - system
+    - write
+    - change
+    - access
+    - read
+    - get
+    - retrieve
+    - track
+    - list
+    - search
+    - filter
+    - format
+    - calculate
+    - compute
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.781065'
+    original_risk: Critical
+    changes:
+    - Migrated to OAuth authentication
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Materials science toolkit. Crystal structures (CIF, POSCAR), phase diagrams,
+      band structure, DOS, Materials Project integration, format conversion, for computational
+      materials science.
+    context: When working in scientific domain
+    outcome: Successfully execute pymatgen
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

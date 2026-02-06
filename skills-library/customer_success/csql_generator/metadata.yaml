@@ -1,0 +1,40 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - eval
+    - personal
+    - read
+    - get
+    - retrieve
+    - alert
+    - analytics
+    - track
+    - list
+    - format
+    - calculate
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.832287'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: customer_success
+  jtbd:
+    job: Identifies and qualifies expansion and upsell opportunities from the customer
+      success perspective, generating CS-Qualified Leads (CSQLs).
+    context: When working in customer_success domain
+    outcome: Successfully execute CS-Qualified Lead Generator
+composability:
+  hints:
+  - 'can_chain_to: expansion_playbook'
+  - 'can_chain_to: stakeholder_mapper'
+  - 'can_chain_to: health_scoring'
+  - 'can_chain_to: handoff_orchestration'
+  - has_structured_output

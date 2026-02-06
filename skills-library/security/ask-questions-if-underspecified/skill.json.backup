@@ -1,0 +1,31 @@
+{
+  "id": "security/ask-questions-if-underspecified",
+  "version": "1.0.0",
+  "name": "ask-questions-if-underspecified",
+  "description": "Clarify requirements before implementing. Use when serious doubts arise.",
+  "domain": "security",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "security",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with ask questions if underspecified",
+        "serious doubts arise"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

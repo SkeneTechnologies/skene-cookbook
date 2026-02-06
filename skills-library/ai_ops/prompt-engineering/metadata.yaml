@@ -1,0 +1,42 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: true
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - remove
+    - eval
+    - system
+    - write
+    - get
+    - email
+    - message
+    - log
+    - list
+    - format
+    - calculate
+    - summarize
+    - show
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.754937'
+    original_risk: Critical
+    changes:
+    - Replaced hard delete with soft delete + undelete capability
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Best practices for writing effective AI prompts. Use when crafting prompts
+      for LLMs, creating system prompts, designing agent instructions, or optimizing
+      AI outputs.
+    context: When working in ai_ops domain
+    outcome: Successfully execute Prompt Engineering
+composability:
+  hints:
+  - 'can_chain_to: prompt_ready'
+  - 'can_chain_to: needs_refinement'
+  - has_structured_output

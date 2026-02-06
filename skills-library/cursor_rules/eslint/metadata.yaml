@@ -1,0 +1,21 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors: []
+categorization:
+  job_function: engineering
+  jtbd:
+    job: This guide defines the definitive ESLint configuration and best practices
+      for our team, ensuring consistent code quality, early error detection, and seamless
+      integration with modern JavaScript and TypeScript workflows.
+    context: When working in cursor_rules domain
+    outcome: Successfully execute eslint
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

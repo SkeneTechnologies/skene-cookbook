@@ -1,0 +1,44 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - api_key
+    - write
+    - change
+    - access
+    - read
+    - fetch
+    - get
+    - retrieve
+    - query
+    - email
+    - log
+    - list
+    - search
+    - filter
+    - format
+    - calculate
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.781479'
+    original_risk: Critical
+    changes:
+    - Migrated to OAuth authentication
+categorization:
+  job_function: engineering
+  jtbd:
+    job: Access NCBI GEO for gene expression/genomics data. Search/download microarray
+      and RNA-seq datasets (GSE, GSM, GPL), retrieve SOFT/Matrix files, for transcriptomics
+      and expression analysis.
+    context: When working in scientific domain
+    outcome: Successfully execute geo-database
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

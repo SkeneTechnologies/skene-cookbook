@@ -1,0 +1,105 @@
+{
+  "id": "support_escalation_predictor",
+  "version": "1.0.0",
+  "name": "Escalation Predictor",
+  "description": "Predicts ticket escalation probability using ML models and historical patterns to enable proactive intervention.",
+  "domain": "support_ops",
+  "tools": [
+    {
+      "name": "ai.predict",
+      "required": true
+    },
+    {
+      "name": "support.get_ticket",
+      "required": true
+    },
+    {
+      "name": "analytics.get_ticket_history",
+      "required": true
+    },
+    {
+      "name": "crm.get_customer",
+      "required": false
+    },
+    {
+      "name": "messaging.send_alert",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "sla_monitor",
+    "resolution_suggester",
+    "proactive_outreach",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "ticket_id": {
+        "type": "string",
+        "description": "Ticket to analyze"
+      },
+      "include_customer_history": {
+        "type": "boolean",
+        "default": true
+      },
+      "alert_threshold": {
+        "type": "number",
+        "default": 0.7,
+        "description": "Probability threshold for alerts"
+      }
+    },
+    "required": [
+      "ticket_id"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "ticket_id": {
+        "type": "string"
+      },
+      "escalation_probability": {
+        "type": "number"
+      },
+      "risk_factors": {
+        "type": "array"
+      },
+      "recommended_actions": {
+        "type": "array"
+      },
+      "similar_escalated_tickets": {
+        "type": "array"
+      },
+      "time_to_escalation": {
+        "type": "string"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "escalation_prediction_accuracy",
+    "benchmarks": {
+      "excellent": "> 85%",
+      "good": "70-85%",
+      "needs_improvement": "< 70%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "support_ops",
+    "escalation",
+    "prediction",
+    "risk",
+    "proactive",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Escalation Predictor"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

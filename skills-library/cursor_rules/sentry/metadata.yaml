@@ -1,0 +1,23 @@
+security:
+  risk_level: Low
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: false
+    data_access_scope:
+    - internal
+    risk_factors:
+    - track
+    - monitor
+categorization:
+  job_function: hr
+  jtbd:
+    job: Definitive guidelines for integrating and using Sentry for error tracking
+      and performance monitoring, ensuring optimal setup, performance, and debuggability
+      across all applications.
+    context: When working in cursor_rules domain
+    outcome: Successfully execute sentry
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

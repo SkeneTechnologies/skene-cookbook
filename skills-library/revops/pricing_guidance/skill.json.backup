@@ -1,0 +1,130 @@
+{
+  "id": "revops_pricing_guidance",
+  "version": "1.0.0",
+  "name": "Pricing Guidance Engine",
+  "description": "Provides real-time pricing guidance based on deal context, competitive dynamics, and win rate optimization.",
+  "domain": "revops",
+  "tools": [
+    {
+      "name": "crm.get_deal",
+      "required": true
+    },
+    {
+      "name": "crm.get_account",
+      "required": true
+    },
+    {
+      "name": "pricing.get_guidelines",
+      "required": true
+    },
+    {
+      "name": "analytics.get_price_sensitivity",
+      "required": true
+    },
+    {
+      "name": "ai.recommend_price",
+      "required": true
+    },
+    {
+      "name": "pricing.check_approval",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "cpq_quote_generator",
+    "deal_inspection",
+    "competitive_intel",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "dealId": {
+        "type": "string"
+      },
+      "proposedPrice": {
+        "type": "number"
+      },
+      "discountRequest": {
+        "type": "number"
+      },
+      "competitorPrice": {
+        "type": "number"
+      },
+      "urgency": {
+        "type": "string",
+        "enum": [
+          "low",
+          "medium",
+          "high",
+          "critical"
+        ]
+      }
+    },
+    "required": [
+      "dealId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "recommendedPrice": {
+        "type": "number"
+      },
+      "priceRange": {
+        "type": "object"
+      },
+      "winProbabilityByPrice": {
+        "type": "object"
+      },
+      "approvalRequired": {
+        "type": "boolean"
+      },
+      "negotiationGuidance": {
+        "type": "object"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "price_realization",
+    "benchmarks": {
+      "excellent": "> 95% of target price",
+      "good": "90-95% of target price",
+      "needs_improvement": "< 90% of target price"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "revops",
+    "pricing",
+    "discount",
+    "negotiation",
+    "guidance",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Pricing Guidance Engine",
+        "deal velocity"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "crm.get_pipeline",
+          "required": true
+        },
+        {
+          "name": "crm.list_deals",
+          "required": false
+        },
+        {
+          "name": "analytics.get_forecast",
+          "required": false
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,42 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - internal
+    risk_factors:
+    - execute
+    - eval
+    - system
+    - command
+    - read
+    - get
+    - track
+    - log
+    - monitor
+    - search
+    - compute
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.858567'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: engineering
+  jtbd:
+    job: High-performance reinforcement learning framework optimized for speed and
+      scale. Use when you need fast parallel training, vectorized environments, multi-agent
+      systems, or integration with game environments (Atari, Procgen, NetHack). Achieves
+      2-10x speedups over standard implementations. For quick prototyping or standard
+      algorithm implementations with extensive documentation, use stable-baselines3
+      instead.
+    context: When working in scientific domain
+    outcome: Successfully execute pufferlib
+composability:
+  hints:
+  - 'can_chain_to: success'
+  - 'can_chain_to: failure'

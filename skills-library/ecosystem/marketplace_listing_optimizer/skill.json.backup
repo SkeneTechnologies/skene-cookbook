@@ -1,0 +1,111 @@
+{
+  "id": "elg_marketplace_listing_optimizer",
+  "version": "1.0.0",
+  "name": "Marketplace Listing Optimizer",
+  "description": "Optimizes product listings on partner marketplaces and app stores for visibility, conversion, and discoverability.",
+  "domain": "ecosystem",
+  "tools": [
+    {
+      "name": "marketplace.get_listing",
+      "required": true
+    },
+    {
+      "name": "marketplace.update_listing",
+      "required": true
+    },
+    {
+      "name": "marketplace.get_analytics",
+      "required": true
+    },
+    {
+      "name": "ai.analyze_competitors",
+      "required": false
+    },
+    {
+      "name": "ai.generate_content",
+      "required": false
+    },
+    {
+      "name": "analytics.track_event",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "integration_health",
+    "partner_influenced_revenue",
+    "tech_partner_finder",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "marketplaceId": {
+        "type": "string",
+        "description": "Marketplace platform ID"
+      },
+      "listingId": {
+        "type": "string",
+        "description": "Listing to optimize"
+      },
+      "optimizationType": {
+        "type": "string",
+        "enum": [
+          "full",
+          "seo",
+          "conversion",
+          "refresh"
+        ]
+      }
+    },
+    "required": [
+      "marketplaceId",
+      "listingId"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "current_metrics": {
+        "type": "object"
+      },
+      "optimization_recommendations": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "updated_listing": {
+        "type": "object"
+      },
+      "projected_improvement": {
+        "type": "object"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "marketplace_conversion_rate",
+    "benchmarks": {
+      "excellent": "> 15%",
+      "good": "10-15%",
+      "needs_improvement": "< 10%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "ecosystem",
+    "marketplace",
+    "listing",
+    "optimization",
+    "conversion",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Marketplace Listing Optimizer"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  }
+}

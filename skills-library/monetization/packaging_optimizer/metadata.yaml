@@ -1,0 +1,37 @@
+security:
+  risk_level: Medium
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: false
+    audit_logging: true
+    data_access_scope:
+    - financial
+    risk_factors:
+    - eval
+    - system
+    - change
+    - get
+    - analytics
+    - track
+    - list
+    - format
+    - view
+  remediation:
+    applied: true
+    date: '2026-02-05T14:36:53.839209'
+    original_risk: Critical
+    changes:
+    - Added containerized sandboxing with resource limits
+categorization:
+  job_function: data
+  jtbd:
+    job: Optimizes product packaging, bundles, and tier structures for maximum revenue
+    context: When working in monetization domain
+    outcome: Successfully execute Packaging Optimizer
+composability:
+  hints:
+  - 'can_chain_to: optimization_identified'
+  - 'can_chain_to: bundle_recommended'
+  - 'can_chain_to: tier_restructure'
+  - 'can_chain_to: experiment_proposed'
+  - has_structured_output
