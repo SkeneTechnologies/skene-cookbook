@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-SKILL-LOOM CLI - Interactive ASCII Terminal Interface for Skills Directory
-Provides job function browsing, security auditing, and workflow visualization
+Skene Skills Directory - Interactive Terminal Interface
+Browse 808 AI skills, audit security, visualize workflows
 
-Uses Skene ASCII Design System for consistent branding.
+Built with Skene ASCII Design System for consistent branding.
 """
 
 import json
@@ -41,8 +41,8 @@ except ImportError:
 console = Console()
 
 
-class SkillLoom:
-    """Main CLI application for Skills Directory"""
+class SkeneSkillsDirectory:
+    """Skene Skills Directory - Interactive CLI for browsing and managing AI skills"""
 
     def __init__(self):
         self.base_path = Path(__file__).parent
@@ -62,13 +62,29 @@ class SkillLoom:
 
     def show_banner(self):
         """Display ASCII art banner with Skene branding"""
-        banner = pyfiglet.figlet_format("SKILL-LOOM", font="slant")
-        # Use Skene primary gold for banner
-        console.print(f"[{SkeneColors.PRIMARY_GOLD}]{banner}[/{SkeneColors.PRIMARY_GOLD}]")
-        console.print(f"[{SkeneColors.DIM}]┌" + "─" * 78 + f"┐[/{SkeneColors.DIM}]")
-        console.print(f"[{SkeneColors.DIM}]│[/{SkeneColors.DIM}] [{SkeneColors.PRIMARY}]Skills Directory Terminal Interface[/{SkeneColors.PRIMARY}]" + " " * 37 + f"[{SkeneColors.DIM}]│[/{SkeneColors.DIM}]")
-        console.print(f"[{SkeneColors.DIM}]│[/{SkeneColors.DIM}] [{SkeneColors.WHITE}]808 AI Skills {Symbols.BULLET} 13 Job Functions {Symbols.BULLET} Production Ready[/{SkeneColors.WHITE}]" + " " * 7 + f"[{SkeneColors.DIM}]│[/{SkeneColors.DIM}]")
-        console.print(f"[{SkeneColors.DIM}]└" + "─" * 78 + f"┘[/{SkeneColors.DIM}]\n")
+        try:
+            # Get terminal width for responsive design
+            import os
+            width = os.get_terminal_size().columns
+            use_minimal = width < 80
+        except (OSError, AttributeError):
+            use_minimal = False
+
+        if use_minimal:
+            # Minimal banner for narrow terminals
+            console.print(f"\n[bold {SkeneColors.PRIMARY_GOLD}]{Symbols.DIAMOND} SKENE[/bold {SkeneColors.PRIMARY_GOLD}]")
+            console.print(f"[{SkeneColors.PRIMARY}]{Symbols.SKENE_LOGO} Skills Directory[/{SkeneColors.PRIMARY}]")
+            console.print(f"[{SkeneColors.DIM}]808 Skills {Symbols.BULLET} 13 Functions {Symbols.BULLET} Production Ready[/{SkeneColors.DIM}]\n")
+        else:
+            # Full ASCII art banner
+            banner = pyfiglet.figlet_format("SKENE", font="slant")
+            console.print(f"[{SkeneColors.PRIMARY_GOLD}]{banner}[/{SkeneColors.PRIMARY_GOLD}]")
+
+            # Tagline with Skene logo
+            console.print(f"[{SkeneColors.DIM}]┌" + "─" * 78 + f"┐[/{SkeneColors.DIM}]")
+            console.print(f"[{SkeneColors.DIM}]│[/{SkeneColors.DIM}] [{SkeneColors.PRIMARY}]{Symbols.SKENE_LOGO} Skills Directory[/{SkeneColors.PRIMARY}]" + " " * 51 + f"[{SkeneColors.DIM}]│[/{SkeneColors.DIM}]")
+            console.print(f"[{SkeneColors.DIM}]│[/{SkeneColors.DIM}] [{SkeneColors.WHITE}]808 AI Skills {Symbols.BULLET} 13 Job Functions {Symbols.BULLET} Production Ready[/{SkeneColors.WHITE}]" + " " * 7 + f"[{SkeneColors.DIM}]│[/{SkeneColors.DIM}]")
+            console.print(f"[{SkeneColors.DIM}]└" + "─" * 78 + f"┘[/{SkeneColors.DIM}]\n")
 
     def main_menu(self):
         """Display main interactive menu"""
@@ -561,36 +577,57 @@ class SkillLoom:
     def show_about(self):
         """Display about information"""
         console.clear()
-        console.print(f"\n[bold {SkeneColors.PRIMARY}]ℹ️  About Skills Directory[/bold {SkeneColors.PRIMARY}]\n")
+        console.print(f"\n[bold {SkeneColors.PRIMARY}]{Symbols.DIAMOND} About Skene Skills Directory[/bold {SkeneColors.PRIMARY}]\n")
 
         about_text = f"""
-        # [{Symbols.SKENE_LOGO}] Skills Directory v2.0 - Production Ready
+        # {Symbols.SKENE_LOGO} Skene Skills Directory v2.0
 
-        **800+ AI Skills for Claude and Cursor**
+        **808 Production-Ready AI Skills for Claude, Cursor & AI Agents**
+
+        ## Overview
+        Skene Skills Directory provides battle-tested AI skills organized by job function,
+        security-audited, and ready for production use. Each skill includes comprehensive
+        metadata, risk analysis, and workflow composition capabilities.
 
         ## Features
-        - 🎯 **Job Function Organization** - 13 job functions covering all roles
-        - 🔒 **Security First** - Every skill analyzed and remediated
-        - 🔗 **Workflow Composition** - Chain skills into complex workflows
-        - 📊 **JTBD Framework** - Find skills by outcome, not implementation
-        - ✅ **Production Ready** - Zero critical risk skills
+        - **{Symbols.TARGET} Job Function Organization** — 13 functions covering all business roles
+        - **{Symbols.LOCK} Security-First Design** — Every skill analyzed & remediated
+        - **{Symbols.LINK} Workflow Composition** — Chain skills into complex automation
+        - **{Symbols.CHART} JTBD Framework** — Find skills by outcome, not implementation
+        - **{Symbols.CHECKMARK} Production Ready** — Zero critical risk, battle-tested
 
         ## Architecture
-        - **Atomic Skills** - Small, focused, composable units
-        - **Security Controls** - OAuth, sandboxing, rate limiting, rollback
-        - **Metadata Layer** - Rich categorization and risk analysis
-        - **Workflow Blueprints** - Orchestrate multi-skill chains
+        - **Atomic Skills** — Small, focused, composable units (< 500 lines)
+        - **Security Controls** — OAuth, sandboxing, rate limiting, automated rollback
+        - **Rich Metadata** — Categorization, dependencies, risk levels, triggers
+        - **Workflow Blueprints** — Orchestrate multi-skill chains with error handling
 
-        ## Usage
-        - Install: `npm install @skene/skills-directory`
-        - Activate: `npx skills-directory install --target all`
-        - Browse: Run this CLI or visit GitHub
+        ## Quick Start
+        ```bash
+        # Install via npm
+        npm install @skene/skills-directory
+
+        # Install all skills for Claude/Cursor
+        npx skills-directory install --target all
+
+        # Browse interactively
+        python3 skill-loom-cli.py
+        ```
+
+        ## Integration
+        - **Claude Code** — Drop skills into `~/.claude/skills/`
+        - **Cursor** — Install to `.cursor/skills/`
+        - **Custom Agents** — Import from npm package
+        - **Skene Flow** — Native integration with state machine
 
         ## Resources
-        - Documentation: /docs
-        - Security Policy: SECURITY_POLICY.md
-        - Contributing: CONTRIBUTING.md
-        - Architecture: ARCHITECTURE.md
+        - **{Symbols.FOLDER} Documentation:** `/docs`
+        - **{Symbols.LOCK} Security Policy:** `SECURITY_POLICY.md`
+        - **{Symbols.ROCKET} Contributing:** `CONTRIBUTING.md`
+        - **{Symbols.GEAR} Architecture:** `ARCHITECTURE.md`
+
+        ## Built by Skene Technologies
+        Part of the Skene AI ecosystem — deterministic agency for product-led growth.
         """
 
         console.print(Markdown(about_text))
@@ -599,9 +636,9 @@ class SkillLoom:
 
 
 def main():
-    """Entry point"""
+    """Entry point for Skene Skills Directory CLI"""
     try:
-        app = SkillLoom()
+        app = SkeneSkillsDirectory()
         app.main_menu()
     except KeyboardInterrupt:
         console.print(f"\n\n[bold {SkeneColors.WARNING}]{Symbols.BEACON_WARN} Interrupted by user[/bold {SkeneColors.WARNING}]")
