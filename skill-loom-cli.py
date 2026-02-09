@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Skene Skills Directory - Interactive Terminal Interface
-Browse 808 AI skills, audit security, visualize workflows
+Browse 760+ AI skills, audit security, visualize workflows
 
 Built with Skene ASCII Design System for consistent branding.
 """
@@ -60,6 +60,14 @@ class SkeneSkillsDirectory:
             console.print("[red]❌ Registry not found. Run from project root.[/red]")
             sys.exit(1)
 
+    def get_total_skills_count(self) -> int:
+        """Calculate total skills from loaded registry"""
+        return sum(len(skills) for skills in self.job_functions.values())
+
+    def get_total_functions_count(self) -> int:
+        """Get number of job functions"""
+        return len(self.job_functions)
+
     def show_banner(self):
         """Display ASCII art banner with Skene branding"""
         try:
@@ -72,18 +80,25 @@ class SkeneSkillsDirectory:
 
         if use_minimal:
             # Minimal banner for narrow terminals
+            total_skills = self.get_total_skills_count()
+            total_functions = self.get_total_functions_count()
             console.print(f"\n[bold {SkeneColors.PRIMARY_GOLD}]{Symbols.DIAMOND} SKENE[/bold {SkeneColors.PRIMARY_GOLD}]")
             console.print(f"[{SkeneColors.PRIMARY}]{Symbols.SKENE_LOGO} Skills Directory[/{SkeneColors.PRIMARY}]")
-            console.print(f"[{SkeneColors.DIM}]808 Skills {Symbols.BULLET} 13 Functions {Symbols.BULLET} Production Ready[/{SkeneColors.DIM}]\n")
+            console.print(f"[{SkeneColors.DIM}]{total_skills} Skills {Symbols.BULLET} {total_functions} Functions {Symbols.BULLET} Production Ready[/{SkeneColors.DIM}]\n")
         else:
             # Full ASCII art banner
+            total_skills = self.get_total_skills_count()
+            total_functions = self.get_total_functions_count()
             banner = pyfiglet.figlet_format("SKENE", font="slant")
             console.print(f"[{SkeneColors.PRIMARY_GOLD}]{banner}[/{SkeneColors.PRIMARY_GOLD}]")
 
             # Tagline with Skene logo
+            stats_text = f"{total_skills} AI Skills {Symbols.BULLET} {total_functions} Job Functions {Symbols.BULLET} Production Ready"
+            # Calculate padding for centering (78 total width - 2 border chars - 1 space after border)
+            padding = 78 - 2 - 1 - len(stats_text)
             console.print(f"[{SkeneColors.DIM}]┌" + "─" * 78 + f"┐[/{SkeneColors.DIM}]")
             console.print(f"[{SkeneColors.DIM}]│[/{SkeneColors.DIM}] [{SkeneColors.PRIMARY}]{Symbols.SKENE_LOGO} Skills Directory[/{SkeneColors.PRIMARY}]" + " " * 51 + f"[{SkeneColors.DIM}]│[/{SkeneColors.DIM}]")
-            console.print(f"[{SkeneColors.DIM}]│[/{SkeneColors.DIM}] [{SkeneColors.WHITE}]808 AI Skills {Symbols.BULLET} 13 Job Functions {Symbols.BULLET} Production Ready[/{SkeneColors.WHITE}]" + " " * 7 + f"[{SkeneColors.DIM}]│[/{SkeneColors.DIM}]")
+            console.print(f"[{SkeneColors.DIM}]│[/{SkeneColors.DIM}] [{SkeneColors.WHITE}]{stats_text}[/{SkeneColors.WHITE}]" + " " * padding + f"[{SkeneColors.DIM}]│[/{SkeneColors.DIM}]")
             console.print(f"[{SkeneColors.DIM}]└" + "─" * 78 + f"┘[/{SkeneColors.DIM}]\n")
 
     def main_menu(self):
@@ -579,10 +594,11 @@ class SkeneSkillsDirectory:
         console.clear()
         console.print(f"\n[bold {SkeneColors.PRIMARY}]{Symbols.DIAMOND} About Skene Skills Directory[/bold {SkeneColors.PRIMARY}]\n")
 
+        total_skills = self.get_total_skills_count()
         about_text = f"""
         # {Symbols.SKENE_LOGO} Skene Skills Directory v2.0
 
-        **808 Production-Ready AI Skills for Claude, Cursor & AI Agents**
+        **{total_skills} Production-Ready AI Skills for Claude, Cursor & AI Agents**
 
         ## Overview
         Skene Skills Directory provides battle-tested AI skills organized by job function,

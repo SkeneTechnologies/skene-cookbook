@@ -15,7 +15,7 @@ Choose your path to get started:
 🔬 [**Researcher**](docs/personas/researcher.md) — Scientific tools & data analysis
 💼 [**CFO/Finance**](docs/personas/cfo.md) — Financial intelligence & reporting
 
-Or [browse all 764+ skills →](docs/directory.md)
+Or [browse all 760+ skills →](docs/directory.md)
 
 ---
 
@@ -169,7 +169,7 @@ Cursor and Claude automatically pick the right skill based on your prompt. Chain
 - **[SHOWCASE.md](docs/SHOWCASE.md)** — Real-world agent examples and case studies
 
 ### 📚 Reference
-- [Complete Skills Directory](docs/directory.md) — Browse all 800+ skills
+- [Complete Skills Directory](docs/directory.md) — Browse all 760+ skills
 - [Visual Skill Tree](docs/skill-tree.md) — See skills organized by domain
 - [Browse by Job Function](docs/functions/) — Find skills for your role
 - [Troubleshooting Guide](docs/TROUBLESHOOTING.md) — Common issues and solutions

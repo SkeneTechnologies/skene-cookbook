@@ -1,7 +1,7 @@
 """
 Performance tests for large-scale operations
 
-Tests performance with full 808 skills dataset to ensure operations
+Tests performance with full 764 skills dataset to ensure operations
 complete within acceptable time limits.
 """
 
@@ -26,7 +26,7 @@ from generate_blueprints import ChainArchitect
 @pytest.mark.performance
 @pytest.mark.slow
 def test_dedupe_performance_full_dataset():
-    """Test deduplication performance with full 808 skills dataset."""
+    """Test deduplication performance with full 764 skills dataset."""
 
     base_path = Path(__file__).parent.parent.parent
 

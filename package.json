@@ -1,7 +1,7 @@
 {
   "name": "@skene/skills-directory",
   "version": "0.1.0",
-  "description": "Skills Directory — 800+ AI skills for Claude and Cursor. PLG, marketing, security, DevEx, and more. One command to install.",
+  "description": "Skills Directory — 760+ AI skills for Claude and Cursor. PLG, marketing, security, DevEx, and more. One command to install.",
   "private": false,
   "type": "module",
   "license": "MIT",

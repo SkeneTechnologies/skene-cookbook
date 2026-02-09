@@ -170,8 +170,9 @@ class DocsGenerator:
             f.write("# Skills Directory - Visual Tree\n\n")
             f.write("Interactive visualization of the skills directory structure.\n\n")
 
+            total_skills = sum(len(skills) for skills in self.job_functions.values())
             f.write("```mermaid\ngraph TD\n")
-            f.write("    Root[Skills Directory<br/>808 Skills]\n\n")
+            f.write(f"    Root[Skills Directory<br/>{total_skills} Skills]\n\n")
 
             # Top level: Job Functions
             for func in sorted(self.job_functions.keys()):

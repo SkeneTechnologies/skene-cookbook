@@ -86,7 +86,7 @@ tests/
 
 ### Performance Tests (`tests/performance/`)
 - **test_large_scale.py**: Large-scale operations
-  - 808 skills deduplication (< 60s embedding, < 30s dedupe)
+  - 764 skills deduplication (< 60s embedding, < 30s dedupe)
   - Security analysis performance (< 120s)
   - Blueprint generation (< 10s)
   - Memory usage validation (< 2GB)
@@ -254,7 +254,7 @@ With test data (10 skills):
 - **Integration tests**: < 30 seconds
 - **Full suite**: < 60 seconds
 
-With full dataset (808 skills):
+With full dataset (764 skills):
 - **Deduplication**: < 90 seconds
 - **Security analysis**: < 120 seconds
 - **Blueprint generation**: < 10 seconds

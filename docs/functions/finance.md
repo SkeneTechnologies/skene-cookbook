@@ -1,12 +1,12 @@
 # Finance Skills
 
-**Total Skills:** 17
+**Total Skills:** 13
 
 ## Risk Distribution
 
 | Risk Level | Count |
 |------------|-------|
-| 🔴 Critical | 16 |
+| 🔴 Critical | 12 |
 | 🔵 Medium | 1 |
 
 ---
@@ -25,13 +25,9 @@
 | 8 | `mon_limit_notification` | 🔵 Medium | Proactively notifies users when approaching or exceeding usage limits. |
 | 9 | `mon_payment_method_optimizer` | 🔴 Critical | Optimizes payment methods to reduce failed payments and processing costs |
 | 10 | `boyce_plg_bowtie_mapper` | 🔴 Critical | Maps and optimizes the PLG Bowtie funnel that reorders customer actions for product-led acquisition. Based on Dave Boyce's FREEMIUM framework (Chapter 7): In PLG, customers experience the product before purchasing. |
-| 11 | `plg_frameworks/self-serve-motion` | 🔴 Critical | When the user wants to reduce friction in the self-serve buying experience, optimize in-product checkout, remove "contact sales" gates, or design self-serve onboarding and support. Also use when the user says "frictionless," "self-service," "remove sales gates," "no-demo experience," or "friction audit." For signup flow optimization, see signup-flow-cro. For pricing page design, see pricing-strategy. |
-| 12 | `plg_frameworks/pricing-strategy` | 🔴 Critical | When the user wants to design or optimize pricing, packaging, or monetization -- including tier structure, freemium design, value metrics, or price research. Also use when the user says "pricing page," "how to price," "freemium vs free trial," "Good-Better-Best tiers," or "value-based pricing." For feature gating, see feature-gating. For trial optimization, see trial-optimization. For usage-based models, see usage-based-pricing. |
-| 13 | `plg_frameworks/growth-modeling` | 🔴 Critical | When the user wants to build quantitative growth models -- including loop-based models, sensitivity analysis, revenue forecasting, or unit economics. Also use when the user says "growth forecast," "revenue model," "CAC LTV," "growth projections," or "financial model." For growth loops, see growth-loops. For PLG metrics, see plg-metrics. |
-| 14 | `plg_frameworks/usage-based-pricing` | 🔴 Critical | When the user wants to design or implement usage-based, consumption, or metered pricing -- including credit systems, overage handling, or billing infrastructure. Also use when the user says "pay per use," "metered billing," "credit system," "usage pricing," or "consumption pricing." For broader pricing strategy, see pricing-strategy. For expansion, see expansion-revenue. |
-| 15 | `plgf_self_serve_motion` | 🔴 Critical | Friction audit, in-product checkout optimization, payment flow analysis, and removing 'contact sales' gates |
-| 16 | `plgf_growth_modeling` | 🔴 Critical | Quantitative growth modeling framework including loop-based models, sensitivity analysis, S-curve modeling, unit economics, and scenario planning. |
-| 17 | `scientific/market-research-reports` | 🔴 Critical | Generate comprehensive market research reports (50+ pages) in the style of top consulting firms (McKinsey, BCG, Gartner). Features professional LaTeX formatting, extensive visual generation with scientific-schematics and generate-image, deep integration with research-lookup for data gathering, and multi-framework strategic analysis including Porter Five Forces, PESTLE, SWOT, TAM/SAM/SOM, and BCG Matrix. |
+| 11 | `plgf_self_serve_motion` | 🔴 Critical | Friction audit, in-product checkout optimization, payment flow analysis, and removing 'contact sales' gates |
+| 12 | `plgf_growth_modeling` | 🔴 Critical | Quantitative growth modeling framework including loop-based models, sensitivity analysis, S-curve modeling, unit economics, and scenario planning. |
+| 13 | `scientific/market-research-reports` | 🔴 Critical | Generate comprehensive market research reports (50+ pages) in the style of top consulting firms (McKinsey, BCG, Gartner). Features professional LaTeX formatting, extensive visual generation with scientific-schematics and generate-image, deep integration with research-lookup for data gathering, and multi-framework strategic analysis including Porter Five Forces, PESTLE, SWOT, TAM/SAM/SOM, and BCG Matrix. |
 
 ---
 

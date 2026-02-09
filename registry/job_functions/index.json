@@ -51,26 +51,6 @@
       "jtbd": "Maps and optimizes the PLG Bowtie funnel that reorders customer actions for product-led acquisition. Based on Dave Boyce's FREEMIUM framework (Chapter 7): In PLG, customers experience the product before purchasing."
     },
     {
-      "skill_id": "plg_frameworks/self-serve-motion",
-      "risk_level": "Critical",
-      "jtbd": "When the user wants to reduce friction in the self-serve buying experience, optimize in-product checkout, remove \"contact sales\" gates, or design self-serve onboarding and support. Also use when the user says \"frictionless,\" \"self-service,\" \"remove sales gates,\" \"no-demo experience,\" or \"friction audit.\" For signup flow optimization, see signup-flow-cro. For pricing page design, see pricing-strategy."
-    },
-    {
-      "skill_id": "plg_frameworks/pricing-strategy",
-      "risk_level": "Critical",
-      "jtbd": "When the user wants to design or optimize pricing, packaging, or monetization -- including tier structure, freemium design, value metrics, or price research. Also use when the user says \"pricing page,\" \"how to price,\" \"freemium vs free trial,\" \"Good-Better-Best tiers,\" or \"value-based pricing.\" For feature gating, see feature-gating. For trial optimization, see trial-optimization. For usage-based models, see usage-based-pricing."
-    },
-    {
-      "skill_id": "plg_frameworks/growth-modeling",
-      "risk_level": "Critical",
-      "jtbd": "When the user wants to build quantitative growth models -- including loop-based models, sensitivity analysis, revenue forecasting, or unit economics. Also use when the user says \"growth forecast,\" \"revenue model,\" \"CAC LTV,\" \"growth projections,\" or \"financial model.\" For growth loops, see growth-loops. For PLG metrics, see plg-metrics."
-    },
-    {
-      "skill_id": "plg_frameworks/usage-based-pricing",
-      "risk_level": "Critical",
-      "jtbd": "When the user wants to design or implement usage-based, consumption, or metered pricing -- including credit systems, overage handling, or billing infrastructure. Also use when the user says \"pay per use,\" \"metered billing,\" \"credit system,\" \"usage pricing,\" or \"consumption pricing.\" For broader pricing strategy, see pricing-strategy. For expansion, see expansion-revenue."
-    },
-    {
       "skill_id": "plgf_self_serve_motion",
       "risk_level": "Critical",
       "jtbd": "Friction audit, in-product checkout optimization, payment flow analysis, and removing 'contact sales' gates"
@@ -256,26 +236,6 @@
       "skill_id": "finops_ndr_tracker",
       "risk_level": "Medium",
       "jtbd": "Tracks Net Dollar Retention to measure revenue expansion efficiency and customer value growth"
-    },
-    {
-      "skill_id": "skene_analyze_growth_hubs",
-      "risk_level": "Critical",
-      "jtbd": "Identifies viral, engagement, and monetization features in code by scanning for growth-related patterns and integrations"
-    },
-    {
-      "skill_id": "skene_analyze_features",
-      "risk_level": "Critical",
-      "jtbd": "Documents user-facing features by scanning codebase for routes, components, API endpoints, and user interactions"
-    },
-    {
-      "skill_id": "meta_growth_diagnostician",
-      "risk_level": "Critical",
-      "jtbd": "Identifies growth blockers and opportunities across all domains by analyzing funnel metrics, cohort behavior, and cross-functional signals"
-    },
-    {
-      "skill_id": "meta_customer_360",
-      "risk_level": "Critical",
-      "jtbd": "Aggregates complete customer view from Customer Success, Support, Product Analytics, and Billing for holistic account intelligence"
     },
     {
       "skill_id": "compliance_soc2_tracker",
@@ -618,36 +578,6 @@
       "jtbd": "Retention curves, cohort analysis, churn prediction, engagement scoring, and resurrection strategies"
     },
     {
-      "skill_id": "plg_frameworks/activation-metrics",
-      "risk_level": "Critical",
-      "jtbd": "STRATEGY: Define, measure, and optimize user activation metrics -- including identifying the aha moment, measuring time-to-value, and building activation funnels. Use when discussing activation rate, aha moment, setup moment, habit moment, or time to value. For executing activation flows with tools, see plg/activation. For onboarding design, see product-onboarding. For retention, see retention-analysis."
-    },
-    {
-      "skill_id": "plg_frameworks/product-onboarding",
-      "risk_level": "Critical",
-      "jtbd": "When the user wants to design or improve new user onboarding -- including product tours, checklists, empty states, welcome flows, or progressive disclosure. Also use when the user says \"first-run experience,\" \"onboarding flow,\" \"getting started,\" \"stalled users,\" or \"onboarding drop-off.\" For activation metrics, see activation-metrics. For signup optimization, see signup-flow-cro."
-    },
-    {
-      "skill_id": "plg_frameworks/product-analytics",
-      "risk_level": "Critical",
-      "jtbd": "When the user wants to set up product analytics -- including event taxonomy, tracking plans, funnel analysis, or tool selection (Mixpanel, Amplitude, PostHog). Also use when the user says \"event tracking,\" \"analytics setup,\" \"tracking plan,\" \"analytics implementation,\" or \"user identification.\" For PLG metrics, see plg-metrics. For experimentation, see growth-experimentation."
-    },
-    {
-      "skill_id": "plg_frameworks/signup-flow-cro",
-      "risk_level": "Critical",
-      "jtbd": "When the user wants to optimize a signup or registration flow -- including field selection, social auth, single-step vs multi-step forms, or mobile signup. Also use when the user says \"signup conversion,\" \"registration form,\" \"reduce signup friction,\" \"signup A/B test,\" or \"signup drop-off.\" For post-signup onboarding, see product-onboarding. For activation measurement, see activation-metrics."
-    },
-    {
-      "skill_id": "plg_frameworks/paywall-upgrade-cro",
-      "risk_level": "Critical",
-      "jtbd": "When the user wants to optimize in-app paywalls, upgrade screens, or upgrade prompts -- including feature locks, usage limit walls, trial expiration screens, or context-triggered upsells. Also use when the user says \"paywall design,\" \"upgrade conversion,\" \"upgrade modal,\" or \"upsell prompt.\" For feature gating strategy, see feature-gating. For in-product messaging, see in-product-messaging."
-    },
-    {
-      "skill_id": "plg_frameworks/engagement-loops",
-      "risk_level": "Critical",
-      "jtbd": "When the user wants to design engagement loops that drive repeated product usage -- including notification strategy, habit formation, or re-engagement triggers. Also use when the user says \"DAU/MAU,\" \"habit loop,\" \"trigger action reward,\" \"engagement framework,\" or \"how to bring users back.\" For retention analysis, see retention-analysis. For feature adoption, see feature-adoption."
-    },
-    {
       "skill_id": "plgf_feature_gating",
       "risk_level": "Critical",
       "jtbd": "Gate types (hard/soft/usage/time/team), reverse trials (Elena Verna), and competitive free tier analysis"
@@ -778,16 +708,6 @@
       "skill_id": "finops_investor_metrics",
       "risk_level": "Critical",
       "jtbd": "Compiles key SaaS metrics for investor reporting, board meetings, and fundraising"
-    },
-    {
-      "skill_id": "meta_revenue_intelligence",
-      "risk_level": "Critical",
-      "jtbd": "Provides unified visibility across RevOps, Monetization, and FinOps for comprehensive revenue insights and forecasting"
-    },
-    {
-      "skill_id": "meta_gtm_orchestrator",
-      "risk_level": "Critical",
-      "jtbd": "Coordinates PLG, Sales, and Partner motions for unified go-to-market execution"
     },
     {
       "skill_id": "cursor_rules/azure-pipelines",
@@ -970,26 +890,6 @@
       "jtbd": "Hybrid PLG+Sales motion using product usage signals to generate and qualify sales pipeline. Based on Dave Boyce's FREEMIUM framework (Chapters 14-15): 'To maximize Enterprise Sales, you need a self-service happy path.'"
     },
     {
-      "skill_id": "plg_frameworks/growth-loops",
-      "risk_level": "Critical",
-      "jtbd": "When the user wants to design, map, or quantitatively model growth loops -- including viral, content, paid, or sales loops. Also use when the user says \"growth flywheel,\" \"compounding growth,\" \"loop modeling,\" \"S-curve sequencing,\" or \"growth engine.\" For viral-specific loop design, see viral-loops. For quantitative forecasting, see growth-modeling."
-    },
-    {
-      "skill_id": "plg_frameworks/feature-gating",
-      "risk_level": "Critical",
-      "jtbd": "When the user wants to decide what features to gate vs keep free, design usage limits, implement reverse trials, or plan a free tier. Also use when the user says \"what should be free,\" \"feature gate,\" \"paywall placement,\" \"usage limits,\" or \"reverse trial.\" For pricing strategy, see pricing-strategy. For upgrade screens, see paywall-upgrade-cro."
-    },
-    {
-      "skill_id": "plg_frameworks/product-led-sales",
-      "risk_level": "Critical",
-      "jtbd": "When the user wants to layer sales onto a PLG motion, build PQL scoring, design sales handoffs from product usage signals, or plan a hybrid PLG + sales model. Also use when the user says \"product-led sales,\" \"PQL,\" \"PQA,\" \"when to add sales to PLG,\" or \"enterprise PLG.\" For broader PLG strategy, see plg-strategy. For expansion revenue, see expansion-revenue."
-    },
-    {
-      "skill_id": "plg_frameworks/trial-optimization",
-      "risk_level": "Critical",
-      "jtbd": "When the user wants to optimize free trial conversion -- including trial length, trial type selection, expiry flows, or trial email sequences. Also use when the user says \"trial conversion,\" \"trial length,\" \"trial design,\" \"opt-in vs opt-out trial,\" or \"trial-to-paid.\" For activation, see activation-metrics. For feature gating, see feature-gating."
-    },
-    {
       "skill_id": "plgf_paywall_upgrade_cro",
       "risk_level": "Critical",
       "jtbd": "Conversion rate optimization framework for paywalls including feature locks, usage limits, trial expiry, copy frameworks, and mobile patterns."
@@ -1082,21 +982,6 @@
       "jtbd": "Automatically links support tickets to existing bug reports and creates new bug reports when patterns emerge."
     },
     {
-      "skill_id": "skene_analyze_tech_stack",
-      "risk_level": "Critical",
-      "jtbd": "Detects technology stack including framework, language, database, and services by scanning package files, configuration, and source code patterns"
-    },
-    {
-      "skill_id": "skene_analyze_product_overview",
-      "risk_level": "High",
-      "jtbd": "Extracts product information, value proposition, and positioning from README, documentation, and marketing content in the codebase"
-    },
-    {
-      "skill_id": "skene_generate_growth_template",
-      "risk_level": "Critical",
-      "jtbd": "Generates PLG growth strategies and playbooks based on analysis, providing customized templates for activation, monetization, and viral growth"
-    },
-    {
       "skill_id": "development/playwright",
       "risk_level": "Critical",
       "jtbd": "Complete browser automation with Playwright. Auto-detects dev servers, writes clean test scripts to /tmp. Test pages, fill forms, take screenshots, check responsive design, validate UX, test login flows, check links, automate any browser task. Use when user wants to test websites, automate browser interactions, validate web functionality, or perform any browser-based testing."
@@ -1115,11 +1000,6 @@
       "skill_id": "development/codebase-onboarding",
       "risk_level": "Critical",
       "jtbd": "Systematic approach to understanding a new codebase. Use when joining a project, exploring unfamiliar code, or helping someone understand a repo structure."
-    },
-    {
-      "skill_id": "meta_incident_coordinator",
-      "risk_level": "Critical",
-      "jtbd": "Coordinates incident response across Support, Product, Engineering, and Customer Success for rapid resolution and clear communication"
     },
     {
       "skill_id": "compliance_access_reviewer",
@@ -1727,11 +1607,6 @@
       "jtbd": "Maps the buying chain using the Miller Heiman model to identify User Buyers, Technical Buyers, Champions, and Economic Buyers. Foundation for Value Creation Framework deals."
     },
     {
-      "skill_id": "marketing_developer_growth_analysis",
-      "risk_level": "Critical",
-      "jtbd": "Analyzes your recent Claude Code chat history to identify coding patterns, development gaps, and areas for improvement, curates relevant learning resources from HackerNews, and automatically sends a personalized growth report to your Slack DMs."
-    },
-    {
       "skill_id": "people_onboarding_checklist",
       "risk_level": "Critical",
       "jtbd": "Manages new hire onboarding with automated checklists, task assignments, and progress tracking to ensure a smooth first 90 days."
@@ -1870,11 +1745,6 @@
       "skill_id": "boyce_sidecar_product_builder",
       "risk_level": "Critical",
       "jtbd": "Designs PLG-friendly sidecar products when the core product isn't PLG-ready. Based on Dave Boyce's FREEMIUM framework (Chapter 17): Create adjacent tools that become pipeline builders."
-    },
-    {
-      "skill_id": "plg_frameworks/setup-skene-growth",
-      "risk_level": "Critical",
-      "jtbd": "Setup skene-growth dependencies and guide the user through configuration"
     },
     {
       "skill_id": "scientific/scikit-survival",
@@ -2389,16 +2259,6 @@
       "jtbd": "Predicts ticket escalation probability using ML models and historical patterns to enable proactive intervention."
     },
     {
-      "skill_id": "skene_generate_growth_manifest",
-      "risk_level": "Critical",
-      "jtbd": "Combines all analyses into a comprehensive growth manifest and identifies GTM gaps and opportunities"
-    },
-    {
-      "skill_id": "meta_land_expand_journey",
-      "risk_level": "Critical",
-      "jtbd": "Manages the complete land-and-expand journey from PLG acquisition through CS-driven adoption to monetization expansion"
-    },
-    {
       "skill_id": "vcf_value_metrics",
       "risk_level": "High",
       "jtbd": "Builds quantifiable Value Creation Metrics by comparing customer 'before and after' states. Creates the data foundation for ROI calculations and stakeholder-specific value propositions."
@@ -2629,36 +2489,6 @@
       "jtbd": "When the user wants to assess PLG readiness, design a product-led growth strategy, choose between freemium and free trial, evaluate PLG maturity, or plan a hybrid PLG + sales model. Also use when the user says \"should we do PLG,\" \"PLG vs sales-led,\" \"growth motions,\" \"PLG audit,\" or \"go-to-market strategy.\" For specific mental models, see plg-mental-models. For growth loop design, see growth-loops."
     },
     {
-      "skill_id": "plg_frameworks/expansion-revenue",
-      "risk_level": "Critical",
-      "jtbd": "When the user wants to grow revenue from existing customers -- including seat expansion, plan upgrades, usage upsells, or cross-sell strategies. Also use when the user says \"NRR,\" \"net revenue retention,\" \"upsell,\" \"expansion MRR,\" or \"how to increase revenue from existing customers.\" For pricing, see pricing-strategy. For upgrade screens, see paywall-upgrade-cro."
-    },
-    {
-      "skill_id": "plg_frameworks/retention-analysis",
-      "risk_level": "Critical",
-      "jtbd": "When the user wants to analyze, diagnose, or improve user retention -- including cohort analysis, churn prediction, engagement scoring, or resurrection campaigns. Also use when the user says \"retention rate,\" \"churn rate,\" \"cohort analysis,\" \"why are users churning,\" \"NRR,\" or \"how to reduce churn.\" For engagement loops, see engagement-loops. For activation, see activation-metrics."
-    },
-    {
-      "skill_id": "plg_frameworks/user-segmentation",
-      "risk_level": "Critical",
-      "jtbd": "When the user wants to segment users for personalized experiences -- including behavioral cohorts, engagement scoring, churn risk scoring, or ICP refinement. Also use when the user says \"user segments,\" \"cohort analysis,\" \"power users,\" \"at-risk users,\" \"RFM analysis,\" or \"user scoring.\" For product-led sales, see product-led-sales. For retention, see retention-analysis."
-    },
-    {
-      "skill_id": "plg_frameworks/feature-adoption",
-      "risk_level": "Critical",
-      "jtbd": "When the user wants to drive adoption of a specific feature -- including launch planning, discovery mechanisms, adoption funnels, or feature deprecation. Also use when the user says \"feature launch,\" \"feature rollout,\" \"underused features,\" \"feature stickiness,\" or \"how to get users to use a feature.\" For in-product messaging, see in-product-messaging. For onboarding, see product-onboarding."
-    },
-    {
-      "skill_id": "plg_frameworks/in-product-messaging",
-      "risk_level": "Critical",
-      "jtbd": "When the user wants to design in-product messages -- including tooltips, banners, modals, slideouts, or notification bells -- without annoying users. Also use when the user says \"in-app messages,\" \"product announcements,\" \"nudges,\" \"contextual help,\" or \"message frequency.\" For upgrade prompts specifically, see paywall-upgrade-cro. For feature launches, see feature-adoption."
-    },
-    {
-      "skill_id": "plg_frameworks/referral-program",
-      "risk_level": "Critical",
-      "jtbd": "When the user wants to design a referral or affiliate program -- including reward structures, referral mechanics, two-sided incentives, or partner programs. Also use when the user says \"refer a friend,\" \"referral reward,\" \"affiliate program,\" \"ambassador program,\" or \"referral ROI.\" For viral loop design, see viral-loops. For growth loops, see growth-loops."
-    },
-    {
       "skill_id": "plgf_product_onboarding",
       "risk_level": "Critical",
       "jtbd": "Onboarding architecture design including interactive tours, checklists, empty states, and progressive disclosure patterns"
@@ -2766,24 +2596,9 @@
       "jtbd": "Identifies high-quality leads for your product or service by analyzing your business, searching for target companies, and providing actionable contact strategies. Perfect for sales, business development, and marketing professionals."
     },
     {
-      "skill_id": "marketing_influencer_repo_analyzer",
-      "risk_level": "Medium",
-      "jtbd": "Analyzes influencer open source repositories using skene-growth to generate personalized PLG reports and outreach context. Creates value-first content showing what skene-growth discovered about their codebase. Use when preparing personalized outreach to developer influencers."
-    },
-    {
-      "skill_id": "marketing_skene_growth_bridge",
-      "risk_level": "Low",
-      "jtbd": "Use skene-growth outputs to guide marketing work, select the right marketing skills, and produce briefs that map growth insights to execution."
-    },
-    {
       "skill_id": "marketing_connect_apps",
       "risk_level": "Critical",
       "jtbd": "Connect Claude to external apps like Gmail, Slack, GitHub. Use this skill when the user wants to send emails, create issues, post messages, or take actions in external services."
-    },
-    {
-      "skill_id": "marketing_skill_share",
-      "risk_level": "High",
-      "jtbd": "A skill that creates new Claude skills and automatically shares them on Slack using Rube for seamless team collaboration and skill discovery."
     },
     {
       "skill_id": "marketing_template_skill",
@@ -2799,16 +2614,6 @@
       "skill_id": "marketing_domain_name_brainstormer",
       "risk_level": "High",
       "jtbd": "Generates creative domain name ideas for your project and checks availability across multiple TLDs (.com, .io, .dev, .ai, etc.). Saves hours of brainstorming and manual checking."
-    },
-    {
-      "skill_id": "marketing_cpo_operator",
-      "risk_level": "Critical",
-      "jtbd": "\"Use when the user wants CPO-level objective setting, KPI definition, roadmap tradeoffs, and execution planning. This skill turns a primary goal into a measurable objective, release plan, and feedback loops with guardrails.\""
-    },
-    {
-      "skill_id": "marketing_reverse_influence_strategist",
-      "risk_level": "Medium",
-      "jtbd": "Applies academic marketing frameworks (Multi-Step Flow, Structural Holes, Surround Sound, Consensus Buying) to specific outreach situations. Translates theory into tactics. Use when planning influencer campaigns or designing viral strategies."
     },
     {
       "skill_id": "marketing_self_improvement_analyzer",
@@ -2829,11 +2634,6 @@
       "skill_id": "marketing_humanization_engine",
       "risk_level": "Critical",
       "jtbd": "Applies humanization rules to outbound messages to make them feel natural and authentic. Removes patterns that trigger spam filters or feel robotic. Use when polishing outreach messages before sending."
-    },
-    {
-      "skill_id": "marketing_skene_voice_guardian",
-      "risk_level": "Critical",
-      "jtbd": "Ensures consistent brand voice, tone, and positioning across all outputs. Enforces the \"developer-first PLG enabler\" positioning and personality guidelines. Use as a meta-skill when reviewing any content for brand consistency."
     },
     {
       "skill_id": "marketing_social_content",
@@ -2858,7 +2658,7 @@
     {
       "skill_id": "marketing_social_content_generator",
       "risk_level": "Critical",
-      "jtbd": "Generates platform-optimized social media posts (Twitter/X, LinkedIn) from campaign objectives and context. Creates ready-to-post content batches with hooks, value propositions, and CTAs aligned with skene-growth positioning. Use when creating daily social content."
+      "jtbd": "Generates platform-optimized social media posts (Twitter/X, LinkedIn) from campaign objectives and context. Creates ready-to-post content batches with hooks, value propositions, and CTAs aligned with developer-first positioning. Use when creating daily social content."
     },
     {
       "skill_id": "marketing_email_sequence",
@@ -2874,11 +2674,6 @@
       "skill_id": "marketing_daily_report_summarizer",
       "risk_level": "Critical",
       "jtbd": "Compiles signals, analytics, leads, experiments, and outreach data into executive summaries and daily reports. Generates both structured data and human-readable narratives. Use at the end of each day or when asked to summarize campaign performance."
-    },
-    {
-      "skill_id": "marketing_langsmith_fetch",
-      "risk_level": "Critical",
-      "jtbd": "Debug LangChain and LangGraph agents by fetching execution traces from LangSmith Studio. Use when debugging agent behavior, investigating errors, analyzing tool calls, checking memory operations, or examining agent performance. Automatically fetches recent traces and analyzes execution patterns. Requires langsmith-fetch CLI installed."
     },
     {
       "skill_id": "marketing_invoice_organizer",
@@ -2969,11 +2764,6 @@
       "skill_id": "marketing_analytics_tracking",
       "risk_level": "Critical",
       "jtbd": "When the user wants to set up, improve, or audit analytics tracking and measurement. Also use when the user mentions \"set up tracking,\" \"GA4,\" \"Google Analytics,\" \"conversion tracking,\" \"event tracking,\" \"UTM parameters,\" \"tag manager,\" \"GTM,\" \"analytics implementation,\" or \"tracking plan.\" For A/B test measurement, see ab-test-setup."
-    },
-    {
-      "skill_id": "marketing_plg_score_explainer",
-      "risk_level": "Critical",
-      "jtbd": "Calculates and explains PLG readiness scores for codebases. Breaks down scoring components, identifies strengths and gaps, and provides actionable recommendations for improvement. Use when interpreting skene-growth analysis results."
     },
     {
       "skill_id": "marketing_marketing_psychology",
@@ -3089,16 +2879,6 @@
       "skill_id": "boyce_acquisition_loop_designer",
       "risk_level": "Critical",
       "jtbd": "Designs product-driven growth loops for user acquisition, engagement, and expansion. Based on Dave Boyce's FREEMIUM framework (Chapters 7 & 12): Small improvements in loops compound to create exponential growth."
-    },
-    {
-      "skill_id": "plg_frameworks/viral-loops",
-      "risk_level": "Critical",
-      "jtbd": "STRATEGY: Design product-driven viral growth -- including invite mechanics, collaboration loops, embedding loops, and network effects. Use when discussing K-factor, viral coefficient, invite flows, sharing mechanics, or network effects. For executing viral loops with tools, see plg/viral_loop. For structured referral programs, see referral-program. For growth loop design, see growth-loops."
-    },
-    {
-      "skill_id": "plg_frameworks/free-tool-strategy",
-      "risk_level": "Critical",
-      "jtbd": "When the user wants to plan a free tool for acquisition -- including calculators, analyzers, generators, or interactive resources as an engineering-as-marketing strategy. Also use when the user says \"free tool,\" \"engineering as marketing,\" \"lead magnet tool,\" \"free calculator,\" or \"SEO tool.\" For viral growth, see viral-loops. For PLG strategy, see plg-strategy."
     },
     {
       "skill_id": "plgf_pricing_strategy",

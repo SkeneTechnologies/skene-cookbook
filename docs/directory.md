@@ -1,10 +1,10 @@
 # Skills Directory - Complete Catalog
 
-**Generated:** 2026-02-05
+**Generated:** 2026-02-09
 
 ## Overview
 
-- **Total Skills:** 808
+- **Total Skills:** 764
 - **Job Functions:** 13
 - **Status:** Production Ready
 
@@ -12,27 +12,27 @@
 
 | Risk Level | Count | Percentage |
 |------------|-------|------------|
-| 🔴 Critical | 470 | 58.2% |
-| 🟡 High | 51 | 6.3% |
-| 🔵 Medium | 51 | 6.3% |
-| 🟢 Low | 236 | 29.2% |
+| 🔴 Critical | 431 | 56.4% |
+| 🟡 High | 49 | 6.4% |
+| 🔵 Medium | 49 | 6.4% |
+| 🟢 Low | 235 | 30.8% |
 
 ---
 
 ## Quick Navigation
 
-- [Customer Success](functions/customer_success.md) (69 skills)
-- [Data](functions/data.md) (129 skills)
+- [Customer Success](functions/customer_success.md) (61 skills)
+- [Data](functions/data.md) (119 skills)
 - [Design](functions/design.md) (77 skills)
-- [Engineering](functions/engineering.md) (271 skills)
+- [Engineering](functions/engineering.md) (265 skills)
 - [Executive](functions/executive.md) (4 skills)
-- [Finance](functions/finance.md) (17 skills)
+- [Finance](functions/finance.md) (13 skills)
 - [Hr](functions/hr.md) (28 skills)
 - [Legal](functions/legal.md) (13 skills)
-- [Marketing](functions/marketing.md) (84 skills)
+- [Marketing](functions/marketing.md) (74 skills)
 - [Operations](functions/operations.md) (43 skills)
 - [Product](functions/product.md) (2 skills)
-- [Sales](functions/sales.md) (53 skills)
+- [Sales](functions/sales.md) (47 skills)
 - [Security](functions/security.md) (18 skills)
 
 ---
@@ -449,10 +449,8 @@
 | `marketing_content_research_writer` | Marketing | 🔴 Critical | Assists in writing high-quality content by conducting resear... |
 | `marketing_copy_editing` | Marketing | 🔴 Critical | "When the user wants to edit, review, or improve existing ma... |
 | `marketing_copywriting` | Marketing | 🔴 Critical | When the user wants to write, rewrite, or improve marketing ... |
-| `marketing_cpo_operator` | Marketing | 🔴 Critical | "Use when the user wants CPO-level objective setting, KPI de... |
 | `marketing_daily_journal_writer` | Marketing | 🔴 Critical | Generates structured daily activity journals tracking accomp... |
 | `marketing_daily_report_summarizer` | Marketing | 🔴 Critical | Compiles signals, analytics, leads, experiments, and outreac... |
-| `marketing_developer_growth_analysis` | Engineering | 🔴 Critical | Analyzes your recent Claude Code chat history to identify co... |
 | `marketing_domain_name_brainstormer` | Marketing | 🟡 High | Generates creative domain name ideas for your project and ch... |
 | `marketing_email_sequence` | Marketing | 🔴 Critical | When the user wants to create or optimize an email sequence,... |
 | `marketing_file_organizer` | Marketing | 🔴 Critical | Intelligently organizes your files and folders across your c... |
@@ -460,10 +458,8 @@
 | `marketing_free_tool_strategy` | Marketing | 🔴 Critical | When the user wants to plan, evaluate, or build a free tool ... |
 | `marketing_humanization_engine` | Marketing | 🔴 Critical | Applies humanization rules to outbound messages to make them... |
 | `marketing_image_enhancer` | Marketing | 🟢 Low | Improves the quality of images, especially screenshots, by e... |
-| `marketing_influencer_repo_analyzer` | Marketing | 🔵 Medium | Analyzes influencer open source repositories using skene-gro... |
 | `marketing_interface_design` | Marketing | 🔴 Critical | This skill is for interface design — dashboards, admin panel... |
 | `marketing_invoice_organizer` | Marketing | 🔴 Critical | Automatically organizes invoices and receipts for tax prepar... |
-| `marketing_langsmith_fetch` | Marketing | 🔴 Critical | Debug LangChain and LangGraph agents by fetching execution t... |
 | `marketing_launch_strategy` | Marketing | 🔴 Critical | "When the user wants to plan a product launch, feature annou... |
 | `marketing_lead_pipeline_organizer` | Marketing | 🟡 High | Organizes leads and pipeline according to campaign objective... |
 | `marketing_lead_research_assistant` | Marketing | 🟡 High | Identifies high-quality leads for your product or service by... |
@@ -477,20 +473,15 @@
 | `marketing_page_cro` | Marketing | 🔴 Critical | When the user wants to optimize, improve, or increase conver... |
 | `marketing_paid_ads` | Marketing | 🟡 High | "When the user wants help with paid advertising campaigns on... |
 | `marketing_paywall_upgrade_cro` | Marketing | 🔴 Critical | When the user wants to create or optimize in-app paywalls, u... |
-| `marketing_plg_score_explainer` | Marketing | 🔴 Critical | Calculates and explains PLG readiness scores for codebases. ... |
 | `marketing_popup_cro` | Marketing | 🔴 Critical | When the user wants to create or optimize popups, modals, ov... |
 | `marketing_pricing_strategy` | Marketing | 🔴 Critical | "When the user wants help with pricing decisions, packaging,... |
 | `marketing_programmatic_seo` | Marketing | 🔴 Critical | When the user wants to create SEO-driven pages at scale usin... |
 | `marketing_raffle_winner_picker` | Marketing | 🔵 Medium | Picks random winners from lists, spreadsheets, or Google She... |
 | `marketing_referral_program` | Marketing | 🔴 Critical | "When the user wants to create, optimize, or analyze a refer... |
-| `marketing_reverse_influence_strategist` | Marketing | 🔵 Medium | Applies academic marketing frameworks (Multi-Step Flow, Stru... |
 | `marketing_schema_markup` | Marketing | 🔴 Critical | When the user wants to add, fix, or optimize schema markup a... |
 | `marketing_self_improvement_analyzer` | Marketing | 🔴 Critical | Analyzes marketing campaign performance metrics (open rates,... |
 | `marketing_seo_audit` | Marketing | 🔴 Critical | When the user wants to audit, review, or diagnose SEO issues... |
 | `marketing_signup_flow_cro` | Marketing | 🔴 Critical | When the user wants to optimize signup, registration, accoun... |
-| `marketing_skene_growth_bridge` | Marketing | 🟢 Low | Use skene-growth outputs to guide marketing work, select the... |
-| `marketing_skene_voice_guardian` | Marketing | 🔴 Critical | Ensures consistent brand voice, tone, and positioning across... |
-| `marketing_skill_share` | Marketing | 🟡 High | A skill that creates new Claude skills and automatically sha... |
 | `marketing_slack_gif_creator` | Marketing | 🔴 Critical | Toolkit for creating animated GIFs optimized for Slack, with... |
 | `marketing_social_content` | Marketing | 🔴 Critical | "When the user wants help creating, scheduling, or optimizin... |
 | `marketing_social_content_generator` | Marketing | 🔴 Critical | Generates platform-optimized social media posts (Twitter/X, ... |
@@ -499,12 +490,6 @@
 | `marketing_template_skill` | Marketing | 🔵 Medium | Replace with description of the skill and when Claude should... |
 | `marketing_twitter_algorithm_optimizer` | Marketing | 🔴 Critical | Analyze and optimize tweets for maximum reach using Twitter'... |
 | `marketing_video_downloader` | Marketing | 🟢 Low | Download YouTube videos with customizable quality and format... |
-| `meta_customer_360` | Data | 🔴 Critical | Aggregates complete customer view from Customer Success, Sup... |
-| `meta_growth_diagnostician` | Data | 🔴 Critical | Identifies growth blockers and opportunities across all doma... |
-| `meta_gtm_orchestrator` | Sales | 🔴 Critical | Coordinates PLG, Sales, and Partner motions for unified go-t... |
-| `meta_incident_coordinator` | Engineering | 🔴 Critical | Coordinates incident response across Support, Product, Engin... |
-| `meta_land_expand_journey` | Customer Success | 🔴 Critical | Manages the complete land-and-expand journey from PLG acquis... |
-| `meta_revenue_intelligence` | Sales | 🔴 Critical | Provides unified visibility across RevOps, Monetization, and... |
 | `mon_cohort_ltv_analyzer` | Data | 🔴 Critical | Analyzes lifetime value by cohort to optimize acquisition an... |
 | `mon_commitment_tracker` | Sales | 🔵 Medium | Tracks minimum commitments, consumption vs commitment, and t... |
 | `mon_consumption_analyzer` | Data | 🟡 High | Analyzes usage trends for billing optimization and forecasti... |
@@ -538,36 +523,13 @@
 | `plg_contextual_help` | Data | 🔴 Critical | Delivers intelligent, context-aware help content and guidanc... |
 | `plg_empty_state_optimizer` | Data | 🔴 Critical | Transforms empty states from dead-ends into engagement oppor... |
 | `plg_feature_request_handler` | Data | 🔴 Critical | Captures, categorizes, and responds to feature requests whil... |
-| `plg_frameworks/activation-metrics` | Data | 🔴 Critical | STRATEGY: Define, measure, and optimize user activation metr... |
 | `plg_frameworks/boyce` | Operations | 🔴 Critical | Boyce PLG Framework - A comprehensive collection of product-... |
-| `plg_frameworks/engagement-loops` | Data | 🔴 Critical | When the user wants to design engagement loops that drive re... |
-| `plg_frameworks/expansion-revenue` | Customer Success | 🔴 Critical | When the user wants to grow revenue from existing customers ... |
-| `plg_frameworks/feature-adoption` | Customer Success | 🔴 Critical | When the user wants to drive adoption of a specific feature ... |
-| `plg_frameworks/feature-gating` | Sales | 🔴 Critical | When the user wants to decide what features to gate vs keep ... |
-| `plg_frameworks/free-tool-strategy` | Marketing | 🔴 Critical | When the user wants to plan a free tool for acquisition -- i... |
 | `plg_frameworks/growth-experimentation` | Customer Success | 🔴 Critical | When the user wants to design, prioritize, or analyze growth... |
-| `plg_frameworks/growth-loops` | Sales | 🔴 Critical | When the user wants to design, map, or quantitatively model ... |
-| `plg_frameworks/growth-modeling` | Finance | 🔴 Critical | When the user wants to build quantitative growth models -- i... |
-| `plg_frameworks/in-product-messaging` | Customer Success | 🔴 Critical | When the user wants to design in-product messages -- includi... |
 | `plg_frameworks/install-plg-skills` | Customer Success | 🔴 Critical | Installs all 27 PLG skills from SkeneTechnologies/plg-skills... |
-| `plg_frameworks/paywall-upgrade-cro` | Data | 🔴 Critical | When the user wants to optimize in-app paywalls, upgrade scr... |
 | `plg_frameworks/plg-ideas` | Customer Success | 🔴 Critical | When the user wants PLG ideas, tactics, or inspiration -- a ... |
 | `plg_frameworks/plg-mental-models` | Customer Success | 🔴 Critical | When the user needs mental models or frameworks for PLG deci... |
 | `plg_frameworks/plg-metrics` | Data | 🔴 Critical | When the user wants to define PLG metrics, build a growth da... |
 | `plg_frameworks/plg-strategy` | Customer Success | 🔴 Critical | When the user wants to assess PLG readiness, design a produc... |
-| `plg_frameworks/pricing-strategy` | Finance | 🔴 Critical | When the user wants to design or optimize pricing, packaging... |
-| `plg_frameworks/product-analytics` | Data | 🔴 Critical | When the user wants to set up product analytics -- including... |
-| `plg_frameworks/product-led-sales` | Sales | 🔴 Critical | When the user wants to layer sales onto a PLG motion, build ... |
-| `plg_frameworks/product-onboarding` | Data | 🔴 Critical | When the user wants to design or improve new user onboarding... |
-| `plg_frameworks/referral-program` | Customer Success | 🔴 Critical | When the user wants to design a referral or affiliate progra... |
-| `plg_frameworks/retention-analysis` | Customer Success | 🔴 Critical | When the user wants to analyze, diagnose, or improve user re... |
-| `plg_frameworks/self-serve-motion` | Finance | 🔴 Critical | When the user wants to reduce friction in the self-serve buy... |
-| `plg_frameworks/setup-skene-growth` | Engineering | 🔴 Critical | Setup skene-growth dependencies and guide the user through c... |
-| `plg_frameworks/signup-flow-cro` | Data | 🔴 Critical | When the user wants to optimize a signup or registration flo... |
-| `plg_frameworks/trial-optimization` | Sales | 🔴 Critical | When the user wants to optimize free trial conversion -- inc... |
-| `plg_frameworks/usage-based-pricing` | Finance | 🔴 Critical | When the user wants to design or implement usage-based, cons... |
-| `plg_frameworks/user-segmentation` | Customer Success | 🔴 Critical | When the user wants to segment users for personalized experi... |
-| `plg_frameworks/viral-loops` | Marketing | 🔴 Critical | STRATEGY: Design product-driven viral growth -- including in... |
 | `plg_friction_detector` | Data | 🔴 Critical | Identifies and analyzes user experience friction points thro... |
 | `plg_guided_setup_wizard` | Data | 🔴 Critical | Orchestrates personalized multi-step setup flows that config... |
 | `plg_habit_loop_builder` | Data | 🔴 Critical | Designs and reinforces product usage habits through cue-rout... |
@@ -814,12 +776,6 @@
 | `security/sharp-edges` | Security | 🔴 Critical | "Identifies error-prone APIs, dangerous configurations, and ... |
 | `security/spec-to-code-compliance` | Security | 🔴 Critical | Verifies code implements exactly what documentation specifie... |
 | `security/variant-analysis` | Security | 🔴 Critical | Find similar vulnerabilities and bugs across codebases using... |
-| `skene_analyze_features` | Data | 🔴 Critical | Documents user-facing features by scanning codebase for rout... |
-| `skene_analyze_growth_hubs` | Data | 🔴 Critical | Identifies viral, engagement, and monetization features in c... |
-| `skene_analyze_product_overview` | Engineering | 🟡 High | Extracts product information, value proposition, and positio... |
-| `skene_analyze_tech_stack` | Engineering | 🔴 Critical | Detects technology stack including framework, language, data... |
-| `skene_generate_growth_manifest` | Customer Success | 🔴 Critical | Combines all analyses into a comprehensive growth manifest a... |
-| `skene_generate_growth_template` | Engineering | 🔴 Critical | Generates PLG growth strategies and playbooks based on analy... |
 | `superpowers/brainstorming` | Design | 🔴 Critical | "You MUST use this before any creative work - creating featu... |
 | `superpowers/dispatching-parallel-agents` | Engineering | 🔴 Critical | Use when facing 2+ independent tasks that can be worked on w... |
 | `superpowers/executing-plans` | Engineering | 🔴 Critical | Use when you have a written implementation plan to execute i... |

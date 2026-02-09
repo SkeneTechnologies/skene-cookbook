@@ -96,7 +96,7 @@ def test_cmd_dedupe_run_analysis(mock_subprocess, mock_console):
             "duplicate_groups": 0,
             "similar_pairs": 0,
             "incomplete_skills": 0,
-            "unique_verified_skills": 808
+            "unique_verified_skills": 764
         }
     }
 
