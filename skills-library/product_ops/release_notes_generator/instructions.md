@@ -133,7 +133,7 @@ We're excited to announce [Version] with [summary of key improvements].
 
 ---
 
-Questions? Contact support@company.com
+Questions? Contact support@example.com
 ```
 
 ### Developer Format
