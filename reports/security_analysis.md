@@ -1,13 +1,13 @@
 # Security Analysis Report
 
-**Total Skills Analyzed:** 808
+**Total Skills Analyzed:** 764
 
 ## Risk Distribution
 
-- **Critical:** 470 (58.2%)
-- **High:** 51 (6.3%)
-- **Medium:** 51 (6.3%)
-- **Low:** 236 (29.2%)
+- **Critical:** 431 (56.4%)
+- **High:** 49 (6.4%)
+- **Medium:** 49 (6.4%)
+- **Low:** 235 (30.8%)
 
 ## Critical Risk Skills
 
@@ -287,26 +287,6 @@
 - **Risk Factors:** command, write, update, change, read, fetch, get, query, message, log, search, show, view
 - **Human-in-loop:** True
 
-### skene_analyze_tech_stack
-- **Risk Factors:** remove, payment, execute, modify, access, read, email, analytics, track, log, monitor, list, search, format, calculate, view
-- **Human-in-loop:** True
-
-### skene_analyze_growth_hubs
-- **Risk Factors:** payment, execute, system, modify, access, permission, personal, read, get, email, notification, alert, analytics, track, log, list, format, show, view, preview
-- **Human-in-loop:** True
-
-### skene_analyze_features
-- **Risk Factors:** delete, remove, drop, payment, execute, update, modify, change, access, authenticate, permission, read, fetch, get, query, email, notification, analytics, log, list, search, filter, format, display, show, view
-- **Human-in-loop:** True
-
-### skene_generate_growth_manifest
-- **Risk Factors:** payment, eval, write, change, access, personal, read, get, email, notification, alert, analytics, track, log, list, format, show, view, risky_tool: fs.write
-- **Human-in-loop:** True
-
-### skene_generate_growth_template
-- **Risk Factors:** drop, payment, system, update, modify, change, access, read, get, email, notification, message, analytics, track, log, monitor, list, format, show, view, preview, risky_tool: fs.write
-- **Human-in-loop:** True
-
 ### development/playwright
 - **Risk Factors:** password, execute, system, command, write, get, email, message, track, log, list, format, display, show, view
 - **Human-in-loop:** True
@@ -325,30 +305,6 @@
 
 ### development/codebase-onboarding
 - **Risk Factors:** system, command, read, log, list, search, format, show, view
-- **Human-in-loop:** True
-
-### meta_revenue_intelligence
-- **Risk Factors:** drop, eval, change, access, authorize, read, get, alert, analytics, track, log, format, show, view
-- **Human-in-loop:** True
-
-### meta_growth_diagnostician
-- **Risk Factors:** drop, system, change, read, get, email, message, analytics, format
-- **Human-in-loop:** True
-
-### meta_incident_coordinator
-- **Risk Factors:** system, command, update, change, read, get, email, alert, message, track, log, monitor, list, format, risky_tool: support.update_incident_status
-- **Human-in-loop:** True
-
-### meta_gtm_orchestrator
-- **Risk Factors:** eval, system, change, get, analytics, log, monitor, format, show
-- **Human-in-loop:** True
-
-### meta_land_expand_journey
-- **Risk Factors:** eval, personal, read, get, alert, analytics, track, monitor, format, show, view
-- **Human-in-loop:** True
-
-### meta_customer_360
-- **Risk Factors:** drop, financial, payment, system, change, access, permission, sensitive, read, get, analytics, track, log, list, format, aggregate, show, view
 - **Human-in-loop:** True
 
 ### compliance_pii_detector
@@ -559,10 +515,6 @@
 - **Risk Factors:** remove, system, modify, change, alter, personal, read, get, query, email, analytics, track, log, list, format, compute, view
 - **Human-in-loop:** True
 
-### marketing_cpo_operator
-- **Risk Factors:** system, update, change, view
-- **Human-in-loop:** True
-
 ### marketing_self_improvement_analyzer
 - **Risk Factors:** remove, drop, change, personal, read, get, email, track, monitor, search, format, calculate, view
 - **Human-in-loop:** True
@@ -577,10 +529,6 @@
 
 ### marketing_humanization_engine
 - **Risk Factors:** delete, remove, drop, change, personal, read, email, message, log, list, filter, format, view
-- **Human-in-loop:** True
-
-### marketing_skene_voice_guardian
-- **Risk Factors:** delete, command, write, personal, read, get, email, analytics, track, log, list, format, view
 - **Human-in-loop:** True
 
 ### marketing_social_content
@@ -600,7 +548,7 @@
 - **Human-in-loop:** True
 
 ### marketing_social_content_generator
-- **Risk Factors:** drop, write, change, personal, read, get, analytics, track, log, list, format, view
+- **Risk Factors:** drop, command, write, change, personal, read, get, analytics, track, log, list, format, view
 - **Human-in-loop:** True
 
 ### marketing_email_sequence
@@ -609,10 +557,6 @@
 
 ### marketing_daily_report_summarizer
 - **Risk Factors:** drop, execute, write, update, change, read, email, message, analytics, track, list, format, calculate, summarize, view
-- **Human-in-loop:** True
-
-### marketing_langsmith_fetch
-- **Risk Factors:** delete, api_key, execute, shell, command, update, change, read, fetch, get, retrieve, query, message, log, search, filter, format, show, view
 - **Human-in-loop:** True
 
 ### marketing_invoice_organizer
@@ -664,7 +608,7 @@
 - **Human-in-loop:** True
 
 ### marketing_outreach_personalizer
-- **Risk Factors:** drop, write, personal, read, get, email, message, log, list, format, view, preview
+- **Risk Factors:** drop, command, write, personal, read, get, email, message, log, list, format, view, preview
 - **Human-in-loop:** True
 
 ### marketing_twitter_algorithm_optimizer
@@ -673,14 +617,6 @@
 
 ### marketing_analytics_tracking
 - **Risk Factors:** remove, payment, system, update, change, pii, read, query, email, analytics, track, log, monitor, list, search, format, aggregate, view, preview
-- **Human-in-loop:** True
-
-### marketing_developer_growth_analysis
-- **Risk Factors:** credential, execute, system, update, change, access, personal, sensitive, read, get, query, message, track, log, list, search, filter, format, display, show, view
-- **Human-in-loop:** True
-
-### marketing_plg_score_explainer
-- **Risk Factors:** payment, password, system, read, get, query, email, notification, analytics, track, log, list, format, calculate
 - **Human-in-loop:** True
 
 ### marketing_marketing_psychology
@@ -1167,94 +1103,6 @@
 - **Risk Factors:** drop, payment, system, update, access, personal, read, get, email, message, analytics, track, log, list, search, format, show
 - **Human-in-loop:** True
 
-### plg_frameworks/activation-metrics
-- **Risk Factors:** remove, drop, access, read, get, email, notification, message, analytics, track, log, monitor, list, search, format, calculate, show, view
-- **Human-in-loop:** True
-
-### plg_frameworks/self-serve-motion
-- **Risk Factors:** remove, drop, destroy, payment, eval, modify, change, alter, access, permission, read, get, email, notification, track, log, list, search, format, calculate, display, show, view
-- **Human-in-loop:** True
-
-### plg_frameworks/product-onboarding
-- **Risk Factors:** remove, drop, system, change, access, permission, personal, read, get, email, notification, message, analytics, track, log, list, search, format, show
-- **Human-in-loop:** True
-
-### plg_frameworks/viral-loops
-- **Risk Factors:** remove, drop, destroy, system, write, change, alter, personal, read, get, email, message, analytics, track, log, list, search, format, calculate, display, show, view, preview
-- **Human-in-loop:** True
-
-### plg_frameworks/growth-loops
-- **Risk Factors:** remove, drop, system, update, access, read, get, email, track, log, list, search, format, calculate, view
-- **Human-in-loop:** True
-
-### plg_frameworks/expansion-revenue
-- **Risk Factors:** system, change, access, permission, read, get, email, notification, message, analytics, track, log, monitor, list, search, format, show, view
-- **Human-in-loop:** True
-
-### plg_frameworks/product-analytics
-- **Risk Factors:** delete, remove, drop, payment, system, change, access, pii, read, get, query, email, notification, analytics, track, log, list, search, filter, format, calculate, show, view
-- **Human-in-loop:** True
-
-### plg_frameworks/pricing-strategy
-- **Risk Factors:** remove, payment, eval, update, change, alter, access, read, get, email, analytics, track, log, list, search, format, compute, display, show, view
-- **Human-in-loop:** True
-
-### plg_frameworks/free-tool-strategy
-- **Risk Factors:** drop, financial, password, eval, write, update, alter, access, get, email, alert, analytics, track, log, monitor, list, search, format, calculate, compute, display, show, view
-- **Human-in-loop:** True
-
-### plg_frameworks/signup-flow-cro
-- **Risk Factors:** remove, drop, payment, password, eval, change, alter, access, personal, sensitive, read, get, email, message, analytics, track, log, list, search, format, display, show, view
-- **Human-in-loop:** True
-
-### plg_frameworks/retention-analysis
-- **Risk Factors:** remove, drop, payment, eval, update, change, alter, read, get, email, notification, alert, message, analytics, track, log, monitor, list, format, show, view
-- **Human-in-loop:** True
-
-### plg_frameworks/growth-modeling
-- **Risk Factors:** financial, update, change, read, get, track, log, list, filter, format, calculate
-- **Human-in-loop:** True
-
-### plg_frameworks/feature-gating
-- **Risk Factors:** delete, remove, destroy, eval, change, access, permission, personal, read, get, email, notification, message, analytics, track, log, list, search, format, compute, show, view, preview
-- **Human-in-loop:** True
-
-### plg_frameworks/product-led-sales
-- **Risk Factors:** eval, access, personal, read, get, email, analytics, track, log, monitor, list, format, view
-- **Human-in-loop:** True
-
-### plg_frameworks/paywall-upgrade-cro
-- **Risk Factors:** destroy, payment, eval, system, change, alter, access, personal, read, get, analytics, track, log, list, search, format, display, show, view, preview
-- **Human-in-loop:** True
-
-### plg_frameworks/user-segmentation
-- **Risk Factors:** drop, payment, eval, update, alter, access, personal, read, get, email, message, analytics, track, log, monitor, list, sort, format, calculate, show, view
-- **Human-in-loop:** True
-
-### plg_frameworks/engagement-loops
-- **Risk Factors:** drop, destroy, system, update, change, personal, sensitive, read, get, email, notification, alert, message, analytics, log, monitor, search, filter, format, calculate, show, view
-- **Human-in-loop:** True
-
-### plg_frameworks/feature-adoption
-- **Risk Factors:** remove, drop, eval, system, write, update, change, alter, access, sensitive, read, get, email, notification, message, analytics, track, log, monitor, list, search, format, show, view
-- **Human-in-loop:** True
-
-### plg_frameworks/usage-based-pricing
-- **Risk Factors:** drop, financial, eval, system, change, alter, get, query, email, notification, alert, message, analytics, track, log, monitor, list, search, format, compute, show, view
-- **Human-in-loop:** True
-
-### plg_frameworks/in-product-messaging
-- **Risk Factors:** drop, payment, system, update, change, access, personal, sensitive, read, get, notification, alert, message, analytics, track, log, list, search, format, show, view
-- **Human-in-loop:** True
-
-### plg_frameworks/trial-optimization
-- **Risk Factors:** drop, payment, eval, system, alter, access, personal, read, get, email, notification, analytics, track, log, list, search, format, show, view
-- **Human-in-loop:** True
-
-### plg_frameworks/referral-program
-- **Risk Factors:** drop, payment, change, alter, access, personal, read, get, email, track, log, monitor, list, search, format, calculate, view
-- **Human-in-loop:** True
-
 ### plgf_feature_gating
 - **Risk Factors:** remove, eval, change, access, personal, read, get, query, email, analytics, log, monitor, list, filter, format, compute, show, view, preview
 - **Human-in-loop:** True
@@ -1277,10 +1125,6 @@
 
 ### plgf_paywall_upgrade_cro
 - **Risk Factors:** payment, eval, change, access, sensitive, read, get, email, analytics, track, log, list, format, display, show, view, preview
-- **Human-in-loop:** True
-
-### plg_frameworks/setup-skene-growth
-- **Risk Factors:** api_key, update, read, get, log, format, display
 - **Human-in-loop:** True
 
 ### plg_frameworks/plg-metrics
