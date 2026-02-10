@@ -11,8 +11,12 @@ Install once. Build unlimited agents. Deploy in days.
 Choose your path to get started:
 
 👔 [**Sales Leader**](docs/personas/sales-leader.md) — Automate lead scoring & pipeline management
+
+
 🚀 [**Growth PM**](docs/personas/growth-pm.md) — Build PLG activation & engagement flows
+
 🔬 [**Researcher**](docs/personas/researcher.md) — Scientific tools & data analysis
+
 💼 [**CFO/Finance**](docs/personas/cfo.md) — Financial intelligence & reporting
 
 Or [browse all 760+ skills →](docs/directory.md)
@@ -31,8 +35,11 @@ Or [browse all 760+ skills →](docs/directory.md)
 ## Real ROI
 
 🎯 **Sales Agent**: Saves $20K-$40K/month by automating lead qualification
+
 📊 **Finance Agent**: Saves $50K+/month in CFO/finance team time
+
 🚀 **Growth Agent**: Drives 15%+ conversion lift through automated optimization
+
 💰 **Churn Prevention**: Saves $400K ARR/year through early intervention
 
 [See full value proposition →](docs/VALUE.md)
