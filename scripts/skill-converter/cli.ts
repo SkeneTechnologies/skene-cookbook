@@ -498,7 +498,7 @@ function printHelp() {
   console.log(chalk.cyan('  $ npx skills-directory stats'));
 
   console.log('');
-  console.log(chalk.dim('  For more info: ') + chalk.underline('https://github.com/SkeneTechnologies/skills-directory'));
+  console.log(chalk.dim('  For more info: ') + chalk.underline('https://github.com/SkeneTechnologies/skene-cookbook'));
   console.log('');
 }
 

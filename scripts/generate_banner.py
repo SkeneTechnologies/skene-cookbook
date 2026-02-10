@@ -22,8 +22,8 @@ def generate_readme_header():
 </p>
 
 <p align="center">
-  <a href="https://github.com/yourusername/skills-directory/actions">
-    <img src="https://github.com/yourusername/skills-directory/workflows/Lint%20&%20Build%20Documentation/badge.svg" alt="Build Status">
+  <a href="https://github.com/yourusername/skene-cookbook/actions">
+    <img src="https://github.com/yourusername/skene-cookbook/workflows/Lint%20&%20Build%20Documentation/badge.svg" alt="Build Status">
   </a>
   <a href="LICENSE">
     <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License: MIT">

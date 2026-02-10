@@ -6,7 +6,7 @@ This folder is a standalone package. **npm publish is done.** ✅
 
 1. **Create the repo on GitHub:**
    - Go to https://github.com/organizations/SkeneTechnologies/repositories/new
-   - Name: `skills-directory`
+   - Name: `skene-cookbook`
    - Description: `800+ AI skills for Claude and Cursor. One command to install.`
    - Public, no README (we have one)
 

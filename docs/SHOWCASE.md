@@ -348,7 +348,7 @@ Built something with Skene Skills? We'd love to feature it!
 2. Include: Problem, Solution, Skills Used, Impact
 3. We'll add it to this page (with your permission)
 
-[Submit showcase →](https://github.com/SkeneTechnologies/skills-directory/issues/new)
+[Submit showcase →](https://github.com/SkeneTechnologies/skene-cookbook/issues/new)
 
 ---
 

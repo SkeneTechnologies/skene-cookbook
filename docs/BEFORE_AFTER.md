@@ -117,7 +117,7 @@ Examples:
   $ npx skills-directory list --domain plg
   $ npx skills-directory stats
 
-  For more info: https://github.com/SkeneTechnologies/skills-directory
+  For more info: https://github.com/SkeneTechnologies/skene-cookbook
 ```
 
 **Improvements:**

@@ -186,8 +186,8 @@ git push origin main --tags
 sudo apt update
 sudo apt install -y python3 python3-pip git
 
-git clone https://github.com/username/skills-directory.git
-cd skills-directory
+git clone https://github.com/username/skene-cookbook.git
+cd skene-cookbook
 
 pip3 install -r requirements.txt
 python3 scripts/dedupe_skills.py --help

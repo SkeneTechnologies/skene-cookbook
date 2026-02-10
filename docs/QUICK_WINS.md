@@ -620,8 +620,8 @@ npx skills-directory info [skill_name]
 
 - **Full recipes:** [SKILL_CHAINS.md](./SKILL_CHAINS.md)
 - **Value & ROI:** [VALUE.md](./VALUE.md)
-- **GitHub Issues:** [Report bugs or ask questions](https://github.com/teemukinos/skene-skills-directory/issues)
-- **Discussions:** [Community forum](https://github.com/teemukinos/skene-skills-directory/discussions)
+- **GitHub Issues:** [Report bugs or ask questions](https://github.com/SkeneTechnologies/skene-cookbook/issues)
+- **Discussions:** [Community forum](https://github.com/SkeneTechnologies/skene-cookbook/discussions)
 
 ---
 
