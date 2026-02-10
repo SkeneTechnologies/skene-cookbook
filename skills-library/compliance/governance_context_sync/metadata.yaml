@@ -1,0 +1,73 @@
+security:
+  risk_level: High
+  requirements:
+    sandboxing_required: false
+    human_in_loop_required: true
+    audit_logging: true
+    data_access_scope:
+      - internal
+    risk_factors:
+      - execute
+      - command
+      - system
+      - write
+      - read
+      - sync
+      - analyze
+      - log
+      - timestamp
+    consent_model:
+      explicit_approval: true
+      show_command: true
+      allow_decline: true
+      no_manipulation: true
+  remediation:
+    applied: true
+    date: '2026-02-10T12:00:00.000000'
+    original_risk: Critical
+    changes:
+      - Added mandatory user consent before command execution
+      - Removed all manipulative "duty" language
+      - Made decline option prominent and frictionless
+      - Added transparency requirements (show full command)
+      - Added graceful error handling with fallback to existing context
+      - Prohibited re-asking after user declines
+categorization:
+  job_function: operations
+  jtbd:
+    job: Checks if project context is stale (>24 hours) and transparently offers to sync governance patterns with user consent
+    context: When starting work on complex features or security-sensitive code
+    outcome: Successfully maintain fresh governance context while respecting user autonomy
+composability:
+  hints:
+    - 'can_chain_to: compliance_soc2_tracker'
+    - 'can_chain_to: compliance_audit_preparer'
+    - 'can_chain_to: security_pattern_enforcer'
+    - 'can_chain_from: any_skill_at_session_start'
+    - has_structured_output
+  output_format:
+    status: string
+    hours_since_sync: number
+    user_consented: boolean
+    changes_summary: object
+transparency:
+  user_facing: true
+  command_visibility: full
+  decision_authority: user
+  manipulation_prohibited: true
+  consent_required: true
+ethics:
+  framework: transparent_assistance
+  principles:
+    - User autonomy is paramount
+    - No manipulation or guilt-tripping
+    - Clear value proposition before asking
+    - Easy to decline without friction
+    - Transparent about what will happen
+    - Respect user's decision immediately
+  anti_patterns:
+    - duty_language: prohibited
+    - obligation_framing: prohibited
+    - silent_execution: prohibited
+    - repeated_asking: prohibited
+    - priority_inversion: prohibited

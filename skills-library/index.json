@@ -265,7 +265,8 @@
         { "id": "compliance_access_reviewer", "name": "Access Review Orchestrator", "path": "compliance/access_reviewer" },
         { "id": "compliance_breach_response", "name": "Breach Response Coordinator", "path": "compliance/breach_response" },
         { "id": "compliance_audit_preparer", "name": "Audit Preparation Assistant", "path": "compliance/audit_preparer" },
-        { "id": "compliance_pii_detector", "name": "PII Detection Scanner", "path": "compliance/pii_detector" }
+        { "id": "compliance_pii_detector", "name": "PII Detection Scanner", "path": "compliance/pii_detector" },
+        { "id": "governance_context_sync", "name": "Context Synchronization Checker", "path": "compliance/governance_context_sync" }
       ]
     },
     "support_ops": {
@@ -397,9 +398,9 @@
   },
   
   "summary": {
-    "total_skills": 339,
+    "total_skills": 340,
     "total_domains": 17,
-    "core_growth_skills": 266,
+    "core_growth_skills": 267,
     "marketing_skills": 73,
     "version_history": [
       { "version": "1.0.0", "date": "2026-01-28", "skills": 107, "domains": 7 },
