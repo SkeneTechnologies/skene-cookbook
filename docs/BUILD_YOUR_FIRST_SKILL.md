@@ -84,8 +84,8 @@ Before writing code, answer these questions:
 
 ```bash
 # 1. Fork and clone the repository
-git clone https://github.com/YOUR_USERNAME/skills-directory.git
-cd skills-directory
+git clone https://github.com/YOUR_USERNAME/skene-cookbook.git
+cd skene-cookbook
 
 # 2. Install dependencies
 npm install
@@ -638,8 +638,8 @@ Before submitting, verify:
 
 - **Questions about skill structure**: See [CONTRIBUTING.md](../CONTRIBUTING.md)
 - **Security questions**: See [SECURITY_POLICY.md](../SECURITY_POLICY.md)
-- **Technical issues**: [Open an issue](https://github.com/SkeneTechnologies/skills-directory/issues/new)
-- **Discussions**: [GitHub Discussions](https://github.com/SkeneTechnologies/skills-directory/discussions)
+- **Technical issues**: [Open an issue](https://github.com/SkeneTechnologies/skene-cookbook/issues/new)
+- **Discussions**: [GitHub Discussions](https://github.com/SkeneTechnologies/skene-cookbook/discussions)
 
 ---
 

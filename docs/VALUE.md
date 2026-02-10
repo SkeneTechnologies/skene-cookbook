@@ -334,8 +334,8 @@ Try a [Quick Win](./QUICK_WINS.md) — Deploy your first skill chain in 15 minut
 ### Get Support
 
 - **Documentation** — [Full docs](../README.md)
-- **Issues** — [GitHub Issues](https://github.com/teemukinos/skene-skills-directory/issues)
-- **Discussions** — [GitHub Discussions](https://github.com/teemukinos/skene-skills-directory/discussions)
+- **Issues** — [GitHub Issues](https://github.com/SkeneTechnologies/skene-cookbook/issues)
+- **Discussions** — [GitHub Discussions](https://github.com/SkeneTechnologies/skene-cookbook/discussions)
 
 ---
 

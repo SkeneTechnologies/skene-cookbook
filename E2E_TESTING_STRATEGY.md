@@ -33,8 +33,8 @@ Comprehensive E2E testing strategy to validate the Skills Directory before publi
 #### Installation Scenarios
 ```bash
 # Scenario 1: Fresh Git Clone
-git clone https://github.com/username/skills-directory.git
-cd skills-directory
+git clone https://github.com/username/skene-cookbook.git
+cd skene-cookbook
 pip install -r requirements.txt
 python scripts/analyze_skills.py --help
 

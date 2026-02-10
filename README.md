@@ -183,7 +183,7 @@ Cursor and Claude automatically pick the right skill based on your prompt. Chain
 ### 🤝 Community
 - **[Build Your First Skill](docs/BUILD_YOUR_FIRST_SKILL.md)** — Step-by-step skill creation tutorial
 - [Contributing Guidelines](CONTRIBUTING.md) — How to contribute to the library
-- [GitHub Discussions](https://github.com/SkeneTechnologies/skills-directory/discussions) — Ask questions and share ideas
+- [GitHub Discussions](https://github.com/SkeneTechnologies/skene-cookbook/discussions) — Ask questions and share ideas
 
 ---
 

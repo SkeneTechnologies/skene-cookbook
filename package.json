@@ -25,12 +25,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/SkeneTechnologies/skills-directory.git"
+    "url": "https://github.com/SkeneTechnologies/skene-cookbook.git"
   },
   "bugs": {
-    "url": "https://github.com/SkeneTechnologies/skills-directory/issues"
+    "url": "https://github.com/SkeneTechnologies/skene-cookbook/issues"
   },
-  "homepage": "https://github.com/SkeneTechnologies/skills-directory#readme",
+  "homepage": "https://github.com/SkeneTechnologies/skene-cookbook#readme",
   "publishConfig": {
     "access": "public"
   },

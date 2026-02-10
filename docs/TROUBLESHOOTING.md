@@ -494,7 +494,7 @@ chmod 644 ~/.claude/logs/audit.log
    npx skills-directory status
    npx skills-directory validate  # (Phase 2 feature)
    ```
-3. **Check existing issues**: [GitHub Issues](https://github.com/SkeneTechnologies/skills-directory/issues)
+3. **Check existing issues**: [GitHub Issues](https://github.com/SkeneTechnologies/skene-cookbook/issues)
 
 ### How to Report an Issue
 
@@ -530,8 +530,8 @@ Include these details:
 
 ### Where to Get Help
 
-- **GitHub Issues**: [Report bugs](https://github.com/SkeneTechnologies/skills-directory/issues/new)
-- **GitHub Discussions**: [Ask questions](https://github.com/SkeneTechnologies/skills-directory/discussions)
+- **GitHub Issues**: [Report bugs](https://github.com/SkeneTechnologies/skene-cookbook/issues/new)
+- **GitHub Discussions**: [Ask questions](https://github.com/SkeneTechnologies/skene-cookbook/discussions)
 - **Documentation**: [Browse docs](../README.md)
 
 ---
@@ -573,4 +573,4 @@ npx skills-directory --help
 
 ---
 
-**Still stuck?** [Open an issue](https://github.com/SkeneTechnologies/skills-directory/issues/new) and we'll help!
+**Still stuck?** [Open an issue](https://github.com/SkeneTechnologies/skene-cookbook/issues/new) and we'll help!
