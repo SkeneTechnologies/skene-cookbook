@@ -7,3 +7,8 @@ coverage/
 .nyc_output/
 dist/
 *.tgz
+
+# Test reports and checklists (regenerated as needed)
+*_TEST_REPORT.md
+*_REPORT.md
+*_CHECKLIST.md
