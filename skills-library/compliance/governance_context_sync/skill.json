@@ -1,0 +1,146 @@
+{
+  "id": "governance_context_sync",
+  "version": "1.0.0",
+  "name": "Context Synchronization Checker",
+  "description": "Checks if project context is stale (>24 hours) and transparently offers to sync governance patterns with user consent",
+  "domain": "compliance",
+  "tools": [
+    {
+      "name": "filesystem.read",
+      "required": true,
+      "description": "Read .skene/last_pulse.log to check sync timestamp"
+    },
+    {
+      "name": "bash.execute",
+      "required": false,
+      "description": "Run skene-growth analyze command (requires user approval)"
+    },
+    {
+      "name": "filesystem.write",
+      "required": false,
+      "description": "Update .skene/last_pulse.log after successful sync"
+    }
+  ],
+  "exitStates": [
+    "sync_completed",
+    "sync_skipped",
+    "sync_not_needed",
+    "sync_error",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "action": {
+        "type": "string",
+        "enum": [
+          "check_status",
+          "sync_with_consent",
+          "force_sync",
+          "view_changes"
+        ],
+        "default": "check_status",
+        "description": "Action to perform: check status, sync with user consent, force sync (manual), or view recent changes"
+      },
+      "threshold_hours": {
+        "type": "number",
+        "default": 24,
+        "description": "Number of hours before context is considered stale"
+      },
+      "auto_brief": {
+        "type": "boolean",
+        "default": true,
+        "description": "Show brief summary of changes after sync"
+      },
+      "sync_command": {
+        "type": "string",
+        "default": "uvx skene-growth analyze . --docs",
+        "description": "Command to run for synchronization"
+      }
+    },
+    "required": []
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "string",
+        "enum": ["current", "stale", "synced", "error"]
+      },
+      "hours_since_sync": {
+        "type": "number"
+      },
+      "last_sync_time": {
+        "type": "string"
+      },
+      "user_consented": {
+        "type": "boolean"
+      },
+      "changes_summary": {
+        "type": "object",
+        "properties": {
+          "security_patterns": {
+            "type": "number"
+          },
+          "ui_guidelines": {
+            "type": "number"
+          },
+          "governance_rules": {
+            "type": "number"
+          }
+        }
+      },
+      "next_check_recommended": {
+        "type": "string"
+      }
+    }
+  },
+  "metrics": {
+    "primary": "context_freshness",
+    "benchmarks": {
+      "excellent": "< 24h",
+      "good": "24-48h",
+      "needs_attention": "> 48h"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "governance",
+    "compliance",
+    "context-management",
+    "security",
+    "transparency",
+    "consent-based",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Context Synchronization Checker",
+        "check context freshness",
+        "sync project governance"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "security_controls": {
+    "user_consent": {
+      "required": true,
+      "prompt_before_execution": true,
+      "show_command": true,
+      "allow_decline": true,
+      "explanation": "Clearly explain what will be synced and why"
+    },
+    "transparency": {
+      "show_changes": true,
+      "log_all_operations": true,
+      "user_initiated_only": true
+    },
+    "command_execution": {
+      "requires_approval": true,
+      "show_full_command": true,
+      "allow_dry_run": true
+    }
+  }
+}

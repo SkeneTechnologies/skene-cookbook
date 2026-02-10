@@ -12,3 +12,6 @@ dist/
 *_TEST_REPORT.md
 *_REPORT.md
 *_CHECKLIST.md
+
+# Central strategy docs (symlinked from ~/skene-strategy)
+docs/strategy
