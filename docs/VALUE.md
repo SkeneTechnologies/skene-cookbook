@@ -339,6 +339,49 @@ Try a [Quick Win](./QUICK_WINS.md) — Deploy your first skill chain in 15 minut
 
 ---
 
+## Expanded Recipe Coverage (20+ Recipes Across 15+ Domains)
+
+### New Domains Now Covered
+
+**PLG & Monetization:**
+- Freemium Conversion Optimization (35% trial-to-paid lift)
+- Usage-Based Pricing Engine (25% revenue increase per customer)
+- Product-Led Sales Handoff (3x PQL-to-opportunity conversion)
+
+**Developer Experience:**
+- API Onboarding & Integration Health (60% faster integration)
+- Error Explanation & Changelog Tracking
+
+**Support & AI Operations:**
+- AI Support Deflection System (70% ticket deflection, $150K-$300K savings)
+- Intelligent Response Generation
+
+**People Operations:**
+- Employee Onboarding Automation (70% faster onboarding)
+- Compensation Benchmarking & Skill Gap Analysis
+- DEI Tracking & Pulse Monitoring
+
+**Data & Analytics:**
+- Data Quality Automation (80% error reduction)
+- Funnel Optimization & Experiment Analysis
+- Real-time Anomaly Detection
+
+**Community & Growth:**
+- Community-Led Growth Engine (40% organic growth increase)
+- Ambassador Program Management
+- UGC Curation & Event Management
+
+**Plus:** Security Code Review, Compliance Automation, API Lifecycle Management, Competitive Intelligence, Brand Consistency, Customer Education, E-commerce Revenue Optimization, and more.
+
+### Market Expansion Potential
+
+- **Current Coverage:** 10 original recipes across 9 domains
+- **New Coverage:** 20+ recipes across 15+ domains
+- **New Customer Segments:** 20+ new segments (HR tech, DevTools, FinTech, Healthcare, etc.)
+- **Estimated Value:** $2M-$5M ARR expansion opportunity
+
+---
+
 ## Success Stories
 
 ### SaaS Company A: 40% Reduction in Churn
