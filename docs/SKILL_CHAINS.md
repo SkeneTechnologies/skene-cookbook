@@ -2485,25 +2485,2452 @@ Track these KPIs:
 
 ---
 
-## Recipe 19-28: Additional Domain-Specific Recipes
+## Recipe 19: Multi-Platform Content Distribution
 
-Due to space constraints, Recipes 19-28 follow similar patterns for:
-- Multi-Platform Content Distribution (Marketing)
-- Product Experimentation Engine (Product Ops)
-- API Lifecycle Management (DevEx)
-- Competitive Intelligence Automation (RevOps)
-- Brand Consistency Engine (Marketing)
-- Customer Education Platform (Customer Success)
-- Security Code Review Automation (Security)
-- Compliance Automation Hub (Compliance)
-- E-commerce Revenue Optimization (Monetization)
-- Partnership Ecosystem Automation (Ecosystem)
+**Use Case:** Automate content creation, formatting, and distribution across multiple platforms with AI-powered generation and analytics tracking
+**Skills:** 6 chained skills
+**Time:** 2-3 hours per content piece vs 8-12 hours manual process
+**ROI:** 3x content reach, 50% cost reduction, 80% time savings
 
-**For complete documentation of Recipes 19-28, see the full cookbook repository or contact support.**
+### The Chain
+
+```
+content_research_writer → ai_content_generator → social_content_generator →
+email_sequence → analytics_tracking → social_listening_analyzer
+```
+
+### How It Works
+
+1. **content_research_writer** — Researches topics, generates outlines, and creates initial drafts
+2. **ai_content_generator** — Generates polished content with AI assistance
+3. **social_content_generator** — Creates platform-specific social media posts
+4. **email_sequence** — Generates email nurture sequences from content
+5. **analytics_tracking** — Tracks performance across all distribution channels
+6. **social_listening_analyzer** — Monitors social engagement and sentiment
+
+### Setup Instructions
+
+#### Step 1: Install Marketing Skills
+
+```bash
+npx skills-directory install --target all --domain marketing
+```
+
+#### Step 2: Configure Content Research
+
+```json
+{
+  "skill": "content_research_writer",
+  "trigger": "content_request",
+  "input": {
+    "topic": "{{trigger.topic}}",
+    "audience": "{{company.target_audience}}",
+    "contentType": "blog_post",
+    "targetLength": 1500,
+    "researchDepth": "comprehensive",
+    "includeExamples": true,
+    "citeSources": true
+  },
+  "exit_routing": {
+    "draft_complete": "ai_content_generator",
+    "needs_more_research": "research_deeper"
+  }
+}
+```
+
+#### Step 3: Generate AI-Powered Content
+
+```json
+{
+  "skill": "ai_content_generator",
+  "input": {
+    "draft": "{{previous.draft}}",
+    "tone": "professional_friendly",
+    "style": "{{company.brand_voice}}",
+    "optimizeFor": ["clarity", "engagement", "seo", "readability"],
+    "includeCallToAction": true,
+    "targetKeyword": "{{previous.primary_keyword}}"
+  },
+  "exit_routing": {
+    "content_ready": "social_content_generator",
+    "needs_editing": "human_review"
+  }
+}
+```
+
+#### Step 4: Create Social Media Content
+
+```json
+{
+  "skill": "social_content_generator",
+  "input": {
+    "article": "{{previous.content}}",
+    "platforms": ["twitter", "linkedin", "facebook", "instagram"],
+    "postsPerPlatform": 3,
+    "includeHashtags": true,
+    "includeImages": true,
+    "schedulingStrategy": "optimal_times"
+  },
+  "exit_routing": {
+    "social_ready": "email_sequence",
+    "needs_images": "image_generation"
+  }
+}
+```
+
+#### Step 5: Generate Email Nurture Sequence
+
+```json
+{
+  "skill": "email_sequence",
+  "input": {
+    "content": "{{chain.article}}",
+    "sequenceType": "nurture",
+    "emailCount": 3,
+    "spacing": "3_days",
+    "personalization": "high",
+    "segmentation": "by_behavior",
+    "includeUnsubscribe": true
+  },
+  "exit_routing": {
+    "sequence_ready": "analytics_tracking",
+    "needs_approval": "marketing_review"
+  }
+}
+```
+
+#### Step 6: Track Analytics
+
+```json
+{
+  "skill": "analytics_tracking",
+  "input": {
+    "contentId": "{{chain.contentId}}",
+    "trackingEvents": [
+      "page_view",
+      "time_on_page",
+      "social_share",
+      "email_open",
+      "email_click",
+      "conversion"
+    ],
+    "platforms": "all",
+    "reportingFrequency": "daily"
+  },
+  "exit_routing": {
+    "tracking_active": "social_listening_analyzer"
+  }
+}
+```
+
+#### Step 7: Monitor Social Engagement
+
+```json
+{
+  "skill": "social_listening_analyzer",
+  "input": {
+    "contentUrl": "{{chain.publish_url}}",
+    "keywords": "{{chain.target_keywords}}",
+    "platforms": ["twitter", "linkedin", "reddit", "hackernews"],
+    "sentimentAnalysis": true,
+    "competitorMentions": true,
+    "alertThreshold": "high_engagement"
+  },
+  "output": "engagement_report"
+}
+```
+
+### Testing the Chain
+
+```bash
+curl -X POST http://localhost:3000/api/chains/content-distribution \
+  -H "Content-Type: application/json" \
+  -d '{
+    "topic": "AI-powered workflow automation",
+    "targetAudience": "B2B SaaS founders",
+    "contentType": "blog_post",
+    "distributionChannels": ["blog", "social", "email"]
+  }'
+```
+
+### Expected Output
+
+```json
+{
+  "contentGenerated": true,
+  "articleUrl": "https://blog.example.com/ai-workflow-automation",
+  "wordCount": 1500,
+  "readabilityScore": 65,
+  "socialPosts": {
+    "twitter": 3,
+    "linkedin": 3,
+    "facebook": 3
+  },
+  "emailSequence": {
+    "emails": 3,
+    "scheduled": true
+  },
+  "analyticsTracking": "active",
+  "socialListening": "monitoring",
+  "estimatedReach": "15000+",
+  "productionTime": "2.5 hours"
+}
+```
+
+### Monitoring & Metrics
+
+Track these KPIs:
+
+- **Content Production Volume:** Target 3x increase
+- **Time per Piece:** Target 70% reduction
+- **Cross-Platform Reach:** Target 3x increase
+- **Engagement Rate:** Target 25% improvement
+- **Content-to-Conversion Rate:** Track ROI per piece
+
+### Expected Outcomes
+
+- **Week 1:** 3 pieces published across all channels
+- **Month 1:** 20+ pieces published (vs 8-10 manual)
+- **Quarter 1:** 3x content reach, 50% cost reduction
+- **Quarter 2:** Content team 3x more productive
 
 ---
 
-## Phase 3: Industry-Specific Integration Patterns (29-30)
+## Recipe 20: Product Experimentation Engine
+
+**Use Case:** Accelerate product experimentation with automated A/B test setup, analysis, and impact measurement
+**Skills:** 6 chained skills
+**Time:** 10-15 experiments/month vs 2-4 manual experiments
+**ROI:** 5x experiment velocity, 25% faster product iteration, 20% conversion lift
+
+### The Chain
+
+```
+experimentation → ab_test_setup → analytics_tracking →
+feature_adoption → impact_analyzer → friction_detector
+```
+
+### How It Works
+
+1. **experimentation** — Designs and configures product experiments
+2. **ab_test_setup** — Sets up A/B tests with proper statistical controls
+3. **analytics_tracking** — Tracks experiment metrics and user behavior
+4. **feature_adoption** — Monitors feature adoption rates and patterns
+5. **impact_analyzer** — Analyzes business impact of product changes
+6. **friction_detector** — Identifies friction points in user experience
+
+### Setup Instructions
+
+#### Step 1: Install Product Ops & PLG Skills
+
+```bash
+npx skills-directory install --target all --domain product_ops plg
+```
+
+#### Step 2: Configure Experimentation Framework
+
+```json
+{
+  "skill": "experimentation",
+  "trigger": "experiment_proposal",
+  "input": {
+    "experimentId": "{{trigger.experimentId}}",
+    "hypothesis": "{{trigger.hypothesis}}",
+    "targetMetric": "{{trigger.primary_metric}}",
+    "userSegment": "{{trigger.segment}}",
+    "experimentType": "ab_test",
+    "successCriteria": {
+      "statistical_significance": 0.95,
+      "minimum_effect_size": 0.05,
+      "minimum_sample_size": 1000
+    }
+  },
+  "exit_routing": {
+    "design_complete": "ab_test_setup",
+    "needs_refinement": "experiment_review"
+  }
+}
+```
+
+#### Step 3: Setup A/B Test
+
+```json
+{
+  "skill": "ab_test_setup",
+  "input": {
+    "experimentId": "{{chain.experimentId}}",
+    "variants": ["control", "variant_a", "variant_b"],
+    "trafficAllocation": {
+      "control": 34,
+      "variant_a": 33,
+      "variant_b": 33
+    },
+    "targetingRules": "{{previous.segment}}",
+    "duration": "14_days",
+    "rampUpStrategy": "gradual"
+  },
+  "exit_routing": {
+    "test_live": "analytics_tracking",
+    "configuration_error": "fix_and_retry"
+  }
+}
+```
+
+#### Step 4: Track Experiment Metrics
+
+```json
+{
+  "skill": "analytics_tracking",
+  "input": {
+    "experimentId": "{{chain.experimentId}}",
+    "events": [
+      "experiment_exposure",
+      "primary_metric_event",
+      "secondary_metric_event",
+      "conversion_event"
+    ],
+    "granularity": "user_level",
+    "cohortTracking": true,
+    "realTimeAnalysis": true
+  },
+  "exit_routing": {
+    "tracking_active": "feature_adoption",
+    "data_quality_issue": "alert_team"
+  }
+}
+```
+
+#### Step 5: Monitor Feature Adoption
+
+```json
+{
+  "skill": "feature_adoption",
+  "input": {
+    "experimentId": "{{chain.experimentId}}",
+    "features": "{{previous.new_features}}",
+    "adoptionMetrics": [
+      "first_use_rate",
+      "repeat_use_rate",
+      "power_user_adoption",
+      "time_to_adoption"
+    ],
+    "cohortComparison": true,
+    "timeWindow": "30_days"
+  },
+  "exit_routing": {
+    "adoption_tracked": "impact_analyzer",
+    "low_adoption": "friction_detector"
+  }
+}
+```
+
+#### Step 6: Analyze Business Impact
+
+```json
+{
+  "skill": "impact_analyzer",
+  "input": {
+    "experimentId": "{{chain.experimentId}}",
+    "businessMetrics": [
+      "revenue_impact",
+      "retention_impact",
+      "ltv_impact",
+      "engagement_impact"
+    ],
+    "statisticalMethod": "bayesian",
+    "confidenceLevel": 0.95,
+    "includeSegmentAnalysis": true
+  },
+  "exit_routing": {
+    "significant_winner": "rollout_recommendation",
+    "inconclusive": "extend_experiment",
+    "significant_negative": "rollback_recommendation"
+  }
+}
+```
+
+#### Step 7: Detect User Friction
+
+```json
+{
+  "skill": "friction_detector",
+  "input": {
+    "experimentId": "{{chain.experimentId}}",
+    "frictionSignals": [
+      "high_bounce_rate",
+      "abandoned_flows",
+      "error_rate",
+      "support_tickets",
+      "negative_feedback"
+    ],
+    "variantComparison": true,
+    "alertThreshold": "medium"
+  },
+  "output": "friction_report_with_recommendations"
+}
+```
+
+### Testing the Chain
+
+```bash
+curl -X POST http://localhost:3000/api/chains/experimentation \
+  -H "Content-Type: application/json" \
+  -d '{
+    "experimentId": "exp_001",
+    "hypothesis": "Simplified signup flow increases conversion by 15%",
+    "primaryMetric": "signup_completion_rate",
+    "userSegment": "new_visitors"
+  }'
+```
+
+### Expected Output
+
+```json
+{
+  "experimentLive": true,
+  "variants": {
+    "control": "current_3_step_flow",
+    "variant_a": "simplified_1_step",
+    "variant_b": "2_step_with_social"
+  },
+  "sampleSize": 3000,
+  "currentResults": {
+    "control": "12.5% conversion",
+    "variant_a": "18.3% conversion (+46%)",
+    "variant_b": "15.7% conversion (+26%)"
+  },
+  "statisticalSignificance": 0.98,
+  "winner": "variant_a",
+  "recommendation": "Roll out variant_a to 100% of users",
+  "estimatedImpact": "$150K annual revenue increase"
+}
+```
+
+### Monitoring & Metrics
+
+Track these KPIs:
+
+- **Experiment Velocity:** Target 10-15 experiments/month
+- **Time to Results:** Target < 14 days per experiment
+- **Winner Rate:** Target 40%+ experiments produce winners
+- **Impact per Experiment:** Track cumulative revenue/engagement impact
+- **Experimentation Culture:** Track % of product decisions backed by experiments
+
+### Expected Outcomes
+
+- **Week 1:** First 3 experiments launched
+- **Month 1:** 10-15 experiments running concurrently
+- **Quarter 1:** 5x increase in experiment velocity
+- **Quarter 2:** 20% cumulative conversion improvement from winning experiments
+
+---
+
+## Recipe 21: API Lifecycle Management
+
+**Use Case:** Manage API versioning, deprecations, and breaking changes with automated migration assistance and developer notifications
+**Skills:** 6 chained skills
+**Time:** Automated change management vs 40+ hours per API update
+**ROI:** 50% reduction in breaking change impact, 70% faster migrations, 90% developer satisfaction
+
+### The Chain
+
+```
+api_deprecation → changelog_tracker → migration_assistant →
+deprecation_notifier → webhook_tester → integration_health
+```
+
+### How It Works
+
+1. **api_deprecation** — Plans and manages API deprecation timelines
+2. **changelog_tracker** — Tracks and communicates API changes to developers
+3. **migration_assistant** — Provides automated migration guidance and code samples
+4. **deprecation_notifier** — Notifies affected customers about upcoming changes
+5. **webhook_tester** — Tests webhook integrations before and after changes
+6. **integration_health** — Monitors integration health across API versions
+
+### Setup Instructions
+
+#### Step 1: Install DevEx & Product Ops Skills
+
+```bash
+npx skills-directory install --target all --domain devex product_ops
+```
+
+#### Step 2: Configure API Deprecation Planning
+
+```json
+{
+  "skill": "api_deprecation",
+  "trigger": "deprecation_proposal",
+  "input": {
+    "apiEndpoint": "{{trigger.endpoint}}",
+    "currentVersion": "{{trigger.version}}",
+    "deprecationReason": "{{trigger.reason}}",
+    "timelineMonths": 6,
+    "migrationPath": "{{trigger.new_endpoint}}",
+    "breakingChange": true,
+    "affectedCustomers": "auto_calculate"
+  },
+  "exit_routing": {
+    "plan_approved": "changelog_tracker",
+    "needs_review": "api_review_board"
+  }
+}
+```
+
+#### Step 3: Track and Communicate Changes
+
+```json
+{
+  "skill": "changelog_tracker",
+  "input": {
+    "deprecationId": "{{previous.deprecationId}}",
+    "changeType": "deprecation",
+    "affectedEndpoints": "{{previous.endpoints}}",
+    "releaseNotes": "auto_generate",
+    "changelogFormat": "markdown",
+    "distributionChannels": ["email", "developer_portal", "slack", "rss"],
+    "versionTagging": "semver"
+  },
+  "exit_routing": {
+    "changelog_published": "migration_assistant",
+    "needs_technical_writer": "documentation_review"
+  }
+}
+```
+
+#### Step 4: Provide Migration Assistance
+
+```json
+{
+  "skill": "migration_assistant",
+  "input": {
+    "deprecationId": "{{chain.deprecationId}}",
+    "fromVersion": "{{chain.current_version}}",
+    "toVersion": "{{chain.new_version}}",
+    "migrationGuides": "auto_generate",
+    "codeExamples": ["python", "javascript", "ruby", "go"],
+    "diffVisualization": true,
+    "interactiveTutorial": true
+  },
+  "exit_routing": {
+    "migration_docs_ready": "deprecation_notifier",
+    "needs_custom_examples": "engineering_support"
+  }
+}
+```
+
+#### Step 5: Notify Affected Customers
+
+```json
+{
+  "skill": "deprecation_notifier",
+  "input": {
+    "deprecationId": "{{chain.deprecationId}}",
+    "affectedCustomers": "{{chain.affected_list}}",
+    "notificationSchedule": ["180_days", "90_days", "30_days", "7_days"],
+    "notificationChannels": ["email", "in_app", "dashboard_banner"],
+    "urgencyLevel": "high",
+    "includeMigrationLink": true,
+    "offerSupport": true
+  },
+  "exit_routing": {
+    "customers_notified": "webhook_tester",
+    "delivery_failed": "retry_notification"
+  }
+}
+```
+
+#### Step 6: Test Webhook Integrations
+
+```json
+{
+  "skill": "webhook_tester",
+  "input": {
+    "deprecationId": "{{chain.deprecationId}}",
+    "webhookEndpoints": "{{customer.webhook_urls}}",
+    "testPayloads": "{{chain.new_version_payloads}}",
+    "validationRules": "strict",
+    "retryLogic": "test",
+    "timeoutSettings": "verify"
+  },
+  "exit_routing": {
+    "tests_passed": "integration_health",
+    "tests_failed": "customer_support_alert"
+  }
+}
+```
+
+#### Step 7: Monitor Integration Health
+
+```json
+{
+  "skill": "integration_health",
+  "input": {
+    "deprecationId": "{{chain.deprecationId}}",
+    "customerId": "{{customer.id}}",
+    "healthMetrics": [
+      "api_success_rate",
+      "response_times",
+      "error_rates",
+      "version_adoption",
+      "webhook_delivery_rate"
+    ],
+    "monitoringWindow": "continuous",
+    "alerting": "proactive"
+  },
+  "output": "health_dashboard"
+}
+```
+
+### Testing the Chain
+
+```bash
+curl -X POST http://localhost:3000/api/chains/api-lifecycle \
+  -H "Content-Type: application/json" \
+  -d '{
+    "endpoint": "/api/v1/users",
+    "deprecationReason": "Moving to /api/v2/users with improved schema",
+    "timelineMonths": 6,
+    "affectedCustomers": 150
+  }'
+```
+
+### Expected Output
+
+```json
+{
+  "deprecationPlanned": true,
+  "deprecationId": "dep_001",
+  "timeline": {
+    "announcement": "2026-03-01",
+    "final_notification": "2026-08-01",
+    "sunset_date": "2026-09-01"
+  },
+  "changelogPublished": true,
+  "migrationDocsUrl": "https://docs.example.com/migrations/v1-to-v2",
+  "customersNotified": 150,
+  "webhookTestsPassed": 142,
+  "webhookTestsFailed": 8,
+  "migrationProgress": {
+    "completed": 0,
+    "in_progress": 0,
+    "not_started": 150
+  },
+  "supportTicketsCreated": 3
+}
+```
+
+### Monitoring & Metrics
+
+Track these KPIs:
+
+- **Migration Completion Rate:** Target > 95% before sunset
+- **Breaking Change Impact:** Target < 5% customer disruption
+- **Developer Satisfaction:** Target > 4.5/5 for deprecation process
+- **Time to Migrate:** Track average customer migration time
+- **Support Burden:** Track support tickets per deprecation
+
+### Expected Outcomes
+
+- **Week 1:** Deprecation announced, migration docs published
+- **Month 1:** 30% of customers started migration
+- **Month 3:** 70% of customers migrated
+- **Month 6:** 95%+ migration completion, smooth sunset
+
+---
+
+## Recipe 22: Competitive Intelligence Automation
+
+**Use Case:** Automate competitive research, feature tracking, pricing analysis, and battlecard generation
+**Skills:** 6 chained skills
+**Time:** Real-time competitive intelligence vs 20-40 hours/month manual research
+**ROI:** 90% faster competitive analysis, 60% better win rates, $200K+ pipeline impact
+
+### The Chain
+
+```
+competitive_intel → competitive_feature_tracker → ai_knowledge_synthesizer →
+content_research_writer → battlecard_generator → win_loss_analyzer
+```
+
+### How It Works
+
+1. **competitive_intel** — Monitors competitors' websites, announcements, and market moves
+2. **competitive_feature_tracker** — Tracks competitive feature releases and updates
+3. **ai_knowledge_synthesizer** — Synthesizes competitive intelligence from multiple sources
+4. **content_research_writer** — Researches and documents competitive positioning
+5. **battlecard_generator** — Creates sales battlecards for competitive situations
+6. **win_loss_analyzer** — Analyzes win/loss patterns against specific competitors
+
+### Setup Instructions
+
+#### Step 1: Install RevOps, Marketing & AI Ops Skills
+
+```bash
+npx skills-directory install --target all --domain revops marketing ai_ops
+```
+
+#### Step 2: Configure Competitive Monitoring
+
+```json
+{
+  "skill": "competitive_intel",
+  "trigger": "scheduled",
+  "frequency": "daily",
+  "input": {
+    "competitors": ["competitor_a", "competitor_b", "competitor_c"],
+    "monitoringSources": [
+      "company_websites",
+      "blog_posts",
+      "press_releases",
+      "product_hunt",
+      "linkedin",
+      "job_postings",
+      "tech_news"
+    ],
+    "alertCriteria": ["product_launch", "pricing_change", "executive_hire", "funding_news"],
+    "sentimentTracking": true
+  },
+  "exit_routing": {
+    "updates_found": "competitive_feature_tracker",
+    "no_changes": "continue_monitoring"
+  }
+}
+```
+
+#### Step 3: Track Feature Releases
+
+```json
+{
+  "skill": "competitive_feature_tracker",
+  "input": {
+    "competitors": "{{previous.competitors}}",
+    "competitiveUpdates": "{{previous.updates}}",
+    "featureCategories": [
+      "core_functionality",
+      "integrations",
+      "enterprise_features",
+      "pricing_tiers",
+      "security_compliance"
+    ],
+    "comparisonMatrix": "auto_update",
+    "gapAnalysis": true
+  },
+  "exit_routing": {
+    "features_tracked": "ai_knowledge_synthesizer",
+    "critical_feature": "alert_product_team"
+  }
+}
+```
+
+#### Step 4: Synthesize Intelligence
+
+```json
+{
+  "skill": "ai_knowledge_synthesizer",
+  "input": {
+    "competitiveData": "{{chain.all_data}}",
+    "synthesisGoals": [
+      "market_positioning",
+      "feature_gaps",
+      "pricing_strategy",
+      "target_customers",
+      "go_to_market_approach"
+    ],
+    "includeTrends": true,
+    "confidenceScoring": true,
+    "citeSources": true
+  },
+  "exit_routing": {
+    "synthesis_complete": "content_research_writer",
+    "needs_validation": "research_team_review"
+  }
+}
+```
+
+#### Step 5: Research Competitive Positioning
+
+```json
+{
+  "skill": "content_research_writer",
+  "input": {
+    "topic": "competitive_landscape",
+    "synthesizedIntel": "{{previous.synthesis}}",
+    "outputFormat": "structured_analysis",
+    "includeStrengthsWeaknesses": true,
+    "targetAudience": "sales_team",
+    "updateFrequency": "monthly"
+  },
+  "exit_routing": {
+    "research_complete": "battlecard_generator",
+    "needs_expert_input": "analyst_review"
+  }
+}
+```
+
+#### Step 6: Generate Sales Battlecards
+
+```json
+{
+  "skill": "battlecard_generator",
+  "input": {
+    "competitor": "{{trigger.competitor}}",
+    "competitiveIntel": "{{chain.all_intel}}",
+    "battlecardSections": [
+      "overview",
+      "strengths_weaknesses",
+      "key_differentiators",
+      "common_objections",
+      "proof_points",
+      "customer_stories",
+      "pricing_comparison",
+      "talk_tracks"
+    ],
+    "format": "sales_enablement_tool",
+    "updateTrigger": "competitive_change"
+  },
+  "exit_routing": {
+    "battlecard_ready": "win_loss_analyzer",
+    "needs_review": "sales_enablement_review"
+  }
+}
+```
+
+#### Step 7: Analyze Win/Loss Patterns
+
+```json
+{
+  "skill": "win_loss_analyzer",
+  "input": {
+    "competitorId": "{{chain.competitor}}",
+    "dealData": "{{crm.closed_deals}}",
+    "analysisWindow": "90_days",
+    "winLossFactors": [
+      "price",
+      "features",
+      "implementation_time",
+      "customer_support",
+      "integrations",
+      "brand"
+    ],
+    "includeQuotes": true,
+    "recommendationEngine": true
+  },
+  "output": "win_loss_insights_report"
+}
+```
+
+### Testing the Chain
+
+```bash
+curl -X POST http://localhost:3000/api/chains/competitive-intel \
+  -H "Content-Type: application/json" \
+  -d '{
+    "competitor": "competitor_a",
+    "monitoringPeriod": "last_7_days",
+    "analysisType": "comprehensive"
+  }'
+```
+
+### Expected Output
+
+```json
+{
+  "competitiveUpdatesFound": 5,
+  "criticalUpdates": 2,
+  "featuresTracked": 12,
+  "newFeatures": 3,
+  "pricingChanges": 1,
+  "synthesisGenerated": true,
+  "battlecardsUpdated": 3,
+  "winRate": {
+    "vs_competitor_a": "65%",
+    "vs_competitor_b": "72%",
+    "vs_competitor_c": "58%"
+  },
+  "keyInsights": [
+    "Competitor A launched enterprise SSO - our feature gap",
+    "Competitor B raised prices 20% - opportunity for us",
+    "Competitor C struggling with customer support (source: G2)"
+  ],
+  "recommendations": [
+    "Prioritize SSO feature development",
+    "Target Competitor B's price-sensitive customers",
+    "Emphasize our support quality in competitive situations"
+  ]
+}
+```
+
+### Monitoring & Metrics
+
+Track these KPIs:
+
+- **Competitive Updates Detected:** Track volume and criticality
+- **Win Rate by Competitor:** Target 60%+ vs each major competitor
+- **Battlecard Utilization:** Track sales team usage
+- **Time to Intelligence:** Target < 24 hours for critical updates
+- **Competitive Losses:** Track and categorize reasons for losses
+
+### Expected Outcomes
+
+- **Week 1:** Competitive monitoring active for 3-5 competitors
+- **Month 1:** 90% faster competitive analysis vs manual research
+- **Quarter 1:** 60% improvement in win rates against tracked competitors
+- **Quarter 2:** $200K+ pipeline impact from competitive insights
+
+---
+
+## Recipe 23: Brand Consistency Engine
+
+**Use Case:** Ensure brand consistency across all content, design, and communication channels with automated brand guideline enforcement and voice validation
+**Skills:** 6 chained skills
+**Time:** Real-time validation vs manual review cycles
+**ROI:** 80% brand compliance, 60% faster asset production, 90% reduction in off-brand content
+
+### The Chain
+
+```
+brand_guidelines → skene_voice_guardian → humanization_engine →
+copywriting → theme_factory → canvas_design
+```
+
+### How It Works
+
+1. **brand_guidelines** — Establishes and enforces brand standards (colors, fonts, tone, messaging)
+2. **skene_voice_guardian** — Validates content against brand voice and style guidelines
+3. **humanization_engine** — Ensures content feels authentic and human while maintaining brand voice
+4. **copywriting** — Generates on-brand copy for various channels
+5. **theme_factory** — Creates consistent visual themes across platforms
+6. **canvas_design** — Produces on-brand design assets at scale
+
+### Setup Instructions
+
+#### Step 1: Install Marketing Skills
+
+```bash
+npx skills-directory install --target all --domain marketing
+```
+
+#### Step 2: Configure Brand Guidelines
+
+```json
+{
+  "skill": "brand_guidelines",
+  "trigger": "content_creation",
+  "input": {
+    "brandName": "{{company.name}}",
+    "brandAssets": {
+      "primaryColors": ["#FF6B6B", "#4ECDC4", "#45B7D1"],
+      "secondaryColors": ["#FFA07A", "#98D8C8"],
+      "fonts": {
+        "heading": "Montserrat",
+        "body": "Open Sans"
+      },
+      "logoVariants": ["primary", "white", "black", "icon"]
+    },
+    "brandVoice": {
+      "tone": ["professional", "approachable", "innovative"],
+      "avoidWords": ["cheap", "discount", "revolutionary"],
+      "preferWords": ["effective", "proven", "innovative"]
+    },
+    "messagingPillars": [
+      "Customer-first innovation",
+      "Proven results",
+      "Transparent pricing"
+    ]
+  },
+  "exit_routing": {
+    "guidelines_set": "skene_voice_guardian",
+    "needs_review": "brand_team_approval"
+  }
+}
+```
+
+#### Step 3: Validate Brand Voice
+
+```json
+{
+  "skill": "skene_voice_guardian",
+  "input": {
+    "content": "{{trigger.content}}",
+    "brandGuidelines": "{{previous.guidelines}}",
+    "contentType": "{{trigger.type}}",
+    "validationRules": {
+      "toneMatch": true,
+      "terminologyCheck": true,
+      "messagingAlignment": true,
+      "prohibitedWords": true
+    },
+    "strictnessLevel": "high"
+  },
+  "exit_routing": {
+    "approved": "humanization_engine",
+    "violations_found": "revision_required",
+    "minor_issues": "auto_correct"
+  }
+}
+```
+
+#### Step 4: Humanize Content
+
+```json
+{
+  "skill": "humanization_engine",
+  "input": {
+    "content": "{{previous.validated_content}}",
+    "brandVoice": "{{chain.brand_voice}}",
+    "humanizationGoals": [
+      "natural_conversational_tone",
+      "remove_corporate_speak",
+      "add_personality",
+      "maintain_professionalism"
+    ],
+    "preserveBrandTerms": true,
+    "targetReadability": "grade_8"
+  },
+  "exit_routing": {
+    "humanized": "copywriting",
+    "needs_refinement": "humanize_again"
+  }
+}
+```
+
+#### Step 5: Generate Copy Variants
+
+```json
+{
+  "skill": "copywriting",
+  "input": {
+    "baseContent": "{{previous.humanized_content}}",
+    "brandGuidelines": "{{chain.guidelines}}",
+    "channels": [
+      "website",
+      "email",
+      "social_media",
+      "ads",
+      "product_descriptions"
+    ],
+    "variants": {
+      "headlines": 5,
+      "bodyCopy": 3,
+      "ctas": 5
+    },
+    "optimizeFor": "conversion"
+  },
+  "exit_routing": {
+    "copy_ready": "theme_factory",
+    "needs_ab_test": "experimentation"
+  }
+}
+```
+
+#### Step 6: Create Visual Themes
+
+```json
+{
+  "skill": "theme_factory",
+  "input": {
+    "brandGuidelines": "{{chain.guidelines}}",
+    "contentContext": "{{chain.all_copy}}",
+    "platforms": ["web", "mobile", "email", "social"],
+    "themeComponents": {
+      "colorSchemes": 3,
+      "typographyPairings": 2,
+      "layoutTemplates": 5,
+      "componentStyles": "design_system_compliant"
+    }
+  },
+  "exit_routing": {
+    "themes_created": "canvas_design",
+    "needs_designer_input": "design_review"
+  }
+}
+```
+
+#### Step 7: Generate Design Assets
+
+```json
+{
+  "skill": "canvas_design",
+  "input": {
+    "theme": "{{previous.selected_theme}}",
+    "copy": "{{chain.copy}}",
+    "brandAssets": "{{chain.brand_assets}}",
+    "assetTypes": [
+      "social_media_posts",
+      "banner_ads",
+      "email_headers",
+      "presentation_slides",
+      "infographics"
+    ],
+    "dimensions": "platform_optimized",
+    "outputFormat": ["png", "svg", "pdf"]
+  },
+  "output": "deliver_assets"
+}
+```
+
+### Testing the Chain
+
+```bash
+curl -X POST http://localhost:3000/api/chains/brand-consistency \
+  -H "Content-Type: application/json" \
+  -d '{
+    "contentType": "blog_post",
+    "topic": "Product Launch Announcement",
+    "channel": "website",
+    "designNeeds": ["hero_image", "social_cards"]
+  }'
+```
+
+### Expected Output
+
+```json
+{
+  "status": "success",
+  "brandCompliance": "100%",
+  "voiceScore": 95,
+  "humanizationScore": 88,
+  "assetsGenerated": {
+    "copyVariants": {
+      "headlines": 5,
+      "bodyCopy": 3,
+      "ctas": 5
+    },
+    "designAssets": {
+      "hero_image": "launch-hero-v1.png",
+      "social_cards": ["twitter-card.png", "linkedin-card.png", "facebook-card.png"],
+      "email_header": "launch-email-header.png"
+    }
+  },
+  "validationsPassed": [
+    "tone_check",
+    "terminology_check",
+    "color_compliance",
+    "font_compliance"
+  ],
+  "productionTime": "45 minutes"
+}
+```
+
+### Monitoring & Metrics
+
+Track these KPIs:
+
+- **Brand Compliance Rate:** Target > 95% (baseline ~60%)
+- **Asset Production Speed:** Target 80% faster than manual
+- **Off-Brand Content:** Target < 5% rejection rate
+- **Designer Time Saved:** Track hours per month
+- **Content Consistency Score:** Target > 90% across channels
+
+### Expected Outcomes
+
+- **Week 1:** Brand guidelines enforced, voice validation active
+- **Month 1:** 80% reduction in off-brand content rejections
+- **Quarter 1:** 60% faster asset production, 95%+ brand compliance
+- **Quarter 2:** $50K+ saved in design/creative time
+
+---
+
+## Recipe 24: Customer Education Platform
+
+**Use Case:** Automate customer education and product adoption with guided onboarding, milestone celebrations, and content curation
+**Skills:** 6 chained skills
+**Time:** Automated vs manual 1-on-1 training sessions
+**ROI:** 45% higher product adoption, 60% faster time-to-value, 70% reduction in support tickets
+
+### The Chain
+
+```
+guided_setup_wizard → milestone_celebration → community_content_curator →
+email_sequence → feedback_collection → activation_metrics
+```
+
+### How It Works
+
+1. **guided_setup_wizard** — Walks users through initial product setup step-by-step
+2. **milestone_celebration** — Celebrates user achievements to increase engagement
+3. **community_content_curator** — Surfaces relevant community content and best practices
+4. **email_sequence** — Sends educational email drips based on user progress
+5. **feedback_collection** — Gathers user feedback on educational content
+6. **activation_metrics** — Tracks activation progress and identifies stuck users
+
+### Setup Instructions
+
+#### Step 1: Install Customer Success & PLG Skills
+
+```bash
+npx skills-directory install --target all --domain customer_success plg
+```
+
+#### Step 2: Configure Guided Setup
+
+```json
+{
+  "skill": "guided_setup_wizard",
+  "trigger": "user_signup",
+  "input": {
+    "userId": "{{trigger.userId}}",
+    "productComplexity": "medium",
+    "setupSteps": [
+      {
+        "step": 1,
+        "title": "Connect your data source",
+        "required": true,
+        "helpContent": "integration-guide.md"
+      },
+      {
+        "step": 2,
+        "title": "Invite your team",
+        "required": false,
+        "helpContent": "collaboration-guide.md"
+      },
+      {
+        "step": 3,
+        "title": "Create your first dashboard",
+        "required": true,
+        "helpContent": "dashboard-tutorial.md"
+      }
+    ],
+    "adaptiveGuidance": true,
+    "allowSkip": false
+  },
+  "exit_routing": {
+    "setup_complete": "milestone_celebration",
+    "setup_abandoned": "retention_campaign",
+    "stuck": "intervention_trigger"
+  }
+}
+```
+
+#### Step 3: Celebrate Milestones
+
+```json
+{
+  "skill": "milestone_celebration",
+  "input": {
+    "userId": "{{chain.userId}}",
+    "milestone": "{{previous.completed_step}}",
+    "celebrationTypes": {
+      "in_app_notification": true,
+      "confetti_animation": true,
+      "badge_award": true,
+      "email_notification": true
+    },
+    "nextMilestone": "auto_suggest",
+    "shareOption": "social_media"
+  },
+  "exit_routing": {
+    "celebrated": "community_content_curator",
+    "user_inactive": "re_engagement"
+  }
+}
+```
+
+#### Step 4: Curate Educational Content
+
+```json
+{
+  "skill": "community_content_curator",
+  "input": {
+    "userId": "{{chain.userId}}",
+    "userProgress": "{{chain.milestones}}",
+    "contentTypes": [
+      "video_tutorials",
+      "how_to_guides",
+      "use_cases",
+      "community_posts",
+      "webinar_recordings"
+    ],
+    "personalization": {
+      "industry": "{{user.industry}}",
+      "useCase": "{{user.use_case}}",
+      "skillLevel": "{{user.expertise}}"
+    },
+    "maxItems": 5
+  },
+  "exit_routing": {
+    "content_delivered": "email_sequence",
+    "no_relevant_content": "content_creation_request"
+  }
+}
+```
+
+#### Step 5: Send Educational Emails
+
+```json
+{
+  "skill": "email_sequence",
+  "input": {
+    "userId": "{{chain.userId}}",
+    "sequenceType": "educational_drip",
+    "emailSchedule": [
+      {
+        "day": 1,
+        "topic": "Getting Started",
+        "content": "{{chain.curated_content[0]}}"
+      },
+      {
+        "day": 3,
+        "topic": "Best Practices",
+        "content": "{{chain.curated_content[1]}}"
+      },
+      {
+        "day": 7,
+        "topic": "Advanced Features",
+        "content": "{{chain.curated_content[2]}}"
+      }
+    ],
+    "adaptToProgress": true,
+    "includeSuccessStories": true
+  },
+  "exit_routing": {
+    "sequence_started": "feedback_collection",
+    "user_unsubscribed": "in_app_only"
+  }
+}
+```
+
+#### Step 6: Collect Feedback
+
+```json
+{
+  "skill": "feedback_collection",
+  "input": {
+    "userId": "{{chain.userId}}",
+    "feedbackTriggers": [
+      "milestone_reached",
+      "content_consumed",
+      "email_opened",
+      "feature_used"
+    ],
+    "feedbackTypes": {
+      "nps": true,
+      "content_rating": true,
+      "feature_request": true,
+      "help_needed": true
+    },
+    "frequency": "milestone_based",
+    "format": "in_app_modal"
+  },
+  "exit_routing": {
+    "feedback_received": "activation_metrics",
+    "negative_feedback": "support_escalation"
+  }
+}
+```
+
+#### Step 7: Track Activation Metrics
+
+```json
+{
+  "skill": "activation_metrics",
+  "input": {
+    "userId": "{{chain.userId}}",
+    "activationCriteria": [
+      "completed_setup",
+      "invited_team_member",
+      "created_first_artifact",
+      "used_core_feature_3_times",
+      "returned_3_days_in_week"
+    ],
+    "timeWindow": "14_days",
+    "activationScore": "calculate",
+    "identifyBlockers": true
+  },
+  "output": "activation_report"
+}
+```
+
+### Testing the Chain
+
+```bash
+curl -X POST http://localhost:3000/api/chains/customer-education \
+  -H "Content-Type: application/json" \
+  -d '{
+    "userId": "new-user-456",
+    "signupDate": "2026-02-01",
+    "industry": "SaaS",
+    "useCase": "product_analytics"
+  }'
+```
+
+### Expected Output
+
+```json
+{
+  "status": "success",
+  "educationPlan": {
+    "setupProgress": "67%",
+    "milestonesCompleted": 2,
+    "milestonesRemaining": 1,
+    "contentRecommended": 5,
+    "emailsScheduled": 3,
+    "feedbackCollected": true,
+    "activationScore": 72
+  },
+  "userEngagement": {
+    "setupTime": "12 minutes",
+    "contentViews": 3,
+    "emailOpenRate": "85%",
+    "npsScore": 9,
+    "blockers": []
+  },
+  "nextActions": [
+    "Complete final setup step",
+    "Invite team member",
+    "Explore advanced features"
+  ]
+}
+```
+
+### Monitoring & Metrics
+
+Track these KPIs:
+
+- **Activation Rate:** Target 60%+ within 14 days (baseline ~30%)
+- **Time to Value:** Target < 2 days (baseline ~7 days)
+- **Content Engagement:** Track views, clicks, completion rates
+- **Support Ticket Reduction:** Target 70% fewer "how do I..." tickets
+- **NPS from Educated Users:** Target 40+ points
+
+### Expected Outcomes
+
+- **Week 1:** Guided setup deployed, 100+ users onboarded
+- **Month 1:** 45% higher activation rate vs. control group
+- **Quarter 1:** 60% faster time-to-value, 70% support ticket reduction
+- **Quarter 2:** $100K+ saved in customer success time
+
+---
+
+## Recipe 25: Security Code Review Automation
+
+**Use Case:** Automate security code reviews with vulnerability detection, variant analysis, and fix recommendations
+**Skills:** 6 chained skills
+**Time:** Real-time scanning vs manual quarterly audits
+**ROI:** 70% faster vulnerability detection, 80% faster remediation, 90% reduction in security debt
+
+### The Chain
+
+```
+semgrep-rule-creator → entry-point-analyzer → variant-analysis →
+differential-review → fix-review → property-based-testing
+```
+
+### How It Works
+
+1. **semgrep-rule-creator** — Creates custom security rules for codebase-specific patterns
+2. **entry-point-analyzer** — Identifies code entry points and attack surfaces
+3. **variant-analysis** — Finds similar vulnerabilities across the codebase
+4. **differential-review** — Reviews code changes for security implications
+5. **fix-review** — Validates security fixes and suggests improvements
+6. **property-based-testing** — Generates tests to verify security properties
+
+### Setup Instructions
+
+#### Step 1: Install Security Skills
+
+```bash
+npx skills-directory install --target all --domain security
+```
+
+#### Step 2: Configure Security Rule Creation
+
+```json
+{
+  "skill": "semgrep-rule-creator",
+  "trigger": "vulnerability_identified",
+  "input": {
+    "vulnerabilityType": "{{trigger.vuln_type}}",
+    "language": "{{repo.primary_language}}",
+    "codeContext": "{{trigger.code_sample}}",
+    "severity": "{{trigger.severity}}",
+    "ruleScope": "project_wide",
+    "autofix": true,
+    "testCases": "generate"
+  },
+  "exit_routing": {
+    "rule_created": "entry-point-analyzer",
+    "needs_expert_input": "security_team_review"
+  }
+}
+```
+
+#### Step 3: Analyze Entry Points
+
+```json
+{
+  "skill": "entry-point-analyzer",
+  "input": {
+    "repository": "{{repo.path}}",
+    "securityRules": "{{previous.rules}}",
+    "entryPointTypes": [
+      "api_endpoints",
+      "user_inputs",
+      "file_uploads",
+      "authentication",
+      "database_queries"
+    ],
+    "attackSurface": "calculate",
+    "dataFlowTracking": true
+  },
+  "exit_routing": {
+    "entry_points_mapped": "variant-analysis",
+    "critical_surface_found": "immediate_alert"
+  }
+}
+```
+
+#### Step 4: Find Vulnerability Variants
+
+```json
+{
+  "skill": "variant-analysis",
+  "input": {
+    "vulnerabilityPattern": "{{trigger.pattern}}",
+    "entryPoints": "{{previous.entry_points}}",
+    "codebase": "{{repo.path}}",
+    "similarityThreshold": 0.75,
+    "analysisDepth": "deep",
+    "includeIndirect": true,
+    "prioritize": "by_exploitability"
+  },
+  "exit_routing": {
+    "variants_found": "differential-review",
+    "no_variants": "fix-review"
+  }
+}
+```
+
+#### Step 5: Review Code Changes
+
+```json
+{
+  "skill": "differential-review",
+  "input": {
+    "pullRequest": "{{trigger.pr_number}}",
+    "changedFiles": "{{pr.files}}",
+    "securityFocus": [
+      "authentication_bypass",
+      "injection_attacks",
+      "data_exposure",
+      "access_control",
+      "cryptography_misuse"
+    ],
+    "compareAgainst": "main",
+    "severityFiltering": "high_critical_only"
+  },
+  "exit_routing": {
+    "issues_found": "fix-review",
+    "clean": "approve_pr",
+    "critical_issue": "block_merge"
+  }
+}
+```
+
+#### Step 6: Review Proposed Fixes
+
+```json
+{
+  "skill": "fix-review",
+  "input": {
+    "originalVulnerability": "{{chain.vulnerability}}",
+    "proposedFix": "{{trigger.fix_code}}",
+    "reviewCriteria": {
+      "completeness": true,
+      "noNewVulnerabilities": true,
+      "performanceImpact": true,
+      "compatibilityCheck": true
+    },
+    "suggestImprovements": true,
+    "referenceSecurePatterns": true
+  },
+  "exit_routing": {
+    "fix_approved": "property-based-testing",
+    "fix_inadequate": "request_revision",
+    "better_approach": "suggest_alternative"
+  }
+}
+```
+
+#### Step 7: Generate Security Tests
+
+```json
+{
+  "skill": "property-based-testing",
+  "input": {
+    "vulnerabilityType": "{{chain.vuln_type}}",
+    "fixedCode": "{{previous.approved_fix}}",
+    "securityProperties": [
+      "input_validation",
+      "output_encoding",
+      "access_control",
+      "data_integrity",
+      "confidentiality"
+    ],
+    "testFramework": "{{repo.test_framework}}",
+    "edgeCases": "generate",
+    "fuzzingEnabled": true
+  },
+  "output": "generate_test_suite"
+}
+```
+
+### Testing the Chain
+
+```bash
+curl -X POST http://localhost:3000/api/chains/security-review \
+  -H "Content-Type: application/json" \
+  -d '{
+    "repository": "my-app",
+    "scanType": "full",
+    "severityFilter": ["high", "critical"],
+    "autoFixEnabled": true
+  }'
+```
+
+### Expected Output
+
+```json
+{
+  "status": "success",
+  "securityScan": {
+    "vulnerabilitiesFound": 12,
+    "criticalIssues": 2,
+    "highIssues": 4,
+    "mediumIssues": 6,
+    "variantsIdentified": 8,
+    "entryPointsAnalyzed": 45,
+    "attackSurfaceScore": "medium"
+  },
+  "remediation": {
+    "rulesCreated": 5,
+    "autofixesApplied": 6,
+    "manualReviewNeeded": 6,
+    "testsGenerated": 15,
+    "estimatedFixTime": "4 hours"
+  },
+  "recommendations": [
+    "Add input validation to user profile endpoints",
+    "Implement rate limiting on authentication routes",
+    "Update cryptography library to latest version"
+  ]
+}
+```
+
+### Monitoring & Metrics
+
+Track these KPIs:
+
+- **Vulnerability Detection Rate:** Target 95%+ coverage
+- **Mean Time to Detection (MTTD):** Target < 1 day (baseline ~30 days)
+- **Mean Time to Resolution (MTTR):** Target < 3 days (baseline ~15 days)
+- **False Positive Rate:** Target < 10%
+- **Security Debt:** Track trend over time
+
+### Expected Outcomes
+
+- **Week 1:** Automated scanning active, 50+ vulnerabilities detected
+- **Month 1:** 70% faster detection, 80% faster remediation
+- **Quarter 1:** 90% reduction in security debt, <5 critical issues
+- **Quarter 2:** Zero critical vulnerabilities in production
+
+---
+
+## Recipe 26: Compliance Automation Hub
+
+**Use Case:** Automate compliance monitoring, audit preparation, and regulatory reporting across GDPR, SOC 2, and other frameworks
+**Skills:** 6 chained skills
+**Time:** Real-time monitoring vs quarterly manual audits
+**ROI:** 90% faster compliance reporting, 60% risk reduction, 80% audit prep time savings
+
+### The Chain
+
+```
+compliance_gdpr_manager → compliance_soc2_tracker → compliance_audit_preparer →
+compliance_vendor_risk → compliance_pii_detector → compliance_data_retention
+```
+
+### How It Works
+
+1. **compliance_gdpr_manager** — Manages GDPR compliance requirements and data subject requests
+2. **compliance_soc2_tracker** — Tracks SOC 2 controls and evidence collection
+3. **compliance_audit_preparer** — Prepares audit packages and documentation
+4. **compliance_vendor_risk** — Assesses third-party vendor compliance risks
+5. **compliance_pii_detector** — Identifies and protects personally identifiable information
+6. **compliance_data_retention** — Enforces data retention and deletion policies
+
+### Setup Instructions
+
+#### Step 1: Install Compliance Skills
+
+```bash
+npx skills-directory install --target all --domain compliance
+```
+
+#### Step 2: Configure GDPR Management
+
+```json
+{
+  "skill": "compliance_gdpr_manager",
+  "trigger": "data_subject_request",
+  "input": {
+    "requestType": "{{trigger.type}}",
+    "dataSubject": "{{trigger.user_id}}",
+    "complianceFrameworks": ["GDPR", "CCPA", "LGPD"],
+    "actions": {
+      "dataMapping": true,
+      "consentTracking": true,
+      "rightToAccess": true,
+      "rightToErasure": true,
+      "dataPortability": true
+    },
+    "responseDeadline": "30_days",
+    "automateWherePossible": true
+  },
+  "exit_routing": {
+    "request_fulfilled": "compliance_soc2_tracker",
+    "manual_review_needed": "legal_team_review",
+    "deadline_approaching": "escalate"
+  }
+}
+```
+
+#### Step 3: Track SOC 2 Controls
+
+```json
+{
+  "skill": "compliance_soc2_tracker",
+  "input": {
+    "trustServiceCriteria": ["security", "availability", "confidentiality"],
+    "controls": [
+      {
+        "id": "CC6.1",
+        "category": "Logical_and_Physical_Access_Controls",
+        "frequency": "continuous"
+      },
+      {
+        "id": "CC7.2",
+        "category": "System_Operations",
+        "frequency": "daily"
+      }
+    ],
+    "evidenceCollection": "automated",
+    "auditReadiness": "calculate",
+    "gapAnalysis": true
+  },
+  "exit_routing": {
+    "controls_met": "compliance_audit_preparer",
+    "gaps_identified": "remediation_plan",
+    "critical_failure": "immediate_escalation"
+  }
+}
+```
+
+#### Step 4: Prepare Audit Package
+
+```json
+{
+  "skill": "compliance_audit_preparer",
+  "input": {
+    "auditType": "{{trigger.audit_type}}",
+    "frameworks": "{{chain.frameworks}}",
+    "evidenceScope": {
+      "policies": true,
+      "procedures": true,
+      "controls": true,
+      "incidentReports": true,
+      "accessLogs": true,
+      "changeManagement": true
+    },
+    "timePeriod": "last_12_months",
+    "format": "auditor_preferred",
+    "autoGenerate": "executive_summary"
+  },
+  "exit_routing": {
+    "package_ready": "compliance_vendor_risk",
+    "missing_evidence": "evidence_collection_trigger"
+  }
+}
+```
+
+#### Step 5: Assess Vendor Risk
+
+```json
+{
+  "skill": "compliance_vendor_risk",
+  "input": {
+    "vendors": "{{company.third_party_vendors}}",
+    "riskCategories": [
+      "data_processing",
+      "security_posture",
+      "compliance_certifications",
+      "breach_history",
+      "geographic_location"
+    ],
+    "assessmentFrequency": "quarterly",
+    "riskScoring": "weighted",
+    "includeSubprocessors": true,
+    "actionThresholds": {
+      "high_risk": "immediate_review",
+      "medium_risk": "quarterly_review",
+      "low_risk": "annual_review"
+    }
+  },
+  "exit_routing": {
+    "assessment_complete": "compliance_pii_detector",
+    "high_risk_vendor": "vendor_audit_trigger"
+  }
+}
+```
+
+#### Step 6: Detect PII
+
+```json
+{
+  "skill": "compliance_pii_detector",
+  "input": {
+    "scanTargets": [
+      "databases",
+      "file_storage",
+      "logs",
+      "backups",
+      "code_repositories"
+    ],
+    "piiTypes": [
+      "email",
+      "phone",
+      "ssn",
+      "credit_card",
+      "address",
+      "biometric",
+      "health_data"
+    ],
+    "classification": "automatic",
+    "anonymizationSuggestions": true,
+    "alertOnUnprotected": true
+  },
+  "exit_routing": {
+    "pii_mapped": "compliance_data_retention",
+    "unprotected_pii": "encryption_trigger"
+  }
+}
+```
+
+#### Step 7: Enforce Data Retention
+
+```json
+{
+  "skill": "compliance_data_retention",
+  "input": {
+    "dataCategories": "{{previous.pii_categories}}",
+    "retentionPolicies": {
+      "user_data": "7_years",
+      "logs": "2_years",
+      "analytics": "3_years",
+      "marketing": "2_years_or_consent_withdrawn"
+    },
+    "deletionMethod": "secure_permanent",
+    "verificationRequired": true,
+    "auditTrail": "maintain",
+    "automatedDeletion": true,
+    "exceptions": "legal_hold_aware"
+  },
+  "output": "retention_report"
+}
+```
+
+### Testing the Chain
+
+```bash
+curl -X POST http://localhost:3000/api/chains/compliance-automation \
+  -H "Content-Type: application/json" \
+  -d '{
+    "complianceCheck": "full_audit_prep",
+    "frameworks": ["GDPR", "SOC2"],
+    "reportFormat": "executive_summary"
+  }'
+```
+
+### Expected Output
+
+```json
+{
+  "status": "success",
+  "complianceStatus": {
+    "gdpr": {
+      "compliant": true,
+      "dataSubjectRequests": 45,
+      "requestsFulfilled": 45,
+      "averageResponseTime": "8 days"
+    },
+    "soc2": {
+      "controlsMet": "98%",
+      "evidenceCollected": 1250,
+      "gapsIdentified": 2,
+      "auditReadiness": "high"
+    }
+  },
+  "risks": {
+    "vendorRisks": 3,
+    "unprotectedPII": 0,
+    "retentionViolations": 0
+  },
+  "auditPackage": {
+    "documentsIncluded": 85,
+    "evidenceItems": 1250,
+    "coveragePeriod": "12 months",
+    "readiness": "audit_ready"
+  }
+}
+```
+
+### Monitoring & Metrics
+
+Track these KPIs:
+
+- **Compliance Score:** Target > 95% across all frameworks
+- **Data Subject Request Response Time:** Target < 10 days (legal max: 30)
+- **Vendor Risk Score:** Track average and trend
+- **Audit Preparation Time:** Target 80% reduction vs manual
+- **Compliance Incidents:** Target zero violations
+
+### Expected Outcomes
+
+- **Week 1:** Compliance monitoring active, gaps identified
+- **Month 1:** 90% faster compliance reporting, real-time dashboards
+- **Quarter 1:** 98%+ SOC 2 control coverage, audit-ready
+- **Quarter 2:** Zero compliance violations, successful audit completion
+
+---
+
+## Recipe 27: E-commerce Revenue Optimization
+
+**Use Case:** Optimize e-commerce pricing, packaging, and monetization strategies to maximize revenue and margins
+**Skills:** 6 chained skills
+**Time:** Real-time optimization vs quarterly pricing reviews
+**ROI:** 30% revenue increase, 20% margin improvement, 25% better conversion rates
+
+### The Chain
+
+```
+pricing_strategy → packaging_optimizer → price_experimentation →
+upgrade_trigger → consumption_analyzer → invoice_explainer
+```
+
+### How It Works
+
+1. **pricing_strategy** — Analyzes market positioning and recommends optimal pricing
+2. **packaging_optimizer** — Designs product packaging and tier structures
+3. **price_experimentation** — Runs A/B tests on pricing and packaging
+4. **upgrade_trigger** — Identifies optimal moments for upsell/cross-sell
+5. **consumption_analyzer** — Tracks product usage and consumption patterns
+6. **invoice_explainer** — Provides transparent billing explanations to reduce churn
+
+### Setup Instructions
+
+#### Step 1: Install Monetization Skills
+
+```bash
+npx skills-directory install --target all --domain monetization
+```
+
+#### Step 2: Configure Pricing Strategy
+
+```json
+{
+  "skill": "pricing_strategy",
+  "trigger": "pricing_review",
+  "input": {
+    "currentPricing": "{{company.pricing_tiers}}",
+    "competitorPricing": "{{market_research.competitors}}",
+    "customerSegments": [
+      {
+        "segment": "SMB",
+        "willingness_to_pay": "$50-200/month",
+        "value_drivers": ["ease_of_use", "support"]
+      },
+      {
+        "segment": "Enterprise",
+        "willingness_to_pay": "$1000-10000/month",
+        "value_drivers": ["security", "customization"]
+      }
+    ],
+    "pricingModels": ["usage_based", "tiered", "hybrid"],
+    "optimizeFor": "revenue_and_margin"
+  },
+  "exit_routing": {
+    "strategy_defined": "packaging_optimizer",
+    "needs_more_data": "customer_research"
+  }
+}
+```
+
+#### Step 3: Optimize Packaging
+
+```json
+{
+  "skill": "packaging_optimizer",
+  "input": {
+    "pricingStrategy": "{{previous.strategy}}",
+    "features": "{{product.all_features}}",
+    "currentTiers": "{{company.tiers}}",
+    "optimizationGoals": {
+      "clearValueLadder": true,
+      "reduceDecisionParalysis": true,
+      "anchorHigherPrice": true,
+      "encourageMidTier": true
+    },
+    "tierCount": "3-4",
+    "featureGating": "value_based"
+  },
+  "exit_routing": {
+    "packaging_ready": "price_experimentation",
+    "needs_stakeholder_input": "pricing_committee_review"
+  }
+}
+```
+
+#### Step 4: Experiment with Pricing
+
+```json
+{
+  "skill": "price_experimentation",
+  "input": {
+    "experimentType": "ab_test",
+    "variants": [
+      {
+        "name": "control",
+        "pricing": "{{company.current_pricing}}"
+      },
+      {
+        "name": "variant_a",
+        "pricing": "{{previous.optimized_pricing}}"
+      },
+      {
+        "name": "variant_b",
+        "pricing": "{{previous.optimized_pricing_aggressive}}"
+      }
+    ],
+    "segments": ["new_customers", "upgrade_candidates"],
+    "metrics": [
+      "conversion_rate",
+      "revenue_per_customer",
+      "customer_lifetime_value",
+      "churn_rate"
+    ],
+    "duration": "30_days",
+    "significanceLevel": 0.95
+  },
+  "exit_routing": {
+    "winner_identified": "upgrade_trigger",
+    "inconclusive": "extend_experiment"
+  }
+}
+```
+
+#### Step 5: Trigger Upgrades
+
+```json
+{
+  "skill": "upgrade_trigger",
+  "input": {
+    "userId": "{{trigger.user_id}}",
+    "currentTier": "{{user.plan}}",
+    "usageData": "{{consumption_analyzer.data}}",
+    "triggerConditions": [
+      "approaching_limit",
+      "premium_feature_attempt",
+      "high_engagement",
+      "team_growth"
+    ],
+    "upgradeIncentives": {
+      "discount": "first_month_20_off",
+      "trial": "14_day_premium_trial",
+      "urgency": "limit_approaching"
+    },
+    "timing": "optimal_moment"
+  },
+  "exit_routing": {
+    "upgrade_completed": "consumption_analyzer",
+    "upgrade_declined": "nurture_sequence"
+  }
+}
+```
+
+#### Step 6: Analyze Consumption
+
+```json
+{
+  "skill": "consumption_analyzer",
+  "input": {
+    "userId": "{{chain.user_id}}",
+    "pricingModel": "usage_based",
+    "usageMetrics": [
+      "api_calls",
+      "storage_gb",
+      "compute_hours",
+      "seats",
+      "transactions"
+    ],
+    "billingPeriod": "monthly",
+    "predictions": {
+      "nextMonthUsage": true,
+      "overageRisk": true,
+      "downgradeLikelihood": true
+    },
+    "notifications": "proactive"
+  },
+  "exit_routing": {
+    "normal_usage": "invoice_explainer",
+    "overage_predicted": "limit_notification",
+    "usage_dropping": "engagement_campaign"
+  }
+}
+```
+
+#### Step 7: Explain Invoices
+
+```json
+{
+  "skill": "invoice_explainer",
+  "input": {
+    "invoiceId": "{{billing.invoice_id}}",
+    "userId": "{{chain.user_id}}",
+    "usageData": "{{previous.consumption}}",
+    "explanationFormat": {
+      "breakdown": true,
+      "visualCharts": true,
+      "compareToPrevious": true,
+      "costDrivers": true,
+      "optimizationTips": true
+    },
+    "deliveryMethod": ["email", "in_app"],
+    "allowQuestions": true
+  },
+  "output": "send_explained_invoice"
+}
+```
+
+### Testing the Chain
+
+```bash
+curl -X POST http://localhost:3000/api/chains/revenue-optimization \
+  -H "Content-Type: application/json" \
+  -d '{
+    "analysisType": "full_pricing_review",
+    "includeExperiments": true,
+    "segments": ["smb", "enterprise"]
+  }'
+```
+
+### Expected Output
+
+```json
+{
+  "status": "success",
+  "pricingOptimization": {
+    "recommendedStrategy": "hybrid_usage_based",
+    "recommendedTiers": 3,
+    "expectedRevenueLift": "30%",
+    "expectedMarginImprovement": "20%"
+  },
+  "experiments": {
+    "active": 2,
+    "completed": 5,
+    "winningVariants": ["variant_b_tier_structure", "variant_a_pricing"]
+  },
+  "consumption": {
+    "averageUsage": "850 API calls/month",
+    "overageRate": "12%",
+    "downgradePredictions": 3
+  },
+  "invoiceClarity": {
+    "disputeRate": "2%",
+    "clarityScore": 92,
+    "supportTicketsReduced": "60%"
+  }
+}
+```
+
+### Monitoring & Metrics
+
+Track these KPIs:
+
+- **Revenue Per Customer:** Track average and trend
+- **Gross Margin:** Target > 75% for SaaS
+- **Upgrade Conversion Rate:** Target 15-25%
+- **Invoice Dispute Rate:** Target < 3%
+- **Pricing Experiment Win Rate:** Track learnings
+
+### Expected Outcomes
+
+- **Week 1:** Pricing analysis complete, experiments launched
+- **Month 1:** 15% improvement in upgrade conversion rate
+- **Quarter 1:** 30% revenue increase per customer, 20% margin improvement
+- **Quarter 2:** $500K+ incremental ARR from optimization
+
+---
+
+## Recipe 28: Partnership Ecosystem Automation
+
+**Use Case:** Automate partner channel management, co-selling, and ecosystem revenue tracking
+**Skills:** 6 chained skills
+**Time:** Real-time partnership management vs manual quarterly reviews
+**ROI:** 40% more partner-sourced pipeline, 25% faster deal cycles, 30% ecosystem revenue growth
+
+### The Chain
+
+```
+partner_mapping → nearbound_signal → co_sell_trigger →
+deal_registration → partner_influenced_revenue → ecosystem_health
+```
+
+### How It Works
+
+1. **partner_mapping** — Identifies and maps potential partner relationships
+2. **nearbound_signal** — Detects partnership opportunities through shared connections
+3. **co_sell_trigger** — Identifies opportunities for co-selling with partners
+4. **deal_registration** — Manages partner deal registration and conflict resolution
+5. **partner_influenced_revenue** — Attributes revenue to partner contributions
+6. **ecosystem_health** — Tracks overall partnership ecosystem health
+
+### Setup Instructions
+
+#### Step 1: Install Ecosystem Skills
+
+```bash
+npx skills-directory install --target all --domain ecosystem
+```
+
+#### Step 2: Configure Partner Mapping
+
+```json
+{
+  "skill": "partner_mapping",
+  "trigger": "partner_discovery",
+  "input": {
+    "partnerTypes": [
+      "technology_partners",
+      "resellers",
+      "implementation_partners",
+      "referral_partners",
+      "integration_partners"
+    ],
+    "targetIndustries": "{{company.target_industries}}",
+    "geographies": "{{company.target_regions}}",
+    "mappingCriteria": {
+      "customerOverlap": true,
+      "complementaryProducts": true,
+      "marketPresence": true,
+      "culturalFit": true
+    },
+    "prioritizationScore": "calculate"
+  },
+  "exit_routing": {
+    "partners_identified": "nearbound_signal",
+    "needs_vetting": "partner_evaluation"
+  }
+}
+```
+
+#### Step 3: Detect Nearbound Signals
+
+```json
+{
+  "skill": "nearbound_signal",
+  "input": {
+    "partners": "{{previous.mapped_partners}}",
+    "accountData": "{{crm.accounts}}",
+    "signalTypes": [
+      "shared_customers",
+      "mutual_connections",
+      "simultaneous_engagement",
+      "integration_usage",
+      "co_marketing_activity"
+    ],
+    "enrichmentSources": ["linkedin", "crm", "marketing_automation"],
+    "signalStrength": "score",
+    "autoAlert": "high_quality_signals"
+  },
+  "exit_routing": {
+    "strong_signals": "co_sell_trigger",
+    "weak_signals": "nurture_relationship"
+  }
+}
+```
+
+#### Step 4: Trigger Co-Selling
+
+```json
+{
+  "skill": "co_sell_trigger",
+  "input": {
+    "opportunityId": "{{crm.opportunity_id}}",
+    "nearbound_data": "{{previous.signals}}",
+    "partner": "{{previous.recommended_partner}}",
+    "coSellCriteria": {
+      "accountFit": true,
+      "partnerPresence": true,
+      "dealSize": "> $50K",
+      "closeProbability": "> 30%"
+    },
+    "introduction": "automated_warm_intro",
+    "sharedContext": "opportunity_details",
+    "partnerIncentive": "co_sell_credit"
+  },
+  "exit_routing": {
+    "co_sell_initiated": "deal_registration",
+    "partner_declined": "try_alternative_partner"
+  }
+}
+```
+
+#### Step 5: Register Partner Deals
+
+```json
+{
+  "skill": "deal_registration",
+  "input": {
+    "dealId": "{{chain.opportunity_id}}",
+    "partner": "{{chain.partner}}",
+    "registrationType": "co_sell",
+    "dealDetails": {
+      "accountName": "{{opportunity.account}}",
+      "estimatedValue": "{{opportunity.amount}}",
+      "expectedCloseDate": "{{opportunity.close_date}}",
+      "partnerRole": "{{trigger.role}}"
+    },
+    "conflictCheck": "automatic",
+    "approvalWorkflow": "partner_ops",
+    "partnerCommission": "calculate"
+  },
+  "exit_routing": {
+    "registered": "partner_influenced_revenue",
+    "conflict_detected": "conflict_resolution"
+  }
+}
+```
+
+#### Step 6: Track Partner-Influenced Revenue
+
+```json
+{
+  "skill": "partner_influenced_revenue",
+  "input": {
+    "dealId": "{{chain.opportunity_id}}",
+    "partner": "{{chain.partner}}",
+    "attributionModel": "multi_touch",
+    "influenceTypes": [
+      "deal_registration",
+      "co_sell",
+      "referral",
+      "integration_usage",
+      "co_marketing"
+    ],
+    "revenueAllocation": {
+      "partner_sourced": "100%",
+      "partner_influenced": "weighted",
+      "partner_assisted": "partial"
+    },
+    "reportingPeriod": "monthly"
+  },
+  "exit_routing": {
+    "attribution_complete": "ecosystem_health",
+    "dispute": "partner_review"
+  }
+}
+```
+
+#### Step 7: Monitor Ecosystem Health
+
+```json
+{
+  "skill": "ecosystem_health",
+  "input": {
+    "partners": "{{company.all_partners}}",
+    "healthMetrics": {
+      "pipelineGenerated": true,
+      "revenueInfluenced": true,
+      "dealVelocity": true,
+      "partnerEngagement": true,
+      "nps": true,
+      "certifications": true
+    },
+    "segmentation": "by_tier",
+    "benchmarking": "against_targets",
+    "alertThresholds": {
+      "pipeline_drop": "-20%",
+      "engagement_drop": "-30%",
+      "nps_below": 30
+    }
+  },
+  "output": "ecosystem_dashboard"
+}
+```
+
+### Testing the Chain
+
+```bash
+curl -X POST http://localhost:3000/api/chains/partnership-automation \
+  -H "Content-Type: application/json" \
+  -d '{
+    "analysisType": "full_ecosystem_health",
+    "includeNearbound": true,
+    "partnerTiers": ["strategic", "premier", "registered"]
+  }'
+```
+
+### Expected Output
+
+```json
+{
+  "status": "success",
+  "ecosystemMetrics": {
+    "totalPartners": 45,
+    "activePartners": 32,
+    "partnerSourcedPipeline": "$2.5M",
+    "partnerInfluencedRevenue": "$800K",
+    "averageDealCycle": "32 days"
+  },
+  "nearbound": {
+    "strongSignals": 12,
+    "coSellOpportunities": 8,
+    "potentialValue": "$1.2M"
+  },
+  "dealRegistrations": {
+    "registered": 15,
+    "approved": 14,
+    "conflicts": 1,
+    "averageApprovalTime": "4 hours"
+  },
+  "health": {
+    "overallScore": 87,
+    "topPerformers": ["Partner A", "Partner B", "Partner C"],
+    "atRisk": ["Partner X"]
+  }
+}
+```
+
+### Monitoring & Metrics
+
+Track these KPIs:
+
+- **Partner-Sourced Pipeline:** Target 30-40% of total pipeline
+- **Partner-Influenced Revenue:** Track % of closed/won deals
+- **Deal Velocity:** Target 25% faster with partner involvement
+- **Partner Engagement Score:** Track monthly activity levels
+- **Ecosystem ROI:** Calculate partner program costs vs revenue
+
+### Expected Outcomes
+
+- **Week 1:** Partner mapping complete, nearbound signals active
+- **Month 1:** 12+ co-sell opportunities identified and initiated
+- **Quarter 1:** 40% increase in partner-sourced pipeline, 25% faster deals
+- **Quarter 2:** 30% ecosystem revenue growth, $500K+ partner-influenced ARR
+
+---
 
 These quick-reference recipes show how to adapt existing skills for industry-specific use cases.
 
