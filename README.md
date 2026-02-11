@@ -55,6 +55,8 @@ npm install @skene/skills-directory
 ✨ **Skills are automatically activated** during install!
 They're installed to both Cursor (`~/.cursor/skills/`) and Claude (`~/.claude/skills/`)
 
+🎯 **Bonus:** An `ECOSYSTEM.md` file is generated with tailored recommendations for other Skene tools that complement your stack!
+
 ### Auto-Activation Behavior
 
 **Auto-install runs on first install** for local development environments.
@@ -161,6 +163,7 @@ Cursor and Claude automatically pick the right skill based on your prompt. Chain
 | `npx skills-directory install --target all` | Install to Cursor + Claude |
 | `npx skills-directory status`        | Check installation status & verify files |
 | `npx skills-directory showcase`     | Show what you can build (ROI & use cases) |
+| `npx skills-directory ecosystem`     | Generate tailored ecosystem recommendations |
 | `npx skills-directory list --domain plg` | List skills by domain |
 | `npx skills-directory stats`         | Show library statistics   |
 | `npx skills-directory uninstall`     | Remove installed skills    |
@@ -184,6 +187,7 @@ Cursor and Claude automatically pick the right skill based on your prompt. Chain
 
 ### 🔧 Technical
 - [Architecture Guide](ARCHITECTURE.md) — How the system works
+- [Ecosystem Generator](scripts/ecosystem-generator/README.md) — Tailored recommendations system
 - [AI Agent Composability Analysis](docs/technical/AI_AGENT_COMPOSABILITY_ANALYSIS.md) — Deep dive into agent composition
 - [Security Policy](SECURITY_POLICY.md) — Security best practices
 
