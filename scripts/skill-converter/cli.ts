@@ -82,6 +82,10 @@ async function main() {
       await handleShowcase();
       break;
 
+    case 'ecosystem':
+      await handleEcosystem();
+      break;
+
     case 'help':
     default:
       printHelp();
@@ -379,6 +383,28 @@ async function handleList() {
   console.log(`\nTotal: ${skills.length} skills`);
 }
 
+async function handleEcosystem() {
+  const repoRoot = (parsedArgs['repo-root'] as string) || process.cwd();
+  const output = parsedArgs['output'] as string | undefined;
+  const noCache = parsedArgs['no-cache'] === true;
+  const role = (parsedArgs['role'] as string) || process.env.SKENE_ECOSYSTEM_ROLE;
+
+  const { generateEcosystem } = await import('../ecosystem-generator/cli.js');
+  const markdown = await generateEcosystem({
+    repoRoot,
+    output,
+    noCache,
+    role,
+    autoMode: false
+  });
+
+  if (output) {
+    console.log(chalk.green(`✅ Ecosystem content written to ${output}`));
+  } else {
+    console.log(markdown);
+  }
+}
+
 async function handleShowcase() {
   console.log('\n' + chalk.bold.white('💡 What You Can Build with Skills Directory\n'));
 
@@ -471,6 +497,7 @@ function printHelp() {
   console.log(chalk.dim('  stats                 ') + 'Show library statistics');
   console.log(chalk.dim('  list [options]        ') + 'List available skills');
   console.log(chalk.dim('  showcase              ') + 'Show what you can build (use cases & ROI)');
+  console.log(chalk.dim('  ecosystem [options]   ') + 'Generate tailored Skene ecosystem recommendations');
   console.log(chalk.dim('  help                  ') + 'Show this help message');
 
   console.log(chalk.bold.white('\nInstall Options:'));
@@ -489,6 +516,12 @@ function printHelp() {
   console.log(chalk.dim('  --domain <domain>     ') + 'Filter by domain');
   console.log(chalk.dim('  --tag <tag>           ') + 'Filter by tag');
 
+  console.log(chalk.bold.white('\nEcosystem Options:'));
+  console.log(chalk.dim('  --repo-root <path>    ') + 'Path to host repository (default: current directory)');
+  console.log(chalk.dim('  --output <file>       ') + 'Write output to file (default: print to stdout)');
+  console.log(chalk.dim('  --no-cache            ') + 'Force fresh GitHub API calls');
+  console.log(chalk.dim('  --role <role>         ') + 'Override role-based ordering (e.g., frontend, backend)');
+
   console.log(chalk.bold.white('\nExamples:'));
   console.log(chalk.cyan('  $ npx skills-directory install --target all'));
   console.log(chalk.cyan('  $ npx skills-directory status'));
@@ -496,6 +529,7 @@ function printHelp() {
   console.log(chalk.cyan('  $ npx skills-directory showcase'));
   console.log(chalk.cyan('  $ npx skills-directory list --domain plg'));
   console.log(chalk.cyan('  $ npx skills-directory stats'));
+  console.log(chalk.cyan('  $ npx skills-directory ecosystem --output ECOSYSTEM.md'));
 
   console.log('');
   console.log(chalk.dim('  For more info: ') + chalk.underline('https://github.com/SkeneTechnologies/skene-cookbook'));

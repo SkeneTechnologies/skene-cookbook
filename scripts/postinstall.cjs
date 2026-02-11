@@ -142,6 +142,40 @@ function isAlreadyInstalled() {
   return fs.existsSync(claudeManifest) || fs.existsSync(cursorManifest);
 }
 
+// Generate ecosystem recommendations
+async function generateEcosystem() {
+  return new Promise((resolve) => {
+    console.error(dim('\n   Generating ecosystem recommendations...\n'));
+
+    const cliPath = join(__dirname, 'skill-converter', 'cli.ts');
+    const outputPath = join(process.cwd(), 'ECOSYSTEM.md');
+
+    const child = spawn('npx', [
+      'tsx',
+      cliPath,
+      'ecosystem',
+      '--repo-root', process.cwd(),
+      '--output', outputPath
+    ], {
+      stdio: 'pipe',
+      cwd: __dirname
+    });
+
+    child.on('exit', (code) => {
+      if (code === 0) {
+        console.error(green('   ✅ Generated ECOSYSTEM.md with tailored recommendations'));
+      }
+      // Always resolve - ecosystem generation is optional
+      resolve(code);
+    });
+
+    child.on('error', () => {
+      // Silent failure - ecosystem generation is optional
+      resolve(1);
+    });
+  });
+}
+
 // Run auto-installation
 async function runAutoInstall() {
   console.error(cyan('\n🚀 Auto-installing skills to Cursor and Claude...\n'));
@@ -155,9 +189,12 @@ async function runAutoInstall() {
       cwd: __dirname,
     });
 
-    child.on('exit', (code) => {
+    child.on('exit', async (code) => {
       if (code === 0) {
         console.error(green('\n✅ Skills auto-installed successfully!\n'));
+
+        // Generate ecosystem recommendations
+        await generateEcosystem();
       } else {
         console.error(yellow('\n⚠️  Auto-install encountered issues.'));
         console.error(dim('   Run manually: ') + cyan('npx skills-directory install --target all\n'));
