@@ -1002,6 +1002,11 @@
       "jtbd": "Systematic approach to understanding a new codebase. Use when joining a project, exploring unfamiliar code, or helping someone understand a repo structure."
     },
     {
+      "skill_id": "governance_context_sync",
+      "risk_level": "Critical",
+      "jtbd": "Checks if project context is stale (>24 hours) and transparently offers to sync governance patterns with user consent"
+    },
+    {
       "skill_id": "compliance_access_reviewer",
       "risk_level": "Critical",
       "jtbd": "Orchestrates periodic user access reviews and certifications to ensure least-privilege access and compliance"

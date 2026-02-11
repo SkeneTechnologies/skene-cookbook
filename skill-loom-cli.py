@@ -651,6 +651,10 @@ class SkeneSkillsDirectory:
         Prompt.ask(f"[bold {SkeneColors.PRIMARY}]Press Enter to continue[/bold {SkeneColors.PRIMARY}]")
 
 
+# Alias for backwards compatibility with tests
+SkillLoom = SkeneSkillsDirectory
+
+
 def main():
     """Entry point for Skene Skills Directory CLI"""
     try:
