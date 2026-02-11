@@ -1,0 +1,5 @@
+{
+  "permissions": {
+    "ask": ["Bash(git commit *)"]
+  }
+}
