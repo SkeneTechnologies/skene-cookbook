@@ -1,13 +1,13 @@
 # Security Analysis Report
 
-**Total Skills Analyzed:** 764
+**Total Skills Analyzed:** 765
 
 ## Risk Distribution
 
-- **Critical:** 431 (56.4%)
+- **Critical:** 432 (56.5%)
 - **High:** 49 (6.4%)
 - **Medium:** 49 (6.4%)
-- **Low:** 235 (30.8%)
+- **Low:** 235 (30.7%)
 
 ## Critical Risk Skills
 
@@ -325,6 +325,10 @@
 
 ### compliance_consent_manager
 - **Risk Factors:** system, update, change, access, personal, get, email, alert, analytics, track, log, list, format, risky_tool: consent.update_preference
+- **Human-in-loop:** True
+
+### governance_context_sync
+- **Risk Factors:** payment, execute, system, command, write, update, change, access, permission, sensitive, read, get, notification, message, track, log, format, calculate, show, view, preview, risky_tool: bash.execute, risky_tool: filesystem.write
 - **Human-in-loop:** True
 
 ### compliance_data_retention

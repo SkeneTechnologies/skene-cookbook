@@ -8,6 +8,16 @@ coverage/
 dist/
 *.tgz
 
+# Python virtual environment
+.venv/
+venv/
+
+# Python coverage
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+
 # Test reports and checklists (regenerated as needed)
 *_TEST_REPORT.md
 *_REPORT.md
