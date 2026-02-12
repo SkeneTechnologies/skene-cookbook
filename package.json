@@ -1,7 +1,7 @@
 {
   "name": "@skene/skills-directory",
   "version": "0.1.1",
-  "description": "Skills Directory — 760+ AI skills for Claude and Cursor. PLG, marketing, security, DevEx, and more. One command to install.",
+  "description": "Skills Directory — 765 AI skills (383 executable + 382 context) for Claude and Cursor. PLG, marketing, security, scientific computing, and more. One command to install.",
   "private": false,
   "type": "module",
   "license": "MIT",
@@ -46,6 +46,8 @@
     "install:cursor": "node bin/skills-directory.js install --target cursor",
     "install:claude": "node bin/skills-directory.js install --target claude",
     "status": "node bin/skills-directory.js status",
+    "verify:metrics": "node scripts/sync_metrics.cjs",
+    "pretest": "npm run verify:metrics",
     "lint": "npm run lint:js && npm run lint:format",
     "lint:js": "eslint bin/ scripts/",
     "lint:js:fix": "eslint --fix bin/ scripts/",

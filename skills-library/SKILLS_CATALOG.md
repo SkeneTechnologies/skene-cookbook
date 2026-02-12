@@ -1,40 +1,47 @@
 # Skene Skills Catalog
 
-> **809 AI skills** across **25 domains** for SaaS growth, marketing, compliance, and more.
-> 
-> *Consolidation complete: Removed duplicates, archived redundant external sources.*
+> **765 AI skills** across **23 domains** for SaaS growth, marketing, compliance, and more.
+>
+> **383 executable skills** + **382 context skills** (241 cursor rules + 141 scientific)
+>
+> 📊 See [METRICS.md](../METRICS.md) for the canonical source of all counts and methodology.
 
 ---
 
 ## Quick Navigation
 
+### Context Skills (382)
 | Domain | Skills | Category |
 |--------|--------|----------|
-| [AI Ops](#ai-ops) | 19 | Automation |
-| [Anthropic Official](#anthropic-official) | 16 | Platform |
-| [Community](#community) | 12 | Contributed |
-| [Compliance](#compliance) | 10 | Governance |
-| [Cursor Rules](#cursor-rules) | 241 | Development |
-| [Customer Success](#customer-success) | 28 | Retention |
-| [Data Ops](#data-ops) | 10 | Infrastructure |
-| [Development](#development) | 5 | Practices |
-| [DevEx](#devex) | 14 | Experience |
-| [Ecosystem](#ecosystem) | 16 | Partners |
-| [FinOps](#finops) | 12 | Finance |
-| [Marketing](#marketing) | 73 | Growth |
-| [Meta](#meta) | 6 | Library |
-| [Monetization](#monetization) | 20 | Revenue |
-| [People Ops](#people-ops) | 8 | HR |
-| [PLG](#plg) | 24 | Growth |
-| [PLG Frameworks](#plg-frameworks) | 43 | Strategy |
-| [Product Ops](#product-ops) | 18 | Management |
-| [RevOps](#revops) | 25 | Sales |
-| [Scientific](#scientific) | 141 | Research |
-| [Security](#security) | 17 | Protection |
-| [Skene](#skene) | 6 | Core |
-| [Superpowers](#superpowers) | 14 | Meta |
-| [Support Ops](#support-ops) | 12 | Service |
-| [VCF](#vcf) | 3 | Venture |
+| [Cursor Rules](#cursor-rules) | 241 | Development (IDE) |
+| [Scientific](#scientific) | 141 | Research & Data Science |
+
+### Executable Skills (383)
+| Domain | Skills | Category |
+|--------|--------|----------|
+| [Marketing](#marketing) | 52 | Growth & Content |
+| [PLG Frameworks](#plg-frameworks) | 46 | Product-Led Growth |
+| [Customer Success](#customer-success) | 29 | Retention & Expansion |
+| [RevOps](#revops) | 25 | Sales & Revenue |
+| [PLG](#plg) | 24 | Activation & Onboarding |
+| [Monetization](#monetization) | 20 | Pricing & Billing |
+| [AI Ops](#ai-ops) | 19 | AI Automation |
+| [Product Ops](#product-ops) | 18 | Product Management |
+| [Security](#security) | 17 | Security & Compliance |
+| [Anthropic Official](#anthropic-official) | 16 | First-Party Claude |
+| [Ecosystem](#ecosystem) | 16 | Partnerships |
+| [DevEx](#devex) | 14 | Developer Experience |
+| [Superpowers](#superpowers) | 14 | Meta AI Skills |
+| [FinOps](#finops) | 12 | Financial Operations |
+| [Support Ops](#support-ops) | 12 | Customer Support |
+| [Community](#community) | 12 | Community Contributed |
+| [Compliance](#compliance) | 11 | Regulatory |
+| [Data Ops](#data-ops) | 10 | Data Engineering |
+| [People Ops](#people-ops) | 8 | HR & Culture |
+| [Development](#development) | 5 | Dev Practices |
+| [VCF](#vcf) | 3 | Venture Capital |
+
+**Total: 765 skills** (383 executable + 382 context) — See [METRICS.md](../METRICS.md) for details
 
 ---
 
