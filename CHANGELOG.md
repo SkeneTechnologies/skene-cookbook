@@ -8,23 +8,55 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- METRICS.md - Canonical source of truth for all skill counts and methodology
+- Metric badges in README.md (total skills, executable, context, domains)
+- Automated verification for documentation accuracy (sync_metrics.js)
+- GitHub Action for documentation verification in CI/CD
+
+### Changed
+- **Documentation Accuracy Update**: All documentation now uses accurate skill counts
+  - Total: 765 skills (383 executable + 382 context)
+  - Domains: 23 (21 executable + 2 context)
+  - Context breakdown: 241 cursor rules + 141 scientific
+- README.md - Complete rewrite of "What's Included" section with accurate breakdown
+- skills-library/README.md - Updated to reflect accurate counts and link to METRICS.md
+- SKILLS_CATALOG.md - Updated all domain counts and added context/executable separation
+- index.json - Rebuilt with complete metrics section and accurate totals
+- package.json - Will update description to reflect accurate numbers (pending v0.1.2 release)
+
+### Fixed
+- Documentation discrepancies across multiple files (README, SKILLS_CATALOG, index.json)
+- Inconsistent skill counting methodology (now documented in METRICS.md)
+- Missing context skills in summary counts (cursor_rules: 241, scientific: 141)
+
+## [0.1.1] - 2026-02-12
+
+### Added
 - GitHub issue templates (bug report, feature request, skill proposal, security)
 - Pull request template with comprehensive checklists
 - Code of Conduct as standalone document
-- CHANGELOG.md for tracking project changes
+- LICENSES.txt with dependency license documentation
+- Pre-commit hooks configuration (.pre-commit-config.yaml)
+- Python linting configuration (Black, Flake8, isort)
+- JavaScript linting configuration (ESLint, Prettier)
 
 ### Changed
 - Extract Code of Conduct from CONTRIBUTING.md to standalone file
-- Update README.md with Code of Conduct link
+- Update README.md with Code of Conduct link and setup instructions
+
+### Fixed
+- CI/CD quality gates now properly fail on issues (not just warnings)
 
 ## [0.1.0] - 2026-02-11
 
 ### Added - Core Infrastructure
-- 760+ AI agent skills across 23 domains:
-  - 156 Sales/Marketing/RevOps skills
-  - 51 E-commerce/PLG skills
-  - 40 Customer Success skills
-  - 33 Finance/FinOps skills
+- 765 AI agent skills across 23 domains (383 executable + 382 context):
+  - 52 Marketing skills (content, SEO, campaigns)
+  - 70 PLG skills (product-led growth, activation)
+  - 29 Customer Success skills (health scoring, churn prevention)
+  - 25 RevOps skills (sales pipeline, forecasting)
+  - 241 Cursor rules (technology-specific IDE guidelines)
+  - 141 Scientific computing skills (research, bioinformatics)
   - 40+ standardized tool integrations
 - Eval harness infrastructure for skill validation and testing
   - Automated test data generation
@@ -99,10 +131,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Version 0.1.0 - Initial Public Release
 
-This is the first public release of Skene Cookbook, featuring a comprehensive library of 760+ AI agent skills, complete evaluation infrastructure, and extensive documentation.
+This is the first public release of Skene Cookbook, featuring a comprehensive library of 765 AI agent skills (383 executable + 382 context), complete evaluation infrastructure, and extensive documentation.
 
 **Key Highlights:**
 - Production-ready skills across 23 domains
+- 383 executable AI agent skills + 382 context skills
+- 241 cursor rules for IDE-specific guidance
+- 141 scientific computing skills
 - Comprehensive evaluation harness for quality assurance
 - Security-first approach with risk classification
 - Extensive documentation and quick-start guides

@@ -7,6 +7,33 @@ on:
     branches: [ main ]
 
 jobs:
+  verify-documentation:
+    runs-on: ubuntu-latest
+    name: Verify Documentation Accuracy
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: |
+          npm ci
+
+      - name: Verify metrics consistency
+        run: |
+          npm run verify:metrics
+
+      - name: Comment on success
+        if: success()
+        run: |
+          echo "✅ All documentation metrics are accurate and consistent!"
+
   lint-python:
     runs-on: ubuntu-latest
     name: Python Code Quality (Black, Flake8, isort)
@@ -67,7 +94,7 @@ jobs:
   validate-schemas:
     runs-on: ubuntu-latest
     name: Validate JSON/YAML Schemas
-    needs: [lint-python, lint-javascript]
+    needs: [verify-documentation, lint-python, lint-javascript]
 
     steps:
       - name: Checkout code

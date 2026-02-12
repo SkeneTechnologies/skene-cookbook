@@ -6,9 +6,19 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![npm version](https://img.shields.io/npm/v/@skene/skills-directory.svg)](https://www.npmjs.com/package/@skene/skills-directory)
 
-**Compose 760+ skills into powerful AI agents** — No ML expertise required
+[![Total Skills](https://img.shields.io/badge/skills-765%20total-blue)](METRICS.md)
+[![Executable](https://img.shields.io/badge/executable-383%20skills-green)](METRICS.md)
+[![Context](https://img.shields.io/badge/context-382%20skills-orange)](METRICS.md)
+[![Domains](https://img.shields.io/badge/domains-23%20total-purple)](METRICS.md)
+
+**Compose 765 AI skills into powerful AI agents** — No ML expertise required
+
+- **383 executable skills** across 21 domains (marketing, PLG, sales, etc.)
+- **382 context skills** (241 cursor rules + 141 scientific computing)
 
 Install once. Build unlimited agents. Deploy in days.
+
+📊 [See detailed metrics →](METRICS.md)
 
 ---
 
@@ -25,7 +35,7 @@ Choose your path to get started:
 
 💼 [**CFO/Finance**](docs/personas/cfo.md) — Financial intelligence & reporting
 
-Or [browse all 760+ skills →](docs/directory.md)
+Or [browse all 765 skills →](docs/directory.md) | [See metrics →](METRICS.md)
 
 ---
 
@@ -94,14 +104,24 @@ npx skills-directory install --target claude
 
 ## What's Included
 
-✅ **156 Sales/Marketing/RevOps skills** — Full GTM automation
-✅ **51 E-commerce/PLG skills** — Conversion & growth engines
-✅ **33 Finance/FinOps skills** — Real-time financial intelligence
-✅ **40 Customer Success skills** — Retention & expansion automation
-✅ **40+ standardized tools** — CRM, analytics, messaging, billing
+### Executable Skills (383)
+✅ **70 PLG skills** — Product-led growth, activation, onboarding (plg + plg_frameworks)
+✅ **52 Marketing skills** — Content, SEO, campaigns, analytics
+✅ **29 Customer Success skills** — Health scoring, churn prediction, retention
+✅ **25 RevOps skills** — Sales pipeline, forecasting, GTM alignment
+✅ **20 Monetization skills** — Pricing, billing, revenue optimization
+✅ **19 AI Ops skills** — Intelligent automation and ML operations
+✅ **187 more skills** — Across security, data ops, devex, finance, HR, and more
+
+### Context Skills (382)
+✅ **241 Cursor Rules** — IDE guidelines for 241+ frameworks and tools
+✅ **141 Scientific Computing** — Research tools, bioinformatics, data analysis
+
+### Infrastructure
+✅ **40+ standardized tools** — CRM, analytics, messaging, billing integrations
 ✅ **Production-ready security** — Approval gates, rollback, audit trails
 
-[Browse all 760+ skills by domain →](docs/directory.md)
+[Browse all skills by domain →](docs/directory.md) | [See detailed metrics →](METRICS.md)
 
 ## Quick Start
 
@@ -185,7 +205,8 @@ Cursor and Claude automatically pick the right skill based on your prompt. Chain
 - **[SHOWCASE.md](docs/SHOWCASE.md)** — Real-world agent examples and case studies
 
 ### 📚 Reference
-- [Complete Skills Directory](docs/directory.md) — Browse all 760+ skills
+- **[Metrics](METRICS.md)** — Canonical skill counts and methodology (765 total: 383 executable + 382 context)
+- [Complete Skills Directory](docs/directory.md) — Browse all skills by domain
 - [Visual Skill Tree](docs/skill-tree.md) — See skills organized by domain
 - [Browse by Job Function](docs/functions/) — Find skills for your role
 - [Troubleshooting Guide](docs/TROUBLESHOOTING.md) — Common issues and solutions

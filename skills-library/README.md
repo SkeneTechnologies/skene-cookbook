@@ -2,11 +2,13 @@
 
 **The largest open-source AI skills library for Claude and Cursor**
 
-793 AI skills across 25 domains, compatible with Claude, Cursor, and SkeneFlow.
+**765 AI skills** across 23 domains: **383 executable** + **382 context skills**
+
+Compatible with Claude, Cursor, and SkeneFlow.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-> **New**: See the [Complete Skills Catalog](./SKILLS_CATALOG.md) for detailed documentation of all 809 skills (793 library + 16 external).
+> 📊 **Metrics**: See [METRICS.md](../METRICS.md) for the canonical source of all skill counts and methodology.
 
 ## Quick Start
 
@@ -29,13 +31,18 @@ npx skene-skills list --domain plg
 
 ## What's Included
 
+### Context Skills (382)
 | Category | Skills | Description |
 |----------|--------|-------------|
 | **Cursor Rules** | 241 | Technology-specific coding rules (React, Next.js, Python, etc.) |
 | **Scientific** | 141 | Research, data science, bioinformatics skills |
-| **Marketing** | 73 | Content, campaigns, SEO, growth marketing |
-| **PLG Frameworks** | 43 | Product-led growth playbooks and frameworks |
-| **Customer Success** | 28 | Health scoring, churn prevention, renewals |
+
+### Executable Skills (383)
+| Category | Skills | Description |
+|----------|--------|-------------|
+| **Marketing** | 52 | Content, campaigns, SEO, growth marketing |
+| **PLG Frameworks** | 46 | Product-led growth playbooks and frameworks |
+| **Customer Success** | 29 | Health scoring, churn prevention, renewals |
 | **RevOps** | 25 | Pipeline, forecasting, sales automation |
 | **PLG** | 24 | Activation, onboarding, viral loops |
 | **Monetization** | 20 | Pricing, billing, usage metering |
@@ -46,18 +53,18 @@ npx skene-skills list --domain plg
 | **Ecosystem** | 16 | Partner programs, marketplace, co-selling |
 | **DevEx** | 14 | Developer experience, docs, onboarding |
 | **Superpowers** | 14 | Meta-skills for AI-assisted development |
-| **Community** | 12 | Community-contributed skills |
 | **FinOps** | 12 | Cloud cost optimization, budgeting |
 | **Support Ops** | 12 | Ticket routing, CSAT, knowledge base |
-| **Compliance** | 10 | SOC2, GDPR, security policies |
+| **Community** | 12 | Community-contributed skills |
+| **Compliance** | 11 | SOC2, GDPR, security policies |
 | **Data Ops** | 10 | Data pipelines, quality, governance |
 | **People Ops** | 8 | Hiring, culture, performance |
-| **Meta** | 6 | Skill creation, library management |
-| **Skene** | 6 | SkeneFlow-specific skills |
 | **Development** | 5 | General development practices |
 | **VCF** | 3 | Venture/VC deal flow skills |
 
-**Total: 793 skills** in the library (809 including 16 unique external sources in `/skills-external/`)
+**Total: 765 skills** (383 executable + 382 context) across 23 domains
+
+See [METRICS.md](../METRICS.md) for detailed counting methodology and domain breakdown.
 
 ## Platform Compatibility
 
