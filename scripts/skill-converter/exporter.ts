@@ -86,6 +86,29 @@ function toClaudeFormat(skill: LoadedSkill): string {
 }
 
 /**
+ * Export skill to Claude Code command format (.md with description frontmatter)
+ * These files go into ~/.claude/commands/ and become slash commands.
+ */
+export function toClaudeCommandFormat(skill: LoadedSkill): string {
+  const { manifest, instructions } = skill;
+
+  // Build description — escape any quotes for YAML safety
+  let description = manifest.description.replace(/"/g, '\\"');
+  const triggers = manifest.platforms?.claude?.triggers || [];
+  if (triggers.length > 0) {
+    description += ` Use when: ${triggers.join(', ')}.`;
+  }
+
+  const frontmatter = [
+    '---',
+    `description: "${description}"`,
+    '---',
+  ];
+
+  return frontmatter.join('\n') + '\n\n' + instructions;
+}
+
+/**
  * Export skill to Cursor format (.mdc)
  */
 function toCursorFormat(skill: LoadedSkill): string {

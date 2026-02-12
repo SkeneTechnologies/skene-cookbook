@@ -7,6 +7,7 @@
  * Usage:
  *   npx tsx scripts/skill-converter/cli.ts install --target cursor
  *   npx tsx scripts/skill-converter/cli.ts install --target claude
+ *   npx tsx scripts/skill-converter/cli.ts install --target claude skillname
  *   npx tsx scripts/skill-converter/cli.ts install --target all
  *   npx tsx scripts/skill-converter/cli.ts export --format cursor --output ./dist/cursor
  *   npx tsx scripts/skill-converter/cli.ts stats
@@ -25,9 +26,14 @@ import { renderWelcomeScreen, isFirstInstall, renderSuccessMessage } from './wel
 const args = process.argv.slice(2);
 const command = args[0];
 
-function parseArgs(args: string[]): Record<string, string | boolean> {
-  const result: Record<string, string | boolean> = {};
-  
+interface ParsedArgs {
+  [key: string]: string | boolean | string[];
+  _positional: string[];
+}
+
+function parseArgs(args: string[]): ParsedArgs {
+  const result: ParsedArgs = { _positional: [] };
+
   for (let i = 0; i < args.length; i++) {
     const arg = args[i];
     
@@ -41,6 +47,8 @@ function parseArgs(args: string[]): Record<string, string | boolean> {
       } else {
         result[key] = true;
       }
+    } else {
+      result._positional.push(arg);
     }
   }
   
@@ -93,6 +101,7 @@ async function handleInstall() {
   const target = (parsedArgs['target'] as InstallTarget) || 'all';
   const domains = parsedArgs['domain'] ? [(parsedArgs['domain'] as string)] : undefined;
   const symlink = parsedArgs['symlink'] === true;
+  const names = parsedArgs._positional.length > 0 ? parsedArgs._positional : undefined;
 
   // Show welcome screen on first install
   if (isFirstInstall()) {
@@ -105,10 +114,16 @@ async function handleInstall() {
   
   // Load skills
   const allSkills = await loadAllSkills(libraryPath);
-  const skills = filterSkills(allSkills, { domains });
-  
+  const skills = filterSkills(allSkills, { domains, names });
+
+  if (names && skills.length === 0) {
+    console.log(chalk.yellow(`No skills found matching: ${names.join(', ')}`));
+    console.log(chalk.dim('  Use "npx skills-directory list" to see available skills'));
+    return;
+  }
+
   console.log(`Found ${skills.length} skills to install\n`);
-  
+
   // Install
   const results = await installAll(skills, {
     target,
@@ -116,7 +131,7 @@ async function handleInstall() {
     cursorPath: parsedArgs['cursor-path'] as string,
     claudePath: parsedArgs['claude-path'] as string,
   });
-  
+
   // Print results with styled success message
   const targetNames = [
     results.cursor && 'Cursor',
@@ -192,7 +207,7 @@ async function handleUninstall() {
 
 async function handleStatus() {
   const { homedir } = await import('node:os');
-  const { existsSync, readFileSync } = await import('node:fs');
+  const { existsSync, readFileSync, readdirSync } = await import('node:fs');
 
   console.log(chalk.bold.white('\n📊 Skills Installation Status\n'));
 
@@ -234,6 +249,15 @@ async function handleStatus() {
   } else {
     console.log(chalk.red('❌ Claude Skills Not Installed'));
     console.log(chalk.dim(`   Expected at: `) + chalk.cyan(claudeManifestPath));
+  }
+
+  // Check Claude Code commands
+  const commandsDir = paths.claudeCommands;
+  try {
+    const commandFiles = readdirSync(commandsDir).filter(f => f.endsWith('.md'));
+    console.log(chalk.dim(`   Commands: `) + chalk.white(`${commandFiles.length} slash commands in ${commandsDir}`));
+  } catch {
+    console.log(chalk.dim(`   Commands: `) + chalk.yellow('none (no ~/.claude/commands/ directory)'));
   }
 
   console.log();
@@ -349,12 +373,14 @@ async function handleStats() {
 async function handleList() {
   const domain = parsedArgs['domain'] as string | undefined;
   const tag = parsedArgs['tag'] as string | undefined;
-  
+  const names = parsedArgs._positional.length > 0 ? parsedArgs._positional : undefined;
+
   // Load skills
   const allSkills = await loadAllSkills(libraryPath);
-  const skills = filterSkills(allSkills, { 
+  const skills = filterSkills(allSkills, {
     domains: domain ? [domain] : undefined,
     tags: tag ? [tag] : undefined,
+    names,
   });
   
   if (domain) {
@@ -464,16 +490,17 @@ function printHelp() {
 
   // Commands section with better styling
   console.log(chalk.bold.white('Commands:'));
-  console.log(chalk.dim('  install [options]     ') + 'Install skills to Claude/Cursor');
-  console.log(chalk.dim('  uninstall [options]   ') + 'Remove installed skills');
-  console.log(chalk.dim('  status                ') + 'Check installation status and verify files');
-  console.log(chalk.dim('  export [options]      ') + 'Export skills to a specific format');
-  console.log(chalk.dim('  stats                 ') + 'Show library statistics');
-  console.log(chalk.dim('  list [options]        ') + 'List available skills');
-  console.log(chalk.dim('  showcase              ') + 'Show what you can build (use cases & ROI)');
-  console.log(chalk.dim('  help                  ') + 'Show this help message');
+  console.log(chalk.dim('  install [skills...] [options]  ') + 'Install skills to Claude/Cursor');
+  console.log(chalk.dim('  uninstall [options]            ') + 'Remove installed skills');
+  console.log(chalk.dim('  status                        ') + 'Check installation status and verify files');
+  console.log(chalk.dim('  export [options]               ') + 'Export skills to a specific format');
+  console.log(chalk.dim('  stats                         ') + 'Show library statistics');
+  console.log(chalk.dim('  list [skills...] [options]     ') + 'List available skills');
+  console.log(chalk.dim('  showcase                      ') + 'Show what you can build (use cases & ROI)');
+  console.log(chalk.dim('  help                          ') + 'Show this help message');
 
   console.log(chalk.bold.white('\nInstall Options:'));
+  console.log(chalk.dim('  [skills...]           ') + 'Skill names to install (all if omitted)');
   console.log(chalk.dim('  --target <target>     ') + 'cursor, claude, skeneflow, all (default: all)');
   console.log(chalk.dim('  --cursor-path <path>  ') + 'Custom Cursor skills directory');
   console.log(chalk.dim('  --claude-path <path>  ') + 'Custom Claude skills directory');
@@ -491,6 +518,8 @@ function printHelp() {
 
   console.log(chalk.bold.white('\nExamples:'));
   console.log(chalk.cyan('  $ npx skills-directory install --target all'));
+  console.log(chalk.cyan('  $ npx skills-directory install --target claude brainstorming'));
+  console.log(chalk.cyan('  $ npx skills-directory install --target claude brainstorming lead_qualification'));
   console.log(chalk.cyan('  $ npx skills-directory status'));
   console.log(chalk.cyan('  $ npx skills-directory install --target cursor --domain plg'));
   console.log(chalk.cyan('  $ npx skills-directory showcase'));

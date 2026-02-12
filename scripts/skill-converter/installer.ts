@@ -11,7 +11,7 @@ import { mkdir, symlink, copyFile, rm, readdir, stat, writeFile, readFile } from
 import { join, dirname, basename, resolve } from 'node:path';
 import { homedir } from 'node:os';
 import type { LoadedSkill, InstallTarget, InstallOptions } from './types.js';
-import { exportSkill, exportFlatCursorRules } from './exporter.js';
+import { exportSkill, exportFlatCursorRules, toClaudeCommandFormat } from './exporter.js';
 
 /**
  * Get default paths for different platforms
@@ -22,6 +22,7 @@ export function getDefaultPaths(options?: {
 }): {
   cursor: string;
   claude: string;
+  claudeCommands: string;
   skeneflow: string;
 } {
   const home = homedir();
@@ -29,8 +30,10 @@ export function getDefaultPaths(options?: {
   return {
     // Cursor skills directory (user-level)
     cursor: options?.cursorPath || join(home, '.cursor', 'skills'),
-    // Claude skills directory
+    // Claude skills directory (legacy skill files)
     claude: options?.claudePath || join(home, '.claude', 'skills'),
+    // Claude Code commands directory (slash commands)
+    claudeCommands: join(home, '.claude', 'commands'),
     // SkeneFlow registry
     skeneflow: join(process.cwd(), 'skills-library'),
   };
@@ -104,6 +107,48 @@ export async function installToClaude(
 }
 
 /**
+ * Install skills as Claude Code slash commands (~/.claude/commands/)
+ */
+export async function installToClaudeCommands(
+  skills: LoadedSkill[],
+  options: {
+    outputDir: string;
+  }
+): Promise<{ installed: number; path: string; files: string[] }> {
+  await ensureDir(options.outputDir);
+
+  let installed = 0;
+  const seen = new Set<string>();
+  const files: string[] = [];
+
+  for (const skill of skills) {
+    try {
+      const commandName = skill.manifest.name
+        .toLowerCase()
+        .replace(/\s+/g, '-')
+        .replace(/[^a-z0-9-_]/g, '');
+
+      if (seen.has(commandName)) {
+        console.warn(`⚠️  Duplicate command name "${commandName}", skipping ${skill.manifest.id}`);
+        continue;
+      }
+      seen.add(commandName);
+
+      const content = toClaudeCommandFormat(skill);
+      const filename = `${commandName}.md`;
+      const outputPath = join(options.outputDir, filename);
+      await writeFile(outputPath, content);
+      files.push(filename);
+      installed++;
+    } catch (error) {
+      console.error(`Failed to install ${skill.manifest.id} as command:`, error);
+    }
+  }
+
+  return { installed, path: options.outputDir, files };
+}
+
+/**
  * Generate Cursor rules manifest file
  */
 export async function generateCursorManifest(
@@ -143,12 +188,18 @@ export async function generateClaudeManifest(
         ? basename(skill.sourcePath)
         : skill.manifest.id.split('/').pop() || skill.manifest.id;
 
+      const commandFile = skill.manifest.name
+        .toLowerCase()
+        .replace(/\s+/g, '-')
+        .replace(/[^a-z0-9-_]/g, '') + '.md';
+
       return {
         id: skill.manifest.id,
         name: skill.manifest.name,
         description: skill.manifest.description,
         domain: skill.manifest.domain,
         path: join(skill.manifest.domain, skillDir, 'SKILL.md'),
+        commandFile,
         triggers: skill.manifest.platforms?.claude?.triggers || [],
       };
     }),
@@ -202,6 +253,12 @@ export async function installAll(
       outputDir: claudePath,
       useSymlinks: options.symlink,
     });
+
+    // Install as Claude Code slash commands (~/.claude/commands/)
+    const commandsResult = await installToClaudeCommands(skills, {
+      outputDir: defaultPaths.claudeCommands,
+    });
+    console.log(`Installed ${commandsResult.installed} Claude Code commands to ${commandsResult.path}`);
 
     // Generate manifest
     await generateClaudeManifest(skills, join(claudePath, 'skene-skills.json'));
@@ -261,6 +318,7 @@ export async function uninstall(
 
   if (target === 'claude' || target === 'all') {
     const claudePath = defaultPaths.claude;
+    const commandsPath = join(homedir(), '.claude', 'commands');
     try {
       const manifestPath = join(claudePath, 'skene-skills.json');
       const manifest = JSON.parse(await readFile(manifestPath, 'utf-8'));
@@ -271,6 +329,15 @@ export async function uninstall(
           await rm(dirPath, { recursive: true });
         } catch {
           // Directory doesn't exist
+        }
+
+        // Remove corresponding command file from ~/.claude/commands/
+        if (skill.commandFile) {
+          try {
+            await rm(join(commandsPath, skill.commandFile));
+          } catch {
+            // File doesn't exist
+          }
         }
       }
 
@@ -284,6 +351,7 @@ export async function uninstall(
       }
 
       console.log(`Uninstalled Claude skills from ${claudePath}`);
+      console.log(`Removed Claude Code commands from ${commandsPath}`);
     } catch {
       console.log(`No Claude skills to uninstall at ${claudePath}`);
     }
