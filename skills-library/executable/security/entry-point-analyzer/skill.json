@@ -1,0 +1,457 @@
+{
+  "id": "security/entry-point-analyzer",
+  "version": "1.0.0",
+  "name": "entry-point-analyzer",
+  "description": "Analyzes smart contract codebases to identify state-changing entry points for security auditing. Detects externally callable functions that modify state, categorizes them by access level (public, admin, role-restricted, contract-only), and generates structured audit reports. Excludes view/pure/read-only functions. Use when auditing smart contracts (Solidity, Vyper, Solana/Rust, Move, TON, CosmWasm) or when asked to find entry points, audit flows, external functions, access control patterns, or privileged operations.",
+  "domain": "security",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "projectName": {
+        "type": "string",
+        "description": "Name of the smart contract project being analyzed"
+      },
+      "baseDirectory": {
+        "type": "string",
+        "description": "Root directory path containing the smart contract codebase",
+        "default": "."
+      },
+      "directoryFilter": {
+        "type": "string",
+        "description": "Optional subdirectory to limit analysis scope (e.g., 'src/core/')"
+      },
+      "languages": {
+        "type": "array",
+        "description": "Optional list of expected languages to analyze. Auto-detected if not provided.",
+        "items": {
+          "type": "string",
+          "enum": [
+            "solidity",
+            "vyper",
+            "solana-rust",
+            "move-sui",
+            "move-aptos",
+            "ton-func",
+            "ton-tact",
+            "cosmwasm"
+          ]
+        }
+      },
+      "useSlither": {
+        "type": "boolean",
+        "description": "Whether to use Slither for Solidity analysis if available (default: true)",
+        "default": true
+      },
+      "excludePatterns": {
+        "type": "array",
+        "description": "Optional glob patterns for files/directories to exclude (e.g., 'test/**', 'mock/**')",
+        "items": {
+          "type": "string"
+        }
+      },
+      "includeInheritedFunctions": {
+        "type": "boolean",
+        "description": "Whether to include functions inherited from parent contracts (default: true)",
+        "default": true
+      }
+    },
+    "required": [
+      "projectName",
+      "baseDirectory"
+    ],
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "projectName": {
+        "type": "string",
+        "description": "Name of the analyzed project"
+      },
+      "timestamp": {
+        "type": "string",
+        "format": "date-time",
+        "description": "When the analysis was performed"
+      },
+      "scope": {
+        "type": "string",
+        "description": "Directories analyzed (e.g., 'full codebase' or specific path)"
+      },
+      "detectedLanguages": {
+        "type": "array",
+        "description": "Languages detected in the codebase",
+        "items": {
+          "type": "string"
+        }
+      },
+      "slitherUsed": {
+        "type": "boolean",
+        "description": "Whether Slither was used for analysis"
+      },
+      "summary": {
+        "type": "object",
+        "description": "Summary counts by access category",
+        "properties": {
+          "publicUnrestricted": {
+            "type": "integer",
+            "description": "Count of public, unrestricted entry points"
+          },
+          "roleRestricted": {
+            "type": "integer",
+            "description": "Count of role-restricted entry points"
+          },
+          "restrictedReviewRequired": {
+            "type": "integer",
+            "description": "Count of entry points with unclear access control"
+          },
+          "contractOnly": {
+            "type": "integer",
+            "description": "Count of contract-only entry points"
+          },
+          "total": {
+            "type": "integer",
+            "description": "Total state-changing entry points found"
+          }
+        },
+        "required": [
+          "publicUnrestricted",
+          "roleRestricted",
+          "restrictedReviewRequired",
+          "contractOnly",
+          "total"
+        ]
+      },
+      "entryPoints": {
+        "type": "object",
+        "description": "Categorized entry points",
+        "properties": {
+          "publicUnrestricted": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "function": {
+                  "type": "string",
+                  "description": "Function signature"
+                },
+                "file": {
+                  "type": "string",
+                  "description": "File path and line number"
+                },
+                "contract": {
+                  "type": "string",
+                  "description": "Contract or module name"
+                },
+                "notes": {
+                  "type": "string",
+                  "description": "Additional context or warnings"
+                }
+              },
+              "required": [
+                "function",
+                "file",
+                "contract"
+              ]
+            }
+          },
+          "roleRestricted": {
+            "type": "object",
+            "description": "Entry points grouped by role type",
+            "properties": {
+              "adminOwner": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "function": {
+                      "type": "string"
+                    },
+                    "file": {
+                      "type": "string"
+                    },
+                    "contract": {
+                      "type": "string"
+                    },
+                    "restriction": {
+                      "type": "string",
+                      "description": "Access control mechanism (e.g., 'onlyOwner')"
+                    }
+                  },
+                  "required": [
+                    "function",
+                    "file",
+                    "contract",
+                    "restriction"
+                  ]
+                }
+              },
+              "governance": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "function": {
+                      "type": "string"
+                    },
+                    "file": {
+                      "type": "string"
+                    },
+                    "contract": {
+                      "type": "string"
+                    },
+                    "restriction": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "function",
+                    "file",
+                    "contract",
+                    "restriction"
+                  ]
+                }
+              },
+              "guardianPauser": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "function": {
+                      "type": "string"
+                    },
+                    "file": {
+                      "type": "string"
+                    },
+                    "contract": {
+                      "type": "string"
+                    },
+                    "restriction": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "function",
+                    "file",
+                    "contract",
+                    "restriction"
+                  ]
+                }
+              },
+              "otherRoles": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "function": {
+                      "type": "string"
+                    },
+                    "file": {
+                      "type": "string"
+                    },
+                    "contract": {
+                      "type": "string"
+                    },
+                    "restriction": {
+                      "type": "string"
+                    },
+                    "role": {
+                      "type": "string",
+                      "description": "Specific role name"
+                    }
+                  },
+                  "required": [
+                    "function",
+                    "file",
+                    "contract",
+                    "restriction",
+                    "role"
+                  ]
+                }
+              }
+            }
+          },
+          "restrictedReviewRequired": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "function": {
+                  "type": "string"
+                },
+                "file": {
+                  "type": "string"
+                },
+                "contract": {
+                  "type": "string"
+                },
+                "pattern": {
+                  "type": "string",
+                  "description": "Access control pattern detected"
+                },
+                "whyReview": {
+                  "type": "string",
+                  "description": "Reason manual review is needed"
+                }
+              },
+              "required": [
+                "function",
+                "file",
+                "contract",
+                "pattern",
+                "whyReview"
+              ]
+            }
+          },
+          "contractOnly": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "function": {
+                  "type": "string"
+                },
+                "file": {
+                  "type": "string"
+                },
+                "contract": {
+                  "type": "string"
+                },
+                "expectedCaller": {
+                  "type": "string",
+                  "description": "Expected contract caller or pattern"
+                }
+              },
+              "required": [
+                "function",
+                "file",
+                "contract",
+                "expectedCaller"
+              ]
+            }
+          }
+        },
+        "required": [
+          "publicUnrestricted",
+          "roleRestricted",
+          "restrictedReviewRequired",
+          "contractOnly"
+        ]
+      },
+      "filesAnalyzed": {
+        "type": "array",
+        "description": "List of files analyzed with entry point counts",
+        "items": {
+          "type": "object",
+          "properties": {
+            "path": {
+              "type": "string",
+              "description": "File path relative to base directory"
+            },
+            "entryPointCount": {
+              "type": "integer",
+              "description": "Number of state-changing entry points found"
+            },
+            "language": {
+              "type": "string",
+              "description": "Detected language for this file"
+            }
+          },
+          "required": [
+            "path",
+            "entryPointCount",
+            "language"
+          ]
+        }
+      },
+      "warnings": {
+        "type": "array",
+        "description": "Analysis warnings or issues encountered",
+        "items": {
+          "type": "object",
+          "properties": {
+            "file": {
+              "type": "string",
+              "description": "File with issue"
+            },
+            "message": {
+              "type": "string",
+              "description": "Warning or error message"
+            }
+          },
+          "required": [
+            "message"
+          ]
+        }
+      },
+      "markdownReport": {
+        "type": "string",
+        "description": "Complete markdown-formatted audit report"
+      }
+    },
+    "required": [
+      "projectName",
+      "timestamp",
+      "scope",
+      "detectedLanguages",
+      "slitherUsed",
+      "summary",
+      "entryPoints",
+      "filesAnalyzed",
+      "markdownReport"
+    ]
+  },
+  "temperature": 0,
+  "tags": [
+    "security",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with entry point analyzer",
+        "security audit",
+        "code security",
+        "auditing smart contracts (solidity, vyper, solana/rust, move, ton, cosmwasm) or when asked to find entry points, audit flows, external functions, access control patterns, or privileged operations"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "security_controls": {
+    "execution_environment": {
+      "type": "sandboxed_container",
+      "resource_limits": {
+        "cpu_cores": 1,
+        "memory_mb": 512,
+        "timeout_seconds": 30,
+        "disk_mb": 100
+      },
+      "security": {
+        "network_access": false,
+        "filesystem": "read_only",
+        "user": "non_root",
+        "allowed_commands": [
+          "node",
+          "python3",
+          "npm"
+        ],
+        "blocked_syscalls": [
+          "exec",
+          "fork",
+          "kill"
+        ]
+      }
+    }
+  },
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.92
+  }
+}

@@ -1,0 +1,471 @@
+{
+  "id": "mon_usage_metering",
+  "version": "1.0.0",
+  "name": "Usage Metering",
+  "description": "Tracks and reports usage for consumption-based billing models.",
+  "domain": "monetization",
+  "tools": [
+    {
+      "name": "stripe.record_usage",
+      "required": true
+    },
+    {
+      "name": "stripe.get_usage",
+      "required": true
+    },
+    {
+      "name": "stripe.get_subscription",
+      "required": true
+    },
+    {
+      "name": "analytics.track_event",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "limit_notification",
+    "upgrade_trigger",
+    "billing_reconciliation",
+    "idle"
+  ],
+  "metrics": {
+    "primary": "usage_billing_accuracy",
+    "benchmarks": {
+      "excellent": "> 99%",
+      "good": "95-99%",
+      "needs_improvement": "< 95%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "monetization",
+    "usage",
+    "metering",
+    "billing",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Usage Metering",
+        "billing",
+        "usage metering"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "stripe.get_customer",
+          "required": true
+        },
+        {
+          "name": "stripe.list_subscriptions",
+          "required": false
+        },
+        {
+          "name": "stripe.create_checkout",
+          "required": false
+        }
+      ]
+    }
+  },
+  "security_controls": {
+    "review_note": {
+      "flagged_as": "false_positive",
+      "requires_manual_review": true,
+      "review_date": "2026-02-05T14:36:53.803076"
+    }
+  },
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "action": {
+        "type": "string",
+        "enum": [
+          "record_usage",
+          "get_report",
+          "check_limits"
+        ],
+        "description": "The metering action to perform"
+      },
+      "customer_id": {
+        "type": "string",
+        "description": "Unique identifier for the customer account"
+      },
+      "subscription_id": {
+        "type": "string",
+        "description": "Stripe subscription identifier"
+      },
+      "usage_event": {
+        "type": "object",
+        "properties": {
+          "dimension": {
+            "type": "string",
+            "enum": [
+              "api_calls",
+              "storage",
+              "compute",
+              "seats",
+              "events",
+              "custom"
+            ],
+            "description": "The usage dimension being tracked"
+          },
+          "quantity": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Amount of usage to record"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When the usage occurred"
+          },
+          "idempotency_key": {
+            "type": "string",
+            "description": "Unique key to prevent duplicate recording"
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": true,
+            "description": "Additional context about the usage event"
+          }
+        },
+        "required": [
+          "dimension",
+          "quantity"
+        ],
+        "description": "Usage event details (required when action is record_usage)"
+      },
+      "reporting_period": {
+        "type": "object",
+        "properties": {
+          "start_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Start of the reporting period"
+          },
+          "end_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "End of the reporting period"
+          }
+        },
+        "required": [
+          "start_date",
+          "end_date"
+        ],
+        "description": "Date range for usage reporting (required when action is get_report)"
+      },
+      "alert_thresholds": {
+        "type": "object",
+        "properties": {
+          "warning_percentage": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100,
+            "default": 80,
+            "description": "Percentage of included usage to trigger warning"
+          },
+          "critical_percentage": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100,
+            "default": 95,
+            "description": "Percentage of included usage to trigger critical alert"
+          }
+        },
+        "description": "Thresholds for usage alerts"
+      },
+      "include_projections": {
+        "type": "boolean",
+        "default": true,
+        "description": "Whether to include usage projections in the report"
+      }
+    },
+    "required": [
+      "action",
+      "customer_id"
+    ],
+    "additionalProperties": false,
+    "allOf": [
+      {
+        "if": {
+          "properties": {
+            "action": {
+              "const": "record_usage"
+            }
+          }
+        },
+        "then": {
+          "required": [
+            "subscription_id",
+            "usage_event"
+          ]
+        }
+      },
+      {
+        "if": {
+          "properties": {
+            "action": {
+              "const": "get_report"
+            }
+          }
+        },
+        "then": {
+          "required": [
+            "reporting_period"
+          ]
+        }
+      }
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "success": {
+        "type": "boolean",
+        "description": "Whether the metering operation succeeded"
+      },
+      "action_performed": {
+        "type": "string",
+        "enum": [
+          "record_usage",
+          "get_report",
+          "check_limits"
+        ],
+        "description": "The action that was executed"
+      },
+      "account_info": {
+        "type": "object",
+        "properties": {
+          "customer_id": {
+            "type": "string",
+            "description": "Customer identifier"
+          },
+          "customer_name": {
+            "type": "string",
+            "description": "Customer account name"
+          },
+          "subscription_id": {
+            "type": "string",
+            "description": "Subscription identifier"
+          },
+          "plan_name": {
+            "type": "string",
+            "description": "Name of the subscription plan"
+          }
+        },
+        "required": [
+          "customer_id"
+        ]
+      },
+      "usage_recorded": {
+        "type": "object",
+        "properties": {
+          "dimension": {
+            "type": "string",
+            "description": "Usage dimension that was recorded"
+          },
+          "quantity": {
+            "type": "number",
+            "description": "Amount recorded"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When the usage was recorded"
+          },
+          "record_id": {
+            "type": "string",
+            "description": "Unique identifier for the usage record"
+          }
+        },
+        "description": "Details of recorded usage (present when action is record_usage)"
+      },
+      "usage_report": {
+        "type": "object",
+        "properties": {
+          "period_start": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Start of reporting period"
+          },
+          "period_end": {
+            "type": "string",
+            "format": "date-time",
+            "description": "End of reporting period"
+          },
+          "usage_summary": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "dimension": {
+                  "type": "string",
+                  "description": "Usage dimension name"
+                },
+                "current_usage": {
+                  "type": "number",
+                  "description": "Actual usage in the period"
+                },
+                "included_quantity": {
+                  "type": "number",
+                  "description": "Included usage in the plan"
+                },
+                "overage": {
+                  "type": "number",
+                  "description": "Usage beyond included amount"
+                },
+                "unit": {
+                  "type": "string",
+                  "description": "Billing unit (e.g., 'per 1,000 calls')"
+                },
+                "overage_rate": {
+                  "type": "number",
+                  "description": "Cost per unit of overage"
+                }
+              },
+              "required": [
+                "dimension",
+                "current_usage",
+                "included_quantity",
+                "overage"
+              ]
+            },
+            "description": "Usage breakdown by dimension"
+          },
+          "billing_impact": {
+            "type": "object",
+            "properties": {
+              "base_amount": {
+                "type": "number",
+                "description": "Base subscription cost"
+              },
+              "overage_amount": {
+                "type": "number",
+                "description": "Additional charges for overage"
+              },
+              "total_amount": {
+                "type": "number",
+                "description": "Total billing amount"
+              },
+              "currency": {
+                "type": "string",
+                "default": "USD",
+                "description": "Currency code"
+              }
+            },
+            "required": [
+              "base_amount",
+              "overage_amount",
+              "total_amount"
+            ]
+          },
+          "trend_analysis": {
+            "type": "object",
+            "properties": {
+              "vs_last_period_percentage": {
+                "type": "number",
+                "description": "Percentage change from previous period"
+              },
+              "projected_next_period": {
+                "type": "number",
+                "description": "Projected usage for next period"
+              }
+            }
+          }
+        },
+        "description": "Comprehensive usage report (present when action is get_report)"
+      },
+      "alerts": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "severity": {
+              "type": "string",
+              "enum": [
+                "info",
+                "warning",
+                "critical"
+              ],
+              "description": "Alert severity level"
+            },
+            "dimension": {
+              "type": "string",
+              "description": "Usage dimension triggering the alert"
+            },
+            "message": {
+              "type": "string",
+              "description": "Alert message"
+            },
+            "current_usage_percentage": {
+              "type": "number",
+              "description": "Percentage of included usage consumed"
+            },
+            "recommended_action": {
+              "type": "string",
+              "description": "Suggested action to take"
+            }
+          },
+          "required": [
+            "severity",
+            "dimension",
+            "message"
+          ]
+        },
+        "description": "Usage threshold alerts"
+      },
+      "formatted_report": {
+        "type": "string",
+        "description": "Human-readable formatted report following the template"
+      },
+      "error": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Error code"
+          },
+          "message": {
+            "type": "string",
+            "description": "Error message"
+          }
+        },
+        "description": "Error details if the operation failed"
+      },
+      "timestamp": {
+        "type": "string",
+        "format": "date-time",
+        "description": "When the operation was completed"
+      }
+    },
+    "required": [
+      "success",
+      "action_performed",
+      "timestamp"
+    ],
+    "allOf": [
+      {
+        "if": {
+          "properties": {
+            "success": {
+              "const": false
+            }
+          }
+        },
+        "then": {
+          "required": [
+            "error"
+          ]
+        }
+      }
+    ]
+  },
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.92
+  }
+}

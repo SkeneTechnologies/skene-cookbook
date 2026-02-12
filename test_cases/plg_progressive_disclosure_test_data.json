@@ -1,0 +1,68 @@
+{
+  "skill_id": "plg_progressive_disclosure",
+  "generated_at": "2026-02-12T00:05:12.066417",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "userId": "wkq3wnpip"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "userId": "bqzx3ubgjsmgtreppb",
+        "featureArea": "l1bt4wxhpcb",
+        "checkUnlocks": false
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "userId": "ykmbelru",
+        "featureArea": "rz",
+        "checkUnlocks": true
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "featureArea": "m18yyb",
+        "checkUnlocks": false
+      },
+      "label": "missing_userId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": 12345
+      },
+      "label": "invalid_type_userId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": "wzzbdbkw3uftpfdha77",
+        "featureArea": 12345
+      },
+      "label": "invalid_type_featureArea",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": "zvcv00bavik8mr10",
+        "checkUnlocks": "yes"
+      },
+      "label": "invalid_type_checkUnlocks",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

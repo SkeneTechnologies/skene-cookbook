@@ -1,0 +1,73 @@
+{
+  "skill_id": "support_proactive_outreach",
+  "generated_at": "2026-02-12T00:05:04.281650",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "outreach_type": "check_in",
+        "customer_segment": "at_risk"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "customer_segment": "enterprise",
+        "max_outreach": 5077.45,
+        "auto_send": true
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "customer_segment": "new",
+        "max_outreach": 790.46,
+        "auto_send": true
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "outreach_type": 12345,
+        "customer_segment": "all",
+        "max_outreach": 4656.05,
+        "auto_send": false
+      },
+      "label": "invalid_type_outreach_type",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "customer_segment": 12345,
+        "auto_send": false
+      },
+      "label": "invalid_type_customer_segment",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "auto_send": false,
+        "max_outreach": "not_a_number"
+      },
+      "label": "invalid_type_max_outreach",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "customer_segment": "new",
+        "max_outreach": 9318.46,
+        "auto_send": "yes"
+      },
+      "label": "invalid_type_auto_send",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": true
+    }
+  ]
+}

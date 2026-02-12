@@ -1,0 +1,535 @@
+{
+  "id": "cs_renewal_orchestration",
+  "version": "1.0.0",
+  "name": "Renewal Orchestration",
+  "description": "Orchestrates the renewal process from early warning to close, maximizing GRR and NRR.",
+  "domain": "customer_success",
+  "tools": [
+    {
+      "name": "stripe.get_subscription",
+      "required": true
+    },
+    {
+      "name": "crm.get_account",
+      "required": true
+    },
+    {
+      "name": "crm.create_deal",
+      "required": true
+    },
+    {
+      "name": "lifecycle.get_segment",
+      "required": true
+    },
+    {
+      "name": "resend.send_template",
+      "required": false
+    },
+    {
+      "name": "messaging.send_alert",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "renewal_complete",
+    "churn_prediction",
+    "expansion_playbook",
+    "idle"
+  ],
+  "metrics": {
+    "primary": "gross_renewal_rate",
+    "benchmarks": {
+      "excellent": "> 95%",
+      "good": "90-95%",
+      "needs_improvement": "< 90%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "customer_success",
+    "renewal",
+    "retention",
+    "nrr",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Renewal Orchestration",
+        "renewal"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "lifecycle.get_segment",
+          "required": true
+        },
+        {
+          "name": "analytics.get_cohort",
+          "required": false
+        },
+        {
+          "name": "crm.update_account",
+          "required": false
+        }
+      ]
+    }
+  },
+  "security_controls": {
+    "execution_environment": {
+      "type": "sandboxed_container",
+      "resource_limits": {
+        "cpu_cores": 1,
+        "memory_mb": 512,
+        "timeout_seconds": 30,
+        "disk_mb": 100
+      },
+      "security": {
+        "network_access": false,
+        "filesystem": "read_only",
+        "user": "non_root",
+        "allowed_commands": [
+          "node",
+          "python3",
+          "npm"
+        ],
+        "blocked_syscalls": [
+          "exec",
+          "fork",
+          "kill"
+        ]
+      }
+    }
+  },
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "account_id": {
+        "type": "string",
+        "description": "CRM account identifier for the customer"
+      },
+      "subscription_id": {
+        "type": "string",
+        "description": "Stripe subscription identifier"
+      },
+      "renewal_window_days": {
+        "type": "integer",
+        "description": "Number of days before renewal to start orchestration (default: 120)",
+        "default": 120,
+        "minimum": 1,
+        "maximum": 365
+      },
+      "force_reassessment": {
+        "type": "boolean",
+        "description": "Force a fresh health assessment even if recent data exists",
+        "default": false
+      },
+      "override_play": {
+        "type": "string",
+        "enum": [
+          "growth",
+          "flat",
+          "at-risk",
+          "save"
+        ],
+        "description": "Optional: Override the automatic play recommendation"
+      },
+      "csm_owner_id": {
+        "type": "string",
+        "description": "User ID of the assigned Customer Success Manager"
+      },
+      "skip_notifications": {
+        "type": "boolean",
+        "description": "If true, skip sending alerts and emails (dry-run mode)",
+        "default": false
+      }
+    },
+    "required": [
+      "account_id",
+      "subscription_id"
+    ],
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "renewal_dashboard": {
+        "type": "object",
+        "properties": {
+          "account_name": {
+            "type": "string",
+            "description": "Customer account name"
+          },
+          "account_id": {
+            "type": "string",
+            "description": "CRM account identifier"
+          },
+          "renewal_date": {
+            "type": "string",
+            "format": "date",
+            "description": "Subscription renewal date"
+          },
+          "days_remaining": {
+            "type": "integer",
+            "description": "Days until renewal"
+          },
+          "current_arr": {
+            "type": "number",
+            "description": "Current Annual Recurring Revenue"
+          },
+          "currency": {
+            "type": "string",
+            "description": "Currency code (e.g., USD, EUR)"
+          }
+        },
+        "required": [
+          "account_name",
+          "account_id",
+          "renewal_date",
+          "days_remaining",
+          "current_arr"
+        ]
+      },
+      "health_assessment": {
+        "type": "object",
+        "properties": {
+          "health_score": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 100,
+            "description": "Overall account health score"
+          },
+          "health_status": {
+            "type": "string",
+            "enum": [
+              "healthy",
+              "at-risk",
+              "critical"
+            ],
+            "description": "Categorical health status"
+          },
+          "risk_level": {
+            "type": "string",
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "description": "Renewal risk assessment"
+          },
+          "expansion_potential": {
+            "type": "boolean",
+            "description": "Whether account shows expansion signals"
+          },
+          "segment": {
+            "type": "string",
+            "description": "Customer lifecycle segment"
+          },
+          "risk_factors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of identified risk factors"
+          },
+          "positive_signals": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of positive engagement signals"
+          }
+        },
+        "required": [
+          "health_score",
+          "health_status",
+          "risk_level",
+          "expansion_potential"
+        ]
+      },
+      "recommended_play": {
+        "type": "object",
+        "properties": {
+          "scenario": {
+            "type": "string",
+            "enum": [
+              "growth",
+              "flat",
+              "at-risk",
+              "save"
+            ],
+            "description": "Recommended renewal scenario"
+          },
+          "strategy": {
+            "type": "string",
+            "description": "Detailed strategy description for this renewal"
+          },
+          "target_arr": {
+            "type": "number",
+            "description": "Target ARR for this renewal"
+          },
+          "expected_grr": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1,
+            "description": "Expected Gross Revenue Retention rate"
+          },
+          "expected_nrr": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Expected Net Revenue Retention rate"
+          }
+        },
+        "required": [
+          "scenario",
+          "strategy",
+          "target_arr"
+        ]
+      },
+      "renewal_deal": {
+        "type": "object",
+        "properties": {
+          "deal_id": {
+            "type": "string",
+            "description": "CRM deal identifier"
+          },
+          "deal_stage": {
+            "type": "string",
+            "description": "Current stage of the renewal deal"
+          },
+          "created": {
+            "type": "boolean",
+            "description": "Whether a new deal was created"
+          },
+          "deal_url": {
+            "type": "string",
+            "format": "uri",
+            "description": "Link to the deal in CRM"
+          }
+        },
+        "required": [
+          "deal_id",
+          "deal_stage",
+          "created"
+        ]
+      },
+      "timeline_status": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "days_to_renewal": {
+              "type": "integer",
+              "description": "Days before renewal this action should occur"
+            },
+            "action": {
+              "type": "string",
+              "description": "Action to be taken"
+            },
+            "owner": {
+              "type": "string",
+              "description": "Role responsible for this action"
+            },
+            "due_date": {
+              "type": "string",
+              "format": "date",
+              "description": "When this action is due"
+            },
+            "completed": {
+              "type": "boolean",
+              "description": "Whether this action has been completed"
+            },
+            "completed_date": {
+              "type": "string",
+              "format": "date",
+              "description": "When this action was completed"
+            }
+          },
+          "required": [
+            "days_to_renewal",
+            "action",
+            "owner",
+            "due_date",
+            "completed"
+          ]
+        },
+        "description": "Renewal timeline with action items"
+      },
+      "next_actions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "priority": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "Action priority order"
+            },
+            "action": {
+              "type": "string",
+              "description": "Specific action to take"
+            },
+            "owner": {
+              "type": "string",
+              "description": "Person responsible for this action"
+            },
+            "due_date": {
+              "type": "string",
+              "format": "date",
+              "description": "Action due date"
+            },
+            "urgency": {
+              "type": "string",
+              "enum": [
+                "low",
+                "medium",
+                "high",
+                "critical"
+              ],
+              "description": "Action urgency level"
+            }
+          },
+          "required": [
+            "priority",
+            "action",
+            "owner",
+            "due_date",
+            "urgency"
+          ]
+        },
+        "description": "Prioritized list of immediate next actions"
+      },
+      "notifications_sent": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "email",
+                "alert",
+                "slack"
+              ],
+              "description": "Notification type"
+            },
+            "recipient": {
+              "type": "string",
+              "description": "Notification recipient"
+            },
+            "template": {
+              "type": "string",
+              "description": "Template used for notification"
+            },
+            "sent_at": {
+              "type": "string",
+              "format": "date-time",
+              "description": "When notification was sent"
+            }
+          },
+          "required": [
+            "type",
+            "recipient",
+            "sent_at"
+          ]
+        },
+        "description": "List of notifications sent during orchestration"
+      },
+      "escalations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "reason": {
+              "type": "string",
+              "description": "Reason for escalation"
+            },
+            "escalated_to": {
+              "type": "string",
+              "description": "Who the issue was escalated to"
+            },
+            "severity": {
+              "type": "string",
+              "enum": [
+                "medium",
+                "high",
+                "critical"
+              ],
+              "description": "Escalation severity"
+            },
+            "escalated_at": {
+              "type": "string",
+              "format": "date-time",
+              "description": "When escalation occurred"
+            }
+          },
+          "required": [
+            "reason",
+            "escalated_to",
+            "severity",
+            "escalated_at"
+          ]
+        },
+        "description": "Any escalations triggered during orchestration"
+      },
+      "execution_summary": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "success",
+              "partial",
+              "failed"
+            ],
+            "description": "Overall orchestration execution status"
+          },
+          "message": {
+            "type": "string",
+            "description": "Summary message"
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Any errors encountered"
+          },
+          "warnings": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Any warnings or issues"
+          },
+          "orchestrated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When orchestration was executed"
+          }
+        },
+        "required": [
+          "status",
+          "message",
+          "orchestrated_at"
+        ]
+      }
+    },
+    "required": [
+      "renewal_dashboard",
+      "health_assessment",
+      "recommended_play",
+      "renewal_deal",
+      "timeline_status",
+      "next_actions",
+      "notifications_sent",
+      "execution_summary"
+    ]
+  },
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.92
+  }
+}

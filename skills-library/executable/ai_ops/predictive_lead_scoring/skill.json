@@ -1,0 +1,459 @@
+{
+  "id": "ai_predictive_lead_scoring",
+  "version": "1.0.0",
+  "name": "Predictive Lead Scoring",
+  "description": "Uses machine learning to predict lead quality and conversion likelihood.",
+  "domain": "ai_ops",
+  "tools": [
+    {
+      "name": "ai.score_lead",
+      "required": true
+    },
+    {
+      "name": "ai.batch_score_leads",
+      "required": true
+    },
+    {
+      "name": "analytics.query_events",
+      "required": false
+    },
+    {
+      "name": "crm.update_account",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "lead_qualification",
+    "sales_handoff",
+    "nurture",
+    "idle"
+  ],
+  "metrics": {
+    "primary": "lead_score_accuracy",
+    "benchmarks": {
+      "excellent": "> 85%",
+      "good": "70-85%",
+      "needs_improvement": "< 70%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "ai_ops",
+    "scoring",
+    "prediction",
+    "leads",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Predictive Lead Scoring"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "ai.classify",
+          "required": false
+        },
+        {
+          "name": "ai.generate",
+          "required": false
+        },
+        {
+          "name": "ai.score_lead",
+          "required": false
+        }
+      ]
+    }
+  },
+  "security_controls": {
+    "write_operations": {
+      "preview_mode": true,
+      "validation": {
+        "input_schema": true,
+        "business_rules": true,
+        "data_integrity": true
+      },
+      "rollback": {
+        "enabled": true,
+        "window_seconds": 1800
+      },
+      "audit": {
+        "log_before_state": true,
+        "log_after_state": true,
+        "track_user": true
+      }
+    }
+  },
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "lead_id": {
+        "type": "string",
+        "description": "Unique identifier for the lead"
+      },
+      "lead_name": {
+        "type": "string",
+        "description": "Full name of the lead contact"
+      },
+      "lead_email": {
+        "type": "string",
+        "format": "email",
+        "description": "Email address of the lead"
+      },
+      "company_name": {
+        "type": "string",
+        "description": "Company name of the lead"
+      },
+      "firmographic_data": {
+        "type": "object",
+        "properties": {
+          "company_size": {
+            "type": "integer",
+            "description": "Number of employees",
+            "minimum": 1
+          },
+          "industry": {
+            "type": "string",
+            "description": "Industry vertical or sector"
+          },
+          "location": {
+            "type": "string",
+            "description": "Geographic location (city, state, country)"
+          },
+          "revenue": {
+            "type": "number",
+            "description": "Annual revenue in USD",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "company_size",
+          "industry"
+        ]
+      },
+      "demographic_data": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Job title of the lead"
+          },
+          "seniority": {
+            "type": "string",
+            "enum": [
+              "C-Level",
+              "VP",
+              "Director",
+              "Manager",
+              "Individual Contributor",
+              "Unknown"
+            ],
+            "description": "Seniority level"
+          },
+          "department": {
+            "type": "string",
+            "description": "Department or functional area"
+          }
+        },
+        "required": [
+          "title"
+        ]
+      },
+      "behavioral_data": {
+        "type": "object",
+        "properties": {
+          "page_views": {
+            "type": "integer",
+            "description": "Total number of website page views",
+            "minimum": 0
+          },
+          "content_downloads": {
+            "type": "integer",
+            "description": "Number of content assets downloaded",
+            "minimum": 0
+          },
+          "session_count": {
+            "type": "integer",
+            "description": "Number of website sessions",
+            "minimum": 0
+          },
+          "time_on_site": {
+            "type": "integer",
+            "description": "Total time spent on site in seconds",
+            "minimum": 0
+          }
+        }
+      },
+      "engagement_data": {
+        "type": "object",
+        "properties": {
+          "email_opens": {
+            "type": "integer",
+            "description": "Number of marketing emails opened",
+            "minimum": 0
+          },
+          "email_clicks": {
+            "type": "integer",
+            "description": "Number of email link clicks",
+            "minimum": 0
+          },
+          "event_attendance": {
+            "type": "integer",
+            "description": "Number of events attended (webinars, conferences)",
+            "minimum": 0
+          },
+          "last_engagement_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp of last engagement activity"
+          }
+        }
+      },
+      "intent_data": {
+        "type": "object",
+        "properties": {
+          "pricing_page_views": {
+            "type": "integer",
+            "description": "Number of pricing page visits",
+            "minimum": 0
+          },
+          "demo_requested": {
+            "type": "boolean",
+            "description": "Whether a demo has been requested"
+          },
+          "trial_started": {
+            "type": "boolean",
+            "description": "Whether a trial has been initiated"
+          },
+          "competitor_research": {
+            "type": "boolean",
+            "description": "Evidence of researching competitors"
+          }
+        }
+      },
+      "batch_mode": {
+        "type": "boolean",
+        "description": "Whether to score multiple leads in batch",
+        "default": false
+      },
+      "lead_ids": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Array of lead IDs for batch scoring"
+      },
+      "update_crm": {
+        "type": "boolean",
+        "description": "Whether to automatically update CRM with score",
+        "default": true
+      }
+    },
+    "required": [
+      "lead_id",
+      "lead_name",
+      "company_name"
+    ],
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "lead_id": {
+        "type": "string",
+        "description": "Unique identifier for the scored lead"
+      },
+      "lead_name": {
+        "type": "string",
+        "description": "Full name of the lead contact"
+      },
+      "company_name": {
+        "type": "string",
+        "description": "Company name of the lead"
+      },
+      "score": {
+        "type": "integer",
+        "description": "Overall lead score from 0-100",
+        "minimum": 0,
+        "maximum": 100
+      },
+      "tier": {
+        "type": "string",
+        "enum": [
+          "Hot",
+          "Warm",
+          "Cool",
+          "Cold"
+        ],
+        "description": "Lead tier classification"
+      },
+      "signal_breakdown": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "signal": {
+              "type": "string",
+              "description": "Name of the signal factor"
+            },
+            "value": {
+              "type": "string",
+              "description": "Value of the signal"
+            },
+            "impact": {
+              "type": "number",
+              "description": "Point impact on total score (can be negative)"
+            },
+            "category": {
+              "type": "string",
+              "enum": [
+                "Firmographic",
+                "Demographic",
+                "Behavioral",
+                "Engagement",
+                "Intent"
+              ],
+              "description": "Category of the signal"
+            }
+          },
+          "required": [
+            "signal",
+            "value",
+            "impact"
+          ]
+        },
+        "description": "Breakdown of individual signals and their contribution"
+      },
+      "conversion_prediction": {
+        "type": "object",
+        "properties": {
+          "likelihood_percent": {
+            "type": "number",
+            "description": "Predicted conversion likelihood as percentage",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "similar_leads_converted_percent": {
+            "type": "number",
+            "description": "Historical conversion rate of similar leads",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "expected_conversion_days": {
+            "type": "integer",
+            "description": "Expected days until conversion",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "likelihood_percent",
+          "similar_leads_converted_percent"
+        ]
+      },
+      "recommended_action": {
+        "type": "string",
+        "description": "Recommended next action based on tier"
+      },
+      "model_confidence": {
+        "type": "object",
+        "properties": {
+          "score_confidence_percent": {
+            "type": "number",
+            "description": "Confidence level in the score prediction",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "model_version": {
+            "type": "string",
+            "description": "Version identifier of the scoring model used"
+          },
+          "last_trained_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Date when model was last trained"
+          }
+        },
+        "required": [
+          "score_confidence_percent"
+        ]
+      },
+      "crm_updated": {
+        "type": "boolean",
+        "description": "Whether the CRM was successfully updated with the score"
+      },
+      "routing_assignment": {
+        "type": "object",
+        "properties": {
+          "assigned_to": {
+            "type": "string",
+            "description": "Sales rep or team assigned based on score"
+          },
+          "priority": {
+            "type": "string",
+            "enum": [
+              "Immediate",
+              "High",
+              "Medium",
+              "Low"
+            ],
+            "description": "Follow-up priority level"
+          },
+          "suggested_touchpoint": {
+            "type": "string",
+            "description": "Recommended next touchpoint or campaign"
+          }
+        }
+      },
+      "scored_at": {
+        "type": "string",
+        "format": "date-time",
+        "description": "Timestamp when the lead was scored"
+      },
+      "batch_results": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "lead_id": {
+              "type": "string"
+            },
+            "score": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100
+            },
+            "tier": {
+              "type": "string",
+              "enum": [
+                "Hot",
+                "Warm",
+                "Cool",
+                "Cold"
+              ]
+            }
+          }
+        },
+        "description": "Results for batch scoring operations"
+      }
+    },
+    "required": [
+      "lead_id",
+      "lead_name",
+      "company_name",
+      "score",
+      "tier",
+      "signal_breakdown",
+      "conversion_prediction",
+      "recommended_action",
+      "model_confidence",
+      "scored_at"
+    ]
+  },
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.92
+  }
+}

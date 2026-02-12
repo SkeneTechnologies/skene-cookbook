@@ -1,0 +1,70 @@
+{
+  "skill_id": "cs_contract_intelligence",
+  "generated_at": "2026-02-12T00:05:00.754022",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "accountId": "test_4efv9p7z",
+        "includeComparisons": false
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "accountId": "test_ieq8gv9c",
+        "analysisType": "compliance_check"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "accountId": "test_9028taak",
+        "includeComparisons": false
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "analysisType": "risk_assessment",
+        "includeComparisons": false
+      },
+      "label": "missing_accountId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": 12345,
+        "analysisType": "risk_assessment",
+        "includeComparisons": true
+      },
+      "label": "invalid_type_accountId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": "test_7y7jxqng",
+        "includeComparisons": false,
+        "analysisType": 12345
+      },
+      "label": "invalid_type_analysisType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": "test_utm8i2ru",
+        "includeComparisons": "yes"
+      },
+      "label": "invalid_type_includeComparisons",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

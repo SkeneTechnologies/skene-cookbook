@@ -1,0 +1,109 @@
+{
+  "skill_id": "mon_dunning_automation",
+  "generated_at": "2026-02-12T00:05:08.867253",
+  "num_cases": 11,
+  "test_cases": [
+    {
+      "inputs": {
+        "customer_id": "test_ky23kqnm",
+        "subscription_id": "test_iub90vc6",
+        "manual_trigger": false
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "customer_id": "test_xudfcorr",
+        "subscription_id": "test_3jeayv3l",
+        "days_past_due": 41
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "customer_id": "test_b7ote532",
+        "days_past_due": 70,
+        "manual_trigger": true
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "subscription_id": "test_ru8oceij",
+        "manual_trigger": false,
+        "escalation_threshold": 7809.11
+      },
+      "label": "missing_customer_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "customer_id": 12345,
+        "subscription_id": "test_k2i15ha0",
+        "days_past_due": 908,
+        "manual_trigger": false,
+        "escalation_threshold": 9043.62
+      },
+      "label": "invalid_type_customer_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "customer_id": "test_ztaoxb2u",
+        "days_past_due": 268,
+        "manual_trigger": false,
+        "subscription_id": 12345
+      },
+      "label": "invalid_type_subscription_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "customer_id": "test_jrpuj0z2",
+        "subscription_id": "test_nwnj65o6",
+        "days_past_due": "not_a_number",
+        "escalation_threshold": 5601.99
+      },
+      "label": "invalid_type_days_past_due",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "customer_id": "test_1ldsbd93",
+        "subscription_id": "test_dbx8r7r1",
+        "escalation_threshold": 6259.17,
+        "manual_trigger": "yes"
+      },
+      "label": "invalid_type_manual_trigger",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "customer_id": "test_odklr8yu",
+        "days_past_due": 615,
+        "skip_communication": true,
+        "escalation_threshold": "not_a_number"
+      },
+      "label": "invalid_type_escalation_threshold",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "customer_id": "test_usedgwwv",
+        "subscription_id": "test_s6zxm2b3",
+        "manual_trigger": false,
+        "skip_communication": "yes"
+      },
+      "label": "invalid_type_skip_communication",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

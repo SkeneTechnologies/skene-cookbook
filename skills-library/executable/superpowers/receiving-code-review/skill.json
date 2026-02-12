@@ -1,0 +1,307 @@
+{
+  "id": "superpowers/receiving-code-review",
+  "version": "1.0.0",
+  "name": "receiving-code-review",
+  "description": "Use when receiving code review feedback, before implementing suggestions, especially if feedback seems unclear or technically questionable - requires technical rigor and verification, not performative agreement or blind implementation",
+  "domain": "superpowers",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "feedback_items": {
+        "type": "array",
+        "description": "List of code review feedback items received",
+        "items": {
+          "type": "object",
+          "properties": {
+            "item_id": {
+              "type": "string",
+              "description": "Identifier for the feedback item (e.g., '1', '2a', 'comment-123')"
+            },
+            "feedback_text": {
+              "type": "string",
+              "description": "The actual feedback or suggestion from the reviewer"
+            },
+            "reviewer": {
+              "type": "string",
+              "description": "Source of feedback: 'human_partner' or reviewer name/identifier"
+            },
+            "file_path": {
+              "type": "string",
+              "description": "File path where feedback applies, if applicable"
+            },
+            "line_number": {
+              "type": "integer",
+              "description": "Line number where feedback applies, if applicable"
+            },
+            "is_blocking": {
+              "type": "boolean",
+              "description": "Whether this is a blocking issue (security, breaks, etc.)",
+              "default": false
+            },
+            "github_comment_id": {
+              "type": "string",
+              "description": "GitHub comment ID for inline review comments, if applicable"
+            }
+          },
+          "required": [
+            "item_id",
+            "feedback_text",
+            "reviewer"
+          ]
+        },
+        "minItems": 1
+      },
+      "pull_request_context": {
+        "type": "object",
+        "description": "Context about the PR being reviewed",
+        "properties": {
+          "pr_number": {
+            "type": "integer",
+            "description": "Pull request number"
+          },
+          "repository": {
+            "type": "string",
+            "description": "Repository name in owner/repo format"
+          },
+          "branch": {
+            "type": "string",
+            "description": "Branch name being reviewed"
+          },
+          "description": {
+            "type": "string",
+            "description": "PR description or context"
+          }
+        }
+      },
+      "codebase_context": {
+        "type": "object",
+        "description": "Relevant codebase information for verification",
+        "properties": {
+          "current_implementation_reason": {
+            "type": "string",
+            "description": "Known reason for current implementation approach, if any"
+          },
+          "platform_versions": {
+            "type": "array",
+            "description": "Supported platform/version constraints",
+            "items": {
+              "type": "string"
+            }
+          },
+          "architectural_decisions": {
+            "type": "array",
+            "description": "Relevant architectural decisions from human partner",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "required": [
+      "feedback_items"
+    ],
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "analysis": {
+        "type": "object",
+        "description": "Analysis of the feedback received",
+        "properties": {
+          "understood_items": {
+            "type": "array",
+            "description": "Item IDs that are clear and understood",
+            "items": {
+              "type": "string"
+            }
+          },
+          "unclear_items": {
+            "type": "array",
+            "description": "Item IDs requiring clarification",
+            "items": {
+              "type": "object",
+              "properties": {
+                "item_id": {
+                  "type": "string"
+                },
+                "clarification_needed": {
+                  "type": "string",
+                  "description": "Specific questions or clarifications needed"
+                }
+              },
+              "required": [
+                "item_id",
+                "clarification_needed"
+              ]
+            }
+          },
+          "pushback_items": {
+            "type": "array",
+            "description": "Items requiring technical pushback or discussion",
+            "items": {
+              "type": "object",
+              "properties": {
+                "item_id": {
+                  "type": "string"
+                },
+                "technical_reasoning": {
+                  "type": "string",
+                  "description": "Technical reasoning for pushback"
+                },
+                "verification_performed": {
+                  "type": "string",
+                  "description": "What was checked/verified"
+                },
+                "escalate_to_human_partner": {
+                  "type": "boolean",
+                  "description": "Whether this conflicts with partner's decisions"
+                }
+              },
+              "required": [
+                "item_id",
+                "technical_reasoning"
+              ]
+            }
+          }
+        },
+        "required": [
+          "understood_items",
+          "unclear_items",
+          "pushback_items"
+        ]
+      },
+      "implementation_plan": {
+        "type": "array",
+        "description": "Ordered plan for implementing understood items",
+        "items": {
+          "type": "object",
+          "properties": {
+            "item_id": {
+              "type": "string"
+            },
+            "priority": {
+              "type": "string",
+              "enum": [
+                "blocking",
+                "simple",
+                "complex"
+              ],
+              "description": "Implementation priority category"
+            },
+            "action": {
+              "type": "string",
+              "description": "Specific action to take"
+            },
+            "verification_needed": {
+              "type": "string",
+              "description": "How to verify this fix works correctly"
+            }
+          },
+          "required": [
+            "item_id",
+            "priority",
+            "action"
+          ]
+        }
+      },
+      "response_to_reviewer": {
+        "type": "object",
+        "description": "Structured response to send back to reviewer",
+        "properties": {
+          "clarification_request": {
+            "type": "string",
+            "description": "Message requesting clarification on unclear items, if any"
+          },
+          "pushback_message": {
+            "type": "string",
+            "description": "Technical pushback message, if needed"
+          },
+          "acknowledgment": {
+            "type": "string",
+            "description": "Technical acknowledgment of understood items (no performative language)"
+          },
+          "github_replies": {
+            "type": "array",
+            "description": "Inline comment replies for GitHub",
+            "items": {
+              "type": "object",
+              "properties": {
+                "comment_id": {
+                  "type": "string"
+                },
+                "reply_text": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "comment_id",
+                "reply_text"
+              ]
+            }
+          }
+        }
+      },
+      "ready_to_implement": {
+        "type": "boolean",
+        "description": "Whether all items are clear enough to proceed with implementation"
+      },
+      "warnings": {
+        "type": "array",
+        "description": "Any warnings or concerns identified during analysis",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "required": [
+      "analysis",
+      "implementation_plan",
+      "response_to_reviewer",
+      "ready_to_implement"
+    ],
+    "additionalProperties": false
+  },
+  "temperature": 0,
+  "tags": [
+    "superpowers",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with receiving code review",
+        "code review",
+        "receiving code review feedback, before implementing suggestions, especially if feedback seems unclear or technically questionable - requires technical rigor and verification, not performative agreement or blind implementation"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "security_controls": {
+    "delete_operations": {
+      "soft_delete": true,
+      "retention_period_days": 30,
+      "undelete_capable": true,
+      "backup_before_delete": true,
+      "multi_party_approval": true,
+      "confirmation_required": {
+        "enabled": true,
+        "show_impact": true,
+        "require_reason": true
+      }
+    }
+  },
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.9
+  }
+}

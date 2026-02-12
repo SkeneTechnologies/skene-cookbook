@@ -1,0 +1,345 @@
+{
+  "id": "security/constant-time-analysis",
+  "version": "1.0.0",
+  "name": "constant-time-analysis",
+  "description": "Detects timing side-channel vulnerabilities in cryptographic code. Use when implementing or reviewing crypto code, encountering division on secrets, secret-dependent branches, or constant-time programming questions in C, C++, Go, Rust, Swift, Java, Kotlin, C#, PHP, JavaScript, TypeScript, Python, or Ruby.",
+  "domain": "security",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "sourceFile": {
+        "type": "string",
+        "description": "Path to the source file to analyze for timing side-channel vulnerabilities"
+      },
+      "sourceCode": {
+        "type": "string",
+        "description": "Raw source code content to analyze (alternative to sourceFile)"
+      },
+      "language": {
+        "type": "string",
+        "enum": [
+          "c",
+          "cpp",
+          "go",
+          "rust",
+          "swift",
+          "java",
+          "kotlin",
+          "csharp",
+          "php",
+          "javascript",
+          "typescript",
+          "python",
+          "ruby"
+        ],
+        "description": "Programming language of the source code"
+      },
+      "fileExtension": {
+        "type": "string",
+        "description": "File extension to help determine language (e.g., .c, .go, .rs, .swift, .java, .kt, .cs, .php, .js, .ts, .py, .rb)"
+      },
+      "architecture": {
+        "type": "string",
+        "enum": [
+          "x86_64",
+          "arm64",
+          "aarch64",
+          "i386",
+          "arm"
+        ],
+        "description": "Target architecture for native compiled languages (C, C++, Go, Rust, Swift). Not applicable to VM-compiled languages."
+      },
+      "optimizationLevel": {
+        "type": "string",
+        "enum": [
+          "O0",
+          "O1",
+          "O2",
+          "O3",
+          "Os",
+          "Oz"
+        ],
+        "description": "Compiler optimization level for native compiled languages. Not applicable to VM-compiled languages."
+      },
+      "includeWarnings": {
+        "type": "boolean",
+        "default": false,
+        "description": "Include warnings for conditional branches that may leak timing information"
+      },
+      "functionFilter": {
+        "type": "string",
+        "description": "Regular expression to filter analysis to specific function names (e.g., 'sign|verify|encrypt|decrypt')"
+      },
+      "outputFormat": {
+        "type": "string",
+        "enum": [
+          "text",
+          "json"
+        ],
+        "default": "text",
+        "description": "Output format for analysis results"
+      },
+      "analysisContext": {
+        "type": "object",
+        "properties": {
+          "isCryptographic": {
+            "type": "boolean",
+            "description": "Whether the code is cryptographic in nature"
+          },
+          "handlesSecrets": {
+            "type": "boolean",
+            "description": "Whether the code processes secret keys, tokens, or sensitive data"
+          },
+          "secretInputs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of variable/parameter names that contain secret data"
+          }
+        },
+        "description": "Additional context to help reduce false positives"
+      }
+    },
+    "oneOf": [
+      {
+        "required": [
+          "sourceFile"
+        ]
+      },
+      {
+        "required": [
+          "sourceCode",
+          "language"
+        ]
+      }
+    ],
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "string",
+        "enum": [
+          "PASSED",
+          "FAILED",
+          "WARNING",
+          "ERROR"
+        ],
+        "description": "Overall analysis result status"
+      },
+      "language": {
+        "type": "string",
+        "description": "Detected or specified programming language"
+      },
+      "architecture": {
+        "type": "string",
+        "description": "Target architecture used for analysis (for native compiled languages)"
+      },
+      "optimizationLevel": {
+        "type": "string",
+        "description": "Optimization level used for analysis (for native compiled languages)"
+      },
+      "violations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "severity": {
+              "type": "string",
+              "enum": [
+                "ERROR",
+                "WARNING"
+              ],
+              "description": "Severity level of the violation"
+            },
+            "instruction": {
+              "type": "string",
+              "description": "Assembly instruction or operation that caused the violation (e.g., SDIV, IDIV, JE, BEQ)"
+            },
+            "function": {
+              "type": "string",
+              "description": "Name of the function containing the violation"
+            },
+            "location": {
+              "type": "object",
+              "properties": {
+                "line": {
+                  "type": "integer",
+                  "description": "Line number in source code"
+                },
+                "column": {
+                  "type": "integer",
+                  "description": "Column number in source code"
+                },
+                "file": {
+                  "type": "string",
+                  "description": "Source file name"
+                }
+              }
+            },
+            "reason": {
+              "type": "string",
+              "description": "Explanation of why this instruction is a timing vulnerability"
+            },
+            "operands": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Operands involved in the operation"
+            },
+            "potentialFalsePositive": {
+              "type": "boolean",
+              "description": "Flag indicating this may be a false positive requiring manual review"
+            },
+            "triageNotes": {
+              "type": "string",
+              "description": "Guidance for determining if this is a true positive"
+            }
+          },
+          "required": [
+            "severity",
+            "instruction",
+            "function",
+            "reason"
+          ]
+        },
+        "description": "List of detected timing side-channel vulnerabilities"
+      },
+      "summary": {
+        "type": "object",
+        "properties": {
+          "totalViolations": {
+            "type": "integer",
+            "description": "Total number of violations detected"
+          },
+          "errorCount": {
+            "type": "integer",
+            "description": "Number of error-level violations"
+          },
+          "warningCount": {
+            "type": "integer",
+            "description": "Number of warning-level violations"
+          },
+          "functionsAnalyzed": {
+            "type": "integer",
+            "description": "Number of functions analyzed"
+          },
+          "dangerousOperations": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "description": "Count of each type of dangerous operation (e.g., division, branches)"
+          }
+        },
+        "required": [
+          "totalViolations",
+          "errorCount",
+          "warningCount"
+        ]
+      },
+      "recommendations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "violation": {
+              "type": "string",
+              "description": "Reference to the violation being addressed"
+            },
+            "recommendation": {
+              "type": "string",
+              "description": "Suggested fix or mitigation"
+            },
+            "exampleCode": {
+              "type": "string",
+              "description": "Example of constant-time implementation"
+            }
+          },
+          "required": [
+            "recommendation"
+          ]
+        },
+        "description": "Recommended fixes for detected vulnerabilities"
+      },
+      "analysisMetadata": {
+        "type": "object",
+        "properties": {
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When the analysis was performed"
+          },
+          "analyzerVersion": {
+            "type": "string",
+            "description": "Version of the constant-time analyzer"
+          },
+          "compilerVersion": {
+            "type": "string",
+            "description": "Version of the compiler used (for native languages)"
+          },
+          "analysisTimeMs": {
+            "type": "number",
+            "description": "Time taken for analysis in milliseconds"
+          }
+        }
+      },
+      "requiresManualReview": {
+        "type": "boolean",
+        "description": "Flag indicating whether manual data flow analysis is required to confirm vulnerabilities"
+      },
+      "errorMessage": {
+        "type": "string",
+        "description": "Error message if analysis failed"
+      }
+    },
+    "required": [
+      "status",
+      "language",
+      "violations",
+      "summary"
+    ],
+    "additionalProperties": true
+  },
+  "temperature": 0,
+  "tags": [
+    "security",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with constant time analysis",
+        "code security",
+        "implementing or reviewing crypto code, encountering division on secrets, secret-dependent branches, or constant-time programming questions in c, c++, go, rust, swift, java, kotlin, c#, php, javascript, typescript, python, or ruby"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "security_controls": {
+    "authentication": {
+      "method": "oauth",
+      "provider": "managed_identity",
+      "scopes": [
+        "read:data",
+        "write:data"
+      ],
+      "token_lifetime": 3600
+    }
+  },
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.92
+  }
+}

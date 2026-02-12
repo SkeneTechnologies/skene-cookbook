@@ -1,0 +1,69 @@
+{
+  "skill_id": "plg_activation",
+  "generated_at": "2026-02-12T00:05:11.874434",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "userId": "jp2ny",
+        "plan": "gt6re9ayzune28b"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "userId": "g",
+        "source": "test_e2x5mz17"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "userId": "w6pz7d",
+        "source": "test_qol91qwe"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "plan": "pkgf4"
+      },
+      "label": "missing_userId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": 12345,
+        "source": "test_8k2zs2yg"
+      },
+      "label": "invalid_type_userId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": "cfyxei",
+        "source": 12345,
+        "plan": "4ucj49h8ye7z6y2xqqd6"
+      },
+      "label": "invalid_type_source",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": "lpidwnrikrs0",
+        "source": "test_rrjwe44x",
+        "plan": 12345
+      },
+      "label": "invalid_type_plan",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

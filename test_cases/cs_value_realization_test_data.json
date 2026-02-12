@@ -1,0 +1,482 @@
+{
+  "skill_id": "cs_value_realization",
+  "generated_at": "2026-02-12T00:05:02.056949",
+  "num_cases": 13,
+  "test_cases": [
+    {
+      "inputs": {
+        "account_id": "test_ja1fnjyn",
+        "reporting_period": {
+          "start_date": "2026-02-12",
+          "end_date": "2026-02-12"
+        },
+        "vla_objectives": [
+          {
+            "objective_id": "test_65bxn4r8",
+            "business_objective": "l6dhinpovs7vrdt",
+            "value_category": "efficiency",
+            "success_metrics": [
+              "n1wgoy5gw71snroalj8w",
+              "u3t6zfd4ka5bx17nl",
+              "qhmddjhwk4l73nhfq"
+            ],
+            "target_value": {
+              "value": 2308.08,
+              "unit": "m"
+            },
+            "target_date": "2026-02-12"
+          },
+          {
+            "objective_id": "test_80qgg2eo",
+            "business_objective": "b68pxcduzoucl",
+            "value_category": "revenue",
+            "success_metrics": [
+              "7aqpn",
+              "9wurk2a"
+            ],
+            "target_value": {
+              "value": 7064.71,
+              "unit": "qujeequmv6"
+            },
+            "target_date": "2026-02-12",
+            "baseline_value": 3198.39
+          }
+        ],
+        "customer_investment": 4353.41,
+        "validate_with_customer": true
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "account_id": "test_yjfpp52f",
+        "reporting_period": {
+          "start_date": "2026-02-12",
+          "end_date": "2026-02-12"
+        },
+        "vla_objectives": [
+          {
+            "objective_id": "test_yhls99zp",
+            "business_objective": "tt66hmsqbhtjaz4q6ab5",
+            "value_category": "revenue",
+            "success_metrics": [
+              "1pvajt95vx",
+              "k82powxw3i7e4dmg0"
+            ],
+            "target_value": {
+              "value": 8157.68,
+              "unit": "ls50nznfj6meuibk4f1"
+            },
+            "target_date": "2026-02-12",
+            "baseline_value": 5518.92
+          },
+          {
+            "objective_id": "test_45t3k99r",
+            "business_objective": "4o9171rfham5ocpb5n",
+            "value_category": "quality",
+            "success_metrics": [
+              "9tsm",
+              "v648szuibb0od",
+              "g0n5ws0b1z1oz3vi"
+            ],
+            "target_value": {
+              "value": 6600.15,
+              "unit": "yzy8"
+            },
+            "target_date": "2026-02-12",
+            "baseline_value": 3147.24
+          },
+          {
+            "objective_id": "test_bzaflci7",
+            "business_objective": "s8uft5drw97o2",
+            "value_category": "quality",
+            "success_metrics": [
+              "5dr5b7byz",
+              "doji"
+            ],
+            "target_value": {
+              "value": 585.69,
+              "unit": "q399toibaevr6aq"
+            },
+            "target_date": "2026-02-12",
+            "baseline_value": 4829.99
+          }
+        ],
+        "include_roi_calculation": true,
+        "customer_investment": 6648.68,
+        "validate_with_customer": false
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "account_id": "test_lyqzczzz",
+        "reporting_period": {
+          "start_date": "2026-02-12",
+          "end_date": "2026-02-12"
+        },
+        "vla_objectives": [
+          {
+            "objective_id": "test_2z097vq8",
+            "business_objective": "tbetv30",
+            "value_category": "growth",
+            "success_metrics": [
+              "umc5dctk3xjtk54eji"
+            ],
+            "target_value": {
+              "value": 7987.79,
+              "unit": "zyim99"
+            },
+            "target_date": "2026-02-12",
+            "baseline_value": 5611.41
+          }
+        ],
+        "include_roi_calculation": false,
+        "customer_investment": 2080.35,
+        "validate_with_customer": false
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "reporting_period": {
+          "start_date": "2026-02-12",
+          "end_date": "2026-02-12"
+        },
+        "vla_objectives": [
+          {
+            "objective_id": "test_tstl0f32",
+            "business_objective": "it8bym4q",
+            "value_category": "revenue",
+            "success_metrics": [
+              "3va2",
+              "n9ic",
+              "3z0no3z1ucu2556h92i3"
+            ],
+            "target_value": {
+              "value": 9580.88,
+              "unit": "8qvbzrj4yuvnwad4"
+            },
+            "target_date": "2026-02-12"
+          },
+          {
+            "objective_id": "test_k1v8iupk",
+            "business_objective": "j2uaqgxbgm5",
+            "value_category": "efficiency",
+            "success_metrics": [
+              "fcm1mte0q4lhdo2"
+            ],
+            "target_value": {
+              "value": 3879.66,
+              "unit": "576gh3udystwndyczy0"
+            },
+            "target_date": "2026-02-12"
+          }
+        ],
+        "include_roi_calculation": false,
+        "customer_investment": 2322.74,
+        "validate_with_customer": false
+      },
+      "label": "missing_account_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "account_id": "test_66wtfmqu",
+        "vla_objectives": [
+          {
+            "objective_id": "test_9vsnz8av",
+            "business_objective": "njt",
+            "value_category": "efficiency",
+            "success_metrics": [
+              "m24tnnsstdefm"
+            ],
+            "target_value": {
+              "value": 4781.28,
+              "unit": "0x9so"
+            },
+            "target_date": "2026-02-12",
+            "baseline_value": 4050.82
+          },
+          {
+            "objective_id": "test_thha5sw7",
+            "business_objective": "a2f",
+            "value_category": "revenue",
+            "success_metrics": [],
+            "target_value": {
+              "value": 6584.95,
+              "unit": "z1uq5sa5t9"
+            },
+            "target_date": "2026-02-12",
+            "baseline_value": 1251.26
+          }
+        ]
+      },
+      "label": "missing_reporting_period",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "account_id": "test_ej25e7uk",
+        "reporting_period": {
+          "start_date": "2026-02-12",
+          "end_date": "2026-02-12"
+        },
+        "validate_with_customer": false
+      },
+      "label": "missing_vla_objectives",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "account_id": 12345,
+        "reporting_period": {
+          "start_date": "2026-02-12",
+          "end_date": "2026-02-12"
+        },
+        "vla_objectives": [
+          {
+            "objective_id": "test_g4rjbku0",
+            "business_objective": "9hjc6pqvfrlpsogs",
+            "value_category": "cost",
+            "success_metrics": [
+              "zb9uwjj",
+              "k3k20"
+            ],
+            "target_value": {
+              "value": 6556.53,
+              "unit": "967qoheciv669bnpef"
+            },
+            "target_date": "2026-02-12",
+            "baseline_value": 2236.01
+          },
+          {
+            "objective_id": "test_90sz8zzw",
+            "business_objective": "4u4osrcsvuqaey",
+            "value_category": "revenue",
+            "success_metrics": [
+              "g5w7u",
+              "s0"
+            ],
+            "target_value": {
+              "value": 673.05,
+              "unit": "2yhqrdghvnqfjjh75jjy"
+            },
+            "target_date": "2026-02-12"
+          }
+        ],
+        "include_roi_calculation": true,
+        "customer_investment": 8026.87
+      },
+      "label": "invalid_type_account_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "account_id": "test_wt8prqpz",
+        "reporting_period": "not_an_object",
+        "vla_objectives": [
+          {
+            "objective_id": "test_gotd62tc",
+            "business_objective": "5fxx5e556kbtrgam",
+            "value_category": "cost",
+            "success_metrics": [
+              "mdzhikkpbc13",
+              "yen5o9t4j035z"
+            ],
+            "target_value": {
+              "value": 6027.96,
+              "unit": "oyush7b13cr5x7wgxrq"
+            },
+            "target_date": "2026-02-12",
+            "baseline_value": 4778.75
+          },
+          {
+            "objective_id": "test_lfy5zq02",
+            "business_objective": "wp39apn439",
+            "value_category": "efficiency",
+            "success_metrics": [
+              "90b48h413",
+              "bubm6b21lbl",
+              "drut6o3ej0m"
+            ],
+            "target_value": {
+              "value": 7029.65,
+              "unit": "m"
+            },
+            "target_date": "2026-02-12"
+          }
+        ],
+        "include_roi_calculation": true,
+        "validate_with_customer": false
+      },
+      "label": "invalid_type_reporting_period",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "account_id": "test_19y1v0h0",
+        "reporting_period": {
+          "start_date": "2026-02-12",
+          "end_date": "2026-02-12"
+        },
+        "vla_objectives": "not_an_array",
+        "validate_with_customer": true
+      },
+      "label": "invalid_type_vla_objectives",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "account_id": "test_9pxw483m",
+        "reporting_period": {
+          "start_date": "2026-02-12",
+          "end_date": "2026-02-12"
+        },
+        "vla_objectives": [
+          {
+            "objective_id": "test_1k9r1w63",
+            "business_objective": "z4r0fddlgtd47",
+            "value_category": "growth",
+            "success_metrics": [
+              "3",
+              "fwov",
+              "f0zjwj9"
+            ],
+            "target_value": {
+              "value": 8766.55,
+              "unit": "2q3rc51vpdnpy72m3"
+            },
+            "target_date": "2026-02-12"
+          },
+          {
+            "objective_id": "test_9hwmvj2h",
+            "business_objective": "hvg",
+            "value_category": "cost",
+            "success_metrics": [
+              "pd4v5dt75o58hhwo2w",
+              "hmq"
+            ],
+            "target_value": {
+              "value": 6471.46,
+              "unit": "0z1do"
+            },
+            "target_date": "2026-02-12",
+            "baseline_value": 2069.32
+          },
+          {
+            "objective_id": "test_9wutb0jb",
+            "business_objective": "yiz65tos",
+            "value_category": "growth",
+            "success_metrics": [],
+            "target_value": {
+              "value": 7147.51,
+              "unit": "1qory8wz"
+            },
+            "target_date": "2026-02-12"
+          }
+        ],
+        "include_roi_calculation": "yes",
+        "customer_investment": 7945.8
+      },
+      "label": "invalid_type_include_roi_calculation",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "account_id": "test_mmw83c2e",
+        "reporting_period": {
+          "start_date": "2026-02-12",
+          "end_date": "2026-02-12"
+        },
+        "vla_objectives": [
+          {
+            "objective_id": "test_hg9umaxz",
+            "business_objective": "s",
+            "value_category": "growth",
+            "success_metrics": [
+              "tm5qyam63q",
+              "8r6r958w6",
+              "prphdqr"
+            ],
+            "target_value": {
+              "value": 8299.11,
+              "unit": "nivzj8nz1e2aewgzr"
+            },
+            "target_date": "2026-02-12",
+            "baseline_value": 2310.41
+          },
+          {
+            "objective_id": "test_yt6o83pi",
+            "business_objective": "6",
+            "value_category": "revenue",
+            "success_metrics": [
+              "78"
+            ],
+            "target_value": {
+              "value": 6593.96,
+              "unit": "aphmf"
+            },
+            "target_date": "2026-02-12"
+          }
+        ],
+        "include_roi_calculation": true,
+        "customer_investment": "not_a_number",
+        "validate_with_customer": true
+      },
+      "label": "invalid_type_customer_investment",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "account_id": "test_8fei56zr",
+        "reporting_period": {
+          "start_date": "2026-02-12",
+          "end_date": "2026-02-12"
+        },
+        "vla_objectives": [
+          {
+            "objective_id": "test_8h9x6zyp",
+            "business_objective": "5smgqpbth6a57fn",
+            "value_category": "growth",
+            "success_metrics": [
+              "10aztjvv",
+              "j"
+            ],
+            "target_value": {
+              "value": 1720.37,
+              "unit": "mdqbjbr"
+            },
+            "target_date": "2026-02-12"
+          },
+          {
+            "objective_id": "test_c8qjk034",
+            "business_objective": "t",
+            "value_category": "efficiency",
+            "success_metrics": [
+              "q9rdna",
+              "mrjq6pbd1kypd88vq7kw"
+            ],
+            "target_value": {
+              "value": 2923.03,
+              "unit": "ly259qksq"
+            },
+            "target_date": "2026-02-12"
+          }
+        ],
+        "include_roi_calculation": false,
+        "validate_with_customer": "yes"
+      },
+      "label": "invalid_type_validate_with_customer",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

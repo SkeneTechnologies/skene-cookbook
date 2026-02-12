@@ -1,0 +1,35 @@
+{
+  "id": "cursor_rules/springboot",
+  "version": "1.0.0",
+  "name": "springboot",
+  "description": "Enforces modern Spring Boot best practices for Java applications, covering code structure, dependency injection, API design, error handling, and testing to ensure maintainable, performant, and secure microservices.",
+  "domain": "cursor_rules",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "cursor_rules",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "cursor": {
+      "globs": [
+        "**/*.java"
+      ]
+    },
+    "claude": {
+      "triggers": [
+        "help with springboot"
+      ]
+    },
+    "skeneflow": {}
+  },
+  "skipSchemaValidation": true
+}

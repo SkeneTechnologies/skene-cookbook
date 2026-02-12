@@ -1,0 +1,71 @@
+{
+  "skill_id": "support_sla_monitor",
+  "generated_at": "2026-02-12T00:05:04.297479",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "scope_id": "test_8oub95ff",
+        "time_window": "j4qs0bi"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "scope": "all"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "scope": "all",
+        "breach_threshold_minutes": 5511.27
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "scope": 12345,
+        "scope_id": "test_goj8i9p2"
+      },
+      "label": "invalid_type_scope",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "time_window": "e9",
+        "breach_threshold_minutes": 370.74,
+        "scope_id": 12345
+      },
+      "label": "invalid_type_scope_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "scope_id": "test_b22vui9q",
+        "time_window": 12345,
+        "breach_threshold_minutes": 9586.94
+      },
+      "label": "invalid_type_time_window",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "scope": "queue",
+        "scope_id": "test_kj9i6jg2",
+        "time_window": "5zga6cw",
+        "breach_threshold_minutes": "not_a_number"
+      },
+      "label": "invalid_type_breach_threshold_minutes",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": true
+    }
+  ]
+}

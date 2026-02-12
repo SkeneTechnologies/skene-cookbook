@@ -45,7 +45,13 @@
     "install:skills": "node bin/skills-directory.js install --target all",
     "install:cursor": "node bin/skills-directory.js install --target cursor",
     "install:claude": "node bin/skills-directory.js install --target claude",
-    "status": "node bin/skills-directory.js status"
+    "status": "node bin/skills-directory.js status",
+    "lint": "npm run lint:js && npm run lint:format",
+    "lint:js": "eslint bin/ scripts/",
+    "lint:js:fix": "eslint --fix bin/ scripts/",
+    "lint:format": "prettier --check '**/*.{js,json,md,yml,yaml}'",
+    "format": "prettier --write '**/*.{js,json,md,yml,yaml}'",
+    "format:check": "prettier --check '**/*.{js,json,md,yml,yaml}'"
   },
   "peerDependenciesMeta": {
     "zod": {
@@ -60,5 +66,9 @@
     "chalk": "^5.3.0",
     "boxen": "^7.1.1",
     "terminal-size": "^4.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.56.0",
+    "prettier": "^3.2.4"
   }
 }

@@ -1,0 +1,81 @@
+{
+  "skill_id": "support_sentiment_tracker",
+  "generated_at": "2026-02-12T00:05:04.395996",
+  "num_cases": 9,
+  "test_cases": [
+    {
+      "inputs": {
+        "ticket_id": "kyolu0y3yfzytntqlwea",
+        "analyze_full_conversation": true
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "ticket_id": "gyxzil",
+        "analyze_full_conversation": false,
+        "alert_on_negative": false,
+        "negative_threshold": 4466.0
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "ticket_id": "4ko1n5ngpizht5k",
+        "analyze_full_conversation": false,
+        "alert_on_negative": true
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "analyze_full_conversation": true
+      },
+      "label": "missing_ticket_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "ticket_id": 12345,
+        "negative_threshold": 9465.99
+      },
+      "label": "invalid_type_ticket_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "ticket_id": "cb0kweck39j6",
+        "analyze_full_conversation": "yes",
+        "negative_threshold": 9025.19
+      },
+      "label": "invalid_type_analyze_full_conversation",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "ticket_id": "s1oyr14xsra0q6",
+        "analyze_full_conversation": true,
+        "alert_on_negative": "yes"
+      },
+      "label": "invalid_type_alert_on_negative",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "ticket_id": "xc6psg1a72t8plzcf1z",
+        "alert_on_negative": false,
+        "negative_threshold": "not_a_number"
+      },
+      "label": "invalid_type_negative_threshold",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

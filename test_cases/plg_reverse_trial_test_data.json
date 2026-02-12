@@ -1,0 +1,67 @@
+{
+  "skill_id": "plg_reverse_trial",
+  "generated_at": "2026-02-12T00:05:12.662460",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "userId": "ml5ept8hrngx0",
+        "trialDaysRemaining": 7362.42,
+        "action": "convert"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "userId": "wib0nxqb",
+        "trialDaysRemaining": 1046.5,
+        "action": "extend_trial"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "userId": "yk"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {},
+      "label": "missing_userId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": 12345
+      },
+      "label": "invalid_type_userId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": "tjfe4",
+        "trialDaysRemaining": "not_a_number",
+        "action": "downgrade"
+      },
+      "label": "invalid_type_trialDaysRemaining",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": "5dn56qcs7cqyp3p2",
+        "trialDaysRemaining": 9115.11,
+        "action": 12345
+      },
+      "label": "invalid_type_action",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

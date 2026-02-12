@@ -1,0 +1,81 @@
+{
+  "skill_id": "revops_renewals_handoff",
+  "generated_at": "2026-02-12T00:05:07.380158",
+  "num_cases": 9,
+  "test_cases": [
+    {
+      "inputs": {
+        "dealId": "i0e88",
+        "accountId": "8k6f61fv1nur4s7v6",
+        "handoffType": "renewal",
+        "priority": "standard"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "dealId": "h",
+        "accountId": "67hzravwte86gs",
+        "handoffType": "expansion",
+        "priority": "standard"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "dealId": "ewruf8"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "handoffType": "renewal"
+      },
+      "label": "missing_dealId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "dealId": 12345,
+        "handoffType": "new_customer"
+      },
+      "label": "invalid_type_dealId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "dealId": "4b4xppwtn2h",
+        "handoffType": "expansion",
+        "accountId": 12345
+      },
+      "label": "invalid_type_accountId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "dealId": "1bp7o4jy3omnxtc",
+        "priority": "standard",
+        "handoffType": 12345
+      },
+      "label": "invalid_type_handoffType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "dealId": "4depvxk8tadxd",
+        "accountId": "rk658ac8ve",
+        "priority": 12345
+      },
+      "label": "invalid_type_priority",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

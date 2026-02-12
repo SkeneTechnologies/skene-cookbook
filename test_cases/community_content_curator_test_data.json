@@ -1,0 +1,96 @@
+{
+  "skill_id": "community_content_curator",
+  "generated_at": "2026-02-11T22:18:28.671655",
+  "num_cases": 9,
+  "test_cases": [
+    {
+      "inputs": {
+        "contentSource": "0rrse63p63iw28",
+        "contentTypes": [
+          "we2ciy7ta6ice"
+        ],
+        "curationType": "social"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "contentSource": "b",
+        "timeRange": "30d",
+        "contentTypes": [
+          "p2afz1n7et9",
+          "h0u6q2n888048yfge",
+          "sqooub2"
+        ],
+        "curationType": "digest"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "contentSource": "yqv7p0lc61",
+        "contentTypes": [
+          "745",
+          "9x9u7c146",
+          "fba7gbaj"
+        ],
+        "curationType": "newsletter"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "timeRange": "24h",
+        "curationType": "newsletter"
+      },
+      "label": "missing_contentSource",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "contentSource": 12345,
+        "timeRange": "7d"
+      },
+      "label": "invalid_type_contentSource",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "contentSource": "2le5m5xyek",
+        "timeRange": 12345,
+        "curationType": "newsletter"
+      },
+      "label": "invalid_type_timeRange",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "contentSource": "1dy",
+        "timeRange": "7d",
+        "contentTypes": "not_an_array"
+      },
+      "label": "invalid_type_contentTypes",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "contentSource": "tc8340lj5n",
+        "contentTypes": [
+          "2",
+          "ns5dsylbbjw6q"
+        ],
+        "curationType": 12345
+      },
+      "label": "invalid_type_curationType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

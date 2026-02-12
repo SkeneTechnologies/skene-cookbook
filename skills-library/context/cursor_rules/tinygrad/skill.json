@@ -1,0 +1,35 @@
+{
+  "id": "cursor_rules/tinygrad",
+  "version": "1.0.0",
+  "name": "tinygrad",
+  "description": "This guide provides opinionated, actionable best practices for developing with tinygrad, focusing on lazy execution, performance, and code structure.",
+  "domain": "cursor_rules",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "cursor_rules",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "cursor": {
+      "globs": [
+        "**/*"
+      ]
+    },
+    "claude": {
+      "triggers": [
+        "help with tinygrad"
+      ]
+    },
+    "skeneflow": {}
+  },
+  "skipSchemaValidation": true
+}

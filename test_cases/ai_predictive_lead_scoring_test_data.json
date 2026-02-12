@@ -1,0 +1,383 @@
+{
+  "skill_id": "ai_predictive_lead_scoring",
+  "generated_at": "2026-02-12T00:05:03.493344",
+  "num_cases": 19,
+  "test_cases": [
+    {
+      "inputs": {
+        "lead_id": "test_z8ou0su8",
+        "lead_name": "Test Name huj2",
+        "company_name": "Test Name 330w",
+        "behavioral_data": {
+          "page_views": 582
+        },
+        "batch_mode": true,
+        "lead_ids": [
+          "9109mm4l5y6vgjbh",
+          "zbp74hvj7fc"
+        ]
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "lead_id": "test_1950joj9",
+        "lead_name": "Test Name 59hq",
+        "company_name": "Test Name 3tmb",
+        "lead_email": "user_4co0c@example.com",
+        "demographic_data": {
+          "title": "c8z33xonqritt47",
+          "seniority": "Unknown",
+          "department": "ni7v1puxnkkipaw3"
+        },
+        "intent_data": {
+          "pricing_page_views": 246,
+          "competitor_research": true
+        },
+        "lead_ids": [
+          "iq0n",
+          "60sgwrmh",
+          "ograr5rb4"
+        ],
+        "update_crm": false
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "lead_id": "test_xn9ey5nd",
+        "lead_name": "Test Name lbbl",
+        "company_name": "Test Name pqkv",
+        "lead_email": "user_l7ajg@example.com",
+        "firmographic_data": {
+          "company_size": 192,
+          "industry": "6ive11"
+        },
+        "demographic_data": {
+          "title": "kglot9suf58g2v",
+          "seniority": "Unknown"
+        },
+        "batch_mode": false,
+        "lead_ids": [
+          "gdqe4yatzrfo"
+        ]
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "lead_name": "Test Name sxlv",
+        "company_name": "Test Name kzvs",
+        "demographic_data": {
+          "title": "cjcr",
+          "department": "bhpjigm3e"
+        },
+        "engagement_data": {
+          "last_engagement_date": "2026-02-12T00:05:03.492768"
+        }
+      },
+      "label": "missing_lead_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "lead_id": "test_vk36ketk",
+        "company_name": "Test Name 8877",
+        "lead_email": "user_0habi@example.com",
+        "firmographic_data": {
+          "company_size": 426,
+          "industry": "y6q4ykx1ysh48l7r",
+          "revenue": 8165.64
+        },
+        "demographic_data": {
+          "title": "bpyjm",
+          "seniority": "C-Level",
+          "department": "p939t0"
+        },
+        "intent_data": {
+          "trial_started": true
+        },
+        "batch_mode": true,
+        "update_crm": false
+      },
+      "label": "missing_lead_name",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "lead_id": "test_hpfl1n1z",
+        "lead_name": "Test Name 24xm",
+        "lead_email": "user_evn51@example.com",
+        "intent_data": {
+          "demo_requested": false,
+          "trial_started": false
+        },
+        "batch_mode": true,
+        "lead_ids": [
+          "7",
+          "is5mxe0w87lq1g7c1xo",
+          "gwh7749k"
+        ],
+        "update_crm": false
+      },
+      "label": "missing_company_name",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "lead_id": 12345,
+        "lead_name": "Test Name 2jw6",
+        "company_name": "Test Name um0q",
+        "firmographic_data": {
+          "company_size": 852,
+          "industry": "u3th12"
+        },
+        "demographic_data": {
+          "title": "42hrl184",
+          "department": "od61a47wijahu"
+        },
+        "lead_ids": []
+      },
+      "label": "invalid_type_lead_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "lead_id": "test_hoqwqte0",
+        "lead_name": 12345,
+        "company_name": "Test Name 0ap4",
+        "behavioral_data": {
+          "content_downloads": 847
+        },
+        "update_crm": false
+      },
+      "label": "invalid_type_lead_name",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "lead_id": "test_1pa59b1i",
+        "lead_name": "Test Name 6ibm",
+        "company_name": "Test Name w913",
+        "lead_email": 12345,
+        "firmographic_data": {
+          "company_size": 506,
+          "industry": "0prnmkzfbh",
+          "revenue": 4319.19
+        },
+        "demographic_data": {
+          "title": "w1vgux5zmc",
+          "department": "k36sh4vo2vt1lnr93978"
+        },
+        "behavioral_data": {
+          "content_downloads": 939,
+          "session_count": 338,
+          "time_on_site": 625
+        },
+        "engagement_data": {
+          "email_opens": 538
+        },
+        "batch_mode": true,
+        "lead_ids": [
+          "r0dau3",
+          "pzaqnz6w72cgjtcwgenx"
+        ],
+        "update_crm": false
+      },
+      "label": "invalid_type_lead_email",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "lead_id": "test_8eee2fex",
+        "lead_name": "Test Name wdg5",
+        "company_name": 12345,
+        "engagement_data": {
+          "email_clicks": 915,
+          "event_attendance": 520,
+          "last_engagement_date": "2026-02-12T00:05:03.492940"
+        },
+        "intent_data": {
+          "trial_started": true,
+          "competitor_research": false
+        },
+        "update_crm": false
+      },
+      "label": "invalid_type_company_name",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "lead_id": "test_wmc8n5zf",
+        "lead_name": "Test Name 36oq",
+        "company_name": "Test Name b310",
+        "lead_email": "user_26w32@example.com",
+        "firmographic_data": "not_an_object",
+        "demographic_data": {
+          "title": "8vq78u"
+        },
+        "lead_ids": [],
+        "update_crm": false
+      },
+      "label": "invalid_type_firmographic_data",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "lead_id": "test_ttzmnfl1",
+        "lead_name": "Test Name bxmq",
+        "company_name": "Test Name su71",
+        "lead_email": "user_e1heg@example.com",
+        "firmographic_data": {
+          "company_size": 340,
+          "industry": "awr3v47na"
+        },
+        "engagement_data": {
+          "email_clicks": 290,
+          "event_attendance": 643
+        },
+        "intent_data": {
+          "pricing_page_views": 319,
+          "trial_started": true,
+          "competitor_research": true
+        },
+        "batch_mode": true,
+        "update_crm": false,
+        "demographic_data": "not_an_object"
+      },
+      "label": "invalid_type_demographic_data",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "lead_id": "test_10l8165e",
+        "lead_name": "Test Name 231e",
+        "company_name": "Test Name m1zx",
+        "lead_email": "user_37spa@example.com",
+        "firmographic_data": {
+          "company_size": 728,
+          "industry": "1smurosicg",
+          "revenue": 3543.78
+        },
+        "intent_data": {
+          "demo_requested": true
+        },
+        "lead_ids": [
+          "p5rjfwp6rw15d9v3jq92",
+          "f",
+          "dmaqyjd8bihtiw6n6"
+        ],
+        "behavioral_data": "not_an_object"
+      },
+      "label": "invalid_type_behavioral_data",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "lead_id": "test_mns2mlhf",
+        "lead_name": "Test Name v4du",
+        "company_name": "Test Name 0wpe",
+        "firmographic_data": {
+          "company_size": 508,
+          "industry": "apj9hg0",
+          "location": "ivf3pdikxikc"
+        },
+        "behavioral_data": {},
+        "lead_ids": [
+          "ntgijd8vr562r",
+          "fvu"
+        ],
+        "engagement_data": "not_an_object"
+      },
+      "label": "invalid_type_engagement_data",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "lead_id": "test_xys8kgqf",
+        "lead_name": "Test Name qu2y",
+        "company_name": "Test Name 6zo6",
+        "batch_mode": false,
+        "intent_data": "not_an_object"
+      },
+      "label": "invalid_type_intent_data",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "lead_id": "test_uhcx7etr",
+        "lead_name": "Test Name 0pfb",
+        "company_name": "Test Name pea3",
+        "demographic_data": {
+          "title": "bebbloyepkak6svnob"
+        },
+        "engagement_data": {
+          "last_engagement_date": "2026-02-12T00:05:03.493091"
+        },
+        "intent_data": {
+          "pricing_page_views": 853,
+          "demo_requested": true
+        },
+        "batch_mode": "yes"
+      },
+      "label": "invalid_type_batch_mode",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "lead_id": "test_xkb8wyg1",
+        "lead_name": "Test Name qbgm",
+        "company_name": "Test Name 3mwk",
+        "lead_email": "user_khkru@example.com",
+        "engagement_data": {
+          "email_opens": 334
+        },
+        "lead_ids": "not_an_array",
+        "update_crm": false
+      },
+      "label": "invalid_type_lead_ids",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "lead_id": "test_eoth8a7h",
+        "lead_name": "Test Name d6l7",
+        "company_name": "Test Name c2tg",
+        "firmographic_data": {
+          "company_size": 355,
+          "industry": "qcexs0ycmqzo",
+          "revenue": 4264.65
+        },
+        "demographic_data": {
+          "title": "jdm5ee"
+        },
+        "behavioral_data": {
+          "page_views": 929,
+          "content_downloads": 420,
+          "session_count": 200
+        },
+        "engagement_data": {
+          "email_opens": 32,
+          "email_clicks": 539,
+          "event_attendance": 741
+        },
+        "intent_data": {
+          "trial_started": true,
+          "competitor_research": false
+        },
+        "batch_mode": true,
+        "update_crm": "yes"
+      },
+      "label": "invalid_type_update_crm",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

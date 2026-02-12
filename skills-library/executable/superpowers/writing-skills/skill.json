@@ -1,0 +1,332 @@
+{
+  "id": "superpowers/writing-skills",
+  "version": "1.0.0",
+  "name": "writing-skills",
+  "description": "Use when creating new skills, editing existing skills, or verifying skills work before deployment",
+  "domain": "superpowers",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "skillName": {
+        "type": "string",
+        "description": "Name of the skill using letters, numbers, and hyphens only (no parentheses or special characters)",
+        "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+      },
+      "skillType": {
+        "type": "string",
+        "enum": [
+          "technique",
+          "pattern",
+          "reference",
+          "discipline"
+        ],
+        "description": "Type of skill being created or modified"
+      },
+      "operation": {
+        "type": "string",
+        "enum": [
+          "create",
+          "edit",
+          "verify"
+        ],
+        "description": "Operation to perform on the skill"
+      },
+      "description": {
+        "type": "string",
+        "description": "Third-person description starting with 'Use when...' that describes ONLY triggering conditions (max 1024 characters)",
+        "maxLength": 1024
+      },
+      "targetDomain": {
+        "type": "string",
+        "description": "Domain or namespace for the skill (e.g., 'superpowers', 'testing', 'debugging')"
+      },
+      "pressureScenarios": {
+        "type": "array",
+        "description": "Pressure scenarios for testing the skill (RED phase)",
+        "items": {
+          "type": "object",
+          "properties": {
+            "scenarioDescription": {
+              "type": "string",
+              "description": "Description of the pressure scenario"
+            },
+            "pressureTypes": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "time",
+                  "sunk-cost",
+                  "authority",
+                  "exhaustion",
+                  "complexity"
+                ]
+              },
+              "description": "Types of pressure combined in this scenario"
+            },
+            "withSkill": {
+              "type": "boolean",
+              "description": "Whether this test run includes the skill (false for baseline/RED, true for GREEN/REFACTOR)"
+            }
+          },
+          "required": [
+            "scenarioDescription",
+            "pressureTypes",
+            "withSkill"
+          ]
+        }
+      },
+      "baselineBehavior": {
+        "type": "object",
+        "description": "Documented agent behavior without the skill (RED phase results)",
+        "properties": {
+          "rationalizations": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Verbatim rationalizations agents used to violate rules"
+          },
+          "failurePatterns": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Patterns in how agents failed or avoided the desired behavior"
+          }
+        }
+      },
+      "existingSkillContent": {
+        "type": "string",
+        "description": "Current content of SKILL.md (for edit operations)"
+      },
+      "requiredBackgroundSkills": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Skills that must be understood before using this skill"
+      }
+    },
+    "required": [
+      "skillName",
+      "skillType",
+      "operation"
+    ],
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "skillContent": {
+        "type": "string",
+        "description": "Complete SKILL.md content with YAML frontmatter"
+      },
+      "supportingFiles": {
+        "type": "array",
+        "description": "Additional files needed (tools, references, examples)",
+        "items": {
+          "type": "object",
+          "properties": {
+            "filename": {
+              "type": "string",
+              "description": "Name of the supporting file"
+            },
+            "content": {
+              "type": "string",
+              "description": "Content of the supporting file"
+            },
+            "purpose": {
+              "type": "string",
+              "enum": [
+                "reusable-tool",
+                "heavy-reference",
+                "example"
+              ],
+              "description": "Purpose of this supporting file"
+            }
+          },
+          "required": [
+            "filename",
+            "content",
+            "purpose"
+          ]
+        }
+      },
+      "testResults": {
+        "type": "object",
+        "description": "Results from testing the skill through RED-GREEN-REFACTOR cycle",
+        "properties": {
+          "redPhase": {
+            "type": "object",
+            "properties": {
+              "baselineViolations": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Documented violations without the skill"
+              },
+              "rationalizations": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Verbatim rationalizations from baseline testing"
+              }
+            }
+          },
+          "greenPhase": {
+            "type": "object",
+            "properties": {
+              "complianceAchieved": {
+                "type": "boolean",
+                "description": "Whether agents complied with skill present"
+              },
+              "remainingIssues": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Issues that still occur with initial skill version"
+              }
+            }
+          },
+          "refactorPhase": {
+            "type": "object",
+            "properties": {
+              "loopholesClosed": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Specific loopholes identified and closed"
+              },
+              "iterationCount": {
+                "type": "integer",
+                "description": "Number of refactor iterations performed"
+              },
+              "bulletproof": {
+                "type": "boolean",
+                "description": "Whether skill is bulletproof against rationalizations"
+              }
+            }
+          }
+        }
+      },
+      "deploymentChecklist": {
+        "type": "object",
+        "description": "Status of deployment checklist items",
+        "properties": {
+          "redPhaseComplete": {
+            "type": "boolean"
+          },
+          "greenPhaseComplete": {
+            "type": "boolean"
+          },
+          "refactorPhaseComplete": {
+            "type": "boolean"
+          },
+          "qualityChecksComplete": {
+            "type": "boolean"
+          },
+          "readyForDeployment": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "redPhaseComplete",
+          "greenPhaseComplete",
+          "refactorPhaseComplete",
+          "qualityChecksComplete",
+          "readyForDeployment"
+        ]
+      },
+      "csoOptimizations": {
+        "type": "object",
+        "description": "Claude Search Optimization metrics and suggestions",
+        "properties": {
+          "wordCount": {
+            "type": "integer",
+            "description": "Total word count of SKILL.md"
+          },
+          "descriptionLength": {
+            "type": "integer",
+            "description": "Character count of description field"
+          },
+          "keywordsCovered": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Key search terms included in the skill"
+          },
+          "withinTargetLength": {
+            "type": "boolean",
+            "description": "Whether skill meets target word count for its frequency tier"
+          }
+        }
+      },
+      "warnings": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Warnings about potential issues or violations of skill-writing principles"
+      },
+      "nextSteps": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Required next steps before skill is complete"
+      }
+    },
+    "required": [
+      "skillContent",
+      "deploymentChecklist",
+      "nextSteps"
+    ],
+    "additionalProperties": true
+  },
+  "temperature": 0,
+  "tags": [
+    "superpowers",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with writing skills",
+        "creating new skills, editing existing skills, or verifying skills work before deployment"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "security_controls": {
+    "delete_operations": {
+      "soft_delete": true,
+      "retention_period_days": 30,
+      "undelete_capable": true,
+      "backup_before_delete": true,
+      "multi_party_approval": true,
+      "confirmation_required": {
+        "enabled": true,
+        "show_impact": true,
+        "require_reason": true
+      }
+    }
+  },
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.92
+  }
+}

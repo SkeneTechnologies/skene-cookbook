@@ -1,0 +1,69 @@
+{
+  "skill_id": "mon_invoice_explainer",
+  "generated_at": "2026-02-12T00:05:07.748150",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "invoice_id": "kpb",
+        "question": "ol496crz5flkcg4p5"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "invoice_id": "0pj",
+        "question": "fnvn9vd"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "invoice_id": "7tvrr",
+        "detail_level": "detailed"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "detail_level": "line_by_line"
+      },
+      "label": "missing_invoice_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "invoice_id": 12345,
+        "question": "wpec6i",
+        "detail_level": "summary"
+      },
+      "label": "invalid_type_invoice_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "invoice_id": "l3cyi",
+        "question": 12345
+      },
+      "label": "invalid_type_question",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "invoice_id": "u9809",
+        "question": "i3rbwv6xffjkuzaw7ys",
+        "detail_level": 12345
+      },
+      "label": "invalid_type_detail_level",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

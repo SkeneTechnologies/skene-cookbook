@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2024-2026 Skene Technologies
+
 """
 Intelligent Skill Chaining - Blueprint Generator
 Analyzes I/O compatibility and generates workflow blueprints

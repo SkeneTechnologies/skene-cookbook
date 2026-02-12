@@ -1,0 +1,223 @@
+{
+  "id": "superpowers/executing-plans",
+  "version": "1.0.0",
+  "name": "executing-plans",
+  "description": "Use when you have a written implementation plan to execute in a separate session with review checkpoints",
+  "domain": "superpowers",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "plan_file_path": {
+        "type": "string",
+        "description": "Path to the implementation plan file to execute",
+        "pattern": ".*\\.(md|txt|plan)$"
+      },
+      "batch_size": {
+        "type": "integer",
+        "description": "Number of tasks to execute in each batch before review checkpoint",
+        "default": 3,
+        "minimum": 1,
+        "maximum": 10
+      },
+      "worktree_branch": {
+        "type": "string",
+        "description": "Git worktree branch name where implementation will occur (from using-git-worktrees skill)",
+        "pattern": "^(?!main$|master$).*"
+      },
+      "start_from_task": {
+        "type": "integer",
+        "description": "Task number to start or resume execution from (for continuing interrupted work)",
+        "minimum": 1,
+        "default": 1
+      },
+      "skip_initial_review": {
+        "type": "boolean",
+        "description": "Skip critical review of plan if already reviewed in previous session",
+        "default": false
+      }
+    },
+    "required": [
+      "plan_file_path",
+      "worktree_branch"
+    ],
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "execution_status": {
+        "type": "string",
+        "enum": [
+          "completed",
+          "checkpoint_reached",
+          "blocked",
+          "failed",
+          "requires_review"
+        ],
+        "description": "Current status of plan execution"
+      },
+      "tasks_completed": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "task_number": {
+              "type": "integer"
+            },
+            "task_title": {
+              "type": "string"
+            },
+            "verification_result": {
+              "type": "string",
+              "enum": [
+                "passed",
+                "failed",
+                "skipped",
+                "not_applicable"
+              ]
+            },
+            "verification_output": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "task_number",
+            "task_title",
+            "verification_result"
+          ]
+        },
+        "description": "List of tasks completed in current batch"
+      },
+      "current_batch": {
+        "type": "integer",
+        "description": "Batch number just completed",
+        "minimum": 1
+      },
+      "total_tasks": {
+        "type": "integer",
+        "description": "Total number of tasks in the plan"
+      },
+      "tasks_remaining": {
+        "type": "integer",
+        "description": "Number of tasks still to be executed"
+      },
+      "blockers": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "task_number": {
+              "type": "integer"
+            },
+            "blocker_type": {
+              "type": "string",
+              "enum": [
+                "missing_dependency",
+                "test_failure",
+                "unclear_instruction",
+                "verification_failed",
+                "other"
+              ]
+            },
+            "description": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "blocker_type",
+            "description"
+          ]
+        },
+        "description": "List of blockers encountered during execution"
+      },
+      "plan_concerns": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Critical concerns identified during plan review"
+      },
+      "next_action_required": {
+        "type": "string",
+        "enum": [
+          "provide_feedback",
+          "resolve_blockers",
+          "continue_next_batch",
+          "finish_development_branch",
+          "none"
+        ],
+        "description": "What action is needed to proceed"
+      },
+      "worktree_branch": {
+        "type": "string",
+        "description": "Branch where implementation was performed"
+      },
+      "finishing_skill_invoked": {
+        "type": "boolean",
+        "description": "Whether finishing-a-development-branch skill was invoked for completion",
+        "default": false
+      }
+    },
+    "required": [
+      "execution_status",
+      "tasks_completed",
+      "current_batch",
+      "total_tasks",
+      "tasks_remaining",
+      "next_action_required",
+      "worktree_branch"
+    ]
+  },
+  "temperature": 0,
+  "tags": [
+    "superpowers",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with executing plans",
+        "you have a written implementation plan to execute in a separate session with review checkpoints"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "security_controls": {
+    "execution_environment": {
+      "type": "sandboxed_container",
+      "resource_limits": {
+        "cpu_cores": 1,
+        "memory_mb": 512,
+        "timeout_seconds": 30,
+        "disk_mb": 100
+      },
+      "security": {
+        "network_access": false,
+        "filesystem": "read_only",
+        "user": "non_root",
+        "allowed_commands": [
+          "node",
+          "python3",
+          "npm"
+        ],
+        "blocked_syscalls": [
+          "exec",
+          "fork",
+          "kill"
+        ]
+      }
+    }
+  },
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.92
+  }
+}

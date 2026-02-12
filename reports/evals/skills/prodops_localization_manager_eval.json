@@ -1,0 +1,64 @@
+{
+  "skill_id": "prodops_localization_manager",
+  "session_id": "batch_eval",
+  "summary": {
+    "skill_id": "prodops_localization_manager",
+    "total_executions": 3,
+    "success_rate": 1.0,
+    "validation_pass_rate": 1.0,
+    "auto_act_rate": 1.0,
+    "latency": {
+      "avg_ms": 39.92,
+      "p50_ms": 0.31,
+      "p95_ms": 119.21,
+      "p99_ms": 119.21,
+      "max_ms": 119.21,
+      "min_ms": 0.24
+    },
+    "decisions": {
+      "auto_act": 3
+    },
+    "errors": {}
+  },
+  "records": [
+    {
+      "timestamp": 1770847502.314223,
+      "duration_ms": 119.20690536499023,
+      "success": true,
+      "validation_passed": true,
+      "decision_type": "auto_act",
+      "error_type": null,
+      "metadata": {
+        "confidence": 0.95,
+        "risk_level": "Medium",
+        "trace_id": "fed47a7cc3c248eb"
+      }
+    },
+    {
+      "timestamp": 1770847502.314477,
+      "duration_ms": 0.24008750915527344,
+      "success": true,
+      "validation_passed": true,
+      "decision_type": "auto_act",
+      "error_type": null,
+      "metadata": {
+        "confidence": 0.95,
+        "risk_level": "Medium",
+        "trace_id": "fed47a7cc3c248eb"
+      }
+    },
+    {
+      "timestamp": 1770847502.314789,
+      "duration_ms": 0.30517578125,
+      "success": true,
+      "validation_passed": true,
+      "decision_type": "auto_act",
+      "error_type": null,
+      "metadata": {
+        "confidence": 0.95,
+        "risk_level": "Medium",
+        "trace_id": "fed47a7cc3c248eb"
+      }
+    }
+  ]
+}

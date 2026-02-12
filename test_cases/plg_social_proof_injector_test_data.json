@@ -1,0 +1,68 @@
+{
+  "skill_id": "plg_social_proof_injector",
+  "generated_at": "2026-02-12T00:05:12.511975",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "userId": "nazwujj",
+        "context": "28slgiewhamunov",
+        "proofType": "activity"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "userId": "32j2sl0yasxy1",
+        "context": "3mtdv4xg"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "userId": "txtc857u5t",
+        "proofType": "testimonial"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {},
+      "label": "missing_userId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": 12345,
+        "context": "0mog6gu43ni1q",
+        "proofType": "stats"
+      },
+      "label": "invalid_type_userId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": "q2egf97a1svx2tdlcaz",
+        "context": 12345,
+        "proofType": "testimonial"
+      },
+      "label": "invalid_type_context",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": "j8qjvsc999dqka1",
+        "proofType": 12345
+      },
+      "label": "invalid_type_proofType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

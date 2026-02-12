@@ -1,0 +1,127 @@
+{
+  "skill_id": "people_perf_review_generator",
+  "generated_at": "2026-02-11T22:18:31.413667",
+  "num_cases": 12,
+  "test_cases": [
+    {
+      "inputs": {
+        "employeeId": "vc",
+        "reviewPeriod": "0l46mhml",
+        "includePeerFeedback": false
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "employeeId": "gzi5",
+        "reviewPeriod": "k9huqgzaiy0g6dst",
+        "includeGoals": true,
+        "includePeerFeedback": true
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "employeeId": "7jzqxheqra",
+        "reviewPeriod": "awyohlv5",
+        "reviewType": "annual",
+        "includeGoals": false,
+        "includePeerFeedback": false,
+        "includeMetrics": false
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "reviewPeriod": "rxcriuyeaf",
+        "includeGoals": true,
+        "includePeerFeedback": true
+      },
+      "label": "missing_employeeId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "employeeId": "giwa4",
+        "includeGoals": false
+      },
+      "label": "missing_reviewPeriod",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "employeeId": 12345,
+        "reviewPeriod": "e",
+        "includeGoals": true,
+        "includePeerFeedback": true,
+        "includeMetrics": false
+      },
+      "label": "invalid_type_employeeId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "employeeId": "ccso58odnrv917d76xaj",
+        "reviewPeriod": 12345,
+        "reviewType": "annual",
+        "includeGoals": true,
+        "includePeerFeedback": false
+      },
+      "label": "invalid_type_reviewPeriod",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "employeeId": "4b7as6grlq6",
+        "reviewPeriod": "tog2ipa0e7qv4pk",
+        "reviewType": 12345,
+        "includeGoals": true,
+        "includePeerFeedback": false
+      },
+      "label": "invalid_type_reviewType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "employeeId": "1fczuio",
+        "reviewPeriod": "trtkk",
+        "includePeerFeedback": false,
+        "includeGoals": "yes"
+      },
+      "label": "invalid_type_includeGoals",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "employeeId": "2twuotllgs8r2qi3",
+        "reviewPeriod": "fb0y5tauxobd",
+        "reviewType": "annual",
+        "includeGoals": false,
+        "includePeerFeedback": "yes",
+        "includeMetrics": false
+      },
+      "label": "invalid_type_includePeerFeedback",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "employeeId": "vwj1khke49rvpxv3c",
+        "reviewPeriod": "q7y1cedx3v6xprmr",
+        "reviewType": "semi_annual",
+        "includeGoals": true,
+        "includePeerFeedback": false,
+        "includeMetrics": "yes"
+      },
+      "label": "invalid_type_includeMetrics",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "skill_id": "community_swag_manager",
+  "generated_at": "2026-02-11T22:18:28.705644",
+  "num_cases": 10,
+  "test_cases": [
+    {
+      "inputs": {
+        "requestType": "contest",
+        "recipientId": "test_70khqeu3",
+        "items": [],
+        "eventId": "test_ldc9dc4f"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "requestType": "event",
+        "items": []
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "requestType": "contest",
+        "recipientId": "test_8z2xzr9y",
+        "items": [],
+        "eventId": "test_w48tu4n2"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "items": [
+          {},
+          {},
+          {}
+        ]
+      },
+      "label": "missing_requestType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "requestType": 12345
+      },
+      "label": "invalid_type_requestType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "requestType": "event",
+        "recipientId": 12345,
+        "reason": "hmzxjqp60e"
+      },
+      "label": "invalid_type_recipientId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "requestType": "contest",
+        "recipientId": "test_4zgqq3g0",
+        "items": "not_an_array",
+        "reason": "tb1"
+      },
+      "label": "invalid_type_items",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "requestType": "contest",
+        "recipientId": "test_df4oppo5",
+        "eventId": 12345
+      },
+      "label": "invalid_type_eventId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "requestType": "ambassador",
+        "eventId": "test_72fgj8aw",
+        "reason": 12345
+      },
+      "label": "invalid_type_reason",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

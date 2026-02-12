@@ -1,0 +1,121 @@
+{
+  "skill_id": "compliance_breach_response",
+  "generated_at": "2026-02-11T22:18:28.250523",
+  "num_cases": 11,
+  "test_cases": [
+    {
+      "inputs": {
+        "action": "assess",
+        "incidentId": "test_pe728qbs"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "action": "close",
+        "incidentId": "test_dtnt2m1h",
+        "breachType": "ransomware",
+        "dataTypes": [
+          "wj6ywz",
+          "51asl0sft"
+        ],
+        "estimatedRecords": 3463.24
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "action": "close",
+        "incidentId": "test_0yjpexwd",
+        "dataTypes": [
+          "d",
+          "gmx56bdd1b",
+          "tytsnfbmaj8"
+        ]
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "incidentId": "test_8iofrv48",
+        "breachType": "unauthorized_access",
+        "dataTypes": []
+      },
+      "label": "missing_action",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": "contain",
+        "breachType": "disclosure",
+        "estimatedRecords": 6468.23
+      },
+      "label": "missing_incidentId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": 12345,
+        "incidentId": "test_vke8rl0v",
+        "breachType": "ransomware",
+        "dataTypes": [
+          "o16xon4w",
+          "0j5hp7ljfr8ot"
+        ],
+        "estimatedRecords": 8771.92
+      },
+      "label": "invalid_type_action",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": "assess",
+        "incidentId": 12345,
+        "breachType": "ransomware",
+        "dataTypes": [
+          "t",
+          "bicddqh1t1xpwtbj"
+        ],
+        "estimatedRecords": 2875.41
+      },
+      "label": "invalid_type_incidentId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": "close",
+        "incidentId": "test_z7v3edde",
+        "breachType": 12345
+      },
+      "label": "invalid_type_breachType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": "notify",
+        "incidentId": "test_bm0j8ga0",
+        "breachType": "loss",
+        "dataTypes": "not_an_array"
+      },
+      "label": "invalid_type_dataTypes",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": "assess",
+        "incidentId": "test_xki3427s",
+        "estimatedRecords": "not_a_number"
+      },
+      "label": "invalid_type_estimatedRecords",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

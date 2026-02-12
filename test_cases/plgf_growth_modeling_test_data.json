@@ -1,0 +1,68 @@
+{
+  "skill_id": "plgf_growth_modeling",
+  "generated_at": "2026-02-11T22:14:32.835719",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "modelType": "unit_economics",
+        "timeHorizon": "multi_year",
+        "currentMetrics": {}
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "modelType": "s_curve",
+        "currentMetrics": {}
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "modelType": "sensitivity",
+        "currentMetrics": {}
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "timeHorizon": "annual"
+      },
+      "label": "missing_modelType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "modelType": 12345
+      },
+      "label": "invalid_type_modelType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "modelType": "s_curve",
+        "timeHorizon": 12345
+      },
+      "label": "invalid_type_timeHorizon",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "modelType": "sensitivity",
+        "timeHorizon": "quarterly",
+        "currentMetrics": "not_an_object"
+      },
+      "label": "invalid_type_currentMetrics",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

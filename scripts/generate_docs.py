@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2024-2026 Skene Technologies
+
 """
 Documentation Generator for Skills Directory
 Generates GitHub-optimized markdown documentation with Mermaid diagrams

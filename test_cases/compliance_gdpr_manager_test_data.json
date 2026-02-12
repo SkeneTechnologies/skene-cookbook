@@ -1,0 +1,108 @@
+{
+  "skill_id": "compliance_gdpr_manager",
+  "generated_at": "2026-02-11T22:18:27.674140",
+  "num_cases": 11,
+  "test_cases": [
+    {
+      "inputs": {
+        "requestType": "rectification",
+        "subjectId": "test_cnoicx1e"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "requestType": "objection",
+        "subjectId": "test_dvs4w379",
+        "subjectEmail": "user_h3a2n@example.com",
+        "requestDetails": "dc8ybltato2vk22i"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "requestType": "objection",
+        "subjectId": "test_ii603os7",
+        "requestDetails": "30co6",
+        "urgency": "urgent"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "subjectId": "test_wvkb8rsd",
+        "requestDetails": "p9qdt484f",
+        "urgency": "standard"
+      },
+      "label": "missing_requestType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "requestType": "erasure",
+        "subjectEmail": "user_y856h@example.com",
+        "requestDetails": "4w"
+      },
+      "label": "missing_subjectId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "requestType": 12345,
+        "subjectId": "test_0rjp3lr0",
+        "requestDetails": "kpb",
+        "urgency": "urgent"
+      },
+      "label": "invalid_type_requestType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "requestType": "rectification",
+        "subjectId": 12345,
+        "subjectEmail": "user_ug9or@example.com",
+        "urgency": "urgent"
+      },
+      "label": "invalid_type_subjectId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "requestType": "restriction",
+        "subjectId": "test_boy2kd55",
+        "subjectEmail": 12345,
+        "urgency": "standard"
+      },
+      "label": "invalid_type_subjectEmail",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "requestType": "portability",
+        "subjectId": "test_npu52250",
+        "subjectEmail": "user_nfiej@example.com",
+        "requestDetails": 12345,
+        "urgency": "urgent"
+      },
+      "label": "invalid_type_requestDetails",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "requestType": "rectification",
+        "subjectId": "test_qvf811x4",
+        "urgency": 12345
+      },
+      "label": "invalid_type_urgency",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

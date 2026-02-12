@@ -1,0 +1,90 @@
+{
+  "skill_id": "plgf_paywall_upgrade_cro",
+  "generated_at": "2026-02-11T22:14:32.516983",
+  "num_cases": 10,
+  "test_cases": [
+    {
+      "inputs": {
+        "userId": "2gt3yin",
+        "paywallType": "trial_expiry"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "userId": "ljyyjrjk7nrrkz5",
+        "paywallType": "feature_lock",
+        "context": "knc",
+        "platform": "web"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "userId": "bwm2d",
+        "paywallType": "trial_expiry",
+        "context": "92e"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "paywallType": "premium_upsell"
+      },
+      "label": "missing_userId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": "9ttr8tbxp7sevu0w1s3",
+        "context": "hssqafrpulnfunzh0"
+      },
+      "label": "missing_paywallType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": 12345,
+        "paywallType": "trial_expiry",
+        "context": "kmzrvlv"
+      },
+      "label": "invalid_type_userId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": "1g5trjkiz1aojek",
+        "paywallType": 12345,
+        "platform": "web"
+      },
+      "label": "invalid_type_paywallType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": "uswzekbw",
+        "paywallType": "premium_upsell",
+        "context": 12345
+      },
+      "label": "invalid_type_context",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": "m8csbavnukm6k4hfotcs",
+        "paywallType": "premium_upsell",
+        "platform": 12345
+      },
+      "label": "invalid_type_platform",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

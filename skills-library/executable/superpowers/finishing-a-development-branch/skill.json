@@ -1,0 +1,177 @@
+{
+  "id": "superpowers/finishing-a-development-branch",
+  "version": "1.0.0",
+  "name": "finishing-a-development-branch",
+  "description": "Use when implementation is complete, all tests pass, and you need to decide how to integrate the work - guides completion of development work by presenting structured options for merge, PR, or cleanup",
+  "domain": "superpowers",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "feature_branch": {
+        "type": "string",
+        "description": "Name of the feature/development branch to finish",
+        "pattern": "^[a-zA-Z0-9/_-]+$"
+      },
+      "base_branch": {
+        "type": "string",
+        "description": "Base branch to merge back to (e.g., main, master, develop)",
+        "default": "main",
+        "pattern": "^[a-zA-Z0-9/_-]+$"
+      },
+      "test_command": {
+        "type": "string",
+        "description": "Command to run tests (e.g., 'npm test', 'cargo test', 'pytest')",
+        "examples": [
+          "npm test",
+          "cargo test",
+          "pytest",
+          "go test ./..."
+        ]
+      },
+      "worktree_path": {
+        "type": "string",
+        "description": "Path to the git worktree if using worktrees",
+        "format": "uri-reference"
+      },
+      "skip_test_verification": {
+        "type": "boolean",
+        "description": "Skip initial test verification (not recommended)",
+        "default": false
+      }
+    },
+    "required": [
+      "feature_branch",
+      "test_command"
+    ],
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "action_taken": {
+        "type": "string",
+        "enum": [
+          "merged_locally",
+          "pr_created",
+          "kept_as_is",
+          "discarded",
+          "tests_failed"
+        ],
+        "description": "The completion action that was executed"
+      },
+      "tests_passed": {
+        "type": "boolean",
+        "description": "Whether tests passed during verification"
+      },
+      "test_failures": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "List of test failures if tests did not pass"
+      },
+      "feature_branch": {
+        "type": "string",
+        "description": "Name of the feature branch that was processed"
+      },
+      "base_branch": {
+        "type": "string",
+        "description": "Base branch used for merge or comparison"
+      },
+      "branch_deleted": {
+        "type": "boolean",
+        "description": "Whether the feature branch was deleted"
+      },
+      "worktree_removed": {
+        "type": "boolean",
+        "description": "Whether the worktree was cleaned up"
+      },
+      "worktree_path": {
+        "type": "string",
+        "description": "Path to worktree that was removed or kept",
+        "format": "uri-reference"
+      },
+      "pr_url": {
+        "type": "string",
+        "description": "URL of created pull request (if action_taken is pr_created)",
+        "format": "uri"
+      },
+      "pr_number": {
+        "type": "integer",
+        "description": "Pull request number (if action_taken is pr_created)"
+      },
+      "commits_affected": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "sha": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{7,40}$"
+            },
+            "message": {
+              "type": "string"
+            }
+          }
+        },
+        "description": "List of commits that were merged or discarded"
+      },
+      "merge_commit": {
+        "type": "string",
+        "description": "SHA of merge commit (if action_taken is merged_locally)",
+        "pattern": "^[a-f0-9]{7,40}$"
+      },
+      "message": {
+        "type": "string",
+        "description": "Human-readable summary of the completion action"
+      }
+    },
+    "required": [
+      "action_taken",
+      "tests_passed",
+      "feature_branch",
+      "message"
+    ],
+    "additionalProperties": true
+  },
+  "temperature": 0,
+  "tags": [
+    "superpowers",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with finishing a development branch",
+        "implementation is complete, all tests pass, and you need to decide how to integrate the work - guides completion of development work by presenting structured options for merge, pr, or cleanup"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "security_controls": {
+    "delete_operations": {
+      "soft_delete": true,
+      "retention_period_days": 30,
+      "undelete_capable": true,
+      "backup_before_delete": true,
+      "multi_party_approval": true,
+      "confirmation_required": {
+        "enabled": true,
+        "show_impact": true,
+        "require_reason": true
+      }
+    }
+  },
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.92
+  }
+}

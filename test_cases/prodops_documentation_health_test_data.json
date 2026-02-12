@@ -1,0 +1,95 @@
+{
+  "skill_id": "prodops_documentation_health",
+  "generated_at": "2026-02-12T00:05:01.535408",
+  "num_cases": 9,
+  "test_cases": [
+    {
+      "inputs": {
+        "docsBaseUrl": "https://example.com/y8q3undv",
+        "repoPath": "fpt0n17"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "docsBaseUrl": "https://example.com/k28p2pko",
+        "repoPath": "51wjo",
+        "features": []
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "docsBaseUrl": "https://example.com/3m9ylbl3",
+        "repoPath": "ndbsb48ylj35b",
+        "features": [
+          "x7sx4tuax774f",
+          "2",
+          "dl1tc9u16pl2cfi7y6w"
+        ],
+        "freshnessThreshold": 9419.72
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "features": [
+          "a91goihu00yzzt",
+          "b4waldswshhd0u"
+        ],
+        "freshnessThreshold": 9058.37
+      },
+      "label": "missing_docsBaseUrl",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "docsBaseUrl": 12345
+      },
+      "label": "invalid_type_docsBaseUrl",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "docsBaseUrl": "https://example.com/0ezly3m4",
+        "repoPath": 12345,
+        "features": [
+          "bt3rt8id3akh5lcwr7",
+          "hdgz"
+        ],
+        "freshnessThreshold": 5038.7
+      },
+      "label": "invalid_type_repoPath",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "docsBaseUrl": "https://example.com/uytb4iqv",
+        "features": "not_an_array"
+      },
+      "label": "invalid_type_features",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "docsBaseUrl": "https://example.com/bjiako1o",
+        "features": [
+          "4u72yasx3rv3vhnj1te1",
+          "qxft34n6tidboq21t",
+          "09yfxs0ohmlr0pd4v19"
+        ],
+        "freshnessThreshold": "not_a_number"
+      },
+      "label": "invalid_type_freshnessThreshold",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

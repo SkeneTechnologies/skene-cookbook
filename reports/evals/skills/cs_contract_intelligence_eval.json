@@ -1,0 +1,64 @@
+{
+  "skill_id": "cs_contract_intelligence",
+  "session_id": "batch_eval",
+  "summary": {
+    "skill_id": "cs_contract_intelligence",
+    "total_executions": 3,
+    "success_rate": 1.0,
+    "validation_pass_rate": 1.0,
+    "auto_act_rate": 1.0,
+    "latency": {
+      "avg_ms": 217.27,
+      "p50_ms": 0.24,
+      "p95_ms": 651.35,
+      "p99_ms": 651.35,
+      "max_ms": 651.35,
+      "min_ms": 0.24
+    },
+    "decisions": {
+      "auto_act": 3
+    },
+    "errors": {}
+  },
+  "records": [
+    {
+      "timestamp": 1770847501.4061382,
+      "duration_ms": 651.3478755950928,
+      "success": true,
+      "validation_passed": true,
+      "decision_type": "auto_act",
+      "error_type": null,
+      "metadata": {
+        "confidence": 0.95,
+        "risk_level": "High",
+        "trace_id": "30e18509868e4251"
+      }
+    },
+    {
+      "timestamp": 1770847501.406383,
+      "duration_ms": 0.23603439331054688,
+      "success": true,
+      "validation_passed": true,
+      "decision_type": "auto_act",
+      "error_type": null,
+      "metadata": {
+        "confidence": 0.95,
+        "risk_level": "High",
+        "trace_id": "30e18509868e4251"
+      }
+    },
+    {
+      "timestamp": 1770847501.4066272,
+      "duration_ms": 0.23698806762695312,
+      "success": true,
+      "validation_passed": true,
+      "decision_type": "auto_act",
+      "error_type": null,
+      "metadata": {
+        "confidence": 0.95,
+        "risk_level": "High",
+        "trace_id": "30e18509868e4251"
+      }
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "skill_id": "development/codebase-onboarding",
+  "session_id": "batch_eval",
+  "summary": {
+    "skill_id": "development/codebase-onboarding",
+    "total_executions": 4,
+    "success_rate": 1.0,
+    "validation_pass_rate": 1.0,
+    "auto_act_rate": 0.5,
+    "latency": {
+      "avg_ms": 97.19,
+      "p50_ms": 0.41,
+      "p95_ms": 388.17,
+      "p99_ms": 388.17,
+      "max_ms": 388.17,
+      "min_ms": 0.08
+    },
+    "decisions": {
+      "auto_act": 2,
+      "flag_for_review": 2
+    },
+    "errors": {}
+  },
+  "records": [
+    {
+      "timestamp": 1770841110.6345222,
+      "duration_ms": 388.1690502166748,
+      "success": true,
+      "validation_passed": true,
+      "decision_type": "auto_act",
+      "error_type": null,
+      "metadata": {
+        "confidence": 0.95,
+        "risk_level": "Medium",
+        "trace_id": "a51fdb8ed2214f71"
+      }
+    },
+    {
+      "timestamp": 1770841110.634613,
+      "duration_ms": 0.08106231689453125,
+      "success": true,
+      "validation_passed": true,
+      "decision_type": "auto_act",
+      "error_type": null,
+      "metadata": {
+        "confidence": 0.95,
+        "risk_level": "Medium",
+        "trace_id": "a51fdb8ed2214f71"
+      }
+    },
+    {
+      "timestamp": 1770841110.634712,
+      "duration_ms": 0.09202957153320312,
+      "success": true,
+      "validation_passed": true,
+      "decision_type": "flag_for_review",
+      "error_type": null,
+      "metadata": {
+        "confidence": 0.67,
+        "risk_level": "Medium",
+        "trace_id": "a51fdb8ed2214f71"
+      }
+    },
+    {
+      "timestamp": 1770841110.6352189,
+      "duration_ms": 0.4107952117919922,
+      "success": true,
+      "validation_passed": true,
+      "decision_type": "flag_for_review",
+      "error_type": null,
+      "metadata": {
+        "confidence": 0.67,
+        "risk_level": "Medium",
+        "trace_id": "a51fdb8ed2214f71"
+      }
+    }
+  ]
+}

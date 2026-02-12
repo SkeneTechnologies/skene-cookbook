@@ -1,0 +1,222 @@
+{
+  "id": "anthropic_official/internal-comms",
+  "version": "1.0.0",
+  "name": "internal-comms",
+  "description": "A set of resources to help me write all kinds of internal communications, using the formats that my company likes to use. Claude should use this skill whenever asked to write some sort of internal communications (status reports, leadership updates, 3P updates, company newsletters, FAQs, incident reports, project updates, etc.).",
+  "domain": "anthropic_official",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "communication_type": {
+        "type": "string",
+        "enum": [
+          "3p_update",
+          "company_newsletter",
+          "faq_answer",
+          "status_report",
+          "leadership_update",
+          "project_update",
+          "incident_report",
+          "general"
+        ],
+        "description": "The type of internal communication to generate"
+      },
+      "subject": {
+        "type": "string",
+        "description": "The subject or title of the communication",
+        "minLength": 1
+      },
+      "content_details": {
+        "type": "object",
+        "description": "Specific content details based on communication type",
+        "properties": {
+          "progress": {
+            "type": "string",
+            "description": "Recent accomplishments or progress (for 3P updates)"
+          },
+          "plans": {
+            "type": "string",
+            "description": "Upcoming plans or goals (for 3P updates)"
+          },
+          "problems": {
+            "type": "string",
+            "description": "Current blockers or challenges (for 3P updates)"
+          },
+          "questions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "question": {
+                  "type": "string"
+                },
+                "answer": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "question"
+              ]
+            },
+            "description": "FAQ questions and answers"
+          },
+          "announcements": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Key announcements or news items (for newsletters)"
+          },
+          "incident_summary": {
+            "type": "string",
+            "description": "Summary of the incident (for incident reports)"
+          },
+          "additional_context": {
+            "type": "string",
+            "description": "Any additional context or information to include"
+          }
+        },
+        "additionalProperties": true
+      },
+      "target_audience": {
+        "type": "string",
+        "description": "The intended audience for the communication (e.g., team, department, company-wide, leadership)",
+        "default": "team"
+      },
+      "tone": {
+        "type": "string",
+        "enum": [
+          "formal",
+          "casual",
+          "professional",
+          "friendly"
+        ],
+        "description": "Desired tone of the communication",
+        "default": "professional"
+      },
+      "time_period": {
+        "type": "string",
+        "description": "Time period the communication covers (e.g., 'this week', 'Q1 2024', 'January')"
+      }
+    },
+    "required": [
+      "communication_type",
+      "subject"
+    ],
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "communication_type": {
+        "type": "string",
+        "description": "The type of communication generated"
+      },
+      "subject": {
+        "type": "string",
+        "description": "The subject or title of the communication"
+      },
+      "formatted_content": {
+        "type": "string",
+        "description": "The complete formatted internal communication following company guidelines"
+      },
+      "guideline_used": {
+        "type": "string",
+        "description": "The guideline file that was followed (e.g., '3p-updates.md', 'company-newsletter.md')"
+      },
+      "sections": {
+        "type": "object",
+        "description": "Breakdown of the communication into its component sections",
+        "properties": {
+          "header": {
+            "type": "string"
+          },
+          "body": {
+            "type": "string"
+          },
+          "footer": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": true
+      },
+      "word_count": {
+        "type": "integer",
+        "description": "Approximate word count of the generated communication"
+      },
+      "metadata": {
+        "type": "object",
+        "properties": {
+          "target_audience": {
+            "type": "string"
+          },
+          "tone": {
+            "type": "string"
+          },
+          "time_period": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      }
+    },
+    "required": [
+      "communication_type",
+      "subject",
+      "formatted_content",
+      "guideline_used"
+    ]
+  },
+  "temperature": 0,
+  "tags": [
+    "anthropic_official",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "license": "Complete terms in LICENSE.txt",
+      "triggers": [
+        "help with internal comms"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "categories": [
+    "marketing",
+    "marketing/content"
+  ],
+  "security_controls": {
+    "write_operations": {
+      "preview_mode": true,
+      "validation": {
+        "input_schema": true,
+        "business_rules": true,
+        "data_integrity": true
+      },
+      "rollback": {
+        "enabled": true,
+        "window_seconds": 1800
+      },
+      "audit": {
+        "log_before_state": true,
+        "log_after_state": true,
+        "track_user": true
+      }
+    }
+  },
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.9
+  }
+}

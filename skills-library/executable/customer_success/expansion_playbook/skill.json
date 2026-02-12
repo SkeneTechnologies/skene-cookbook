@@ -1,0 +1,400 @@
+{
+  "id": "cs_expansion_playbook",
+  "version": "1.0.0",
+  "name": "Expansion Playbook",
+  "description": "Identifies expansion opportunities and executes upsell/cross-sell playbooks.",
+  "domain": "customer_success",
+  "tools": [
+    {
+      "name": "lifecycle.get_segment",
+      "required": true
+    },
+    {
+      "name": "stripe.get_usage",
+      "required": true
+    },
+    {
+      "name": "stripe.get_subscription",
+      "required": true
+    },
+    {
+      "name": "crm.create_deal",
+      "required": false
+    },
+    {
+      "name": "analytics.feature_adoption",
+      "required": false
+    },
+    {
+      "name": "messaging.send_in_app",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "upgrade_trigger",
+    "handoff_orchestration",
+    "value_realization",
+    "idle"
+  ],
+  "metrics": {
+    "primary": "expansion_revenue_rate",
+    "benchmarks": {
+      "excellent": "> 30%",
+      "good": "15-30%",
+      "needs_improvement": "< 15%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "customer_success",
+    "expansion",
+    "upsell",
+    "cross-sell",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Expansion Playbook",
+        "expansion"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "lifecycle.get_segment",
+          "required": true
+        },
+        {
+          "name": "analytics.get_cohort",
+          "required": false
+        },
+        {
+          "name": "crm.update_account",
+          "required": false
+        }
+      ]
+    }
+  },
+  "security_controls": {
+    "execution_environment": {
+      "type": "sandboxed_container",
+      "resource_limits": {
+        "cpu_cores": 1,
+        "memory_mb": 512,
+        "timeout_seconds": 30,
+        "disk_mb": 100
+      },
+      "security": {
+        "network_access": false,
+        "filesystem": "read_only",
+        "user": "non_root",
+        "allowed_commands": [
+          "node",
+          "python3",
+          "npm"
+        ],
+        "blocked_syscalls": [
+          "exec",
+          "fork",
+          "kill"
+        ]
+      }
+    }
+  },
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "account_id": {
+        "type": "string",
+        "description": "Unique identifier for the customer account"
+      },
+      "account_name": {
+        "type": "string",
+        "description": "Name of the customer account"
+      },
+      "current_arr": {
+        "type": "number",
+        "description": "Current Annual Recurring Revenue for the account",
+        "minimum": 0
+      },
+      "health_score": {
+        "type": "number",
+        "description": "Current customer health score (0-100)",
+        "minimum": 0,
+        "maximum": 100
+      },
+      "subscription_id": {
+        "type": "string",
+        "description": "Stripe subscription identifier"
+      },
+      "current_plan_tier": {
+        "type": "string",
+        "description": "Current subscription tier (e.g., Starter, Pro, Enterprise)",
+        "enum": [
+          "starter",
+          "pro",
+          "enterprise",
+          "custom"
+        ]
+      },
+      "seat_count": {
+        "type": "integer",
+        "description": "Number of seats/licenses currently provisioned",
+        "minimum": 1
+      },
+      "analysis_period_days": {
+        "type": "integer",
+        "description": "Number of days to look back for signal detection",
+        "default": 30,
+        "minimum": 7,
+        "maximum": 90
+      },
+      "nps_score": {
+        "type": "integer",
+        "description": "Latest Net Promoter Score for the account",
+        "minimum": -100,
+        "maximum": 100
+      },
+      "renewal_date": {
+        "type": "string",
+        "format": "date",
+        "description": "Next contract renewal date"
+      },
+      "csm_owner": {
+        "type": "string",
+        "description": "Customer Success Manager assigned to the account"
+      },
+      "signal_filters": {
+        "type": "array",
+        "description": "Specific expansion signal types to check for",
+        "items": {
+          "type": "string",
+          "enum": [
+            "usage_limit",
+            "team_growth",
+            "feature_limit",
+            "cross_sell",
+            "high_engagement"
+          ]
+        },
+        "default": [
+          "usage_limit",
+          "team_growth",
+          "feature_limit",
+          "cross_sell",
+          "high_engagement"
+        ]
+      }
+    },
+    "required": [
+      "account_id",
+      "account_name",
+      "current_arr",
+      "health_score",
+      "subscription_id"
+    ],
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "expansion_opportunity_detected": {
+        "type": "boolean",
+        "description": "Whether an expansion opportunity was identified"
+      },
+      "account_id": {
+        "type": "string",
+        "description": "Account identifier from input"
+      },
+      "account_name": {
+        "type": "string",
+        "description": "Account name from input"
+      },
+      "current_arr": {
+        "type": "number",
+        "description": "Current Annual Recurring Revenue"
+      },
+      "expansion_type": {
+        "type": "string",
+        "description": "Type of expansion opportunity identified",
+        "enum": [
+          "seat_expansion",
+          "tier_upgrade",
+          "cross_sell",
+          "usage_upsell",
+          "none"
+        ]
+      },
+      "opportunity_size": {
+        "type": "number",
+        "description": "Estimated additional annual revenue from expansion",
+        "minimum": 0
+      },
+      "priority": {
+        "type": "string",
+        "description": "Priority level of the expansion opportunity",
+        "enum": [
+          "high",
+          "medium",
+          "low"
+        ]
+      },
+      "signals_detected": {
+        "type": "array",
+        "description": "List of expansion signals identified",
+        "items": {
+          "type": "object",
+          "properties": {
+            "signal_type": {
+              "type": "string",
+              "description": "Type of signal detected"
+            },
+            "evidence": {
+              "type": "string",
+              "description": "Specific evidence supporting the signal"
+            },
+            "metric_value": {
+              "type": "number",
+              "description": "Quantitative value associated with the signal"
+            },
+            "threshold": {
+              "type": "number",
+              "description": "Threshold that triggered the signal"
+            }
+          },
+          "required": [
+            "signal_type",
+            "evidence"
+          ]
+        }
+      },
+      "recommended_playbook": {
+        "type": "object",
+        "description": "Details of the recommended expansion playbook",
+        "properties": {
+          "playbook_name": {
+            "type": "string",
+            "description": "Name of the playbook to execute"
+          },
+          "timing": {
+            "type": "string",
+            "description": "When to execute the playbook",
+            "enum": [
+              "now",
+              "next_qbr",
+              "at_renewal",
+              "scheduled"
+            ]
+          },
+          "owner": {
+            "type": "string",
+            "description": "Role responsible for execution",
+            "enum": [
+              "csm",
+              "account_manager",
+              "sales",
+              "automated"
+            ]
+          },
+          "talk_track": {
+            "type": "array",
+            "description": "Suggested conversation flow for outreach",
+            "items": {
+              "type": "string"
+            }
+          },
+          "in_app_message": {
+            "type": "string",
+            "description": "Suggested in-app message content for automated outreach"
+          }
+        },
+        "required": [
+          "playbook_name",
+          "timing",
+          "owner"
+        ]
+      },
+      "usage_metrics": {
+        "type": "object",
+        "description": "Current usage metrics from Stripe and analytics",
+        "properties": {
+          "usage_percentage": {
+            "type": "number",
+            "description": "Percentage of plan limits being used",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "active_seats": {
+            "type": "integer",
+            "description": "Number of actively used seats"
+          },
+          "provisioned_seats": {
+            "type": "integer",
+            "description": "Total number of provisioned seats"
+          },
+          "feature_adoption_rate": {
+            "type": "number",
+            "description": "Percentage of available features being used",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "premium_feature_requests": {
+            "type": "integer",
+            "description": "Number of premium feature access attempts"
+          }
+        }
+      },
+      "deal_created": {
+        "type": "boolean",
+        "description": "Whether a CRM deal was created for this opportunity"
+      },
+      "deal_id": {
+        "type": "string",
+        "description": "CRM deal identifier if created"
+      },
+      "message_sent": {
+        "type": "boolean",
+        "description": "Whether an in-app message was sent"
+      },
+      "message_id": {
+        "type": "string",
+        "description": "Message identifier if sent"
+      },
+      "qualified": {
+        "type": "boolean",
+        "description": "Whether opportunity passed qualification criteria"
+      },
+      "disqualification_reason": {
+        "type": "string",
+        "description": "Reason if opportunity was disqualified (e.g., low health score, timing)"
+      },
+      "next_steps": {
+        "type": "array",
+        "description": "Recommended actions to pursue the opportunity",
+        "items": {
+          "type": "string"
+        }
+      },
+      "execution_timestamp": {
+        "type": "string",
+        "format": "date-time",
+        "description": "When the playbook analysis was executed"
+      }
+    },
+    "required": [
+      "expansion_opportunity_detected",
+      "account_id",
+      "account_name",
+      "current_arr",
+      "expansion_type",
+      "qualified",
+      "execution_timestamp"
+    ]
+  },
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.92
+  }
+}

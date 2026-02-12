@@ -1,0 +1,70 @@
+{
+  "skill_id": "finops_rule_of_40",
+  "generated_at": "2026-02-12T00:05:00.017216",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "period": "pvu"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "period": "t5y086v",
+        "granularity": "monthly",
+        "include_forecast": false
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "period": "02mujgdvun50wn13hmv",
+        "granularity": "monthly",
+        "include_forecast": true
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "include_forecast": false
+      },
+      "label": "missing_period",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": 12345,
+        "granularity": "quarterly"
+      },
+      "label": "invalid_type_period",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": "l",
+        "include_forecast": false,
+        "granularity": 12345
+      },
+      "label": "invalid_type_granularity",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": "d",
+        "granularity": "annual",
+        "include_forecast": "yes"
+      },
+      "label": "invalid_type_include_forecast",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

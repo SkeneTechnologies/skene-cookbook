@@ -1,0 +1,94 @@
+{
+  "skill_id": "devex_error_explainer",
+  "generated_at": "2026-02-11T22:18:30.981794",
+  "num_cases": 10,
+  "test_cases": [
+    {
+      "inputs": {
+        "error_code": "9sryw0x4m1z27tx",
+        "request_context": {},
+        "developer_id": "kswzuijs5pp",
+        "stack_trace": "ujojdmguf9sxfcpychz"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "error_code": "0a",
+        "request_context": {},
+        "developer_id": "hgf"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "error_code": "gbvfsqyyidys7718vvdm",
+        "error_message": "al1ghmozoty4ak1c4b"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "request_context": {}
+      },
+      "label": "missing_error_code",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "error_code": 12345,
+        "developer_id": "3j4"
+      },
+      "label": "invalid_type_error_code",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "error_code": "ub",
+        "error_message": 12345,
+        "request_context": {},
+        "developer_id": "rmin43vl0x0",
+        "stack_trace": "ey8jvq4ur"
+      },
+      "label": "invalid_type_error_message",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "error_code": "lt2lau7julmlt5z",
+        "error_message": "oqc5faorpu4j5",
+        "request_context": "not_an_object",
+        "developer_id": "ba16",
+        "stack_trace": "t0u46voi6p5gbukt"
+      },
+      "label": "invalid_type_request_context",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "error_code": "d7tjwwiqpfi3tad14",
+        "error_message": "uhd",
+        "developer_id": 12345,
+        "stack_trace": "k73b7p"
+      },
+      "label": "invalid_type_developer_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "error_code": "a038f2z8y1a",
+        "stack_trace": 12345
+      },
+      "label": "invalid_type_stack_trace",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

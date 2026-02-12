@@ -1,0 +1,301 @@
+{
+  "id": "security/semgrep-rule-creator",
+  "version": "1.0.0",
+  "name": "semgrep-rule-creator",
+  "description": "Creates custom Semgrep rules for detecting security vulnerabilities, bug patterns, and code patterns. Use when writing Semgrep rules or building custom static analysis detections.",
+  "domain": "security",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "ruleId": {
+        "type": "string",
+        "description": "Unique identifier for the Semgrep rule (e.g., 'insecure-eval', 'sql-injection-taint')",
+        "pattern": "^[a-z0-9][a-z0-9-]*[a-z0-9]$"
+      },
+      "language": {
+        "type": "string",
+        "description": "Target programming language for the rule",
+        "enum": [
+          "python",
+          "javascript",
+          "typescript",
+          "java",
+          "go",
+          "ruby",
+          "php",
+          "c",
+          "cpp",
+          "csharp",
+          "kotlin",
+          "swift",
+          "rust",
+          "scala",
+          "yaml",
+          "json",
+          "terraform",
+          "dockerfile"
+        ]
+      },
+      "vulnerabilityType": {
+        "type": "string",
+        "description": "Type of vulnerability or pattern to detect",
+        "examples": [
+          "code-injection",
+          "sql-injection",
+          "xss",
+          "path-traversal",
+          "command-injection",
+          "insecure-deserialization",
+          "hardcoded-secret",
+          "weak-crypto",
+          "coding-standard-violation"
+        ]
+      },
+      "description": {
+        "type": "string",
+        "description": "Detailed description of what the rule should detect and why it's problematic"
+      },
+      "vulnerableCodeExamples": {
+        "type": "array",
+        "description": "Examples of vulnerable code patterns that should trigger the rule",
+        "items": {
+          "type": "string"
+        },
+        "minItems": 1
+      },
+      "safeCodeExamples": {
+        "type": "array",
+        "description": "Examples of safe code patterns that should NOT trigger the rule (to prevent false positives)",
+        "items": {
+          "type": "string"
+        },
+        "minItems": 1
+      },
+      "severity": {
+        "type": "string",
+        "description": "Severity level of the vulnerability",
+        "enum": [
+          "ERROR",
+          "WARNING",
+          "INFO"
+        ],
+        "default": "WARNING"
+      },
+      "preferredMode": {
+        "type": "string",
+        "description": "Preferred detection mode (use 'taint' for data flow issues, 'search' for pattern matching)",
+        "enum": [
+          "taint",
+          "search",
+          "auto"
+        ],
+        "default": "auto"
+      },
+      "sources": {
+        "type": "array",
+        "description": "For taint mode: list of source patterns where untrusted data originates (e.g., request parameters, user input)",
+        "items": {
+          "type": "string"
+        }
+      },
+      "sinks": {
+        "type": "array",
+        "description": "For taint mode: list of sink patterns where untrusted data should not reach (e.g., eval, exec, database queries)",
+        "items": {
+          "type": "string"
+        }
+      },
+      "sanitizers": {
+        "type": "array",
+        "description": "For taint mode: functions or patterns that sanitize/validate data and break the taint flow",
+        "items": {
+          "type": "string"
+        }
+      },
+      "metadata": {
+        "type": "object",
+        "description": "Additional metadata for the rule (CWE, OWASP category, references)",
+        "properties": {
+          "cwe": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^CWE-[0-9]+$"
+            }
+          },
+          "owasp": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "references": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uri"
+            }
+          }
+        }
+      }
+    },
+    "required": [
+      "ruleId",
+      "language",
+      "vulnerabilityType",
+      "description",
+      "vulnerableCodeExamples",
+      "safeCodeExamples"
+    ],
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "ruleId": {
+        "type": "string",
+        "description": "The rule identifier used"
+      },
+      "directoryPath": {
+        "type": "string",
+        "description": "Path to the directory containing the rule and test files"
+      },
+      "ruleFilePath": {
+        "type": "string",
+        "description": "Path to the generated Semgrep YAML rule file"
+      },
+      "testFilePath": {
+        "type": "string",
+        "description": "Path to the test file with ruleid/ok annotations"
+      },
+      "ruleContent": {
+        "type": "string",
+        "description": "Complete YAML content of the Semgrep rule"
+      },
+      "testContent": {
+        "type": "string",
+        "description": "Complete content of the test file with annotations"
+      },
+      "mode": {
+        "type": "string",
+        "description": "Detection mode used (taint or search)",
+        "enum": [
+          "taint",
+          "search"
+        ]
+      },
+      "testResults": {
+        "type": "object",
+        "description": "Results from running semgrep --test",
+        "properties": {
+          "passed": {
+            "type": "boolean",
+            "description": "Whether all tests passed"
+          },
+          "totalTests": {
+            "type": "integer",
+            "description": "Total number of test cases"
+          },
+          "passedTests": {
+            "type": "integer",
+            "description": "Number of tests that passed"
+          },
+          "failedTests": {
+            "type": "integer",
+            "description": "Number of tests that failed"
+          },
+          "output": {
+            "type": "string",
+            "description": "Full output from semgrep --test command"
+          }
+        },
+        "required": [
+          "passed",
+          "totalTests",
+          "passedTests",
+          "failedTests",
+          "output"
+        ]
+      },
+      "iterations": {
+        "type": "integer",
+        "description": "Number of iterations required to achieve passing tests"
+      },
+      "optimizationApplied": {
+        "type": "boolean",
+        "description": "Whether optimization was performed after tests passed"
+      },
+      "warnings": {
+        "type": "array",
+        "description": "Any warnings or notes about the rule (e.g., potential edge cases, limitations)",
+        "items": {
+          "type": "string"
+        }
+      },
+      "astAnalysisPerformed": {
+        "type": "boolean",
+        "description": "Whether AST analysis was performed during rule creation"
+      },
+      "documentationReviewed": {
+        "type": "boolean",
+        "description": "Whether required Semgrep documentation was reviewed before writing the rule"
+      }
+    },
+    "required": [
+      "ruleId",
+      "directoryPath",
+      "ruleFilePath",
+      "testFilePath",
+      "ruleContent",
+      "testContent",
+      "mode",
+      "testResults",
+      "iterations",
+      "optimizationApplied",
+      "astAnalysisPerformed",
+      "documentationReviewed"
+    ]
+  },
+  "temperature": 0,
+  "tags": [
+    "security",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with semgrep rule creator",
+        "security audit",
+        "code security",
+        "writing semgrep rules or building custom static analysis detections"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "security_controls": {
+    "delete_operations": {
+      "soft_delete": true,
+      "retention_period_days": 30,
+      "undelete_capable": true,
+      "backup_before_delete": true,
+      "multi_party_approval": true,
+      "confirmation_required": {
+        "enabled": true,
+        "show_impact": true,
+        "require_reason": true
+      }
+    }
+  },
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.92
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "skill_id": "plgf_feature_gating",
+  "generated_at": "2026-02-11T22:14:32.233853",
+  "num_cases": 9,
+  "test_cases": [
+    {
+      "inputs": {
+        "productId": "xc4cuv",
+        "features": []
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "productId": "s2et6at17kvw"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "productId": "16r0dddz67ls",
+        "features": [
+          {},
+          {}
+        ]
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "features": [
+          {}
+        ],
+        "competitorFreeTiers": [
+          {}
+        ]
+      },
+      "label": "missing_productId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "productId": 12345,
+        "competitorFreeTiers": [
+          {},
+          {}
+        ]
+      },
+      "label": "invalid_type_productId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "productId": "frk6l2kttrp34cv",
+        "competitorFreeTiers": [],
+        "features": "not_an_array"
+      },
+      "label": "invalid_type_features",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "productId": "q8vm1dl82v",
+        "features": [
+          {},
+          {}
+        ],
+        "currentGates": "not_an_array"
+      },
+      "label": "invalid_type_currentGates",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "productId": "vfbnskdgo8pt",
+        "competitorFreeTiers": "not_an_array"
+      },
+      "label": "invalid_type_competitorFreeTiers",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

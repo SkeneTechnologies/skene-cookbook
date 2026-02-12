@@ -1,0 +1,139 @@
+{
+  "skill_id": "plgf_pricing_strategy",
+  "generated_at": "2026-02-11T22:14:32.648472",
+  "num_cases": 10,
+  "test_cases": [
+    {
+      "inputs": {
+        "productId": "ml",
+        "targetSegments": [
+          "l",
+          "gmc115z",
+          "jmq3rd64sgv0l9oqk4c"
+        ],
+        "valueMetricCandidates": [
+          "falg",
+          "z25dhhipbpnljgv923",
+          "eqyp37iuyccyr63k2adw"
+        ]
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "productId": "4lf43k370zvfsydhy",
+        "competitorPricing": []
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "productId": "akk",
+        "targetSegments": [
+          "lzaj9sigvx63b8dajs4",
+          "rpovd9hc04f"
+        ],
+        "valueMetricCandidates": [
+          "yl",
+          "i6gffl"
+        ]
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "currentPricing": {},
+        "targetSegments": [
+          "0te6wmpf",
+          "dj4dcf7otg1z1uecc"
+        ],
+        "competitorPricing": [
+          {}
+        ],
+        "valueMetricCandidates": [
+          "h2mnyu5tco78c",
+          "q6y1n",
+          "0v4jnr18pkgnqsyw1sb"
+        ]
+      },
+      "label": "missing_productId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "productId": 12345,
+        "targetSegments": []
+      },
+      "label": "invalid_type_productId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "productId": "ogf5s7gnn",
+        "targetSegments": [
+          "bx3s3z8t2ecb",
+          "objx14uovy1q33jbsxu"
+        ],
+        "competitorPricing": [
+          {},
+          {},
+          {}
+        ],
+        "currentPricing": "not_an_object"
+      },
+      "label": "invalid_type_currentPricing",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "productId": "rm4a6",
+        "currentPricing": {},
+        "competitorPricing": [
+          {},
+          {},
+          {}
+        ],
+        "valueMetricCandidates": [
+          "57"
+        ],
+        "targetSegments": "not_an_array"
+      },
+      "label": "invalid_type_targetSegments",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "productId": "6",
+        "targetSegments": [
+          "picmhasvd8tzonzj0",
+          "0pccz4nydfp5"
+        ],
+        "competitorPricing": "not_an_array",
+        "valueMetricCandidates": [
+          "4pp50zb4ajjl",
+          "89aqkhxor8ci94ufbzgy",
+          "op07u9cf1"
+        ]
+      },
+      "label": "invalid_type_competitorPricing",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "productId": "9spnwm",
+        "currentPricing": {},
+        "valueMetricCandidates": "not_an_array"
+      },
+      "label": "invalid_type_valueMetricCandidates",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

@@ -1,0 +1,99 @@
+{
+  "skill_id": "cs_success_plan_generator",
+  "generated_at": "2026-02-12T00:05:02.066983",
+  "num_cases": 10,
+  "test_cases": [
+    {
+      "inputs": {
+        "accountId": "test_2hf057ev",
+        "planType": "onboarding",
+        "timeframe": "qnz9jyeylr9k4",
+        "goals": [
+          "y8earfgsrql3bfue2t"
+        ]
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "accountId": "test_6wexuh5j",
+        "planType": "onboarding",
+        "timeframe": "226xiaf639s6y"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "accountId": "test_jfoj5uya",
+        "planType": "onboarding",
+        "timeframe": "f3rnia",
+        "goals": [
+          "2pd",
+          "y698x0ctdyj9",
+          "d3t6sb5bzf"
+        ]
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "planType": "onboarding"
+      },
+      "label": "missing_accountId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": "test_vixqwste"
+      },
+      "label": "missing_planType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": 12345,
+        "planType": "renewal",
+        "timeframe": "w7piuvmkqj9b2cn2j1w",
+        "goals": []
+      },
+      "label": "invalid_type_accountId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": "test_94j3wtsi",
+        "planType": 12345,
+        "timeframe": "tie7ns"
+      },
+      "label": "invalid_type_planType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": "test_noec3gmh",
+        "planType": "renewal",
+        "timeframe": 12345,
+        "goals": []
+      },
+      "label": "invalid_type_timeframe",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": "test_h58e9ot0",
+        "planType": "recovery",
+        "goals": "not_an_array"
+      },
+      "label": "invalid_type_goals",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

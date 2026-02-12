@@ -1,0 +1,139 @@
+{
+  "skill_id": "revops_data_enrichment",
+  "generated_at": "2026-02-12T00:05:05.409618",
+  "num_cases": 10,
+  "test_cases": [
+    {
+      "inputs": {
+        "recordType": "lead",
+        "enrichmentFields": [
+          "8w5s",
+          "abq01m96gq0r372e"
+        ],
+        "overwriteExisting": true
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "recordType": "account",
+        "recordIds": [
+          "d5s4uaohya6tnd20o"
+        ],
+        "sources": [],
+        "overwriteExisting": true
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "recordType": "account",
+        "recordIds": [
+          "gt",
+          "97k3mwze67ucnvml007w"
+        ],
+        "enrichmentFields": [
+          "yrel",
+          "i",
+          "d"
+        ]
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "sources": [
+          "ghsf67",
+          "ikwi7wv1",
+          "060d5"
+        ],
+        "overwriteExisting": true
+      },
+      "label": "missing_recordType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "recordType": 12345,
+        "recordIds": [
+          "gb"
+        ],
+        "sources": [
+          "1",
+          "jzl8j",
+          "djbqhol5bwctxcud07fc"
+        ]
+      },
+      "label": "invalid_type_recordType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "recordType": "contact",
+        "enrichmentFields": [
+          "wcpnnzs5w28xq0zccckw"
+        ],
+        "sources": [
+          "6qv",
+          "7kw1qnk0thh",
+          "mr3347"
+        ],
+        "overwriteExisting": false,
+        "recordIds": "not_an_array"
+      },
+      "label": "invalid_type_recordIds",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "recordType": "account",
+        "recordIds": [
+          "zn",
+          "x",
+          "pbwxpat5v5d"
+        ],
+        "enrichmentFields": "not_an_array"
+      },
+      "label": "invalid_type_enrichmentFields",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "recordType": "account",
+        "enrichmentFields": [
+          "qon",
+          "48j6t7y6o"
+        ],
+        "sources": "not_an_array"
+      },
+      "label": "invalid_type_sources",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "recordType": "account",
+        "recordIds": [
+          "deb4cskdnacodg",
+          "h22",
+          "92dhel5"
+        ],
+        "sources": [
+          "nf1",
+          "igrtw3f7knf8ghvc",
+          "g0f580jli"
+        ],
+        "overwriteExisting": "yes"
+      },
+      "label": "invalid_type_overwriteExisting",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

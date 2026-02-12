@@ -1,0 +1,368 @@
+{
+  "id": "anthropic_official/docx",
+  "version": "1.0.0",
+  "name": "docx",
+  "description": "\"Comprehensive document creation, editing, and analysis with support for tracked changes, comments, formatting preservation, and text extraction. When Claude needs to work with professional documents (.docx files) for: (1) Creating new documents, (2) Modifying or editing content, (3) Working with tracked changes, (4) Adding comments, or any other document tasks\"",
+  "domain": "anthropic_official",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "operation": {
+        "type": "string",
+        "enum": [
+          "create",
+          "edit",
+          "analyze",
+          "extract_text",
+          "add_tracked_changes",
+          "add_comments",
+          "convert_to_images"
+        ],
+        "description": "The type of document operation to perform"
+      },
+      "input_file": {
+        "type": "string",
+        "description": "Path to the input .docx file (required for edit, analyze, extract_text, add_tracked_changes, add_comments, convert_to_images operations)"
+      },
+      "output_file": {
+        "type": "string",
+        "description": "Path for the output file (.docx, .md, .pdf, or image prefix)"
+      },
+      "content": {
+        "type": "object",
+        "properties": {
+          "sections": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "heading": {
+                  "type": "string",
+                  "description": "Section heading text"
+                },
+                "paragraphs": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Array of paragraph text content"
+                },
+                "formatting": {
+                  "type": "object",
+                  "properties": {
+                    "bold": {
+                      "type": "boolean"
+                    },
+                    "italic": {
+                      "type": "boolean"
+                    },
+                    "underline": {
+                      "type": "boolean"
+                    },
+                    "alignment": {
+                      "type": "string",
+                      "enum": [
+                        "left",
+                        "center",
+                        "right",
+                        "justify"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Content structure for document creation"
+      },
+      "changes": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "location": {
+              "type": "string",
+              "description": "Location identifier (section number, heading, or grep pattern)"
+            },
+            "original_text": {
+              "type": "string",
+              "description": "Original text to be replaced or deleted"
+            },
+            "new_text": {
+              "type": "string",
+              "description": "New text to insert (empty for deletions)"
+            },
+            "change_type": {
+              "type": "string",
+              "enum": [
+                "insert",
+                "delete",
+                "replace"
+              ],
+              "description": "Type of tracked change"
+            }
+          },
+          "required": [
+            "location",
+            "change_type"
+          ]
+        },
+        "description": "Array of tracked changes to apply (for add_tracked_changes operation)"
+      },
+      "comments": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "text": {
+              "type": "string",
+              "description": "Comment text content"
+            },
+            "location": {
+              "type": "string",
+              "description": "Location identifier for the comment"
+            },
+            "author": {
+              "type": "string",
+              "description": "Comment author name"
+            }
+          },
+          "required": [
+            "text",
+            "location"
+          ]
+        },
+        "description": "Array of comments to add (for add_comments operation)"
+      },
+      "extraction_options": {
+        "type": "object",
+        "properties": {
+          "track_changes": {
+            "type": "string",
+            "enum": [
+              "all",
+              "accept",
+              "reject"
+            ],
+            "description": "How to handle tracked changes during extraction"
+          },
+          "output_format": {
+            "type": "string",
+            "enum": [
+              "markdown",
+              "plain_text"
+            ],
+            "default": "markdown"
+          }
+        },
+        "description": "Options for text extraction operation"
+      },
+      "conversion_options": {
+        "type": "object",
+        "properties": {
+          "resolution_dpi": {
+            "type": "integer",
+            "default": 150,
+            "description": "Image resolution in DPI"
+          },
+          "format": {
+            "type": "string",
+            "enum": [
+              "jpeg",
+              "png"
+            ],
+            "default": "jpeg"
+          },
+          "page_range": {
+            "type": "object",
+            "properties": {
+              "start": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "end": {
+                "type": "integer",
+                "minimum": 1
+              }
+            }
+          }
+        },
+        "description": "Options for document-to-image conversion"
+      }
+    },
+    "required": [
+      "operation"
+    ],
+    "additionalProperties": false,
+    "allOf": [
+      {
+        "if": {
+          "properties": {
+            "operation": {
+              "enum": [
+                "edit",
+                "analyze",
+                "extract_text",
+                "add_tracked_changes",
+                "add_comments",
+                "convert_to_images"
+              ]
+            }
+          }
+        },
+        "then": {
+          "required": [
+            "input_file"
+          ]
+        }
+      },
+      {
+        "if": {
+          "properties": {
+            "operation": {
+              "const": "create"
+            }
+          }
+        },
+        "then": {
+          "required": [
+            "content",
+            "output_file"
+          ]
+        }
+      }
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "success": {
+        "type": "boolean",
+        "description": "Whether the operation completed successfully"
+      },
+      "operation": {
+        "type": "string",
+        "description": "The operation that was performed"
+      },
+      "output_file": {
+        "type": "string",
+        "description": "Path to the output file generated"
+      },
+      "extracted_text": {
+        "type": "string",
+        "description": "Extracted text content (for extract_text operations)"
+      },
+      "document_metadata": {
+        "type": "object",
+        "properties": {
+          "page_count": {
+            "type": "integer",
+            "description": "Total number of pages in the document"
+          },
+          "word_count": {
+            "type": "integer",
+            "description": "Total word count"
+          },
+          "has_tracked_changes": {
+            "type": "boolean",
+            "description": "Whether document contains tracked changes"
+          },
+          "has_comments": {
+            "type": "boolean",
+            "description": "Whether document contains comments"
+          },
+          "authors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of document authors"
+          }
+        },
+        "description": "Metadata about the document (for analyze operations)"
+      },
+      "changes_applied": {
+        "type": "integer",
+        "description": "Number of tracked changes successfully applied"
+      },
+      "comments_added": {
+        "type": "integer",
+        "description": "Number of comments successfully added"
+      },
+      "images_generated": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "List of image file paths generated (for convert_to_images operations)"
+      },
+      "warnings": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Any warnings or non-critical issues encountered"
+      },
+      "error": {
+        "type": "string",
+        "description": "Error message if operation failed"
+      }
+    },
+    "required": [
+      "success",
+      "operation"
+    ],
+    "additionalProperties": true
+  },
+  "temperature": 0,
+  "tags": [
+    "anthropic_official",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "license": "Proprietary. LICENSE.txt has complete terms",
+      "triggers": [
+        "help with docx",
+        "document creation"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "categories": [
+    "marketing",
+    "marketing/documents"
+  ],
+  "security_controls": {
+    "write_operations": {
+      "preview_mode": true,
+      "validation": {
+        "input_schema": true,
+        "business_rules": true,
+        "data_integrity": true
+      },
+      "rollback": {
+        "enabled": true,
+        "window_seconds": 1800
+      },
+      "audit": {
+        "log_before_state": true,
+        "log_after_state": true,
+        "track_user": true
+      }
+    }
+  },
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.9
+  }
+}

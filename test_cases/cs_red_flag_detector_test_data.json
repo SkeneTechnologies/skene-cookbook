@@ -1,0 +1,67 @@
+{
+  "skill_id": "cs_red_flag_detector",
+  "generated_at": "2026-02-12T00:05:00.797600",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "accountId": "test_dju4t1ee",
+        "sensitivityLevel": "high",
+        "flagCategories": [
+          "financial",
+          "sentiment"
+        ]
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "accountId": "test_hetdevkk"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "accountId": "test_nmog2lo6"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {},
+      "label": "missing_accountId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": 12345
+      },
+      "label": "invalid_type_accountId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": "test_booifvjn",
+        "sensitivityLevel": 12345
+      },
+      "label": "invalid_type_sensitivityLevel",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": "test_vsy8yjgm",
+        "sensitivityLevel": "low",
+        "flagCategories": "not_an_array"
+      },
+      "label": "invalid_type_flagCategories",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

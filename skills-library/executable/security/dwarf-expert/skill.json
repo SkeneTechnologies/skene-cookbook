@@ -1,0 +1,403 @@
+{
+  "id": "security/dwarf-expert",
+  "version": "1.0.0",
+  "name": "dwarf-expert",
+  "description": "Provides expertise for analyzing DWARF debug files and understanding the DWARF debug format/standard (v3-v5). Triggers when understanding DWARF information, interacting with DWARF files, answering DWARF-related questions, or working with code that parses DWARF data.",
+  "domain": "security",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "task_type": {
+        "type": "string",
+        "enum": [
+          "parse_dwarf",
+          "verify_dwarf",
+          "answer_question",
+          "analyze_code",
+          "write_code",
+          "modify_code",
+          "extract_debug_info",
+          "compare_debug_info"
+        ],
+        "description": "The type of DWARF-related task to perform"
+      },
+      "binary_path": {
+        "type": "string",
+        "description": "Path to the binary/ELF file containing DWARF data (for parsing, verification, or extraction tasks)"
+      },
+      "dwarf_version": {
+        "type": "integer",
+        "enum": [
+          3,
+          4,
+          5
+        ],
+        "description": "Specific DWARF version to target (3, 4, or 5)"
+      },
+      "question": {
+        "type": "string",
+        "description": "Question about the DWARF standard or format (for answer_question task_type)"
+      },
+      "code_snippet": {
+        "type": "string",
+        "description": "Code that interacts with DWARF data to analyze or modify"
+      },
+      "code_language": {
+        "type": "string",
+        "enum": [
+          "c",
+          "cpp",
+          "python",
+          "rust",
+          "go"
+        ],
+        "description": "Programming language for code-related tasks"
+      },
+      "parsing_library": {
+        "type": "string",
+        "enum": [
+          "libdwarf",
+          "pyelftools",
+          "gimli",
+          "llvm",
+          "custom"
+        ],
+        "description": "DWARF parsing library to use or reference"
+      },
+      "sections": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": [
+            ".debug_info",
+            ".debug_line",
+            ".debug_abbrev",
+            ".debug_str",
+            ".debug_aranges",
+            ".debug_ranges",
+            ".debug_loc",
+            ".debug_frame",
+            ".debug_types"
+          ]
+        },
+        "description": "Specific DWARF sections to focus on"
+      },
+      "search_criteria": {
+        "type": "object",
+        "properties": {
+          "tag": {
+            "type": "string",
+            "description": "DWARF tag to search for (e.g., DW_TAG_subprogram, DW_TAG_variable)"
+          },
+          "attribute": {
+            "type": "string",
+            "description": "DWARF attribute to search for (e.g., DW_AT_name, DW_AT_type)"
+          },
+          "value": {
+            "type": "string",
+            "description": "Value to match in search"
+          }
+        },
+        "additionalProperties": false
+      },
+      "verification_options": {
+        "type": "object",
+        "properties": {
+          "full_errors": {
+            "type": "boolean",
+            "description": "Display full error details during verification",
+            "default": false
+          },
+          "json_output": {
+            "type": "boolean",
+            "description": "Output verification results as JSON",
+            "default": false
+          },
+          "statistics": {
+            "type": "boolean",
+            "description": "Generate debug info quality statistics",
+            "default": false
+          }
+        },
+        "additionalProperties": false
+      },
+      "comparison_binaries": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "List of binary paths to compare debug information"
+      },
+      "output_format": {
+        "type": "string",
+        "enum": [
+          "text",
+          "json",
+          "summary"
+        ],
+        "description": "Desired output format for results",
+        "default": "text"
+      }
+    },
+    "required": [
+      "task_type"
+    ],
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "string",
+        "enum": [
+          "success",
+          "error",
+          "partial"
+        ],
+        "description": "Overall status of the task execution"
+      },
+      "task_type": {
+        "type": "string",
+        "description": "The task type that was executed"
+      },
+      "answer": {
+        "type": "string",
+        "description": "Answer to DWARF-related question or explanation of findings"
+      },
+      "dwarf_data": {
+        "type": "object",
+        "properties": {
+          "version": {
+            "type": "integer",
+            "description": "DWARF version found in the binary"
+          },
+          "compilation_units": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "offset": {
+                  "type": "string",
+                  "description": "Offset of the compilation unit"
+                },
+                "length": {
+                  "type": "integer",
+                  "description": "Length of the compilation unit"
+                },
+                "producer": {
+                  "type": "string",
+                  "description": "Compiler/producer information"
+                }
+              }
+            }
+          },
+          "die_entries": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "tag": {
+                  "type": "string",
+                  "description": "DWARF tag name"
+                },
+                "offset": {
+                  "type": "string",
+                  "description": "DIE offset"
+                },
+                "attributes": {
+                  "type": "object",
+                  "additionalProperties": true
+                }
+              }
+            }
+          }
+        },
+        "description": "Parsed DWARF debug information"
+      },
+      "verification_results": {
+        "type": "object",
+        "properties": {
+          "valid": {
+            "type": "boolean",
+            "description": "Whether DWARF data passed verification"
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "location": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "warnings": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "description": "Results from DWARF verification process"
+      },
+      "statistics": {
+        "type": "object",
+        "properties": {
+          "total_functions": {
+            "type": "integer"
+          },
+          "functions_with_location": {
+            "type": "integer"
+          },
+          "total_variables": {
+            "type": "integer"
+          },
+          "variables_with_location": {
+            "type": "integer"
+          },
+          "coverage_percentage": {
+            "type": "number"
+          }
+        },
+        "description": "Debug information quality statistics"
+      },
+      "code": {
+        "type": "string",
+        "description": "Generated or modified code that interacts with DWARF data"
+      },
+      "code_analysis": {
+        "type": "object",
+        "properties": {
+          "issues": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "suggestions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "correctness": {
+            "type": "string",
+            "enum": [
+              "correct",
+              "has_issues",
+              "incorrect"
+            ]
+          }
+        },
+        "description": "Analysis results for code that interacts with DWARF"
+      },
+      "commands_executed": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "command": {
+              "type": "string"
+            },
+            "output": {
+              "type": "string"
+            }
+          }
+        },
+        "description": "Commands executed (dwarfdump, readelf, etc.) and their outputs"
+      },
+      "references": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "source": {
+              "type": "string",
+              "enum": [
+                "dwarfstd.org",
+                "llvm",
+                "libdwarf",
+                "other"
+              ]
+            },
+            "url": {
+              "type": "string",
+              "format": "uri"
+            },
+            "description": {
+              "type": "string"
+            }
+          }
+        },
+        "description": "Authoritative sources referenced during analysis"
+      },
+      "error_message": {
+        "type": "string",
+        "description": "Error message if status is error"
+      }
+    },
+    "required": [
+      "status",
+      "task_type"
+    ]
+  },
+  "temperature": 0,
+  "tags": [
+    "security",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with dwarf expert",
+        "code security"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "security_controls": {
+    "execution_environment": {
+      "type": "sandboxed_container",
+      "resource_limits": {
+        "cpu_cores": 1,
+        "memory_mb": 512,
+        "timeout_seconds": 30,
+        "disk_mb": 100
+      },
+      "security": {
+        "network_access": false,
+        "filesystem": "read_only",
+        "user": "non_root",
+        "allowed_commands": [
+          "node",
+          "python3",
+          "npm"
+        ],
+        "blocked_syscalls": [
+          "exec",
+          "fork",
+          "kill"
+        ]
+      }
+    }
+  },
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.9
+  }
+}

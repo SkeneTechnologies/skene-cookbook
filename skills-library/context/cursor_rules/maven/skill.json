@@ -1,0 +1,35 @@
+{
+  "id": "cursor_rules/maven",
+  "version": "1.0.0",
+  "name": "maven",
+  "description": "This guide provides opinionated, actionable best practices for Maven projects, focusing on reproducible builds, efficient dependency management, and high code quality.",
+  "domain": "cursor_rules",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "cursor_rules",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "cursor": {
+      "globs": [
+        "**/*.java"
+      ]
+    },
+    "claude": {
+      "triggers": [
+        "help with maven"
+      ]
+    },
+    "skeneflow": {}
+  },
+  "skipSchemaValidation": true
+}

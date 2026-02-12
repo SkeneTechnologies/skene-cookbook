@@ -1,0 +1,68 @@
+{
+  "skill_id": "cs_product_gap_reporter",
+  "generated_at": "2026-02-12T00:05:02.123600",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "accountId": "test_kidc5t2z",
+        "aggregationLevel": "account"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "accountId": "test_sovnw03h",
+        "aggregationLevel": "portfolio"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "accountId": "test_rtlpvf4v",
+        "aggregationLevel": "account",
+        "timeframe": "30d"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "aggregationLevel": "segment"
+      },
+      "label": "missing_accountId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": 12345,
+        "aggregationLevel": "portfolio"
+      },
+      "label": "invalid_type_accountId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": "test_1tifzxzn",
+        "aggregationLevel": 12345
+      },
+      "label": "invalid_type_aggregationLevel",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": "test_c7ji428n",
+        "timeframe": 12345
+      },
+      "label": "invalid_type_timeframe",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

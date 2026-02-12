@@ -1,0 +1,67 @@
+{
+  "skill_id": "cs_onboarding_health",
+  "generated_at": "2026-02-12T00:05:00.751511",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "accountId": "test_s2ar2vw4"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "accountId": "test_jitv2ug0",
+        "daysSinceStart": 5555.16
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "accountId": "test_bl6hf4lb",
+        "onboardingPhase": "optimization",
+        "daysSinceStart": 221.96
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "daysSinceStart": 9606.14
+      },
+      "label": "missing_accountId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": 12345,
+        "daysSinceStart": 7865.3
+      },
+      "label": "invalid_type_accountId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": "test_7dsml34g",
+        "onboardingPhase": 12345
+      },
+      "label": "invalid_type_onboardingPhase",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": "test_kc2zml4v",
+        "daysSinceStart": "not_a_number"
+      },
+      "label": "invalid_type_daysSinceStart",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

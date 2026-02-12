@@ -1,0 +1,494 @@
+{
+  "id": "prodops_roadmap_alignment",
+  "version": "1.0.0",
+  "name": "Roadmap Alignment",
+  "description": "Aligns product roadmap with customer feedback, business goals, and market demands.",
+  "domain": "product_ops",
+  "tools": [
+    {
+      "name": "feedback.list_feature_requests",
+      "required": true
+    },
+    {
+      "name": "analytics.feature_adoption",
+      "required": true
+    },
+    {
+      "name": "analytics.get_metrics",
+      "required": false
+    },
+    {
+      "name": "crm.get_deal_velocity",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "prioritization_complete",
+    "stakeholder_review",
+    "sprint_planning",
+    "idle"
+  ],
+  "metrics": {
+    "primary": "roadmap_customer_alignment",
+    "benchmarks": {
+      "excellent": "> 70%",
+      "good": "50-70%",
+      "needs_improvement": "< 50%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "product_ops",
+    "roadmap",
+    "alignment",
+    "planning",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Roadmap Alignment"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "security_controls": {
+    "delete_operations": {
+      "soft_delete": true,
+      "retention_period_days": 30,
+      "undelete_capable": true,
+      "backup_before_delete": true,
+      "multi_party_approval": true,
+      "confirmation_required": {
+        "enabled": true,
+        "show_impact": true,
+        "require_reason": true
+      }
+    }
+  },
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "timeframe": {
+        "type": "string",
+        "description": "Time period for analysis (e.g., 'Q1 2024', 'last_90_days', 'next_6_months')",
+        "examples": [
+          "Q1 2024",
+          "last_90_days",
+          "next_6_months"
+        ]
+      },
+      "current_roadmap_items": {
+        "type": "array",
+        "description": "Current items planned on the product roadmap",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "Unique identifier for the roadmap item"
+            },
+            "title": {
+              "type": "string",
+              "description": "Name of the roadmap feature or initiative"
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "planned",
+                "in_progress",
+                "completed",
+                "deferred"
+              ],
+              "description": "Current status of the roadmap item"
+            },
+            "estimated_effort": {
+              "type": "number",
+              "description": "Effort estimate in person-weeks",
+              "minimum": 0
+            },
+            "strategic_theme": {
+              "type": "string",
+              "description": "Strategic theme or business objective this aligns to"
+            }
+          },
+          "required": [
+            "id",
+            "title",
+            "status"
+          ]
+        }
+      },
+      "business_objectives": {
+        "type": "array",
+        "description": "Key business goals and strategic priorities",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "objective": {
+              "type": "string",
+              "description": "Description of the business objective"
+            },
+            "target_metric": {
+              "type": "string",
+              "description": "Metric used to measure this objective"
+            },
+            "target_value": {
+              "type": "number",
+              "description": "Target value for the metric"
+            },
+            "priority": {
+              "type": "string",
+              "enum": [
+                "high",
+                "medium",
+                "low"
+              ]
+            }
+          },
+          "required": [
+            "objective",
+            "priority"
+          ]
+        }
+      },
+      "customer_segments": {
+        "type": "array",
+        "description": "Customer segments to consider in prioritization",
+        "items": {
+          "type": "string"
+        },
+        "examples": [
+          [
+            "enterprise",
+            "mid-market",
+            "smb"
+          ]
+        ]
+      },
+      "revenue_threshold": {
+        "type": "number",
+        "description": "Minimum revenue impact to consider (in USD)",
+        "minimum": 0,
+        "default": 10000
+      },
+      "minimum_votes": {
+        "type": "integer",
+        "description": "Minimum number of customer votes to include a feature request",
+        "minimum": 1,
+        "default": 5
+      },
+      "include_technical_debt": {
+        "type": "boolean",
+        "description": "Whether to include technical debt items in analysis",
+        "default": true
+      },
+      "confidence_threshold": {
+        "type": "number",
+        "description": "Minimum confidence score (0-1) for RICE scoring",
+        "minimum": 0,
+        "maximum": 1,
+        "default": 0.5
+      }
+    },
+    "required": [
+      "timeframe"
+    ],
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "alignment_summary": {
+        "type": "object",
+        "description": "High-level summary of roadmap alignment",
+        "properties": {
+          "customer_requests_addressed_percent": {
+            "type": "number",
+            "description": "Percentage of customer requests covered by current roadmap",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "revenue_impacting_features_percent": {
+            "type": "number",
+            "description": "Percentage of roadmap dedicated to revenue-impacting features",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "strategic_initiatives_percent": {
+            "type": "number",
+            "description": "Percentage of roadmap aligned to strategic initiatives",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "overall_alignment_score": {
+            "type": "number",
+            "description": "Overall alignment score (0-100)",
+            "minimum": 0,
+            "maximum": 100
+          }
+        },
+        "required": [
+          "customer_requests_addressed_percent",
+          "revenue_impacting_features_percent",
+          "strategic_initiatives_percent"
+        ]
+      },
+      "top_unaddressed_requests": {
+        "type": "array",
+        "description": "Highest priority feature requests not on current roadmap",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string",
+              "description": "Feature request title"
+            },
+            "votes": {
+              "type": "integer",
+              "description": "Number of customer votes",
+              "minimum": 0
+            },
+            "rice_score": {
+              "type": "number",
+              "description": "Calculated RICE score",
+              "minimum": 0
+            },
+            "reach": {
+              "type": "integer",
+              "description": "Number of users affected",
+              "minimum": 0
+            },
+            "impact": {
+              "type": "number",
+              "description": "Impact score (0.25=minimal, 0.5=low, 1=medium, 2=high, 3=massive)",
+              "minimum": 0
+            },
+            "confidence": {
+              "type": "number",
+              "description": "Confidence level (0-1)",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "effort": {
+              "type": "number",
+              "description": "Effort estimate in person-weeks",
+              "minimum": 0
+            },
+            "customer_segment": {
+              "type": "string",
+              "description": "Primary customer segment requesting this"
+            },
+            "revenue_impact": {
+              "type": "number",
+              "description": "Estimated revenue impact in USD",
+              "minimum": 0
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "not_planned",
+                "under_consideration",
+                "deferred"
+              ],
+              "description": "Current status of this request"
+            },
+            "adoption_potential": {
+              "type": "number",
+              "description": "Estimated adoption rate (0-1)",
+              "minimum": 0,
+              "maximum": 1
+            }
+          },
+          "required": [
+            "id",
+            "title",
+            "votes",
+            "rice_score",
+            "customer_segment",
+            "status"
+          ]
+        }
+      },
+      "alignment_gaps": {
+        "type": "array",
+        "description": "Identified gaps between roadmap and strategic needs",
+        "items": {
+          "type": "object",
+          "properties": {
+            "gap_type": {
+              "type": "string",
+              "enum": [
+                "customer_need",
+                "business_objective",
+                "market_demand",
+                "technical_debt",
+                "competitive"
+              ],
+              "description": "Type of alignment gap"
+            },
+            "description": {
+              "type": "string",
+              "description": "Description of the gap"
+            },
+            "impact": {
+              "type": "string",
+              "enum": [
+                "critical",
+                "high",
+                "medium",
+                "low"
+              ],
+              "description": "Impact level of this gap"
+            },
+            "affected_segments": {
+              "type": "array",
+              "description": "Customer segments affected by this gap",
+              "items": {
+                "type": "string"
+              }
+            },
+            "estimated_revenue_at_risk": {
+              "type": "number",
+              "description": "Revenue at risk due to this gap in USD",
+              "minimum": 0
+            }
+          },
+          "required": [
+            "gap_type",
+            "description",
+            "impact"
+          ]
+        }
+      },
+      "recommendations": {
+        "type": "array",
+        "description": "Prioritized recommendations for roadmap adjustments",
+        "items": {
+          "type": "object",
+          "properties": {
+            "action": {
+              "type": "string",
+              "enum": [
+                "add_to_roadmap",
+                "reprioritize",
+                "remove",
+                "defer",
+                "accelerate"
+              ],
+              "description": "Recommended action"
+            },
+            "feature_title": {
+              "type": "string",
+              "description": "Name of the feature or initiative"
+            },
+            "feature_id": {
+              "type": "string",
+              "description": "Reference ID for the feature"
+            },
+            "rationale": {
+              "type": "string",
+              "description": "Explanation for this recommendation"
+            },
+            "priority": {
+              "type": "string",
+              "enum": [
+                "critical",
+                "high",
+                "medium",
+                "low"
+              ]
+            },
+            "expected_impact": {
+              "type": "string",
+              "description": "Expected business impact of implementing this recommendation"
+            },
+            "alignment_dimension": {
+              "type": "array",
+              "description": "Which alignment dimensions this addresses",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "customer_requests",
+                  "business_impact",
+                  "market_demand",
+                  "strategic_fit",
+                  "technical_debt"
+                ]
+              }
+            },
+            "estimated_revenue_impact": {
+              "type": "number",
+              "description": "Estimated revenue impact in USD",
+              "minimum": 0
+            }
+          },
+          "required": [
+            "action",
+            "feature_title",
+            "rationale",
+            "priority"
+          ]
+        }
+      },
+      "metrics": {
+        "type": "object",
+        "description": "Supporting metrics and analytics",
+        "properties": {
+          "total_feature_requests_analyzed": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "total_roadmap_items_evaluated": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "average_rice_score": {
+            "type": "number",
+            "minimum": 0
+          },
+          "feature_adoption_rate": {
+            "type": "number",
+            "description": "Average adoption rate of recently launched features (0-1)",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "deal_velocity_impact": {
+            "type": "number",
+            "description": "Impact on deal velocity in days"
+          }
+        }
+      },
+      "next_steps": {
+        "type": "array",
+        "description": "Recommended next steps for stakeholders",
+        "items": {
+          "type": "string"
+        }
+      },
+      "generated_at": {
+        "type": "string",
+        "format": "date-time",
+        "description": "Timestamp when this analysis was generated"
+      }
+    },
+    "required": [
+      "alignment_summary",
+      "top_unaddressed_requests",
+      "alignment_gaps",
+      "recommendations",
+      "generated_at"
+    ]
+  },
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.92
+  }
+}

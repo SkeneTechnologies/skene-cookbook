@@ -1,0 +1,35 @@
+{
+  "id": "cursor_rules/chakra-ui",
+  "version": "1.0.0",
+  "name": "chakra-ui",
+  "description": "This guide provides opinionated, actionable best practices for using Chakra UI effectively, focusing on token-first theming, responsive design, component architecture, and performance for React 18+ applications.",
+  "domain": "cursor_rules",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "cursor_rules",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "cursor": {
+      "globs": [
+        "**/*"
+      ]
+    },
+    "claude": {
+      "triggers": [
+        "help with chakra ui"
+      ]
+    },
+    "skeneflow": {}
+  },
+  "skipSchemaValidation": true
+}

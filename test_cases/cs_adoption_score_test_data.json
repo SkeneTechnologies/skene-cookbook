@@ -1,0 +1,71 @@
+{
+  "skill_id": "cs_adoption_score",
+  "generated_at": "2026-02-12T00:05:00.792625",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "accountId": "test_dzsqska8",
+        "benchmarkCohort": "b8p2qbev3w"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "accountId": "test_ae09d8pa",
+        "benchmarkCohort": "lwkk132sot"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "accountId": "test_e2lw1wid",
+        "period": "7d",
+        "benchmarkCohort": "sfb8fa"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "period": "30d",
+        "benchmarkCohort": "xljopboyy96jbo0bjo"
+      },
+      "label": "missing_accountId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": 12345,
+        "period": "7d"
+      },
+      "label": "invalid_type_accountId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": "test_g482aw6i",
+        "period": 12345,
+        "benchmarkCohort": "xwc1su"
+      },
+      "label": "invalid_type_period",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": "test_17f8m9zc",
+        "period": "7d",
+        "benchmarkCohort": 12345
+      },
+      "label": "invalid_type_benchmarkCohort",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

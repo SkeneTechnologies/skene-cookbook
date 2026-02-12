@@ -1,0 +1,35 @@
+{
+  "id": "cursor_rules/plotly",
+  "version": "1.0.0",
+  "name": "plotly",
+  "description": "Definitive guidelines for writing maintainable, performant, and reproducible Plotly visualizations using modern Python best practices, especially for AI/ML workflows.",
+  "domain": "cursor_rules",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "cursor_rules",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "cursor": {
+      "globs": [
+        "**/*.py"
+      ]
+    },
+    "claude": {
+      "triggers": [
+        "help with plotly"
+      ]
+    },
+    "skeneflow": {}
+  },
+  "skipSchemaValidation": true
+}

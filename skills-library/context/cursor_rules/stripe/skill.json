@@ -1,0 +1,52 @@
+{
+  "id": "cursor_rules/stripe",
+  "version": "1.0.0",
+  "name": "stripe",
+  "description": "Definitive guidelines for building robust, secure, and efficient Stripe integrations using modern API practices (v2, Checkout Sessions, Payment Intents, Elements) and essential safeguards like idempotency and webhook verification.",
+  "domain": "cursor_rules",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "cursor_rules",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "cursor": {
+      "globs": [
+        "**/*"
+      ]
+    },
+    "claude": {
+      "triggers": [
+        "help with stripe"
+      ]
+    },
+    "skeneflow": {}
+  },
+  "security_controls": {
+    "payment_controls": {
+      "preview_mode": true,
+      "per_transaction_approval": true,
+      "amount_limits": {
+        "max_per_transaction": 50000,
+        "daily_limit": 200000,
+        "additional_approval_threshold": 25000
+      },
+      "rollback": {
+        "enabled": true,
+        "window_seconds": 3600
+      },
+      "two_phase_commit": true,
+      "audit_logging": "detailed"
+    }
+  },
+  "skipSchemaValidation": true
+}

@@ -1,0 +1,108 @@
+{
+  "skill_id": "devex_code_sample_generator",
+  "generated_at": "2026-02-11T22:18:30.928449",
+  "num_cases": 11,
+  "test_cases": [
+    {
+      "inputs": {
+        "endpoint": "qdmjp1m57wo",
+        "language": "9dqausj019x",
+        "include_error_handling": true
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "endpoint": "31m65t4w57907r7agukn",
+        "language": "l",
+        "include_error_handling": true
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "endpoint": "mf",
+        "language": "wqwmx5dg7902n",
+        "use_case": "ymsydgof",
+        "include_error_handling": true,
+        "style": "comprehensive"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "language": "j50wzg5j",
+        "include_error_handling": false,
+        "style": "standard"
+      },
+      "label": "missing_endpoint",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "endpoint": "dh966hotl4dln",
+        "use_case": "2"
+      },
+      "label": "missing_language",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "endpoint": 12345,
+        "language": "w7ye"
+      },
+      "label": "invalid_type_endpoint",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "endpoint": "w67vj7e69wp8k2",
+        "language": 12345,
+        "use_case": "y6q",
+        "include_error_handling": false,
+        "style": "standard"
+      },
+      "label": "invalid_type_language",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "endpoint": "5vv",
+        "language": "woxxdd4s9",
+        "style": "comprehensive",
+        "use_case": 12345
+      },
+      "label": "invalid_type_use_case",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "endpoint": "2kym8ofanb7ez5nj",
+        "language": "0an17gg9qrabss",
+        "use_case": "cfgk9",
+        "style": "standard",
+        "include_error_handling": "yes"
+      },
+      "label": "invalid_type_include_error_handling",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "endpoint": "fw492m",
+        "language": "fw289esq1",
+        "include_error_handling": true,
+        "style": 12345
+      },
+      "label": "invalid_type_style",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

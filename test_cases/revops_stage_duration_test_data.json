@@ -1,0 +1,99 @@
+{
+  "skill_id": "revops_stage_duration",
+  "generated_at": "2026-02-12T00:05:07.324213",
+  "num_cases": 10,
+  "test_cases": [
+    {
+      "inputs": {
+        "period": "fh5yk",
+        "segment": "vm8r0ucd44",
+        "repId": "ipkpmqvy",
+        "alertOnAnomaly": false
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "period": "pp",
+        "segment": "g8m",
+        "stage": "cxxppsk8x768",
+        "repId": "w"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "period": "7kn2vxrhz",
+        "segment": "jyx",
+        "stage": "u0ys1ecpv2q22u0g",
+        "alertOnAnomaly": false
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "stage": "2xov",
+        "repId": "h9r",
+        "alertOnAnomaly": false
+      },
+      "label": "missing_period",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": 12345,
+        "alertOnAnomaly": true
+      },
+      "label": "invalid_type_period",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": "xup",
+        "segment": 12345,
+        "repId": "5ria6r4",
+        "alertOnAnomaly": true
+      },
+      "label": "invalid_type_segment",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": "sl3jwx1dsakm",
+        "segment": "mkf14z3wr48ybnr4",
+        "repId": "qig1",
+        "alertOnAnomaly": true,
+        "stage": 12345
+      },
+      "label": "invalid_type_stage",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": "ftv660w58tu44yj",
+        "stage": "hh3m",
+        "repId": 12345
+      },
+      "label": "invalid_type_repId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": "v1cxytiuzbwjsawuhhi1",
+        "stage": "wbdqhqo8dc",
+        "repId": "pxh",
+        "alertOnAnomaly": "yes"
+      },
+      "label": "invalid_type_alertOnAnomaly",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

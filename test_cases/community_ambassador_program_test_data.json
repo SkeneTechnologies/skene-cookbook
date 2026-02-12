@@ -1,0 +1,76 @@
+{
+  "skill_id": "community_ambassador_program",
+  "generated_at": "2026-02-11T22:18:28.699785",
+  "num_cases": 9,
+  "test_cases": [
+    {
+      "inputs": {
+        "action": "review",
+        "applicationData": {}
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "action": "onboard",
+        "ambassadorId": "test_gweinz3n",
+        "activityData": {}
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "action": "track"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {},
+      "label": "missing_action",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": 12345,
+        "ambassadorId": "test_mw97l93r",
+        "activityData": {}
+      },
+      "label": "invalid_type_action",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": "review",
+        "ambassadorId": 12345
+      },
+      "label": "invalid_type_ambassadorId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": "reward",
+        "applicationData": "not_an_object",
+        "activityData": {}
+      },
+      "label": "invalid_type_applicationData",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": "recruit",
+        "ambassadorId": "test_3qvack40",
+        "activityData": "not_an_object"
+      },
+      "label": "invalid_type_activityData",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

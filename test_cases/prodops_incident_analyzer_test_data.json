@@ -1,0 +1,69 @@
+{
+  "skill_id": "prodops_incident_analyzer",
+  "generated_at": "2026-02-12T00:05:02.057281",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "includePostmortem": false
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "analysisType": "single",
+        "includePostmortem": false
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "period": "z19ic2s3irdec3eq",
+        "analysisType": "retrospective",
+        "includePostmortem": true
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "period": "x",
+        "includePostmortem": false,
+        "incidentId": 12345
+      },
+      "label": "invalid_type_incidentId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": 12345,
+        "analysisType": "single"
+      },
+      "label": "invalid_type_period",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "incidentId": "test_bdwmxq3p",
+        "analysisType": 12345
+      },
+      "label": "invalid_type_analysisType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "incidentId": "test_mmxuiabx",
+        "includePostmortem": "yes"
+      },
+      "label": "invalid_type_includePostmortem",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": true
+    }
+  ]
+}

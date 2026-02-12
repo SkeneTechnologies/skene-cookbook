@@ -1,0 +1,81 @@
+{
+  "skill_id": "prodops_experimentation",
+  "generated_at": "2026-02-12T00:05:01.652669",
+  "num_cases": 9,
+  "test_cases": [
+    {
+      "inputs": {
+        "featureFlag": "03q5np1bbpr9pvfpp2y",
+        "analysisType": "monitor"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "featureFlag": "u1xvo7ujix0pbaw47",
+        "experimentId": "test_5obwxd98",
+        "targetMetric": "dkg2ekvgfm",
+        "analysisType": "setup"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "featureFlag": "do1xw7gzi1z4et",
+        "targetMetric": "cv"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "experimentId": "test_nawbm23e",
+        "targetMetric": "pd39gq7z0rqsh",
+        "analysisType": "setup"
+      },
+      "label": "missing_featureFlag",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "featureFlag": "86s1v",
+        "analysisType": "conclude",
+        "experimentId": 12345
+      },
+      "label": "invalid_type_experimentId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "featureFlag": 12345,
+        "analysisType": "conclude"
+      },
+      "label": "invalid_type_featureFlag",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "featureFlag": "rmq5cxk849mquuz6nr",
+        "experimentId": "test_vhboq5iu",
+        "targetMetric": 12345
+      },
+      "label": "invalid_type_targetMetric",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "featureFlag": "p1dns",
+        "analysisType": 12345
+      },
+      "label": "invalid_type_analysisType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

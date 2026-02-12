@@ -1,0 +1,80 @@
+{
+  "skill_id": "community_champion_identifier",
+  "generated_at": "2026-02-11T22:18:28.735596",
+  "num_cases": 9,
+  "test_cases": [
+    {
+      "inputs": {
+        "userId": "test_dilm640n",
+        "timeRange": "90d"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "userId": "test_4q3opnc3",
+        "timeRange": "7d",
+        "minEngagementScore": 7865.5
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "userId": "test_x713l81s",
+        "timeRange": "90d"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "timeRange": "90d",
+        "communityPlatform": "13u9e3lz45c"
+      },
+      "label": "missing_userId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": 12345,
+        "timeRange": "90d"
+      },
+      "label": "invalid_type_userId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": "test_bt8f3jwe",
+        "minEngagementScore": 6982.58,
+        "timeRange": 12345
+      },
+      "label": "invalid_type_timeRange",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": "test_q11qpeze",
+        "communityPlatform": "le10ce8bf9q6ouxjtb83",
+        "minEngagementScore": "not_a_number"
+      },
+      "label": "invalid_type_minEngagementScore",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": "test_th8n5d02",
+        "minEngagementScore": 9848.58,
+        "communityPlatform": 12345
+      },
+      "label": "invalid_type_communityPlatform",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

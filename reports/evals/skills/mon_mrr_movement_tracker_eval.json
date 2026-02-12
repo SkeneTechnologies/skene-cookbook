@@ -1,0 +1,64 @@
+{
+  "skill_id": "mon_mrr_movement_tracker",
+  "session_id": "batch_eval",
+  "summary": {
+    "skill_id": "mon_mrr_movement_tracker",
+    "total_executions": 3,
+    "success_rate": 1.0,
+    "validation_pass_rate": 1.0,
+    "auto_act_rate": 1.0,
+    "latency": {
+      "avg_ms": 437.12,
+      "p50_ms": 0.27,
+      "p95_ms": 1310.83,
+      "p99_ms": 1310.83,
+      "max_ms": 1310.83,
+      "min_ms": 0.25
+    },
+    "decisions": {
+      "auto_act": 3
+    },
+    "errors": {}
+  },
+  "records": [
+    {
+      "timestamp": 1770847509.080341,
+      "duration_ms": 1310.8317852020264,
+      "success": true,
+      "validation_passed": true,
+      "decision_type": "auto_act",
+      "error_type": null,
+      "metadata": {
+        "confidence": 0.95,
+        "risk_level": "Medium",
+        "trace_id": "8481e86908fc496c"
+      }
+    },
+    {
+      "timestamp": 1770847509.080632,
+      "duration_ms": 0.27298927307128906,
+      "success": true,
+      "validation_passed": true,
+      "decision_type": "auto_act",
+      "error_type": null,
+      "metadata": {
+        "confidence": 0.95,
+        "risk_level": "Medium",
+        "trace_id": "8481e86908fc496c"
+      }
+    },
+    {
+      "timestamp": 1770847509.0809002,
+      "duration_ms": 0.2529621124267578,
+      "success": true,
+      "validation_passed": true,
+      "decision_type": "auto_act",
+      "error_type": null,
+      "metadata": {
+        "confidence": 0.95,
+        "risk_level": "Medium",
+        "trace_id": "8481e86908fc496c"
+      }
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "skill_id": "plg_friction_detector",
+  "generated_at": "2026-02-12T00:05:12.508349",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "userId": "nafxhup37x6"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "userId": "elmn83pz"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "userId": "ef1jcjlcvwikg4dd"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "flowId": "sov6o7ijf06i5azuvrrg",
+        "analysisType": "comparative"
+      },
+      "label": "missing_userId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": 12345
+      },
+      "label": "invalid_type_userId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": "41isjfi4",
+        "flowId": 12345
+      },
+      "label": "invalid_type_flowId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": "086ta63ob252nbcq",
+        "flowId": "vhovfmsrbsl7",
+        "analysisType": 12345
+      },
+      "label": "invalid_type_analysisType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

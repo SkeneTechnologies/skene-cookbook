@@ -1,0 +1,66 @@
+{
+  "skill_id": "elg_partner_influenced_revenue",
+  "generated_at": "2026-02-12T00:04:59.938216",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "period": "o284ratg2ws91"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "period": "gh5nbdyvw"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "period": "gy"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "partnerId": "nmi1al1ldspha1rup6"
+      },
+      "label": "missing_period",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": 12345,
+        "partnerId": "ofma8rmx",
+        "attributionModel": "first_touch"
+      },
+      "label": "invalid_type_period",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": "7j8fky75cm657v71wy",
+        "partnerId": 12345
+      },
+      "label": "invalid_type_partnerId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": "dlntduj0w2p160",
+        "partnerId": "1vv3kf",
+        "attributionModel": 12345
+      },
+      "label": "invalid_type_attributionModel",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

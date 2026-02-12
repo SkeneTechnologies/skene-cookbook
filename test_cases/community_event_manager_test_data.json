@@ -1,0 +1,142 @@
+{
+  "skill_id": "community_event_manager",
+  "generated_at": "2026-02-11T22:18:28.685932",
+  "num_cases": 13,
+  "test_cases": [
+    {
+      "inputs": {
+        "eventType": "workshop",
+        "eventName": "Test Name k3qy",
+        "eventDate": "2026-02-11T22:18:28.685580",
+        "capacity": 8463.29
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "eventType": "webinar",
+        "eventName": "Test Name rusq",
+        "eventDate": "2026-02-11T22:18:28.685601"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "eventType": "webinar",
+        "eventName": "Test Name 5jjj",
+        "eventDate": "2026-02-11T22:18:28.685609",
+        "targetAudience": "bpqrhzmnkohlh0m"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "eventName": "Test Name 288x",
+        "eventDate": "2026-02-11T22:18:28.685621",
+        "targetAudience": "6"
+      },
+      "label": "missing_eventType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "eventType": "webinar",
+        "eventDate": "2026-02-11T22:18:28.685631",
+        "targetAudience": "p7l3cy",
+        "speakers": [
+          {},
+          {}
+        ]
+      },
+      "label": "missing_eventName",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "eventType": "workshop",
+        "eventName": "Test Name u5vp",
+        "targetAudience": "f",
+        "speakers": []
+      },
+      "label": "missing_eventDate",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "eventType": 12345,
+        "eventName": "Test Name 8hb6",
+        "eventDate": "2026-02-11T22:18:28.685655",
+        "targetAudience": "5z8yc3c38m7ude3ue9l"
+      },
+      "label": "invalid_type_eventType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "eventType": "workshop",
+        "eventName": 12345,
+        "eventDate": "2026-02-11T22:18:28.685666",
+        "speakers": [
+          {}
+        ]
+      },
+      "label": "invalid_type_eventName",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "eventType": "webinar",
+        "eventName": "Test Name qqk2",
+        "eventDate": 12345,
+        "targetAudience": "7rs2z0k",
+        "speakers": [
+          {},
+          {},
+          {}
+        ]
+      },
+      "label": "invalid_type_eventDate",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "eventType": "meetup",
+        "eventName": "Test Name dtu3",
+        "eventDate": "2026-02-11T22:18:28.685687",
+        "targetAudience": 12345
+      },
+      "label": "invalid_type_targetAudience",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "eventType": "virtual_hangout",
+        "eventName": "Test Name udi4",
+        "eventDate": "2026-02-11T22:18:28.685697",
+        "capacity": "not_a_number"
+      },
+      "label": "invalid_type_capacity",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "eventType": "conference",
+        "eventName": "Test Name eddo",
+        "eventDate": "2026-02-11T22:18:28.685703",
+        "targetAudience": "lat",
+        "capacity": 1029.56,
+        "speakers": "not_an_array"
+      },
+      "label": "invalid_type_speakers",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

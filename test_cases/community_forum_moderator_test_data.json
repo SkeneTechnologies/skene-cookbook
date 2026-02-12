@@ -1,0 +1,83 @@
+{
+  "skill_id": "community_forum_moderator",
+  "generated_at": "2026-02-11T22:18:28.737601",
+  "num_cases": 9,
+  "test_cases": [
+    {
+      "inputs": {
+        "action": "flag"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "action": "escalate",
+        "contentId": "2v6nqinv",
+        "contentType": "comment",
+        "reportReason": "akiq4yk0"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "action": "report",
+        "contentId": "yluuoeh0x",
+        "contentType": "post",
+        "reportReason": "m6gn8fe"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "contentType": "profile"
+      },
+      "label": "missing_action",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": 12345,
+        "contentId": "0xuzj1jp9vi7t7cs38",
+        "contentType": "post",
+        "reportReason": "mmibgrpl"
+      },
+      "label": "invalid_type_action",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": "review",
+        "contentType": "comment",
+        "contentId": 12345
+      },
+      "label": "invalid_type_contentId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": "escalate",
+        "contentId": "71o2r",
+        "contentType": 12345
+      },
+      "label": "invalid_type_contentType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": "report",
+        "contentId": "ccrxvc0ii1",
+        "reportReason": 12345
+      },
+      "label": "invalid_type_reportReason",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "skill_id": "cs_quarterly_business_review",
+  "generated_at": "2026-02-12T00:05:00.800189",
+  "num_cases": 10,
+  "test_cases": [
+    {
+      "inputs": {
+        "accountId": "test_dylb9nf7",
+        "quarter": "0fw7",
+        "includeRoadmap": false,
+        "audienceLevel": "operational"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "accountId": "test_iphckooq",
+        "quarter": "xospeix",
+        "audienceLevel": "executive"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "accountId": "test_4ggcb6ay",
+        "quarter": "3g",
+        "includeRoadmap": false,
+        "audienceLevel": "technical"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "quarter": "fcvtbxquz",
+        "includeRoadmap": true,
+        "audienceLevel": "operational"
+      },
+      "label": "missing_accountId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": "test_jfln2vm0"
+      },
+      "label": "missing_quarter",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": 12345,
+        "quarter": "wqsdv8q9ux1qaszs",
+        "includeRoadmap": true,
+        "audienceLevel": "operational"
+      },
+      "label": "invalid_type_accountId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": "test_6zf5atzo",
+        "quarter": 12345,
+        "includeRoadmap": false,
+        "audienceLevel": "technical"
+      },
+      "label": "invalid_type_quarter",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": "test_8vmcogyd",
+        "quarter": "y1w6ri51sj1rw",
+        "audienceLevel": "executive",
+        "includeRoadmap": "yes"
+      },
+      "label": "invalid_type_includeRoadmap",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": "test_y3i4k25k",
+        "quarter": "xoefjg34ip41t0l",
+        "audienceLevel": 12345
+      },
+      "label": "invalid_type_audienceLevel",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

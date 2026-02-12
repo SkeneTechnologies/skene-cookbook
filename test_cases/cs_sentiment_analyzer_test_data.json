@@ -1,0 +1,83 @@
+{
+  "skill_id": "cs_sentiment_analyzer",
+  "generated_at": "2026-02-12T00:05:00.748974",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "accountId": "test_f906i829",
+        "timeframe": "30d",
+        "channels": [
+          "social"
+        ]
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "accountId": "test_asft1h4g",
+        "channels": [
+          "surveys",
+          "calls"
+        ]
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "accountId": "test_ierwhvdf",
+        "timeframe": "30d",
+        "channels": [
+          "surveys",
+          "social"
+        ]
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "channels": [
+          "product",
+          "email"
+        ]
+      },
+      "label": "missing_accountId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": 12345,
+        "timeframe": "7d"
+      },
+      "label": "invalid_type_accountId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": "test_ldqoh3rq",
+        "timeframe": 12345,
+        "channels": [
+          "calls"
+        ]
+      },
+      "label": "invalid_type_timeframe",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": "test_9x8jush2",
+        "channels": "not_an_array"
+      },
+      "label": "invalid_type_channels",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

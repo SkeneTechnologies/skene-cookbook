@@ -1,0 +1,71 @@
+{
+  "skill_id": "support_kb_gap_finder",
+  "generated_at": "2026-02-12T00:05:04.077668",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "time_period": "qbo85dihqqxixwy",
+        "min_ticket_count": 1081.32,
+        "coverage_threshold": 1976.38
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "time_period": "lve",
+        "coverage_threshold": 4725.94,
+        "include_search_analysis": false
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "min_ticket_count": 7309.6,
+        "include_search_analysis": true
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "time_period": 12345,
+        "min_ticket_count": 2484.18
+      },
+      "label": "invalid_type_time_period",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "time_period": "1nq7t",
+        "min_ticket_count": "not_a_number"
+      },
+      "label": "invalid_type_min_ticket_count",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "time_period": "d9xr",
+        "coverage_threshold": "not_a_number",
+        "include_search_analysis": true
+      },
+      "label": "invalid_type_coverage_threshold",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "min_ticket_count": 1041.93,
+        "include_search_analysis": "yes"
+      },
+      "label": "invalid_type_include_search_analysis",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": true
+    }
+  ]
+}

@@ -1,0 +1,212 @@
+{
+  "skill_id": "ai_personalization_engine",
+  "generated_at": "2026-02-12T00:05:03.488822",
+  "num_cases": 13,
+  "test_cases": [
+    {
+      "inputs": {
+        "userId": "test_7odwhdlu",
+        "sessionContext": {
+          "device": "mobile",
+          "timestamp": "2026-02-12T00:05:03.488526",
+          "location": "6bd3qsabbcrza"
+        },
+        "personalizationTypes": [
+          "support",
+          "content"
+        ],
+        "intentSignals": [
+          "oi7eziek73g"
+        ],
+        "abTestVariant": "test_w0dtzm2y"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "userId": "test_9h6hwwa6",
+        "sessionContext": {
+          "device": "desktop",
+          "timestamp": "2026-02-12T00:05:03.488566",
+          "currentPage": "870io3zw68v6lpb0wrw6"
+        },
+        "personalizationTypes": [
+          "ui_ux"
+        ],
+        "intentSignals": [
+          "aeo280rujtu7xp6w"
+        ],
+        "abTestVariant": "test_ywq3oikj"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "userId": "test_f75ucxsi",
+        "sessionContext": {
+          "device": "tablet",
+          "timestamp": "2026-02-12T00:05:03.488593",
+          "location": "9ihv4v7",
+          "referrer": "https://example.com/pkowqn2s"
+        },
+        "personalizationTypes": [
+          "offers",
+          "recommendations"
+        ]
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "sessionContext": {
+          "device": "mobile",
+          "timestamp": "2026-02-12T00:05:03.488612",
+          "location": "yzin1j6qtu2fn6",
+          "currentPage": "yxon",
+          "referrer": "https://example.com/w8n9ahlj"
+        },
+        "personalizationTypes": [],
+        "intentSignals": [
+          "bdnirfwbytyiftdito",
+          "x2iuf1hvfyl9xhjp3",
+          "pppnwe715erh8h"
+        ],
+        "abTestVariant": "test_vre2i2kx"
+      },
+      "label": "missing_userId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": "test_zurgu6z5",
+        "personalizationTypes": [
+          "ui_ux"
+        ]
+      },
+      "label": "missing_sessionContext",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": "test_gfrgttyc",
+        "sessionContext": {
+          "device": "mobile",
+          "timestamp": "2026-02-12T00:05:03.488666",
+          "location": "ivh2m5",
+          "currentPage": "ozyp2tiydyhj51zzn"
+        },
+        "abTestVariant": "test_8inqzw6a"
+      },
+      "label": "missing_personalizationTypes",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": 12345,
+        "sessionContext": {
+          "device": "desktop",
+          "timestamp": "2026-02-12T00:05:03.488687"
+        },
+        "personalizationTypes": []
+      },
+      "label": "invalid_type_userId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": "test_jtdjfz4q",
+        "sessionContext": "not_an_object",
+        "personalizationTypes": [
+          "ui_ux",
+          "support"
+        ],
+        "abTestVariant": "test_v3zbnzs3"
+      },
+      "label": "invalid_type_sessionContext",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": "test_bho1xmb0",
+        "sessionContext": {
+          "device": "mobile",
+          "timestamp": "2026-02-12T00:05:03.488716"
+        },
+        "personalizationTypes": [
+          "ui_ux",
+          "ui_ux",
+          "offers"
+        ],
+        "abTestVariant": "test_j76mar70",
+        "intentSignals": "not_an_array"
+      },
+      "label": "invalid_type_intentSignals",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": "test_vkya9adk",
+        "sessionContext": {
+          "device": "mobile",
+          "timestamp": "2026-02-12T00:05:03.488731",
+          "currentPage": "xc0ep",
+          "referrer": "https://example.com/8loez2z6"
+        },
+        "personalizationTypes": "not_an_array",
+        "intentSignals": []
+      },
+      "label": "invalid_type_personalizationTypes",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": "test_xbkr4dv0",
+        "sessionContext": {
+          "device": "mobile",
+          "timestamp": "2026-02-12T00:05:03.488749",
+          "currentPage": "1d"
+        },
+        "personalizationTypes": [
+          "ui_ux",
+          "ui_ux",
+          "offers"
+        ],
+        "abTestVariant": 12345,
+        "userPreferences": {}
+      },
+      "label": "invalid_type_abTestVariant",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": "test_wski2gku",
+        "sessionContext": {
+          "device": "desktop",
+          "timestamp": "2026-02-12T00:05:03.488768",
+          "location": "2gpvv7pjdui3xjxnt",
+          "referrer": "https://example.com/faznsdef"
+        },
+        "personalizationTypes": [
+          "recommendations"
+        ],
+        "intentSignals": [
+          "6h",
+          "ngkdycs",
+          "8z11thwm7jb5"
+        ],
+        "abTestVariant": "test_7mziikgv",
+        "userPreferences": "not_an_object"
+      },
+      "label": "invalid_type_userPreferences",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

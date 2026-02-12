@@ -1,0 +1,280 @@
+{
+  "id": "anthropic_official/slack-gif-creator",
+  "version": "1.0.0",
+  "name": "slack-gif-creator",
+  "description": "Knowledge and utilities for creating animated GIFs optimized for Slack. Provides constraints, validation tools, and animation concepts. Use when users request animated GIFs for Slack like \"make me a GIF of X doing Y for Slack.\"",
+  "domain": "anthropic_official",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "description": {
+        "type": "string",
+        "description": "Natural language description of the desired GIF animation (e.g., 'make me a bouncing star', 'animate a pulsing heart')"
+      },
+      "animation_type": {
+        "type": "string",
+        "enum": [
+          "shake",
+          "pulse",
+          "bounce",
+          "spin",
+          "fade",
+          "slide",
+          "zoom",
+          "explode",
+          "custom"
+        ],
+        "description": "Type of animation to create"
+      },
+      "dimensions": {
+        "type": "object",
+        "properties": {
+          "width": {
+            "type": "integer",
+            "enum": [
+              128,
+              480
+            ],
+            "default": 128,
+            "description": "Width in pixels (128 for emoji, 480 for messages)"
+          },
+          "height": {
+            "type": "integer",
+            "enum": [
+              128,
+              480
+            ],
+            "default": 128,
+            "description": "Height in pixels (128 for emoji, 480 for messages)"
+          }
+        },
+        "required": [
+          "width",
+          "height"
+        ]
+      },
+      "fps": {
+        "type": "integer",
+        "minimum": 10,
+        "maximum": 30,
+        "default": 10,
+        "description": "Frames per second (lower = smaller file size)"
+      },
+      "duration": {
+        "type": "number",
+        "minimum": 0.5,
+        "maximum": 10,
+        "default": 3,
+        "description": "Animation duration in seconds"
+      },
+      "colors": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "pattern": "^#[0-9A-Fa-f]{6}$"
+        },
+        "description": "Optional array of hex color codes to use in the animation"
+      },
+      "optimize_for": {
+        "type": "string",
+        "enum": [
+          "emoji",
+          "message",
+          "quality"
+        ],
+        "default": "emoji",
+        "description": "Optimization target (emoji = max optimization, quality = minimal optimization)"
+      },
+      "uploaded_image": {
+        "type": "string",
+        "format": "uri",
+        "description": "Optional path or URL to an uploaded image to use as source or inspiration"
+      },
+      "easing": {
+        "type": "string",
+        "enum": [
+          "linear",
+          "ease_in",
+          "ease_out",
+          "ease_in_out",
+          "bounce_out",
+          "elastic_out",
+          "back_out"
+        ],
+        "default": "ease_out",
+        "description": "Easing function for smooth motion"
+      },
+      "num_colors": {
+        "type": "integer",
+        "minimum": 48,
+        "maximum": 256,
+        "default": 48,
+        "description": "Number of colors in the palette (fewer = smaller file size)"
+      }
+    },
+    "required": [
+      "description"
+    ],
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "gif_path": {
+        "type": "string",
+        "description": "Path to the generated GIF file"
+      },
+      "file_size": {
+        "type": "integer",
+        "description": "File size in bytes"
+      },
+      "dimensions": {
+        "type": "object",
+        "properties": {
+          "width": {
+            "type": "integer",
+            "description": "Width in pixels"
+          },
+          "height": {
+            "type": "integer",
+            "description": "Height in pixels"
+          }
+        },
+        "required": [
+          "width",
+          "height"
+        ]
+      },
+      "frame_count": {
+        "type": "integer",
+        "description": "Total number of frames in the animation"
+      },
+      "fps": {
+        "type": "integer",
+        "description": "Frames per second"
+      },
+      "duration": {
+        "type": "number",
+        "description": "Total duration in seconds"
+      },
+      "validation": {
+        "type": "object",
+        "properties": {
+          "is_slack_ready": {
+            "type": "boolean",
+            "description": "Whether the GIF meets Slack requirements"
+          },
+          "is_emoji": {
+            "type": "boolean",
+            "description": "Whether it's optimized for Slack emoji (128x128)"
+          },
+          "passes_requirements": {
+            "type": "boolean",
+            "description": "Whether all technical requirements are met"
+          },
+          "warnings": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Any warnings about optimization or compatibility"
+          }
+        },
+        "required": [
+          "is_slack_ready",
+          "passes_requirements"
+        ]
+      },
+      "optimization_applied": {
+        "type": "object",
+        "properties": {
+          "num_colors": {
+            "type": "integer",
+            "description": "Number of colors used in final palette"
+          },
+          "duplicates_removed": {
+            "type": "boolean",
+            "description": "Whether duplicate frames were removed"
+          },
+          "emoji_optimized": {
+            "type": "boolean",
+            "description": "Whether emoji-specific optimizations were applied"
+          }
+        }
+      },
+      "animation_details": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Type of animation created"
+          },
+          "easing_used": {
+            "type": "string",
+            "description": "Easing function applied"
+          },
+          "description": {
+            "type": "string",
+            "description": "Human-readable description of the animation"
+          }
+        }
+      },
+      "preview_url": {
+        "type": "string",
+        "format": "uri",
+        "description": "Optional URL to preview the generated GIF"
+      }
+    },
+    "required": [
+      "gif_path",
+      "file_size",
+      "dimensions",
+      "frame_count",
+      "fps",
+      "duration",
+      "validation"
+    ],
+    "additionalProperties": true
+  },
+  "temperature": 0,
+  "tags": [
+    "anthropic_official",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "license": "Complete terms in LICENSE.txt",
+      "triggers": [
+        "help with slack gif creator",
+        "users request animated gifs for slack like \"make me a gif of x doing y for slack"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "security_controls": {
+    "delete_operations": {
+      "soft_delete": true,
+      "retention_period_days": 30,
+      "undelete_capable": true,
+      "backup_before_delete": true,
+      "multi_party_approval": true,
+      "confirmation_required": {
+        "enabled": true,
+        "show_impact": true,
+        "require_reason": true
+      }
+    }
+  },
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.92
+  }
+}

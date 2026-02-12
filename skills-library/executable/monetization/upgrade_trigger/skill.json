@@ -1,0 +1,396 @@
+{
+  "id": "mon_upgrade_trigger",
+  "version": "1.0.0",
+  "name": "Upgrade Trigger",
+  "description": "Identifies optimal moments to present upgrade offers and executes upgrade flows.",
+  "domain": "monetization",
+  "tools": [
+    {
+      "name": "stripe.get_subscription",
+      "required": true
+    },
+    {
+      "name": "stripe.create_checkout",
+      "required": true
+    },
+    {
+      "name": "stripe.update_subscription",
+      "required": false
+    },
+    {
+      "name": "lifecycle.get_segment",
+      "required": true
+    },
+    {
+      "name": "messaging.send_in_app",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "checkout",
+    "billing_portal",
+    "expansion_playbook",
+    "idle"
+  ],
+  "metrics": {
+    "primary": "upgrade_conversion_rate",
+    "benchmarks": {
+      "excellent": "> 15%",
+      "good": "8-15%",
+      "needs_improvement": "< 8%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "monetization",
+    "upgrade",
+    "expansion",
+    "revenue",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Upgrade Trigger"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "stripe.get_customer",
+          "required": true
+        },
+        {
+          "name": "stripe.list_subscriptions",
+          "required": false
+        },
+        {
+          "name": "stripe.create_checkout",
+          "required": false
+        }
+      ]
+    }
+  },
+  "security_controls": {
+    "execution_environment": {
+      "type": "sandboxed_container",
+      "resource_limits": {
+        "cpu_cores": 1,
+        "memory_mb": 512,
+        "timeout_seconds": 30,
+        "disk_mb": 100
+      },
+      "security": {
+        "network_access": false,
+        "filesystem": "read_only",
+        "user": "non_root",
+        "allowed_commands": [
+          "node",
+          "python3",
+          "npm"
+        ],
+        "blocked_syscalls": [
+          "exec",
+          "fork",
+          "kill"
+        ]
+      }
+    }
+  },
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "user_id": {
+        "type": "string",
+        "description": "Unique identifier for the user"
+      },
+      "user_email": {
+        "type": "string",
+        "format": "email",
+        "description": "User's email address"
+      },
+      "user_name": {
+        "type": "string",
+        "description": "User's display name"
+      },
+      "trigger_type": {
+        "type": "string",
+        "enum": [
+          "usage_limit_hit",
+          "premium_feature_attempt",
+          "power_user_pattern",
+          "team_growth",
+          "value_milestone"
+        ],
+        "description": "Type of upgrade trigger detected"
+      },
+      "trigger_details": {
+        "type": "object",
+        "properties": {
+          "signal": {
+            "type": "string",
+            "description": "Detailed description of the trigger signal"
+          },
+          "feature_attempted": {
+            "type": "string",
+            "description": "Premium feature that was attempted (if applicable)"
+          },
+          "usage_percentage": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100,
+            "description": "Percentage of quota used (if applicable)"
+          },
+          "team_size": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Number of team members (if applicable)"
+          },
+          "engagement_score": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100,
+            "description": "User engagement score (if applicable)"
+          }
+        },
+        "description": "Contextual details about the trigger"
+      },
+      "current_subscription_id": {
+        "type": "string",
+        "description": "Stripe subscription ID for current plan"
+      },
+      "session_id": {
+        "type": "string",
+        "description": "Current user session identifier to prevent duplicate prompts"
+      },
+      "presentation_mode": {
+        "type": "string",
+        "enum": [
+          "in_app_modal",
+          "email",
+          "checkout_redirect"
+        ],
+        "default": "in_app_modal",
+        "description": "Preferred method to present the upgrade offer"
+      },
+      "require_approval": {
+        "type": "boolean",
+        "default": false,
+        "description": "Whether this upgrade requires HITL approval"
+      }
+    },
+    "required": [
+      "user_id",
+      "trigger_type"
+    ],
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "upgrade_opportunity_id": {
+        "type": "string",
+        "description": "Unique identifier for this upgrade opportunity"
+      },
+      "user_id": {
+        "type": "string",
+        "description": "User identifier"
+      },
+      "user_name": {
+        "type": "string",
+        "description": "User's display name"
+      },
+      "trigger_type": {
+        "type": "string",
+        "description": "Type of upgrade trigger that was detected"
+      },
+      "trigger_details": {
+        "type": "object",
+        "properties": {
+          "signal": {
+            "type": "string",
+            "description": "Description of the trigger signal"
+          },
+          "urgency": {
+            "type": "string",
+            "enum": [
+              "high",
+              "medium",
+              "low"
+            ],
+            "description": "Urgency level of the upgrade opportunity"
+          },
+          "conversion_likelihood": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100,
+            "description": "Estimated conversion likelihood percentage"
+          }
+        },
+        "required": [
+          "signal",
+          "urgency",
+          "conversion_likelihood"
+        ]
+      },
+      "current_plan": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Current plan name"
+          },
+          "price": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Current plan monthly price"
+          },
+          "currency": {
+            "type": "string",
+            "default": "usd",
+            "description": "Price currency code"
+          }
+        },
+        "required": [
+          "name",
+          "price"
+        ]
+      },
+      "recommended_plan": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Recommended plan name"
+          },
+          "price": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Recommended plan monthly price"
+          },
+          "currency": {
+            "type": "string",
+            "default": "usd",
+            "description": "Price currency code"
+          },
+          "price_id": {
+            "type": "string",
+            "description": "Stripe price ID for the recommended plan"
+          }
+        },
+        "required": [
+          "name",
+          "price"
+        ]
+      },
+      "personalized_offer": {
+        "type": "object",
+        "properties": {
+          "headline": {
+            "type": "string",
+            "description": "Offer headline"
+          },
+          "message": {
+            "type": "string",
+            "description": "Personalized offer message based on trigger type"
+          },
+          "call_to_action": {
+            "type": "string",
+            "description": "CTA button text"
+          },
+          "benefits": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of key benefits for the recommended plan"
+          }
+        },
+        "required": [
+          "headline",
+          "message",
+          "call_to_action"
+        ]
+      },
+      "actions_taken": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "action": {
+              "type": "string",
+              "enum": [
+                "show_upgrade_modal",
+                "create_checkout_session",
+                "send_upgrade_email",
+                "update_subscription",
+                "awaiting_approval"
+              ],
+              "description": "Action that was or will be taken"
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "completed",
+                "pending",
+                "failed",
+                "skipped"
+              ],
+              "description": "Status of the action"
+            },
+            "details": {
+              "type": "object",
+              "description": "Additional details about the action"
+            }
+          },
+          "required": [
+            "action",
+            "status"
+          ]
+        },
+        "description": "List of actions taken or planned"
+      },
+      "checkout_session_url": {
+        "type": "string",
+        "format": "uri",
+        "description": "Stripe checkout session URL (if created)"
+      },
+      "requires_hitl": {
+        "type": "boolean",
+        "description": "Whether HITL approval is required before proceeding"
+      },
+      "hitl_threshold_amount": {
+        "type": "number",
+        "description": "Dollar amount threshold that triggered HITL requirement"
+      },
+      "blocked_reasons": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Reasons why upgrade was blocked (e.g., unhealthy user, session limit)"
+      },
+      "timestamp": {
+        "type": "string",
+        "format": "date-time",
+        "description": "When this upgrade opportunity was identified"
+      }
+    },
+    "required": [
+      "upgrade_opportunity_id",
+      "user_id",
+      "trigger_type",
+      "trigger_details",
+      "recommended_plan",
+      "personalized_offer",
+      "actions_taken",
+      "requires_hitl",
+      "timestamp"
+    ]
+  },
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.92
+  }
+}

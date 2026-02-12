@@ -1,0 +1,36 @@
+{
+  "id": "cursor_rules/apollo-client",
+  "version": "1.0.0",
+  "name": "apollo-client",
+  "description": "This guide defines the definitive best practices for using Apollo Client 3.x in our React applications, focusing on cache hygiene, type safety, performance, and maintainability.",
+  "domain": "cursor_rules",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "cursor_rules",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "cursor": {
+      "globs": [
+        "**/*.{js",
+        "jsx}"
+      ]
+    },
+    "claude": {
+      "triggers": [
+        "help with apollo client"
+      ]
+    },
+    "skeneflow": {}
+  },
+  "skipSchemaValidation": true
+}

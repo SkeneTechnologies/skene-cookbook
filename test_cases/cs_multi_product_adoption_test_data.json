@@ -1,0 +1,76 @@
+{
+  "skill_id": "cs_multi_product_adoption",
+  "generated_at": "2026-02-12T00:05:00.708361",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "accountId": "test_4gjygspl",
+        "includeEntitlements": false
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "accountId": "test_1es9w43f"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "accountId": "test_doc6tz3g"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "products": [
+          "r4nuivj46h",
+          "0xjavpy8e3",
+          "dykai46e3vmvt9l"
+        ],
+        "includeEntitlements": true
+      },
+      "label": "missing_accountId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": 12345,
+        "products": [
+          "97585vpa"
+        ]
+      },
+      "label": "invalid_type_accountId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": "test_x9a9vmgk",
+        "products": "not_an_array"
+      },
+      "label": "invalid_type_products",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": "test_yu874k7g",
+        "products": [
+          "dg5yyz8l7h0qnp",
+          "1ffoewbrbg"
+        ],
+        "includeEntitlements": "yes"
+      },
+      "label": "invalid_type_includeEntitlements",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

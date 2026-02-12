@@ -1,0 +1,37 @@
+{
+  "id": "cursor_rules/docker",
+  "version": "1.0.0",
+  "name": "docker",
+  "description": "Definitive guidelines for writing efficient, secure, and maintainable Dockerfiles and Docker Compose configurations, ensuring fast builds and reliable deployments.",
+  "domain": "cursor_rules",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "cursor_rules",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "cursor": {
+      "globs": [
+        "**/Dockerfile",
+        "**/docker-compose*.{yml",
+        "yaml}"
+      ]
+    },
+    "claude": {
+      "triggers": [
+        "help with docker"
+      ]
+    },
+    "skeneflow": {}
+  },
+  "skipSchemaValidation": true
+}

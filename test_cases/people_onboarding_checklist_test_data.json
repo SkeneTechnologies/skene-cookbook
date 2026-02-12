@@ -1,0 +1,137 @@
+{
+  "skill_id": "people_onboarding_checklist",
+  "generated_at": "2026-02-11T22:18:31.455440",
+  "num_cases": 13,
+  "test_cases": [
+    {
+      "inputs": {
+        "employeeId": "test_c8cnayy9",
+        "startDate": "2026-02-11",
+        "department": "yyrwxyb6bc81km1zz",
+        "onboardingType": "contractor"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "employeeId": "test_r8r73mee",
+        "startDate": "2026-02-11",
+        "department": "u1077egkn8ptnsa72ye",
+        "role": "3nkwmrtc11k6rz6g",
+        "managerId": "test_uuw0elxb",
+        "onboardingType": "executive"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "employeeId": "test_t87vkk8a",
+        "startDate": "2026-02-11",
+        "department": "t2rdeesnjtxbj296neh",
+        "role": "k00oduv",
+        "managerId": "test_uhaa9nti"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "startDate": "2026-02-11",
+        "department": "jiwvm",
+        "role": "ybt",
+        "managerId": "test_glsdu8om"
+      },
+      "label": "missing_employeeId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "employeeId": "test_wxe1q29v",
+        "department": "y2fi6jnsf1zyfs5g",
+        "managerId": "test_27nzaejf",
+        "onboardingType": "remote"
+      },
+      "label": "missing_startDate",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "employeeId": "test_vdva3vsm",
+        "startDate": "2026-02-11",
+        "role": "eiy2o2yi5",
+        "onboardingType": "executive"
+      },
+      "label": "missing_department",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "employeeId": 12345,
+        "startDate": "2026-02-11",
+        "department": "o63",
+        "onboardingType": "standard"
+      },
+      "label": "invalid_type_employeeId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "employeeId": "test_j71zp6b1",
+        "startDate": 12345,
+        "department": "nxig4dltxrln9jalk",
+        "onboardingType": "contractor"
+      },
+      "label": "invalid_type_startDate",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "employeeId": "test_e031qu75",
+        "startDate": "2026-02-11",
+        "department": 12345
+      },
+      "label": "invalid_type_department",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "employeeId": "test_ke3fb1u4",
+        "startDate": "2026-02-11",
+        "department": "wopfq3",
+        "managerId": "test_r2i8sgum",
+        "onboardingType": "remote",
+        "role": 12345
+      },
+      "label": "invalid_type_role",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "employeeId": "test_f1m5341s",
+        "startDate": "2026-02-11",
+        "department": "hkc7zotfnv2xqo",
+        "role": "i8zmwyvrgp",
+        "managerId": 12345
+      },
+      "label": "invalid_type_managerId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "employeeId": "test_iy4z8wu3",
+        "startDate": "2026-02-11",
+        "department": "je",
+        "onboardingType": 12345
+      },
+      "label": "invalid_type_onboardingType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

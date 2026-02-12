@@ -1,0 +1,216 @@
+{
+  "skill_id": "prodops_feature_adoption",
+  "generated_at": "2026-02-12T00:05:01.941810",
+  "num_cases": 11,
+  "test_cases": [
+    {
+      "inputs": {
+        "time_period": {
+          "start_date": "2026-02-12",
+          "end_date": "2026-02-12"
+        },
+        "segment_filters": {}
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "time_period": {
+          "start_date": "2026-02-12",
+          "end_date": "2026-02-12"
+        },
+        "feature_filters": {
+          "feature_ids": [],
+          "feature_categories": [
+            "ka15h",
+            "khzvysty4ynag276dl",
+            "m3szuosanyt"
+          ],
+          "min_age_days": 647
+        },
+        "segment_filters": {
+          "account_tiers": [
+            "starter",
+            "professional"
+          ]
+        },
+        "benchmark_thresholds": {
+          "adoption_rate_target": 30.84
+        },
+        "comparison_period": {
+          "start_date": "2026-02-12",
+          "end_date": "2026-02-12"
+        }
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "time_period": {
+          "start_date": "2026-02-12",
+          "end_date": "2026-02-12"
+        },
+        "feature_filters": {
+          "feature_ids": [
+            "msz"
+          ],
+          "min_age_days": 937
+        },
+        "segment_filters": {
+          "account_tiers": [
+            "enterprise"
+          ]
+        },
+        "benchmark_thresholds": {
+          "discovery_rate_target": 64.55,
+          "retention_rate_target": 40.5
+        },
+        "enable_interventions": true,
+        "comparison_period": {
+          "start_date": "2026-02-12",
+          "end_date": "2026-02-12"
+        }
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "feature_filters": {
+          "feature_categories": [
+            "l63zsdetlf6chcd"
+          ]
+        },
+        "benchmark_thresholds": {
+          "discovery_rate_target": 37.42,
+          "adoption_rate_target": 60.53,
+          "retention_rate_target": 14.95
+        },
+        "comparison_period": {
+          "start_date": "2026-02-12",
+          "end_date": "2026-02-12"
+        }
+      },
+      "label": "missing_time_period",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "time_period": "not_an_object",
+        "benchmark_thresholds": {
+          "adoption_rate_target": 50.8
+        },
+        "enable_interventions": true
+      },
+      "label": "invalid_type_time_period",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "time_period": {
+          "start_date": "2026-02-12",
+          "end_date": "2026-02-12"
+        },
+        "segment_filters": {
+          "user_segments": [
+            "gc4859aa84p",
+            "koy6trceylz95nnf4h00",
+            "9i3"
+          ]
+        },
+        "benchmark_thresholds": {
+          "discovery_rate_target": 44.14
+        },
+        "feature_filters": "not_an_object"
+      },
+      "label": "invalid_type_feature_filters",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "time_period": {
+          "start_date": "2026-02-12",
+          "end_date": "2026-02-12"
+        },
+        "segment_filters": "not_an_object"
+      },
+      "label": "invalid_type_segment_filters",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "time_period": {
+          "start_date": "2026-02-12",
+          "end_date": "2026-02-12"
+        },
+        "feature_filters": {
+          "min_age_days": 27
+        },
+        "segment_filters": {
+          "user_segments": [
+            "9qfe65",
+            "093zro8bjr72uiyzu"
+          ]
+        },
+        "benchmark_thresholds": "not_an_object",
+        "enable_interventions": false,
+        "comparison_period": {
+          "start_date": "2026-02-12",
+          "end_date": "2026-02-12"
+        }
+      },
+      "label": "invalid_type_benchmark_thresholds",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "time_period": {
+          "start_date": "2026-02-12",
+          "end_date": "2026-02-12"
+        },
+        "feature_filters": {
+          "feature_categories": [
+            "uge"
+          ]
+        },
+        "segment_filters": {
+          "user_segments": [
+            "yfa0bdbyh516apxatwgp"
+          ],
+          "account_tiers": []
+        },
+        "benchmark_thresholds": {
+          "discovery_rate_target": 26.29,
+          "trial_rate_target": 29.7
+        },
+        "comparison_period": {
+          "start_date": "2026-02-12",
+          "end_date": "2026-02-12"
+        },
+        "enable_interventions": "yes"
+      },
+      "label": "invalid_type_enable_interventions",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "time_period": {
+          "start_date": "2026-02-12",
+          "end_date": "2026-02-12"
+        },
+        "segment_filters": {},
+        "enable_interventions": true,
+        "comparison_period": "not_an_object"
+      },
+      "label": "invalid_type_comparison_period",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "skill_id": "plgf_product_analytics",
+  "generated_at": "2026-02-11T22:14:32.426368",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "analysisType": "cohort_analysis",
+        "focusArea": "aarfl"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "analysisType": "funnel_analysis",
+        "tool": "segment"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "analysisType": "retention",
+        "tool": "amplitude",
+        "focusArea": "7d22m6rr"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "tool": "amplitude"
+      },
+      "label": "missing_analysisType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "analysisType": 12345,
+        "tool": "mixpanel"
+      },
+      "label": "invalid_type_analysisType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "analysisType": "taxonomy_design",
+        "tool": 12345
+      },
+      "label": "invalid_type_tool",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "analysisType": "behavioral",
+        "focusArea": 12345
+      },
+      "label": "invalid_type_focusArea",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

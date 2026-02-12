@@ -1,0 +1,82 @@
+{
+  "skill_id": "plgf_expansion_revenue",
+  "generated_at": "2026-02-11T22:14:29.795790",
+  "num_cases": 9,
+  "test_cases": [
+    {
+      "inputs": {
+        "accountId": "wg4ocos60i",
+        "userId": "k",
+        "timeframe": "aqkmjdc9wppepjs"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "accountId": "widdpx78r2nl7m5ds0d",
+        "userId": "3hkzh2e8x"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "accountId": "qqzzg",
+        "userId": "430enhqsnef9tzwrrx",
+        "analysisType": "expansion_opportunity",
+        "timeframe": "ab527re"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "timeframe": "8jw8ew6ckln9v"
+      },
+      "label": "missing_accountId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": 12345,
+        "analysisType": "nrr_analysis",
+        "timeframe": "szldmcxg0"
+      },
+      "label": "invalid_type_accountId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": "r6gk3nj21cal104w",
+        "userId": 12345,
+        "analysisType": "health_scoring",
+        "timeframe": "72to"
+      },
+      "label": "invalid_type_userId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": "u9",
+        "timeframe": "58z",
+        "analysisType": 12345
+      },
+      "label": "invalid_type_analysisType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": "e02lx5i",
+        "timeframe": 12345
+      },
+      "label": "invalid_type_timeframe",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

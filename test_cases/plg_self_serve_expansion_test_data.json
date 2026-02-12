@@ -1,0 +1,67 @@
+{
+  "skill_id": "plg_self_serve_expansion",
+  "generated_at": "2026-02-12T00:05:12.599939",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "userId": "9kli9k"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "userId": "x2mnk0bhw4d",
+        "expansionType": "seats"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "userId": "l",
+        "expansionType": "addon"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "expansionType": "addon"
+      },
+      "label": "missing_userId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": 12345,
+        "expansionType": "addon"
+      },
+      "label": "invalid_type_userId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": "dspene5w7yw4v",
+        "accountId": 12345,
+        "expansionType": "seats"
+      },
+      "label": "invalid_type_accountId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": "my07u6c15",
+        "expansionType": 12345
+      },
+      "label": "invalid_type_expansionType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

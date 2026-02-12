@@ -1,0 +1,72 @@
+{
+  "skill_id": "governance_context_sync",
+  "generated_at": "2026-02-11T22:18:27.685561",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "action": "force_sync",
+        "auto_brief": true
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "threshold_hours": 247.19,
+        "auto_brief": false,
+        "sync_command": "14gzymov914q"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "action": "check_status",
+        "threshold_hours": 2372.71,
+        "sync_command": "poxsqkf"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "threshold_hours": 1238.12,
+        "sync_command": "hh",
+        "action": 12345
+      },
+      "label": "invalid_type_action",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "auto_brief": false,
+        "sync_command": "ylpbjwe57439zpu04kj4",
+        "threshold_hours": "not_a_number"
+      },
+      "label": "invalid_type_threshold_hours",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": "check_status",
+        "auto_brief": "yes",
+        "sync_command": "wv0yl682tc7b"
+      },
+      "label": "invalid_type_auto_brief",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "sync_command": 12345
+      },
+      "label": "invalid_type_sync_command",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": true
+    }
+  ]
+}

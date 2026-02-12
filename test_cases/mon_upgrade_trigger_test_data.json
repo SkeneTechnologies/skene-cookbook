@@ -1,0 +1,197 @@
+{
+  "skill_id": "mon_upgrade_trigger",
+  "generated_at": "2026-02-12T00:05:11.039804",
+  "num_cases": 15,
+  "test_cases": [
+    {
+      "inputs": {
+        "user_id": "test_mpx6men5",
+        "trigger_type": "value_milestone",
+        "trigger_details": {
+          "usage_percentage": 82.13,
+          "engagement_score": 86.82
+        },
+        "session_id": "test_lihmgl50"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "user_id": "test_97pssave",
+        "trigger_type": "value_milestone",
+        "user_email": "user_sx3nr@example.com",
+        "user_name": "Test Name 97l2",
+        "trigger_details": {
+          "signal": "4r",
+          "feature_attempted": "xzu6zlto",
+          "usage_percentage": 55.52,
+          "engagement_score": 0.66
+        },
+        "presentation_mode": "checkout_redirect"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "user_id": "test_i5r1ljss",
+        "trigger_type": "value_milestone",
+        "user_email": "user_enhi8@example.com",
+        "trigger_details": {},
+        "session_id": "test_3gmbpxlk",
+        "require_approval": true
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "trigger_type": "value_milestone",
+        "user_email": "user_uvqca@example.com",
+        "user_name": "Test Name jrhe",
+        "current_subscription_id": "test_p59wexpe",
+        "session_id": "test_v6wh81oj"
+      },
+      "label": "missing_user_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "user_id": "test_30inly3x",
+        "presentation_mode": "checkout_redirect"
+      },
+      "label": "missing_trigger_type",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "user_id": 12345,
+        "trigger_type": "premium_feature_attempt",
+        "user_email": "user_mstxv@example.com",
+        "trigger_details": {
+          "signal": "p1ktybgke4z9vmc",
+          "feature_attempted": "xqqf9wzzxxsmxp",
+          "team_size": 222
+        },
+        "current_subscription_id": "test_cpr1stok",
+        "session_id": "test_5wy2zbpx",
+        "presentation_mode": "in_app_modal",
+        "require_approval": true
+      },
+      "label": "invalid_type_user_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "user_id": "test_4fq3is0n",
+        "trigger_type": "usage_limit_hit",
+        "user_name": "Test Name a70v",
+        "current_subscription_id": "test_0p7d8zda",
+        "presentation_mode": "checkout_redirect",
+        "require_approval": true,
+        "user_email": 12345
+      },
+      "label": "invalid_type_user_email",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "user_id": "test_vpk464s4",
+        "trigger_type": "usage_limit_hit",
+        "user_name": 12345,
+        "presentation_mode": "checkout_redirect",
+        "require_approval": true
+      },
+      "label": "invalid_type_user_name",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "user_id": "test_qihtvu9j",
+        "trigger_type": 12345,
+        "user_name": "Test Name in7y",
+        "trigger_details": {
+          "feature_attempted": "b7b",
+          "team_size": 110
+        },
+        "current_subscription_id": "test_32zb7wb3",
+        "presentation_mode": "checkout_redirect"
+      },
+      "label": "invalid_type_trigger_type",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "user_id": "test_y6dp3o4c",
+        "trigger_type": "usage_limit_hit",
+        "user_name": "Test Name ltj5",
+        "trigger_details": "not_an_object",
+        "current_subscription_id": "test_lthye18e",
+        "require_approval": false
+      },
+      "label": "invalid_type_trigger_details",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "user_id": "test_woum10v6",
+        "trigger_type": "power_user_pattern",
+        "current_subscription_id": 12345,
+        "session_id": "test_t13roju5",
+        "presentation_mode": "checkout_redirect"
+      },
+      "label": "invalid_type_current_subscription_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "user_id": "test_9npilsmu",
+        "trigger_type": "team_growth",
+        "user_email": "user_xq6s6@example.com",
+        "trigger_details": {
+          "signal": "6whzp",
+          "team_size": 675
+        },
+        "session_id": 12345,
+        "require_approval": true
+      },
+      "label": "invalid_type_session_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "user_id": "test_1cr1yhwe",
+        "trigger_type": "power_user_pattern",
+        "user_email": "user_zb408@example.com",
+        "current_subscription_id": "test_q5yoyjdr",
+        "session_id": "test_8ofhhc7m",
+        "require_approval": true,
+        "presentation_mode": 12345
+      },
+      "label": "invalid_type_presentation_mode",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "user_id": "test_emvu6m8q",
+        "trigger_type": "value_milestone",
+        "user_name": "Test Name ivrl",
+        "trigger_details": {
+          "usage_percentage": 7.96,
+          "team_size": 941,
+          "engagement_score": 74.64
+        },
+        "session_id": "test_156brxx7",
+        "require_approval": "yes"
+      },
+      "label": "invalid_type_require_approval",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

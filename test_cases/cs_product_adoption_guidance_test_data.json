@@ -1,0 +1,69 @@
+{
+  "skill_id": "cs_product_adoption_guidance",
+  "generated_at": "2026-02-12T00:05:02.050634",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "accountId": "test_synls3v8",
+        "userId": "hteel"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "accountId": "test_vjqge1sa",
+        "focusArea": "nepjob2n1iik8kiwmu6"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "accountId": "test_7vpkpb1a",
+        "userId": "p47gx5a7ieboi8",
+        "focusArea": "69gy8x7wd5tfq"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "userId": "zf85kqa3ql6o6k"
+      },
+      "label": "missing_accountId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": 12345
+      },
+      "label": "invalid_type_accountId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": "test_73w7xi0l",
+        "userId": 12345,
+        "focusArea": "8fpxzi3qilyks36o"
+      },
+      "label": "invalid_type_userId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": "test_9pgwuwit",
+        "userId": "m9wf0",
+        "focusArea": 12345
+      },
+      "label": "invalid_type_focusArea",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

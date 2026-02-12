@@ -1,0 +1,87 @@
+{
+  "skill_id": "compliance_access_reviewer",
+  "generated_at": "2026-02-11T22:18:28.254423",
+  "num_cases": 9,
+  "test_cases": [
+    {
+      "inputs": {
+        "action": "get_status",
+        "reviewType": "terminated",
+        "scope": "kmusm",
+        "reviewerId": "1omnyhefg5be4bxbb"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "action": "revoke",
+        "reviewType": "role",
+        "scope": "i1u6qeiz",
+        "reviewerId": "f"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "action": "get_status",
+        "reviewerId": "uzserx3xoo4k3dfax8p"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "scope": "10175nmj64aiueo8o1",
+        "reviewerId": "i6ufoho9vsz"
+      },
+      "label": "missing_action",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": 12345,
+        "reviewType": "application",
+        "scope": "lgwlwmxl",
+        "reviewerId": "6bqp40ojp2ncnp"
+      },
+      "label": "invalid_type_action",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": "certify",
+        "scope": "k",
+        "reviewerId": "u61nhfg80av7a39z3",
+        "reviewType": 12345
+      },
+      "label": "invalid_type_reviewType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": "get_status",
+        "scope": 12345,
+        "reviewerId": "y6pgf3reckff0"
+      },
+      "label": "invalid_type_scope",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": "report",
+        "reviewType": "privileged",
+        "scope": "69itkkav112",
+        "reviewerId": 12345
+      },
+      "label": "invalid_type_reviewerId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

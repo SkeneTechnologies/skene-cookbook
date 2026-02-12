@@ -1,0 +1,130 @@
+{
+  "skill_id": "data_anomaly_alerter",
+  "generated_at": "2026-02-11T22:18:28.962377",
+  "num_cases": 11,
+  "test_cases": [
+    {
+      "inputs": {
+        "metrics": [
+          "i5",
+          "3y82b4j9en650p4t5qx",
+          "nblqejs6knze0dqw1uj"
+        ],
+        "sensitivity": "high",
+        "lookback_period": "vw8b241",
+        "business_hours_only": false
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "metrics": [
+          "4wwld97"
+        ],
+        "business_hours_only": true
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "metrics": [
+          "xd4xq4pmpl0qsgtdwkms"
+        ],
+        "alert_channels": [
+          "m249b",
+          "98t2y4skh3ya7evjvjt"
+        ],
+        "business_hours_only": false
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "sensitivity": "medium",
+        "detection_method": "isolation_forest",
+        "lookback_period": "okx8lbhloivui9eqx"
+      },
+      "label": "missing_metrics",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "metrics": "not_an_array",
+        "lookback_period": "q"
+      },
+      "label": "invalid_type_metrics",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "metrics": [
+          "2x06vq8b0qc0bzv9m",
+          "imzy8i721jr9",
+          "k5o7jzyig99"
+        ],
+        "detection_method": "mad",
+        "sensitivity": 12345
+      },
+      "label": "invalid_type_sensitivity",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "metrics": [],
+        "sensitivity": "high",
+        "detection_method": 12345,
+        "business_hours_only": true
+      },
+      "label": "invalid_type_detection_method",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "metrics": [
+          "0mhp7fnyuhjamdo5u",
+          "vr2laslp67qk0skj70sv",
+          "otp1r"
+        ],
+        "detection_method": "isolation_forest",
+        "alert_channels": [
+          "cjz4psych",
+          "25fw"
+        ],
+        "lookback_period": 12345
+      },
+      "label": "invalid_type_lookback_period",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "metrics": [],
+        "sensitivity": "high",
+        "alert_channels": "not_an_array"
+      },
+      "label": "invalid_type_alert_channels",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "metrics": [
+          "3tpfj2",
+          "xyfkgkrc7z85f8kz7vaq",
+          "8fyhn7kp3wgs"
+        ],
+        "sensitivity": "high",
+        "lookback_period": "96mz7",
+        "business_hours_only": "yes"
+      },
+      "label": "invalid_type_business_hours_only",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

@@ -1,0 +1,118 @@
+{
+  "skill_id": "revops_lead_routing",
+  "generated_at": "2026-02-12T00:05:06.511286",
+  "num_cases": 12,
+  "test_cases": [
+    {
+      "inputs": {
+        "leadId": "i34idzc4rq2",
+        "estimatedDealSize": 7197.53,
+        "industry": "w9rcmbtx1pjj4b",
+        "region": "x7vhqslg6ipcja",
+        "urgency": "high"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "leadId": "2fm8h01fa8sdvrqq0"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "leadId": "i3dky",
+        "leadScore": 6995.82,
+        "estimatedDealSize": 3809.74,
+        "industry": "0v2ty8j25",
+        "region": "d"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "industry": "ttx7sh4",
+        "region": "yys7fgh1dx5gx1v",
+        "urgency": "critical"
+      },
+      "label": "missing_leadId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "leadId": 12345,
+        "estimatedDealSize": 5886.89,
+        "region": "zj8h",
+        "urgency": "critical"
+      },
+      "label": "invalid_type_leadId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "leadId": "q3",
+        "region": "xwoauxa5qlgkqnsx7lmj",
+        "accountId": 12345
+      },
+      "label": "invalid_type_accountId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "leadId": "0eb0vp6hcu7580tfm768",
+        "estimatedDealSize": 6926.88,
+        "leadScore": "not_a_number"
+      },
+      "label": "invalid_type_leadScore",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "leadId": "i2jp",
+        "leadScore": 3071.0,
+        "estimatedDealSize": "not_a_number",
+        "industry": "vh2wtao9wgu4kfekh8"
+      },
+      "label": "invalid_type_estimatedDealSize",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "leadId": "ikz",
+        "accountId": "0xogi91o20z98b2cg",
+        "region": "bdo1bl86wqn5fp1vr",
+        "urgency": "high",
+        "industry": 12345
+      },
+      "label": "invalid_type_industry",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "leadId": "6xhdrdg",
+        "region": 12345
+      },
+      "label": "invalid_type_region",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "leadId": "n2wvqwv8fkn",
+        "leadScore": 9140.84,
+        "industry": "wwh",
+        "region": "xdw51wnu67chbfp",
+        "urgency": 12345
+      },
+      "label": "invalid_type_urgency",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

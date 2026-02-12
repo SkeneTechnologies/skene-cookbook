@@ -1,0 +1,523 @@
+{
+  "id": "plg_frameworks/plg-ideas",
+  "version": "1.0.0",
+  "name": "plg-ideas",
+  "description": "When the user wants PLG ideas, tactics, or inspiration -- a mega-reference of 100+ product-led growth strategies organized by category. Also use when the user says \"growth ideas,\" \"PLG playbook,\" \"growth tactics,\" \"what should we try,\" or \"growth brainstorm.\" For PLG strategy, see plg-strategy. For experimentation, see growth-experimentation.",
+  "domain": "plg_frameworks",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "weakest_plg_lever": {
+        "type": "string",
+        "enum": [
+          "Acquisition",
+          "Activation",
+          "Retention",
+          "Monetization",
+          "Expansion",
+          "Unknown"
+        ],
+        "description": "The PLG lever that is currently the weakest or most important to improve"
+      },
+      "team_size": {
+        "type": "string",
+        "enum": [
+          "Solo founder",
+          "Small team",
+          "Growth team",
+          "Full engineering org"
+        ],
+        "description": "Current team size and engineering capacity"
+      },
+      "tactics_already_tried": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "tactic_name": {
+              "type": "string",
+              "description": "Name or description of the tactic tried"
+            },
+            "outcome": {
+              "type": "string",
+              "enum": [
+                "Worked well",
+                "Partially successful",
+                "Did not work",
+                "Unknown"
+              ],
+              "description": "Result of the tactic"
+            },
+            "notes": {
+              "type": "string",
+              "description": "Additional context about what was learned"
+            }
+          },
+          "required": [
+            "tactic_name"
+          ]
+        },
+        "description": "List of growth tactics already attempted and their outcomes"
+      },
+      "current_bottleneck": {
+        "type": "string",
+        "description": "The biggest growth bottleneck or constraint currently faced"
+      },
+      "has_working_growth_loop": {
+        "type": "boolean",
+        "description": "Whether the company has a working growth loop or is still finding product-market fit"
+      },
+      "timeline": {
+        "type": "string",
+        "enum": [
+          "Quick wins needed",
+          "Long-term investment",
+          "Balanced approach"
+        ],
+        "description": "Preferred timeline for results"
+      },
+      "industry": {
+        "type": "string",
+        "description": "Industry or vertical the product serves"
+      },
+      "product_type": {
+        "type": "string",
+        "description": "Type of product (e.g., SaaS, developer tool, infrastructure, collaboration)"
+      },
+      "current_metrics": {
+        "type": "object",
+        "properties": {
+          "monthly_signups": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Number of new signups per month"
+          },
+          "activation_rate": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100,
+            "description": "Percentage of users who reach activation milestone"
+          },
+          "retention_rate": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100,
+            "description": "User retention rate (e.g., 30-day, 90-day)"
+          },
+          "conversion_rate": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100,
+            "description": "Free-to-paid conversion rate"
+          }
+        },
+        "description": "Current key PLG metrics"
+      },
+      "constraints": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Any constraints or limitations (e.g., budget, technical debt, compliance requirements)"
+      },
+      "focus_areas": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": [
+            "Quick wins",
+            "Strategic bets",
+            "Viral mechanics",
+            "Developer-focused",
+            "Enterprise expansion",
+            "Community building",
+            "Data infrastructure"
+          ]
+        },
+        "description": "Areas of particular interest or focus"
+      }
+    },
+    "required": [
+      "weakest_plg_lever"
+    ],
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "company_context": {
+        "type": "object",
+        "properties": {
+          "weakest_lever": {
+            "type": "string",
+            "description": "Identified weakest PLG lever"
+          },
+          "team_capacity": {
+            "type": "string",
+            "description": "Summary of team size and capacity"
+          },
+          "key_bottleneck": {
+            "type": "string",
+            "description": "Primary growth bottleneck identified"
+          }
+        },
+        "required": [
+          "weakest_lever"
+        ],
+        "description": "Summary of the company's current context"
+      },
+      "quick_wins": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "idea_number": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 108,
+              "description": "Reference number from the ideas list"
+            },
+            "idea_name": {
+              "type": "string",
+              "description": "Name of the PLG idea"
+            },
+            "difficulty": {
+              "type": "string",
+              "enum": [
+                "Low",
+                "Medium",
+                "High"
+              ]
+            },
+            "impact": {
+              "type": "string",
+              "enum": [
+                "Low",
+                "Medium",
+                "High"
+              ]
+            },
+            "plg_lever": {
+              "type": "string",
+              "enum": [
+                "Acquisition",
+                "Activation",
+                "Retention",
+                "Monetization",
+                "Expansion"
+              ]
+            },
+            "action_plan": {
+              "type": "string",
+              "description": "One-line concrete action plan"
+            },
+            "ice_score": {
+              "type": "object",
+              "properties": {
+                "impact": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 10
+                },
+                "confidence": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 10
+                },
+                "ease": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 10
+                },
+                "total_score": {
+                  "type": "number",
+                  "description": "Product of Impact \u00d7 Confidence \u00d7 Ease"
+                }
+              },
+              "description": "ICE scoring for prioritization"
+            },
+            "rationale": {
+              "type": "string",
+              "description": "Brief explanation of why this idea fits the context"
+            }
+          },
+          "required": [
+            "idea_number",
+            "idea_name",
+            "difficulty",
+            "impact",
+            "plg_lever",
+            "action_plan"
+          ]
+        },
+        "description": "Low difficulty, medium-high impact ideas for quick wins"
+      },
+      "strategic_bets": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "idea_number": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 108
+            },
+            "idea_name": {
+              "type": "string"
+            },
+            "difficulty": {
+              "type": "string",
+              "enum": [
+                "Low",
+                "Medium",
+                "High"
+              ]
+            },
+            "impact": {
+              "type": "string",
+              "enum": [
+                "Low",
+                "Medium",
+                "High"
+              ]
+            },
+            "plg_lever": {
+              "type": "string",
+              "enum": [
+                "Acquisition",
+                "Activation",
+                "Retention",
+                "Monetization",
+                "Expansion"
+              ]
+            },
+            "action_plan": {
+              "type": "string"
+            },
+            "ice_score": {
+              "type": "object",
+              "properties": {
+                "impact": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 10
+                },
+                "confidence": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 10
+                },
+                "ease": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 10
+                },
+                "total_score": {
+                  "type": "number"
+                }
+              }
+            },
+            "rationale": {
+              "type": "string"
+            },
+            "timeline_estimate": {
+              "type": "string",
+              "description": "Estimated time to implement (e.g., '2-3 months')"
+            }
+          },
+          "required": [
+            "idea_number",
+            "idea_name",
+            "difficulty",
+            "impact",
+            "plg_lever",
+            "action_plan"
+          ]
+        },
+        "description": "Medium-high difficulty, high impact ideas for strategic investment"
+      },
+      "experiment_candidates": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "idea_number": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 108
+            },
+            "idea_name": {
+              "type": "string"
+            },
+            "hypothesis": {
+              "type": "string",
+              "description": "Testable hypothesis for A/B test"
+            },
+            "success_metric": {
+              "type": "string",
+              "description": "Primary metric to measure success"
+            },
+            "test_duration": {
+              "type": "string",
+              "description": "Recommended test duration"
+            }
+          },
+          "required": [
+            "idea_number",
+            "idea_name",
+            "hypothesis"
+          ]
+        },
+        "description": "Ideas that should be A/B tested before full rollout"
+      },
+      "deferred_ideas": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "idea_number": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 108
+            },
+            "idea_name": {
+              "type": "string"
+            },
+            "reason_to_defer": {
+              "type": "string",
+              "description": "Why this idea should be deferred"
+            },
+            "revisit_when": {
+              "type": "string",
+              "description": "Conditions or timeline for reconsidering this idea"
+            }
+          },
+          "required": [
+            "idea_number",
+            "idea_name",
+            "reason_to_defer"
+          ]
+        },
+        "description": "Ideas that don't fit current context but may be valuable later"
+      },
+      "top_recommendations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "rank": {
+              "type": "integer",
+              "description": "Priority ranking (1 = highest)"
+            },
+            "idea_number": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 108
+            },
+            "idea_name": {
+              "type": "string"
+            },
+            "rationale": {
+              "type": "string",
+              "description": "Detailed rationale for recommendation"
+            },
+            "next_steps": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Concrete next steps to implement this idea"
+            },
+            "resources_needed": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Resources required (team, tools, budget)"
+            }
+          },
+          "required": [
+            "rank",
+            "idea_number",
+            "idea_name",
+            "rationale",
+            "next_steps"
+          ]
+        },
+        "description": "Top 3-5 recommended ideas with detailed implementation guidance",
+        "minItems": 3,
+        "maxItems": 5
+      },
+      "cross_references": {
+        "type": "object",
+        "properties": {
+          "related_skills": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Related skills to use for deeper dives (e.g., plg-strategy, growth-experimentation)"
+          },
+          "follow_up_actions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Recommended follow-up actions or analyses"
+          }
+        },
+        "description": "Related skills and follow-up recommendations"
+      }
+    },
+    "required": [
+      "company_context",
+      "quick_wins",
+      "strategic_bets",
+      "top_recommendations"
+    ]
+  },
+  "temperature": 0,
+  "tags": [
+    "plg_frameworks",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with plg ideas",
+        "growth framework",
+        "the user says \"growth ideas,\" \"plg playbook,\" \"growth tactics,\" \"what should we try,\" or \"growth brainstorm"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "security_controls": {
+    "payment_controls": {
+      "preview_mode": true,
+      "per_transaction_approval": true,
+      "amount_limits": {
+        "max_per_transaction": 50000,
+        "daily_limit": 200000,
+        "additional_approval_threshold": 25000
+      },
+      "rollback": {
+        "enabled": true,
+        "window_seconds": 3600
+      },
+      "two_phase_commit": true,
+      "audit_logging": "detailed"
+    }
+  },
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.92
+  }
+}

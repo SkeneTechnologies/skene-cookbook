@@ -1,0 +1,233 @@
+{
+  "id": "anthropic_official/theme-factory",
+  "version": "1.0.0",
+  "name": "theme-factory",
+  "description": "Toolkit for styling artifacts with a theme. These artifacts can be slides, docs, reportings, HTML landing pages, etc. There are 10 pre-set themes with colors/fonts that you can apply to any artifact that has been creating, or can generate a new theme on-the-fly.",
+  "domain": "anthropic_official",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "action": {
+        "type": "string",
+        "enum": [
+          "showcase_themes",
+          "apply_theme",
+          "create_custom_theme"
+        ],
+        "description": "The action to perform: showcase available themes, apply a selected theme, or create a custom theme"
+      },
+      "artifact_content": {
+        "type": "string",
+        "description": "The content of the artifact (slides, doc, HTML, etc.) to which the theme will be applied"
+      },
+      "artifact_type": {
+        "type": "string",
+        "enum": [
+          "slides",
+          "document",
+          "html_page",
+          "report",
+          "other"
+        ],
+        "description": "The type of artifact being styled"
+      },
+      "selected_theme": {
+        "type": "string",
+        "enum": [
+          "ocean_depths",
+          "sunset_boulevard",
+          "forest_canopy",
+          "modern_minimalist",
+          "golden_hour",
+          "arctic_frost",
+          "desert_rose",
+          "tech_innovation",
+          "botanical_garden",
+          "midnight_galaxy"
+        ],
+        "description": "The pre-set theme to apply (required when action is 'apply_theme')"
+      },
+      "custom_theme_description": {
+        "type": "string",
+        "description": "Description of desired custom theme characteristics (required when action is 'create_custom_theme')"
+      },
+      "custom_theme_preferences": {
+        "type": "object",
+        "properties": {
+          "color_mood": {
+            "type": "string",
+            "description": "Desired mood or feeling (e.g., 'energetic', 'calm', 'professional')"
+          },
+          "primary_colors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Preferred primary colors for the custom theme"
+          },
+          "font_style": {
+            "type": "string",
+            "enum": [
+              "modern",
+              "classic",
+              "playful",
+              "technical",
+              "elegant"
+            ],
+            "description": "Preferred font style category"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "required": [
+      "action"
+    ],
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "action_performed": {
+        "type": "string",
+        "enum": [
+          "showcase_themes",
+          "apply_theme",
+          "create_custom_theme"
+        ],
+        "description": "The action that was performed"
+      },
+      "theme_applied": {
+        "type": "string",
+        "description": "Name of the theme that was applied or created"
+      },
+      "theme_details": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Theme name"
+          },
+          "color_palette": {
+            "type": "object",
+            "properties": {
+              "primary": {
+                "type": "string",
+                "pattern": "^#[0-9A-Fa-f]{6}$",
+                "description": "Primary color hex code"
+              },
+              "secondary": {
+                "type": "string",
+                "pattern": "^#[0-9A-Fa-f]{6}$",
+                "description": "Secondary color hex code"
+              },
+              "accent": {
+                "type": "string",
+                "pattern": "^#[0-9A-Fa-f]{6}$",
+                "description": "Accent color hex code"
+              },
+              "background": {
+                "type": "string",
+                "pattern": "^#[0-9A-Fa-f]{6}$",
+                "description": "Background color hex code"
+              },
+              "text": {
+                "type": "string",
+                "pattern": "^#[0-9A-Fa-f]{6}$",
+                "description": "Text color hex code"
+              }
+            },
+            "required": [
+              "primary",
+              "secondary",
+              "accent",
+              "background",
+              "text"
+            ],
+            "additionalProperties": true
+          },
+          "fonts": {
+            "type": "object",
+            "properties": {
+              "header": {
+                "type": "string",
+                "description": "Font family for headers"
+              },
+              "body": {
+                "type": "string",
+                "description": "Font family for body text"
+              }
+            },
+            "required": [
+              "header",
+              "body"
+            ],
+            "additionalProperties": false
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the theme's visual identity"
+          }
+        },
+        "required": [
+          "name",
+          "color_palette",
+          "fonts"
+        ],
+        "additionalProperties": false
+      },
+      "styled_artifact": {
+        "type": "string",
+        "description": "The artifact content with theme styling applied"
+      },
+      "showcase_displayed": {
+        "type": "boolean",
+        "description": "Whether the theme showcase was displayed to the user"
+      },
+      "success": {
+        "type": "boolean",
+        "description": "Whether the operation was successful"
+      },
+      "message": {
+        "type": "string",
+        "description": "Status or informational message about the operation"
+      }
+    },
+    "required": [
+      "action_performed",
+      "success",
+      "message"
+    ],
+    "additionalProperties": false
+  },
+  "temperature": 0,
+  "tags": [
+    "anthropic_official",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "license": "Complete terms in LICENSE.txt",
+      "triggers": [
+        "help with theme factory"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "categories": [
+    "marketing",
+    "marketing/brand"
+  ],
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.92
+  }
+}

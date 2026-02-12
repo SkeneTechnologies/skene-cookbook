@@ -1,0 +1,827 @@
+{
+  "id": "security/spec-to-code-compliance",
+  "version": "1.0.0",
+  "name": "spec-to-code-compliance",
+  "description": "Verifies code implements exactly what documentation specifies for blockchain audits. Use when comparing code against whitepapers, finding gaps between specs and implementation, or performing compliance checks for protocol implementations.",
+  "domain": "security",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "specification_documents": {
+        "type": "array",
+        "description": "Collection of specification documents (whitepapers, design docs, READMEs, etc.)",
+        "items": {
+          "type": "object",
+          "properties": {
+            "document_name": {
+              "type": "string",
+              "description": "Name or identifier of the specification document"
+            },
+            "document_type": {
+              "type": "string",
+              "enum": [
+                "whitepaper",
+                "design_doc",
+                "readme",
+                "protocol_spec",
+                "architecture_doc",
+                "meeting_transcript",
+                "notion_export",
+                "other"
+              ],
+              "description": "Type of specification document"
+            },
+            "content": {
+              "type": "string",
+              "description": "Full text content of the specification document"
+            },
+            "format": {
+              "type": "string",
+              "enum": [
+                "pdf",
+                "markdown",
+                "docx",
+                "html",
+                "txt",
+                "other"
+              ],
+              "description": "Original format of the document"
+            },
+            "source_url": {
+              "type": "string",
+              "format": "uri",
+              "description": "Optional URL or path to original document"
+            }
+          },
+          "required": [
+            "document_name",
+            "document_type",
+            "content",
+            "format"
+          ]
+        },
+        "minItems": 1
+      },
+      "codebase": {
+        "type": "object",
+        "description": "Source code to be verified against specifications",
+        "properties": {
+          "files": {
+            "type": "array",
+            "description": "Collection of source code files",
+            "items": {
+              "type": "object",
+              "properties": {
+                "file_path": {
+                  "type": "string",
+                  "description": "Relative path to the file in the codebase"
+                },
+                "content": {
+                  "type": "string",
+                  "description": "Full source code content of the file"
+                },
+                "language": {
+                  "type": "string",
+                  "enum": [
+                    "solidity",
+                    "vyper",
+                    "rust",
+                    "move",
+                    "cairo",
+                    "other"
+                  ],
+                  "description": "Programming language of the file"
+                },
+                "line_count": {
+                  "type": "integer",
+                  "description": "Total number of lines in the file"
+                }
+              },
+              "required": [
+                "file_path",
+                "content",
+                "language"
+              ]
+            },
+            "minItems": 1
+          },
+          "repository_url": {
+            "type": "string",
+            "format": "uri",
+            "description": "Optional URL to the code repository"
+          },
+          "commit_hash": {
+            "type": "string",
+            "description": "Optional git commit hash for version tracking"
+          }
+        },
+        "required": [
+          "files"
+        ]
+      },
+      "audit_scope": {
+        "type": "object",
+        "description": "Optional scope parameters for the compliance check",
+        "properties": {
+          "focus_areas": {
+            "type": "array",
+            "description": "Specific areas to focus on during analysis",
+            "items": {
+              "type": "string",
+              "enum": [
+                "invariants",
+                "math_formulas",
+                "access_control",
+                "state_transitions",
+                "economic_model",
+                "trust_boundaries",
+                "revert_conditions",
+                "all"
+              ]
+            }
+          },
+          "excluded_files": {
+            "type": "array",
+            "description": "Files to exclude from analysis",
+            "items": {
+              "type": "string"
+            }
+          },
+          "minimum_confidence_threshold": {
+            "type": "number",
+            "description": "Minimum confidence score (0-1) for reporting findings",
+            "minimum": 0,
+            "maximum": 1,
+            "default": 0.8
+          }
+        }
+      }
+    },
+    "required": [
+      "specification_documents",
+      "codebase"
+    ],
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "executive_summary": {
+        "type": "object",
+        "description": "High-level overview of compliance findings",
+        "properties": {
+          "overall_compliance_score": {
+            "type": "number",
+            "description": "Overall compliance score (0-1)",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "total_spec_items": {
+            "type": "integer",
+            "description": "Total number of specification items extracted"
+          },
+          "total_code_behaviors": {
+            "type": "integer",
+            "description": "Total number of code behaviors analyzed"
+          },
+          "critical_findings_count": {
+            "type": "integer",
+            "description": "Number of critical divergences found"
+          },
+          "high_findings_count": {
+            "type": "integer",
+            "description": "Number of high severity divergences found"
+          },
+          "medium_findings_count": {
+            "type": "integer",
+            "description": "Number of medium severity divergences found"
+          },
+          "low_findings_count": {
+            "type": "integer",
+            "description": "Number of low severity divergences found"
+          },
+          "risk_assessment": {
+            "type": "string",
+            "enum": [
+              "critical",
+              "high",
+              "medium",
+              "low",
+              "minimal"
+            ],
+            "description": "Overall risk assessment"
+          }
+        },
+        "required": [
+          "overall_compliance_score",
+          "total_spec_items",
+          "total_code_behaviors",
+          "critical_findings_count",
+          "high_findings_count",
+          "medium_findings_count",
+          "low_findings_count",
+          "risk_assessment"
+        ]
+      },
+      "documentation_sources": {
+        "type": "array",
+        "description": "Identified and processed documentation sources",
+        "items": {
+          "type": "object",
+          "properties": {
+            "source_name": {
+              "type": "string"
+            },
+            "source_type": {
+              "type": "string"
+            },
+            "sections_extracted": {
+              "type": "integer"
+            },
+            "normalization_status": {
+              "type": "string",
+              "enum": [
+                "success",
+                "partial",
+                "failed"
+              ]
+            }
+          }
+        }
+      },
+      "spec_ir": {
+        "type": "array",
+        "description": "Specification Intent Intermediate Representation",
+        "items": {
+          "type": "object",
+          "properties": {
+            "spec_id": {
+              "type": "string",
+              "description": "Unique identifier for this spec item"
+            },
+            "spec_excerpt": {
+              "type": "string",
+              "description": "Exact quote from specification"
+            },
+            "source_section": {
+              "type": "string",
+              "description": "Section/heading where this was found"
+            },
+            "source_document": {
+              "type": "string",
+              "description": "Document name containing this specification"
+            },
+            "semantic_type": {
+              "type": "string",
+              "enum": [
+                "invariant",
+                "formula",
+                "flow",
+                "precondition",
+                "postcondition",
+                "actor_role",
+                "trust_boundary",
+                "state_transition",
+                "error_condition",
+                "security_requirement",
+                "economic_assumption",
+                "variable_definition",
+                "other"
+              ],
+              "description": "Type of specification item"
+            },
+            "normalized_representation": {
+              "type": "string",
+              "description": "Canonical representation of the intent"
+            },
+            "confidence_score": {
+              "type": "number",
+              "description": "Confidence in extraction accuracy (0-1)",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "ambiguity_notes": {
+              "type": "string",
+              "description": "Any ambiguities or unclear aspects"
+            }
+          },
+          "required": [
+            "spec_id",
+            "spec_excerpt",
+            "source_section",
+            "semantic_type",
+            "normalized_representation",
+            "confidence_score"
+          ]
+        }
+      },
+      "code_ir": {
+        "type": "array",
+        "description": "Code Behavior Intermediate Representation",
+        "items": {
+          "type": "object",
+          "properties": {
+            "code_id": {
+              "type": "string",
+              "description": "Unique identifier for this code behavior"
+            },
+            "file_path": {
+              "type": "string",
+              "description": "File containing this code"
+            },
+            "line_start": {
+              "type": "integer",
+              "description": "Starting line number"
+            },
+            "line_end": {
+              "type": "integer",
+              "description": "Ending line number"
+            },
+            "code_excerpt": {
+              "type": "string",
+              "description": "Relevant code snippet"
+            },
+            "behavior_type": {
+              "type": "string",
+              "enum": [
+                "function",
+                "modifier",
+                "invariant_check",
+                "state_change",
+                "external_call",
+                "revert_condition",
+                "math_operation",
+                "event_emission",
+                "access_control",
+                "other"
+              ],
+              "description": "Type of code behavior"
+            },
+            "semantic_description": {
+              "type": "string",
+              "description": "What this code actually does"
+            },
+            "state_reads": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "State variables read"
+            },
+            "state_writes": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "State variables written"
+            },
+            "control_flow_complexity": {
+              "type": "string",
+              "enum": [
+                "linear",
+                "branching",
+                "looping",
+                "complex"
+              ],
+              "description": "Control flow complexity"
+            },
+            "implicit_assumptions": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Implicit assumptions in the code"
+            }
+          },
+          "required": [
+            "code_id",
+            "file_path",
+            "line_start",
+            "line_end",
+            "code_excerpt",
+            "behavior_type",
+            "semantic_description"
+          ]
+        }
+      },
+      "alignment_ir": {
+        "type": "array",
+        "description": "Alignment records mapping spec to code",
+        "items": {
+          "type": "object",
+          "properties": {
+            "alignment_id": {
+              "type": "string",
+              "description": "Unique identifier for this alignment record"
+            },
+            "spec_id": {
+              "type": "string",
+              "description": "Reference to Spec-IR item"
+            },
+            "code_id": {
+              "type": "string",
+              "description": "Reference to Code-IR item"
+            },
+            "match_type": {
+              "type": "string",
+              "enum": [
+                "full_match",
+                "partial_match",
+                "mismatch",
+                "missing_in_code",
+                "code_stronger_than_spec",
+                "code_weaker_than_spec",
+                "undocumented_code_path",
+                "ambiguous"
+              ],
+              "description": "Type of alignment between spec and code"
+            },
+            "reasoning_trace": {
+              "type": "string",
+              "description": "Detailed reasoning for the match type"
+            },
+            "confidence_score": {
+              "type": "number",
+              "description": "Confidence in alignment assessment (0-1)",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "ambiguity_rating": {
+              "type": "string",
+              "enum": [
+                "none",
+                "low",
+                "medium",
+                "high"
+              ],
+              "description": "Level of ambiguity in the alignment"
+            },
+            "evidence_links": {
+              "type": "object",
+              "properties": {
+                "spec_evidence": {
+                  "type": "string",
+                  "description": "Exact spec quote with section"
+                },
+                "code_evidence": {
+                  "type": "string",
+                  "description": "Exact code location with line numbers"
+                }
+              }
+            }
+          },
+          "required": [
+            "alignment_id",
+            "spec_id",
+            "match_type",
+            "reasoning_trace",
+            "confidence_score"
+          ]
+        }
+      },
+      "divergence_findings": {
+        "type": "array",
+        "description": "Classified divergences and compliance issues",
+        "items": {
+          "type": "object",
+          "properties": {
+            "finding_id": {
+              "type": "string",
+              "description": "Unique identifier for this finding"
+            },
+            "title": {
+              "type": "string",
+              "description": "Brief title of the finding"
+            },
+            "severity": {
+              "type": "string",
+              "enum": [
+                "critical",
+                "high",
+                "medium",
+                "low"
+              ],
+              "description": "Severity classification"
+            },
+            "category": {
+              "type": "string",
+              "enum": [
+                "missing_invariant",
+                "incorrect_logic",
+                "math_inconsistency",
+                "flow_mismatch",
+                "access_control_drift",
+                "undocumented_behavior",
+                "unimplemented_spec",
+                "spec_contradiction",
+                "code_contradiction",
+                "trust_boundary_violation",
+                "other"
+              ],
+              "description": "Category of divergence"
+            },
+            "spec_reference": {
+              "type": "object",
+              "properties": {
+                "document": {
+                  "type": "string"
+                },
+                "section": {
+                  "type": "string"
+                },
+                "quote": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "document",
+                "section",
+                "quote"
+              ]
+            },
+            "code_reference": {
+              "type": "object",
+              "properties": {
+                "file_path": {
+                  "type": "string"
+                },
+                "line_start": {
+                  "type": "integer"
+                },
+                "line_end": {
+                  "type": "integer"
+                },
+                "code_snippet": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "file_path",
+                "line_start",
+                "code_snippet"
+              ]
+            },
+            "description": {
+              "type": "string",
+              "description": "Detailed description of the divergence"
+            },
+            "impact": {
+              "type": "string",
+              "description": "Explanation of the security/functional impact"
+            },
+            "exploitability_analysis": {
+              "type": "string",
+              "description": "Analysis of how this could be exploited"
+            },
+            "economic_impact": {
+              "type": "string",
+              "description": "Potential economic consequences"
+            },
+            "proof_of_concept": {
+              "type": "string",
+              "description": "PoC exploit scenario if applicable"
+            },
+            "remediation": {
+              "type": "object",
+              "properties": {
+                "recommendation": {
+                  "type": "string",
+                  "description": "Recommended fix"
+                },
+                "code_changes_required": {
+                  "type": "boolean",
+                  "description": "Whether code changes are needed"
+                },
+                "spec_changes_required": {
+                  "type": "boolean",
+                  "description": "Whether spec changes are needed"
+                },
+                "priority": {
+                  "type": "string",
+                  "enum": [
+                    "immediate",
+                    "high",
+                    "medium",
+                    "low"
+                  ]
+                }
+              },
+              "required": [
+                "recommendation",
+                "code_changes_required",
+                "spec_changes_required",
+                "priority"
+              ]
+            },
+            "confidence_score": {
+              "type": "number",
+              "description": "Confidence in this finding (0-1)",
+              "minimum": 0,
+              "maximum": 1
+            }
+          },
+          "required": [
+            "finding_id",
+            "title",
+            "severity",
+            "category",
+            "spec_reference",
+            "description",
+            "impact",
+            "remediation",
+            "confidence_score"
+          ]
+        }
+      },
+      "undocumented_behaviors": {
+        "type": "array",
+        "description": "Code behaviors not specified in documentation",
+        "items": {
+          "type": "object",
+          "properties": {
+            "code_id": {
+              "type": "string"
+            },
+            "file_path": {
+              "type": "string"
+            },
+            "line_numbers": {
+              "type": "string"
+            },
+            "behavior_description": {
+              "type": "string"
+            },
+            "risk_level": {
+              "type": "string",
+              "enum": [
+                "critical",
+                "high",
+                "medium",
+                "low"
+              ]
+            }
+          }
+        }
+      },
+      "unimplemented_specs": {
+        "type": "array",
+        "description": "Specification items not implemented in code",
+        "items": {
+          "type": "object",
+          "properties": {
+            "spec_id": {
+              "type": "string"
+            },
+            "spec_excerpt": {
+              "type": "string"
+            },
+            "source_section": {
+              "type": "string"
+            },
+            "risk_level": {
+              "type": "string",
+              "enum": [
+                "critical",
+                "high",
+                "medium",
+                "low"
+              ]
+            }
+          }
+        }
+      },
+      "ambiguity_hotspots": {
+        "type": "array",
+        "description": "Areas with significant ambiguity requiring clarification",
+        "items": {
+          "type": "object",
+          "properties": {
+            "location": {
+              "type": "string",
+              "description": "Spec section or code location"
+            },
+            "ambiguity_type": {
+              "type": "string",
+              "enum": [
+                "spec_unclear",
+                "code_unclear",
+                "both_unclear",
+                "contradictory"
+              ]
+            },
+            "description": {
+              "type": "string"
+            },
+            "clarification_needed": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "recommendations": {
+        "type": "object",
+        "description": "Overall recommendations and next steps",
+        "properties": {
+          "code_changes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Recommended code changes"
+          },
+          "documentation_updates": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Recommended documentation updates"
+          },
+          "process_improvements": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Recommended process improvements"
+          }
+        }
+      },
+      "metadata": {
+        "type": "object",
+        "description": "Analysis metadata",
+        "properties": {
+          "analysis_timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When the analysis was completed"
+          },
+          "total_spec_documents": {
+            "type": "integer"
+          },
+          "total_code_files": {
+            "type": "integer"
+          },
+          "total_lines_analyzed": {
+            "type": "integer"
+          },
+          "analysis_duration_seconds": {
+            "type": "number"
+          },
+          "version": {
+            "type": "string",
+            "description": "Version of the analysis framework"
+          }
+        }
+      }
+    },
+    "required": [
+      "executive_summary",
+      "spec_ir",
+      "code_ir",
+      "alignment_ir",
+      "divergence_findings",
+      "recommendations",
+      "metadata"
+    ]
+  },
+  "temperature": 0,
+  "tags": [
+    "security",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with spec to code compliance",
+        "code security",
+        "comparing code against whitepapers, finding gaps between specs and implementation, or performing compliance checks for protocol implementations"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "security_controls": {
+    "delete_operations": {
+      "soft_delete": true,
+      "retention_period_days": 30,
+      "undelete_capable": true,
+      "backup_before_delete": true,
+      "multi_party_approval": true,
+      "confirmation_required": {
+        "enabled": true,
+        "show_impact": true,
+        "require_reason": true
+      }
+    }
+  },
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.92
+  }
+}

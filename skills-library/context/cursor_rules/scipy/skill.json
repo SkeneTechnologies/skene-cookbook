@@ -1,0 +1,35 @@
+{
+  "id": "cursor_rules/scipy",
+  "version": "1.0.0",
+  "name": "scipy",
+  "description": "This guide provides opinionated, actionable best practices for writing robust, performant, and maintainable Python code using SciPy, aligning with modern scientific computing standards.",
+  "domain": "cursor_rules",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "cursor_rules",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "cursor": {
+      "globs": [
+        "**/*.py"
+      ]
+    },
+    "claude": {
+      "triggers": [
+        "help with scipy"
+      ]
+    },
+    "skeneflow": {}
+  },
+  "skipSchemaValidation": true
+}

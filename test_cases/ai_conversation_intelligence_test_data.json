@@ -1,0 +1,386 @@
+{
+  "skill_id": "ai_conversation_intelligence",
+  "generated_at": "2026-02-12T00:05:03.437857",
+  "num_cases": 18,
+  "test_cases": [
+    {
+      "inputs": {
+        "conversation_id": "test_t4vmxc94",
+        "conversation_type": "discovery_call",
+        "transcript": "7qlx705dno",
+        "participants": [
+          {
+            "name": "Test Name eedt",
+            "role": "customer"
+          }
+        ],
+        "timestamp": "2026-02-12T00:05:03.437316",
+        "duration_minutes": 543,
+        "crm_contact_id": "test_1d9zcilq",
+        "crm_deal_id": "test_ds2yq9aj"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "conversation_id": "test_sitr5nc2",
+        "conversation_type": "meeting",
+        "transcript": "ec66zipeqinyx",
+        "participants": [
+          {
+            "name": "Test Name 57xl",
+            "role": "support_agent"
+          },
+          {
+            "name": "Test Name ksjc",
+            "role": "support_agent"
+          },
+          {
+            "name": "Test Name scud",
+            "role": "prospect",
+            "email": "user_dn53a@example.com"
+          }
+        ],
+        "timestamp": "2026-02-12T00:05:03.437367",
+        "crm_contact_id": "test_smchbyhc",
+        "analysis_options": {
+          "detect_competitors": false,
+          "update_crm": false
+        }
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "conversation_id": "test_m9qw0p01",
+        "conversation_type": "sales_call",
+        "transcript": "cxwebtacwhfi",
+        "participants": [
+          {
+            "name": "Test Name npvf",
+            "role": "prospect",
+            "email": "user_f4w64@example.com"
+          },
+          {
+            "name": "Test Name 23xz",
+            "role": "other"
+          }
+        ],
+        "timestamp": "2026-02-12T00:05:03.437400",
+        "crm_contact_id": "test_ip5xy9ma",
+        "crm_deal_id": "test_ognr15qs"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "conversation_type": "support_ticket",
+        "transcript": "ifwdt42n68yvj",
+        "participants": [
+          {
+            "name": "Test Name eal3",
+            "role": "sales_rep"
+          }
+        ],
+        "timestamp": "2026-02-12T00:05:03.437426",
+        "duration_minutes": 129,
+        "crm_contact_id": "test_qr3p5xhr",
+        "crm_deal_id": "test_c54fnj5z",
+        "analysis_options": {
+          "update_crm": true
+        }
+      },
+      "label": "missing_conversation_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "conversation_id": "test_zkwhuckm",
+        "transcript": "ohb8dnm208rwtp",
+        "participants": [
+          {
+            "name": "Test Name 2s9z",
+            "role": "other",
+            "email": "user_hlfzq@example.com"
+          }
+        ],
+        "timestamp": "2026-02-12T00:05:03.437457",
+        "duration_minutes": 822
+      },
+      "label": "missing_conversation_type",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "conversation_id": "test_z83axyno",
+        "conversation_type": "support_ticket",
+        "participants": [
+          {
+            "name": "Test Name 88qj",
+            "role": "prospect"
+          },
+          {
+            "name": "Test Name 9zf2",
+            "role": "sales_rep",
+            "email": "user_9ndi3@example.com"
+          },
+          {
+            "name": "Test Name 3vz1",
+            "role": "support_agent",
+            "email": "user_ettcg@example.com"
+          }
+        ],
+        "timestamp": "2026-02-12T00:05:03.437489",
+        "duration_minutes": 421,
+        "analysis_options": {
+          "include_sentiment": false,
+          "detect_competitors": false,
+          "generate_coaching": false
+        }
+      },
+      "label": "missing_transcript",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "conversation_id": "test_1bxz3pp6",
+        "conversation_type": "discovery_call",
+        "transcript": "chdqqnp90d6fkisfmg6u",
+        "timestamp": "2026-02-12T00:05:03.437524",
+        "duration_minutes": 375
+      },
+      "label": "missing_participants",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "conversation_id": "test_5kjhr5p5",
+        "conversation_type": "meeting",
+        "transcript": "woioxn48g37aa9pn6",
+        "participants": [
+          {
+            "name": "Test Name 6n9s",
+            "role": "sales_rep"
+          }
+        ],
+        "duration_minutes": 520
+      },
+      "label": "missing_timestamp",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "conversation_id": 12345,
+        "conversation_type": "sales_call",
+        "transcript": "3",
+        "participants": [
+          {
+            "name": "Test Name dyj2",
+            "role": "other"
+          }
+        ],
+        "timestamp": "2026-02-12T00:05:03.437562",
+        "duration_minutes": 476,
+        "crm_contact_id": "test_v9f9ln4o",
+        "crm_deal_id": "test_kxlo4e5n",
+        "analysis_options": {
+          "include_sentiment": false,
+          "detect_competitors": true
+        }
+      },
+      "label": "invalid_type_conversation_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "conversation_id": "test_dmr694pj",
+        "conversation_type": 12345,
+        "transcript": "yt7z4nazf11",
+        "participants": [
+          {
+            "name": "Test Name srlo",
+            "role": "sales_rep",
+            "email": "user_0y0aj@example.com"
+          },
+          {
+            "name": "Test Name 18fq",
+            "role": "account_manager",
+            "email": "user_i3n41@example.com"
+          },
+          {
+            "name": "Test Name yybn",
+            "role": "sales_rep",
+            "email": "user_8lvp7@example.com"
+          }
+        ],
+        "timestamp": "2026-02-12T00:05:03.437604",
+        "crm_contact_id": "test_k9o32w1x",
+        "crm_deal_id": "test_4coka32n"
+      },
+      "label": "invalid_type_conversation_type",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "conversation_id": "test_le06gm39",
+        "conversation_type": "meeting",
+        "transcript": 12345,
+        "participants": [
+          {
+            "name": "Test Name d7g4",
+            "role": "sales_rep"
+          },
+          {
+            "name": "Test Name 65aj",
+            "role": "customer",
+            "email": "user_9u7ux@example.com"
+          }
+        ],
+        "timestamp": "2026-02-12T00:05:03.437634",
+        "duration_minutes": 272
+      },
+      "label": "invalid_type_transcript",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "conversation_id": "test_k09bl7gn",
+        "conversation_type": "meeting",
+        "transcript": "2u2stkkb3",
+        "participants": "not_an_array",
+        "timestamp": "2026-02-12T00:05:03.437663",
+        "crm_contact_id": "test_m9wdwdkf",
+        "crm_deal_id": "test_vywszwsy"
+      },
+      "label": "invalid_type_participants",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "conversation_id": "test_leiadxzv",
+        "conversation_type": "support_ticket",
+        "transcript": "2m8jirhi",
+        "participants": [
+          {
+            "name": "Test Name usy1",
+            "role": "prospect"
+          }
+        ],
+        "timestamp": "2026-02-12T00:05:03.437687",
+        "crm_contact_id": "test_mfhjsp4m",
+        "crm_deal_id": "test_5xm2k7ez",
+        "duration_minutes": "not_a_number"
+      },
+      "label": "invalid_type_duration_minutes",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "conversation_id": "test_wweej9r1",
+        "conversation_type": "support_ticket",
+        "transcript": "jipv4dolj76r8sqgg8",
+        "participants": [
+          {
+            "name": "Test Name 4c8k",
+            "role": "prospect",
+            "email": "user_400qf@example.com"
+          },
+          {
+            "name": "Test Name bvr0",
+            "role": "support_agent",
+            "email": "user_stiy9@example.com"
+          }
+        ],
+        "timestamp": 12345,
+        "duration_minutes": 641,
+        "analysis_options": {
+          "include_sentiment": false,
+          "detect_competitors": false,
+          "generate_coaching": true
+        }
+      },
+      "label": "invalid_type_timestamp",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "conversation_id": "test_jaik2jvu",
+        "conversation_type": "support_ticket",
+        "transcript": "27ulnw",
+        "participants": [
+          {
+            "name": "Test Name xv52",
+            "role": "account_manager",
+            "email": "user_b0adf@example.com"
+          },
+          {
+            "name": "Test Name t5u1",
+            "role": "prospect",
+            "email": "user_6r0gc@example.com"
+          }
+        ],
+        "timestamp": "2026-02-12T00:05:03.437751",
+        "duration_minutes": 502,
+        "crm_deal_id": "test_6j8rtr9m",
+        "analysis_options": {
+          "generate_coaching": true
+        },
+        "crm_contact_id": 12345
+      },
+      "label": "invalid_type_crm_contact_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "conversation_id": "test_n29ugq2b",
+        "conversation_type": "support_ticket",
+        "transcript": "b1bmoa2m43",
+        "participants": [
+          {
+            "name": "Test Name kosu",
+            "role": "account_manager",
+            "email": "user_goct7@example.com"
+          }
+        ],
+        "timestamp": "2026-02-12T00:05:03.437777",
+        "duration_minutes": 576,
+        "crm_deal_id": 12345
+      },
+      "label": "invalid_type_crm_deal_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "conversation_id": "test_j9d7jdmq",
+        "conversation_type": "meeting",
+        "transcript": "997c8tcb56erm",
+        "participants": [
+          {
+            "name": "Test Name z9wy",
+            "role": "prospect",
+            "email": "user_nuusy@example.com"
+          },
+          {
+            "name": "Test Name 53f7",
+            "role": "prospect",
+            "email": "user_syfp2@example.com"
+          }
+        ],
+        "timestamp": "2026-02-12T00:05:03.437807",
+        "crm_contact_id": "test_lcgwxabi",
+        "crm_deal_id": "test_z6h81ght",
+        "analysis_options": "not_an_object"
+      },
+      "label": "invalid_type_analysis_options",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

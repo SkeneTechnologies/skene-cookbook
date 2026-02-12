@@ -1,0 +1,74 @@
+{
+  "skill_id": "finops_expense_allocator",
+  "generated_at": "2026-02-12T00:05:00.031608",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "period": "kk4pru"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "period": "8mk48ewjhdapaeitcvko",
+        "dimensions": [
+          "85n6oxoe",
+          "5o7brhhrd",
+          "s"
+        ]
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "period": "su01",
+        "dimensions": [
+          "evitzz59a4jzu0uuhljs",
+          "r0tt"
+        ]
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {},
+      "label": "missing_period",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": 12345
+      },
+      "label": "invalid_type_period",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": "vy1pou9p",
+        "allocation_basis": "not_an_array",
+        "dimensions": [
+          "zl9tw3nbq1rf"
+        ]
+      },
+      "label": "invalid_type_allocation_basis",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": "igv30qx4439310w1gclv",
+        "allocation_basis": [],
+        "dimensions": "not_an_array"
+      },
+      "label": "invalid_type_dimensions",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

@@ -1,0 +1,123 @@
+{
+  "skill_id": "compliance_privacy_policy",
+  "generated_at": "2026-02-11T22:18:27.702419",
+  "num_cases": 11,
+  "test_cases": [
+    {
+      "inputs": {
+        "action": "update",
+        "jurisdictions": [],
+        "includeChangelog": false
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "action": "update",
+        "jurisdictions": [
+          "pipl",
+          "pipeda"
+        ],
+        "policyType": "privacy",
+        "language": "0mb0exha87rbuvswd"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "action": "generate",
+        "jurisdictions": [
+          "pipeda"
+        ],
+        "policyType": "cookie",
+        "language": "bqmi6549yosx0v8o63k"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "jurisdictions": [],
+        "policyType": "cookie",
+        "language": "dqnz4clcahshqcr3"
+      },
+      "label": "missing_action",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": "translate",
+        "language": "xpzbg3p2mjwynv8ht"
+      },
+      "label": "missing_jurisdictions",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": 12345,
+        "jurisdictions": [
+          "pipeda",
+          "pipeda",
+          "appi"
+        ],
+        "policyType": "privacy"
+      },
+      "label": "invalid_type_action",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": "audit",
+        "jurisdictions": "not_an_array",
+        "policyType": "cookie",
+        "language": "o8"
+      },
+      "label": "invalid_type_jurisdictions",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": "generate",
+        "jurisdictions": [
+          "appi",
+          "appi"
+        ],
+        "language": "il8mja",
+        "includeChangelog": false,
+        "policyType": 12345
+      },
+      "label": "invalid_type_policyType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": "generate",
+        "jurisdictions": [],
+        "policyType": "privacy",
+        "language": 12345,
+        "includeChangelog": false
+      },
+      "label": "invalid_type_language",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": "audit",
+        "jurisdictions": [
+          "appi"
+        ],
+        "language": "ewj04z2lp7",
+        "includeChangelog": "yes"
+      },
+      "label": "invalid_type_includeChangelog",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

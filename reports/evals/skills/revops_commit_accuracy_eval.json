@@ -1,0 +1,64 @@
+{
+  "skill_id": "revops_commit_accuracy",
+  "session_id": "batch_eval",
+  "summary": {
+    "skill_id": "revops_commit_accuracy",
+    "total_executions": 3,
+    "success_rate": 1.0,
+    "validation_pass_rate": 1.0,
+    "auto_act_rate": 1.0,
+    "latency": {
+      "avg_ms": 428.33,
+      "p50_ms": 0.89,
+      "p95_ms": 1283.5,
+      "p99_ms": 1283.5,
+      "max_ms": 1283.5,
+      "min_ms": 0.61
+    },
+    "decisions": {
+      "auto_act": 3
+    },
+    "errors": {}
+  },
+  "records": [
+    {
+      "timestamp": 1770847508.824418,
+      "duration_ms": 1283.5006713867188,
+      "success": true,
+      "validation_passed": true,
+      "decision_type": "auto_act",
+      "error_type": null,
+      "metadata": {
+        "confidence": 0.95,
+        "risk_level": "Medium",
+        "trace_id": "8373d7b6be104653"
+      }
+    },
+    {
+      "timestamp": 1770847508.825052,
+      "duration_ms": 0.6070137023925781,
+      "success": true,
+      "validation_passed": true,
+      "decision_type": "auto_act",
+      "error_type": null,
+      "metadata": {
+        "confidence": 0.95,
+        "risk_level": "Medium",
+        "trace_id": "8373d7b6be104653"
+      }
+    },
+    {
+      "timestamp": 1770847508.825957,
+      "duration_ms": 0.8890628814697266,
+      "success": true,
+      "validation_passed": true,
+      "decision_type": "auto_act",
+      "error_type": null,
+      "metadata": {
+        "confidence": 0.95,
+        "risk_level": "Medium",
+        "trace_id": "8373d7b6be104653"
+      }
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "skill_id": "finops_arr_waterfall",
+  "generated_at": "2026-02-12T00:05:00.029411",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "period": "m40o4opby8tk",
+        "granularity": "monthly"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "period": "v3rumpoea",
+        "granularity": "quarterly",
+        "segment_by": "region"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "period": "978agp7n1v9gzwx",
+        "granularity": "quarterly",
+        "segment_by": "plan"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "granularity": "monthly"
+      },
+      "label": "missing_period",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": 12345,
+        "granularity": "quarterly",
+        "segment_by": "region"
+      },
+      "label": "invalid_type_period",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": "wbrtgxoes2b",
+        "granularity": 12345
+      },
+      "label": "invalid_type_granularity",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": "5esd2s5tzfwn9tkw80m",
+        "granularity": "quarterly",
+        "segment_by": 12345
+      },
+      "label": "invalid_type_segment_by",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

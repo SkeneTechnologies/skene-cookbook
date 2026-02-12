@@ -1,0 +1,103 @@
+{
+  "skill_id": "plgf_signup_flow_cro",
+  "generated_at": "2026-02-11T22:14:33.538719",
+  "num_cases": 10,
+  "test_cases": [
+    {
+      "inputs": {
+        "productId": "hx4xmbgb2l06",
+        "mobileTrafficPercent": 8657.66
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "productId": "ce",
+        "currentFlowType": "single-step",
+        "fieldsCollected": [],
+        "socialAuthEnabled": [
+          "6fcsrbj37yiycu4mfzj",
+          "ijo7",
+          "r479pf3jcb"
+        ],
+        "mobileTrafficPercent": 7323.44
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "productId": "uqym8lg2oi"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "fieldsCollected": [],
+        "mobileTrafficPercent": 1611.38
+      },
+      "label": "missing_productId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "productId": 12345,
+        "currentFlowType": "single-step",
+        "socialAuthEnabled": [],
+        "mobileTrafficPercent": 4472.27
+      },
+      "label": "invalid_type_productId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "productId": "c0wq37sedycdtaby37s",
+        "mobileTrafficPercent": 7157.89,
+        "currentFlowType": 12345
+      },
+      "label": "invalid_type_currentFlowType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "productId": "3",
+        "socialAuthEnabled": [
+          "eeipid2",
+          "r6l87us",
+          "4f"
+        ],
+        "fieldsCollected": "not_an_array"
+      },
+      "label": "invalid_type_fieldsCollected",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "productId": "l4hyflcx",
+        "currentFlowType": "multi-step",
+        "socialAuthEnabled": "not_an_array",
+        "mobileTrafficPercent": 3885.98
+      },
+      "label": "invalid_type_socialAuthEnabled",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "productId": "ptxnmu9q90cxo",
+        "socialAuthEnabled": [
+          "m10ofxi6h"
+        ],
+        "mobileTrafficPercent": "not_a_number"
+      },
+      "label": "invalid_type_mobileTrafficPercent",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

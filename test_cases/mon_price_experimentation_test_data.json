@@ -1,0 +1,157 @@
+{
+  "skill_id": "mon_price_experimentation",
+  "generated_at": "2026-02-12T00:05:09.634821",
+  "num_cases": 13,
+  "test_cases": [
+    {
+      "inputs": {
+        "experiment_type": "discount",
+        "hypothesis": "b",
+        "variants": [
+          "oscay2gyv1"
+        ],
+        "success_metric": "c9pd42"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "experiment_type": "value_metric",
+        "hypothesis": "pz9f16b",
+        "variants": [],
+        "control": {},
+        "min_sample_size": 654
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "experiment_type": "price_point",
+        "hypothesis": "520vla4rxor",
+        "variants": [
+          "wvhldjua5lrwdghh"
+        ],
+        "control": {}
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "hypothesis": "9zptos2ksrx",
+        "variants": [
+          "712be0dd7w21uw8b9q"
+        ],
+        "control": {}
+      },
+      "label": "missing_experiment_type",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "experiment_type": "discount",
+        "variants": [
+          "3c8wotcnc7lb446"
+        ],
+        "control": {},
+        "success_metric": "yjz0ae4mzra5s"
+      },
+      "label": "missing_hypothesis",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "experiment_type": "discount",
+        "hypothesis": "x0hzex9ue",
+        "success_metric": "3zibxn96o5yo",
+        "min_sample_size": 71
+      },
+      "label": "missing_variants",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "experiment_type": 12345,
+        "hypothesis": "bt0i7v",
+        "variants": [
+          "r2p9g6glolha",
+          "85",
+          "2w4jantjhvfbkse"
+        ],
+        "success_metric": "fcjm6cya",
+        "min_sample_size": 721
+      },
+      "label": "invalid_type_experiment_type",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "experiment_type": "packaging",
+        "hypothesis": 12345,
+        "variants": [
+          "wrv"
+        ],
+        "success_metric": "y1myc3ykk9qmxrp7q",
+        "min_sample_size": 10
+      },
+      "label": "invalid_type_hypothesis",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "experiment_type": "trial_length",
+        "hypothesis": "hu8ys",
+        "variants": [],
+        "control": "not_an_object"
+      },
+      "label": "invalid_type_control",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "experiment_type": "discount",
+        "hypothesis": "5pse86jevzp9y7gdpv",
+        "variants": "not_an_array",
+        "control": {},
+        "min_sample_size": 472
+      },
+      "label": "invalid_type_variants",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "experiment_type": "discount",
+        "hypothesis": "552m2",
+        "variants": [
+          "tcp",
+          "c",
+          "uj15qqiuene5wn1f"
+        ],
+        "control": {},
+        "success_metric": 12345
+      },
+      "label": "invalid_type_success_metric",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "experiment_type": "discount",
+        "hypothesis": "qa5s344c2",
+        "variants": [
+          "r9"
+        ],
+        "control": {},
+        "min_sample_size": "not_a_number"
+      },
+      "label": "invalid_type_min_sample_size",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

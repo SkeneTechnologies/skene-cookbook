@@ -1,0 +1,141 @@
+{
+  "skill_id": "community_ama_orchestrator",
+  "generated_at": "2026-02-11T22:18:28.696843",
+  "num_cases": 13,
+  "test_cases": [
+    {
+      "inputs": {
+        "amaHost": {},
+        "topic": "18vgnzv",
+        "scheduledTime": "2026-02-11T22:18:28.695950",
+        "duration": 909.63,
+        "format": "hybrid",
+        "platform": "yhwe"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "amaHost": {},
+        "topic": "5nlxsrc4wdse2egnec1e",
+        "scheduledTime": "2026-02-11T22:18:28.695977",
+        "duration": 4501.6,
+        "format": "live"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "amaHost": {},
+        "topic": "8nbh1s",
+        "scheduledTime": "2026-02-11T22:18:28.695986",
+        "duration": 7033.24,
+        "format": "async",
+        "platform": "3ekm9rfprg856"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "topic": "qexpz3eua20r8ruu",
+        "scheduledTime": "2026-02-11T22:18:28.696001",
+        "duration": 323.04,
+        "format": "async"
+      },
+      "label": "missing_amaHost",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "amaHost": {},
+        "scheduledTime": "2026-02-11T22:18:28.696010",
+        "format": "async"
+      },
+      "label": "missing_topic",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "amaHost": {},
+        "topic": "9080s",
+        "platform": "t6sxr445hdni4zxj28q"
+      },
+      "label": "missing_scheduledTime",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "amaHost": "not_an_object",
+        "topic": "vwes600w",
+        "scheduledTime": "2026-02-11T22:18:28.696027",
+        "duration": 8085.13,
+        "format": "hybrid",
+        "platform": "liy18gpglijja47fum"
+      },
+      "label": "invalid_type_amaHost",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "amaHost": {},
+        "topic": 12345,
+        "scheduledTime": "2026-02-11T22:18:28.696040",
+        "platform": "n7"
+      },
+      "label": "invalid_type_topic",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "amaHost": {},
+        "topic": "cj56xhr90",
+        "scheduledTime": 12345,
+        "format": "async",
+        "platform": "bk1mmzwmvp"
+      },
+      "label": "invalid_type_scheduledTime",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "amaHost": {},
+        "topic": "05fkihw5",
+        "scheduledTime": "2026-02-11T22:18:28.696060",
+        "duration": "not_a_number",
+        "platform": "ojtjktbxl7xjgt"
+      },
+      "label": "invalid_type_duration",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "amaHost": {},
+        "topic": "p2vqt4",
+        "scheduledTime": "2026-02-11T22:18:28.696071",
+        "duration": 5323.53,
+        "format": 12345
+      },
+      "label": "invalid_type_format",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "amaHost": {},
+        "topic": "ff6kg0i",
+        "scheduledTime": "2026-02-11T22:18:28.696079",
+        "format": "async",
+        "platform": 12345
+      },
+      "label": "invalid_type_platform",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

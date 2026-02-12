@@ -1,0 +1,66 @@
+{
+  "skill_id": "mon_mrr_movement_tracker",
+  "generated_at": "2026-02-12T00:05:07.766657",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "period": "1go4w4flybfna15zp",
+        "granularity": "weekly",
+        "segment": "gxs1dijwsteejy3f1w63"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "period": "gv2l48yt8p"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "period": "zd5nga69vn"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {},
+      "label": "missing_period",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": 12345,
+        "granularity": "monthly",
+        "segment": "o6nunyngid7mhklvy"
+      },
+      "label": "invalid_type_period",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": "p",
+        "granularity": 12345
+      },
+      "label": "invalid_type_granularity",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": "yo",
+        "granularity": "monthly",
+        "segment": 12345
+      },
+      "label": "invalid_type_segment",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

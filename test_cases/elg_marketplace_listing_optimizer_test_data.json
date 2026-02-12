@@ -1,0 +1,77 @@
+{
+  "skill_id": "elg_marketplace_listing_optimizer",
+  "generated_at": "2026-02-12T00:05:00.093942",
+  "num_cases": 9,
+  "test_cases": [
+    {
+      "inputs": {
+        "marketplaceId": "test_48i0226k",
+        "listingId": "6n"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "marketplaceId": "test_tl5wg5j6",
+        "listingId": "492880corj"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "marketplaceId": "test_ehffsnti",
+        "listingId": "xj0cz8x3hrwfi85"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "listingId": "jm1d0n2sq8we93ck6"
+      },
+      "label": "missing_marketplaceId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "marketplaceId": "test_r592gdxb",
+        "optimizationType": "full"
+      },
+      "label": "missing_listingId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "marketplaceId": 12345,
+        "listingId": "tvm3nk",
+        "optimizationType": "seo"
+      },
+      "label": "invalid_type_marketplaceId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "marketplaceId": "test_fxjrn6xw",
+        "listingId": 12345
+      },
+      "label": "invalid_type_listingId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "marketplaceId": "test_mo0lz4ao",
+        "listingId": "ta",
+        "optimizationType": 12345
+      },
+      "label": "invalid_type_optimizationType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

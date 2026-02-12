@@ -1,0 +1,73 @@
+{
+  "skill_id": "finops_cac_calculator",
+  "generated_at": "2026-02-12T00:05:00.013711",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "period": "xwr6",
+        "breakdown_by": [],
+        "include_fully_loaded": false
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "period": "cz2t",
+        "breakdown_by": [
+          "ic3m5",
+          "05uahrprupx",
+          "o1hw5ma0l"
+        ]
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "period": "jfhnlijhlk",
+        "include_fully_loaded": true
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {},
+      "label": "missing_period",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": 12345,
+        "breakdown_by": [
+          "8expfr6uk61pk"
+        ]
+      },
+      "label": "invalid_type_period",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": "uva2hp3gh6sm6xl",
+        "breakdown_by": "not_an_array",
+        "include_fully_loaded": true
+      },
+      "label": "invalid_type_breakdown_by",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": "itqgvye",
+        "include_fully_loaded": "yes"
+      },
+      "label": "invalid_type_include_fully_loaded",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

@@ -1,0 +1,177 @@
+{
+  "skill_id": "revops_meeting_scheduler",
+  "generated_at": "2026-02-12T00:05:07.481814",
+  "num_cases": 13,
+  "test_cases": [
+    {
+      "inputs": {
+        "dealId": "r5084hg753vxvz",
+        "meetingType": "demo",
+        "duration": 2791.81,
+        "optionalAttendees": [],
+        "preferredTimes": [
+          "3p92d1ouqe2if55ng2yk"
+        ]
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "dealId": "apy0527frkgyn",
+        "meetingType": "demo",
+        "duration": 2464.07,
+        "optionalAttendees": [
+          "mjycdd19bhcuasjwj"
+        ],
+        "preferredTimes": []
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "dealId": "j1v",
+        "meetingType": "technical",
+        "optionalAttendees": [
+          "1hk",
+          "7tp4"
+        ],
+        "preferredTimes": [
+          "2ftk5deppabj9ub",
+          "j79g6ggzvmo"
+        ],
+        "urgency": "normal"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "meetingType": "executive",
+        "duration": 4407.72,
+        "preferredTimes": [
+          "y1ss0vjwfvzus7i5riew",
+          "zganm",
+          "wg6q"
+        ]
+      },
+      "label": "missing_dealId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "dealId": "ihlbwxt",
+        "optionalAttendees": [
+          "hyz4oaw",
+          "7j5ppmln0",
+          "i"
+        ],
+        "preferredTimes": [
+          "ki2id52r3i1g"
+        ]
+      },
+      "label": "missing_meetingType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "dealId": 12345,
+        "meetingType": "close",
+        "duration": 6762.63,
+        "requiredAttendees": [],
+        "optionalAttendees": [
+          "b59j7r"
+        ],
+        "preferredTimes": [
+          "nei8151dn6sjiyp3f"
+        ]
+      },
+      "label": "invalid_type_dealId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "dealId": "hqjpq4ym5",
+        "meetingType": 12345,
+        "requiredAttendees": [
+          "g6",
+          "fs8616k0v",
+          "fuqj7dtztvdlabt5kx36"
+        ],
+        "urgency": "critical"
+      },
+      "label": "invalid_type_meetingType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "dealId": "vkmjqjt0u0tq0zr9k",
+        "meetingType": "technical",
+        "duration": "not_a_number",
+        "optionalAttendees": [
+          "1as0vv"
+        ],
+        "preferredTimes": [
+          "7yp"
+        ]
+      },
+      "label": "invalid_type_duration",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "dealId": "6m778qhlua81ykgt6wix",
+        "meetingType": "discovery",
+        "duration": 5722.43,
+        "requiredAttendees": "not_an_array"
+      },
+      "label": "invalid_type_requiredAttendees",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "dealId": "0fdyc74dhkuj",
+        "meetingType": "demo",
+        "duration": 7068.49,
+        "optionalAttendees": "not_an_array",
+        "urgency": "critical"
+      },
+      "label": "invalid_type_optionalAttendees",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "dealId": "9sbr4wva",
+        "meetingType": "demo",
+        "optionalAttendees": [
+          "hfnv025zow"
+        ],
+        "preferredTimes": "not_an_array",
+        "urgency": "critical"
+      },
+      "label": "invalid_type_preferredTimes",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "dealId": "h3uqj1bin6omulz5as",
+        "meetingType": "discovery",
+        "duration": 3830.08,
+        "requiredAttendees": [
+          "9okc",
+          "y9qqsnlhj7a21pbc",
+          "olcxd"
+        ],
+        "urgency": 12345
+      },
+      "label": "invalid_type_urgency",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

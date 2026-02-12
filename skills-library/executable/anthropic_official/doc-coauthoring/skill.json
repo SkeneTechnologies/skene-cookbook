@@ -1,0 +1,346 @@
+{
+  "id": "anthropic_official/doc-coauthoring",
+  "version": "1.0.0",
+  "name": "doc-coauthoring",
+  "description": "Guide users through a structured workflow for co-authoring documentation. Use when user wants to write documentation, proposals, technical specs, decision docs, or similar structured content. This workflow helps users efficiently transfer context, refine content through iteration, and verify the doc works for readers. Trigger when user mentions writing docs, creating proposals, drafting specs, or similar documentation tasks.",
+  "domain": "anthropic_official",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "document_type": {
+        "type": "string",
+        "description": "Type of document to co-author (e.g., 'technical spec', 'decision doc', 'proposal', 'PRD', 'RFC', 'design doc')",
+        "examples": [
+          "technical spec",
+          "decision doc",
+          "proposal",
+          "PRD",
+          "RFC",
+          "design doc"
+        ]
+      },
+      "primary_audience": {
+        "type": "string",
+        "description": "Primary audience for the document (e.g., 'engineering team', 'executives', 'cross-functional stakeholders')"
+      },
+      "desired_impact": {
+        "type": "string",
+        "description": "What outcome or action is desired when someone reads this document"
+      },
+      "template_content": {
+        "type": "string",
+        "description": "Optional template or format to follow (raw text or markdown)"
+      },
+      "template_url": {
+        "type": "string",
+        "format": "uri",
+        "description": "Optional URL to a shared document template"
+      },
+      "existing_document_url": {
+        "type": "string",
+        "format": "uri",
+        "description": "Optional URL to an existing document to edit/refine"
+      },
+      "context_sources": {
+        "type": "array",
+        "description": "Optional sources of context (channel links, document URLs, file paths)",
+        "items": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "slack_channel",
+                "teams_channel",
+                "google_doc",
+                "sharepoint_doc",
+                "file_path",
+                "text_content"
+              ]
+            },
+            "reference": {
+              "type": "string",
+              "description": "Channel ID, document URL, file path, or inline text content"
+            }
+          },
+          "required": [
+            "type",
+            "reference"
+          ]
+        }
+      },
+      "initial_context": {
+        "type": "string",
+        "description": "Optional initial context dump from the user"
+      },
+      "constraints": {
+        "type": "array",
+        "description": "Optional list of constraints (timeline, format requirements, organizational policies)",
+        "items": {
+          "type": "string"
+        }
+      },
+      "workflow_preference": {
+        "type": "string",
+        "enum": [
+          "structured",
+          "freeform",
+          "ask_me"
+        ],
+        "default": "ask_me",
+        "description": "Whether to use structured workflow, work freeform, or ask user"
+      },
+      "available_integrations": {
+        "type": "array",
+        "description": "List of available integrations for context gathering",
+        "items": {
+          "type": "string",
+          "enum": [
+            "slack",
+            "teams",
+            "google_drive",
+            "sharepoint",
+            "github",
+            "notion",
+            "confluence"
+          ]
+        }
+      },
+      "supports_artifacts": {
+        "type": "boolean",
+        "default": true,
+        "description": "Whether the environment supports Claude artifacts for document creation"
+      },
+      "supports_subagents": {
+        "type": "boolean",
+        "default": false,
+        "description": "Whether the environment supports sub-agents for reader testing"
+      }
+    },
+    "required": [
+      "document_type"
+    ],
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "document_content": {
+        "type": "string",
+        "description": "Final document content in markdown format"
+      },
+      "document_location": {
+        "type": "object",
+        "description": "Where the document is stored",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "artifact",
+              "file",
+              "shared_doc"
+            ]
+          },
+          "reference": {
+            "type": "string",
+            "description": "Artifact URL, file path, or shared document URL"
+          }
+        },
+        "required": [
+          "type",
+          "reference"
+        ]
+      },
+      "document_structure": {
+        "type": "array",
+        "description": "List of sections in the document",
+        "items": {
+          "type": "object",
+          "properties": {
+            "section_name": {
+              "type": "string"
+            },
+            "order": {
+              "type": "integer"
+            },
+            "word_count": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "section_name",
+            "order"
+          ]
+        }
+      },
+      "workflow_stage_completed": {
+        "type": "string",
+        "enum": [
+          "context_gathering",
+          "refinement_and_structure",
+          "reader_testing",
+          "final_review",
+          "completed"
+        ],
+        "description": "Final workflow stage reached"
+      },
+      "context_gathered": {
+        "type": "object",
+        "description": "Summary of context gathered during Stage 1",
+        "properties": {
+          "sources_consulted": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "clarifying_questions_asked": {
+            "type": "integer"
+          },
+          "key_insights": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "iterations_per_section": {
+        "type": "object",
+        "description": "Number of refinement iterations for each section",
+        "additionalProperties": {
+          "type": "integer"
+        }
+      },
+      "reader_testing_results": {
+        "type": "object",
+        "description": "Results from reader testing stage",
+        "properties": {
+          "questions_tested": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "issues_found": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "issue_type": {
+                  "type": "string",
+                  "enum": [
+                    "ambiguity",
+                    "false_assumption",
+                    "contradiction",
+                    "missing_context",
+                    "unclear"
+                  ]
+                },
+                "description": {
+                  "type": "string"
+                },
+                "resolved": {
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          "testing_method": {
+            "type": "string",
+            "enum": [
+              "sub_agent",
+              "manual_user_testing"
+            ]
+          }
+        }
+      },
+      "total_word_count": {
+        "type": "integer",
+        "description": "Total word count of final document"
+      },
+      "conversation_url": {
+        "type": "string",
+        "format": "uri",
+        "description": "Optional URL to the conversation for appendix reference"
+      },
+      "recommendations": {
+        "type": "array",
+        "description": "Final recommendations for document maintenance and distribution",
+        "items": {
+          "type": "string"
+        }
+      },
+      "metadata": {
+        "type": "object",
+        "description": "Additional metadata about the co-authoring process",
+        "properties": {
+          "start_time": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "completion_time": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "total_messages": {
+            "type": "integer"
+          },
+          "workflow_deviations": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "required": [
+      "document_content",
+      "document_location",
+      "document_structure",
+      "workflow_stage_completed"
+    ]
+  },
+  "temperature": 0,
+  "tags": [
+    "anthropic_official",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with doc coauthoring",
+        "document creation",
+        "user wants to write documentation, proposals, technical specs, decision docs, or similar structured content"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "security_controls": {
+    "delete_operations": {
+      "soft_delete": true,
+      "retention_period_days": 30,
+      "undelete_capable": true,
+      "backup_before_delete": true,
+      "multi_party_approval": true,
+      "confirmation_required": {
+        "enabled": true,
+        "show_impact": true,
+        "require_reason": true
+      }
+    }
+  },
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.92
+  }
+}

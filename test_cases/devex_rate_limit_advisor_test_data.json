@@ -1,0 +1,79 @@
+{
+  "skill_id": "devex_rate_limit_advisor",
+  "generated_at": "2026-02-11T22:18:31.059013",
+  "num_cases": 9,
+  "test_cases": [
+    {
+      "inputs": {
+        "developer_id": "ew08uuodx85fypca80",
+        "include_forecast": false
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "developer_id": "k",
+        "time_range": {}
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "developer_id": "l",
+        "time_range": {},
+        "include_forecast": false
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {},
+      "label": "missing_developer_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "developer_id": 12345,
+        "time_range": {},
+        "alert_threshold": 6049.77,
+        "include_forecast": true
+      },
+      "label": "invalid_type_developer_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "developer_id": "qxz7pd",
+        "time_range": "not_an_object",
+        "include_forecast": false
+      },
+      "label": "invalid_type_time_range",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "developer_id": "co592ajr584y8lehwrog",
+        "time_range": {},
+        "alert_threshold": "not_a_number"
+      },
+      "label": "invalid_type_alert_threshold",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "developer_id": "y6f9nfx12y",
+        "time_range": {},
+        "include_forecast": "yes"
+      },
+      "label": "invalid_type_include_forecast",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

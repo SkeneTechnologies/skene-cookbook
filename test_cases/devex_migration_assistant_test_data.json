@@ -1,0 +1,108 @@
+{
+  "skill_id": "devex_migration_assistant",
+  "generated_at": "2026-02-11T22:18:30.956974",
+  "num_cases": 11,
+  "test_cases": [
+    {
+      "inputs": {
+        "source_version": "n0sixi388wp",
+        "target_version": "7lv",
+        "developer_id": "sdauoq2epoc",
+        "code_snippet": "4dph",
+        "language": "n2cxfyu"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "source_version": "eo5bi",
+        "target_version": "fulz2otskw6f53",
+        "developer_id": "syj9w1qhrl73r3rxia",
+        "code_snippet": "3thgyrrrmppq",
+        "language": "8vo0bxqheogloa5dh"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "source_version": "edxajvjen",
+        "target_version": "3zssa",
+        "developer_id": "ms10mocgw"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "target_version": "nvso0vik5"
+      },
+      "label": "missing_source_version",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "source_version": "2i3gmujv",
+        "developer_id": "2st7w4iyj46ex8dh8lpt",
+        "language": "e7cvc3mk174ybxe57v"
+      },
+      "label": "missing_target_version",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "source_version": "n9mf5emgcq8q3ywhfi5",
+        "target_version": "yfre",
+        "developer_id": 12345
+      },
+      "label": "invalid_type_developer_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "source_version": 12345,
+        "target_version": "eg",
+        "developer_id": "5m8a8f",
+        "code_snippet": "owpy04zu2a2ohrkn",
+        "language": "vb2skwyo7ot3beb79a8"
+      },
+      "label": "invalid_type_source_version",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "source_version": "0h5",
+        "target_version": 12345
+      },
+      "label": "invalid_type_target_version",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "source_version": "50nsxzyb",
+        "target_version": "4f",
+        "developer_id": "c",
+        "code_snippet": 12345,
+        "language": "8324zqjv7xwgpd9"
+      },
+      "label": "invalid_type_code_snippet",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "source_version": "jmk0",
+        "target_version": "fc28pcoicayv",
+        "developer_id": "l8itoyb8399335",
+        "language": 12345
+      },
+      "label": "invalid_type_language",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

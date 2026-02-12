@@ -1,0 +1,59 @@
+{
+  "skill_id": "mon_cohort_ltv_analyzer",
+  "generated_at": "2026-02-12T00:05:08.657744",
+  "num_cases": 7,
+  "test_cases": [
+    {
+      "inputs": {
+        "cohort_by": "industry",
+        "lookback_months": 551
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "lookback_months": 780,
+        "forecast_months": 645
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "lookback_months": 259,
+        "forecast_months": 760
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "cohort_by": 12345
+      },
+      "label": "invalid_type_cohort_by",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "cohort_by": "acquisition_channel",
+        "lookback_months": "not_a_number"
+      },
+      "label": "invalid_type_lookback_months",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "lookback_months": 485,
+        "forecast_months": "not_a_number"
+      },
+      "label": "invalid_type_forecast_months",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": true
+    }
+  ]
+}

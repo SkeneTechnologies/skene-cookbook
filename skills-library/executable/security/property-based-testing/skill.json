@@ -1,0 +1,384 @@
+{
+  "id": "security/property-based-testing",
+  "version": "1.0.0",
+  "name": "property-based-testing",
+  "description": "Provides guidance for property-based testing across multiple languages and smart contracts. Use when writing tests, reviewing code with serialization/validation/parsing patterns, designing features, or when property-based testing would provide stronger coverage than example-based tests.",
+  "domain": "security",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "task": {
+        "type": "string",
+        "enum": [
+          "writing_tests",
+          "designing_feature",
+          "reviewing_code",
+          "refactoring_for_testability",
+          "library_reference"
+        ],
+        "description": "The primary task being performed that determines which guidance to provide"
+      },
+      "code_context": {
+        "type": "object",
+        "properties": {
+          "language": {
+            "type": "string",
+            "description": "Programming language (e.g., Python, JavaScript, Rust, Solidity, Vyper)"
+          },
+          "code_snippet": {
+            "type": "string",
+            "description": "The code being analyzed or tested"
+          },
+          "file_path": {
+            "type": "string",
+            "description": "Path to the file being analyzed"
+          },
+          "existing_pbt_library": {
+            "type": "string",
+            "description": "Name of property-based testing library already in use (e.g., Hypothesis, fast-check, proptest, Echidna)",
+            "examples": [
+              "Hypothesis",
+              "fast-check",
+              "proptest",
+              "QuickCheck",
+              "Echidna",
+              "Foundry"
+            ]
+          }
+        },
+        "required": [
+          "language"
+        ],
+        "additionalProperties": false
+      },
+      "detected_patterns": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "pattern_type": {
+              "type": "string",
+              "enum": [
+                "serialization_pair",
+                "parser",
+                "normalization",
+                "validator",
+                "data_structure",
+                "mathematical_algorithmic",
+                "smart_contract",
+                "other"
+              ],
+              "description": "Type of pattern detected in the code"
+            },
+            "function_names": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Names of functions involved in the pattern (e.g., encode/decode)"
+            },
+            "priority": {
+              "type": "string",
+              "enum": [
+                "HIGH",
+                "MEDIUM",
+                "LOW"
+              ],
+              "description": "Priority level for applying PBT to this pattern"
+            },
+            "suggested_properties": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "roundtrip",
+                  "idempotence",
+                  "invariant",
+                  "commutativity",
+                  "associativity",
+                  "identity",
+                  "inverse",
+                  "oracle",
+                  "easy_to_verify",
+                  "no_exception"
+                ]
+              },
+              "description": "Suggested properties to test for this pattern"
+            }
+          },
+          "required": [
+            "pattern_type"
+          ],
+          "additionalProperties": false
+        },
+        "description": "Patterns detected in the code that are candidates for property-based testing"
+      },
+      "user_preferences": {
+        "type": "object",
+        "properties": {
+          "pbt_declined": {
+            "type": "boolean",
+            "description": "Whether the user has declined property-based testing for this context"
+          },
+          "test_style": {
+            "type": "string",
+            "enum": [
+              "property_based",
+              "example_based",
+              "mixed"
+            ],
+            "description": "User's preferred testing style"
+          }
+        },
+        "additionalProperties": false
+      },
+      "specific_requirements": {
+        "type": "object",
+        "properties": {
+          "test_framework": {
+            "type": "string",
+            "description": "Specific test framework to use (e.g., pytest, jest, cargo test)"
+          },
+          "coverage_targets": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Specific areas or edge cases to cover"
+          },
+          "constraints": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Testing constraints (e.g., no network calls, must run fast)"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "required": [
+      "task",
+      "code_context"
+    ],
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "recommended_approach": {
+        "type": "string",
+        "enum": [
+          "property_based_testing",
+          "example_based_testing",
+          "mixed_approach",
+          "not_applicable"
+        ],
+        "description": "Overall recommended testing approach"
+      },
+      "guidance_references": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "reference_file": {
+              "type": "string",
+              "description": "Path to the reference document (e.g., {baseDir}/references/generating.md)"
+            },
+            "reason": {
+              "type": "string",
+              "description": "Why this reference is relevant to the current task"
+            }
+          },
+          "required": [
+            "reference_file",
+            "reason"
+          ],
+          "additionalProperties": false
+        },
+        "description": "Reference documents to consult based on the task"
+      },
+      "property_suggestions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "pattern": {
+              "type": "string",
+              "description": "The pattern identified (e.g., 'encode/decode pair')"
+            },
+            "property_type": {
+              "type": "string",
+              "enum": [
+                "roundtrip",
+                "idempotence",
+                "invariant",
+                "commutativity",
+                "associativity",
+                "identity",
+                "inverse",
+                "oracle",
+                "easy_to_verify",
+                "no_exception"
+              ],
+              "description": "Type of property to test"
+            },
+            "formula": {
+              "type": "string",
+              "description": "Mathematical formula or pseudocode for the property"
+            },
+            "priority": {
+              "type": "string",
+              "enum": [
+                "HIGH",
+                "MEDIUM",
+                "LOW"
+              ],
+              "description": "Priority for implementing this property test"
+            },
+            "example_code": {
+              "type": "string",
+              "description": "Example property test implementation in the target language"
+            }
+          },
+          "required": [
+            "pattern",
+            "property_type",
+            "priority"
+          ],
+          "additionalProperties": false
+        },
+        "description": "Specific property-based test suggestions"
+      },
+      "library_recommendation": {
+        "type": "object",
+        "properties": {
+          "library_name": {
+            "type": "string",
+            "description": "Recommended PBT library for the language"
+          },
+          "installation_command": {
+            "type": "string",
+            "description": "Command to install the library"
+          },
+          "documentation_url": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL to library documentation"
+          }
+        },
+        "additionalProperties": false
+      },
+      "user_prompt": {
+        "type": "string",
+        "description": "Suggested prompt to present to the user when offering PBT"
+      },
+      "red_flags": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Any red flags or anti-patterns detected that suggest PBT should not be used"
+      },
+      "refactoring_suggestions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "issue": {
+              "type": "string",
+              "description": "Testability issue identified"
+            },
+            "refactoring_pattern": {
+              "type": "string",
+              "description": "Suggested refactoring pattern to improve testability"
+            },
+            "example": {
+              "type": "string",
+              "description": "Example of the refactoring"
+            }
+          },
+          "required": [
+            "issue",
+            "refactoring_pattern"
+          ],
+          "additionalProperties": false
+        },
+        "description": "Suggestions for refactoring code to make it more testable with PBT"
+      },
+      "smart_contract_specific": {
+        "type": "object",
+        "properties": {
+          "invariants": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Smart contract invariants to test"
+          },
+          "fuzzing_targets": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Functions to fuzz test"
+          },
+          "tools": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Recommended tools (e.g., Echidna, Foundry, Medusa)"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Smart contract-specific testing guidance"
+      }
+    },
+    "required": [
+      "recommended_approach"
+    ],
+    "additionalProperties": false
+  },
+  "temperature": 0,
+  "tags": [
+    "security",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with property based testing",
+        "code security",
+        "writing tests, reviewing code with serialization/validation/parsing patterns, designing features, or when property-based testing would provide stronger coverage than example-based tests"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "security_controls": {
+    "delete_operations": {
+      "soft_delete": true,
+      "retention_period_days": 30,
+      "undelete_capable": true,
+      "backup_before_delete": true,
+      "multi_party_approval": true,
+      "confirmation_required": {
+        "enabled": true,
+        "show_impact": true,
+        "require_reason": true
+      }
+    }
+  },
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.92
+  }
+}

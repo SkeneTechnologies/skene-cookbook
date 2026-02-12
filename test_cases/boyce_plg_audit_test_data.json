@@ -1,0 +1,78 @@
+{
+  "skill_id": "boyce_plg_audit",
+  "generated_at": "2026-02-11T22:14:30.244485",
+  "num_cases": 7,
+  "test_cases": [
+    {
+      "inputs": {
+        "companyContext": {
+          "stage": "scale",
+          "currentGtm": []
+        },
+        "auditFocus": [
+          "growth_teams"
+        ]
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "companyContext": {
+          "name": "h71pkdgnlo",
+          "arr": 9854.11,
+          "stage": "growth",
+          "currentGtm": []
+        }
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "companyContext": {
+          "arr": 1562.08,
+          "stage": "enterprise",
+          "currentGtm": []
+        }
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "auditFocus": [
+          "first_impact",
+          "retention"
+        ]
+      },
+      "label": "missing_companyContext",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "companyContext": "not_an_object",
+        "auditFocus": []
+      },
+      "label": "invalid_type_companyContext",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "companyContext": {
+          "name": "wgp",
+          "arr": 8646.42,
+          "currentGtm": []
+        },
+        "auditFocus": "not_an_array"
+      },
+      "label": "invalid_type_auditFocus",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

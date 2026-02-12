@@ -1,0 +1,64 @@
+{
+  "skill_id": "finops_expense_allocator",
+  "session_id": "batch_eval",
+  "summary": {
+    "skill_id": "finops_expense_allocator",
+    "total_executions": 3,
+    "success_rate": 1.0,
+    "validation_pass_rate": 1.0,
+    "auto_act_rate": 1.0,
+    "latency": {
+      "avg_ms": 84.32,
+      "p50_ms": 0.1,
+      "p95_ms": 252.8,
+      "p99_ms": 252.8,
+      "max_ms": 252.8,
+      "min_ms": 0.07
+    },
+    "decisions": {
+      "auto_act": 3
+    },
+    "errors": {}
+  },
+  "records": [
+    {
+      "timestamp": 1770847500.288116,
+      "duration_ms": 252.80094146728516,
+      "success": true,
+      "validation_passed": true,
+      "decision_type": "auto_act",
+      "error_type": null,
+      "metadata": {
+        "confidence": 0.95,
+        "risk_level": "High",
+        "trace_id": "3057a06da1f84341"
+      }
+    },
+    {
+      "timestamp": 1770847500.288223,
+      "duration_ms": 0.09894371032714844,
+      "success": true,
+      "validation_passed": true,
+      "decision_type": "auto_act",
+      "error_type": null,
+      "metadata": {
+        "confidence": 0.95,
+        "risk_level": "High",
+        "trace_id": "3057a06da1f84341"
+      }
+    },
+    {
+      "timestamp": 1770847500.288298,
+      "duration_ms": 0.06985664367675781,
+      "success": true,
+      "validation_passed": true,
+      "decision_type": "auto_act",
+      "error_type": null,
+      "metadata": {
+        "confidence": 0.95,
+        "risk_level": "High",
+        "trace_id": "3057a06da1f84341"
+      }
+    }
+  ]
+}

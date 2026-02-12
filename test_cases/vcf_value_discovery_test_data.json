@@ -1,0 +1,116 @@
+{
+  "skill_id": "vcf_value_discovery",
+  "generated_at": "2026-02-11T22:18:31.182945",
+  "num_cases": 11,
+  "test_cases": [
+    {
+      "inputs": {
+        "dealId": "nbr7bvb3r8rzkll99",
+        "stakeholderMap": {},
+        "industry": "omi6"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "dealId": "wqhhhfd1j0ud336r",
+        "stakeholderMap": {},
+        "accountId": "tt2o7vfxzvp0e4rsq4h",
+        "meetingNotes": [
+          "b27trltcity1",
+          "28e"
+        ]
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "dealId": "0xwg0qj2iwio",
+        "stakeholderMap": {},
+        "accountId": "yekn"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "stakeholderMap": {},
+        "accountId": "lfdgngjjp08g",
+        "meetingNotes": [
+          "phjxj3493",
+          "y0wl5go140v",
+          "rfm18n7lvp7v2o3"
+        ],
+        "industry": "c"
+      },
+      "label": "missing_dealId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "dealId": "4wq443iwf4haw",
+        "meetingNotes": [
+          "m",
+          "s7"
+        ],
+        "industry": "rbpms6xftw6qn"
+      },
+      "label": "missing_stakeholderMap",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "dealId": 12345,
+        "stakeholderMap": {}
+      },
+      "label": "invalid_type_dealId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "dealId": "8yd1hfg5m48z",
+        "stakeholderMap": {},
+        "industry": "pjtaw6t",
+        "accountId": 12345
+      },
+      "label": "invalid_type_accountId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "dealId": "o4t3xny9yom1ta2h",
+        "stakeholderMap": "not_an_object",
+        "accountId": "b7w4nigm94",
+        "meetingNotes": []
+      },
+      "label": "invalid_type_stakeholderMap",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "dealId": "ia2rq8cer10hh7",
+        "stakeholderMap": {},
+        "industry": "x",
+        "meetingNotes": "not_an_array"
+      },
+      "label": "invalid_type_meetingNotes",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "dealId": "odngax0odaj6v0u",
+        "stakeholderMap": {},
+        "industry": 12345
+      },
+      "label": "invalid_type_industry",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

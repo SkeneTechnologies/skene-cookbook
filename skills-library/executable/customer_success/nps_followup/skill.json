@@ -1,0 +1,386 @@
+{
+  "id": "cs_nps_followup",
+  "version": "1.0.0",
+  "name": "NPS Follow-up Automation",
+  "description": "Automates NPS survey follow-up with personalized responses based on score and feedback.",
+  "domain": "customer_success",
+  "tools": [
+    {
+      "name": "feedback.get_survey",
+      "required": true
+    },
+    {
+      "name": "feedback.list",
+      "required": true
+    },
+    {
+      "name": "crm.get_account",
+      "required": true
+    },
+    {
+      "name": "crm.log_activity",
+      "required": true
+    },
+    {
+      "name": "resend.send_template",
+      "required": false
+    },
+    {
+      "name": "messaging.send_alert",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "churn_prediction",
+    "advocacy",
+    "support_escalation",
+    "idle"
+  ],
+  "metrics": {
+    "primary": "nps_response_rate",
+    "benchmarks": {
+      "excellent": "> 70%",
+      "good": "50-70%",
+      "needs_improvement": "< 50%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "customer_success",
+    "nps",
+    "feedback",
+    "satisfaction",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with NPS Follow up Automation"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "lifecycle.get_segment",
+          "required": true
+        },
+        {
+          "name": "analytics.get_cohort",
+          "required": false
+        },
+        {
+          "name": "crm.update_account",
+          "required": false
+        }
+      ]
+    }
+  },
+  "security_controls": {
+    "execution_environment": {
+      "type": "sandboxed_container",
+      "resource_limits": {
+        "cpu_cores": 1,
+        "memory_mb": 512,
+        "timeout_seconds": 30,
+        "disk_mb": 100
+      },
+      "security": {
+        "network_access": false,
+        "filesystem": "read_only",
+        "user": "non_root",
+        "allowed_commands": [
+          "node",
+          "python3",
+          "npm"
+        ],
+        "blocked_syscalls": [
+          "exec",
+          "fork",
+          "kill"
+        ]
+      }
+    }
+  },
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "survey_response_id": {
+        "type": "string",
+        "description": "Unique identifier for the NPS survey response to process"
+      },
+      "account_id": {
+        "type": "string",
+        "description": "CRM account identifier for the respondent"
+      },
+      "override_auto_send": {
+        "type": "boolean",
+        "description": "If true, prevents automatic email sending for detractors (requires manual review)",
+        "default": false
+      },
+      "csm_user_id": {
+        "type": "string",
+        "description": "Optional CSM user ID to assign follow-up tasks to; if not provided, uses account owner"
+      },
+      "escalation_threshold": {
+        "type": "integer",
+        "description": "NPS score at or below which to trigger executive escalation (default: 3)",
+        "minimum": 0,
+        "maximum": 10,
+        "default": 3
+      },
+      "include_referral_request": {
+        "type": "boolean",
+        "description": "For promoters, whether to include referral/review request in follow-up",
+        "default": true
+      }
+    },
+    "required": [
+      "survey_response_id",
+      "account_id"
+    ],
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "respondent": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the survey respondent"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "description": "Email address of the respondent"
+          },
+          "account_name": {
+            "type": "string",
+            "description": "Name of the associated account"
+          },
+          "account_id": {
+            "type": "string",
+            "description": "CRM account identifier"
+          }
+        },
+        "required": [
+          "name",
+          "account_name",
+          "account_id"
+        ]
+      },
+      "nps_data": {
+        "type": "object",
+        "properties": {
+          "score": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 10,
+            "description": "NPS score provided by respondent"
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "Promoter",
+              "Passive",
+              "Detractor"
+            ],
+            "description": "NPS category based on score"
+          },
+          "comment": {
+            "type": "string",
+            "description": "Free-text feedback provided by respondent"
+          },
+          "survey_id": {
+            "type": "string",
+            "description": "Survey identifier"
+          },
+          "response_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the survey was submitted"
+          }
+        },
+        "required": [
+          "score",
+          "category"
+        ]
+      },
+      "analysis": {
+        "type": "object",
+        "properties": {
+          "sentiment": {
+            "type": "string",
+            "enum": [
+              "Positive",
+              "Neutral",
+              "Negative"
+            ],
+            "description": "Overall sentiment detected from comment"
+          },
+          "key_themes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Key themes extracted from feedback comment"
+          },
+          "urgency": {
+            "type": "string",
+            "enum": [
+              "High",
+              "Medium",
+              "Low"
+            ],
+            "description": "Urgency level for follow-up action"
+          },
+          "requires_escalation": {
+            "type": "boolean",
+            "description": "Whether this response requires executive escalation"
+          }
+        },
+        "required": [
+          "sentiment",
+          "key_themes",
+          "urgency"
+        ]
+      },
+      "actions_taken": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "action": {
+              "type": "string",
+              "description": "Description of the action taken"
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "completed",
+                "pending",
+                "failed"
+              ],
+              "description": "Execution status of the action"
+            },
+            "tool_used": {
+              "type": "string",
+              "description": "Tool or service used to execute the action"
+            },
+            "timestamp": {
+              "type": "string",
+              "format": "date-time",
+              "description": "When the action was executed"
+            },
+            "details": {
+              "type": "object",
+              "description": "Additional context or identifiers (e.g., email_id, activity_id)",
+              "additionalProperties": true
+            }
+          },
+          "required": [
+            "action",
+            "status"
+          ]
+        },
+        "description": "List of automated actions executed during follow-up"
+      },
+      "recommended_next_steps": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "assignee": {
+              "type": "string",
+              "description": "Role or person responsible (e.g., CSM, Executive)"
+            },
+            "action": {
+              "type": "string",
+              "description": "Recommended action to take"
+            },
+            "due_date": {
+              "type": "string",
+              "format": "date",
+              "description": "Suggested completion date"
+            },
+            "priority": {
+              "type": "string",
+              "enum": [
+                "High",
+                "Medium",
+                "Low"
+              ],
+              "description": "Priority level for the action"
+            }
+          },
+          "required": [
+            "assignee",
+            "action"
+          ]
+        },
+        "description": "Manual follow-up actions recommended for the team"
+      },
+      "playbook_applied": {
+        "type": "string",
+        "enum": [
+          "Promoter",
+          "Passive",
+          "Detractor"
+        ],
+        "description": "Which follow-up playbook was applied"
+      },
+      "crm_activity_id": {
+        "type": "string",
+        "description": "CRM activity log identifier for this follow-up"
+      },
+      "email_sent": {
+        "type": "boolean",
+        "description": "Whether an automated email was sent to the respondent"
+      },
+      "alerts_sent": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "recipient": {
+              "type": "string",
+              "description": "Alert recipient (CSM, team channel, etc.)"
+            },
+            "alert_type": {
+              "type": "string",
+              "description": "Type of alert sent"
+            }
+          }
+        },
+        "description": "List of alerts sent to internal team members"
+      },
+      "metrics": {
+        "type": "object",
+        "properties": {
+          "response_time_hours": {
+            "type": "number",
+            "description": "Hours between survey submission and follow-up execution"
+          },
+          "within_sla": {
+            "type": "boolean",
+            "description": "Whether follow-up was completed within 24-hour SLA"
+          }
+        }
+      }
+    },
+    "required": [
+      "respondent",
+      "nps_data",
+      "analysis",
+      "actions_taken",
+      "recommended_next_steps",
+      "playbook_applied"
+    ]
+  },
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.92
+  }
+}

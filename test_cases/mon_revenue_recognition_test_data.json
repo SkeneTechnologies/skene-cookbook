@@ -1,0 +1,70 @@
+{
+  "skill_id": "mon_revenue_recognition",
+  "generated_at": "2026-02-12T00:05:09.617516",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "period": "2s68zzm1mziwpstt537w",
+        "account_id": "nnsvnlj"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "period": "4ezu0m",
+        "account_id": "gjj15yc6q2p7jnc",
+        "report_type": "detailed"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "period": "mm8u1mjwwk",
+        "report_type": "audit"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "report_type": "summary"
+      },
+      "label": "missing_period",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": 12345,
+        "account_id": "rnar6ykigf3y05",
+        "report_type": "detailed"
+      },
+      "label": "invalid_type_period",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": "zm",
+        "account_id": 12345
+      },
+      "label": "invalid_type_account_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": "64xp1kpuk41qovkw98v",
+        "account_id": "hk10jmn3tr7oua8bux",
+        "report_type": 12345
+      },
+      "label": "invalid_type_report_type",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

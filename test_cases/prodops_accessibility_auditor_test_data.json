@@ -1,0 +1,109 @@
+{
+  "skill_id": "prodops_accessibility_auditor",
+  "generated_at": "2026-02-12T00:05:01.539416",
+  "num_cases": 9,
+  "test_cases": [
+    {
+      "inputs": {
+        "urls": [
+          "xhe",
+          "451ppl0xgwf8"
+        ],
+        "standard": "WCAG2.1-AA"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "urls": [
+          "exhcopinde",
+          "wxyf"
+        ],
+        "standard": "WCAG2.0-AA",
+        "focusAreas": [
+          "cc2zglzy04u",
+          "qjnhoph030qrkr45w"
+        ]
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "urls": [
+          "qsys2t1ebgljm",
+          "39l346d2",
+          "katds"
+        ],
+        "includeScreenReader": true,
+        "focusAreas": [
+          "p2mlqcbffhfy",
+          "k0s895uxxaspcf",
+          "qgsa0px5gp1m3lkth"
+        ]
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "focusAreas": [
+          "scgvtshtg",
+          "b84hhyufbp4w27vkjjo"
+        ]
+      },
+      "label": "missing_urls",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "urls": "not_an_array",
+        "standard": "WCAG2.0-A",
+        "focusAreas": [
+          "i8knot5pwjkbi"
+        ]
+      },
+      "label": "invalid_type_urls",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "urls": [],
+        "standard": 12345,
+        "includeScreenReader": false
+      },
+      "label": "invalid_type_standard",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "urls": [
+          "k51km4vzl197dar",
+          "u",
+          "1oocpv2to0wmsw4nzwb9"
+        ],
+        "includeScreenReader": "yes"
+      },
+      "label": "invalid_type_includeScreenReader",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "urls": [
+          "qrv29hup5mc",
+          "323l5d9hxv6c7t"
+        ],
+        "includeScreenReader": true,
+        "focusAreas": "not_an_array"
+      },
+      "label": "invalid_type_focusAreas",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

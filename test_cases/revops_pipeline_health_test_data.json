@@ -1,0 +1,71 @@
+{
+  "skill_id": "revops_pipeline_health",
+  "generated_at": "2026-02-12T00:05:07.376185",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "stage": "1n79pl",
+        "riskLevel": "critical"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "minDealSize": 3757.97,
+        "stage": "iwjb69wifi",
+        "riskLevel": "at_risk"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "minDealSize": 6261.69
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "ownerId": 12345,
+        "minDealSize": 6675.61,
+        "riskLevel": "at_risk"
+      },
+      "label": "invalid_type_ownerId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "minDealSize": "not_a_number",
+        "stage": "61ar4jqicpefl0u1v",
+        "riskLevel": "critical"
+      },
+      "label": "invalid_type_minDealSize",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "ownerId": "i9n0p1o63o7k",
+        "minDealSize": 146.05,
+        "stage": 12345,
+        "riskLevel": "all"
+      },
+      "label": "invalid_type_stage",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "riskLevel": 12345
+      },
+      "label": "invalid_type_riskLevel",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": true
+    }
+  ]
+}

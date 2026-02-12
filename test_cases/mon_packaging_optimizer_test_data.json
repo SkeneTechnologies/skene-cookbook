@@ -1,0 +1,59 @@
+{
+  "skill_id": "mon_packaging_optimizer",
+  "generated_at": "2026-02-12T00:05:09.757494",
+  "num_cases": 7,
+  "test_cases": [
+    {
+      "inputs": {
+        "objective": "retention"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "analysis_type": "full_audit",
+        "segment": "xo53zdf6co"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "analysis_type": "feature_bundling",
+        "objective": "expansion"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "analysis_type": 12345,
+        "objective": "expansion"
+      },
+      "label": "invalid_type_analysis_type",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "analysis_type": "tier_optimization",
+        "segment": 12345
+      },
+      "label": "invalid_type_segment",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "segment": "g1t90gzf",
+        "objective": 12345
+      },
+      "label": "invalid_type_objective",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": true
+    }
+  ]
+}

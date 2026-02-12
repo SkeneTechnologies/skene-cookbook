@@ -1,0 +1,46 @@
+{
+  "skill_id": "development/codebase-onboarding",
+  "generated_at": "2026-02-11T22:18:30.245645",
+  "num_cases": 6,
+  "test_cases": [
+    {
+      "inputs": {
+        "repoPath": "1xov8ym4wl23h",
+        "focusArea": "8lmcpyoupc4vo2"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "focusArea": "xcbjhk0m"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {},
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "repoPath": 12345
+      },
+      "label": "invalid_type_repoPath",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "focusArea": 12345
+      },
+      "label": "invalid_type_focusArea",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": true
+    }
+  ]
+}

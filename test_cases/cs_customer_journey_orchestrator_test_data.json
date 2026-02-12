@@ -1,0 +1,68 @@
+{
+  "skill_id": "cs_customer_journey_orchestrator",
+  "generated_at": "2026-02-12T00:05:02.102174",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "accountId": "test_b73rdadz",
+        "triggerEvent": "huqkyf"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "accountId": "test_ngptipyc",
+        "journeyStage": "onboarding",
+        "triggerEvent": "p6vxl39m"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "accountId": "test_np797v2z",
+        "journeyStage": "maturity"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "triggerEvent": "55"
+      },
+      "label": "missing_accountId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": 12345,
+        "journeyStage": "adoption"
+      },
+      "label": "invalid_type_accountId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": "test_vy4bgnf8",
+        "journeyStage": 12345
+      },
+      "label": "invalid_type_journeyStage",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": "test_fugujup5",
+        "triggerEvent": 12345
+      },
+      "label": "invalid_type_triggerEvent",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

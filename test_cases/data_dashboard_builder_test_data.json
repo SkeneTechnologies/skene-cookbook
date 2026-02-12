@@ -1,0 +1,187 @@
+{
+  "skill_id": "data_dashboard_builder",
+  "generated_at": "2026-02-11T22:18:28.940535",
+  "num_cases": 14,
+  "test_cases": [
+    {
+      "inputs": {
+        "name": "Test Name 6557",
+        "description": "a",
+        "audience": "so2eyxy20",
+        "metrics": [
+          "ii9pa",
+          "8zj9i8y4swbk4ls82k"
+        ],
+        "time_range": "9o0c921c",
+        "refresh_frequency": "hj1olw9yci0zmnzumb"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "name": "Test Name xtp4",
+        "description": "6ks4b7n4",
+        "time_range": "zfvwufdzrtzrrjpq418a",
+        "platform": "metabase"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "name": "Test Name g4gz",
+        "description": "qntkb5s",
+        "audience": "3sypfksvv0svcwvl2tjr",
+        "metrics": [
+          "4i2",
+          "5f3",
+          "a4zmfo6yr0fetri"
+        ],
+        "dimensions": [],
+        "time_range": "l6uq7",
+        "platform": "metabase"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "description": "f2",
+        "time_range": "5k"
+      },
+      "label": "missing_name",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "name": "Test Name jjh2",
+        "metrics": [],
+        "time_range": "bs8f"
+      },
+      "label": "missing_description",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "name": 12345,
+        "description": "xe74gm7sf6f88a",
+        "audience": "4b2bhrpin2",
+        "metrics": [
+          "vhup6s39",
+          "9bfkqq555jvcyqggola1",
+          "oh50bs6pokhjqqav3zwk"
+        ],
+        "time_range": "fw612ftjfprin"
+      },
+      "label": "invalid_type_name",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "name": "Test Name 222m",
+        "description": 12345,
+        "metrics": [
+          "52h",
+          "x3vvfhdja98jw2g"
+        ],
+        "dimensions": []
+      },
+      "label": "invalid_type_description",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "name": "Test Name nsv3",
+        "description": "c6j5g2up",
+        "dimensions": [
+          "hu0gke8dnf",
+          "cjv4u0jpxoo"
+        ],
+        "time_range": "242ij6smufhq6439",
+        "refresh_frequency": "ilz",
+        "audience": 12345
+      },
+      "label": "invalid_type_audience",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "name": "Test Name yn42",
+        "description": "t",
+        "metrics": "not_an_array",
+        "dimensions": [
+          "9ppw5klp",
+          "xw",
+          "w0"
+        ],
+        "time_range": "be33uki",
+        "refresh_frequency": "10ul2",
+        "platform": "metabase"
+      },
+      "label": "invalid_type_metrics",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "name": "Test Name 6ok2",
+        "description": "i",
+        "audience": "oildgu6iqj6ex7vyt",
+        "metrics": [
+          "sq1lgnpfm1fw69ucvl9e",
+          "iffj9"
+        ],
+        "dimensions": "not_an_array",
+        "time_range": "wv08utrqha07ujoxmey1",
+        "refresh_frequency": "mnbae6"
+      },
+      "label": "invalid_type_dimensions",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "name": "Test Name n81c",
+        "description": "08q5fgc25xox",
+        "audience": "h7j0814outdabtj4v",
+        "dimensions": [
+          "4r0my"
+        ],
+        "time_range": 12345,
+        "refresh_frequency": "blqcebfbsokc0je7jz"
+      },
+      "label": "invalid_type_time_range",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "name": "Test Name qrfy",
+        "description": "90afgdsbju",
+        "audience": "x0jwgcw4jjuzcqwsv5",
+        "time_range": "46sq6m12oj9uu",
+        "platform": "tableau",
+        "refresh_frequency": 12345
+      },
+      "label": "invalid_type_refresh_frequency",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "name": "Test Name 1u1q",
+        "description": "mx5409j2",
+        "dimensions": [
+          "bvkc",
+          "rv"
+        ],
+        "time_range": "pudzy8752caegvxzx39",
+        "platform": 12345
+      },
+      "label": "invalid_type_platform",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

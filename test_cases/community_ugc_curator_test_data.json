@@ -1,0 +1,83 @@
+{
+  "skill_id": "community_ugc_curator",
+  "generated_at": "2026-02-11T22:18:28.707718",
+  "num_cases": 9,
+  "test_cases": [
+    {
+      "inputs": {
+        "action": "report",
+        "contentType": "video",
+        "timeRange": "7d"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "action": "amplify",
+        "platforms": [],
+        "timeRange": "7d"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "action": "report",
+        "contentType": "testimonial",
+        "platforms": [
+          "sog6fgd22kom91zg"
+        ]
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "contentType": "social"
+      },
+      "label": "missing_action",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": 12345,
+        "platforms": [
+          "dd"
+        ]
+      },
+      "label": "invalid_type_action",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": "request",
+        "contentType": 12345
+      },
+      "label": "invalid_type_contentType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": "amplify",
+        "contentType": "video",
+        "platforms": "not_an_array"
+      },
+      "label": "invalid_type_platforms",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": "curate",
+        "timeRange": 12345
+      },
+      "label": "invalid_type_timeRange",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

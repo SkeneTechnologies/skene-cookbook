@@ -1,0 +1,57 @@
+{
+  "skill_id": "plgf_user_segmentation",
+  "generated_at": "2026-02-11T22:14:30.058455",
+  "num_cases": 7,
+  "test_cases": [
+    {
+      "inputs": {
+        "segmentationType": "lifecycle"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "segmentationType": "lifecycle",
+        "purpose": "analysis"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "segmentationType": "behavioral"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "purpose": "analysis"
+      },
+      "label": "missing_segmentationType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "segmentationType": 12345,
+        "purpose": "analysis"
+      },
+      "label": "invalid_type_segmentationType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "segmentationType": "lifecycle",
+        "purpose": 12345
+      },
+      "label": "invalid_type_purpose",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

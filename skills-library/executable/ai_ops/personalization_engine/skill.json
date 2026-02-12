@@ -1,0 +1,370 @@
+{
+  "id": "ai_personalization_engine",
+  "version": "1.0.0",
+  "name": "Personalization Engine",
+  "description": "Delivers personalized content, recommendations, and experiences across touchpoints.",
+  "domain": "ai_ops",
+  "tools": [
+    {
+      "name": "ai.personalize",
+      "required": true
+    },
+    {
+      "name": "lifecycle.get_segment",
+      "required": true
+    },
+    {
+      "name": "analytics.feature_adoption",
+      "required": false
+    },
+    {
+      "name": "vercel.set_edge_config",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "content_delivered",
+    "recommendation_shown",
+    "experience_adapted",
+    "idle"
+  ],
+  "metrics": {
+    "primary": "personalization_engagement_lift",
+    "benchmarks": {
+      "excellent": "> 30%",
+      "good": "15-30%",
+      "needs_improvement": "< 15%"
+    }
+  },
+  "temperature": 0.3,
+  "tags": [
+    "ai_ops",
+    "personalization",
+    "recommendations",
+    "experience",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Personalization Engine"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "ai.classify",
+          "required": false
+        },
+        {
+          "name": "ai.generate",
+          "required": false
+        },
+        {
+          "name": "ai.score_lead",
+          "required": false
+        }
+      ]
+    }
+  },
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "userId": {
+        "type": "string",
+        "description": "Unique identifier for the user to personalize experience for"
+      },
+      "sessionContext": {
+        "type": "object",
+        "properties": {
+          "device": {
+            "type": "string",
+            "enum": [
+              "mobile",
+              "tablet",
+              "desktop"
+            ],
+            "description": "Device type for the current session"
+          },
+          "location": {
+            "type": "string",
+            "description": "User location (country, region, or city)"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Current session timestamp"
+          },
+          "currentPage": {
+            "type": "string",
+            "description": "Current page or section user is viewing"
+          },
+          "referrer": {
+            "type": "string",
+            "format": "uri",
+            "description": "Referrer URL or source"
+          }
+        },
+        "required": [
+          "device",
+          "timestamp"
+        ]
+      },
+      "intentSignals": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Detected user intents or goals in current session (e.g., 'explore_features', 'upgrade_plan', 'get_support')"
+      },
+      "personalizationTypes": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": [
+            "content",
+            "recommendations",
+            "ui_ux",
+            "offers",
+            "support"
+          ]
+        },
+        "description": "Types of personalization to apply"
+      },
+      "abTestVariant": {
+        "type": "string",
+        "description": "A/B test variant identifier if user is part of an experiment"
+      },
+      "userPreferences": {
+        "type": "object",
+        "properties": {
+          "personalizationEnabled": {
+            "type": "boolean",
+            "description": "Whether user has enabled personalization"
+          },
+          "excludedDimensions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Personalization dimensions user has opted out of"
+          }
+        }
+      }
+    },
+    "required": [
+      "userId",
+      "sessionContext",
+      "personalizationTypes"
+    ],
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "userId": {
+        "type": "string",
+        "description": "User identifier for which personalization was applied"
+      },
+      "segment": {
+        "type": "object",
+        "properties": {
+          "lifecycleStage": {
+            "type": "string",
+            "description": "User lifecycle stage (e.g., 'trial', 'active', 'at_risk', 'churned')"
+          },
+          "plan": {
+            "type": "string",
+            "description": "User subscription plan"
+          },
+          "tenure": {
+            "type": "integer",
+            "description": "Days since user signup"
+          }
+        },
+        "required": [
+          "lifecycleStage"
+        ]
+      },
+      "context": {
+        "type": "object",
+        "properties": {
+          "device": {
+            "type": "string",
+            "description": "Device type"
+          },
+          "sessionIntent": {
+            "type": "string",
+            "description": "Primary detected intent for current session"
+          },
+          "timeOfDay": {
+            "type": "string",
+            "description": "Time context (morning, afternoon, evening)"
+          }
+        }
+      },
+      "personalizationDecisions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "element": {
+              "type": "string",
+              "description": "UI or content element being personalized"
+            },
+            "defaultValue": {
+              "type": "string",
+              "description": "Default non-personalized value"
+            },
+            "personalizedValue": {
+              "type": "string",
+              "description": "Personalized value applied"
+            },
+            "reason": {
+              "type": "string",
+              "description": "Explanation for personalization decision"
+            },
+            "confidence": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "description": "Confidence score for this personalization"
+            }
+          },
+          "required": [
+            "element",
+            "personalizedValue",
+            "reason"
+          ]
+        }
+      },
+      "recommendations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "feature",
+                "content",
+                "action",
+                "support"
+              ],
+              "description": "Type of recommendation"
+            },
+            "title": {
+              "type": "string",
+              "description": "Recommendation title"
+            },
+            "description": {
+              "type": "string",
+              "description": "Detailed recommendation description"
+            },
+            "score": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "description": "Relevance score for this recommendation"
+            },
+            "cta": {
+              "type": "string",
+              "description": "Call-to-action text"
+            },
+            "ctaUrl": {
+              "type": "string",
+              "format": "uri",
+              "description": "URL for call-to-action"
+            }
+          },
+          "required": [
+            "type",
+            "title",
+            "score"
+          ]
+        }
+      },
+      "contentVariants": {
+        "type": "object",
+        "properties": {
+          "greeting": {
+            "type": "string",
+            "description": "Personalized greeting message"
+          },
+          "headline": {
+            "type": "string",
+            "description": "Personalized headline"
+          },
+          "cta": {
+            "type": "string",
+            "description": "Personalized call-to-action"
+          },
+          "offer": {
+            "type": "string",
+            "description": "Personalized offer or promotion"
+          },
+          "supportMessage": {
+            "type": "string",
+            "description": "Personalized support or help message"
+          }
+        }
+      },
+      "edgeConfigUpdates": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "key": {
+              "type": "string",
+              "description": "Edge config key"
+            },
+            "value": {
+              "type": "string",
+              "description": "Edge config value set"
+            }
+          }
+        },
+        "description": "Edge configuration updates applied via Vercel"
+      },
+      "expectedLift": {
+        "type": "object",
+        "properties": {
+          "engagementIncrease": {
+            "type": "number",
+            "description": "Expected engagement increase percentage"
+          },
+          "conversionIncrease": {
+            "type": "number",
+            "description": "Expected conversion increase percentage"
+          },
+          "basedOnSampleSize": {
+            "type": "integer",
+            "description": "Number of similar users this prediction is based on"
+          }
+        }
+      },
+      "timestamp": {
+        "type": "string",
+        "format": "date-time",
+        "description": "When personalization was generated"
+      },
+      "abTestVariant": {
+        "type": "string",
+        "description": "A/B test variant applied"
+      }
+    },
+    "required": [
+      "userId",
+      "segment",
+      "personalizationDecisions",
+      "recommendations",
+      "contentVariants",
+      "timestamp"
+    ]
+  },
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.92
+  }
+}

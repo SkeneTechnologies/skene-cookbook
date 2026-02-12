@@ -4,6 +4,16 @@ pytest-cov==4.1.0
 pytest-mock==3.12.0
 pytest-xdist==3.5.0
 
+# Code quality & linting
+black==24.1.1
+flake8==7.0.0
+isort==5.13.2
+pre-commit==3.6.0
+
+# Security scanning
+pip-audit==2.7.0
+safety==3.0.1
+
 # Mocking & testing utilities
 responses==0.24.1
 freezegun==1.4.0
@@ -16,3 +26,12 @@ rich==13.7.0
 pyfiglet==1.0.2
 pyyaml==6.0.1
 numpy==1.26.2
+
+# Evaluation Harness Dependencies
+opentelemetry-api==1.23.0
+opentelemetry-sdk==1.23.0
+opentelemetry-exporter-otlp==1.23.0
+jsonschema==4.21.1
+plotly==5.18.0
+pandas==2.2.0
+scipy==1.12.0

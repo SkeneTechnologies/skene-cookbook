@@ -1,0 +1,69 @@
+{
+  "skill_id": "cs_executive_alignment",
+  "generated_at": "2026-02-12T00:05:00.793401",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "accountId": "test_96vwudfs",
+        "executiveId": "test_xq796rwe",
+        "alertThreshold": 1318.13
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "accountId": "test_qy3abl5t",
+        "executiveId": "test_kxs337n1"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "accountId": "test_7lpfkwf2",
+        "alertThreshold": 2797.6
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "executiveId": "test_4bm95n1e",
+        "alertThreshold": 1816.84
+      },
+      "label": "missing_accountId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": 12345,
+        "alertThreshold": 9308.9
+      },
+      "label": "invalid_type_accountId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": "test_z8rcdnnz",
+        "executiveId": 12345
+      },
+      "label": "invalid_type_executiveId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": "test_u2tzmxoy",
+        "alertThreshold": "not_a_number"
+      },
+      "label": "invalid_type_alertThreshold",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

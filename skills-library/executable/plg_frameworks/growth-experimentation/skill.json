@@ -1,0 +1,1165 @@
+{
+  "id": "plg_frameworks/growth-experimentation",
+  "version": "1.0.0",
+  "name": "growth-experimentation",
+  "description": "When the user wants to design, prioritize, or analyze growth experiments -- including A/B tests, hypothesis frameworks, ICE/RICE scoring, or growth sprints. Also use when the user says \"A/B test,\" \"experiment design,\" \"growth sprint,\" \"experiment prioritization,\" or \"statistical significance.\" For analytics setup, see product-analytics. For growth modeling, see growth-modeling.",
+  "domain": "plg_frameworks",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "request_type": {
+        "type": "string",
+        "enum": [
+          "design_experiment",
+          "prioritize_experiments",
+          "analyze_results",
+          "growth_sprint_setup",
+          "program_assessment"
+        ],
+        "description": "Type of growth experimentation assistance needed"
+      },
+      "product_context": {
+        "type": "object",
+        "properties": {
+          "monthly_active_users": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Monthly active user count for statistical power calculations"
+          },
+          "daily_traffic": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Daily user traffic for duration calculations"
+          },
+          "current_experiment_velocity": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Number of experiments run per month"
+          },
+          "has_experimentation_platform": {
+            "type": "boolean",
+            "description": "Whether an A/B testing tool or feature flag system is in place"
+          },
+          "platform_name": {
+            "type": "string",
+            "description": "Name of experimentation platform (e.g., Optimizely, VWO, Statsig)"
+          },
+          "team_structure": {
+            "type": "string",
+            "enum": [
+              "dedicated_growth_team",
+              "product_teams",
+              "distributed",
+              "none"
+            ],
+            "description": "Who currently runs experiments"
+          },
+          "risk_tolerance": {
+            "type": "string",
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "description": "Tolerance for temporary conversion drops during testing"
+          }
+        },
+        "description": "Context about the product and experimentation maturity"
+      },
+      "hypothesis": {
+        "type": "object",
+        "properties": {
+          "change": {
+            "type": "string",
+            "description": "The specific change being proposed"
+          },
+          "expected_effect": {
+            "type": "string",
+            "description": "The expected outcome or impact"
+          },
+          "expected_lift_percentage": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Expected percentage lift (e.g., 15 for 15%)"
+          },
+          "target_segment": {
+            "type": "string",
+            "description": "User segment being targeted"
+          },
+          "rationale": {
+            "type": "string",
+            "description": "Reasoning or behavioral principle behind the hypothesis"
+          },
+          "success_metric": {
+            "type": "string",
+            "description": "Primary metric to measure success"
+          }
+        },
+        "description": "Experiment hypothesis details"
+      },
+      "experiment_design": {
+        "type": "object",
+        "properties": {
+          "experiment_type": {
+            "type": "string",
+            "enum": [
+              "ab_test",
+              "multivariate",
+              "feature_flag",
+              "phased_rollout",
+              "fake_door",
+              "holdout"
+            ],
+            "description": "Type of experiment to run"
+          },
+          "variants": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Variant name (e.g., Control, Variant B)"
+                },
+                "description": {
+                  "type": "string",
+                  "description": "What the user experiences in this variant"
+                },
+                "changes": {
+                  "type": "string",
+                  "description": "Specific changes from control"
+                }
+              }
+            },
+            "description": "Control and variant definitions"
+          },
+          "traffic_allocation": {
+            "type": "object",
+            "properties": {
+              "control_percentage": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 100,
+                "description": "Percentage of traffic to control"
+              },
+              "variant_percentage": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 100,
+                "description": "Percentage of traffic to variant(s)"
+              }
+            },
+            "description": "Traffic split between variants"
+          },
+          "primary_metric": {
+            "type": "string",
+            "description": "Single primary metric for go/no-go decision"
+          },
+          "secondary_metrics": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Secondary metrics to explain primary movement"
+          },
+          "guardrail_metrics": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Metrics that must not degrade"
+          },
+          "baseline_conversion_rate": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100,
+            "description": "Current baseline conversion rate as percentage"
+          },
+          "minimum_detectable_effect": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Minimum relative lift percentage to detect (e.g., 10 for 10%)"
+          }
+        },
+        "description": "Detailed experiment design specifications"
+      },
+      "prioritization_request": {
+        "type": "object",
+        "properties": {
+          "framework": {
+            "type": "string",
+            "enum": [
+              "ICE",
+              "RICE"
+            ],
+            "description": "Prioritization framework to use"
+          },
+          "ideas": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Experiment idea name"
+                },
+                "hypothesis_summary": {
+                  "type": "string",
+                  "description": "One-line hypothesis"
+                },
+                "ice_scores": {
+                  "type": "object",
+                  "properties": {
+                    "impact": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 10
+                    },
+                    "confidence": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 10
+                    },
+                    "ease": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 10
+                    }
+                  }
+                },
+                "rice_scores": {
+                  "type": "object",
+                  "properties": {
+                    "reach": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "description": "Number of users affected per quarter"
+                    },
+                    "impact": {
+                      "type": "number",
+                      "enum": [
+                        0.25,
+                        0.5,
+                        1,
+                        2,
+                        3
+                      ],
+                      "description": "Impact multiplier"
+                    },
+                    "confidence": {
+                      "type": "integer",
+                      "enum": [
+                        50,
+                        80,
+                        100
+                      ],
+                      "description": "Confidence percentage"
+                    },
+                    "effort": {
+                      "type": "number",
+                      "minimum": 0,
+                      "description": "Person-weeks needed"
+                    }
+                  }
+                }
+              }
+            },
+            "description": "List of experiment ideas to prioritize"
+          }
+        },
+        "description": "Request to prioritize experiments"
+      },
+      "analysis_request": {
+        "type": "object",
+        "properties": {
+          "experiment_id": {
+            "type": "string",
+            "description": "Unique experiment identifier"
+          },
+          "experiment_name": {
+            "type": "string",
+            "description": "Name of the experiment"
+          },
+          "duration_days": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "How many days the experiment has run"
+          },
+          "results": {
+            "type": "object",
+            "properties": {
+              "control": {
+                "type": "object",
+                "properties": {
+                  "sample_size": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "conversions": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "conversion_rate": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100
+                  }
+                }
+              },
+              "variant": {
+                "type": "object",
+                "properties": {
+                  "sample_size": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "conversions": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "conversion_rate": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100
+                  }
+                }
+              },
+              "p_value": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1,
+                "description": "P-value for frequentist analysis"
+              },
+              "bayesian_probability": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 100,
+                "description": "Probability variant is better (Bayesian)"
+              },
+              "observed_lift_percentage": {
+                "type": "number",
+                "description": "Observed percentage lift"
+              },
+              "confidence_interval_lower": {
+                "type": "number",
+                "description": "Lower bound of confidence interval"
+              },
+              "confidence_interval_upper": {
+                "type": "number",
+                "description": "Upper bound of confidence interval"
+              }
+            }
+          },
+          "guardrail_results": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "metric_name": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "ok",
+                    "degraded"
+                  ]
+                },
+                "details": {
+                  "type": "string"
+                }
+              }
+            },
+            "description": "Guardrail metric checks"
+          },
+          "segment_breakdown": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "segment_name": {
+                  "type": "string"
+                },
+                "control_rate": {
+                  "type": "number"
+                },
+                "variant_rate": {
+                  "type": "number"
+                },
+                "lift": {
+                  "type": "number"
+                }
+              }
+            },
+            "description": "Performance by user segment"
+          }
+        },
+        "description": "Experiment results to analyze"
+      },
+      "growth_levers": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Top 3-5 growth levers to focus experiments on"
+      }
+    },
+    "required": [
+      "request_type"
+    ],
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "deliverable_type": {
+        "type": "string",
+        "enum": [
+          "experiment_design_document",
+          "analysis_report",
+          "prioritized_backlog",
+          "growth_sprint_plan",
+          "program_assessment"
+        ],
+        "description": "Type of deliverable produced"
+      },
+      "experiment_design_document": {
+        "type": "object",
+        "properties": {
+          "experiment_id": {
+            "type": "string",
+            "description": "Unique identifier for the experiment"
+          },
+          "experiment_name": {
+            "type": "string",
+            "description": "Name of the experiment"
+          },
+          "owner": {
+            "type": "string",
+            "description": "Person responsible for the experiment"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "designed",
+              "running",
+              "analyzing",
+              "completed"
+            ],
+            "description": "Current experiment status"
+          },
+          "hypothesis": {
+            "type": "object",
+            "properties": {
+              "full_statement": {
+                "type": "string",
+                "description": "Complete hypothesis using standard template"
+              },
+              "change": {
+                "type": "string"
+              },
+              "effect": {
+                "type": "string"
+              },
+              "segment": {
+                "type": "string"
+              },
+              "rationale": {
+                "type": "string"
+              },
+              "metric": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "full_statement"
+            ]
+          },
+          "design": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "ab_test",
+                  "multivariate",
+                  "feature_flag",
+                  "phased_rollout",
+                  "fake_door",
+                  "holdout"
+                ]
+              },
+              "traffic_allocation": {
+                "type": "string",
+                "description": "e.g., '50/50', '80/20'"
+              },
+              "target_segment": {
+                "type": "string"
+              },
+              "required_sample_size": {
+                "type": "integer",
+                "description": "Conversions needed per variant"
+              },
+              "expected_duration_days": {
+                "type": "integer",
+                "description": "Expected days to reach sample size"
+              },
+              "statistical_approach": {
+                "type": "string",
+                "enum": [
+                  "frequentist",
+                  "bayesian"
+                ]
+              }
+            }
+          },
+          "variants": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "changes_from_control": {
+                  "type": "string"
+                },
+                "implementation_notes": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "metrics": {
+            "type": "object",
+            "properties": {
+              "primary": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "definition": {
+                    "type": "string"
+                  },
+                  "baseline_value": {
+                    "type": "number"
+                  },
+                  "minimum_detectable_effect": {
+                    "type": "number"
+                  }
+                }
+              },
+              "secondary": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "definition": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "guardrails": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "definition": {
+                      "type": "string"
+                    },
+                    "threshold": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "sample_size_calculation": {
+            "type": "object",
+            "properties": {
+              "baseline_rate": {
+                "type": "number"
+              },
+              "minimum_detectable_effect": {
+                "type": "number"
+              },
+              "confidence_level": {
+                "type": "number",
+                "description": "e.g., 95"
+              },
+              "statistical_power": {
+                "type": "number",
+                "description": "e.g., 80"
+              },
+              "conversions_per_variant": {
+                "type": "integer"
+              },
+              "estimated_duration": {
+                "type": "string"
+              }
+            }
+          },
+          "quality_checklist": {
+            "type": "object",
+            "properties": {
+              "specific_change": {
+                "type": "boolean"
+              },
+              "measurable_effect": {
+                "type": "boolean"
+              },
+              "defined_segment": {
+                "type": "boolean"
+              },
+              "logical_rationale": {
+                "type": "boolean"
+              },
+              "measurable_metric": {
+                "type": "boolean"
+              },
+              "falsifiable": {
+                "type": "boolean"
+              }
+            }
+          }
+        },
+        "description": "Complete experiment design specification"
+      },
+      "analysis_report": {
+        "type": "object",
+        "properties": {
+          "experiment_id": {
+            "type": "string"
+          },
+          "experiment_name": {
+            "type": "string"
+          },
+          "analysis_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "data_quality": {
+            "type": "object",
+            "properties": {
+              "sample_ratio_mismatch": {
+                "type": "boolean",
+                "description": "Whether SRM was detected"
+              },
+              "data_quality_issues": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "sufficient_sample_size": {
+                "type": "boolean"
+              }
+            }
+          },
+          "primary_metric_results": {
+            "type": "object",
+            "properties": {
+              "metric_name": {
+                "type": "string"
+              },
+              "control_value": {
+                "type": "number"
+              },
+              "variant_value": {
+                "type": "number"
+              },
+              "observed_lift_percentage": {
+                "type": "number"
+              },
+              "confidence_interval": {
+                "type": "string",
+                "description": "e.g., '[5.2%, 18.7%]'"
+              },
+              "statistical_significance": {
+                "type": "boolean"
+              },
+              "p_value": {
+                "type": "number"
+              },
+              "bayesian_probability": {
+                "type": "number"
+              },
+              "practical_significance": {
+                "type": "boolean",
+                "description": "Whether effect is large enough to matter"
+              }
+            }
+          },
+          "guardrail_check": {
+            "type": "object",
+            "properties": {
+              "all_guardrails_passed": {
+                "type": "boolean"
+              },
+              "guardrail_details": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "metric_name": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "passed",
+                        "failed"
+                      ]
+                    },
+                    "details": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "segment_analysis": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "segment_name": {
+                  "type": "string"
+                },
+                "sample_size": {
+                  "type": "integer"
+                },
+                "lift_percentage": {
+                  "type": "number"
+                },
+                "significance": {
+                  "type": "boolean"
+                },
+                "insight": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "decision": {
+            "type": "string",
+            "enum": [
+              "ship",
+              "iterate",
+              "kill",
+              "extend"
+            ],
+            "description": "Final decision on experiment"
+          },
+          "decision_rationale": {
+            "type": "string",
+            "description": "Explanation of the decision"
+          },
+          "learnings": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Key learnings from the experiment"
+          },
+          "next_steps": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Follow-up experiments or actions"
+          }
+        },
+        "description": "Complete experiment analysis and decision"
+      },
+      "prioritized_backlog": {
+        "type": "object",
+        "properties": {
+          "framework_used": {
+            "type": "string",
+            "enum": [
+              "ICE",
+              "RICE"
+            ]
+          },
+          "this_sprint": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "experiment_name": {
+                  "type": "string"
+                },
+                "hypothesis_summary": {
+                  "type": "string"
+                },
+                "target_metric": {
+                  "type": "string"
+                },
+                "ice_score": {
+                  "type": "object",
+                  "properties": {
+                    "impact": {
+                      "type": "integer"
+                    },
+                    "confidence": {
+                      "type": "integer"
+                    },
+                    "ease": {
+                      "type": "integer"
+                    },
+                    "total": {
+                      "type": "integer"
+                    }
+                  }
+                },
+                "rice_score": {
+                  "type": "object",
+                  "properties": {
+                    "reach": {
+                      "type": "integer"
+                    },
+                    "impact": {
+                      "type": "number"
+                    },
+                    "confidence": {
+                      "type": "integer"
+                    },
+                    "effort": {
+                      "type": "number"
+                    },
+                    "total": {
+                      "type": "number"
+                    }
+                  }
+                },
+                "owner": {
+                  "type": "string"
+                },
+                "expected_duration": {
+                  "type": "string"
+                }
+              }
+            },
+            "description": "Top 2-3 experiments to run now"
+          },
+          "next_sprint": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "experiment_name": {
+                  "type": "string"
+                },
+                "hypothesis_summary": {
+                  "type": "string"
+                },
+                "score": {
+                  "type": "number"
+                }
+              }
+            },
+            "description": "Designed and ready to go"
+          },
+          "backlog": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "experiment_name": {
+                  "type": "string"
+                },
+                "hypothesis_summary": {
+                  "type": "string"
+                },
+                "score": {
+                  "type": "number"
+                }
+              }
+            },
+            "description": "Scored ideas waiting their turn"
+          }
+        },
+        "description": "Prioritized experiment pipeline"
+      },
+      "growth_sprint_plan": {
+        "type": "object",
+        "properties": {
+          "sprint_cadence": {
+            "type": "string",
+            "enum": [
+              "weekly",
+              "biweekly"
+            ],
+            "description": "Recommended sprint frequency"
+          },
+          "sprint_schedule": {
+            "type": "object",
+            "properties": {
+              "review": {
+                "type": "string",
+                "description": "When to review results"
+              },
+              "generate": {
+                "type": "string",
+                "description": "When to generate ideas"
+              },
+              "prioritize": {
+                "type": "string",
+                "description": "When to prioritize"
+              },
+              "design": {
+                "type": "string",
+                "description": "When to design experiments"
+              },
+              "ship": {
+                "type": "string",
+                "description": "When to ship experiments"
+              }
+            }
+          },
+          "pipeline_targets": {
+            "type": "object",
+            "properties": {
+              "backlog_ideas": {
+                "type": "string",
+                "description": "Target number of scored ideas"
+              },
+              "designed_experiments": {
+                "type": "string",
+                "description": "Target number ready to implement"
+              },
+              "running_experiments": {
+                "type": "string",
+                "description": "Target number active"
+              },
+              "awaiting_analysis": {
+                "type": "string",
+                "description": "Target number awaiting results"
+              }
+            }
+          },
+          "weekly_meeting_agenda": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "duration_minutes": {
+                  "type": "integer"
+                },
+                "activity": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "description": "Growth sprint framework and schedule"
+      },
+      "program_assessment": {
+        "type": "object",
+        "properties": {
+          "current_maturity": {
+            "type": "string",
+            "enum": [
+              "nascent",
+              "developing",
+              "established",
+              "advanced"
+            ],
+            "description": "Current experimentation program maturity"
+          },
+          "metrics": {
+            "type": "object",
+            "properties": {
+              "experiments_per_month": {
+                "type": "object",
+                "properties": {
+                  "current": {
+                    "type": "integer"
+                  },
+                  "target": {
+                    "type": "string"
+                  }
+                }
+              },
+              "win_rate": {
+                "type": "object",
+                "properties": {
+                  "current": {
+                    "type": "number"
+                  },
+                  "target": {
+                    "type": "string"
+                  }
+                }
+              },
+              "cycle_time_weeks": {
+                "type": "object",
+                "properties": {
+                  "current": {
+                    "type": "number"
+                  },
+                  "target": {
+                    "type": "string"
+                  }
+                }
+              },
+              "inconclusive_rate": {
+                "type": "object",
+                "properties": {
+                  "current": {
+                    "type": "number"
+                  },
+                  "target": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "recommendations": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "area": {
+                  "type": "string"
+                },
+                "current_state": {
+                  "type": "string"
+                },
+                "recommended_action": {
+                  "type": "string"
+                },
+                "priority": {
+                  "type": "string",
+                  "enum": [
+                    "high",
+                    "medium",
+                    "low"
+                  ]
+                }
+              }
+            }
+          },
+          "common_mistakes_identified": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "description": "Assessment of experimentation program health"
+      },
+      "statistical_guidance": {
+        "type": "object",
+        "properties": {
+          "recommended_approach": {
+            "type": "string",
+            "enum": [
+              "frequentist",
+              "bayesian"
+            ],
+            "description": "Recommended statistical methodology"
+          },
+          "sample_size_requirements": {
+            "type": "object",
+            "properties": {
+              "conversions_per_variant": {
+                "type": "integer"
+              },
+              "estimated_duration": {
+                "type": "string"
+              },
+              "assumptions": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "pitfalls_to_avoid": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "description": "Statistical methodology guidance"
+      },
+      "recommendations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Key recommendations based on the request"
+      },
+      "next_steps": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Recommended actions to take"
+      }
+    },
+    "required": [
+      "deliverable_type"
+    ]
+  },
+  "temperature": 0,
+  "tags": [
+    "plg_frameworks",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with growth experimentation",
+        "growth framework",
+        "the user says \"a/b test,\" \"experiment design,\" \"growth sprint,\" \"experiment prioritization,\" or \"statistical significance"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "security_controls": {
+    "delete_operations": {
+      "soft_delete": true,
+      "retention_period_days": 30,
+      "undelete_capable": true,
+      "backup_before_delete": true,
+      "multi_party_approval": true,
+      "confirmation_required": {
+        "enabled": true,
+        "show_impact": true,
+        "require_reason": true
+      }
+    }
+  },
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.92
+  }
+}

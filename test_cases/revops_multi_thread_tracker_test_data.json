@@ -1,0 +1,69 @@
+{
+  "skill_id": "revops_multi_thread_tracker",
+  "generated_at": "2026-02-12T00:05:05.341609",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "dealId": "8r96y7g0ym6kv",
+        "alertThreshold": 4756.56
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "dealId": "33dkleqsvzohbqdu"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "dealId": "l6xwgypjvnvsxci",
+        "includeRecommendations": false,
+        "alertThreshold": 2599.11
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "alertThreshold": 3871.68
+      },
+      "label": "missing_dealId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "dealId": 12345,
+        "includeRecommendations": false,
+        "alertThreshold": 5364.48
+      },
+      "label": "invalid_type_dealId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "dealId": "cxmu44eu2d22c7re5au",
+        "includeRecommendations": "yes"
+      },
+      "label": "invalid_type_includeRecommendations",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "dealId": "v6iz",
+        "includeRecommendations": false,
+        "alertThreshold": "not_a_number"
+      },
+      "label": "invalid_type_alertThreshold",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

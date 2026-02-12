@@ -1,0 +1,110 @@
+{
+  "skill_id": "plgf_product_onboarding",
+  "generated_at": "2026-02-11T22:14:32.441460",
+  "num_cases": 11,
+  "test_cases": [
+    {
+      "inputs": {
+        "userId": "i8z32hvkwbd6ada74",
+        "productId": "br4ct",
+        "onboardingType": "self-serve"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "userId": "4iwh1bfu",
+        "productId": "6ku02ojymxavl",
+        "priorExperience": "none"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "userId": "umuck9mgjcstfywnwd0",
+        "productId": "c4dmb1a8iwir0hh",
+        "onboardingType": "assisted"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "productId": "8y",
+        "onboardingType": "enterprise",
+        "userSegment": "2tal71fw76",
+        "priorExperience": "power_user"
+      },
+      "label": "missing_userId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": "7l4pa4w0d4eomqp1",
+        "onboardingType": "enterprise",
+        "userSegment": "lv55p0cu",
+        "priorExperience": "power_user"
+      },
+      "label": "missing_productId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": 12345,
+        "productId": "ln7hek1mrqglyr7d770c",
+        "userSegment": "qrjetla4n",
+        "priorExperience": "power_user"
+      },
+      "label": "invalid_type_userId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": "5ok4o3x",
+        "productId": 12345,
+        "onboardingType": "assisted"
+      },
+      "label": "invalid_type_productId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": "2l7x",
+        "productId": "iy43",
+        "userSegment": "p72uj4",
+        "priorExperience": "none",
+        "onboardingType": 12345
+      },
+      "label": "invalid_type_onboardingType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": "5n7zc6p7sf",
+        "productId": "zbjffqwr0jtsjl",
+        "onboardingType": "enterprise",
+        "userSegment": 12345
+      },
+      "label": "invalid_type_userSegment",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": "p53xs3r1tm",
+        "productId": "tjlmj7mr7k1f6",
+        "onboardingType": "enterprise",
+        "userSegment": "itkys0e",
+        "priorExperience": 12345
+      },
+      "label": "invalid_type_priorExperience",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

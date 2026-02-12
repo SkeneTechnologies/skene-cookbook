@@ -1,0 +1,975 @@
+{
+  "id": "plg_frameworks/plg-strategy",
+  "version": "1.0.0",
+  "name": "plg-strategy",
+  "description": "When the user wants to assess PLG readiness, design a product-led growth strategy, choose between freemium and free trial, evaluate PLG maturity, or plan a hybrid PLG + sales model. Also use when the user says \"should we do PLG,\" \"PLG vs sales-led,\" \"growth motions,\" \"PLG audit,\" or \"go-to-market strategy.\" For specific mental models, see plg-mental-models. For growth loop design, see growth-loops.",
+  "domain": "plg_frameworks",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "requestType": {
+        "type": "string",
+        "enum": [
+          "readiness_assessment",
+          "strategy_design",
+          "freemium_vs_trial_decision",
+          "maturity_evaluation",
+          "hybrid_model_planning",
+          "plg_audit",
+          "motion_mapping",
+          "four_fits_analysis"
+        ],
+        "description": "Type of PLG strategy analysis requested"
+      },
+      "companyContext": {
+        "type": "object",
+        "properties": {
+          "companyName": {
+            "type": "string",
+            "description": "Name of the company or product"
+          },
+          "productType": {
+            "type": "string",
+            "description": "Type of product (e.g., SaaS, developer tools, collaboration software)"
+          },
+          "targetMarket": {
+            "type": "string",
+            "description": "Primary target market or customer segment"
+          },
+          "currentStage": {
+            "type": "string",
+            "enum": [
+              "pre-launch",
+              "early-stage",
+              "growth",
+              "scale",
+              "mature"
+            ],
+            "description": "Current company stage"
+          },
+          "teamSize": {
+            "type": "integer",
+            "description": "Current team size"
+          }
+        },
+        "required": [
+          "productType"
+        ]
+      },
+      "productCharacteristics": {
+        "type": "object",
+        "properties": {
+          "timeToValue": {
+            "type": "string",
+            "enum": [
+              "minutes",
+              "hours",
+              "days",
+              "weeks",
+              "months"
+            ],
+            "description": "Time for user to reach first aha moment"
+          },
+          "productComplexity": {
+            "type": "string",
+            "enum": [
+              "low",
+              "moderate",
+              "high"
+            ],
+            "description": "Complexity of product setup and usage"
+          },
+          "marginalCost": {
+            "type": "string",
+            "enum": [
+              "near-zero",
+              "low",
+              "moderate",
+              "high"
+            ],
+            "description": "Marginal cost of serving an additional free user"
+          },
+          "requiresImplementation": {
+            "type": "boolean",
+            "description": "Whether product requires technical implementation"
+          },
+          "hasNetworkEffects": {
+            "type": "boolean",
+            "description": "Whether product benefits from network effects"
+          },
+          "isMultiplayer": {
+            "type": "boolean",
+            "description": "Whether product supports or requires collaboration"
+          },
+          "canUserSelfServe": {
+            "type": "boolean",
+            "description": "Whether user can experience value without human assistance"
+          }
+        }
+      },
+      "currentMetrics": {
+        "type": "object",
+        "properties": {
+          "averageACV": {
+            "type": "number",
+            "description": "Average Annual Contract Value in USD"
+          },
+          "currentARR": {
+            "type": "number",
+            "description": "Current Annual Recurring Revenue in USD"
+          },
+          "monthlySignups": {
+            "type": "integer",
+            "description": "Monthly self-serve signups"
+          },
+          "activationRate": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1,
+            "description": "Percentage of signups that activate (0-1)"
+          },
+          "freeToTrialConversion": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1,
+            "description": "Free to trial conversion rate (0-1)"
+          },
+          "trialToPaidConversion": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1,
+            "description": "Trial to paid conversion rate (0-1)"
+          },
+          "cac": {
+            "type": "number",
+            "description": "Customer Acquisition Cost in USD"
+          },
+          "ltv": {
+            "type": "number",
+            "description": "Customer Lifetime Value in USD"
+          }
+        }
+      },
+      "currentGTMMotion": {
+        "type": "object",
+        "properties": {
+          "hasSelfServeSignup": {
+            "type": "boolean",
+            "description": "Whether self-serve signup exists"
+          },
+          "hasFreeTier": {
+            "type": "boolean",
+            "description": "Whether a free tier exists"
+          },
+          "freeModel": {
+            "type": "string",
+            "enum": [
+              "none",
+              "freemium",
+              "free-trial",
+              "reverse-trial",
+              "open-source"
+            ],
+            "description": "Current free model type"
+          },
+          "primaryAcquisitionChannel": {
+            "type": "string",
+            "enum": [
+              "product-led",
+              "marketing-led",
+              "sales-led",
+              "mixed"
+            ],
+            "description": "Primary customer acquisition motion"
+          },
+          "primaryMonetizationChannel": {
+            "type": "string",
+            "enum": [
+              "self-serve",
+              "sales-assisted",
+              "sales-led",
+              "mixed"
+            ],
+            "description": "Primary monetization motion"
+          },
+          "hasSalesTeam": {
+            "type": "boolean",
+            "description": "Whether a sales team exists"
+          },
+          "hasProductAnalytics": {
+            "type": "boolean",
+            "description": "Whether product analytics infrastructure is in place"
+          }
+        }
+      },
+      "marketContext": {
+        "type": "object",
+        "properties": {
+          "addressableMarketSize": {
+            "type": "string",
+            "enum": [
+              "thousands",
+              "tens-of-thousands",
+              "hundreds-of-thousands",
+              "millions"
+            ],
+            "description": "Estimated addressable market size"
+          },
+          "competitiveEnvironment": {
+            "type": "string",
+            "enum": [
+              "all-plg",
+              "mixed",
+              "all-sales-led"
+            ],
+            "description": "Competitive GTM landscape"
+          },
+          "buyerPersonaAlignment": {
+            "type": "string",
+            "enum": [
+              "end-user-is-buyer",
+              "separate-economic-buyer",
+              "complex-buying-committee"
+            ],
+            "description": "Alignment between end user and buyer"
+          },
+          "industryType": {
+            "type": "string",
+            "description": "Industry or vertical (e.g., regulated, B2B SaaS, developer tools)"
+          }
+        }
+      },
+      "specificQuestions": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Specific questions or concerns from the user"
+      },
+      "desiredTimeframe": {
+        "type": "string",
+        "description": "Timeframe for strategy implementation (e.g., '6 months', '12 months')"
+      }
+    },
+    "required": [
+      "requestType"
+    ],
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "executiveSummary": {
+        "type": "string",
+        "description": "2-3 sentence summary of the PLG strategy recommendation"
+      },
+      "readinessAssessment": {
+        "type": "object",
+        "properties": {
+          "overallScore": {
+            "type": "integer",
+            "minimum": 7,
+            "maximum": 21,
+            "description": "Overall PLG readiness score (7-21)"
+          },
+          "fitLevel": {
+            "type": "string",
+            "enum": [
+              "strong",
+              "moderate",
+              "weak"
+            ],
+            "description": "Overall PLG fit assessment"
+          },
+          "factorScores": {
+            "type": "object",
+            "properties": {
+              "timeToValue": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 3
+              },
+              "endUserBuyerAlignment": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 3
+              },
+              "acv": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 3
+              },
+              "productComplexity": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 3
+              },
+              "marketSize": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 3
+              },
+              "competitivePressure": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 3
+              },
+              "dataMaturity": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 3
+              }
+            }
+          },
+          "blockers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Critical blockers or obstacles to PLG"
+          },
+          "strengths": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "PLG strengths or advantages"
+          }
+        }
+      },
+      "currentStateAnalysis": {
+        "type": "object",
+        "properties": {
+          "motionsLeverMatrix": {
+            "type": "object",
+            "properties": {
+              "productLedAcquisition": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 5,
+                "description": "Current investment/effectiveness rating"
+              },
+              "productLedRetention": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 5
+              },
+              "productLedMonetization": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 5
+              },
+              "marketingLedAcquisition": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 5
+              },
+              "marketingLedRetention": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 5
+              },
+              "marketingLedMonetization": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 5
+              },
+              "salesLedAcquisition": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 5
+              },
+              "salesLedRetention": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 5
+              },
+              "salesLedMonetization": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 5
+              }
+            },
+            "description": "Elena Verna's 9-cell growth matrix current state"
+          },
+          "fourFitsAnalysis": {
+            "type": "object",
+            "properties": {
+              "marketProductFit": {
+                "type": "object",
+                "properties": {
+                  "score": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 5
+                  },
+                  "evidence": {
+                    "type": "string"
+                  },
+                  "gaps": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "productChannelFit": {
+                "type": "object",
+                "properties": {
+                  "score": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 5
+                  },
+                  "primaryChannel": {
+                    "type": "string"
+                  },
+                  "evidence": {
+                    "type": "string"
+                  },
+                  "gaps": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "channelModelFit": {
+                "type": "object",
+                "properties": {
+                  "score": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 5
+                  },
+                  "currentCAC": {
+                    "type": "number"
+                  },
+                  "requiredACV": {
+                    "type": "number"
+                  },
+                  "evidence": {
+                    "type": "string"
+                  },
+                  "gaps": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "modelMarketFit": {
+                "type": "object",
+                "properties": {
+                  "score": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 5
+                  },
+                  "evidence": {
+                    "type": "string"
+                  },
+                  "gaps": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "currentMaturityStage": {
+            "type": "string",
+            "enum": [
+              "no-plg",
+              "plg-experimental",
+              "plg-assisted",
+              "plg-dominant",
+              "plg-native"
+            ],
+            "description": "Current PLG maturity stage"
+          }
+        }
+      },
+      "strategicRecommendations": {
+        "type": "object",
+        "properties": {
+          "targetMaturityStage": {
+            "type": "string",
+            "enum": [
+              "no-plg",
+              "plg-experimental",
+              "plg-assisted",
+              "plg-dominant",
+              "plg-native"
+            ],
+            "description": "Recommended target PLG maturity stage"
+          },
+          "recommendedModel": {
+            "type": "string",
+            "enum": [
+              "freemium",
+              "free-trial",
+              "reverse-trial",
+              "open-source",
+              "hybrid"
+            ],
+            "description": "Recommended free/trial model"
+          },
+          "modelRationale": {
+            "type": "string",
+            "description": "Explanation for model recommendation"
+          },
+          "targetMotionsLeverMatrix": {
+            "type": "object",
+            "properties": {
+              "productLedAcquisition": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 5
+              },
+              "productLedRetention": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 5
+              },
+              "productLedMonetization": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 5
+              },
+              "marketingLedAcquisition": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 5
+              },
+              "marketingLedRetention": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 5
+              },
+              "marketingLedMonetization": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 5
+              },
+              "salesLedAcquisition": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 5
+              },
+              "salesLedRetention": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 5
+              },
+              "salesLedMonetization": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 5
+              }
+            },
+            "description": "Target state growth matrix"
+          },
+          "primaryGrowthEngines": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Recommended primary growth loops/engines"
+          }
+        },
+        "required": [
+          "recommendedModel",
+          "modelRationale"
+        ]
+      },
+      "hybridModelDesign": {
+        "type": "object",
+        "properties": {
+          "segmentation": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "segment": {
+                  "type": "string",
+                  "enum": [
+                    "individual",
+                    "smb",
+                    "mid-market",
+                    "enterprise"
+                  ]
+                },
+                "motion": {
+                  "type": "string",
+                  "enum": [
+                    "pure-self-serve",
+                    "plg-dominant",
+                    "plg-sales-assist",
+                    "plg-sales-led"
+                  ]
+                },
+                "salesInvolvement": {
+                  "type": "string"
+                },
+                "monetization": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "segment",
+                "motion"
+              ]
+            }
+          },
+          "pqlCriteria": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Product Qualified Lead criteria for sales handoff"
+          }
+        }
+      },
+      "implementationRoadmap": {
+        "type": "object",
+        "properties": {
+          "phase1": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "timeframe": {
+                "type": "string"
+              },
+              "initiatives": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "phase2": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "timeframe": {
+                "type": "string"
+              },
+              "initiatives": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "phase3": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "timeframe": {
+                "type": "string"
+              },
+              "initiatives": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "keyMetrics": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "metricName": {
+              "type": "string"
+            },
+            "currentValue": {
+              "type": [
+                "number",
+                "string",
+                "null"
+              ]
+            },
+            "target6Month": {
+              "type": [
+                "number",
+                "string"
+              ]
+            },
+            "target12Month": {
+              "type": [
+                "number",
+                "string"
+              ]
+            }
+          },
+          "required": [
+            "metricName"
+          ]
+        }
+      },
+      "risksAndMitigations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "risk": {
+              "type": "string"
+            },
+            "likelihood": {
+              "type": "string",
+              "enum": [
+                "high",
+                "medium",
+                "low"
+              ]
+            },
+            "impact": {
+              "type": "string",
+              "enum": [
+                "high",
+                "medium",
+                "low"
+              ]
+            },
+            "mitigation": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "risk",
+            "likelihood",
+            "impact",
+            "mitigation"
+          ]
+        }
+      },
+      "organizationalRequirements": {
+        "type": "object",
+        "properties": {
+          "teamStructureChanges": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "newRolesToHire": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "crossFunctionalAlignment": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "technologyInvestments": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "auditChecklist": {
+        "type": "object",
+        "properties": {
+          "acquisition": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "item": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "boolean"
+                },
+                "priority": {
+                  "type": "string",
+                  "enum": [
+                    "high",
+                    "medium",
+                    "low"
+                  ]
+                }
+              }
+            }
+          },
+          "activation": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "item": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "boolean"
+                },
+                "priority": {
+                  "type": "string",
+                  "enum": [
+                    "high",
+                    "medium",
+                    "low"
+                  ]
+                }
+              }
+            }
+          },
+          "retention": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "item": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "boolean"
+                },
+                "priority": {
+                  "type": "string",
+                  "enum": [
+                    "high",
+                    "medium",
+                    "low"
+                  ]
+                }
+              }
+            }
+          },
+          "monetization": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "item": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "boolean"
+                },
+                "priority": {
+                  "type": "string",
+                  "enum": [
+                    "high",
+                    "medium",
+                    "low"
+                  ]
+                }
+              }
+            }
+          },
+          "infrastructure": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "item": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "boolean"
+                },
+                "priority": {
+                  "type": "string",
+                  "enum": [
+                    "high",
+                    "medium",
+                    "low"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "relatedSkills": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Related skills to reference for deeper dives"
+      }
+    },
+    "required": [
+      "executiveSummary",
+      "strategicRecommendations"
+    ]
+  },
+  "temperature": 0,
+  "tags": [
+    "plg_frameworks",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with plg strategy",
+        "growth framework",
+        "trial optimization",
+        "the user says \"should we do plg,\" \"plg vs sales-led,\" \"growth motions,\" \"plg audit,\" or \"go-to-market strategy"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "security_controls": {
+    "execution_environment": {
+      "type": "sandboxed_container",
+      "resource_limits": {
+        "cpu_cores": 1,
+        "memory_mb": 512,
+        "timeout_seconds": 30,
+        "disk_mb": 100
+      },
+      "security": {
+        "network_access": false,
+        "filesystem": "read_only",
+        "user": "non_root",
+        "allowed_commands": [
+          "node",
+          "python3",
+          "npm"
+        ],
+        "blocked_syscalls": [
+          "exec",
+          "fork",
+          "kill"
+        ]
+      }
+    }
+  },
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.92
+  }
+}

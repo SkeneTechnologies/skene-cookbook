@@ -1,0 +1,79 @@
+{
+  "skill_id": "support_bug_linker",
+  "generated_at": "2026-02-12T00:05:04.468117",
+  "num_cases": 9,
+  "test_cases": [
+    {
+      "inputs": {
+        "ticket_id": "ip7wxt"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "ticket_id": "5mpbueqz56",
+        "auto_link": false,
+        "auto_create_threshold": 3110.96,
+        "similarity_threshold": 9289.05
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "ticket_id": "9ixblfldf"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "auto_link": false,
+        "similarity_threshold": 8472.01
+      },
+      "label": "missing_ticket_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "ticket_id": 12345,
+        "auto_link": true
+      },
+      "label": "invalid_type_ticket_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "ticket_id": "unczj4nlqd",
+        "auto_link": "yes",
+        "similarity_threshold": 3582.99
+      },
+      "label": "invalid_type_auto_link",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "ticket_id": "nb",
+        "auto_create_threshold": "not_a_number",
+        "similarity_threshold": 6948.38
+      },
+      "label": "invalid_type_auto_create_threshold",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "ticket_id": "jcliaht",
+        "auto_link": false,
+        "similarity_threshold": "not_a_number"
+      },
+      "label": "invalid_type_similarity_threshold",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

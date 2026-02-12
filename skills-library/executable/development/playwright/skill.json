@@ -1,0 +1,312 @@
+{
+  "id": "development/playwright",
+  "version": "1.0.0",
+  "name": "playwright",
+  "description": "Complete browser automation with Playwright. Auto-detects dev servers, writes clean test scripts to /tmp. Test pages, fill forms, take screenshots, check responsive design, validate UX, test login flows, check links, automate any browser task. Use when user wants to test websites, automate browser interactions, validate web functionality, or perform any browser-based testing.",
+  "domain": "development",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "action": {
+        "type": "string",
+        "enum": [
+          "test_page",
+          "test_responsive",
+          "test_login",
+          "fill_form",
+          "check_links",
+          "take_screenshot",
+          "validate_ux",
+          "custom_automation"
+        ],
+        "description": "The type of browser automation task to perform"
+      },
+      "targetUrl": {
+        "type": "string",
+        "format": "uri",
+        "description": "The URL to test or automate. If not provided for localhost, dev servers will be auto-detected"
+      },
+      "autoDetectServer": {
+        "type": "boolean",
+        "default": true,
+        "description": "Whether to auto-detect running dev servers for localhost testing"
+      },
+      "headless": {
+        "type": "boolean",
+        "default": false,
+        "description": "Whether to run browser in headless mode (default is visible browser)"
+      },
+      "slowMo": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 5000,
+        "default": 100,
+        "description": "Milliseconds to slow down Playwright operations for visibility"
+      },
+      "viewports": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Viewport name (e.g., Desktop, Mobile, Tablet)"
+            },
+            "width": {
+              "type": "integer",
+              "minimum": 320,
+              "maximum": 3840
+            },
+            "height": {
+              "type": "integer",
+              "minimum": 480,
+              "maximum": 2160
+            }
+          },
+          "required": [
+            "name",
+            "width",
+            "height"
+          ]
+        },
+        "description": "Viewports to test for responsive design testing"
+      },
+      "formData": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "string"
+        },
+        "description": "Key-value pairs for form filling (field name to value mapping)"
+      },
+      "loginCredentials": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "username": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "loginUrl": {
+            "type": "string",
+            "format": "uri"
+          }
+        },
+        "description": "Credentials for login flow testing"
+      },
+      "screenshotOptions": {
+        "type": "object",
+        "properties": {
+          "fullPage": {
+            "type": "boolean",
+            "default": true
+          },
+          "outputPath": {
+            "type": "string",
+            "default": "/tmp/screenshot.png"
+          }
+        },
+        "description": "Screenshot configuration options"
+      },
+      "customHeaders": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "string"
+        },
+        "description": "Custom HTTP headers to include in all requests"
+      },
+      "waitForSelector": {
+        "type": "string",
+        "description": "CSS selector to wait for before considering page loaded"
+      },
+      "timeout": {
+        "type": "integer",
+        "minimum": 1000,
+        "maximum": 60000,
+        "default": 10000,
+        "description": "Maximum timeout in milliseconds for operations"
+      },
+      "customScript": {
+        "type": "string",
+        "description": "Custom Playwright JavaScript code for advanced automation scenarios"
+      }
+    },
+    "required": [
+      "action"
+    ],
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "success": {
+        "type": "boolean",
+        "description": "Whether the automation task completed successfully"
+      },
+      "action": {
+        "type": "string",
+        "description": "The action that was performed"
+      },
+      "targetUrl": {
+        "type": "string",
+        "format": "uri",
+        "description": "The URL that was tested or automated"
+      },
+      "detectedServers": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "url": {
+              "type": "string",
+              "format": "uri"
+            },
+            "port": {
+              "type": "integer"
+            }
+          }
+        },
+        "description": "Auto-detected dev servers (if applicable)"
+      },
+      "screenshots": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "path": {
+              "type": "string"
+            },
+            "viewport": {
+              "type": "string"
+            }
+          }
+        },
+        "description": "Generated screenshots with metadata"
+      },
+      "pageTitle": {
+        "type": "string",
+        "description": "Title of the tested page"
+      },
+      "brokenLinks": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "url": {
+              "type": "string",
+              "format": "uri"
+            },
+            "status": {
+              "type": "integer"
+            },
+            "error": {
+              "type": "string"
+            }
+          }
+        },
+        "description": "List of broken links found (if checking links)"
+      },
+      "workingLinksCount": {
+        "type": "integer",
+        "description": "Number of working links found"
+      },
+      "formSubmitted": {
+        "type": "boolean",
+        "description": "Whether form submission was successful"
+      },
+      "loginSuccessful": {
+        "type": "boolean",
+        "description": "Whether login flow completed successfully"
+      },
+      "redirectUrl": {
+        "type": "string",
+        "format": "uri",
+        "description": "URL after redirect (for login/form flows)"
+      },
+      "executionTime": {
+        "type": "number",
+        "description": "Total execution time in milliseconds"
+      },
+      "scriptPath": {
+        "type": "string",
+        "description": "Path to the generated test script (in /tmp)"
+      },
+      "consoleOutput": {
+        "type": "string",
+        "description": "Console output from the automation script"
+      },
+      "errors": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Any errors encountered during automation"
+      },
+      "validationResults": {
+        "type": "object",
+        "properties": {
+          "responsive": {
+            "type": "boolean"
+          },
+          "accessibility": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "performance": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "description": "Validation results for UX, accessibility, and performance checks"
+      }
+    },
+    "required": [
+      "success",
+      "action"
+    ]
+  },
+  "temperature": 0,
+  "tags": [
+    "development",
+    "imported",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with playwright",
+        "user wants to test websites, automate browser interactions, validate web functionality, or perform any browser-based testing"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "security_controls": {
+    "authentication": {
+      "method": "oauth",
+      "provider": "managed_identity",
+      "scopes": [
+        "read:data",
+        "write:data"
+      ],
+      "token_lifetime": 3600
+    }
+  },
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.92
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "skill_id": "support_resolution_suggester",
+  "generated_at": "2026-02-12T00:05:04.436863",
+  "num_cases": 9,
+  "test_cases": [
+    {
+      "inputs": {
+        "ticket_id": "vpw9s3apj1d13l98ohly",
+        "max_suggestions": 9338.17,
+        "include_similar_cases": true
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "ticket_id": "ur52gav16xt",
+        "include_similar_cases": true
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "ticket_id": "owd1dbaww12ktrsk2tc2",
+        "max_suggestions": 399.31,
+        "include_similar_cases": true
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {},
+      "label": "missing_ticket_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "ticket_id": 12345,
+        "max_suggestions": 3586.16,
+        "include_similar_cases": true,
+        "min_confidence": 5073.99
+      },
+      "label": "invalid_type_ticket_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "ticket_id": "sx6k3d1n",
+        "max_suggestions": "not_a_number",
+        "include_similar_cases": true
+      },
+      "label": "invalid_type_max_suggestions",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "ticket_id": "eezxup9s8r8pb",
+        "max_suggestions": 1484.91,
+        "include_similar_cases": "yes",
+        "min_confidence": 9847.44
+      },
+      "label": "invalid_type_include_similar_cases",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "ticket_id": "wf7seqgs3o6gxsbsyy",
+        "max_suggestions": 4809.07,
+        "include_similar_cases": false,
+        "min_confidence": "not_a_number"
+      },
+      "label": "invalid_type_min_confidence",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

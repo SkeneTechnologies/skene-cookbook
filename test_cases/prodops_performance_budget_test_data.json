@@ -1,0 +1,93 @@
+{
+  "skill_id": "prodops_performance_budget",
+  "generated_at": "2026-02-12T00:05:02.350753",
+  "num_cases": 9,
+  "test_cases": [
+    {
+      "inputs": {
+        "urls": [],
+        "budgets": {}
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "urls": [
+          "a7dy2qloky"
+        ],
+        "device": "mobile"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "urls": [],
+        "alertOnRegression": true
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "device": "desktop",
+        "alertOnRegression": true
+      },
+      "label": "missing_urls",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "urls": "not_an_array",
+        "budgets": {},
+        "alertOnRegression": false
+      },
+      "label": "invalid_type_urls",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "urls": [
+          "v9gwkfq4yfyb4mcaq8",
+          "jr732xo9",
+          "gdqkiiqf"
+        ],
+        "budgets": "not_an_object"
+      },
+      "label": "invalid_type_budgets",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "urls": [
+          "txfhrcyrera0l29k6yt",
+          "d"
+        ],
+        "alertOnRegression": false,
+        "device": 12345
+      },
+      "label": "invalid_type_device",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "urls": [
+          "b94kiczw34p60qmd",
+          "pm5tbmns88by5nayzd9p",
+          "r2rrepou05fjqeriw93"
+        ],
+        "budgets": {},
+        "device": "both",
+        "alertOnRegression": "yes"
+      },
+      "label": "invalid_type_alertOnRegression",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

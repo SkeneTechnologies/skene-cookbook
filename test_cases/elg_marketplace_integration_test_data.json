@@ -1,0 +1,67 @@
+{
+  "skill_id": "elg_marketplace_integration",
+  "generated_at": "2026-02-12T00:05:00.006988",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "action": "get_listing"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "action": "get_listing"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "action": "get_metrics"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "marketplaceId": "test_f5j6uiti"
+      },
+      "label": "missing_action",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": "update_listing",
+        "listingId": "test_vfotdcd8",
+        "marketplaceId": 12345
+      },
+      "label": "invalid_type_marketplaceId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": 12345,
+        "marketplaceId": "test_67slv27g",
+        "listingId": "test_q380y37s"
+      },
+      "label": "invalid_type_action",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": "get_metrics",
+        "marketplaceId": "test_rgmcbdjc",
+        "listingId": 12345
+      },
+      "label": "invalid_type_listingId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

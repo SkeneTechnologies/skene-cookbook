@@ -1,0 +1,66 @@
+{
+  "skill_id": "ai_intent_classifier",
+  "generated_at": "2026-02-12T00:05:03.407414",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "message": "i"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "message": "fabw2cyl1w8z",
+        "context": {}
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "message": "lsnpvqp",
+        "history": []
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {},
+      "label": "missing_message",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "message": 12345,
+        "context": {},
+        "history": []
+      },
+      "label": "invalid_type_message",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "message": "m2j88",
+        "context": "not_an_object"
+      },
+      "label": "invalid_type_context",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "message": "07c0y3p4i8y9n9bc",
+        "context": {},
+        "history": "not_an_array"
+      },
+      "label": "invalid_type_history",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

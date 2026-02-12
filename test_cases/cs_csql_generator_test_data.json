@@ -1,0 +1,79 @@
+{
+  "skill_id": "cs_csql_generator",
+  "generated_at": "2026-02-12T00:05:02.049423",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "accountId": "test_xr1e0paw",
+        "csqlTypes": [
+          "cross_sell"
+        ]
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "accountId": "test_n21yb0hh",
+        "csqlTypes": [
+          "seat_expansion"
+        ],
+        "minimumScore": 9431.3
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "accountId": "test_s3bnhq4o",
+        "minimumScore": 9977.74
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "csqlTypes": [],
+        "minimumScore": 2343.73
+      },
+      "label": "missing_accountId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": 12345,
+        "csqlTypes": []
+      },
+      "label": "invalid_type_accountId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": "test_khjcnwfm",
+        "csqlTypes": "not_an_array",
+        "minimumScore": 3155.61
+      },
+      "label": "invalid_type_csqlTypes",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": "test_4p9plab8",
+        "csqlTypes": [
+          "upsell",
+          "tier_upgrade",
+          "upsell"
+        ],
+        "minimumScore": "not_a_number"
+      },
+      "label": "invalid_type_minimumScore",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

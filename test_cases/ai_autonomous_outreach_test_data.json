@@ -1,0 +1,231 @@
+{
+  "skill_id": "ai_autonomous_outreach",
+  "generated_at": "2026-02-12T00:05:03.453515",
+  "num_cases": 14,
+  "test_cases": [
+    {
+      "inputs": {
+        "campaign_name": "Test Name etrb",
+        "sequence_step": 3,
+        "email_config": {
+          "from_email": "user_grnyh@example.com",
+          "from_name": "Test Name lr6r",
+          "reply_to": "user_qvttn@example.com"
+        },
+        "personalization_config": {
+          "use_company_signals": true,
+          "use_behavioral_triggers": true
+        },
+        "require_human_review": true
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "campaign_name": "Test Name 3pf7",
+        "sequence_step": 1,
+        "email_config": {
+          "from_email": "user_ebthr@example.com",
+          "from_name": "Test Name ur8s",
+          "reply_to": "user_6l3ld@example.com"
+        }
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "campaign_name": "Test Name th82",
+        "sequence_step": 3,
+        "email_config": {
+          "from_email": "user_72ded@example.com",
+          "from_name": "Test Name w0iw"
+        },
+        "personalization_config": {
+          "use_role_based_hooks": false,
+          "use_behavioral_triggers": false
+        },
+        "test_mode": true
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "sequence_step": 4,
+        "email_config": {
+          "from_email": "user_4xuqo@example.com",
+          "from_name": "Test Name oiar",
+          "reply_to": "user_fmcf4@example.com",
+          "daily_send_limit": 105
+        },
+        "personalization_config": {
+          "use_role_based_hooks": true
+        },
+        "require_human_review": false
+      },
+      "label": "missing_campaign_name",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "campaign_name": "Test Name 4j3u",
+        "email_config": {
+          "from_email": "user_g3kyd@example.com",
+          "from_name": "Test Name t08c",
+          "reply_to": "user_27f7j@example.com",
+          "daily_send_limit": 287
+        },
+        "personalization_config": {
+          "use_company_signals": true,
+          "use_news_triggers": false
+        },
+        "require_human_review": true
+      },
+      "label": "missing_sequence_step",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "campaign_name": "Test Name zob4",
+        "sequence_step": 1,
+        "contact_filters": {
+          "segment": "test_eir1grrp",
+          "job_titles": []
+        },
+        "test_mode": false
+      },
+      "label": "missing_email_config",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "campaign_name": 12345,
+        "sequence_step": 4,
+        "email_config": {
+          "from_email": "user_0npzp@example.com",
+          "from_name": "Test Name sq9w",
+          "reply_to": "user_qa4ea@example.com"
+        },
+        "personalization_config": {
+          "use_company_signals": true,
+          "use_role_based_hooks": true,
+          "use_behavioral_triggers": false
+        },
+        "require_human_review": false,
+        "test_mode": false
+      },
+      "label": "invalid_type_campaign_name",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "campaign_name": "Test Name qack",
+        "sequence_step": "not_a_number",
+        "email_config": {
+          "from_email": "user_56xeb@example.com",
+          "from_name": "Test Name qjfu",
+          "reply_to": "user_ep3kk@example.com"
+        },
+        "contact_filters": {
+          "company_size": "1-10",
+          "job_titles": [
+            "94mh",
+            "i9pevpt99f34tucabnsb"
+          ],
+          "exclude_existing_customers": true
+        },
+        "test_mode": true
+      },
+      "label": "invalid_type_sequence_step",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "campaign_name": "Test Name st9l",
+        "sequence_step": 1,
+        "email_config": {
+          "from_email": "user_g7qoh@example.com",
+          "from_name": "Test Name y5h5"
+        },
+        "contact_filters": "not_an_object",
+        "require_human_review": false
+      },
+      "label": "invalid_type_contact_filters",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "campaign_name": "Test Name w934",
+        "sequence_step": 2,
+        "email_config": {
+          "from_email": "user_fy7xg@example.com",
+          "from_name": "Test Name u05q",
+          "daily_send_limit": 311
+        },
+        "contact_filters": {
+          "segment": "test_wx5jtve9"
+        },
+        "personalization_config": "not_an_object"
+      },
+      "label": "invalid_type_personalization_config",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "campaign_name": "Test Name j7dr",
+        "sequence_step": 3,
+        "email_config": "not_an_object",
+        "contact_filters": {
+          "company_size": "201-500"
+        },
+        "require_human_review": true
+      },
+      "label": "invalid_type_email_config",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "campaign_name": "Test Name qw2j",
+        "sequence_step": 4,
+        "email_config": {
+          "from_email": "user_8n5i2@example.com",
+          "from_name": "Test Name y6c9"
+        },
+        "require_human_review": "yes",
+        "test_mode": true
+      },
+      "label": "invalid_type_require_human_review",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "campaign_name": "Test Name e058",
+        "sequence_step": 3,
+        "email_config": {
+          "from_email": "user_ow5sl@example.com",
+          "from_name": "Test Name brj3",
+          "daily_send_limit": 172
+        },
+        "contact_filters": {
+          "company_size": "1000+",
+          "job_titles": [
+            "pzmuo8kaxc",
+            "p8jhvg5cutzr5246m5dl"
+          ],
+          "exclude_existing_customers": false
+        },
+        "require_human_review": false,
+        "test_mode": "yes"
+      },
+      "label": "invalid_type_test_mode",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

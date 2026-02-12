@@ -1,0 +1,81 @@
+{
+  "skill_id": "plgf_product_led_sales",
+  "generated_at": "2026-02-11T22:14:33.735375",
+  "num_cases": 9,
+  "test_cases": [
+    {
+      "inputs": {
+        "userId": "3x5w5t1kg6a1fg62q",
+        "accountId": "test_1d4rdthl",
+        "productUsageData": {},
+        "evaluationType": "pql"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "userId": "zsrp73o505d3zan4z5",
+        "accountId": "test_nhjjtuwk"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "userId": "1q3",
+        "productUsageData": {},
+        "evaluationType": "both"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "accountId": "test_tae7jx0l"
+      },
+      "label": "missing_userId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": 12345
+      },
+      "label": "invalid_type_userId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": "w7l2l5e",
+        "productUsageData": {},
+        "evaluationType": "pql",
+        "accountId": 12345
+      },
+      "label": "invalid_type_accountId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": "2fz93fh3ul1xx2v",
+        "accountId": "test_q5814or2",
+        "productUsageData": "not_an_object",
+        "evaluationType": "both"
+      },
+      "label": "invalid_type_productUsageData",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": "ntcf5phh4",
+        "evaluationType": 12345
+      },
+      "label": "invalid_type_evaluationType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

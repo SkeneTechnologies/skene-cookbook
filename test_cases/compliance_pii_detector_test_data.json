@@ -1,0 +1,125 @@
+{
+  "skill_id": "compliance_pii_detector",
+  "generated_at": "2026-02-11T22:18:27.692723",
+  "num_cases": 11,
+  "test_cases": [
+    {
+      "inputs": {
+        "action": "scan",
+        "scanTarget": "62ipk6tin2f8r7r2w",
+        "scanType": "incremental"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "action": "report",
+        "scanTarget": "qe8sgu80mnjrp"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "action": "remediate",
+        "scanTarget": "m",
+        "sensitivityThreshold": "high"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "scanTarget": "1pl0tnb1cc3szewq6j",
+        "piiTypes": [
+          "7xq",
+          "1bmzrzqwa75fs1cwocb"
+        ],
+        "sensitivityThreshold": "low"
+      },
+      "label": "missing_action",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": "scan",
+        "scanType": "sample",
+        "piiTypes": [
+          "6g0",
+          "22"
+        ],
+        "sensitivityThreshold": "low"
+      },
+      "label": "missing_scanTarget",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": 12345,
+        "scanTarget": "5jxijn929esy2t",
+        "scanType": "full",
+        "piiTypes": [
+          "6x112d3y",
+          "ogf0b",
+          "udv97gms10hrapa0"
+        ]
+      },
+      "label": "invalid_type_action",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": "remediate",
+        "scanTarget": 12345,
+        "piiTypes": [
+          "v2cc0323hu2ccg"
+        ]
+      },
+      "label": "invalid_type_scanTarget",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": "report",
+        "scanTarget": "6",
+        "scanType": 12345,
+        "piiTypes": [
+          "s0nglftwej9mqd",
+          "a2ihrv2j"
+        ],
+        "sensitivityThreshold": "high"
+      },
+      "label": "invalid_type_scanType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": "scan",
+        "scanTarget": "vow43gxmn5s",
+        "piiTypes": "not_an_array",
+        "sensitivityThreshold": "high"
+      },
+      "label": "invalid_type_piiTypes",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": "scan",
+        "scanTarget": "o0bvswjnz67s8jcib4s8",
+        "scanType": "sample",
+        "piiTypes": [
+          "k1h8627rgluxw9xia5"
+        ],
+        "sensitivityThreshold": 12345
+      },
+      "label": "invalid_type_sensitivityThreshold",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "id": "cursor_rules/amazon-ec2",
+  "version": "1.0.0",
+  "name": "amazon-ec2",
+  "description": "This guide provides definitive best practices for deploying and managing Amazon EC2 instances, focusing on security, cost optimization, and operational excellence through Infrastructure as Code (IaC).",
+  "domain": "cursor_rules",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "cursor_rules",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "cursor": {
+      "globs": [
+        "**/*"
+      ]
+    },
+    "claude": {
+      "triggers": [
+        "help with amazon ec2"
+      ]
+    },
+    "skeneflow": {}
+  },
+  "skipSchemaValidation": true
+}

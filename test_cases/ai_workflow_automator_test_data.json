@@ -1,0 +1,92 @@
+{
+  "skill_id": "ai_workflow_automator",
+  "generated_at": "2026-02-12T00:05:04.623454",
+  "num_cases": 10,
+  "test_cases": [
+    {
+      "inputs": {
+        "workflow_id": "test_gpgzrdmk",
+        "trigger": {}
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "workflow_id": "test_rw1jh20x",
+        "trigger": {},
+        "context": {}
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "workflow_id": "test_etpxozp0",
+        "trigger": {},
+        "context": {},
+        "mode": "analyze"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "trigger": {},
+        "mode": "analyze"
+      },
+      "label": "missing_workflow_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "workflow_id": "test_tvg81pez",
+        "context": {}
+      },
+      "label": "missing_trigger",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "workflow_id": 12345,
+        "trigger": {},
+        "context": {}
+      },
+      "label": "invalid_type_workflow_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "workflow_id": "test_c6isoc1q",
+        "trigger": "not_an_object",
+        "context": {}
+      },
+      "label": "invalid_type_trigger",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "workflow_id": "test_0skutdtq",
+        "trigger": {},
+        "context": "not_an_object",
+        "mode": "simulate"
+      },
+      "label": "invalid_type_context",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "workflow_id": "test_oeysft2z",
+        "trigger": {},
+        "mode": 12345
+      },
+      "label": "invalid_type_mode",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

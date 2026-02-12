@@ -1,0 +1,67 @@
+{
+  "skill_id": "elg_channel_enablement",
+  "generated_at": "2026-02-12T00:04:59.999093",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "partnerId": "u96ro6wy5tmv",
+        "enablementType": "product_update",
+        "trackId": "f4s1o4p9puyuzw5myxuo"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "partnerId": "c1s8uexpa5qqy"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "partnerId": "7kc78nskfq7uugs"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "trackId": "w2b6ax0ybp0nx44er"
+      },
+      "label": "missing_partnerId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "partnerId": 12345,
+        "enablementType": "onboarding",
+        "trackId": "qg1llbna74yybw14nc"
+      },
+      "label": "invalid_type_partnerId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "partnerId": "rzhrhnvr4m4ix",
+        "enablementType": 12345
+      },
+      "label": "invalid_type_enablementType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "partnerId": "yfh",
+        "trackId": 12345
+      },
+      "label": "invalid_type_trackId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

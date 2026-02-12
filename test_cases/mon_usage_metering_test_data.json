@@ -1,0 +1,195 @@
+{
+  "skill_id": "mon_usage_metering",
+  "generated_at": "2026-02-12T00:05:09.328413",
+  "num_cases": 13,
+  "test_cases": [
+    {
+      "inputs": {
+        "action": "check_limits",
+        "customer_id": "test_dm8hwhgh",
+        "subscription_id": "test_dmeeu5hc",
+        "usage_event": {
+          "dimension": "seats",
+          "quantity": 609.37,
+          "timestamp": "2026-02-12T00:05:09.328185",
+          "metadata": {}
+        },
+        "reporting_period": {
+          "start_date": "2026-02-12T00:05:09.328200",
+          "end_date": "2026-02-12T00:05:09.328202"
+        },
+        "include_projections": false
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "action": "record_usage",
+        "customer_id": "test_5giqshum",
+        "subscription_id": "test_lya4nre4",
+        "usage_event": {
+          "dimension": "events",
+          "quantity": 5340.69,
+          "idempotency_key": "8ha",
+          "metadata": {}
+        },
+        "include_projections": true
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "action": "get_report",
+        "customer_id": "test_k6xb09f6",
+        "subscription_id": "test_b1kwl8yk",
+        "alert_thresholds": {
+          "warning_percentage": 11.89,
+          "critical_percentage": 87.95
+        },
+        "include_projections": false
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "customer_id": "test_lp6s4i20",
+        "usage_event": {
+          "dimension": "events",
+          "quantity": 7338.06,
+          "timestamp": "2026-02-12T00:05:09.328258",
+          "metadata": {}
+        },
+        "reporting_period": {
+          "start_date": "2026-02-12T00:05:09.328261",
+          "end_date": "2026-02-12T00:05:09.328263"
+        },
+        "include_projections": false
+      },
+      "label": "missing_action",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": "check_limits",
+        "usage_event": {
+          "dimension": "api_calls",
+          "quantity": 6868.37,
+          "timestamp": "2026-02-12T00:05:09.328276",
+          "idempotency_key": "tjf",
+          "metadata": {}
+        },
+        "alert_thresholds": {
+          "critical_percentage": 22.14
+        },
+        "include_projections": false
+      },
+      "label": "missing_customer_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": 12345,
+        "customer_id": "test_k53p08ny",
+        "subscription_id": "test_4zfaxhgr",
+        "usage_event": {
+          "dimension": "storage",
+          "quantity": 1570.09,
+          "timestamp": "2026-02-12T00:05:09.328298",
+          "metadata": {}
+        },
+        "include_projections": false
+      },
+      "label": "invalid_type_action",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": "check_limits",
+        "customer_id": 12345
+      },
+      "label": "invalid_type_customer_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": "get_report",
+        "customer_id": "test_uc5y4cwp",
+        "include_projections": false,
+        "subscription_id": 12345
+      },
+      "label": "invalid_type_subscription_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": "check_limits",
+        "customer_id": "test_kstincrz",
+        "subscription_id": "test_oxc8vcra",
+        "usage_event": "not_an_object",
+        "reporting_period": {
+          "start_date": "2026-02-12T00:05:09.328328",
+          "end_date": "2026-02-12T00:05:09.328329"
+        },
+        "alert_thresholds": {
+          "warning_percentage": 72.16
+        },
+        "include_projections": true
+      },
+      "label": "invalid_type_usage_event",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": "get_report",
+        "customer_id": "test_yqemwgf6",
+        "usage_event": {
+          "dimension": "api_calls",
+          "quantity": 3900.3
+        },
+        "alert_thresholds": {
+          "warning_percentage": 20.82
+        },
+        "include_projections": false,
+        "reporting_period": "not_an_object"
+      },
+      "label": "invalid_type_reporting_period",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": "check_limits",
+        "customer_id": "test_uf3yixqa",
+        "usage_event": {
+          "dimension": "custom",
+          "quantity": 5707.13,
+          "timestamp": "2026-02-12T00:05:09.328355",
+          "metadata": {}
+        },
+        "reporting_period": {
+          "start_date": "2026-02-12T00:05:09.328359",
+          "end_date": "2026-02-12T00:05:09.328360"
+        },
+        "alert_thresholds": "not_an_object"
+      },
+      "label": "invalid_type_alert_thresholds",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": "get_report",
+        "customer_id": "test_m7kbqeop",
+        "include_projections": "yes"
+      },
+      "label": "invalid_type_include_projections",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

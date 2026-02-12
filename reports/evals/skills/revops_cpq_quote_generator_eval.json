@@ -1,0 +1,64 @@
+{
+  "skill_id": "revops_cpq_quote_generator",
+  "session_id": "batch_eval",
+  "summary": {
+    "skill_id": "revops_cpq_quote_generator",
+    "total_executions": 3,
+    "success_rate": 1.0,
+    "validation_pass_rate": 1.0,
+    "auto_act_rate": 1.0,
+    "latency": {
+      "avg_ms": 396.89,
+      "p50_ms": 0.18,
+      "p95_ms": 1190.42,
+      "p99_ms": 1190.42,
+      "max_ms": 1190.42,
+      "min_ms": 0.07
+    },
+    "decisions": {
+      "auto_act": 3
+    },
+    "errors": {}
+  },
+  "records": [
+    {
+      "timestamp": 1770847506.384541,
+      "duration_ms": 1190.4182434082031,
+      "success": true,
+      "validation_passed": true,
+      "decision_type": "auto_act",
+      "error_type": null,
+      "metadata": {
+        "confidence": 0.95,
+        "risk_level": "High",
+        "trace_id": "b59c7ad670d84df4"
+      }
+    },
+    {
+      "timestamp": 1770847506.384745,
+      "duration_ms": 0.1838207244873047,
+      "success": true,
+      "validation_passed": true,
+      "decision_type": "auto_act",
+      "error_type": null,
+      "metadata": {
+        "confidence": 0.87,
+        "risk_level": "High",
+        "trace_id": "b59c7ad670d84df4"
+      }
+    },
+    {
+      "timestamp": 1770847506.3848262,
+      "duration_ms": 0.07295608520507812,
+      "success": true,
+      "validation_passed": true,
+      "decision_type": "auto_act",
+      "error_type": null,
+      "metadata": {
+        "confidence": 0.95,
+        "risk_level": "High",
+        "trace_id": "b59c7ad670d84df4"
+      }
+    }
+  ]
+}

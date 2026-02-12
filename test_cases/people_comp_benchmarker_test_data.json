@@ -1,0 +1,102 @@
+{
+  "skill_id": "people_comp_benchmarker",
+  "generated_at": "2026-02-11T22:18:31.434027",
+  "num_cases": 10,
+  "test_cases": [
+    {
+      "inputs": {
+        "analysisType": "team",
+        "employeeId": "test_sax7rq62",
+        "includeBenefits": false
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "analysisType": "team",
+        "employeeId": "test_6133v3s2",
+        "includeBenefits": false
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "analysisType": "company_wide",
+        "employeeId": "test_v2or30sy",
+        "includeBenefits": true,
+        "marketSources": [
+          "vg8jjv1fshuk3ch0p",
+          "k3wc952y",
+          "cdja"
+        ]
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "includeBenefits": true,
+        "marketSources": [
+          "jqt6eerezhrycio4y"
+        ]
+      },
+      "label": "missing_analysisType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "analysisType": 12345,
+        "employeeId": "test_li6rj5bp",
+        "roleId": "i0ndrcgqo",
+        "includeBenefits": false
+      },
+      "label": "invalid_type_analysisType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "analysisType": "company_wide",
+        "marketSources": [
+          "ktskidvmpn",
+          "82fd4t"
+        ],
+        "employeeId": 12345
+      },
+      "label": "invalid_type_employeeId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "analysisType": "company_wide",
+        "roleId": 12345
+      },
+      "label": "invalid_type_roleId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "analysisType": "role",
+        "includeBenefits": "yes"
+      },
+      "label": "invalid_type_includeBenefits",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "analysisType": "company_wide",
+        "employeeId": "test_h44f2y2c",
+        "includeBenefits": false,
+        "marketSources": "not_an_array"
+      },
+      "label": "invalid_type_marketSources",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

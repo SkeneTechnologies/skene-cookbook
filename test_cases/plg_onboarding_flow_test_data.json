@@ -1,0 +1,91 @@
+{
+  "skill_id": "plg_onboarding_flow",
+  "generated_at": "2026-02-12T00:05:11.437807",
+  "num_cases": 9,
+  "test_cases": [
+    {
+      "inputs": {
+        "userId": "8z"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "userId": "0yl8o1x3tvfnf90fa4o3",
+        "userType": "team",
+        "goals": [],
+        "currentStep": 8999.14
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "userId": "yo0ul1m4jin5al61z",
+        "userType": "enterprise"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "userType": "individual",
+        "goals": [
+          "nerbzrk9c8ll43g2",
+          "5zauiz2m2eafrqrrc"
+        ],
+        "currentStep": 7017.83
+      },
+      "label": "missing_userId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": 12345,
+        "userType": "team",
+        "goals": [
+          "cjua"
+        ],
+        "currentStep": 8757.43
+      },
+      "label": "invalid_type_userId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": "ms33pg0x",
+        "userType": 12345,
+        "goals": []
+      },
+      "label": "invalid_type_userType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": "4x0g0k1otn2w29gd",
+        "userType": "individual",
+        "goals": "not_an_array"
+      },
+      "label": "invalid_type_goals",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": "uf",
+        "userType": "enterprise",
+        "goals": [
+          "i1xbwrls52qn3srppl"
+        ],
+        "currentStep": "not_a_number"
+      },
+      "label": "invalid_type_currentStep",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

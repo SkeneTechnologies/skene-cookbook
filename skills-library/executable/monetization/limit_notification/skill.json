@@ -1,0 +1,308 @@
+{
+  "id": "mon_limit_notification",
+  "version": "1.0.0",
+  "name": "Usage Limit Notification",
+  "description": "Proactively notifies users when approaching or exceeding usage limits.",
+  "domain": "monetization",
+  "tools": [
+    {
+      "name": "stripe.get_usage",
+      "required": true
+    },
+    {
+      "name": "stripe.get_subscription",
+      "required": true
+    },
+    {
+      "name": "messaging.send_in_app",
+      "required": true
+    },
+    {
+      "name": "resend.send_template",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "upgrade_trigger",
+    "support",
+    "idle"
+  ],
+  "metrics": {
+    "primary": "limit_notification_to_upgrade_rate",
+    "benchmarks": {
+      "excellent": "> 25%",
+      "good": "15-25%",
+      "needs_improvement": "< 15%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "monetization",
+    "limits",
+    "notification",
+    "upsell",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Usage Limit Notification",
+        "usage metering"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "stripe.get_customer",
+          "required": true
+        },
+        {
+          "name": "stripe.list_subscriptions",
+          "required": false
+        },
+        {
+          "name": "stripe.create_checkout",
+          "required": false
+        }
+      ]
+    }
+  },
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "userId": {
+        "type": "string",
+        "description": "Unique identifier for the user to check usage limits"
+      },
+      "accountId": {
+        "type": "string",
+        "description": "Account or organization identifier"
+      },
+      "usageDimension": {
+        "type": "string",
+        "description": "Type of usage to monitor (e.g., 'api_calls', 'storage_gb', 'seats', 'requests')",
+        "examples": [
+          "api_calls",
+          "storage_gb",
+          "seats",
+          "monthly_requests"
+        ]
+      },
+      "customThresholds": {
+        "type": "object",
+        "description": "Optional custom threshold percentages to override defaults",
+        "properties": {
+          "soft": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100,
+            "default": 50
+          },
+          "warning": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100,
+            "default": 80
+          },
+          "urgent": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100,
+            "default": 95
+          }
+        },
+        "additionalProperties": false
+      },
+      "suppressNotificationUntil": {
+        "type": "string",
+        "format": "date-time",
+        "description": "Optional timestamp to suppress notifications until a certain time (anti-spam)"
+      }
+    },
+    "required": [
+      "userId",
+      "accountId",
+      "usageDimension"
+    ],
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "notificationTriggered": {
+        "type": "boolean",
+        "description": "Whether a notification was sent"
+      },
+      "user": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          }
+        },
+        "required": [
+          "id",
+          "name"
+        ]
+      },
+      "account": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "usage": {
+        "type": "object",
+        "properties": {
+          "dimension": {
+            "type": "string",
+            "description": "Type of usage measured"
+          },
+          "current": {
+            "type": "number",
+            "description": "Current usage amount"
+          },
+          "limit": {
+            "type": "number",
+            "description": "Maximum allowed usage"
+          },
+          "percentage": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100,
+            "description": "Percentage of limit consumed"
+          },
+          "unit": {
+            "type": "string",
+            "description": "Unit of measurement (e.g., 'calls', 'GB', 'seats')"
+          }
+        },
+        "required": [
+          "dimension",
+          "current",
+          "limit",
+          "percentage"
+        ]
+      },
+      "notification": {
+        "type": "object",
+        "properties": {
+          "threshold": {
+            "type": "string",
+            "enum": [
+              "soft_reminder",
+              "upgrade_prompt",
+              "urgent_alert",
+              "limit_reached"
+            ],
+            "description": "Type of notification threshold triggered"
+          },
+          "thresholdPercentage": {
+            "type": "number",
+            "description": "The percentage threshold that triggered this notification"
+          },
+          "channels": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "in_app",
+                "email",
+                "push_notification"
+              ]
+            },
+            "description": "Channels used for notification delivery"
+          },
+          "messageSummary": {
+            "type": "string",
+            "description": "Summary of the notification message sent"
+          },
+          "sentAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when notification was sent"
+          }
+        },
+        "required": [
+          "threshold",
+          "channels",
+          "messageSummary"
+        ]
+      },
+      "upgradeRecommendation": {
+        "type": "object",
+        "properties": {
+          "currentPlan": {
+            "type": "string",
+            "description": "Current subscription plan name"
+          },
+          "currentPlanId": {
+            "type": "string",
+            "description": "Current subscription plan identifier"
+          },
+          "suggestedPlan": {
+            "type": "string",
+            "description": "Recommended plan to upgrade to"
+          },
+          "suggestedPlanId": {
+            "type": "string",
+            "description": "Recommended plan identifier"
+          },
+          "additionalCapacity": {
+            "type": "number",
+            "description": "Additional capacity offered by suggested plan"
+          },
+          "priceDifference": {
+            "type": "number",
+            "description": "Monthly price difference in dollars"
+          },
+          "upgradeUrl": {
+            "type": "string",
+            "format": "uri",
+            "description": "Direct URL to upgrade flow"
+          }
+        },
+        "required": [
+          "currentPlan",
+          "suggestedPlan"
+        ]
+      },
+      "dashboardUrl": {
+        "type": "string",
+        "format": "uri",
+        "description": "URL to usage visibility dashboard"
+      },
+      "nextCheckRecommended": {
+        "type": "string",
+        "format": "date-time",
+        "description": "Recommended timestamp for next usage check"
+      }
+    },
+    "required": [
+      "notificationTriggered",
+      "user",
+      "account",
+      "usage"
+    ]
+  },
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.92
+  }
+}

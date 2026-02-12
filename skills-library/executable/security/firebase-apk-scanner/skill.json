@@ -1,0 +1,360 @@
+{
+  "id": "security/firebase-apk-scanner",
+  "version": "1.0.0",
+  "name": "firebase-apk-scanner",
+  "description": "Scans Android APKs for Firebase security misconfigurations including open databases, storage buckets, authentication issues, and exposed cloud functions. Use when analyzing APK files for Firebase vulnerabilities, performing mobile app security audits, or testing Firebase endpoint security. For authorized security research only.",
+  "domain": "security",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "target": {
+        "type": "string",
+        "description": "Path to the APK file or directory containing APK files to scan for Firebase misconfigurations",
+        "examples": [
+          "/path/to/app.apk",
+          "/path/to/apks/",
+          "./sample-app.apk"
+        ]
+      },
+      "authorization_confirmed": {
+        "type": "boolean",
+        "description": "Confirmation that you have explicit authorization to perform security testing on this APK",
+        "default": false
+      },
+      "scan_options": {
+        "type": "object",
+        "description": "Optional scan configuration parameters",
+        "properties": {
+          "skip_authentication_tests": {
+            "type": "boolean",
+            "description": "Skip testing authentication endpoints (signup, anonymous auth)",
+            "default": false
+          },
+          "skip_database_tests": {
+            "type": "boolean",
+            "description": "Skip testing Firebase Realtime Database and Firestore",
+            "default": false
+          },
+          "skip_storage_tests": {
+            "type": "boolean",
+            "description": "Skip testing Firebase Storage buckets",
+            "default": false
+          },
+          "skip_function_tests": {
+            "type": "boolean",
+            "description": "Skip testing Cloud Functions",
+            "default": false
+          },
+          "cleanup_test_data": {
+            "type": "boolean",
+            "description": "Automatically remove test entries created during scanning",
+            "default": true
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "required": [
+      "target",
+      "authorization_confirmed"
+    ],
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "scan_summary": {
+        "type": "object",
+        "description": "High-level summary of the scan results",
+        "properties": {
+          "apks_scanned": {
+            "type": "integer",
+            "description": "Number of APK files scanned",
+            "minimum": 0
+          },
+          "vulnerable_apks": {
+            "type": "integer",
+            "description": "Number of APKs with vulnerabilities detected",
+            "minimum": 0
+          },
+          "total_issues": {
+            "type": "integer",
+            "description": "Total number of security issues found across all APKs",
+            "minimum": 0
+          },
+          "scan_timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the scan was performed"
+          }
+        },
+        "required": [
+          "apks_scanned",
+          "vulnerable_apks",
+          "total_issues"
+        ]
+      },
+      "firebase_configuration": {
+        "type": "object",
+        "description": "Extracted Firebase configuration from the APK",
+        "properties": {
+          "project_id": {
+            "type": "string",
+            "description": "Firebase project ID"
+          },
+          "database_url": {
+            "type": "string",
+            "format": "uri",
+            "description": "Firebase Realtime Database URL"
+          },
+          "storage_bucket": {
+            "type": "string",
+            "description": "Firebase Storage bucket name"
+          },
+          "api_key": {
+            "type": "string",
+            "description": "Firebase API key"
+          },
+          "auth_domain": {
+            "type": "string",
+            "description": "Firebase authentication domain"
+          },
+          "app_id": {
+            "type": "string",
+            "description": "Firebase application ID"
+          },
+          "messaging_sender_id": {
+            "type": "string",
+            "description": "Firebase Cloud Messaging sender ID"
+          },
+          "measurement_id": {
+            "type": "string",
+            "description": "Google Analytics measurement ID"
+          }
+        }
+      },
+      "vulnerabilities": {
+        "type": "array",
+        "description": "List of security vulnerabilities discovered",
+        "items": {
+          "type": "object",
+          "properties": {
+            "severity": {
+              "type": "string",
+              "enum": [
+                "CRITICAL",
+                "HIGH",
+                "MEDIUM",
+                "LOW",
+                "INFO"
+              ],
+              "description": "Severity level of the vulnerability"
+            },
+            "category": {
+              "type": "string",
+              "enum": [
+                "authentication",
+                "database",
+                "storage",
+                "cloud_functions",
+                "remote_config",
+                "information_disclosure"
+              ],
+              "description": "Category of the vulnerability"
+            },
+            "title": {
+              "type": "string",
+              "description": "Brief title of the vulnerability"
+            },
+            "description": {
+              "type": "string",
+              "description": "Detailed description of the vulnerability"
+            },
+            "evidence": {
+              "type": "string",
+              "description": "Evidence or proof of concept for the vulnerability"
+            },
+            "impact": {
+              "type": "string",
+              "description": "Potential impact if the vulnerability is exploited"
+            },
+            "remediation": {
+              "type": "string",
+              "description": "Recommended steps to fix the vulnerability"
+            },
+            "cve_references": {
+              "type": "array",
+              "description": "Related CVE identifiers if applicable",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "severity",
+            "category",
+            "title",
+            "description"
+          ]
+        }
+      },
+      "test_results": {
+        "type": "object",
+        "description": "Detailed results from each test category",
+        "properties": {
+          "authentication": {
+            "type": "object",
+            "properties": {
+              "open_signup": {
+                "type": "boolean",
+                "description": "Whether unauthenticated signup is allowed"
+              },
+              "anonymous_auth_enabled": {
+                "type": "boolean",
+                "description": "Whether anonymous authentication is enabled"
+              },
+              "email_enumeration_possible": {
+                "type": "boolean",
+                "description": "Whether email enumeration is possible"
+              },
+              "anonymous_token": {
+                "type": "string",
+                "description": "Anonymous auth token if obtained"
+              }
+            }
+          },
+          "database": {
+            "type": "object",
+            "properties": {
+              "realtime_db_readable": {
+                "type": "boolean",
+                "description": "Whether Realtime Database is readable without authentication"
+              },
+              "realtime_db_writable": {
+                "type": "boolean",
+                "description": "Whether Realtime Database is writable without authentication"
+              },
+              "firestore_accessible": {
+                "type": "boolean",
+                "description": "Whether Firestore documents are accessible without authentication"
+              },
+              "collections_enumerable": {
+                "type": "boolean",
+                "description": "Whether Firestore collections can be enumerated"
+              }
+            }
+          },
+          "storage": {
+            "type": "object",
+            "properties": {
+              "bucket_listable": {
+                "type": "boolean",
+                "description": "Whether storage bucket contents can be listed"
+              },
+              "unauthenticated_write": {
+                "type": "boolean",
+                "description": "Whether files can be uploaded without authentication"
+              },
+              "public_files_found": {
+                "type": "integer",
+                "description": "Number of publicly accessible files found"
+              }
+            }
+          },
+          "cloud_functions": {
+            "type": "object",
+            "properties": {
+              "functions_discovered": {
+                "type": "array",
+                "description": "List of discovered Cloud Functions",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "unauthenticated_accessible": {
+                "type": "array",
+                "description": "Functions accessible without authentication",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "remote_config": {
+            "type": "object",
+            "properties": {
+              "config_accessible": {
+                "type": "boolean",
+                "description": "Whether Remote Config is accessible"
+              },
+              "sensitive_data_exposed": {
+                "type": "boolean",
+                "description": "Whether sensitive data is exposed in Remote Config"
+              }
+            }
+          }
+        }
+      },
+      "remediation_summary": {
+        "type": "string",
+        "description": "Overall remediation guidance for all discovered vulnerabilities"
+      },
+      "report_files": {
+        "type": "object",
+        "description": "Paths to generated report files",
+        "properties": {
+          "text_report": {
+            "type": "string",
+            "description": "Path to the text format report"
+          },
+          "json_report": {
+            "type": "string",
+            "description": "Path to the JSON format report"
+          }
+        }
+      }
+    },
+    "required": [
+      "scan_summary",
+      "vulnerabilities"
+    ]
+  },
+  "temperature": 0,
+  "tags": [
+    "security",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with firebase apk scanner",
+        "security audit",
+        "analyzing apk files for firebase vulnerabilities, performing mobile app security audits, or testing firebase endpoint security"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "security_controls": {
+    "authentication": {
+      "method": "oauth",
+      "provider": "managed_identity",
+      "scopes": [
+        "read:data",
+        "write:data"
+      ],
+      "token_lifetime": 3600
+    }
+  },
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.92
+  }
+}

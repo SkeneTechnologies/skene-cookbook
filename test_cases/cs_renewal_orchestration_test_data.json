@@ -1,0 +1,139 @@
+{
+  "skill_id": "cs_renewal_orchestration",
+  "generated_at": "2026-02-12T00:05:02.116052",
+  "num_cases": 13,
+  "test_cases": [
+    {
+      "inputs": {
+        "account_id": "test_zzm7w7yy",
+        "subscription_id": "test_563qsk8z",
+        "renewal_window_days": 196,
+        "force_reassessment": true,
+        "override_play": "flat"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "account_id": "test_ky9gwdvm",
+        "subscription_id": "test_ptmy9mbd",
+        "renewal_window_days": 200,
+        "force_reassessment": true,
+        "csm_owner_id": "test_o3bz3sg0",
+        "skip_notifications": true
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "account_id": "test_xdyg95mb",
+        "subscription_id": "test_2gtxjfod",
+        "csm_owner_id": "test_he4jtdjt"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "subscription_id": "test_an45qycp",
+        "override_play": "at-risk",
+        "csm_owner_id": "test_c5vypd8l"
+      },
+      "label": "missing_account_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "account_id": "test_8iwsmmmp",
+        "renewal_window_days": 293,
+        "csm_owner_id": "test_j40zo232",
+        "skip_notifications": true
+      },
+      "label": "missing_subscription_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "account_id": 12345,
+        "subscription_id": "test_kbj7rz5k",
+        "renewal_window_days": 289,
+        "csm_owner_id": "test_bcewjtms"
+      },
+      "label": "invalid_type_account_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "account_id": "test_ax5thyse",
+        "subscription_id": 12345,
+        "renewal_window_days": 27
+      },
+      "label": "invalid_type_subscription_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "account_id": "test_r9vbyd1v",
+        "subscription_id": "test_mvz0nso4",
+        "renewal_window_days": "not_a_number",
+        "force_reassessment": false,
+        "override_play": "growth",
+        "csm_owner_id": "test_zgjh51tt",
+        "skip_notifications": true
+      },
+      "label": "invalid_type_renewal_window_days",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "account_id": "test_07yug57y",
+        "subscription_id": "test_79vbhqvk",
+        "force_reassessment": "yes",
+        "override_play": "growth",
+        "csm_owner_id": "test_q2mr7g7b",
+        "skip_notifications": false
+      },
+      "label": "invalid_type_force_reassessment",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "account_id": "test_h6chlu49",
+        "subscription_id": "test_pv1j2sug",
+        "force_reassessment": true,
+        "csm_owner_id": "test_7vq2jhv0",
+        "override_play": 12345
+      },
+      "label": "invalid_type_override_play",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "account_id": "test_ij4afplv",
+        "subscription_id": "test_aos3i8my",
+        "csm_owner_id": 12345
+      },
+      "label": "invalid_type_csm_owner_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "account_id": "test_13muyxym",
+        "subscription_id": "test_5642axww",
+        "force_reassessment": true,
+        "override_play": "save",
+        "csm_owner_id": "test_eua7vwyv",
+        "skip_notifications": "yes"
+      },
+      "label": "invalid_type_skip_notifications",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "skill_id": "mon_credits_balance_tracker",
+  "generated_at": "2026-02-12T00:05:08.596114",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "customer_id": "wxjwmw0",
+        "amount": 2337.81
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "customer_id": "mc8jkmysgb6",
+        "action": "transfer"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "customer_id": "ex5tq0mnn11v",
+        "action": "add",
+        "amount": 116.72
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "action": "check",
+        "amount": 521.3
+      },
+      "label": "missing_customer_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "customer_id": 12345,
+        "action": "transfer"
+      },
+      "label": "invalid_type_customer_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "customer_id": "j89o",
+        "action": 12345
+      },
+      "label": "invalid_type_action",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "customer_id": "qvvq3n27vs4tk48bo7no",
+        "action": "check",
+        "amount": "not_a_number"
+      },
+      "label": "invalid_type_amount",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

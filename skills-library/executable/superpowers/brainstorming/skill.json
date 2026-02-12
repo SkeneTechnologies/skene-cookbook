@@ -1,0 +1,316 @@
+{
+  "id": "superpowers/brainstorming",
+  "version": "1.0.0",
+  "name": "brainstorming",
+  "description": "\"You MUST use this before any creative work - creating features, building components, adding functionality, or modifying behavior. Explores user intent, requirements and design before implementation.\"",
+  "domain": "superpowers",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "initialIdea": {
+        "type": "string",
+        "description": "The initial idea, feature request, or problem statement that needs to be explored and refined into a design"
+      },
+      "projectContext": {
+        "type": "object",
+        "description": "Current project context to inform the brainstorming process",
+        "properties": {
+          "projectType": {
+            "type": "string",
+            "description": "Type of project (e.g., web app, mobile app, API, library)",
+            "examples": [
+              "web application",
+              "mobile app",
+              "REST API",
+              "CLI tool"
+            ]
+          },
+          "techStack": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Technologies, frameworks, and languages currently in use"
+          },
+          "existingFiles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Relevant existing files or directories in the project"
+          },
+          "recentChanges": {
+            "type": "string",
+            "description": "Summary of recent commits or changes relevant to this idea"
+          }
+        },
+        "additionalProperties": true
+      },
+      "constraints": {
+        "type": "object",
+        "description": "Known constraints that should guide the brainstorming",
+        "properties": {
+          "timeline": {
+            "type": "string",
+            "description": "Time constraints or deadlines"
+          },
+          "budget": {
+            "type": "string",
+            "description": "Budget or resource constraints"
+          },
+          "technical": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Technical constraints or requirements"
+          },
+          "businessRules": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Business rules or policies that must be followed"
+          }
+        },
+        "additionalProperties": true
+      },
+      "successCriteria": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "How success will be measured for this feature or change"
+      }
+    },
+    "required": [
+      "initialIdea"
+    ],
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "refinedRequirements": {
+        "type": "object",
+        "description": "Clarified and refined requirements after exploration",
+        "properties": {
+          "purpose": {
+            "type": "string",
+            "description": "Clear statement of what the feature/change aims to accomplish"
+          },
+          "userNeeds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Identified user needs and use cases"
+          },
+          "constraints": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Confirmed constraints and limitations"
+          },
+          "successCriteria": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Validated success criteria"
+          }
+        },
+        "required": [
+          "purpose"
+        ]
+      },
+      "selectedApproach": {
+        "type": "object",
+        "description": "The chosen approach after exploring alternatives",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name or brief description of the approach"
+          },
+          "reasoning": {
+            "type": "string",
+            "description": "Why this approach was selected"
+          },
+          "tradeoffs": {
+            "type": "object",
+            "properties": {
+              "pros": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "cons": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "alternativesConsidered": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "summary": {
+                  "type": "string"
+                },
+                "whyNotSelected": {
+                  "type": "string"
+                }
+              }
+            },
+            "description": "Other approaches that were evaluated"
+          }
+        },
+        "required": [
+          "name",
+          "reasoning"
+        ]
+      },
+      "design": {
+        "type": "object",
+        "description": "The complete validated design",
+        "properties": {
+          "architecture": {
+            "type": "string",
+            "description": "Overall architectural approach and structure"
+          },
+          "components": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "responsibility": {
+                  "type": "string"
+                },
+                "interfaces": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "description": "Key components and their responsibilities"
+          },
+          "dataFlow": {
+            "type": "string",
+            "description": "How data moves through the system"
+          },
+          "errorHandling": {
+            "type": "string",
+            "description": "Approach to error handling and edge cases"
+          },
+          "testing": {
+            "type": "string",
+            "description": "Testing strategy and key test scenarios"
+          },
+          "securityConsiderations": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Security aspects that need to be addressed"
+          }
+        },
+        "required": [
+          "architecture",
+          "components",
+          "dataFlow"
+        ]
+      },
+      "designDocumentPath": {
+        "type": "string",
+        "format": "uri-reference",
+        "description": "Path to the created design document",
+        "pattern": "^docs/plans/\\d{4}-\\d{2}-\\d{2}-.+-design\\.md$"
+      },
+      "nextSteps": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Recommended next steps (e.g., create worktree, write implementation plan)"
+      },
+      "questionsAsked": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "question": {
+              "type": "string"
+            },
+            "answer": {
+              "type": "string"
+            },
+            "insight": {
+              "type": "string",
+              "description": "What was learned from this question"
+            }
+          }
+        },
+        "description": "Record of key questions asked during the brainstorming process"
+      }
+    },
+    "required": [
+      "refinedRequirements",
+      "selectedApproach",
+      "design",
+      "designDocumentPath",
+      "nextSteps"
+    ]
+  },
+  "temperature": 0,
+  "tags": [
+    "superpowers",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with brainstorming"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "security_controls": {
+    "delete_operations": {
+      "soft_delete": true,
+      "retention_period_days": 30,
+      "undelete_capable": true,
+      "backup_before_delete": true,
+      "multi_party_approval": true,
+      "confirmation_required": {
+        "enabled": true,
+        "show_impact": true,
+        "require_reason": true
+      }
+    }
+  },
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.9
+  }
+}

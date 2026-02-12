@@ -1,0 +1,35 @@
+{
+  "id": "cursor_rules/cuda",
+  "version": "1.0.0",
+  "name": "cuda",
+  "description": "Definitive guidelines for writing high-performance, maintainable, and error-resistant CUDA C++ code, focusing on modern practices, memory management, kernel optimization, and robust error handling.",
+  "domain": "cursor_rules",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "cursor_rules",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "cursor": {
+      "globs": [
+        "**/*"
+      ]
+    },
+    "claude": {
+      "triggers": [
+        "help with cuda"
+      ]
+    },
+    "skeneflow": {}
+  },
+  "skipSchemaValidation": true
+}

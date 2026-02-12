@@ -1,0 +1,355 @@
+{
+  "id": "mon_dunning_automation",
+  "version": "1.0.0",
+  "name": "Dunning Automation",
+  "description": "Automates payment recovery for failed payments and past-due accounts.",
+  "domain": "monetization",
+  "tools": [
+    {
+      "name": "stripe.get_dunning_status",
+      "required": true
+    },
+    {
+      "name": "stripe.send_payment_reminder",
+      "required": true
+    },
+    {
+      "name": "stripe.get_invoices",
+      "required": true
+    },
+    {
+      "name": "resend.send_template",
+      "required": true
+    },
+    {
+      "name": "stripe.create_portal",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "payment_recovered",
+    "account_suspended",
+    "churn_prediction",
+    "idle"
+  ],
+  "metrics": {
+    "primary": "payment_recovery_rate",
+    "benchmarks": {
+      "excellent": "> 80%",
+      "good": "60-80%",
+      "needs_improvement": "< 60%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "monetization",
+    "dunning",
+    "collections",
+    "recovery",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Dunning Automation"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "stripe.get_customer",
+          "required": true
+        },
+        {
+          "name": "stripe.list_subscriptions",
+          "required": false
+        },
+        {
+          "name": "stripe.create_checkout",
+          "required": false
+        }
+      ]
+    }
+  },
+  "security_controls": {
+    "payment_controls": {
+      "preview_mode": true,
+      "per_transaction_approval": true,
+      "amount_limits": {
+        "max_per_transaction": 50000,
+        "daily_limit": 200000,
+        "additional_approval_threshold": 25000
+      },
+      "rollback": {
+        "enabled": true,
+        "window_seconds": 3600
+      },
+      "two_phase_commit": true,
+      "audit_logging": "detailed"
+    }
+  },
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "customer_id": {
+        "type": "string",
+        "description": "Stripe customer ID to check for dunning status"
+      },
+      "subscription_id": {
+        "type": "string",
+        "description": "Specific subscription ID to process (optional, will check all if not provided)"
+      },
+      "days_past_due": {
+        "type": "integer",
+        "description": "Number of days the payment is past due (used to determine sequence step)",
+        "minimum": 0
+      },
+      "manual_trigger": {
+        "type": "boolean",
+        "description": "Whether this is a manual trigger or automated run",
+        "default": false
+      },
+      "escalation_threshold": {
+        "type": "number",
+        "description": "Dollar amount threshold for escalating to customer success team",
+        "minimum": 0,
+        "default": 1000
+      },
+      "skip_communication": {
+        "type": "boolean",
+        "description": "If true, only checks status without sending communications",
+        "default": false
+      }
+    },
+    "required": [
+      "customer_id"
+    ],
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "account": {
+        "type": "object",
+        "properties": {
+          "customer_id": {
+            "type": "string",
+            "description": "Stripe customer ID"
+          },
+          "customer_name": {
+            "type": "string",
+            "description": "Customer name"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "description": "Customer email address"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "past_due",
+              "at_risk",
+              "suspended",
+              "current"
+            ],
+            "description": "Current account status"
+          }
+        },
+        "required": [
+          "customer_id",
+          "status"
+        ]
+      },
+      "dunning_details": {
+        "type": "object",
+        "properties": {
+          "days_past_due": {
+            "type": "integer",
+            "description": "Number of days payment is overdue"
+          },
+          "amount_due": {
+            "type": "number",
+            "description": "Total amount currently due"
+          },
+          "currency": {
+            "type": "string",
+            "description": "Currency code (e.g., USD, EUR)"
+          },
+          "subscription_id": {
+            "type": "string",
+            "description": "Affected subscription ID"
+          }
+        },
+        "required": [
+          "days_past_due",
+          "amount_due"
+        ]
+      },
+      "sequence_step": {
+        "type": "object",
+        "properties": {
+          "day": {
+            "type": "integer",
+            "description": "Current day in dunning sequence"
+          },
+          "action": {
+            "type": "string",
+            "description": "Action taken or to be taken"
+          },
+          "channel": {
+            "type": "string",
+            "enum": [
+              "email",
+              "in_app",
+              "email_and_in_app",
+              "automatic",
+              "system"
+            ],
+            "description": "Communication channel used"
+          },
+          "sent": {
+            "type": "boolean",
+            "description": "Whether the communication was sent"
+          },
+          "sent_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when communication was sent"
+          }
+        },
+        "required": [
+          "day",
+          "action",
+          "sent"
+        ]
+      },
+      "payment_attempts": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "date": {
+              "type": "string",
+              "format": "date-time",
+              "description": "Date of payment attempt"
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "failed",
+                "retry",
+                "succeeded",
+                "pending"
+              ],
+              "description": "Status of payment attempt"
+            },
+            "amount": {
+              "type": "number",
+              "description": "Amount of payment attempt"
+            },
+            "failure_reason": {
+              "type": "string",
+              "description": "Reason for payment failure"
+            }
+          },
+          "required": [
+            "date",
+            "status",
+            "amount"
+          ]
+        }
+      },
+      "recommended_action": {
+        "type": "object",
+        "properties": {
+          "template": {
+            "type": "string",
+            "description": "Email template to send"
+          },
+          "include_portal_link": {
+            "type": "boolean",
+            "description": "Whether to include payment portal link"
+          },
+          "portal_url": {
+            "type": "string",
+            "format": "uri",
+            "description": "Stripe customer portal URL for payment update"
+          },
+          "escalate": {
+            "type": "boolean",
+            "description": "Whether to escalate to customer success"
+          },
+          "escalation_reason": {
+            "type": "string",
+            "description": "Reason for escalation"
+          }
+        },
+        "required": [
+          "template",
+          "include_portal_link",
+          "escalate"
+        ]
+      },
+      "recovery_probability": {
+        "type": "object",
+        "properties": {
+          "percentage": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100,
+            "description": "Estimated recovery probability percentage"
+          },
+          "confidence": {
+            "type": "string",
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "description": "Confidence level in the estimate"
+          }
+        },
+        "required": [
+          "percentage"
+        ]
+      },
+      "next_action_date": {
+        "type": "string",
+        "format": "date-time",
+        "description": "When the next dunning action should occur"
+      },
+      "communications_sent": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "description": "Type of communication sent"
+            },
+            "sent_at": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "message_id": {
+              "type": "string",
+              "description": "Email or message ID for tracking"
+            }
+          }
+        }
+      }
+    },
+    "required": [
+      "account",
+      "dunning_details",
+      "sequence_step",
+      "recommended_action"
+    ]
+  },
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.92
+  }
+}

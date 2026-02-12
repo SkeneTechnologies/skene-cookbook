@@ -1,0 +1,70 @@
+{
+  "skill_id": "mon_overage_predictor",
+  "generated_at": "2026-02-12T00:05:10.863010",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "subscription_id": "2ydl1xtzbium",
+        "forecast_horizon": "lk9ip40gnb7dgiax"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "subscription_id": "l8ijftb",
+        "alert_threshold": 2008.18
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "subscription_id": "4x5ltqrzt20yn",
+        "alert_threshold": 3972.94,
+        "forecast_horizon": "3"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "alert_threshold": 8681.45,
+        "forecast_horizon": "0lf6tph8jz7tkjbj"
+      },
+      "label": "missing_subscription_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "subscription_id": 12345
+      },
+      "label": "invalid_type_subscription_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "subscription_id": "0zmnas6l",
+        "alert_threshold": "not_a_number",
+        "forecast_horizon": "y5k"
+      },
+      "label": "invalid_type_alert_threshold",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "subscription_id": "67qewukf9gyfzicq7sqy",
+        "alert_threshold": 7273.1,
+        "forecast_horizon": 12345
+      },
+      "label": "invalid_type_forecast_horizon",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

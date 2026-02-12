@@ -1,0 +1,92 @@
+{
+  "skill_id": "compliance_data_retention",
+  "generated_at": "2026-02-11T22:18:27.661048",
+  "num_cases": 9,
+  "test_cases": [
+    {
+      "inputs": {
+        "action": "configure",
+        "dataCategory": "logs",
+        "dryRun": false,
+        "scope": [
+          "d7c"
+        ]
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "action": "audit",
+        "dryRun": true,
+        "scope": [
+          "f79m",
+          "vo4419"
+        ]
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "action": "report",
+        "dataCategory": "personal"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "dryRun": true,
+        "scope": [
+          "uz"
+        ]
+      },
+      "label": "missing_action",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": 12345
+      },
+      "label": "invalid_type_action",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": "report",
+        "scope": [
+          "ymr5rzxc7l6pt7f7tvf"
+        ],
+        "dataCategory": 12345
+      },
+      "label": "invalid_type_dataCategory",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": "enforce",
+        "dataCategory": "backups",
+        "scope": [
+          "lxx0"
+        ],
+        "dryRun": "yes"
+      },
+      "label": "invalid_type_dryRun",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": "configure",
+        "scope": "not_an_array"
+      },
+      "label": "invalid_type_scope",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

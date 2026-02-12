@@ -1,0 +1,80 @@
+{
+  "skill_id": "elg_tech_partner_finder",
+  "generated_at": "2026-02-12T00:05:00.060464",
+  "num_cases": 9,
+  "test_cases": [
+    {
+      "inputs": {
+        "category": "8iodx4",
+        "useCase": "kxks9ru08nt",
+        "minOverlap": 4755.55
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "category": "po53"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "category": "yrm8kh2eu3",
+        "useCase": "gzrexgpy08vuigtd",
+        "minOverlap": 4055.3
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {},
+      "label": "missing_category",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "category": 12345,
+        "useCase": "juvgbzn3zby7jz74s7a",
+        "excludeExisting": true
+      },
+      "label": "invalid_type_category",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "category": "q3yeg99ux60c",
+        "useCase": 12345,
+        "minOverlap": 5938.99
+      },
+      "label": "invalid_type_useCase",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "category": "cqmw",
+        "useCase": "ia4",
+        "minOverlap": "not_a_number",
+        "excludeExisting": true
+      },
+      "label": "invalid_type_minOverlap",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "category": "h62lhvw1x4",
+        "useCase": "nihg8sh4blv7ooike2d",
+        "minOverlap": 1803.05,
+        "excludeExisting": "yes"
+      },
+      "label": "invalid_type_excludeExisting",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "skill_id": "ai_anomaly_detector",
+  "generated_at": "2026-02-12T00:05:03.193993",
+  "num_cases": 9,
+  "test_cases": [
+    {
+      "inputs": {
+        "data_type": "revenue",
+        "time_range": {},
+        "sensitivity": "low"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "data_type": "revenue",
+        "entity_id": "test_odsizkgs",
+        "time_range": {}
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "data_type": "system_metrics",
+        "entity_id": "test_5qayjvs6",
+        "sensitivity": "low"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "entity_id": "test_vkvamqxd",
+        "time_range": {}
+      },
+      "label": "missing_data_type",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "data_type": 12345,
+        "entity_id": "test_e2eesor5",
+        "sensitivity": "high"
+      },
+      "label": "invalid_type_data_type",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "data_type": "user_behavior",
+        "time_range": {},
+        "sensitivity": "high",
+        "entity_id": 12345
+      },
+      "label": "invalid_type_entity_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "data_type": "usage",
+        "sensitivity": "high",
+        "time_range": "not_an_object"
+      },
+      "label": "invalid_type_time_range",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "data_type": "system_metrics",
+        "time_range": {},
+        "sensitivity": 12345
+      },
+      "label": "invalid_type_sensitivity",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

@@ -1,0 +1,990 @@
+{
+  "id": "security/audit-context-building",
+  "version": "1.0.0",
+  "name": "audit-context-building",
+  "description": "Enables ultra-granular, line-by-line code analysis to build deep architectural context before vulnerability or bug finding.",
+  "domain": "security",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "codebase": {
+        "type": "object",
+        "description": "The codebase to analyze for deep architectural context",
+        "properties": {
+          "files": {
+            "type": "array",
+            "description": "Source code files to analyze",
+            "items": {
+              "type": "object",
+              "properties": {
+                "path": {
+                  "type": "string",
+                  "description": "File path relative to project root"
+                },
+                "content": {
+                  "type": "string",
+                  "description": "Full source code content"
+                },
+                "language": {
+                  "type": "string",
+                  "description": "Programming language (solidity, rust, move, javascript, etc.)",
+                  "examples": [
+                    "solidity",
+                    "rust",
+                    "move",
+                    "javascript",
+                    "python"
+                  ]
+                }
+              },
+              "required": [
+                "path",
+                "content",
+                "language"
+              ]
+            },
+            "minItems": 1
+          },
+          "entryPoints": {
+            "type": "array",
+            "description": "Optional list of entry points to prioritize (function names, contract names, module paths)",
+            "items": {
+              "type": "string"
+            }
+          },
+          "externalDependencies": {
+            "type": "array",
+            "description": "External contracts or modules with available source code",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Dependency name or contract address"
+                },
+                "files": {
+                  "type": "array",
+                  "description": "Source files for this dependency",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "path": {
+                        "type": "string"
+                      },
+                      "content": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "path",
+                      "content"
+                    ]
+                  }
+                }
+              },
+              "required": [
+                "name"
+              ]
+            }
+          }
+        },
+        "required": [
+          "files"
+        ]
+      },
+      "analysisScope": {
+        "type": "object",
+        "description": "Configuration for scope and depth of analysis",
+        "properties": {
+          "focusAreas": {
+            "type": "array",
+            "description": "Specific modules, contracts, or functions to prioritize",
+            "items": {
+              "type": "string"
+            }
+          },
+          "maxDepth": {
+            "type": "integer",
+            "description": "Maximum call depth to trace (default: unlimited)",
+            "minimum": 1
+          },
+          "includeHelpers": {
+            "type": "boolean",
+            "description": "Whether to analyze helper/utility functions (default: true)",
+            "default": true
+          },
+          "analysisPhases": {
+            "type": "array",
+            "description": "Which phases to execute (default: all)",
+            "items": {
+              "type": "string",
+              "enum": [
+                "orientation",
+                "micro-analysis",
+                "global-system"
+              ]
+            },
+            "default": [
+              "orientation",
+              "micro-analysis",
+              "global-system"
+            ]
+          }
+        }
+      },
+      "contextConstraints": {
+        "type": "object",
+        "description": "Constraints to manage context window and output size",
+        "properties": {
+          "maxFunctionsPerBatch": {
+            "type": "integer",
+            "description": "Maximum functions to analyze in detail per batch",
+            "minimum": 1,
+            "default": 10
+          },
+          "useSubagents": {
+            "type": "boolean",
+            "description": "Whether to spawn subagents for complex analysis",
+            "default": true
+          },
+          "prioritizeComplexity": {
+            "type": "boolean",
+            "description": "Prioritize complex/fragile functions over simple ones",
+            "default": true
+          }
+        }
+      }
+    },
+    "required": [
+      "codebase"
+    ],
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "phase1_orientation": {
+        "type": "object",
+        "description": "Initial bottom-up scan and mapping results",
+        "properties": {
+          "modules": {
+            "type": "array",
+            "description": "Major modules, files, or contracts identified",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "path": {
+                  "type": "string"
+                },
+                "purpose": {
+                  "type": "string",
+                  "description": "High-level purpose of this module"
+                }
+              },
+              "required": [
+                "name",
+                "purpose"
+              ]
+            }
+          },
+          "entryPoints": {
+            "type": "array",
+            "description": "Public/external entry points identified",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "location": {
+                  "type": "string",
+                  "description": "File path and line number"
+                },
+                "visibility": {
+                  "type": "string",
+                  "enum": [
+                    "public",
+                    "external",
+                    "internal",
+                    "private"
+                  ]
+                },
+                "signature": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name",
+                "location",
+                "signature"
+              ]
+            }
+          },
+          "actors": {
+            "type": "array",
+            "description": "Actors/roles identified in the system",
+            "items": {
+              "type": "object",
+              "properties": {
+                "role": {
+                  "type": "string"
+                },
+                "capabilities": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "trustLevel": {
+                  "type": "string",
+                  "enum": [
+                    "trusted",
+                    "semi-trusted",
+                    "untrusted",
+                    "unclear"
+                  ]
+                }
+              },
+              "required": [
+                "role",
+                "capabilities"
+              ]
+            }
+          },
+          "stateVariables": {
+            "type": "array",
+            "description": "Important storage variables, dicts, state structs identified",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "location": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string"
+                },
+                "purpose": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name",
+                "location",
+                "type"
+              ]
+            }
+          }
+        },
+        "required": [
+          "modules",
+          "entryPoints",
+          "actors",
+          "stateVariables"
+        ]
+      },
+      "phase2_microAnalysis": {
+        "type": "object",
+        "description": "Ultra-granular function-by-function analysis",
+        "properties": {
+          "functions": {
+            "type": "array",
+            "description": "Detailed analysis of each function",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "location": {
+                  "type": "string",
+                  "description": "File path and line numbers"
+                },
+                "purpose": {
+                  "type": "string",
+                  "description": "Why this function exists and its role (min 2-3 sentences)",
+                  "minLength": 50
+                },
+                "inputs": {
+                  "type": "object",
+                  "properties": {
+                    "parameters": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          },
+                          "type": {
+                            "type": "string"
+                          },
+                          "description": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "name",
+                          "type"
+                        ]
+                      }
+                    },
+                    "implicitInputs": {
+                      "type": "array",
+                      "description": "State reads, sender, environment variables",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "preconditions": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "assumptions": {
+                      "type": "array",
+                      "description": "All assumptions this function relies on (min 5)",
+                      "items": {
+                        "type": "string"
+                      },
+                      "minItems": 5
+                    }
+                  },
+                  "required": [
+                    "parameters",
+                    "assumptions"
+                  ]
+                },
+                "outputs": {
+                  "type": "object",
+                  "properties": {
+                    "returnValues": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string"
+                          },
+                          "description": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "type"
+                        ]
+                      }
+                    },
+                    "stateWrites": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "events": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "externalInteractions": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "postconditions": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "blockByBlockAnalysis": {
+                  "type": "array",
+                  "description": "Line-by-line or block-by-block breakdown",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "lineNumbers": {
+                        "type": "string",
+                        "description": "Line range or specific line"
+                      },
+                      "code": {
+                        "type": "string",
+                        "description": "Code snippet being analyzed"
+                      },
+                      "what": {
+                        "type": "string",
+                        "description": "What this block does"
+                      },
+                      "whyHere": {
+                        "type": "string",
+                        "description": "Why it appears at this position (ordering logic)"
+                      },
+                      "assumptions": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "invariants": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "dependencies": {
+                        "type": "array",
+                        "description": "What later logic depends on this",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "firstPrinciplesAnalysis": {
+                        "type": "string",
+                        "description": "First principles reasoning applied to this block"
+                      },
+                      "fiveWhys": {
+                        "type": "array",
+                        "description": "5 Whys analysis (iterative why questions)",
+                        "items": {
+                          "type": "string"
+                        },
+                        "maxItems": 5
+                      },
+                      "fiveHows": {
+                        "type": "array",
+                        "description": "5 Hows analysis (implementation details)",
+                        "items": {
+                          "type": "string"
+                        },
+                        "maxItems": 5
+                      }
+                    },
+                    "required": [
+                      "lineNumbers",
+                      "what",
+                      "whyHere"
+                    ]
+                  }
+                },
+                "invariants": {
+                  "type": "array",
+                  "description": "Function-level invariants (min 3)",
+                  "items": {
+                    "type": "string"
+                  },
+                  "minItems": 3
+                },
+                "crossFunctionDependencies": {
+                  "type": "object",
+                  "properties": {
+                    "internalCalls": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "target": {
+                            "type": "string",
+                            "description": "Function being called"
+                          },
+                          "location": {
+                            "type": "string"
+                          },
+                          "dataFlow": {
+                            "type": "string",
+                            "description": "How data flows caller \u2192 callee \u2192 return"
+                          },
+                          "propagatedAssumptions": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "required": [
+                          "target",
+                          "dataFlow"
+                        ]
+                      }
+                    },
+                    "externalCalls": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "target": {
+                            "type": "string",
+                            "description": "External contract/function"
+                          },
+                          "location": {
+                            "type": "string"
+                          },
+                          "hasSourceCode": {
+                            "type": "boolean"
+                          },
+                          "payload": {
+                            "type": "string",
+                            "description": "Data/parameters sent"
+                          },
+                          "riskAnalysis": {
+                            "type": "object",
+                            "description": "Risk considerations (min 3)",
+                            "properties": {
+                              "assumptions": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                }
+                              },
+                              "possibleOutcomes": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string",
+                                  "enum": [
+                                    "revert",
+                                    "unexpected-return",
+                                    "state-change",
+                                    "reentrancy",
+                                    "misbehavior"
+                                  ]
+                                }
+                              },
+                              "considerations": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                },
+                                "minItems": 3
+                              }
+                            },
+                            "required": [
+                              "assumptions",
+                              "possibleOutcomes",
+                              "considerations"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "target",
+                          "hasSourceCode",
+                          "riskAnalysis"
+                        ]
+                      }
+                    },
+                    "sharedState": {
+                      "type": "array",
+                      "description": "State variables shared with other functions",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "uncertainties": {
+                  "type": "array",
+                  "description": "Explicit uncertainties or unclear aspects",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "contextUpdates": {
+                  "type": "array",
+                  "description": "Updates to earlier assumptions or corrections",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "previousAssumption": {
+                        "type": "string"
+                      },
+                      "newUnderstanding": {
+                        "type": "string"
+                      },
+                      "reason": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "previousAssumption",
+                      "newUnderstanding",
+                      "reason"
+                    ]
+                  }
+                }
+              },
+              "required": [
+                "name",
+                "location",
+                "purpose",
+                "inputs",
+                "outputs",
+                "blockByBlockAnalysis",
+                "invariants",
+                "crossFunctionDependencies"
+              ]
+            }
+          },
+          "completenessChecklist": {
+            "type": "object",
+            "description": "Verification against completeness criteria",
+            "properties": {
+              "structuralCompleteness": {
+                "type": "boolean"
+              },
+              "contentDepthMet": {
+                "type": "boolean"
+              },
+              "continuityMaintained": {
+                "type": "boolean"
+              },
+              "antiHallucinationChecks": {
+                "type": "boolean"
+              },
+              "unresolvedItems": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "structuralCompleteness",
+              "contentDepthMet",
+              "continuityMaintained",
+              "antiHallucinationChecks"
+            ]
+          }
+        },
+        "required": [
+          "functions",
+          "completenessChecklist"
+        ]
+      },
+      "phase3_globalSystem": {
+        "type": "object",
+        "description": "Global system understanding from aggregated micro-analysis",
+        "properties": {
+          "stateInvariants": {
+            "type": "array",
+            "description": "Multi-function and cross-module invariants",
+            "items": {
+              "type": "object",
+              "properties": {
+                "invariant": {
+                  "type": "string"
+                },
+                "scope": {
+                  "type": "string",
+                  "description": "Which functions/modules maintain this"
+                },
+                "enforcementMechanism": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "invariant",
+                "scope"
+              ]
+            }
+          },
+          "workflows": {
+            "type": "array",
+            "description": "End-to-end flows through the system",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "steps": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "step": {
+                        "type": "integer"
+                      },
+                      "function": {
+                        "type": "string"
+                      },
+                      "stateTransformation": {
+                        "type": "string"
+                      },
+                      "assumptions": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "required": [
+                      "step",
+                      "function",
+                      "stateTransformation"
+                    ]
+                  }
+                },
+                "persistentAssumptions": {
+                  "type": "array",
+                  "description": "Assumptions that must hold across all steps",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": [
+                "name",
+                "steps"
+              ]
+            }
+          },
+          "trustBoundaries": {
+            "type": "array",
+            "description": "Mapping of actors to entry points and trust levels",
+            "items": {
+              "type": "object",
+              "properties": {
+                "actor": {
+                  "type": "string"
+                },
+                "entryPoints": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "untrustedInputPaths": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "privilegeChanges": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": [
+                "actor",
+                "entryPoints"
+              ]
+            }
+          },
+          "complexityClusters": {
+            "type": "array",
+            "description": "Functions/modules with high complexity or fragility",
+            "items": {
+              "type": "object",
+              "properties": {
+                "location": {
+                  "type": "string"
+                },
+                "complexityFactors": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "many-assumptions",
+                      "high-branching",
+                      "multi-step-dependencies",
+                      "coupled-state-changes",
+                      "external-dependencies"
+                    ]
+                  }
+                },
+                "description": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "location",
+                "complexityFactors"
+              ]
+            }
+          },
+          "globalAssumptions": {
+            "type": "array",
+            "description": "System-wide assumptions and dependencies",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "stateInvariants",
+          "workflows",
+          "trustBoundaries",
+          "complexityClusters"
+        ]
+      },
+      "mentalModel": {
+        "type": "object",
+        "description": "Stable, explicit mental model of the system",
+        "properties": {
+          "coreInvariants": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "stateRelationships": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "actorRoles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "criticalAssumptions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "modelEvolution": {
+            "type": "array",
+            "description": "How understanding evolved during analysis",
+            "items": {
+              "type": "object",
+              "properties": {
+                "timestamp": {
+                  "type": "string"
+                },
+                "change": {
+                  "type": "string"
+                },
+                "trigger": {
+                  "type": "string",
+                  "description": "What new evidence triggered this update"
+                }
+              },
+              "required": [
+                "change",
+                "trigger"
+              ]
+            }
+          }
+        },
+        "required": [
+          "coreInvariants",
+          "stateRelationships",
+          "actorRoles",
+          "criticalAssumptions"
+        ]
+      },
+      "metadata": {
+        "type": "object",
+        "properties": {
+          "analysisTimestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "totalFunctionsAnalyzed": {
+            "type": "integer"
+          },
+          "totalLinesAnalyzed": {
+            "type": "integer"
+          },
+          "subagentsUsed": {
+            "type": "integer"
+          },
+          "phasesCompleted": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "orientation",
+                "micro-analysis",
+                "global-system"
+              ]
+            }
+          },
+          "contextStability": {
+            "type": "string",
+            "enum": [
+              "high",
+              "medium",
+              "low"
+            ],
+            "description": "Assessment of how stable the mental model remained"
+          }
+        },
+        "required": [
+          "analysisTimestamp",
+          "totalFunctionsAnalyzed",
+          "phasesCompleted"
+        ]
+      }
+    },
+    "required": [
+      "phase1_orientation",
+      "phase2_microAnalysis",
+      "phase3_globalSystem",
+      "mentalModel",
+      "metadata"
+    ]
+  },
+  "temperature": 0,
+  "tags": [
+    "security",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with audit context building",
+        "vulnerability analysis",
+        "code security"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "security_controls": {
+    "write_operations": {
+      "preview_mode": true,
+      "validation": {
+        "input_schema": true,
+        "business_rules": true,
+        "data_integrity": true
+      },
+      "rollback": {
+        "enabled": true,
+        "window_seconds": 1800
+      },
+      "audit": {
+        "log_before_state": true,
+        "log_after_state": true,
+        "track_user": true
+      }
+    }
+  },
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.92
+  }
+}

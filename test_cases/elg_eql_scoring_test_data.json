@@ -1,0 +1,95 @@
+{
+  "skill_id": "elg_eql_scoring",
+  "generated_at": "2026-02-12T00:04:59.938952",
+  "num_cases": 10,
+  "test_cases": [
+    {
+      "inputs": {
+        "leadId": "test_gboytfzm",
+        "action": "get_score",
+        "partnerId": "test_genfkbx3",
+        "signalType": "integration_install"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "leadId": "test_jrt710q6",
+        "action": "get_score",
+        "partnerId": "test_c0stx5vs",
+        "signalType": "integration_install"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "leadId": "test_jwsxcfso",
+        "action": "score"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "action": "get_score",
+        "partnerId": "test_4binjao8",
+        "signalType": "integration_install"
+      },
+      "label": "missing_leadId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "leadId": "test_zhu748io",
+        "partnerId": "test_t9sksati"
+      },
+      "label": "missing_action",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "leadId": 12345,
+        "action": "update_score",
+        "partnerId": "test_z3mtvdg7",
+        "signalType": "integration_install"
+      },
+      "label": "invalid_type_leadId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "leadId": "test_a8mmh0xq",
+        "action": "score",
+        "partnerId": 12345,
+        "signalType": "integration_install"
+      },
+      "label": "invalid_type_partnerId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "leadId": "test_rsvmusuz",
+        "action": "update_score",
+        "partnerId": "test_eke4yn5v",
+        "signalType": 12345
+      },
+      "label": "invalid_type_signalType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "leadId": "test_yyfid8hw",
+        "action": 12345
+      },
+      "label": "invalid_type_action",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

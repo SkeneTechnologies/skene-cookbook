@@ -1,0 +1,35 @@
+{
+  "id": "cursor_rules/pydantic",
+  "version": "1.0.0",
+  "name": "pydantic",
+  "description": "Definitive guidelines for writing robust, maintainable, and performant pydantic models in Python, focusing on v2.12.5 best practices.",
+  "domain": "cursor_rules",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "cursor_rules",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "cursor": {
+      "globs": [
+        "**/*.py"
+      ]
+    },
+    "claude": {
+      "triggers": [
+        "help with pydantic"
+      ]
+    },
+    "skeneflow": {}
+  },
+  "skipSchemaValidation": true
+}

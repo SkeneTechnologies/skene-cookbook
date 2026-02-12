@@ -1,0 +1,84 @@
+{
+  "skill_id": "people_pulse_analyzer",
+  "generated_at": "2026-02-11T22:18:31.418358",
+  "num_cases": 9,
+  "test_cases": [
+    {
+      "inputs": {
+        "surveyId": "test_apr6a7vb",
+        "teamId": "g0y3te",
+        "timePeriod": "monthly"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "surveyId": "test_8qa9dcdl",
+        "teamId": "iitvqgum9solu",
+        "compareToBaseline": true
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "surveyId": "test_u4vxxa3k",
+        "teamId": "9awszx85qy",
+        "compareToBaseline": false
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "teamId": "gvzu2dtwf4h9en57rx",
+        "compareToBaseline": true
+      },
+      "label": "missing_surveyId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "surveyId": 12345,
+        "teamId": "c7y",
+        "compareToBaseline": true
+      },
+      "label": "invalid_type_surveyId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "surveyId": "test_3bqz9lvb",
+        "teamId": 12345,
+        "timePeriod": "weekly",
+        "compareToBaseline": true
+      },
+      "label": "invalid_type_teamId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "surveyId": "test_gg4c0bv8",
+        "teamId": "bznojst",
+        "compareToBaseline": false,
+        "timePeriod": 12345
+      },
+      "label": "invalid_type_timePeriod",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "surveyId": "test_d6aotw23",
+        "compareToBaseline": "yes"
+      },
+      "label": "invalid_type_compareToBaseline",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

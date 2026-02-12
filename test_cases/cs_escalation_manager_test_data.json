@@ -1,0 +1,105 @@
+{
+  "skill_id": "cs_escalation_manager",
+  "generated_at": "2026-02-12T00:05:02.030460",
+  "num_cases": 11,
+  "test_cases": [
+    {
+      "inputs": {
+        "accountId": "test_auj615ui",
+        "escalationType": "relationship",
+        "severity": "low",
+        "description": "u3hygl87rbi9fvrrgyyx"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "accountId": "test_9bj21x4r",
+        "escalationType": "legal",
+        "severity": "medium"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "accountId": "test_f3jt8y9r",
+        "escalationType": "legal",
+        "severity": "medium"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "escalationType": "executive",
+        "severity": "medium",
+        "description": "bkmbqn54dd3rbt"
+      },
+      "label": "missing_accountId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": "test_dt5z6uak",
+        "severity": "high",
+        "description": "l"
+      },
+      "label": "missing_escalationType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": "test_j5jzya8s",
+        "escalationType": "executive"
+      },
+      "label": "missing_severity",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": 12345,
+        "escalationType": "commercial",
+        "severity": "high",
+        "description": "ggyscqzckqgnq"
+      },
+      "label": "invalid_type_accountId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": "test_p0wgnvhw",
+        "escalationType": 12345,
+        "severity": "high",
+        "description": "7hek"
+      },
+      "label": "invalid_type_escalationType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": "test_sf9uhln4",
+        "escalationType": "technical",
+        "severity": 12345
+      },
+      "label": "invalid_type_severity",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": "test_57ed84aw",
+        "escalationType": "technical",
+        "severity": "high",
+        "description": 12345
+      },
+      "label": "invalid_type_description",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

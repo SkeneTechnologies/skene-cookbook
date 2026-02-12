@@ -1,0 +1,72 @@
+{
+  "skill_id": "devex_deprecation_notifier",
+  "generated_at": "2026-02-11T22:18:30.781755",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "deprecation_id": "u68xs4szinvit",
+        "developer_id": "ldtgri09i0b2ilk277ej",
+        "include_timeline": false
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "action": "track",
+        "include_timeline": false
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "developer_id": "mzubhnlzq",
+        "action": "track"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "developer_id": "57gmougdb5",
+        "action": "notify",
+        "include_timeline": false,
+        "deprecation_id": 12345
+      },
+      "label": "invalid_type_deprecation_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "deprecation_id": "oxt47djehx8a2xsut2",
+        "action": "track",
+        "include_timeline": true,
+        "developer_id": 12345
+      },
+      "label": "invalid_type_developer_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": 12345
+      },
+      "label": "invalid_type_action",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "developer_id": "ur",
+        "include_timeline": "yes"
+      },
+      "label": "invalid_type_include_timeline",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": true
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "skill_id": "scientific/pytorch-lightning",
+  "generated_at": "2026-02-11T22:17:53.653293",
+  "num_cases": 3,
+  "test_cases": [
+    {
+      "inputs": {},
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {},
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {},
+      "label": "valid_case_3",
+      "expected_valid": true
+    }
+  ]
+}

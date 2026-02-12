@@ -1,0 +1,39 @@
+{
+  "id": "cursor_rules/vue3",
+  "version": "1.0.0",
+  "name": "vue3",
+  "description": "Definitive guidelines for building maintainable, performant, and type-safe Vue 3 applications using modern best practices, Composition API, and TypeScript.",
+  "domain": "cursor_rules",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "cursor_rules",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "cursor": {
+      "globs": [
+        "**/*.{js",
+        "jsx",
+        "ts",
+        "tsx",
+        "vue}"
+      ]
+    },
+    "claude": {
+      "triggers": [
+        "help with vue3"
+      ]
+    },
+    "skeneflow": {}
+  },
+  "skipSchemaValidation": true
+}

@@ -1,0 +1,83 @@
+{
+  "skill_id": "revops_commit_accuracy",
+  "generated_at": "2026-02-12T00:05:07.539355",
+  "num_cases": 9,
+  "test_cases": [
+    {
+      "inputs": {
+        "period": "ao0j3em6",
+        "segment": "t055s9df",
+        "category": "all"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "period": "wd2ajilbo4",
+        "segment": "z9kgnl9xtm8u44ko",
+        "category": "commit"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "period": "cv",
+        "category": "all"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "ownerId": "uad",
+        "segment": "9bazrty2tk2kh",
+        "category": "pipeline"
+      },
+      "label": "missing_period",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": 12345,
+        "segment": "7txfo4o"
+      },
+      "label": "invalid_type_period",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": "0rgl9i6ssdik5z2",
+        "ownerId": 12345,
+        "segment": "i"
+      },
+      "label": "invalid_type_ownerId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": "181",
+        "ownerId": "vh3gy0",
+        "segment": 12345,
+        "category": "all"
+      },
+      "label": "invalid_type_segment",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": "usvf78ct341a77z2jgw",
+        "segment": "b",
+        "category": 12345
+      },
+      "label": "invalid_type_category",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

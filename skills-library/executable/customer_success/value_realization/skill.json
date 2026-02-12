@@ -1,0 +1,461 @@
+{
+  "id": "cs_value_realization",
+  "version": "1.0.0",
+  "name": "Value Realization Tracker",
+  "description": "Tracks and documents customer value realization against defined success criteria (VLAs).",
+  "domain": "customer_success",
+  "tools": [
+    {
+      "name": "analytics.get_metrics",
+      "required": true
+    },
+    {
+      "name": "analytics.query_events",
+      "required": true
+    },
+    {
+      "name": "crm.get_account",
+      "required": true
+    },
+    {
+      "name": "crm.log_activity",
+      "required": true
+    },
+    {
+      "name": "lifecycle.record_moment",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "expansion_playbook",
+    "case_study",
+    "advocacy",
+    "idle"
+  ],
+  "metrics": {
+    "primary": "value_realization_rate",
+    "benchmarks": {
+      "excellent": "> 80%",
+      "good": "60-80%",
+      "needs_improvement": "< 60%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "customer_success",
+    "value",
+    "outcomes",
+    "roi",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Value Realization Tracker",
+        "customer health"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "lifecycle.get_segment",
+          "required": true
+        },
+        {
+          "name": "analytics.get_cohort",
+          "required": false
+        },
+        {
+          "name": "crm.update_account",
+          "required": false
+        }
+      ]
+    }
+  },
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "account_id": {
+        "type": "string",
+        "description": "Unique identifier for the customer account"
+      },
+      "reporting_period": {
+        "type": "object",
+        "description": "Time period for value realization assessment",
+        "properties": {
+          "start_date": {
+            "type": "string",
+            "format": "date",
+            "description": "Start date of the reporting period"
+          },
+          "end_date": {
+            "type": "string",
+            "format": "date",
+            "description": "End date of the reporting period"
+          }
+        },
+        "required": [
+          "start_date",
+          "end_date"
+        ]
+      },
+      "vla_objectives": {
+        "type": "array",
+        "description": "Array of Value-Level Agreement objectives to track",
+        "items": {
+          "type": "object",
+          "properties": {
+            "objective_id": {
+              "type": "string",
+              "description": "Unique identifier for the objective"
+            },
+            "business_objective": {
+              "type": "string",
+              "description": "What the customer wants to achieve"
+            },
+            "value_category": {
+              "type": "string",
+              "enum": [
+                "efficiency",
+                "revenue",
+                "cost",
+                "quality",
+                "growth"
+              ],
+              "description": "Category of value being measured"
+            },
+            "success_metrics": {
+              "type": "array",
+              "description": "Metrics to measure success",
+              "items": {
+                "type": "string"
+              }
+            },
+            "target_value": {
+              "type": "object",
+              "description": "Specific goal and unit of measurement",
+              "properties": {
+                "value": {
+                  "type": "number",
+                  "description": "Numeric target value"
+                },
+                "unit": {
+                  "type": "string",
+                  "description": "Unit of measurement (e.g., %, hours, $)"
+                }
+              },
+              "required": [
+                "value",
+                "unit"
+              ]
+            },
+            "target_date": {
+              "type": "string",
+              "format": "date",
+              "description": "When the objective should be achieved"
+            },
+            "baseline_value": {
+              "type": "number",
+              "description": "Starting point value for comparison"
+            }
+          },
+          "required": [
+            "objective_id",
+            "business_objective",
+            "value_category",
+            "success_metrics",
+            "target_value",
+            "target_date"
+          ]
+        },
+        "minItems": 1
+      },
+      "include_roi_calculation": {
+        "type": "boolean",
+        "description": "Whether to calculate ROI based on investment data",
+        "default": true
+      },
+      "customer_investment": {
+        "type": "number",
+        "description": "Total customer investment in the solution (for ROI calculation)"
+      },
+      "validate_with_customer": {
+        "type": "boolean",
+        "description": "Whether customer validation is required for value claims",
+        "default": true
+      }
+    },
+    "required": [
+      "account_id",
+      "reporting_period",
+      "vla_objectives"
+    ],
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "account_name": {
+        "type": "string",
+        "description": "Name of the customer account"
+      },
+      "account_id": {
+        "type": "string",
+        "description": "Unique identifier for the customer account"
+      },
+      "reporting_period": {
+        "type": "object",
+        "properties": {
+          "start_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "end_date": {
+            "type": "string",
+            "format": "date"
+          }
+        },
+        "required": [
+          "start_date",
+          "end_date"
+        ]
+      },
+      "overall_value_score": {
+        "type": "number",
+        "description": "Percentage score of overall value realization (0-100)",
+        "minimum": 0,
+        "maximum": 100
+      },
+      "vla_progress": {
+        "type": "array",
+        "description": "Progress details for each VLA objective",
+        "items": {
+          "type": "object",
+          "properties": {
+            "objective_id": {
+              "type": "string"
+            },
+            "business_objective": {
+              "type": "string"
+            },
+            "value_category": {
+              "type": "string",
+              "enum": [
+                "efficiency",
+                "revenue",
+                "cost",
+                "quality",
+                "growth"
+              ]
+            },
+            "target_value": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unit": {
+                  "type": "string"
+                }
+              }
+            },
+            "actual_value": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unit": {
+                  "type": "string"
+                }
+              }
+            },
+            "achievement_percentage": {
+              "type": "number",
+              "description": "Percentage of target achieved",
+              "minimum": 0
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "achieved",
+                "on_track",
+                "at_risk",
+                "not_achieved"
+              ],
+              "description": "Status indicator (\u2713/\u26a0/\u2717)"
+            },
+            "target_date": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          "required": [
+            "objective_id",
+            "business_objective",
+            "value_category",
+            "target_value",
+            "actual_value",
+            "achievement_percentage",
+            "status"
+          ]
+        }
+      },
+      "quantified_value": {
+        "type": "object",
+        "description": "Overall quantified value delivered",
+        "properties": {
+          "total_value_delivered": {
+            "type": "number",
+            "description": "Total monetary value delivered in dollars"
+          },
+          "roi_multiplier": {
+            "type": "number",
+            "description": "Return on investment as a multiplier (e.g., 3.5x)"
+          },
+          "roi_percentage": {
+            "type": "number",
+            "description": "ROI as percentage"
+          },
+          "time_to_value_days": {
+            "type": "integer",
+            "description": "Days from implementation to first value realization"
+          },
+          "payback_period_months": {
+            "type": "number",
+            "description": "Months to recover initial investment"
+          }
+        },
+        "required": [
+          "total_value_delivered"
+        ]
+      },
+      "value_breakdown": {
+        "type": "array",
+        "description": "Breakdown of value by category",
+        "items": {
+          "type": "object",
+          "properties": {
+            "category": {
+              "type": "string",
+              "enum": [
+                "efficiency",
+                "revenue",
+                "cost",
+                "quality",
+                "growth"
+              ]
+            },
+            "monetary_value": {
+              "type": "number",
+              "description": "Dollar value attributed to this category"
+            },
+            "metric_value": {
+              "type": "object",
+              "description": "Non-monetary metric value",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unit": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "required": [
+            "category"
+          ]
+        }
+      },
+      "recommendations": {
+        "type": "array",
+        "description": "Actions to increase realized value or address gaps",
+        "items": {
+          "type": "object",
+          "properties": {
+            "priority": {
+              "type": "string",
+              "enum": [
+                "high",
+                "medium",
+                "low"
+              ]
+            },
+            "action": {
+              "type": "string",
+              "description": "Recommended action"
+            },
+            "related_objective_id": {
+              "type": "string",
+              "description": "ID of related VLA objective if applicable"
+            },
+            "expected_impact": {
+              "type": "string",
+              "description": "Expected impact of taking this action"
+            }
+          },
+          "required": [
+            "priority",
+            "action"
+          ]
+        }
+      },
+      "customer_validated": {
+        "type": "boolean",
+        "description": "Whether the value claims have been validated by the customer"
+      },
+      "validation_date": {
+        "type": "string",
+        "format": "date-time",
+        "description": "When customer validated the value report"
+      },
+      "methodology_notes": {
+        "type": "string",
+        "description": "Documentation of calculation methodology for audit purposes"
+      },
+      "next_review_date": {
+        "type": "string",
+        "format": "date",
+        "description": "Scheduled date for next value review"
+      },
+      "moments_recorded": {
+        "type": "array",
+        "description": "Lifecycle moments recorded during this assessment",
+        "items": {
+          "type": "object",
+          "properties": {
+            "moment_type": {
+              "type": "string"
+            },
+            "moment_id": {
+              "type": "string"
+            },
+            "timestamp": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        }
+      }
+    },
+    "required": [
+      "account_name",
+      "account_id",
+      "reporting_period",
+      "overall_value_score",
+      "vla_progress",
+      "quantified_value",
+      "value_breakdown",
+      "recommendations"
+    ]
+  },
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.92
+  }
+}

@@ -1,0 +1,345 @@
+{
+  "id": "anthropic_official/mcp-builder",
+  "version": "1.0.0",
+  "name": "mcp-builder",
+  "description": "Guide for creating high-quality MCP (Model Context Protocol) servers that enable LLMs to interact with external services through well-designed tools. Use when building MCP servers to integrate external APIs or services, whether in Python (FastMCP) or Node/TypeScript (MCP SDK).",
+  "domain": "anthropic_official",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "service_name": {
+        "type": "string",
+        "description": "Name of the external service or API to integrate (e.g., 'GitHub', 'Slack', 'PostgreSQL')"
+      },
+      "service_api_documentation_url": {
+        "type": "string",
+        "format": "uri",
+        "description": "URL to the service's API documentation for research and planning"
+      },
+      "preferred_language": {
+        "type": "string",
+        "enum": [
+          "typescript",
+          "python"
+        ],
+        "default": "typescript",
+        "description": "Programming language for MCP server implementation"
+      },
+      "transport_type": {
+        "type": "string",
+        "enum": [
+          "streamable_http",
+          "stdio"
+        ],
+        "description": "Transport mechanism - streamable HTTP for remote servers, stdio for local servers"
+      },
+      "priority_endpoints": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "List of API endpoints or operations to prioritize in the implementation"
+      },
+      "authentication_method": {
+        "type": "string",
+        "description": "Authentication mechanism required by the service (e.g., 'API Key', 'OAuth2', 'Bearer Token')"
+      },
+      "include_evaluations": {
+        "type": "boolean",
+        "default": true,
+        "description": "Whether to generate evaluation questions and answers for testing the MCP server"
+      },
+      "design_preferences": {
+        "type": "object",
+        "properties": {
+          "comprehensive_coverage": {
+            "type": "boolean",
+            "default": true,
+            "description": "Prioritize comprehensive API endpoint coverage over workflow-specific tools"
+          },
+          "output_format": {
+            "type": "string",
+            "enum": [
+              "json",
+              "markdown",
+              "both"
+            ],
+            "default": "both",
+            "description": "Preferred response format for tool outputs"
+          },
+          "pagination_support": {
+            "type": "boolean",
+            "default": true,
+            "description": "Include pagination support in tools that return lists"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "required": [
+      "service_name",
+      "preferred_language"
+    ],
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "mcp_server_code": {
+        "type": "object",
+        "properties": {
+          "language": {
+            "type": "string",
+            "enum": [
+              "typescript",
+              "python"
+            ]
+          },
+          "main_server_file": {
+            "type": "string",
+            "description": "Complete source code for the main MCP server implementation"
+          },
+          "configuration_files": {
+            "type": "object",
+            "properties": {
+              "package_json": {
+                "type": "string",
+                "description": "TypeScript package.json configuration"
+              },
+              "tsconfig_json": {
+                "type": "string",
+                "description": "TypeScript compiler configuration"
+              },
+              "requirements_txt": {
+                "type": "string",
+                "description": "Python dependencies file"
+              }
+            },
+            "additionalProperties": true
+          },
+          "utility_modules": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "filename": {
+                  "type": "string"
+                },
+                "code": {
+                  "type": "string"
+                },
+                "purpose": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "filename",
+                "code"
+              ]
+            },
+            "description": "Shared utilities for API client, error handling, formatting"
+          }
+        },
+        "required": [
+          "language",
+          "main_server_file"
+        ]
+      },
+      "tools_implemented": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "tool_name": {
+              "type": "string",
+              "description": "Name of the MCP tool following naming conventions"
+            },
+            "description": {
+              "type": "string",
+              "description": "Concise summary of tool functionality"
+            },
+            "input_schema": {
+              "type": "object",
+              "description": "Zod or Pydantic schema definition for tool inputs"
+            },
+            "output_schema": {
+              "type": "object",
+              "description": "Schema defining the structure of tool outputs"
+            },
+            "annotations": {
+              "type": "object",
+              "properties": {
+                "readOnlyHint": {
+                  "type": "boolean"
+                },
+                "destructiveHint": {
+                  "type": "boolean"
+                },
+                "idempotentHint": {
+                  "type": "boolean"
+                },
+                "openWorldHint": {
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          "required": [
+            "tool_name",
+            "description",
+            "input_schema"
+          ]
+        }
+      },
+      "evaluations": {
+        "type": "object",
+        "properties": {
+          "xml_content": {
+            "type": "string",
+            "description": "Complete XML evaluation file with 10 question-answer pairs"
+          },
+          "qa_pairs": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "question": {
+                  "type": "string",
+                  "description": "Complex, realistic evaluation question"
+                },
+                "answer": {
+                  "type": "string",
+                  "description": "Verified answer that can be string-compared"
+                },
+                "required_tools": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Tools needed to answer this question"
+                }
+              },
+              "required": [
+                "question",
+                "answer"
+              ]
+            },
+            "minItems": 10,
+            "maxItems": 10
+          }
+        }
+      },
+      "documentation": {
+        "type": "object",
+        "properties": {
+          "readme": {
+            "type": "string",
+            "description": "README.md with setup, usage, and tool documentation"
+          },
+          "build_instructions": {
+            "type": "string",
+            "description": "Instructions for building and testing the server"
+          },
+          "inspector_command": {
+            "type": "string",
+            "description": "Command to test with MCP Inspector"
+          }
+        },
+        "required": [
+          "readme",
+          "build_instructions"
+        ]
+      },
+      "quality_checklist": {
+        "type": "object",
+        "properties": {
+          "code_quality_passed": {
+            "type": "boolean"
+          },
+          "build_successful": {
+            "type": "boolean"
+          },
+          "all_tools_tested": {
+            "type": "boolean"
+          },
+          "evaluations_created": {
+            "type": "boolean"
+          },
+          "issues_found": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "code_quality_passed",
+          "build_successful"
+        ]
+      }
+    },
+    "required": [
+      "mcp_server_code",
+      "tools_implemented",
+      "documentation",
+      "quality_checklist"
+    ]
+  },
+  "temperature": 0,
+  "tags": [
+    "anthropic_official",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "license": "Complete terms in LICENSE.txt",
+      "triggers": [
+        "help with mcp builder",
+        "building mcp servers to integrate external apis or services, whether in python (fastmcp) or node/typescript (mcp sdk)"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "categories": [
+    "marketing",
+    "marketing/tools"
+  ],
+  "security_controls": {
+    "execution_environment": {
+      "type": "sandboxed_container",
+      "resource_limits": {
+        "cpu_cores": 1,
+        "memory_mb": 512,
+        "timeout_seconds": 30,
+        "disk_mb": 100
+      },
+      "security": {
+        "network_access": false,
+        "filesystem": "read_only",
+        "user": "non_root",
+        "allowed_commands": [
+          "node",
+          "python3",
+          "npm"
+        ],
+        "blocked_syscalls": [
+          "exec",
+          "fork",
+          "kill"
+        ]
+      }
+    }
+  },
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.92
+  }
+}

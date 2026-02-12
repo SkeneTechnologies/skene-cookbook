@@ -1,0 +1,79 @@
+{
+  "skill_id": "revops_attribution_tracker",
+  "generated_at": "2026-02-12T00:05:07.405923",
+  "num_cases": 9,
+  "test_cases": [
+    {
+      "inputs": {
+        "period": "oiocp",
+        "model": "ml_weighted"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "period": "hfyv127"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "period": "ldly1p37y7eaul7z",
+        "groupBy": "campaign",
+        "minDealSize": 8398.22
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "minDealSize": 5192.62
+      },
+      "label": "missing_period",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": 12345,
+        "model": "ml_weighted"
+      },
+      "label": "invalid_type_period",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": "ii73z6idtaf4",
+        "model": 12345,
+        "groupBy": "channel",
+        "minDealSize": 1301.29
+      },
+      "label": "invalid_type_model",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": "6bry4ryvlstccnrpf",
+        "groupBy": 12345,
+        "minDealSize": 2205.78
+      },
+      "label": "invalid_type_groupBy",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": "fxf14fld1ja",
+        "groupBy": "campaign",
+        "minDealSize": "not_a_number"
+      },
+      "label": "invalid_type_minDealSize",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

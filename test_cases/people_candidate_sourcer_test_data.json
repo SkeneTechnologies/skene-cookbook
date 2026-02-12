@@ -1,0 +1,112 @@
+{
+  "skill_id": "people_candidate_sourcer",
+  "generated_at": "2026-02-11T22:18:31.474758",
+  "num_cases": 10,
+  "test_cases": [
+    {
+      "inputs": {
+        "jobId": "test_9pmfy9a1",
+        "targetCount": 3098.49,
+        "diversitySourcing": true
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "jobId": "test_myelu8pb",
+        "experienceRange": {
+          "min": 1348.96
+        }
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "jobId": "test_g3aco725",
+        "sourcingPlatforms": [],
+        "diversitySourcing": true,
+        "experienceRange": {}
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "experienceRange": {
+          "max": 3492.32
+        }
+      },
+      "label": "missing_jobId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "jobId": 12345,
+        "sourcingPlatforms": [
+          "7f2",
+          "d0vkm9zmstbtl7y"
+        ],
+        "experienceRange": {
+          "min": 2277.07
+        }
+      },
+      "label": "invalid_type_jobId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "jobId": "test_riyh1y17",
+        "diversitySourcing": false,
+        "sourcingPlatforms": "not_an_array"
+      },
+      "label": "invalid_type_sourcingPlatforms",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "jobId": "test_veqprkc2",
+        "diversitySourcing": true,
+        "experienceRange": {
+          "min": 5209.58,
+          "max": 3716.47
+        },
+        "targetCount": "not_a_number"
+      },
+      "label": "invalid_type_targetCount",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "jobId": "test_pllpkugt",
+        "sourcingPlatforms": [
+          "kgvyka"
+        ],
+        "diversitySourcing": "yes"
+      },
+      "label": "invalid_type_diversitySourcing",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "jobId": "test_k3ko8taf",
+        "sourcingPlatforms": [
+          "vciskzsu42wf",
+          "4qzl3pms",
+          "rbv18c7ch"
+        ],
+        "targetCount": 1051.92,
+        "diversitySourcing": true,
+        "experienceRange": "not_an_object"
+      },
+      "label": "invalid_type_experienceRange",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

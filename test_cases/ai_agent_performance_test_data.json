@@ -1,0 +1,90 @@
+{
+  "skill_id": "ai_agent_performance",
+  "generated_at": "2026-02-12T00:05:03.543477",
+  "num_cases": 9,
+  "test_cases": [
+    {
+      "inputs": {
+        "agent_id": "pos3wkz7576lmexdo745"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "agent_id": "cpj6hp2uos",
+        "metrics": [
+          "zhiavxdbkoe",
+          "38rgv"
+        ]
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "agent_id": "gspajex2m6go",
+        "time_range": {},
+        "metrics": [
+          "ubjvohz2ko6tx2njc",
+          "jqckjuiwbee4"
+        ]
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "time_range": {},
+        "metrics": []
+      },
+      "label": "missing_agent_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "agent_id": 12345,
+        "time_range": {},
+        "metrics": [
+          "bn"
+        ],
+        "compare_baseline": false
+      },
+      "label": "invalid_type_agent_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "agent_id": "jq7lxbc2g1d15k149mc",
+        "compare_baseline": true,
+        "time_range": "not_an_object"
+      },
+      "label": "invalid_type_time_range",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "agent_id": "hzs",
+        "compare_baseline": true,
+        "metrics": "not_an_array"
+      },
+      "label": "invalid_type_metrics",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "agent_id": "n7whr2z58j",
+        "time_range": {},
+        "metrics": [],
+        "compare_baseline": "yes"
+      },
+      "label": "invalid_type_compare_baseline",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "skill_id": "finops_investor_metrics",
+  "generated_at": "2026-02-12T00:05:00.031869",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "period": "4xhc4oe5jej",
+        "audience": "internal",
+        "include_benchmarks": false
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "period": "4epl9rdj",
+        "audience": "investor",
+        "include_benchmarks": true
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "period": "3",
+        "audience": "internal",
+        "include_benchmarks": true
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "include_benchmarks": false
+      },
+      "label": "missing_period",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": 12345,
+        "audience": "board"
+      },
+      "label": "invalid_type_period",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": "8ybun",
+        "include_benchmarks": true,
+        "audience": 12345
+      },
+      "label": "invalid_type_audience",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": "u0oc",
+        "audience": "investor",
+        "include_benchmarks": "yes"
+      },
+      "label": "invalid_type_include_benchmarks",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

@@ -1,0 +1,203 @@
+{
+  "id": "anthropic_official/canvas-design",
+  "version": "1.0.0",
+  "name": "canvas-design",
+  "description": "Create beautiful visual art in .png and .pdf documents using design philosophy. You should use this skill when the user asks to create a poster, piece of art, design, or other static piece. Create original visual designs, never copying existing artists' work to avoid copyright violations.",
+  "domain": "anthropic_official",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "design_request": {
+        "type": "string",
+        "description": "The user's request for what to create (e.g., 'create a poster for a jazz festival', 'design art for a meditation app', 'make a visual piece about urban architecture')"
+      },
+      "subtle_reference": {
+        "type": "string",
+        "description": "Optional subtle conceptual thread or niche reference to embed within the art (e.g., a cultural reference, theme, or subject matter that should influence the design subtly)"
+      },
+      "output_format": {
+        "type": "string",
+        "enum": [
+          "png",
+          "pdf"
+        ],
+        "default": "pdf",
+        "description": "Preferred output format for the visual design"
+      },
+      "number_of_pages": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 20,
+        "default": 1,
+        "description": "Number of pages/designs to create (for multi-page projects like coffee table books)"
+      },
+      "color_palette_preference": {
+        "type": "string",
+        "description": "Optional color palette guidance (e.g., 'monochromatic', 'earth tones', 'vibrant primary colors')"
+      },
+      "aesthetic_direction": {
+        "type": "string",
+        "description": "Optional aesthetic hints or style preferences (e.g., 'brutalist', 'minimalist', 'organic', 'geometric')"
+      },
+      "text_content": {
+        "type": "string",
+        "description": "Optional minimal text to include in the design (title, key phrases, labels). Should be sparse and integrated as visual elements"
+      }
+    },
+    "required": [
+      "design_request"
+    ],
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "design_philosophy": {
+        "type": "object",
+        "properties": {
+          "movement_name": {
+            "type": "string",
+            "description": "The 1-2 word name of the created aesthetic movement (e.g., 'Brutalist Joy', 'Chromatic Silence')"
+          },
+          "philosophy_content": {
+            "type": "string",
+            "description": "The complete 4-6 paragraph design philosophy describing visual expression, spatial communication, and aesthetic principles"
+          },
+          "file_path": {
+            "type": "string",
+            "format": "uri",
+            "description": "Path to the .md file containing the design philosophy"
+          }
+        },
+        "required": [
+          "movement_name",
+          "philosophy_content",
+          "file_path"
+        ]
+      },
+      "visual_artifacts": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "file_path": {
+              "type": "string",
+              "format": "uri",
+              "description": "Path to the .png or .pdf file containing the visual design"
+            },
+            "file_format": {
+              "type": "string",
+              "enum": [
+                "png",
+                "pdf"
+              ],
+              "description": "Format of the visual artifact"
+            },
+            "page_number": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "Page number for multi-page outputs"
+            },
+            "dimensions": {
+              "type": "object",
+              "properties": {
+                "width": {
+                  "type": "integer",
+                  "description": "Width in pixels or points"
+                },
+                "height": {
+                  "type": "integer",
+                  "description": "Height in pixels or points"
+                }
+              }
+            }
+          },
+          "required": [
+            "file_path",
+            "file_format"
+          ]
+        },
+        "minItems": 1,
+        "description": "Array of visual design files created (one or more pages)"
+      },
+      "deduced_reference": {
+        "type": "string",
+        "description": "The subtle conceptual thread or niche reference that was embedded within the art"
+      },
+      "fonts_used": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "List of font names used in the design"
+      },
+      "color_palette": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "pattern": "^#[0-9A-Fa-f]{6}$"
+        },
+        "description": "Primary colors used in the design (hex codes)"
+      },
+      "craftsmanship_notes": {
+        "type": "string",
+        "description": "Notes on the expert-level craftsmanship techniques applied and refinements made"
+      }
+    },
+    "required": [
+      "design_philosophy",
+      "visual_artifacts",
+      "deduced_reference"
+    ]
+  },
+  "temperature": 0,
+  "tags": [
+    "anthropic_official",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "license": "Complete terms in LICENSE.txt",
+      "triggers": [
+        "help with canvas design",
+        "document creation"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "categories": [
+    "marketing",
+    "marketing/media"
+  ],
+  "security_controls": {
+    "write_operations": {
+      "preview_mode": true,
+      "validation": {
+        "input_schema": true,
+        "business_rules": true,
+        "data_integrity": true
+      },
+      "rollback": {
+        "enabled": true,
+        "window_seconds": 1800
+      },
+      "audit": {
+        "log_before_state": true,
+        "log_after_state": true,
+        "track_user": true
+      }
+    }
+  },
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.92
+  }
+}

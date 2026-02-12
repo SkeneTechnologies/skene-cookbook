@@ -8,8 +8,7 @@ Thank you for your interest in contributing to the Skills Directory! This guide 
 2. [Adding New Skills](#adding-new-skills)
 3. [Security Auditing](#security-auditing)
 4. [Creating Workflows](#creating-workflows)
-5. [Code of Conduct](#code-of-conduct)
-6. [Development Setup](#development-setup)
+5. [Development Setup](#development-setup)
 
 ## Philosophy
 
@@ -302,35 +301,6 @@ npm run validate:workflow registry/blueprints/your_workflow.yaml
 
 Same process as skill addition, but in `registry/blueprints/`.
 
-## Code of Conduct
-
-### Our Pledge
-
-We are committed to providing a welcoming and inclusive environment for all contributors, regardless of background or identity.
-
-### Standards
-
-✅ **Do:**
-- Be respectful and constructive
-- Focus on skill quality and security
-- Help others learn and improve
-- Give credit where due
-
-❌ **Don't:**
-- Submit malicious skills
-- Bypass security requirements
-- Copy proprietary workflows without permission
-- Harass or discriminate
-
-### Enforcement
-
-Violations will result in:
-1. Warning
-2. Temporary ban
-3. Permanent ban
-
-Report issues to: security@skene.ai
-
 ## Development Setup
 
 ### Prerequisites
@@ -371,10 +341,15 @@ This will automatically:
 - Run security analysis
 - Check for malicious code patterns
 
+## Code of Conduct
+
+All contributors are expected to follow our [Code of Conduct](CODE_OF_CONDUCT.md). Please read it before participating in the project.
+
 ## Questions?
 
 - 📖 Read [ARCHITECTURE.md](ARCHITECTURE.md) for design details
 - 🔒 Read [SECURITY_POLICY.md](SECURITY_POLICY.md) for security guidelines
+- 🤝 Read [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) for community standards
 - 💬 Open an issue for questions
 - 📧 Email: community@skene.ai
 

@@ -1,0 +1,104 @@
+{
+  "skill_id": "data_privacy_scanner",
+  "generated_at": "2026-02-11T22:18:29.347796",
+  "num_cases": 9,
+  "test_cases": [
+    {
+      "inputs": {
+        "scan_scope": "both",
+        "regulations": [
+          "ujq1jmjabpq32vhjq5",
+          "d9nkb5e0juz"
+        ],
+        "pii_types": [
+          "4rrrju545a9"
+        ],
+        "include_recommendations": true
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "pii_types": [],
+        "sample_size": 9480.91
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "scan_scope": "events",
+        "sample_size": 2956.83
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "regulations": [
+          "eueq35ks22zp5kb6ll",
+          "upch25ajxeo"
+        ],
+        "pii_types": [
+          "f62ptmz1s7llkz",
+          "s47lr",
+          "akk"
+        ],
+        "scan_scope": 12345
+      },
+      "label": "invalid_type_scan_scope",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "scan_scope": "warehouse",
+        "regulations": "not_an_array",
+        "sample_size": 1860.42,
+        "include_recommendations": true
+      },
+      "label": "invalid_type_regulations",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "regulations": [
+          "ou8soh37ae"
+        ],
+        "sample_size": 234.54,
+        "include_recommendations": false,
+        "pii_types": "not_an_array"
+      },
+      "label": "invalid_type_pii_types",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "regulations": [],
+        "sample_size": "not_a_number",
+        "include_recommendations": true
+      },
+      "label": "invalid_type_sample_size",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "scan_scope": "events",
+        "regulations": [
+          "o6os1l",
+          "eyp6gderf",
+          "f3n7fjvg"
+        ],
+        "sample_size": 6440.35,
+        "include_recommendations": "yes"
+      },
+      "label": "invalid_type_include_recommendations",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": true
+    }
+  ]
+}

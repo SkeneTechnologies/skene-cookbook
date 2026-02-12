@@ -1,0 +1,73 @@
+{
+  "skill_id": "support_csat_analyzer",
+  "generated_at": "2026-02-12T00:05:04.356473",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "min_responses": 9707.24
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "time_period": "88g4",
+        "include_verbatims": false,
+        "min_responses": 9797.79
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "time_period": "l2b",
+        "segment_by": "priority",
+        "include_verbatims": true
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "segment_by": "priority",
+        "include_verbatims": true,
+        "min_responses": 3104.05,
+        "time_period": 12345
+      },
+      "label": "invalid_type_time_period",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "time_period": "x1yj86",
+        "segment_by": 12345
+      },
+      "label": "invalid_type_segment_by",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "time_period": "se",
+        "segment_by": "priority",
+        "include_verbatims": "yes",
+        "min_responses": 3406.01
+      },
+      "label": "invalid_type_include_verbatims",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "include_verbatims": false,
+        "min_responses": "not_a_number"
+      },
+      "label": "invalid_type_min_responses",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": true
+    }
+  ]
+}

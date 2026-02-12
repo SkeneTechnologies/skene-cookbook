@@ -1,0 +1,35 @@
+{
+  "id": "cursor_rules/keras",
+  "version": "1.0.0",
+  "name": "keras",
+  "description": "Definitive guidelines for writing robust, maintainable, and high-performance Keras 3 models, emphasizing the functional API, modern training patterns, and multi-backend compatibility.",
+  "domain": "cursor_rules",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "cursor_rules",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "cursor": {
+      "globs": [
+        "**/*.py"
+      ]
+    },
+    "claude": {
+      "triggers": [
+        "help with keras"
+      ]
+    },
+    "skeneflow": {}
+  },
+  "skipSchemaValidation": true
+}

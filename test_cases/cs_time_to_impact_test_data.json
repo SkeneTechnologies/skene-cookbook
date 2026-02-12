@@ -1,0 +1,66 @@
+{
+  "skill_id": "cs_time_to_impact",
+  "generated_at": "2026-02-12T00:05:00.756262",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "accountId": "test_dpvmpyzt",
+        "benchmarkCohort": "624s5x9wl34gj5i29ut5"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "accountId": "test_97zw8vol",
+        "impactType": "full_value"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "accountId": "test_35vmkdj3",
+        "benchmarkCohort": "0npqjxygr4pzwr"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {},
+      "label": "missing_accountId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": 12345,
+        "impactType": "first_value"
+      },
+      "label": "invalid_type_accountId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": "test_acq1l57v",
+        "benchmarkCohort": "r6",
+        "impactType": 12345
+      },
+      "label": "invalid_type_impactType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": "test_qdp9sny6",
+        "benchmarkCohort": 12345
+      },
+      "label": "invalid_type_benchmarkCohort",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

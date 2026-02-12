@@ -1,0 +1,96 @@
+{
+  "skill_id": "devex_api_onboarding",
+  "generated_at": "2026-02-11T22:18:31.092169",
+  "num_cases": 10,
+  "test_cases": [
+    {
+      "inputs": {
+        "developer_id": "test_n8shmdal"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "developer_id": "test_ke0i5srj",
+        "tech_stack": "99izst3i5lhy",
+        "use_case": "swkgzd7axm5k6",
+        "experience_level": "beginner",
+        "endpoints_of_interest": []
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "developer_id": "test_4fufie22",
+        "experience_level": "beginner",
+        "endpoints_of_interest": [
+          "u6tic4"
+        ]
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "tech_stack": "j0wf0b4ftbt"
+      },
+      "label": "missing_developer_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "developer_id": 12345,
+        "experience_level": "beginner",
+        "endpoints_of_interest": [
+          "yosryx",
+          "cz93zamnnci0g78qzyr"
+        ]
+      },
+      "label": "invalid_type_developer_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "developer_id": "test_qbpk5jch",
+        "tech_stack": 12345
+      },
+      "label": "invalid_type_tech_stack",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "developer_id": "test_ztbvr9wy",
+        "tech_stack": "e31qu9qtw1of6",
+        "experience_level": "advanced",
+        "use_case": 12345
+      },
+      "label": "invalid_type_use_case",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "developer_id": "test_fy4tlz2v",
+        "experience_level": 12345
+      },
+      "label": "invalid_type_experience_level",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "developer_id": "test_tbcx4go5",
+        "tech_stack": "zu5h",
+        "experience_level": "advanced",
+        "endpoints_of_interest": "not_an_array"
+      },
+      "label": "invalid_type_endpoints_of_interest",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

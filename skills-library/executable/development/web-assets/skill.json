@@ -1,0 +1,420 @@
+{
+  "id": "development/web-assets",
+  "version": "1.0.0",
+  "name": "web-assets",
+  "description": "Generate web assets including favicons, app icons (PWA), and social media meta images (Open Graph) for Facebook, Twitter, WhatsApp, and LinkedIn. Use when users need icons, favicons, social sharing images, or Open Graph images from logos or text slogans. Handles image resizing, text-to-image generation, and provides proper HTML meta tags.",
+  "domain": "development",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "assetTypes": {
+        "type": "array",
+        "description": "Types of web assets to generate",
+        "items": {
+          "type": "string",
+          "enum": [
+            "favicon",
+            "app_icons",
+            "social_images",
+            "all"
+          ]
+        },
+        "minItems": 1
+      },
+      "sourceType": {
+        "type": "string",
+        "description": "Type of source material provided",
+        "enum": [
+          "logo_image",
+          "emoji",
+          "text",
+          "logo_and_text"
+        ]
+      },
+      "sourceImage": {
+        "type": "string",
+        "description": "Path or URL to the logo/source image file",
+        "format": "uri-reference"
+      },
+      "emoji": {
+        "type": "string",
+        "description": "Emoji character to use for favicon generation",
+        "maxLength": 4
+      },
+      "text": {
+        "type": "string",
+        "description": "Text or slogan for social media images",
+        "maxLength": 200
+      },
+      "backgroundColor": {
+        "type": "string",
+        "description": "Background color for images (hex code or color name)",
+        "pattern": "^(#[0-9A-Fa-f]{6}|#[0-9A-Fa-f]{3}|[a-z]+)$",
+        "default": "#4F46E5"
+      },
+      "textColor": {
+        "type": "string",
+        "description": "Text color for social images (hex code or color name)",
+        "pattern": "^(#[0-9A-Fa-f]{6}|#[0-9A-Fa-f]{3}|[a-z]+)$",
+        "default": "white"
+      },
+      "platforms": {
+        "type": "array",
+        "description": "Social media platforms to generate images for",
+        "items": {
+          "type": "string",
+          "enum": [
+            "facebook",
+            "twitter",
+            "linkedin",
+            "whatsapp",
+            "all"
+          ]
+        },
+        "uniqueItems": true
+      },
+      "outputDirectory": {
+        "type": "string",
+        "description": "Directory path where generated assets should be saved",
+        "default": "/home/claude/output"
+      },
+      "validate": {
+        "type": "boolean",
+        "description": "Whether to run validation checks on generated assets",
+        "default": false
+      },
+      "integrateCode": {
+        "type": "boolean",
+        "description": "Whether to automatically integrate HTML tags into codebase",
+        "default": false
+      },
+      "targetFile": {
+        "type": "string",
+        "description": "Specific file path to insert HTML tags (if integrateCode is true)",
+        "format": "uri-reference"
+      }
+    },
+    "required": [
+      "assetTypes",
+      "sourceType"
+    ],
+    "additionalProperties": false,
+    "allOf": [
+      {
+        "if": {
+          "properties": {
+            "sourceType": {
+              "const": "logo_image"
+            }
+          }
+        },
+        "then": {
+          "required": [
+            "sourceImage"
+          ]
+        }
+      },
+      {
+        "if": {
+          "properties": {
+            "sourceType": {
+              "const": "emoji"
+            }
+          }
+        },
+        "then": {
+          "required": [
+            "emoji"
+          ]
+        }
+      },
+      {
+        "if": {
+          "properties": {
+            "sourceType": {
+              "const": "text"
+            }
+          }
+        },
+        "then": {
+          "required": [
+            "text"
+          ]
+        }
+      },
+      {
+        "if": {
+          "properties": {
+            "sourceType": {
+              "const": "logo_and_text"
+            }
+          }
+        },
+        "then": {
+          "required": [
+            "sourceImage",
+            "text"
+          ]
+        }
+      }
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "generatedAssets": {
+        "type": "array",
+        "description": "List of generated asset files with metadata",
+        "items": {
+          "type": "object",
+          "properties": {
+            "filename": {
+              "type": "string",
+              "description": "Name of the generated file"
+            },
+            "path": {
+              "type": "string",
+              "description": "Full path to the generated file",
+              "format": "uri-reference"
+            },
+            "type": {
+              "type": "string",
+              "description": "Type of asset",
+              "enum": [
+                "favicon",
+                "app_icon",
+                "og_image",
+                "twitter_image",
+                "square_image"
+              ]
+            },
+            "dimensions": {
+              "type": "object",
+              "description": "Image dimensions",
+              "properties": {
+                "width": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "height": {
+                  "type": "integer",
+                  "minimum": 1
+                }
+              },
+              "required": [
+                "width",
+                "height"
+              ]
+            },
+            "fileSize": {
+              "type": "integer",
+              "description": "File size in bytes"
+            },
+            "format": {
+              "type": "string",
+              "description": "Image format",
+              "enum": [
+                "PNG",
+                "ICO",
+                "JPEG",
+                "WebP"
+              ]
+            }
+          },
+          "required": [
+            "filename",
+            "path",
+            "type",
+            "dimensions"
+          ]
+        }
+      },
+      "htmlTags": {
+        "type": "object",
+        "description": "Generated HTML meta tags for integration",
+        "properties": {
+          "favicon": {
+            "type": "string",
+            "description": "HTML tags for favicons and app icons"
+          },
+          "openGraph": {
+            "type": "string",
+            "description": "HTML meta tags for Open Graph (Facebook, LinkedIn, WhatsApp)"
+          },
+          "twitter": {
+            "type": "string",
+            "description": "HTML meta tags for Twitter cards"
+          }
+        }
+      },
+      "validation": {
+        "type": "object",
+        "description": "Validation results if validation was requested",
+        "properties": {
+          "passed": {
+            "type": "boolean",
+            "description": "Whether all validation checks passed"
+          },
+          "totalChecks": {
+            "type": "integer",
+            "description": "Total number of validation checks performed"
+          },
+          "passedChecks": {
+            "type": "integer",
+            "description": "Number of checks that passed"
+          },
+          "errors": {
+            "type": "array",
+            "description": "Critical validation errors",
+            "items": {
+              "type": "string"
+            }
+          },
+          "warnings": {
+            "type": "array",
+            "description": "Non-critical validation warnings",
+            "items": {
+              "type": "string"
+            }
+          },
+          "contrastRatio": {
+            "type": "number",
+            "description": "WCAG contrast ratio for text-based images",
+            "minimum": 0
+          },
+          "wcagCompliance": {
+            "type": "string",
+            "description": "WCAG compliance level",
+            "enum": [
+              "AAA",
+              "AA",
+              "Fail",
+              "N/A"
+            ]
+          }
+        },
+        "required": [
+          "passed",
+          "totalChecks",
+          "passedChecks"
+        ]
+      },
+      "integration": {
+        "type": "object",
+        "description": "Code integration details if performed",
+        "properties": {
+          "integrated": {
+            "type": "boolean",
+            "description": "Whether HTML tags were integrated into code"
+          },
+          "framework": {
+            "type": "string",
+            "description": "Detected framework",
+            "enum": [
+              "nextjs",
+              "astro",
+              "sveltekit",
+              "nuxt",
+              "gatsby",
+              "html"
+            ]
+          },
+          "targetFile": {
+            "type": "string",
+            "description": "File where tags were inserted"
+          },
+          "insertionPoint": {
+            "type": "string",
+            "description": "Location in file where tags were added"
+          }
+        },
+        "required": [
+          "integrated"
+        ]
+      },
+      "testingUrls": {
+        "type": "object",
+        "description": "URLs for testing generated meta tags",
+        "properties": {
+          "facebook": {
+            "type": "string",
+            "format": "uri",
+            "description": "Facebook Sharing Debugger URL"
+          },
+          "twitter": {
+            "type": "string",
+            "format": "uri",
+            "description": "Twitter Card Validator URL"
+          },
+          "linkedin": {
+            "type": "string",
+            "format": "uri",
+            "description": "LinkedIn Post Inspector URL"
+          },
+          "generic": {
+            "type": "string",
+            "format": "uri",
+            "description": "Generic Open Graph validator URL"
+          }
+        }
+      },
+      "instructions": {
+        "type": "array",
+        "description": "Step-by-step instructions for user",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "required": [
+      "generatedAssets",
+      "htmlTags",
+      "instructions"
+    ]
+  },
+  "temperature": 0,
+  "tags": [
+    "development",
+    "imported",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with web assets",
+        "users need icons, favicons, social sharing images, or open graph images from logos or text slogans"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "security_controls": {
+    "write_operations": {
+      "preview_mode": true,
+      "validation": {
+        "input_schema": true,
+        "business_rules": true,
+        "data_integrity": true
+      },
+      "rollback": {
+        "enabled": true,
+        "window_seconds": 1800
+      },
+      "audit": {
+        "log_before_state": true,
+        "log_after_state": true,
+        "track_user": true
+      }
+    }
+  },
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.92
+  }
+}

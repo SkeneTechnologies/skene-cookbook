@@ -1,0 +1,110 @@
+{
+  "skill_id": "people_skill_gap_analyzer",
+  "generated_at": "2026-02-11T22:18:31.436457",
+  "num_cases": 10,
+  "test_cases": [
+    {
+      "inputs": {
+        "analysisScope": "department",
+        "futureHorizon": "3_years",
+        "includeSuccessionPlanning": false,
+        "strategicPriorities": [
+          "6e3qdx0d4kzh8",
+          "oohc5enc046i",
+          "2ey73rs1ynx6f"
+        ]
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "analysisScope": "individual",
+        "futureHorizon": "6_months"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "analysisScope": "team",
+        "futureHorizon": "3_years",
+        "includeSuccessionPlanning": true
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "targetId": "test_hmbmiy8s",
+        "futureHorizon": "6_months",
+        "includeSuccessionPlanning": false
+      },
+      "label": "missing_analysisScope",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "analysisScope": 12345,
+        "targetId": "test_d07nqngo",
+        "futureHorizon": "2_years",
+        "includeSuccessionPlanning": false
+      },
+      "label": "invalid_type_analysisScope",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "analysisScope": "individual",
+        "targetId": 12345,
+        "futureHorizon": "2_years",
+        "includeSuccessionPlanning": false,
+        "strategicPriorities": [
+          "ihl9dngg4larj",
+          "13g280a68",
+          "znktz66dgza"
+        ]
+      },
+      "label": "invalid_type_targetId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "analysisScope": "team",
+        "futureHorizon": 12345,
+        "strategicPriorities": [
+          "eeen1",
+          "oo5",
+          "4u7f2qam7"
+        ]
+      },
+      "label": "invalid_type_futureHorizon",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "analysisScope": "individual",
+        "futureHorizon": "3_years",
+        "strategicPriorities": [],
+        "includeSuccessionPlanning": "yes"
+      },
+      "label": "invalid_type_includeSuccessionPlanning",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "analysisScope": "organization",
+        "targetId": "test_2k1eujyb",
+        "includeSuccessionPlanning": true,
+        "strategicPriorities": "not_an_array"
+      },
+      "label": "invalid_type_strategicPriorities",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "skill_id": "elg_ecosystem_intelligence",
+  "generated_at": "2026-02-12T00:04:59.967772",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "reportType": "executive",
+        "focus": "q0lb670adj3h9pmlykzs"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "reportType": "operational",
+        "focus": "l"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "reportType": "executive",
+        "period": "ntx52tlw36yd"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "period": "xf3y3yht",
+        "focus": "avxo21up"
+      },
+      "label": "missing_reportType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "reportType": 12345,
+        "period": "zme"
+      },
+      "label": "invalid_type_reportType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "reportType": "operational",
+        "period": 12345,
+        "focus": "0lk48rjq0j"
+      },
+      "label": "invalid_type_period",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "reportType": "executive",
+        "focus": 12345
+      },
+      "label": "invalid_type_focus",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

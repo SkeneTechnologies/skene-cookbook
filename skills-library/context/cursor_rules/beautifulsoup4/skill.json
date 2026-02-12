@@ -1,0 +1,35 @@
+{
+  "id": "cursor_rules/beautifulsoup4",
+  "version": "1.0.0",
+  "name": "beautifulsoup4",
+  "description": "This guide provides opinionated, actionable, and example-driven best practices for using beautifulsoup4 in Python web scraping projects, focusing on modern techniques and common pitfalls.",
+  "domain": "cursor_rules",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "cursor_rules",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "cursor": {
+      "globs": [
+        "**/*.py"
+      ]
+    },
+    "claude": {
+      "triggers": [
+        "help with beautifulsoup4"
+      ]
+    },
+    "skeneflow": {}
+  },
+  "skipSchemaValidation": true
+}

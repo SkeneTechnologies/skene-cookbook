@@ -1,0 +1,69 @@
+{
+  "skill_id": "elg_partner_tier_manager",
+  "generated_at": "2026-02-12T00:04:59.956191",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "partnerId": "gql5qdincifsmeo",
+        "action": "demote"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "partnerId": "f77o6hus"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "partnerId": "gj5rrvo0jcc",
+        "action": "demote",
+        "evaluationPeriod": "d4d"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "action": "evaluate",
+        "evaluationPeriod": "uslgtdvtan2cxympbu"
+      },
+      "label": "missing_partnerId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "partnerId": 12345,
+        "action": "evaluate",
+        "evaluationPeriod": "bwtlqdeyzpkskk"
+      },
+      "label": "invalid_type_partnerId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "partnerId": "r",
+        "action": 12345
+      },
+      "label": "invalid_type_action",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "partnerId": "la73k0i1j",
+        "evaluationPeriod": 12345
+      },
+      "label": "invalid_type_evaluationPeriod",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

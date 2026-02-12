@@ -1,0 +1,83 @@
+{
+  "skill_id": "plg_guided_setup_wizard",
+  "generated_at": "2026-02-12T00:05:11.809560",
+  "num_cases": 9,
+  "test_cases": [
+    {
+      "inputs": {
+        "userId": "5pw1ktfklb74",
+        "wizardType": "feature",
+        "skipPersonalization": false
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "userId": "8ecymjr5skyzbbmlg",
+        "currentStep": 1368.89,
+        "skipPersonalization": true
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "userId": "4kxkicf6pliry",
+        "wizardType": "feature",
+        "currentStep": 6209.7,
+        "skipPersonalization": true
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "wizardType": "integration",
+        "currentStep": 9719.55
+      },
+      "label": "missing_userId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": 12345,
+        "currentStep": 1741.03,
+        "skipPersonalization": true
+      },
+      "label": "invalid_type_userId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": "nvris7ii5q",
+        "wizardType": 12345
+      },
+      "label": "invalid_type_wizardType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": "uk66kumi2bbt0fef",
+        "currentStep": "not_a_number"
+      },
+      "label": "invalid_type_currentStep",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": "3az0qihjklue1pr1vh",
+        "wizardType": "initial",
+        "currentStep": 8519.39,
+        "skipPersonalization": "yes"
+      },
+      "label": "invalid_type_skipPersonalization",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

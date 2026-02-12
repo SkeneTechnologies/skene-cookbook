@@ -1,0 +1,35 @@
+{
+  "id": "cursor_rules/netlify",
+  "version": "1.0.0",
+  "name": "netlify",
+  "description": "This guide provides opinionated, actionable best practices for building, deploying, and maintaining high-performance, secure, and scalable Jamstack applications on Netlify. It focuses on modern workflows, code quality, and leveraging Netlify's edge-first architecture.",
+  "domain": "cursor_rules",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "cursor_rules",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "cursor": {
+      "globs": [
+        "**/*"
+      ]
+    },
+    "claude": {
+      "triggers": [
+        "help with netlify"
+      ]
+    },
+    "skeneflow": {}
+  },
+  "skipSchemaValidation": true
+}

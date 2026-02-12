@@ -1,0 +1,71 @@
+{
+  "skill_id": "plgf_ideas",
+  "generated_at": "2026-02-11T22:14:33.029713",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "impact": "high"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "difficulty": "high",
+        "impact": "high",
+        "category": "dd7h0w"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "lever": "activation",
+        "difficulty": "all"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "category": "3it",
+        "lever": 12345
+      },
+      "label": "invalid_type_lever",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "impact": "low",
+        "category": "xrhljo",
+        "difficulty": 12345
+      },
+      "label": "invalid_type_difficulty",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "lever": "activation",
+        "difficulty": "low",
+        "category": "197h41a4faco0ta8ku",
+        "impact": 12345
+      },
+      "label": "invalid_type_impact",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "lever": "all",
+        "category": 12345
+      },
+      "label": "invalid_type_category",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": true
+    }
+  ]
+}

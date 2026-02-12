@@ -1,0 +1,93 @@
+{
+  "skill_id": "plgf_engagement_loops",
+  "generated_at": "2026-02-11T22:14:29.878010",
+  "num_cases": 10,
+  "test_cases": [
+    {
+      "inputs": {
+        "productId": "21t1xelz0znadq5s",
+        "targetBehavior": "1vl9r1uc8y3ma38",
+        "loopType": "environment",
+        "currentEngagement": {}
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "productId": "pkeez2ao6i",
+        "targetBehavior": "rqr6oub4cayal8dott3",
+        "currentEngagement": {}
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "productId": "nl1a",
+        "targetBehavior": "bhw0zl8yaz",
+        "loopType": "hybrid"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "targetBehavior": "8nac7yu2fkegc9mru",
+        "currentEngagement": {}
+      },
+      "label": "missing_productId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "productId": "fjhbxrdpciwif5a"
+      },
+      "label": "missing_targetBehavior",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "productId": 12345,
+        "targetBehavior": "dlwsgscyhbnmey06s18",
+        "currentEngagement": {}
+      },
+      "label": "invalid_type_productId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "productId": "yciv5lkl82",
+        "targetBehavior": "efcn3z21moanba2l",
+        "loopType": 12345,
+        "currentEngagement": {}
+      },
+      "label": "invalid_type_loopType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "productId": "ignj",
+        "targetBehavior": 12345,
+        "currentEngagement": {}
+      },
+      "label": "invalid_type_targetBehavior",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "productId": "b",
+        "targetBehavior": "9bc84d",
+        "loopType": "environment",
+        "currentEngagement": "not_an_object"
+      },
+      "label": "invalid_type_currentEngagement",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

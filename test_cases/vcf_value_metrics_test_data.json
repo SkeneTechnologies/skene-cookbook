@@ -1,0 +1,124 @@
+{
+  "skill_id": "vcf_value_metrics",
+  "generated_at": "2026-02-11T22:18:31.506057",
+  "num_cases": 12,
+  "test_cases": [
+    {
+      "inputs": {
+        "dealId": "do74t7mf9unayx",
+        "valuePyramid": {},
+        "accountId": "6v",
+        "industry": "kn0cgz3"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "dealId": "wn",
+        "valuePyramid": {},
+        "accountId": "r6z90i01fd5wuvc",
+        "prospectCurrentState": {}
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "dealId": "c6h0",
+        "valuePyramid": {},
+        "accountId": "cp75j9fw6",
+        "industry": "ran6m",
+        "companySize": "smb"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "valuePyramid": {},
+        "industry": "sbs5ogz",
+        "companySize": "mid_market"
+      },
+      "label": "missing_dealId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "dealId": "o1g52pr8wlt17neeb",
+        "accountId": "zo975xo51o",
+        "prospectCurrentState": {},
+        "industry": "cc8kq0lsz470aae9",
+        "companySize": "enterprise"
+      },
+      "label": "missing_valuePyramid",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "dealId": 12345,
+        "valuePyramid": {},
+        "accountId": "c1iu5bss3b841mi5fp",
+        "prospectCurrentState": {},
+        "industry": "pue8g55b10td8x"
+      },
+      "label": "invalid_type_dealId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "dealId": "hynwfa6t8pu537j",
+        "valuePyramid": {},
+        "industry": "lyxnsm4hihry4",
+        "companySize": "mid_market",
+        "accountId": 12345
+      },
+      "label": "invalid_type_accountId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "dealId": "w1wn4ai4f6kljf87",
+        "valuePyramid": "not_an_object",
+        "companySize": "smb"
+      },
+      "label": "invalid_type_valuePyramid",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "dealId": "r0n5ctna4v",
+        "valuePyramid": {},
+        "prospectCurrentState": "not_an_object",
+        "industry": "4"
+      },
+      "label": "invalid_type_prospectCurrentState",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "dealId": "3hftz7d4pzpw",
+        "valuePyramid": {},
+        "companySize": "smb",
+        "industry": 12345
+      },
+      "label": "invalid_type_industry",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "dealId": "qbg",
+        "valuePyramid": {},
+        "industry": "ur2xcnna7hslalnh0",
+        "companySize": 12345
+      },
+      "label": "invalid_type_companySize",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

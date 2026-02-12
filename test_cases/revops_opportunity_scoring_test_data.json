@@ -1,0 +1,66 @@
+{
+  "skill_id": "revops_opportunity_scoring",
+  "generated_at": "2026-02-12T00:05:05.107376",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "dealId": "mnu",
+        "scoringModel": "standard"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "dealId": "d6ikyqj3qxj5u1a5ci"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "dealId": "02h8zbgflaqdcgxdr7",
+        "scoringModel": "enterprise",
+        "includeExplanation": true
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {},
+      "label": "missing_dealId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "dealId": 12345,
+        "includeExplanation": true
+      },
+      "label": "invalid_type_dealId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "dealId": "mg6d",
+        "scoringModel": 12345
+      },
+      "label": "invalid_type_scoringModel",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "dealId": "qvzvig3vmhhz",
+        "scoringModel": "velocity",
+        "includeExplanation": "yes"
+      },
+      "label": "invalid_type_includeExplanation",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

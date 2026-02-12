@@ -1,0 +1,66 @@
+{
+  "skill_id": "cs_stakeholder_mapper",
+  "generated_at": "2026-02-12T00:05:01.444974",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "accountId": "test_2367fup3",
+        "analysisDepth": "comprehensive"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "accountId": "test_k9cmygeo",
+        "includeInactive": false
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "accountId": "test_f7991yvx"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "includeInactive": false
+      },
+      "label": "missing_accountId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": 12345
+      },
+      "label": "invalid_type_accountId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": "test_785hoyea",
+        "includeInactive": "yes"
+      },
+      "label": "invalid_type_includeInactive",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": "test_ai3nf8zf",
+        "includeInactive": false,
+        "analysisDepth": 12345
+      },
+      "label": "invalid_type_analysisDepth",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

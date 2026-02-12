@@ -1,0 +1,60 @@
+{
+  "skill_id": "revops_deal_velocity",
+  "generated_at": "2026-02-12T00:05:05.473327",
+  "num_cases": 7,
+  "test_cases": [
+    {
+      "inputs": {
+        "dealId": "p5f1uru8r",
+        "analysisScope": "rep"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "analysisScope": "team",
+        "period": "30d"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "period": "30d"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "dealId": 12345,
+        "analysisScope": "rep",
+        "period": "year"
+      },
+      "label": "invalid_type_dealId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": "30d",
+        "analysisScope": 12345
+      },
+      "label": "invalid_type_analysisScope",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "analysisScope": "deal",
+        "period": 12345
+      },
+      "label": "invalid_type_period",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": true
+    }
+  ]
+}

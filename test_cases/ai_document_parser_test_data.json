@@ -1,0 +1,91 @@
+{
+  "skill_id": "ai_document_parser",
+  "generated_at": "2026-02-12T00:05:03.169711",
+  "num_cases": 9,
+  "test_cases": [
+    {
+      "inputs": {
+        "document_url": "https://example.com/nbh10ed8",
+        "output_format": "crm_record"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "document_url": "https://example.com/ujn6veuy",
+        "document_type": "auto",
+        "output_format": "csv"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "document_url": "https://example.com/ibtvrqej",
+        "document_type": "receipt"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "document_type": "invoice",
+        "extract_fields": []
+      },
+      "label": "missing_document_url",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "document_url": 12345,
+        "document_type": "contract",
+        "extract_fields": [
+          "gt9a7xqmri9gnr9j"
+        ]
+      },
+      "label": "invalid_type_document_url",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "document_url": "https://example.com/e1vq2f5i",
+        "document_type": 12345,
+        "extract_fields": [
+          "et7lq4b"
+        ],
+        "output_format": "crm_record"
+      },
+      "label": "invalid_type_document_type",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "document_url": "https://example.com/h8qg6gvw",
+        "document_type": "auto",
+        "output_format": "crm_record",
+        "extract_fields": "not_an_array"
+      },
+      "label": "invalid_type_extract_fields",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "document_url": "https://example.com/gclbl14n",
+        "document_type": "form",
+        "extract_fields": [
+          "y8tsjzfwa",
+          "2ra3u0kubnmzrqskny"
+        ],
+        "output_format": 12345
+      },
+      "label": "invalid_type_output_format",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

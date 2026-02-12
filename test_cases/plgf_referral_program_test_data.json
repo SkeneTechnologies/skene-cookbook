@@ -1,0 +1,80 @@
+{
+  "skill_id": "plgf_referral_program",
+  "generated_at": "2026-02-11T22:14:29.890127",
+  "num_cases": 9,
+  "test_cases": [
+    {
+      "inputs": {
+        "programType": "single_sided",
+        "rewardType": "discount",
+        "targetCAC": 9851.97
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "programType": "double_sided",
+        "rewardType": "discount"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "programType": "single_sided",
+        "phase": "scale",
+        "rewardType": "discount"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "phase": "optimize",
+        "rewardType": "subscription"
+      },
+      "label": "missing_programType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "programType": 12345,
+        "phase": "optimize",
+        "rewardType": "subscription"
+      },
+      "label": "invalid_type_programType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "programType": "double_sided",
+        "phase": 12345,
+        "targetCAC": 2995.5
+      },
+      "label": "invalid_type_phase",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "programType": "affiliate",
+        "rewardType": 12345
+      },
+      "label": "invalid_type_rewardType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "programType": "affiliate",
+        "targetCAC": "not_a_number"
+      },
+      "label": "invalid_type_targetCAC",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

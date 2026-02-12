@@ -1,0 +1,17 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 📚 Documentation
+    url: https://github.com/SkeneTechnologies/skene-cookbook/blob/main/README.md
+    about: Read the comprehensive documentation and guides
+
+  - name: 💬 Discussions
+    url: https://github.com/SkeneTechnologies/skene-cookbook/discussions
+    about: Ask questions, share ideas, and discuss with the community
+
+  - name: 🔒 Security Policy
+    url: https://github.com/SkeneTechnologies/skene-cookbook/blob/main/SECURITY_POLICY.md
+    about: Review our security policy and vulnerability reporting guidelines
+
+  - name: 🤝 Contributing Guide
+    url: https://github.com/SkeneTechnologies/skene-cookbook/blob/main/CONTRIBUTING.md
+    about: Learn how to contribute to skene-cookbook

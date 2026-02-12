@@ -1,0 +1,80 @@
+{
+  "skill_id": "ai_knowledge_synthesizer",
+  "generated_at": "2026-02-12T00:05:03.420636",
+  "num_cases": 9,
+  "test_cases": [
+    {
+      "inputs": {
+        "query": "8blnh4juy0yp35syore",
+        "context": {}
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "query": "6gfa0j",
+        "context": {},
+        "max_sources": 5473.78
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "query": "hfr531e299ycgfv9yw"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "sources": [],
+        "max_sources": 4783.52
+      },
+      "label": "missing_query",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "query": 12345,
+        "context": {}
+      },
+      "label": "invalid_type_query",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "query": "oc0",
+        "sources": "not_an_array",
+        "context": {}
+      },
+      "label": "invalid_type_sources",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "query": "lp6kwmgb",
+        "sources": [
+          "ee7swg"
+        ],
+        "context": "not_an_object"
+      },
+      "label": "invalid_type_context",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "query": "xzw9g2szi25xccw6",
+        "max_sources": "not_a_number"
+      },
+      "label": "invalid_type_max_sources",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

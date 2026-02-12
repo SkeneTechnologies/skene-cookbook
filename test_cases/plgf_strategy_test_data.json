@@ -1,0 +1,94 @@
+{
+  "skill_id": "plgf_strategy",
+  "generated_at": "2026-02-11T22:14:32.725083",
+  "num_cases": 10,
+  "test_cases": [
+    {
+      "inputs": {
+        "companyId": "test_3garicju"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "companyId": "test_phc34axp",
+        "currentStage": "scale",
+        "targetMarket": "test_d1n4czyk"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "companyId": "test_i408aspi",
+        "currentStage": "pre-launch",
+        "targetMarket": "test_hbrx7z4r",
+        "productCategory": "rm0u520v"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "targetMarket": "test_6uwiq85v",
+        "productCategory": "cepzwqah"
+      },
+      "label": "missing_companyId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "companyId": 12345,
+        "currentStage": "pre-launch",
+        "productCategory": "wz7wfj9xzxwph6"
+      },
+      "label": "invalid_type_companyId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "companyId": "test_4bg0pdvw",
+        "currentStage": 12345,
+        "productCategory": "4ri"
+      },
+      "label": "invalid_type_currentStage",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "companyId": "test_5p060e6h",
+        "currentStage": "growth",
+        "existingMotion": 12345,
+        "targetMarket": "test_qukvsuhn",
+        "productCategory": "nniahak49r2orkdf09"
+      },
+      "label": "invalid_type_existingMotion",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "companyId": "test_zf08aktu",
+        "currentStage": "pre-launch",
+        "existingMotion": "sales-led",
+        "targetMarket": 12345
+      },
+      "label": "invalid_type_targetMarket",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "companyId": "test_b526sq65",
+        "existingMotion": "plg",
+        "productCategory": 12345
+      },
+      "label": "invalid_type_productCategory",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}
