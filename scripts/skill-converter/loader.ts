@@ -286,14 +286,34 @@ export function groupByCategory(skills: LoadedSkill[]): Record<string, LoadedSki
 }
 
 /**
- * Filter skills by domains/categories and/or tags.
+ * Filter skills by domains/categories, tags, and/or names.
  * When filtering by domains, matches if the skill's domain or any category matches.
+ * When filtering by names, matches against manifest.name, last segment of manifest.id,
+ * directory basename, or full manifest.id (if the filter contains "/").
  */
 export function filterSkills(
   skills: LoadedSkill[],
-  options: { domains?: string[]; tags?: string[] }
+  options: { domains?: string[]; tags?: string[]; names?: string[] }
 ): LoadedSkill[] {
   return skills.filter(skill => {
+    // Filter by name (positional args)
+    if (options.names && options.names.length > 0) {
+      const nameMatch = options.names.some(name => {
+        const lower = name.toLowerCase();
+        // Match manifest.name (case-insensitive)
+        if (skill.manifest.name.toLowerCase() === lower) return true;
+        // Match last segment of manifest.id (e.g. "brainstorming" from "superpowers/brainstorming")
+        const lastSegment = skill.manifest.id.split('/').pop() || '';
+        if (lastSegment.toLowerCase() === lower) return true;
+        // Match directory basename from sourcePath
+        if (basename(skill.sourcePath).toLowerCase() === lower) return true;
+        // Match full manifest.id if filter contains "/"
+        if (name.includes('/') && skill.manifest.id.toLowerCase() === lower) return true;
+        return false;
+      });
+      if (!nameMatch) return false;
+    }
+
     // Filter by domain or category
     if (options.domains && options.domains.length > 0) {
       const skillCategories = getSkillCategories(skill);
