@@ -1,12 +1,59 @@
 # Skill Chain Cookbook
+
 ## 28 Ready-to-Use Recipes
 
 This cookbook provides proven skill chain recipes you can deploy immediately. Each recipe includes:
+
 - **Use case** — What problem it solves
 - **Skills** — Which skills to chain together
 - **ROI** — Expected time/cost savings
 - **Step-by-step instructions** — Copy-paste examples
 - **Expected outcomes** — What success looks like
+
+---
+
+## 📋 Quick Navigation
+
+### 💼 Sales & Revenue
+
+- [Recipe 1: Sales Deal Qualification Pipeline](#recipe-1-sales-deal-qualification-pipeline) — Qualify, score, and route leads automatically
+- [Recipe 3: Financial Intelligence Dashboard](#recipe-3-financial-intelligence-dashboard) — Real-time CFO dashboard with board reporting
+- [Recipe 13: Product-Led Sales Handoff](#recipe-13-product-led-sales-handoff) — Route product-qualified leads to sales with context
+
+### 🤝 Customer Success & Support
+
+- [Recipe 2: Customer Churn Prevention Pipeline](#recipe-2-customer-churn-prevention-pipeline) — Predict churn risk 60-90 days early
+- [Recipe 14: AI Support Deflection System](#recipe-14-ai-support-deflection-system) — Automate ticket triage and resolution
+- [Recipe 24: Customer Education Platform](#recipe-24-customer-education-platform) — Guided onboarding and milestone tracking
+
+### 🚀 Growth & Marketing
+
+- [Recipe 4: Growth Optimization Engine](#recipe-4-growth-optimization-engine) — Continuous A/B testing and conversion optimization
+- [Recipe 5: Content Marketing Automation](#recipe-5-content-marketing-automation) — End-to-end content creation and distribution
+- [Recipe 11: Freemium Conversion Optimization](#recipe-11-freemium-conversion-optimization) — Trial-to-paid conversion optimization
+- [Recipe 12: Usage-Based Pricing Engine](#recipe-12-usage-based-pricing-engine) — Consumption-based pricing with metering
+- [Recipe 18: Community-Led Growth Engine](#recipe-18-community-led-growth-engine) — Drive growth through community engagement
+- [Recipe 19: Multi-Platform Content Distribution](#recipe-19-multi-platform-content-distribution) — Automate cross-platform distribution
+- [Recipe 22: Competitive Intelligence Automation](#recipe-22-competitive-intelligence-automation) — Track competitors and generate battlecards
+
+### 🔧 Product & Engineering
+
+- [Recipe 15: Developer Experience Onboarding](#recipe-15-developer-experience-onboarding) — API docs and sandbox provisioning
+- [Recipe 20: Product Experimentation Engine](#recipe-20-product-experimentation-engine) — Automated A/B test setup and analysis
+- [Recipe 21: API Lifecycle Management](#recipe-21-api-lifecycle-management) — Version control and deprecation management
+- [Recipe 25: Security Code Review Automation](#recipe-25-security-code-review-automation) — Vulnerability detection and fixes
+
+### 🎨 Brand & Content
+
+- [Recipe 23: Brand Consistency Engine](#recipe-23-brand-consistency-engine) — Enforce brand guidelines across channels
+
+### ⚙️ Operations & Compliance
+
+- [Recipe 16: Employee Onboarding Automation](#recipe-16-employee-onboarding-automation) — Automate HR onboarding workflows
+- [Recipe 17: Data Quality Automation](#recipe-17-data-quality-automation) — Monitor and validate data pipelines
+- [Recipe 26: Compliance Automation Hub](#recipe-26-compliance-automation-hub) — GDPR, SOC 2, and regulatory reporting
+- [Recipe 27: E-commerce Revenue Optimization](#recipe-27-e-commerce-revenue-optimization) — Pricing and monetization strategies
+- [Recipe 28: Partnership Ecosystem Automation](#recipe-28-partnership-ecosystem-automation) — Partner channel and co-selling management
 
 ---
 
@@ -149,11 +196,7 @@ curl -X POST http://localhost:3000/api/chains/sales-qualification \
   "score": 85,
   "tier": "high_value",
   "risks": [],
-  "nextActions": [
-    "Schedule discovery call",
-    "Send ROI calculator",
-    "Introduce solutions engineer"
-  ],
+  "nextActions": ["Schedule discovery call", "Send ROI calculator", "Introduce solutions engineer"],
   "recommendedContent": [
     "Case Study: Similar company in SaaS",
     "ROI Calculator: Enterprise tier",
@@ -288,11 +331,7 @@ npx skills-directory install --target all --domain customer_success
     "context": "{{chain.all_data}}",
     "urgency": "{{previous.riskLevel}}"
   },
-  "notifications": [
-    "Assigned CSM",
-    "CSM Manager",
-    "VP Customer Success"
-  ]
+  "notifications": ["Assigned CSM", "CSM Manager", "VP Customer Success"]
 }
 ```
 
@@ -433,11 +472,11 @@ npx skills-directory install --target all --domain finops
     "scenarios": [
       {
         "name": "aggressive_growth",
-        "assumptions": {"headcount_increase": 30, "arr_growth": 100}
+        "assumptions": { "headcount_increase": 30, "arr_growth": 100 }
       },
       {
         "name": "profitable_growth",
-        "assumptions": {"headcount_increase": 15, "arr_growth": 50}
+        "assumptions": { "headcount_increase": 15, "arr_growth": 50 }
       }
     ]
   }
@@ -684,13 +723,7 @@ npx skills-directory install --target all --domain marketing
   "input": {
     "content": "{{previous.output}}",
     "targetKeyword": "{{research.primary_keyword}}",
-    "checks": [
-      "keyword_density",
-      "meta_description",
-      "headings",
-      "internal_links",
-      "readability"
-    ]
+    "checks": ["keyword_density", "meta_description", "headings", "internal_links", "readability"]
   },
   "exit_routing": {
     "seo_optimized": "social_content_generator"
@@ -775,46 +808,56 @@ npx skills-directory install --target all --domain marketing
 ## Recipe 6-10: Quick Reference
 
 ### Recipe 6: Customer Onboarding Automation
+
 ```
 onboarding_health → guided_setup_wizard → milestone_celebration →
 time_to_value → activation_metrics
 ```
+
 **ROI:** 50% faster time-to-value, 30% higher activation
 
 ---
 
 ### Recipe 7: Support Ticket Triage & Resolution
+
 ```
 support_ticket_triage → support_resolution_suggester →
 support_kb_gap_finder → support_bug_linker
 ```
+
 **ROI:** 40% faster resolution, 60% ticket deflection
 
 ---
 
 ### Recipe 8: Partnership Deal Flow
+
 ```
 partner_mapping → nearbound_signal → co_sell_trigger →
 deal_registration → partner_influenced_revenue
 ```
+
 **ROI:** 25% more partner-sourced pipeline
 
 ---
 
 ### Recipe 9: Pricing & Packaging Optimization
+
 ```
 pricing_strategy → packaging_optimizer → price_experimentation →
 upgrade_trigger → consumption_analyzer
 ```
+
 **ROI:** 15-25% revenue per customer increase
 
 ---
 
 ### Recipe 10: Product Analytics Intelligence
+
 ```
 product_analytics → feature_adoption → friction_detector →
 pql_scoring → expansion_playbook
 ```
+
 **ROI:** 2x product-led pipeline generation
 
 ---
@@ -902,7 +945,12 @@ npx skills-directory install --target all --domain plg monetization
   "input": {
     "userId": "{{chain.userId}}",
     "onboardingData": "{{previous.health_data}}",
-    "premiumFeatures": ["advanced_analytics", "team_collaboration", "api_access", "custom_integrations"],
+    "premiumFeatures": [
+      "advanced_analytics",
+      "team_collaboration",
+      "api_access",
+      "custom_integrations"
+    ],
     "trackingWindow": "7_days"
   },
   "exit_routing": {
@@ -1489,7 +1537,13 @@ npx skills-directory install --target all --domain ai_ops support_ops
     "ticketType": "{{previous.classification}}",
     "customerMessage": "{{trigger.body}}",
     "contextualData": "{{customer.account_data}}",
-    "intentCategories": ["resolve_issue", "get_information", "request_feature", "report_bug", "cancel_service"]
+    "intentCategories": [
+      "resolve_issue",
+      "get_information",
+      "request_feature",
+      "report_bug",
+      "cancel_service"
+    ]
   },
   "exit_routing": {
     "intent_clear": "ai_response_suggester",
@@ -1596,10 +1650,7 @@ curl -X POST http://localhost:3000/api/chains/support-deflection \
   "intent": "get_information",
   "aiResponseGenerated": true,
   "deflectionPossible": true,
-  "kbArticles": [
-    "How to Reset Your API Key",
-    "API Security Best Practices"
-  ],
+  "kbArticles": ["How to Reset Your API Key", "API Security Best Practices"],
   "resolutionSteps": [
     "Navigate to Settings > API Keys",
     "Click 'Regenerate Key'",
@@ -2132,9 +2183,9 @@ npx skills-directory install --target all --domain data_ops
   "input": {
     "userId": "{{previous.user_id}}",
     "cohortDefinitions": [
-      {"name": "weekly_active", "criteria": "weekly_sessions >= 3"},
-      {"name": "power_users", "criteria": "monthly_actions >= 100"},
-      {"name": "at_risk", "criteria": "days_since_last_activity > 14"}
+      { "name": "weekly_active", "criteria": "weekly_sessions >= 3" },
+      { "name": "power_users", "criteria": "monthly_actions >= 100" },
+      { "name": "at_risk", "criteria": "days_since_last_activity > 14" }
     ],
     "updateFrequency": "daily",
     "historicalWindow": "90_days"
@@ -2321,12 +2372,7 @@ npx skills-directory install --target all --domain community
   "input": {
     "championIds": "{{previous.champion_list}}",
     "programTier": ["bronze", "silver", "gold", "platinum"],
-    "benefits": [
-      "early_feature_access",
-      "exclusive_events",
-      "swag",
-      "revenue_share"
-    ],
+    "benefits": ["early_feature_access", "exclusive_events", "swag", "revenue_share"],
     "requirements": {
       "bronze": "10_quality_posts_per_month",
       "silver": "25_posts_plus_1_event",
@@ -2352,12 +2398,7 @@ npx skills-directory install --target all --domain community
     "postId": "{{trigger.postId}}",
     "postContent": "{{trigger.content}}",
     "authorId": "{{trigger.authorId}}",
-    "moderationRules": [
-      "no_spam",
-      "no_self_promotion",
-      "respectful_tone",
-      "on_topic"
-    ],
+    "moderationRules": ["no_spam", "no_self_promotion", "respectful_tone", "on_topic"],
     "autoModerate": "flag_for_review",
     "ambassadorOverride": true
   },
@@ -2831,12 +2872,7 @@ npx skills-directory install --target all --domain product_ops plg
   "skill": "impact_analyzer",
   "input": {
     "experimentId": "{{chain.experimentId}}",
-    "businessMetrics": [
-      "revenue_impact",
-      "retention_impact",
-      "ltv_impact",
-      "engagement_impact"
-    ],
+    "businessMetrics": ["revenue_impact", "retention_impact", "ltv_impact", "engagement_impact"],
     "statisticalMethod": "bayesian",
     "confidenceLevel": 0.95,
     "includeSegmentAnalysis": true
@@ -3434,11 +3470,7 @@ npx skills-directory install --target all --domain marketing
       "avoidWords": ["cheap", "discount", "revolutionary"],
       "preferWords": ["effective", "proven", "innovative"]
     },
-    "messagingPillars": [
-      "Customer-first innovation",
-      "Proven results",
-      "Transparent pricing"
-    ]
+    "messagingPillars": ["Customer-first innovation", "Proven results", "Transparent pricing"]
   },
   "exit_routing": {
     "guidelines_set": "skene_voice_guardian",
@@ -3504,13 +3536,7 @@ npx skills-directory install --target all --domain marketing
   "input": {
     "baseContent": "{{previous.humanized_content}}",
     "brandGuidelines": "{{chain.guidelines}}",
-    "channels": [
-      "website",
-      "email",
-      "social_media",
-      "ads",
-      "product_descriptions"
-    ],
+    "channels": ["website", "email", "social_media", "ads", "product_descriptions"],
     "variants": {
       "headlines": 5,
       "bodyCopy": 3,
@@ -3604,12 +3630,7 @@ curl -X POST http://localhost:3000/api/chains/brand-consistency \
       "email_header": "launch-email-header.png"
     }
   },
-  "validationsPassed": [
-    "tone_check",
-    "terminology_check",
-    "color_compliance",
-    "font_compliance"
-  ],
+  "validationsPassed": ["tone_check", "terminology_check", "color_compliance", "font_compliance"],
   "productionTime": "45 minutes"
 }
 ```
@@ -3799,12 +3820,7 @@ npx skills-directory install --target all --domain customer_success plg
   "skill": "feedback_collection",
   "input": {
     "userId": "{{chain.userId}}",
-    "feedbackTriggers": [
-      "milestone_reached",
-      "content_consumed",
-      "email_opened",
-      "feature_used"
-    ],
+    "feedbackTriggers": ["milestone_reached", "content_consumed", "email_opened", "feature_used"],
     "feedbackTypes": {
       "nps": true,
       "content_rating": true,
@@ -3877,11 +3893,7 @@ curl -X POST http://localhost:3000/api/chains/customer-education \
     "npsScore": 9,
     "blockers": []
   },
-  "nextActions": [
-    "Complete final setup step",
-    "Invite team member",
-    "Explore advanced features"
-  ]
+  "nextActions": ["Complete final setup step", "Invite team member", "Explore advanced features"]
 }
 ```
 
@@ -4291,22 +4303,8 @@ npx skills-directory install --target all --domain compliance
 {
   "skill": "compliance_pii_detector",
   "input": {
-    "scanTargets": [
-      "databases",
-      "file_storage",
-      "logs",
-      "backups",
-      "code_repositories"
-    ],
-    "piiTypes": [
-      "email",
-      "phone",
-      "ssn",
-      "credit_card",
-      "address",
-      "biometric",
-      "health_data"
-    ],
+    "scanTargets": ["databases", "file_storage", "logs", "backups", "code_repositories"],
+    "piiTypes": ["email", "phone", "ssn", "credit_card", "address", "biometric", "health_data"],
     "classification": "automatic",
     "anonymizationSuggestions": true,
     "alertOnUnprotected": true
@@ -4514,12 +4512,7 @@ npx skills-directory install --target all --domain monetization
       }
     ],
     "segments": ["new_customers", "upgrade_candidates"],
-    "metrics": [
-      "conversion_rate",
-      "revenue_per_customer",
-      "customer_lifetime_value",
-      "churn_rate"
-    ],
+    "metrics": ["conversion_rate", "revenue_per_customer", "customer_lifetime_value", "churn_rate"],
     "duration": "30_days",
     "significanceLevel": 0.95
   },
@@ -4567,13 +4560,7 @@ npx skills-directory install --target all --domain monetization
   "input": {
     "userId": "{{chain.user_id}}",
     "pricingModel": "usage_based",
-    "usageMetrics": [
-      "api_calls",
-      "storage_gb",
-      "compute_hours",
-      "seats",
-      "transactions"
-    ],
+    "usageMetrics": ["api_calls", "storage_gb", "compute_hours", "seats", "transactions"],
     "billingPeriod": "monthly",
     "predictions": {
       "nextMonthUsage": true,
@@ -4937,18 +4924,22 @@ These quick-reference recipes show how to adapt existing skills for industry-spe
 ---
 
 ### Recipe 29: Healthcare/Life Sciences Workflows
+
 ```
 [Scientific domain skills] → compliance_pii_detector → compliance_data_retention
 ```
+
 **ROI:** 40% faster research workflows, 60% compliance improvement
 **Note:** Uses 141 scientific domain skills for healthcare/clinical research workflows. Requires medical knowledge bases for full implementation.
 
 ---
 
 ### Recipe 30: FinTech/Banking Compliance
+
 ```
 arr_waterfall → burn_rate_monitor → compliance_gdpr_manager → compliance_audit_preparer
 ```
+
 **ROI:** 90% faster financial reporting, 80% compliance accuracy
 **Note:** Combines finops and compliance skills for banking/fintech regulatory requirements.
 
@@ -4957,21 +4948,27 @@ arr_waterfall → burn_rate_monitor → compliance_gdpr_manager → compliance_a
 ## Tips for Building Your Own Chains
 
 ### 1. Start Simple
+
 Begin with 2-3 skills. Prove value. Then expand.
 
 ### 2. Map Exit States
+
 Every skill should have clear exit states that route to next skill or endpoint.
 
 ### 3. Include Human-in-the-Loop
+
 For high-stakes decisions, add approval gates.
 
 ### 4. Monitor Continuously
+
 Track metrics at each step to identify bottlenecks.
 
 ### 5. Iterate Based on Data
+
 Use analytics to refine chains over time.
 
 ### 6. Document Your Patterns
+
 Share successful chains with your team.
 
 ---
@@ -4982,6 +4979,7 @@ Share successful chains with your team.
 
 **Problem:** Skill fails or returns unexpected output
 **Solution:**
+
 - Check exit state mapping
 - Validate input data format
 - Add error handling/retry logic
@@ -4990,6 +4988,7 @@ Share successful chains with your team.
 
 **Problem:** Chain takes too long to execute
 **Solution:**
+
 - Run independent skills in parallel
 - Cache frequently-used data
 - Optimize skill configurations
@@ -4998,6 +4997,7 @@ Share successful chains with your team.
 
 **Problem:** Chain outputs are too generic
 **Solution:**
+
 - Provide more context in inputs
 - Use customer/account-specific data
 - Add human review step
