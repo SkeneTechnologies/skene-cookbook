@@ -1,0 +1,344 @@
+{
+  "id": "security/claude-in-chrome-troubleshooting",
+  "version": "1.0.0",
+  "name": "claude-in-chrome-troubleshooting",
+  "description": "Diagnose and fix Claude in Chrome MCP extension connectivity issues. Use when mcp__claude-in-chrome__* tools fail, return \"Browser extension is not connected\", or behave erratically.",
+  "domain": "security",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "error_message": {
+        "type": "string",
+        "description": "The error message received from the MCP tool (e.g., 'Browser extension is not connected')",
+        "examples": [
+          "Browser extension is not connected",
+          "Connection timeout",
+          "Native host not found"
+        ]
+      },
+      "mcp_tool_name": {
+        "type": "string",
+        "description": "The specific MCP tool that failed (e.g., 'mcp__claude-in-chrome__navigate')",
+        "pattern": "^mcp__claude-in-chrome__.*",
+        "examples": [
+          "mcp__claude-in-chrome__navigate",
+          "mcp__claude-in-chrome__click",
+          "mcp__claude-in-chrome__get_content"
+        ]
+      },
+      "client_type": {
+        "type": "string",
+        "enum": [
+          "claude_code_cli",
+          "claude_app_cowork",
+          "unknown"
+        ],
+        "description": "Which Claude client is being used for browser automation",
+        "default": "unknown"
+      },
+      "symptoms": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": [
+            "tools_fail_with_not_connected",
+            "erratic_behavior",
+            "timeouts",
+            "after_update",
+            "switching_between_clients",
+            "native_host_running_but_fails"
+          ]
+        },
+        "description": "List of observed symptoms",
+        "minItems": 1
+      },
+      "operating_system": {
+        "type": "string",
+        "enum": [
+          "macos",
+          "linux",
+          "windows"
+        ],
+        "description": "Operating system (this skill only supports macOS)",
+        "default": "macos"
+      },
+      "chrome_profile_count": {
+        "type": "integer",
+        "description": "Number of Chrome profiles with the Claude extension installed",
+        "minimum": 0,
+        "default": 1
+      },
+      "recent_changes": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Recent changes that may have triggered the issue (e.g., 'Updated Claude Code', 'Installed Claude.app')",
+        "examples": [
+          "Updated Claude Code to latest version",
+          "Started using Claude.app Cowork feature",
+          "Switched between Claude Code and Claude.app"
+        ]
+      }
+    },
+    "required": [
+      "symptoms"
+    ],
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "diagnosis": {
+        "type": "object",
+        "properties": {
+          "root_cause": {
+            "type": "string",
+            "description": "The identified root cause of the connectivity issue",
+            "examples": [
+              "Conflicting native host configurations between Claude.app and Claude Code",
+              "Stale socket from previous session",
+              "Wrong native host binary running"
+            ]
+          },
+          "severity": {
+            "type": "string",
+            "enum": [
+              "critical",
+              "major",
+              "minor"
+            ],
+            "description": "Severity level of the issue"
+          },
+          "detected_issues": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "issue": {
+                  "type": "string",
+                  "description": "Description of detected issue"
+                },
+                "evidence": {
+                  "type": "string",
+                  "description": "Evidence or diagnostic output supporting this finding"
+                }
+              },
+              "required": [
+                "issue"
+              ]
+            },
+            "description": "List of all detected issues"
+          }
+        },
+        "required": [
+          "root_cause",
+          "severity"
+        ]
+      },
+      "resolution": {
+        "type": "object",
+        "properties": {
+          "fix_applied": {
+            "type": "string",
+            "enum": [
+              "disabled_conflicting_config",
+              "updated_wrapper_script",
+              "cleaned_sockets",
+              "restarted_services",
+              "full_reset",
+              "toggle_client",
+              "manual_intervention_required"
+            ],
+            "description": "The primary fix that was applied"
+          },
+          "steps_taken": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "step": {
+                  "type": "string",
+                  "description": "Description of the step"
+                },
+                "command": {
+                  "type": "string",
+                  "description": "Command executed (if applicable)"
+                },
+                "result": {
+                  "type": "string",
+                  "description": "Result or output of the step"
+                },
+                "success": {
+                  "type": "boolean",
+                  "description": "Whether the step succeeded"
+                }
+              },
+              "required": [
+                "step",
+                "success"
+              ]
+            },
+            "description": "Detailed list of troubleshooting steps performed"
+          },
+          "requires_restart": {
+            "type": "object",
+            "properties": {
+              "chrome": {
+                "type": "boolean",
+                "description": "Whether Chrome needs to be restarted"
+              },
+              "claude_code": {
+                "type": "boolean",
+                "description": "Whether Claude Code needs to be restarted"
+              },
+              "claude_app": {
+                "type": "boolean",
+                "description": "Whether Claude.app needs to be restarted"
+              }
+            },
+            "required": [
+              "chrome"
+            ]
+          }
+        },
+        "required": [
+          "fix_applied",
+          "steps_taken",
+          "requires_restart"
+        ]
+      },
+      "verification": {
+        "type": "object",
+        "properties": {
+          "native_host_status": {
+            "type": "object",
+            "properties": {
+              "running": {
+                "type": "boolean",
+                "description": "Whether a native host process is running"
+              },
+              "binary_path": {
+                "type": "string",
+                "description": "Path to the running native host binary"
+              },
+              "correct_binary": {
+                "type": "boolean",
+                "description": "Whether the correct binary for the intended client is running"
+              }
+            },
+            "required": [
+              "running"
+            ]
+          },
+          "socket_status": {
+            "type": "object",
+            "properties": {
+              "exists": {
+                "type": "boolean",
+                "description": "Whether the socket file/directory exists"
+              },
+              "location": {
+                "type": "string",
+                "description": "Path to the socket"
+              },
+              "accessible": {
+                "type": "boolean",
+                "description": "Whether the socket is accessible"
+              }
+            },
+            "required": [
+              "exists"
+            ]
+          },
+          "config_status": {
+            "type": "object",
+            "properties": {
+              "active_config": {
+                "type": "string",
+                "enum": [
+                  "claude_code",
+                  "claude_app",
+                  "both_active",
+                  "none_active"
+                ],
+                "description": "Which native messaging config is active"
+              },
+              "config_path": {
+                "type": "string",
+                "description": "Path to the active config file"
+              }
+            },
+            "required": [
+              "active_config"
+            ]
+          },
+          "connection_ready": {
+            "type": "boolean",
+            "description": "Whether the MCP connection should now work"
+          }
+        },
+        "required": [
+          "connection_ready"
+        ]
+      },
+      "next_steps": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Recommended next steps for the user",
+        "examples": [
+          "Restart Chrome browser",
+          "Restart Claude Code",
+          "Try the MCP tool again",
+          "Run chrome-mcp-toggle to switch clients"
+        ]
+      },
+      "warnings": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Any warnings or caveats about the fix"
+      },
+      "success": {
+        "type": "boolean",
+        "description": "Whether the troubleshooting was successful"
+      }
+    },
+    "required": [
+      "diagnosis",
+      "resolution",
+      "verification",
+      "next_steps",
+      "success"
+    ]
+  },
+  "temperature": 0,
+  "tags": [
+    "security",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with claude in chrome troubleshooting",
+        "mcp__claude-in-chrome__* tools fail, return \"browser extension is not connected\", or behave erratically"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.92
+  }
+}

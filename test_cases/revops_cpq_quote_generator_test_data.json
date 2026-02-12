@@ -1,0 +1,129 @@
+{
+  "skill_id": "revops_cpq_quote_generator",
+  "generated_at": "2026-02-12T00:05:05.193333",
+  "num_cases": 11,
+  "test_cases": [
+    {
+      "inputs": {
+        "dealId": "jaz0yj",
+        "accountId": "yz7xkzvmadpz1u48v",
+        "term": 4330.34,
+        "discountRequest": 8752.55,
+        "paymentTerms": "upfront"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "dealId": "71p7537ck7a2jd9",
+        "accountId": "2",
+        "products": [],
+        "term": 9724.29,
+        "discountRequest": 4892.62
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "dealId": "hs2u35nxo4hs30c"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "products": [],
+        "term": 2978.88
+      },
+      "label": "missing_dealId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "dealId": 12345,
+        "accountId": "od08",
+        "products": [
+          {
+            "productId": "xd8iszl5dx2",
+            "quantity": 6650.27
+          },
+          {},
+          {
+            "productId": "9d52cad4ky5",
+            "quantity": 480.32
+          }
+        ],
+        "term": 7265.13,
+        "discountRequest": 8180.55
+      },
+      "label": "invalid_type_dealId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "dealId": "cigwxt",
+        "accountId": 12345,
+        "paymentTerms": "monthly"
+      },
+      "label": "invalid_type_accountId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "dealId": "4w9cpml1",
+        "accountId": "dkbvf5x45",
+        "products": "not_an_array",
+        "term": 2054.32,
+        "discountRequest": 2977.56,
+        "paymentTerms": "upfront"
+      },
+      "label": "invalid_type_products",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "dealId": "t5t551aixf9gla0wjy52",
+        "products": [
+          {
+            "quantity": 8339.62
+          },
+          {
+            "productId": "80c1j4qr9r",
+            "quantity": 7589.71
+          }
+        ],
+        "discountRequest": 9315.94,
+        "term": "not_a_number"
+      },
+      "label": "invalid_type_term",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "dealId": "q9ffyzwhj3hpwc",
+        "accountId": "rcqgy0bz2de",
+        "products": [],
+        "discountRequest": "not_a_number"
+      },
+      "label": "invalid_type_discountRequest",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "dealId": "5",
+        "accountId": "ya2j",
+        "term": 679.07,
+        "paymentTerms": 12345
+      },
+      "label": "invalid_type_paymentTerms",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

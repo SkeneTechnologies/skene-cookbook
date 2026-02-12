@@ -1,0 +1,81 @@
+{
+  "skill_id": "plgf_metrics",
+  "generated_at": "2026-02-11T22:14:33.102461",
+  "num_cases": 9,
+  "test_cases": [
+    {
+      "inputs": {
+        "analysisType": "funnel",
+        "companyStage": "seed"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "analysisType": "benchmarking",
+        "productType": "consumer_app"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "analysisType": "funnel",
+        "companyStage": "scale",
+        "timeframe": "wskk4zzo16o098"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "productType": "b2b_saas",
+        "timeframe": "v8o1p5zr"
+      },
+      "label": "missing_analysisType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "analysisType": 12345,
+        "companyStage": "growth",
+        "timeframe": "ucdhuoiqqeg1bfr79"
+      },
+      "label": "invalid_type_analysisType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "analysisType": "cohort",
+        "productType": "consumer_app",
+        "companyStage": 12345
+      },
+      "label": "invalid_type_companyStage",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "analysisType": "dashboard_design",
+        "timeframe": "idf9wwx5zoevb8",
+        "productType": 12345
+      },
+      "label": "invalid_type_productType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "analysisType": "cohort",
+        "productType": "b2b_saas",
+        "timeframe": 12345
+      },
+      "label": "invalid_type_timeframe",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "id": "cursor_rules/angular",
+  "version": "1.0.0",
+  "name": "angular",
+  "description": "Provides definitive guidelines for modern Angular development (2025), focusing on best practices for code structure, component architecture, state management with signals, performance, and type safety.",
+  "domain": "cursor_rules",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "cursor_rules",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "cursor": {
+      "globs": [
+        "**/*.{ts",
+        "html}"
+      ]
+    },
+    "claude": {
+      "triggers": [
+        "help with angular"
+      ]
+    },
+    "skeneflow": {}
+  },
+  "skipSchemaValidation": true
+}

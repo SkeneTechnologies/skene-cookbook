@@ -1,0 +1,298 @@
+{
+  "id": "superpowers/test-driven-development",
+  "version": "1.0.0",
+  "name": "test-driven-development",
+  "description": "Use when implementing any feature or bugfix, before writing implementation code",
+  "domain": "superpowers",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "taskType": {
+        "type": "string",
+        "enum": [
+          "feature",
+          "bugfix",
+          "refactoring",
+          "behavior-change"
+        ],
+        "description": "Type of development task being implemented"
+      },
+      "taskDescription": {
+        "type": "string",
+        "description": "Clear description of what needs to be implemented or fixed"
+      },
+      "existingCodePath": {
+        "type": "string",
+        "description": "Path to existing code file(s) that will be modified or tested",
+        "pattern": "^[a-zA-Z0-9/_.-]+$"
+      },
+      "testFilePath": {
+        "type": "string",
+        "description": "Path where test file should be created or updated",
+        "pattern": "^[a-zA-Z0-9/_.-]+\\.test\\.[a-zA-Z0-9]+$"
+      },
+      "programmingLanguage": {
+        "type": "string",
+        "description": "Programming language being used (e.g., typescript, javascript, python, java)",
+        "examples": [
+          "typescript",
+          "javascript",
+          "python",
+          "java",
+          "go",
+          "rust"
+        ]
+      },
+      "testingFramework": {
+        "type": "string",
+        "description": "Testing framework to use (e.g., jest, vitest, pytest, junit)",
+        "examples": [
+          "jest",
+          "vitest",
+          "pytest",
+          "junit",
+          "mocha",
+          "jasmine"
+        ]
+      },
+      "edgeCases": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Known edge cases that must be covered by tests",
+        "default": []
+      },
+      "skipTDD": {
+        "type": "boolean",
+        "description": "Whether to skip TDD (requires human approval, should almost always be false)",
+        "default": false
+      },
+      "skipReason": {
+        "type": "string",
+        "description": "Reason for skipping TDD (only valid if skipTDD is true)",
+        "enum": [
+          "throwaway-prototype",
+          "generated-code",
+          "configuration-file",
+          "human-approved-exception"
+        ]
+      }
+    },
+    "required": [
+      "taskType",
+      "taskDescription",
+      "existingCodePath",
+      "testFilePath",
+      "programmingLanguage",
+      "testingFramework"
+    ],
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "cyclePhase": {
+        "type": "string",
+        "enum": [
+          "RED",
+          "VERIFY_RED",
+          "GREEN",
+          "VERIFY_GREEN",
+          "REFACTOR",
+          "COMPLETE"
+        ],
+        "description": "Current phase of the TDD cycle"
+      },
+      "testCode": {
+        "type": "string",
+        "description": "Generated test code (populated in RED phase)"
+      },
+      "testFilePath": {
+        "type": "string",
+        "description": "Path to the test file created or modified"
+      },
+      "redVerification": {
+        "type": "object",
+        "properties": {
+          "testFailed": {
+            "type": "boolean",
+            "description": "Whether the test failed as expected"
+          },
+          "failureReason": {
+            "type": "string",
+            "description": "Reason for test failure (should be feature missing, not error)"
+          },
+          "failureMessage": {
+            "type": "string",
+            "description": "Actual test failure output"
+          },
+          "isExpectedFailure": {
+            "type": "boolean",
+            "description": "Whether failure matches expected behavior (feature missing)"
+          }
+        },
+        "required": [
+          "testFailed",
+          "failureReason",
+          "isExpectedFailure"
+        ]
+      },
+      "implementationCode": {
+        "type": "string",
+        "description": "Minimal implementation code to pass the test (populated in GREEN phase)"
+      },
+      "implementationFilePath": {
+        "type": "string",
+        "description": "Path to the implementation file created or modified"
+      },
+      "greenVerification": {
+        "type": "object",
+        "properties": {
+          "testPassed": {
+            "type": "boolean",
+            "description": "Whether the test now passes"
+          },
+          "allTestsPassed": {
+            "type": "boolean",
+            "description": "Whether all tests in the suite still pass"
+          },
+          "outputClean": {
+            "type": "boolean",
+            "description": "Whether test output has no errors or warnings"
+          }
+        },
+        "required": [
+          "testPassed",
+          "allTestsPassed",
+          "outputClean"
+        ]
+      },
+      "refactoringChanges": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "filePath": {
+              "type": "string",
+              "description": "File that was refactored"
+            },
+            "changeDescription": {
+              "type": "string",
+              "description": "Description of refactoring performed"
+            },
+            "testsStillGreen": {
+              "type": "boolean",
+              "description": "Whether tests remained green after this refactoring"
+            }
+          },
+          "required": [
+            "filePath",
+            "changeDescription",
+            "testsStillGreen"
+          ]
+        },
+        "description": "List of refactoring changes made (populated in REFACTOR phase)"
+      },
+      "completionChecklist": {
+        "type": "object",
+        "properties": {
+          "everyFunctionHasTest": {
+            "type": "boolean"
+          },
+          "watchedEachTestFail": {
+            "type": "boolean"
+          },
+          "failedForExpectedReason": {
+            "type": "boolean"
+          },
+          "wroteMinimalCode": {
+            "type": "boolean"
+          },
+          "allTestsPass": {
+            "type": "boolean"
+          },
+          "outputPristine": {
+            "type": "boolean"
+          },
+          "testsUseRealCode": {
+            "type": "boolean"
+          },
+          "edgeCasesCovered": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "everyFunctionHasTest",
+          "watchedEachTestFail",
+          "failedForExpectedReason",
+          "wroteMinimalCode",
+          "allTestsPass",
+          "outputPristine",
+          "testsUseRealCode",
+          "edgeCasesCovered"
+        ],
+        "description": "Verification checklist for TDD compliance"
+      },
+      "violations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "List of TDD violations detected (if any)",
+        "default": []
+      },
+      "nextSteps": {
+        "type": "string",
+        "description": "What to do next in the TDD cycle"
+      }
+    },
+    "required": [
+      "cyclePhase",
+      "nextSteps"
+    ],
+    "additionalProperties": true
+  },
+  "temperature": 0,
+  "tags": [
+    "superpowers",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with test driven development",
+        "code review",
+        "writing plans",
+        "implementing any feature or bugfix, before writing implementation code"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "security_controls": {
+    "delete_operations": {
+      "soft_delete": true,
+      "retention_period_days": 30,
+      "undelete_capable": true,
+      "backup_before_delete": true,
+      "multi_party_approval": true,
+      "confirmation_required": {
+        "enabled": true,
+        "show_impact": true,
+        "require_reason": true
+      }
+    }
+  },
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.92
+  }
+}

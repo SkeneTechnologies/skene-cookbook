@@ -1,0 +1,55 @@
+{
+  "skill_id": "cs_vla_tracker",
+  "generated_at": "2026-02-12T00:05:02.118732",
+  "num_cases": 7,
+  "test_cases": [
+    {
+      "inputs": {
+        "accountId": "test_c39u4k4k"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "accountId": "test_7xqmwh1g",
+        "vlaDefinitions": []
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "accountId": "test_xx7vma72",
+        "vlaDefinitions": []
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {},
+      "label": "missing_accountId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": 12345
+      },
+      "label": "invalid_type_accountId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": "test_04n9ysk2",
+        "vlaDefinitions": "not_an_array"
+      },
+      "label": "invalid_type_vlaDefinitions",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "skill_id": "mon_payment_method_optimizer",
+  "generated_at": "2026-02-12T00:05:10.793248",
+  "num_cases": 7,
+  "test_cases": [
+    {
+      "inputs": {
+        "customer_id": "uwlq",
+        "optimization_goal": "reduce_failures"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "customer_id": "zsc",
+        "optimization_goal": "reduce_fees"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "customer_id": "z5cjqzk2s"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {},
+      "label": "missing_customer_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "customer_id": 12345,
+        "optimization_goal": "reduce_failures"
+      },
+      "label": "invalid_type_customer_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "customer_id": "r67s1f7yh3is",
+        "optimization_goal": 12345
+      },
+      "label": "invalid_type_optimization_goal",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

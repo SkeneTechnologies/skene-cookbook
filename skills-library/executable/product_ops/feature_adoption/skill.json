@@ -1,0 +1,523 @@
+{
+  "id": "prodops_feature_adoption",
+  "version": "1.0.0",
+  "name": "Feature Adoption Tracker",
+  "description": "Tracks feature adoption metrics and identifies opportunities to drive usage.",
+  "domain": "product_ops",
+  "tools": [
+    {
+      "name": "analytics.feature_adoption",
+      "required": true
+    },
+    {
+      "name": "analytics.funnel",
+      "required": true
+    },
+    {
+      "name": "lifecycle.get_segment",
+      "required": false
+    },
+    {
+      "name": "messaging.send_in_app",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "adoption_campaign",
+    "feature_sunset",
+    "product_review",
+    "idle"
+  ],
+  "metrics": {
+    "primary": "feature_adoption_rate",
+    "benchmarks": {
+      "excellent": "> 60%",
+      "good": "40-60%",
+      "needs_improvement": "< 40%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "product_ops",
+    "adoption",
+    "features",
+    "usage",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Feature Adoption Tracker"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "time_period": {
+        "type": "object",
+        "properties": {
+          "start_date": {
+            "type": "string",
+            "format": "date",
+            "description": "Start date for analysis period"
+          },
+          "end_date": {
+            "type": "string",
+            "format": "date",
+            "description": "End date for analysis period"
+          }
+        },
+        "required": [
+          "start_date",
+          "end_date"
+        ],
+        "description": "Time period to analyze feature adoption"
+      },
+      "feature_filters": {
+        "type": "object",
+        "properties": {
+          "feature_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Specific feature IDs to analyze (empty for all features)"
+          },
+          "feature_categories": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Filter by feature categories"
+          },
+          "min_age_days": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Minimum feature age in days to include in analysis"
+          }
+        },
+        "additionalProperties": false
+      },
+      "segment_filters": {
+        "type": "object",
+        "properties": {
+          "user_segments": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Specific user segments to analyze (e.g., 'enterprise', 'free_tier')"
+          },
+          "account_tiers": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "free",
+                "starter",
+                "professional",
+                "enterprise"
+              ]
+            },
+            "description": "Account tier filters"
+          }
+        },
+        "additionalProperties": false
+      },
+      "benchmark_thresholds": {
+        "type": "object",
+        "properties": {
+          "discovery_rate_target": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100,
+            "default": 80,
+            "description": "Target discovery rate percentage"
+          },
+          "trial_rate_target": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100,
+            "default": 50,
+            "description": "Target trial rate percentage"
+          },
+          "adoption_rate_target": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100,
+            "default": 30,
+            "description": "Target adoption rate percentage"
+          },
+          "retention_rate_target": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100,
+            "default": 60,
+            "description": "Target 30-day retention rate percentage"
+          }
+        },
+        "additionalProperties": false
+      },
+      "enable_interventions": {
+        "type": "boolean",
+        "default": false,
+        "description": "Whether to automatically trigger in-app messages for underutilized features"
+      },
+      "comparison_period": {
+        "type": "object",
+        "properties": {
+          "start_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "end_date": {
+            "type": "string",
+            "format": "date"
+          }
+        },
+        "required": [
+          "start_date",
+          "end_date"
+        ],
+        "description": "Optional previous period for trend analysis"
+      }
+    },
+    "required": [
+      "time_period"
+    ],
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "report_metadata": {
+        "type": "object",
+        "properties": {
+          "generated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "period_start": {
+            "type": "string",
+            "format": "date"
+          },
+          "period_end": {
+            "type": "string",
+            "format": "date"
+          },
+          "total_features_analyzed": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "generated_at",
+          "period_start",
+          "period_end",
+          "total_features_analyzed"
+        ]
+      },
+      "overview": {
+        "type": "object",
+        "properties": {
+          "total_features": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "average_adoption_rate": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "underutilized_count": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Number of features below adoption threshold"
+          },
+          "at_risk_count": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Features with declining adoption"
+          }
+        },
+        "required": [
+          "total_features",
+          "average_adoption_rate",
+          "underutilized_count"
+        ]
+      },
+      "feature_performance": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "feature_id": {
+              "type": "string"
+            },
+            "feature_name": {
+              "type": "string"
+            },
+            "category": {
+              "type": "string"
+            },
+            "discovery_rate": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100
+            },
+            "trial_rate": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100
+            },
+            "adoption_rate": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100
+            },
+            "retention_rate_30d": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100
+            },
+            "trend": {
+              "type": "string",
+              "enum": [
+                "up",
+                "down",
+                "stable"
+              ]
+            },
+            "trend_percentage": {
+              "type": "number",
+              "description": "Percentage change from previous period"
+            },
+            "total_users": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "active_users": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "required": [
+            "feature_id",
+            "feature_name",
+            "discovery_rate",
+            "trial_rate",
+            "adoption_rate",
+            "trend"
+          ]
+        }
+      },
+      "underutilized_features": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "feature_id": {
+              "type": "string"
+            },
+            "feature_name": {
+              "type": "string"
+            },
+            "adoption_rate": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100
+            },
+            "bottleneck": {
+              "type": "string",
+              "enum": [
+                "discovery",
+                "trial",
+                "adoption",
+                "retention"
+              ],
+              "description": "Primary bottleneck in adoption funnel"
+            },
+            "hypothesis": {
+              "type": "string",
+              "description": "Hypothesis for why adoption is low"
+            },
+            "recommendation": {
+              "type": "string",
+              "enum": [
+                "education_campaign",
+                "ux_improvement",
+                "in_app_promotion",
+                "feature_redesign",
+                "sunset_candidate"
+              ],
+              "description": "Recommended intervention"
+            },
+            "recommendation_details": {
+              "type": "string",
+              "description": "Detailed recommendation text"
+            },
+            "priority": {
+              "type": "string",
+              "enum": [
+                "high",
+                "medium",
+                "low"
+              ]
+            }
+          },
+          "required": [
+            "feature_id",
+            "feature_name",
+            "adoption_rate",
+            "bottleneck",
+            "hypothesis",
+            "recommendation",
+            "priority"
+          ]
+        }
+      },
+      "adoption_champions": {
+        "type": "object",
+        "properties": {
+          "highest_adoption": {
+            "type": "object",
+            "properties": {
+              "feature_name": {
+                "type": "string"
+              },
+              "adoption_rate": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 100
+              }
+            },
+            "required": [
+              "feature_name",
+              "adoption_rate"
+            ]
+          },
+          "fastest_growing": {
+            "type": "object",
+            "properties": {
+              "feature_name": {
+                "type": "string"
+              },
+              "growth_rate": {
+                "type": "number",
+                "description": "Percentage point increase"
+              }
+            },
+            "required": [
+              "feature_name",
+              "growth_rate"
+            ]
+          },
+          "best_retention": {
+            "type": "object",
+            "properties": {
+              "feature_name": {
+                "type": "string"
+              },
+              "retention_rate": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 100
+              }
+            },
+            "required": [
+              "feature_name",
+              "retention_rate"
+            ]
+          }
+        },
+        "required": [
+          "highest_adoption"
+        ]
+      },
+      "action_items": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "action": {
+              "type": "string"
+            },
+            "feature_id": {
+              "type": "string"
+            },
+            "priority": {
+              "type": "string",
+              "enum": [
+                "high",
+                "medium",
+                "low"
+              ]
+            },
+            "estimated_impact": {
+              "type": "string",
+              "description": "Expected impact description"
+            },
+            "owner": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "action",
+            "priority"
+          ]
+        }
+      },
+      "interventions_triggered": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "feature_id": {
+              "type": "string"
+            },
+            "intervention_type": {
+              "type": "string",
+              "enum": [
+                "in_app_message",
+                "email_campaign",
+                "tooltip",
+                "onboarding_update"
+              ]
+            },
+            "segment_targeted": {
+              "type": "string"
+            },
+            "message_id": {
+              "type": "string"
+            },
+            "triggered_at": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          "required": [
+            "feature_id",
+            "intervention_type",
+            "triggered_at"
+          ]
+        },
+        "description": "Automatic interventions triggered if enable_interventions was true"
+      }
+    },
+    "required": [
+      "report_metadata",
+      "overview",
+      "feature_performance",
+      "underutilized_features",
+      "adoption_champions",
+      "action_items"
+    ]
+  },
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.92
+  }
+}

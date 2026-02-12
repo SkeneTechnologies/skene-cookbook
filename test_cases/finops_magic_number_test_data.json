@@ -1,0 +1,67 @@
+{
+  "skill_id": "finops_magic_number",
+  "generated_at": "2026-02-12T00:05:00.015030",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "period": "ltsujkkrqou",
+        "net_new_arr_only": false
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "period": "2ttu6dje615u61hxcfpz"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "period": "8uwygqw3aonsm5z8pil",
+        "include_variants": false,
+        "net_new_arr_only": true
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "net_new_arr_only": true
+      },
+      "label": "missing_period",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": 12345
+      },
+      "label": "invalid_type_period",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": "trc2rkcncp",
+        "include_variants": "yes"
+      },
+      "label": "invalid_type_include_variants",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": "4vxyzd97mnus785dr4bc",
+        "include_variants": true,
+        "net_new_arr_only": "yes"
+      },
+      "label": "invalid_type_net_new_arr_only",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

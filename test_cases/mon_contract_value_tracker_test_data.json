@@ -1,0 +1,68 @@
+{
+  "skill_id": "mon_contract_value_tracker",
+  "generated_at": "2026-02-12T00:05:09.898060",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "account_id": "7ovuz0hynrcg6qwi",
+        "contract_id": "test_7mwpb81m",
+        "include_expansion": true
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "account_id": "nha9qakfleel3",
+        "contract_id": "test_x9rm26iw"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "account_id": "gq",
+        "contract_id": "test_sv07i4qk"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "include_expansion": false
+      },
+      "label": "missing_account_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "account_id": 12345
+      },
+      "label": "invalid_type_account_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "account_id": "28",
+        "include_expansion": true,
+        "contract_id": 12345
+      },
+      "label": "invalid_type_contract_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "account_id": "smf",
+        "include_expansion": "yes"
+      },
+      "label": "invalid_type_include_expansion",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

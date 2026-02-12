@@ -1,0 +1,69 @@
+{
+  "skill_id": "plgf_free_tool_strategy",
+  "generated_at": "2026-02-11T22:14:33.127855",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "phase": "development",
+        "toolType": "calculator",
+        "targetKeyword": "gfs55wl6ob"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "phase": "launch",
+        "toolType": "calculator",
+        "targetKeyword": "dzzw2s6xeipx6hx"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "phase": "evaluation",
+        "toolType": "converter",
+        "targetKeyword": "c84ao0qenzcrtwy"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "targetKeyword": "kmifi5nec"
+      },
+      "label": "missing_phase",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "phase": 12345
+      },
+      "label": "invalid_type_phase",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "phase": "optimization",
+        "toolType": 12345
+      },
+      "label": "invalid_type_toolType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "phase": "ideation",
+        "targetKeyword": 12345
+      },
+      "label": "invalid_type_targetKeyword",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

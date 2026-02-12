@@ -1,0 +1,200 @@
+{
+  "id": "superpowers/writing-plans",
+  "version": "1.0.0",
+  "name": "writing-plans",
+  "description": "Use when you have a spec or requirements for a multi-step task, before touching code",
+  "domain": "superpowers",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "specificationOrRequirements": {
+        "type": "string",
+        "description": "The spec, requirements, or description of the multi-step task to create a plan for",
+        "minLength": 10
+      },
+      "featureName": {
+        "type": "string",
+        "description": "Short descriptive name for the feature/task being planned (used in filename)",
+        "pattern": "^[a-z0-9-]+$"
+      },
+      "contextFiles": {
+        "type": "array",
+        "description": "Optional list of relevant files or documentation that provide codebase context",
+        "items": {
+          "type": "string"
+        },
+        "default": []
+      },
+      "techStack": {
+        "type": "array",
+        "description": "Key technologies, libraries, or frameworks relevant to this implementation",
+        "items": {
+          "type": "string"
+        },
+        "default": []
+      },
+      "architecturalApproach": {
+        "type": "string",
+        "description": "Optional 2-3 sentence description of the architectural approach to use",
+        "default": ""
+      },
+      "worktreePath": {
+        "type": "string",
+        "description": "Path to the dedicated worktree where this plan will be created",
+        "default": "."
+      }
+    },
+    "required": [
+      "specificationOrRequirements",
+      "featureName"
+    ],
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "planFilePath": {
+        "type": "string",
+        "description": "Full path to the saved plan document",
+        "pattern": "^docs/plans/\\d{4}-\\d{2}-\\d{2}-.+\\.md$"
+      },
+      "featureName": {
+        "type": "string",
+        "description": "Name of the feature being planned"
+      },
+      "goal": {
+        "type": "string",
+        "description": "One sentence describing what this plan builds"
+      },
+      "architecture": {
+        "type": "string",
+        "description": "2-3 sentences about the architectural approach"
+      },
+      "techStack": {
+        "type": "array",
+        "description": "Key technologies/libraries used in the plan",
+        "items": {
+          "type": "string"
+        }
+      },
+      "taskCount": {
+        "type": "integer",
+        "description": "Total number of tasks in the plan",
+        "minimum": 1
+      },
+      "estimatedDuration": {
+        "type": "string",
+        "description": "Rough time estimate for plan completion (e.g., '2-4 hours')"
+      },
+      "executionOptions": {
+        "type": "object",
+        "description": "Available execution approaches",
+        "properties": {
+          "subagentDriven": {
+            "type": "object",
+            "properties": {
+              "skillRequired": {
+                "type": "string",
+                "const": "superpowers:subagent-driven-development"
+              },
+              "description": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "skillRequired",
+              "description"
+            ]
+          },
+          "parallelSession": {
+            "type": "object",
+            "properties": {
+              "skillRequired": {
+                "type": "string",
+                "const": "superpowers:executing-plans"
+              },
+              "description": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "skillRequired",
+              "description"
+            ]
+          }
+        },
+        "required": [
+          "subagentDriven",
+          "parallelSession"
+        ]
+      },
+      "announcement": {
+        "type": "string",
+        "description": "Confirmation message that writing-plans skill was used"
+      }
+    },
+    "required": [
+      "planFilePath",
+      "featureName",
+      "goal",
+      "architecture",
+      "techStack",
+      "taskCount",
+      "executionOptions",
+      "announcement"
+    ]
+  },
+  "temperature": 0,
+  "tags": [
+    "superpowers",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with writing plans",
+        "code review",
+        "you have a spec or requirements for a multi-step task, before touching code"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "security_controls": {
+    "execution_environment": {
+      "type": "sandboxed_container",
+      "resource_limits": {
+        "cpu_cores": 1,
+        "memory_mb": 512,
+        "timeout_seconds": 30,
+        "disk_mb": 100
+      },
+      "security": {
+        "network_access": false,
+        "filesystem": "read_only",
+        "user": "non_root",
+        "allowed_commands": [
+          "node",
+          "python3",
+          "npm"
+        ],
+        "blocked_syscalls": [
+          "exec",
+          "fork",
+          "kill"
+        ]
+      }
+    }
+  },
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.92
+  }
+}

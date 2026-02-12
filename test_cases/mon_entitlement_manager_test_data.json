@@ -1,0 +1,67 @@
+{
+  "skill_id": "mon_entitlement_manager",
+  "generated_at": "2026-02-12T00:05:09.635491",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "account_id": "6dnxytcwdm1dy",
+        "feature_id": "4np5eyuraphfy7whl0",
+        "action": "revoke"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "account_id": "o918llyq290ju"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "account_id": "ad",
+        "feature_id": "kv0zlx9qd41h2j",
+        "action": "extend"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {},
+      "label": "missing_account_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "account_id": 12345,
+        "feature_id": "wgnk6tmd6yhi8rw2ag",
+        "action": "check"
+      },
+      "label": "invalid_type_account_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "account_id": "xp49",
+        "feature_id": 12345
+      },
+      "label": "invalid_type_feature_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "account_id": "dcfb",
+        "action": 12345
+      },
+      "label": "invalid_type_action",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

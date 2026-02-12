@@ -1,0 +1,64 @@
+{
+  "skill_id": "plg_time_to_value",
+  "generated_at": "2026-02-12T00:05:12.700701",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "userId": "8",
+        "signupTimestamp": "4qmdau3xh2r1aq5ahp"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "userId": "sxscfdasm35t0afyhtx"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "userId": "t",
+        "signupTimestamp": "kgvphzrjpkpn8tn0tuza"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {},
+      "label": "missing_userId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": 12345
+      },
+      "label": "invalid_type_userId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": "6tzlq0yjypoq38",
+        "signupTimestamp": 12345
+      },
+      "label": "invalid_type_signupTimestamp",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": "vksms9h2lvrjs0b",
+        "signupTimestamp": "5pgiz5kk",
+        "targetTTV": "not_a_number"
+      },
+      "label": "invalid_type_targetTTV",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

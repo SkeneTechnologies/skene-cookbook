@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2024-2026 Skene Technologies
+
 """
 Skill Analyzer - Automated security analysis and categorization tool
 Parses raw skills, assigns security risk levels, and generates enriched metadata

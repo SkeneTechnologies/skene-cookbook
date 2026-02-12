@@ -1,0 +1,399 @@
+{
+  "id": "anthropic_official/pptx",
+  "version": "1.0.0",
+  "name": "pptx",
+  "description": "\"Presentation creation, editing, and analysis. When Claude needs to work with presentations (.pptx files) for: (1) Creating new presentations, (2) Modifying or editing content, (3) Working with layouts, (4) Adding comments or speaker notes, or any other presentation tasks\"",
+  "domain": "anthropic_official",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "operation": {
+        "type": "string",
+        "enum": [
+          "create",
+          "edit",
+          "analyze",
+          "create_from_template"
+        ],
+        "description": "The type of PowerPoint operation to perform"
+      },
+      "input_file": {
+        "type": "string",
+        "description": "Path to input PPTX file (required for edit, analyze, and create_from_template operations)",
+        "format": "uri-reference"
+      },
+      "output_file": {
+        "type": "string",
+        "description": "Path where the output PPTX file should be saved",
+        "format": "uri-reference"
+      },
+      "content": {
+        "type": "object",
+        "description": "Content specification for creating or editing presentations",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Main title of the presentation"
+          },
+          "slides": {
+            "type": "array",
+            "description": "Array of slide definitions",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string",
+                  "description": "Slide title"
+                },
+                "content": {
+                  "type": "string",
+                  "description": "Main content or body text"
+                },
+                "bullets": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Bullet points for the slide"
+                },
+                "notes": {
+                  "type": "string",
+                  "description": "Speaker notes for the slide"
+                },
+                "layout": {
+                  "type": "string",
+                  "description": "Layout type or template slide index"
+                }
+              }
+            }
+          }
+        }
+      },
+      "design": {
+        "type": "object",
+        "description": "Design specifications for presentation creation",
+        "properties": {
+          "theme": {
+            "type": "string",
+            "description": "Theme or subject matter to inform design choices"
+          },
+          "color_palette": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^#[0-9A-Fa-f]{6}$"
+            },
+            "description": "Array of hex color codes for the presentation"
+          },
+          "fonts": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "Arial",
+                "Helvetica",
+                "Times New Roman",
+                "Georgia",
+                "Courier New",
+                "Verdana",
+                "Tahoma",
+                "Trebuchet MS",
+                "Impact"
+              ]
+            },
+            "description": "Web-safe fonts to use in the presentation"
+          },
+          "aspect_ratio": {
+            "type": "string",
+            "enum": [
+              "16:9",
+              "4:3"
+            ],
+            "default": "16:9",
+            "description": "Slide aspect ratio"
+          }
+        }
+      },
+      "template_mapping": {
+        "type": "array",
+        "items": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "description": "Array of template slide indices to use when creating from template (0-based indexing)"
+      },
+      "analysis_options": {
+        "type": "object",
+        "description": "Options for analyzing presentations",
+        "properties": {
+          "extract_text": {
+            "type": "boolean",
+            "default": true,
+            "description": "Extract text content to markdown"
+          },
+          "extract_notes": {
+            "type": "boolean",
+            "default": false,
+            "description": "Extract speaker notes"
+          },
+          "extract_comments": {
+            "type": "boolean",
+            "default": false,
+            "description": "Extract comments"
+          },
+          "generate_thumbnails": {
+            "type": "boolean",
+            "default": false,
+            "description": "Generate thumbnail grid images"
+          },
+          "thumbnail_columns": {
+            "type": "integer",
+            "minimum": 3,
+            "maximum": 6,
+            "default": 5,
+            "description": "Number of columns in thumbnail grid"
+          }
+        }
+      },
+      "edit_instructions": {
+        "type": "array",
+        "description": "Array of editing instructions for modifying existing presentations",
+        "items": {
+          "type": "object",
+          "properties": {
+            "slide_index": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Zero-based index of slide to edit"
+            },
+            "shape_id": {
+              "type": "string",
+              "description": "Identifier for the shape to modify"
+            },
+            "action": {
+              "type": "string",
+              "enum": [
+                "replace_text",
+                "add_shape",
+                "delete_shape",
+                "modify_layout"
+              ],
+              "description": "Type of edit to perform"
+            },
+            "value": {
+              "description": "New value or content for the edit"
+            }
+          },
+          "required": [
+            "slide_index",
+            "action"
+          ]
+        }
+      }
+    },
+    "required": [
+      "operation"
+    ],
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "success": {
+        "type": "boolean",
+        "description": "Whether the operation completed successfully"
+      },
+      "output_file": {
+        "type": "string",
+        "description": "Path to the created or modified PPTX file",
+        "format": "uri-reference"
+      },
+      "operation": {
+        "type": "string",
+        "enum": [
+          "create",
+          "edit",
+          "analyze",
+          "create_from_template"
+        ],
+        "description": "The operation that was performed"
+      },
+      "slide_count": {
+        "type": "integer",
+        "minimum": 0,
+        "description": "Number of slides in the presentation"
+      },
+      "analysis": {
+        "type": "object",
+        "description": "Analysis results when operation is 'analyze'",
+        "properties": {
+          "text_content": {
+            "type": "string",
+            "description": "Extracted text content in markdown format"
+          },
+          "slides": {
+            "type": "array",
+            "description": "Detailed information about each slide",
+            "items": {
+              "type": "object",
+              "properties": {
+                "slide_number": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "title": {
+                  "type": "string"
+                },
+                "text_content": {
+                  "type": "string"
+                },
+                "notes": {
+                  "type": "string"
+                },
+                "layout": {
+                  "type": "string"
+                },
+                "shape_count": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "theme": {
+            "type": "object",
+            "description": "Theme information extracted from the presentation",
+            "properties": {
+              "colors": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "fonts": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "thumbnail_files": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uri-reference"
+            },
+            "description": "Paths to generated thumbnail grid images"
+          }
+        }
+      },
+      "validation_results": {
+        "type": "object",
+        "description": "Validation results for edited presentations",
+        "properties": {
+          "valid": {
+            "type": "boolean"
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "warnings": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "design_choices": {
+        "type": "object",
+        "description": "Design decisions made during presentation creation",
+        "properties": {
+          "theme_rationale": {
+            "type": "string",
+            "description": "Explanation of theme and design choices"
+          },
+          "color_palette": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Selected color palette with hex codes"
+          },
+          "fonts_used": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "errors": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Array of error messages if operation failed"
+      },
+      "warnings": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Array of warning messages"
+      }
+    },
+    "required": [
+      "success",
+      "operation"
+    ]
+  },
+  "temperature": 0,
+  "tags": [
+    "anthropic_official",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "license": "Proprietary. LICENSE.txt has complete terms",
+      "triggers": [
+        "help with pptx",
+        "presentation"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "categories": [
+    "marketing",
+    "marketing/documents"
+  ],
+  "security_controls": {
+    "delete_operations": {
+      "soft_delete": true,
+      "retention_period_days": 30,
+      "undelete_capable": true,
+      "backup_before_delete": true,
+      "multi_party_approval": true,
+      "confirmation_required": {
+        "enabled": true,
+        "show_impact": true,
+        "require_reason": true
+      }
+    }
+  },
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.9
+  }
+}

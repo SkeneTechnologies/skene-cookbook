@@ -1,0 +1,66 @@
+{
+  "skill_id": "plg_usage_depth_analyzer",
+  "generated_at": "2026-02-12T00:05:11.489560",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "userId": "lxr5baznjdg6g6qd"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "userId": "9mcuqk7f1uqb1raz",
+        "analysisDepth": "diagnostic"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "userId": "t7e2",
+        "featureArea": "289c5y"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "analysisDepth": "detailed"
+      },
+      "label": "missing_userId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": 12345
+      },
+      "label": "invalid_type_userId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": "0ojoen",
+        "featureArea": 12345,
+        "analysisDepth": "summary"
+      },
+      "label": "invalid_type_featureArea",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": "361wtinz3j4fymmq",
+        "analysisDepth": 12345
+      },
+      "label": "invalid_type_analysisDepth",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

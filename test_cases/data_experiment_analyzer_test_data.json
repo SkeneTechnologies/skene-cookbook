@@ -1,0 +1,116 @@
+{
+  "skill_id": "data_experiment_analyzer",
+  "generated_at": "2026-02-11T22:18:31.221533",
+  "num_cases": 11,
+  "test_cases": [
+    {
+      "inputs": {
+        "experiment_id": "test_8ojgzgmm",
+        "metrics": [],
+        "confidence_level": 4421.46,
+        "include_guardrails": true,
+        "bayesian": true
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "experiment_id": "test_8yq2vyhr",
+        "bayesian": false
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "experiment_id": "test_udj5o6le",
+        "metrics": [
+          "j",
+          "k2idbc8j",
+          "ish1e4f5fslpw"
+        ],
+        "include_guardrails": false,
+        "bayesian": false
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "segments": []
+      },
+      "label": "missing_experiment_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "experiment_id": 12345,
+        "metrics": [
+          "r"
+        ],
+        "include_guardrails": false
+      },
+      "label": "invalid_type_experiment_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "experiment_id": "test_r25vlumu",
+        "metrics": "not_an_array",
+        "segments": [
+          "j3z7"
+        ]
+      },
+      "label": "invalid_type_metrics",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "experiment_id": "test_va30oyii",
+        "segments": [
+          "xn26e9n",
+          "n1u5jx7opi42h2jmgac"
+        ],
+        "include_guardrails": false,
+        "bayesian": false,
+        "confidence_level": "not_a_number"
+      },
+      "label": "invalid_type_confidence_level",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "experiment_id": "test_z6snizch",
+        "confidence_level": 4139.06,
+        "segments": "not_an_array",
+        "include_guardrails": false,
+        "bayesian": true
+      },
+      "label": "invalid_type_segments",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "experiment_id": "test_ag1o3xnn",
+        "confidence_level": 2613.29,
+        "include_guardrails": "yes"
+      },
+      "label": "invalid_type_include_guardrails",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "experiment_id": "test_lh0g8zi3",
+        "bayesian": "yes"
+      },
+      "label": "invalid_type_bayesian",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

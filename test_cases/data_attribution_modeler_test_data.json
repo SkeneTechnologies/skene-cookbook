@@ -1,0 +1,142 @@
+{
+  "skill_id": "data_attribution_modeler",
+  "generated_at": "2026-02-11T22:18:28.984443",
+  "num_cases": 11,
+  "test_cases": [
+    {
+      "inputs": {
+        "conversion_event": "v1vk0z7n7rq",
+        "channels": [
+          "95ktklmh",
+          "t",
+          "o6axith969"
+        ],
+        "include_spend": false
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "conversion_event": "htjxeffk78lvju",
+        "models": [
+          "ixcqqxnpgzlv4t",
+          "7u12h12ev",
+          "sl0z3lj86yr9ro0wj1yd"
+        ],
+        "time_range": "fgq"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "conversion_event": "2xds8",
+        "attribution_window": "p202uof8evat4abno5rt",
+        "models": [
+          "2tsg0odqr44rp",
+          "n7vq2kky0ah1d"
+        ],
+        "channels": [
+          "jd5sq84i8c41",
+          "nwezj0rti7ul59u"
+        ],
+        "include_spend": false
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "models": [
+          "ow9p01axv5un2f",
+          "e3ldv"
+        ],
+        "channels": [],
+        "include_spend": false
+      },
+      "label": "missing_conversion_event",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "conversion_event": 12345,
+        "models": [
+          "b4hdo5yss8tiul8r",
+          "iqu7"
+        ]
+      },
+      "label": "invalid_type_conversion_event",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "conversion_event": "ptm3onf28d3zidfqn",
+        "attribution_window": 12345,
+        "models": [
+          "tdt0d0mbbel1v2"
+        ],
+        "channels": [
+          "vtk",
+          "p",
+          "1sa9c"
+        ],
+        "time_range": "6ckeprfemzwf"
+      },
+      "label": "invalid_type_attribution_window",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "conversion_event": "lmu",
+        "attribution_window": "mbrrdcsno70aup",
+        "channels": [
+          "5n3750hnzxp689q"
+        ],
+        "include_spend": false,
+        "models": "not_an_array"
+      },
+      "label": "invalid_type_models",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "conversion_event": "swlwa",
+        "attribution_window": "p5n7fvp8y",
+        "models": [
+          "1xfnkbpojekjl",
+          "jnsrozu2"
+        ],
+        "channels": "not_an_array"
+      },
+      "label": "invalid_type_channels",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "conversion_event": "b",
+        "time_range": 12345
+      },
+      "label": "invalid_type_time_range",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "conversion_event": "g77j1",
+        "attribution_window": "1",
+        "channels": [
+          "5b1vqw26wpmlfefhu1",
+          "llnd1c3"
+        ],
+        "include_spend": "yes"
+      },
+      "label": "invalid_type_include_spend",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

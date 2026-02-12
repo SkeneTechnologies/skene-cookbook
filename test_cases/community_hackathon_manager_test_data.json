@@ -1,0 +1,189 @@
+{
+  "skill_id": "community_hackathon_manager",
+  "generated_at": "2026-02-11T22:18:28.668970",
+  "num_cases": 15,
+  "test_cases": [
+    {
+      "inputs": {
+        "hackathonName": "Test Name p38b",
+        "theme": "tinccvvkw4zvewqyjafr",
+        "startDate": "2026-02-11T22:18:28.668645",
+        "endDate": "2026-02-11T22:18:28.668650",
+        "format": "hybrid"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "hackathonName": "Test Name kz53",
+        "theme": "gmz14qow7xnmoi3ja5un",
+        "startDate": "2026-02-11T22:18:28.668664",
+        "endDate": "2026-02-11T22:18:28.668665",
+        "prizes": [
+          {}
+        ],
+        "maxTeamSize": 4879.62
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "hackathonName": "Test Name ty0l",
+        "theme": "t0a",
+        "startDate": "2026-02-11T22:18:28.668680",
+        "endDate": "2026-02-11T22:18:28.668682",
+        "format": "hybrid"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "theme": "x1cuw6nmc60",
+        "startDate": "2026-02-11T22:18:28.668692",
+        "endDate": "2026-02-11T22:18:28.668693",
+        "format": "hybrid"
+      },
+      "label": "missing_hackathonName",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "hackathonName": "Test Name 69w0",
+        "startDate": "2026-02-11T22:18:28.668702",
+        "endDate": "2026-02-11T22:18:28.668703",
+        "format": "virtual",
+        "prizes": [
+          {}
+        ],
+        "maxTeamSize": 3883.01
+      },
+      "label": "missing_theme",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "hackathonName": "Test Name 411j",
+        "theme": "z74cj2vqo62b0inhwz",
+        "endDate": "2026-02-11T22:18:28.668717",
+        "format": "hybrid",
+        "maxTeamSize": 6961.35
+      },
+      "label": "missing_startDate",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "hackathonName": "Test Name 5y01",
+        "theme": "1h35wq1v4s540fd",
+        "startDate": "2026-02-11T22:18:28.668727",
+        "prizes": [
+          {},
+          {}
+        ],
+        "maxTeamSize": 3798.99
+      },
+      "label": "missing_endDate",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "hackathonName": 12345,
+        "theme": "qriva",
+        "startDate": "2026-02-11T22:18:28.668740",
+        "endDate": "2026-02-11T22:18:28.668741",
+        "format": "in_person",
+        "prizes": [
+          {},
+          {},
+          {}
+        ],
+        "maxTeamSize": 3932.27
+      },
+      "label": "invalid_type_hackathonName",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "hackathonName": "Test Name 07n7",
+        "theme": 12345,
+        "startDate": "2026-02-11T22:18:28.668754",
+        "endDate": "2026-02-11T22:18:28.668756"
+      },
+      "label": "invalid_type_theme",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "hackathonName": "Test Name qwr9",
+        "theme": "m8y3kv2fvv3i3jefsrtz",
+        "startDate": 12345,
+        "endDate": "2026-02-11T22:18:28.668766"
+      },
+      "label": "invalid_type_startDate",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "hackathonName": "Test Name 34ar",
+        "theme": "hudw",
+        "startDate": "2026-02-11T22:18:28.668773",
+        "endDate": 12345,
+        "format": "virtual",
+        "prizes": [
+          {},
+          {}
+        ],
+        "maxTeamSize": 6641.69
+      },
+      "label": "invalid_type_endDate",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "hackathonName": "Test Name edwj",
+        "theme": "ctdln43bsxlkgd",
+        "startDate": "2026-02-11T22:18:28.668787",
+        "endDate": "2026-02-11T22:18:28.668788",
+        "format": 12345,
+        "prizes": [
+          {}
+        ],
+        "maxTeamSize": 2505.18
+      },
+      "label": "invalid_type_format",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "hackathonName": "Test Name q475",
+        "theme": "0yud",
+        "startDate": "2026-02-11T22:18:28.668799",
+        "endDate": "2026-02-11T22:18:28.668800",
+        "format": "virtual",
+        "prizes": "not_an_array",
+        "maxTeamSize": 9125.39
+      },
+      "label": "invalid_type_prizes",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "hackathonName": "Test Name jwis",
+        "theme": "nx4",
+        "startDate": "2026-02-11T22:18:28.668812",
+        "endDate": "2026-02-11T22:18:28.668813",
+        "maxTeamSize": "not_a_number"
+      },
+      "label": "invalid_type_maxTeamSize",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

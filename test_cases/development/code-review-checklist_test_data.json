@@ -1,0 +1,55 @@
+{
+  "skill_id": "development/code-review-checklist",
+  "generated_at": "2026-02-11T22:18:30.225008",
+  "num_cases": 7,
+  "test_cases": [
+    {
+      "inputs": {
+        "code": "618pmkaakq6m"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "code": "6scx"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "code": "ka522qamr2",
+        "context": "5n97do0b33i43y57"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {},
+      "label": "missing_code",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "code": 12345,
+        "context": "iag0110oj23809"
+      },
+      "label": "invalid_type_code",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "code": "o0qf5kkf0c76fdk",
+        "context": 12345
+      },
+      "label": "invalid_type_context",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "skill_id": "plg_network_effect_amplifier",
+  "generated_at": "2026-02-12T00:05:12.797378",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "userId": "rxkg0t71qfbm2rx7uoa",
+        "networkType": "direct"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "userId": "qtloun5",
+        "networkType": "indirect"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "userId": "2ugf7ps0eoapipqxvxa",
+        "networkType": "platform",
+        "triggerEvent": "3dke"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "triggerEvent": "8fmsge1fdaifr"
+      },
+      "label": "missing_userId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": 12345,
+        "networkType": "direct",
+        "triggerEvent": "mevs5hz9r5wb1m7o1"
+      },
+      "label": "invalid_type_userId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": "j3g9ixhbymo1y0h28o",
+        "networkType": 12345
+      },
+      "label": "invalid_type_networkType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": "pn5lbwt00",
+        "networkType": "platform",
+        "triggerEvent": 12345
+      },
+      "label": "invalid_type_triggerEvent",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

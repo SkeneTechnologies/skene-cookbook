@@ -1,0 +1,105 @@
+{
+  "skill_id": "ai_content_generator",
+  "generated_at": "2026-02-12T00:05:04.660306",
+  "num_cases": 11,
+  "test_cases": [
+    {
+      "inputs": {
+        "content_type": "push",
+        "purpose": "jy2j0i",
+        "audience": {}
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "content_type": "social",
+        "purpose": "czkqbyeicp96r",
+        "variables": {}
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "content_type": "social",
+        "purpose": "xy",
+        "tone": "urgent"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "purpose": "vhs",
+        "audience": {},
+        "tone": "professional"
+      },
+      "label": "missing_content_type",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "content_type": "social",
+        "audience": {}
+      },
+      "label": "missing_purpose",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "content_type": 12345,
+        "purpose": "4a7xvgnvj",
+        "variables": {}
+      },
+      "label": "invalid_type_content_type",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "content_type": "email",
+        "purpose": 12345,
+        "audience": {},
+        "tone": "friendly"
+      },
+      "label": "invalid_type_purpose",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "content_type": "email",
+        "purpose": "jp9iobq2lv744",
+        "audience": "not_an_object",
+        "variables": {}
+      },
+      "label": "invalid_type_audience",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "content_type": "sms",
+        "purpose": "wj09o",
+        "variables": {},
+        "tone": 12345
+      },
+      "label": "invalid_type_tone",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "content_type": "push",
+        "purpose": "p",
+        "audience": {},
+        "variables": "not_an_object"
+      },
+      "label": "invalid_type_variables",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

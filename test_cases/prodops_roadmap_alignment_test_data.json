@@ -1,0 +1,243 @@
+{
+  "skill_id": "prodops_roadmap_alignment",
+  "generated_at": "2026-02-12T00:05:02.190106",
+  "num_cases": 13,
+  "test_cases": [
+    {
+      "inputs": {
+        "timeframe": "rjwa4yd4v",
+        "current_roadmap_items": [
+          {
+            "id": "test_9tqwhxnl",
+            "title": "Test Name t48m",
+            "status": "completed",
+            "strategic_theme": "33mpfs377"
+          },
+          {
+            "id": "test_lpghgpib",
+            "title": "Test Name ge5y",
+            "status": "deferred",
+            "estimated_effort": 6047.37,
+            "strategic_theme": "w9j7mz26fhtcide7ye"
+          }
+        ],
+        "minimum_votes": 235
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "timeframe": "n0g",
+        "business_objectives": [],
+        "minimum_votes": 682,
+        "include_technical_debt": false,
+        "confidence_threshold": 0.58
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "timeframe": "ra",
+        "current_roadmap_items": [
+          {
+            "id": "test_4jvntfr5",
+            "title": "Test Name 1xi3",
+            "status": "completed",
+            "estimated_effort": 5389.58
+          },
+          {
+            "id": "test_98syu5ga",
+            "title": "Test Name mddz",
+            "status": "deferred"
+          }
+        ],
+        "customer_segments": [],
+        "revenue_threshold": 6684.25,
+        "confidence_threshold": 0.65
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "current_roadmap_items": [
+          {
+            "id": "test_m6gq7sds",
+            "title": "Test Name 04in",
+            "status": "planned",
+            "strategic_theme": "g3vibws"
+          },
+          {
+            "id": "test_n96m4n7t",
+            "title": "Test Name 2ys7",
+            "status": "completed",
+            "estimated_effort": 3273.43
+          }
+        ],
+        "business_objectives": [
+          {
+            "objective": "225wl4o",
+            "priority": "high",
+            "target_value": 2788.84
+          },
+          {
+            "objective": "ddu3eh",
+            "priority": "low",
+            "id": "ntqbmqr5q9otyb8vmf",
+            "target_metric": "ju9wo7dlw90maecgx",
+            "target_value": 473.18
+          }
+        ],
+        "revenue_threshold": 8492.46,
+        "include_technical_debt": true
+      },
+      "label": "missing_timeframe",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "timeframe": 12345,
+        "revenue_threshold": 2147.2,
+        "minimum_votes": 940
+      },
+      "label": "invalid_type_timeframe",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "timeframe": "7gavjdwucwn",
+        "current_roadmap_items": "not_an_array",
+        "customer_segments": [
+          "f",
+          "l2zgo60o6pchqhp1"
+        ],
+        "minimum_votes": 65,
+        "include_technical_debt": false,
+        "confidence_threshold": 0.96
+      },
+      "label": "invalid_type_current_roadmap_items",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "timeframe": "55jyo4exfmvd4r",
+        "current_roadmap_items": [
+          {
+            "id": "test_9k1zjyhc",
+            "title": "Test Name ojti",
+            "status": "planned"
+          }
+        ],
+        "minimum_votes": 949,
+        "confidence_threshold": 0.76,
+        "business_objectives": "not_an_array"
+      },
+      "label": "invalid_type_business_objectives",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "timeframe": "2eeq74t35j1",
+        "customer_segments": "not_an_array"
+      },
+      "label": "invalid_type_customer_segments",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "timeframe": "b8wrqinrwy5fzxq",
+        "revenue_threshold": "not_a_number",
+        "minimum_votes": 568,
+        "include_technical_debt": false,
+        "confidence_threshold": 0.4
+      },
+      "label": "invalid_type_revenue_threshold",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "timeframe": "uz8abrpi",
+        "business_objectives": [
+          {
+            "objective": "psud4sl4xla5dzf",
+            "priority": "medium",
+            "id": "hn45a",
+            "target_metric": "yhjglzyacyv",
+            "target_value": 5841.79
+          },
+          {
+            "objective": "3t2lsxnd32argn",
+            "priority": "low"
+          },
+          {
+            "objective": "p0p",
+            "priority": "high",
+            "id": "abts7dsz7lbfb",
+            "target_value": 5968.3
+          }
+        ],
+        "customer_segments": [],
+        "minimum_votes": "not_a_number",
+        "confidence_threshold": 0.36
+      },
+      "label": "invalid_type_minimum_votes",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "timeframe": "f9gh47kphs9cdbxq2cta",
+        "current_roadmap_items": [
+          {
+            "id": "test_085pbfsa",
+            "title": "Test Name v59x",
+            "status": "planned",
+            "strategic_theme": "fhqkx62zx2rmntsy"
+          },
+          {
+            "id": "test_o2ouamps",
+            "title": "Test Name 1yk3",
+            "status": "planned",
+            "estimated_effort": 1753.84,
+            "strategic_theme": "lzkz32r6"
+          }
+        ],
+        "minimum_votes": 286,
+        "include_technical_debt": "yes",
+        "confidence_threshold": 0.03
+      },
+      "label": "invalid_type_include_technical_debt",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "timeframe": "y833",
+        "current_roadmap_items": [
+          {
+            "id": "test_uerhw5xu",
+            "title": "Test Name 6aqs",
+            "status": "completed",
+            "estimated_effort": 1172.62,
+            "strategic_theme": "e6sjr2mgdy4"
+          }
+        ],
+        "customer_segments": [
+          "w9l56y1oma80kbt7pq",
+          "62gb2vbu3lpng9swvj0",
+          "5jc8janz7bmn4"
+        ],
+        "revenue_threshold": 7275.31,
+        "include_technical_debt": true,
+        "confidence_threshold": "not_a_number"
+      },
+      "label": "invalid_type_confidence_threshold",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "skill_id": "finops_ndr_tracker",
+  "generated_at": "2026-02-12T00:05:00.031330",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "period": "s9s2e",
+        "cohort_by": "plan"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "period": "vnymlhya58u7ezd",
+        "cohort_by": "industry"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "period": "72j0x"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "cohort_by": "plan",
+        "lookback_periods": 155
+      },
+      "label": "missing_period",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": 12345,
+        "lookback_periods": 436
+      },
+      "label": "invalid_type_period",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": "k",
+        "cohort_by": 12345
+      },
+      "label": "invalid_type_cohort_by",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": "2",
+        "cohort_by": "signup_month",
+        "lookback_periods": "not_a_number"
+      },
+      "label": "invalid_type_lookback_periods",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

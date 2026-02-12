@@ -1,0 +1,74 @@
+{
+  "skill_id": "devex_changelog_tracker",
+  "generated_at": "2026-02-11T22:18:30.689165",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "include_upcoming": true,
+        "filter_relevant_only": false
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "since_date": "2026-02-11",
+        "include_upcoming": true,
+        "filter_relevant_only": true
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "developer_id": "oedxqrwlvbnqmd",
+        "since_date": "2026-02-11",
+        "filter_relevant_only": false
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "since_date": "2026-02-11",
+        "include_upcoming": true,
+        "filter_relevant_only": false,
+        "developer_id": 12345
+      },
+      "label": "invalid_type_developer_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "developer_id": "pkd",
+        "since_date": 12345
+      },
+      "label": "invalid_type_since_date",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "developer_id": "jlj6t8yc6ewn",
+        "include_upcoming": "yes",
+        "filter_relevant_only": false
+      },
+      "label": "invalid_type_include_upcoming",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "since_date": "2026-02-11",
+        "include_upcoming": true,
+        "filter_relevant_only": "yes"
+      },
+      "label": "invalid_type_filter_relevant_only",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": true
+    }
+  ]
+}

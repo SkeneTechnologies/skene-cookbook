@@ -1,0 +1,69 @@
+{
+  "skill_id": "cs_risk_mitigation_playbook",
+  "generated_at": "2026-02-12T00:05:01.456981",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "accountId": "test_fiajeg8u",
+        "riskType": "executive_change"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "accountId": "test_xixl7ftq",
+        "riskType": "champion_loss"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "accountId": "test_nyc9q1wb",
+        "severity": "high"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "severity": "high"
+      },
+      "label": "missing_accountId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": 12345,
+        "riskType": "executive_change",
+        "severity": "medium"
+      },
+      "label": "invalid_type_accountId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": "test_lup3cp80",
+        "severity": "critical",
+        "riskType": 12345
+      },
+      "label": "invalid_type_riskType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": "test_zoilvuem",
+        "severity": 12345
+      },
+      "label": "invalid_type_severity",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

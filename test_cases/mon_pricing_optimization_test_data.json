@@ -1,0 +1,348 @@
+{
+  "skill_id": "mon_pricing_optimization",
+  "generated_at": "2026-02-12T00:05:09.974905",
+  "num_cases": 13,
+  "test_cases": [
+    {
+      "inputs": {
+        "analysis_period": {
+          "start_date": "2026-02-12",
+          "end_date": "2026-02-12"
+        },
+        "pricing_plans": [
+          {
+            "plan_id": "test_i88opwa0",
+            "plan_name": "Test Name zw4t",
+            "list_price": 3498.78
+          }
+        ],
+        "optimization_goals": [
+          "optimize_discounting",
+          "reduce_churn",
+          "optimize_discounting"
+        ]
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "analysis_period": {
+          "start_date": "2026-02-12",
+          "end_date": "2026-02-12"
+        },
+        "pricing_plans": [
+          {
+            "plan_id": "test_ctjitbtt",
+            "plan_name": "Test Name 21vv",
+            "list_price": 3925.1
+          },
+          {
+            "plan_id": "test_tfacavam",
+            "plan_name": "Test Name rwfp",
+            "billing_period": "monthly"
+          },
+          {
+            "plan_id": "test_p2brjrpk",
+            "plan_name": "Test Name mi3m"
+          }
+        ],
+        "metrics_to_analyze": [
+          "churn_rate",
+          "conversion_rate"
+        ],
+        "cohort_segments": [
+          "c",
+          "t7dk8gj6ob3id8zn",
+          "tuz1qz33l"
+        ],
+        "constraints": {}
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "analysis_period": {
+          "start_date": "2026-02-12",
+          "end_date": "2026-02-12"
+        },
+        "pricing_plans": [
+          {
+            "plan_id": "test_1yr6hu0s",
+            "plan_name": "Test Name w081"
+          },
+          {
+            "plan_id": "test_gs32b2v6",
+            "plan_name": "Test Name y7ir",
+            "list_price": 8056.45,
+            "billing_period": "monthly"
+          },
+          {
+            "plan_id": "test_kv817huj",
+            "plan_name": "Test Name nuux",
+            "billing_period": "annual"
+          }
+        ],
+        "metrics_to_analyze": [],
+        "optimization_goals": []
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "pricing_plans": [
+          {
+            "plan_id": "test_5h8sfom2",
+            "plan_name": "Test Name ko1q",
+            "list_price": 3259.27,
+            "billing_period": "annual"
+          },
+          {
+            "plan_id": "test_vpeiikd5",
+            "plan_name": "Test Name j1dm"
+          },
+          {
+            "plan_id": "test_xnrt1zxy",
+            "plan_name": "Test Name iq1k",
+            "list_price": 6035.45
+          }
+        ],
+        "metrics_to_analyze": [
+          "upgrade_rate",
+          "ltv",
+          "upgrade_rate"
+        ],
+        "cohort_segments": [],
+        "competitive_benchmarks": {
+          "competitor_data": []
+        },
+        "optimization_goals": [
+          "optimize_discounting",
+          "reduce_churn"
+        ]
+      },
+      "label": "missing_analysis_period",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "analysis_period": {
+          "start_date": "2026-02-12",
+          "end_date": "2026-02-12"
+        },
+        "constraints": {
+          "max_churn_tolerance_percent": 98.03
+        }
+      },
+      "label": "missing_pricing_plans",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "analysis_period": "not_an_object",
+        "pricing_plans": [
+          {
+            "plan_id": "test_f95iilvz",
+            "plan_name": "Test Name yhls",
+            "list_price": 5314.15
+          },
+          {
+            "plan_id": "test_dvm3ec53",
+            "plan_name": "Test Name lblv"
+          }
+        ],
+        "cohort_segments": [
+          "x",
+          "eziwa"
+        ],
+        "competitive_benchmarks": {
+          "competitor_data": []
+        }
+      },
+      "label": "invalid_type_analysis_period",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "analysis_period": {
+          "start_date": "2026-02-12",
+          "end_date": "2026-02-12"
+        },
+        "pricing_plans": "not_an_array",
+        "competitive_benchmarks": {
+          "competitor_data": [
+            {
+              "competitor_name": "cymbj2r"
+            }
+          ]
+        },
+        "optimization_goals": [],
+        "constraints": {
+          "max_price_increase_percent": 45.2,
+          "grandfather_existing_customers": true
+        }
+      },
+      "label": "invalid_type_pricing_plans",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "analysis_period": {
+          "start_date": "2026-02-12",
+          "end_date": "2026-02-12"
+        },
+        "pricing_plans": [
+          {
+            "plan_id": "test_phfqikv2",
+            "plan_name": "Test Name pe6l"
+          }
+        ],
+        "competitive_benchmarks": {
+          "competitor_data": [
+            {
+              "competitor_name": "2",
+              "price": 6089.06
+            },
+            {
+              "competitor_name": "n6goo0n0vm",
+              "plan_tier": "u10t5265srj2x19uw",
+              "price": 2042.36
+            }
+          ]
+        },
+        "optimization_goals": [
+          "improve_upgrade_rate",
+          "improve_upgrade_rate"
+        ],
+        "metrics_to_analyze": "not_an_array"
+      },
+      "label": "invalid_type_metrics_to_analyze",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "analysis_period": {
+          "start_date": "2026-02-12",
+          "end_date": "2026-02-12"
+        },
+        "pricing_plans": [
+          {
+            "plan_id": "test_wrmom6m1",
+            "plan_name": "Test Name mcjo",
+            "list_price": 1336.57,
+            "billing_period": "quarterly"
+          },
+          {
+            "plan_id": "test_izc65vu4",
+            "plan_name": "Test Name 7ml7",
+            "billing_period": "quarterly"
+          }
+        ],
+        "metrics_to_analyze": [
+          "churn_rate",
+          "arpu"
+        ],
+        "cohort_segments": "not_an_array",
+        "constraints": {
+          "max_price_increase_percent": 70.38,
+          "grandfather_existing_customers": false
+        }
+      },
+      "label": "invalid_type_cohort_segments",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "analysis_period": {
+          "start_date": "2026-02-12",
+          "end_date": "2026-02-12"
+        },
+        "pricing_plans": [
+          {
+            "plan_id": "test_8bauyvkl",
+            "plan_name": "Test Name t8zu"
+          },
+          {
+            "plan_id": "test_c6lz1ig3",
+            "plan_name": "Test Name tvu1"
+          },
+          {
+            "plan_id": "test_xavj2bf4",
+            "plan_name": "Test Name hc08",
+            "list_price": 8242.11,
+            "billing_period": "annual"
+          }
+        ],
+        "competitive_benchmarks": "not_an_object",
+        "optimization_goals": [
+          "improve_upgrade_rate",
+          "maximize_conversions",
+          "maximize_conversions"
+        ]
+      },
+      "label": "invalid_type_competitive_benchmarks",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "analysis_period": {
+          "start_date": "2026-02-12",
+          "end_date": "2026-02-12"
+        },
+        "pricing_plans": [
+          {
+            "plan_id": "test_iji5lhpv",
+            "plan_name": "Test Name hzj1",
+            "list_price": 3953.03
+          },
+          {
+            "plan_id": "test_ltn2nezl",
+            "plan_name": "Test Name 3hnh"
+          }
+        ],
+        "cohort_segments": [
+          "2qgvmzeylefuf",
+          "9xog7p2rxlb61jn",
+          "ockiwtmvzjgofkimmkhh"
+        ],
+        "optimization_goals": "not_an_array"
+      },
+      "label": "invalid_type_optimization_goals",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "analysis_period": {
+          "start_date": "2026-02-12",
+          "end_date": "2026-02-12"
+        },
+        "pricing_plans": [
+          {
+            "plan_id": "test_9coy79ll",
+            "plan_name": "Test Name uit8",
+            "billing_period": "monthly"
+          }
+        ],
+        "metrics_to_analyze": [
+          "ltv",
+          "ltv",
+          "conversion_rate"
+        ],
+        "optimization_goals": [
+          "improve_upgrade_rate",
+          "improve_upgrade_rate"
+        ],
+        "constraints": "not_an_object"
+      },
+      "label": "invalid_type_constraints",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "skill_id": "mon_dunning_automation",
+  "session_id": "batch_eval",
+  "summary": {
+    "skill_id": "mon_dunning_automation",
+    "total_executions": 3,
+    "success_rate": 0.0,
+    "validation_pass_rate": 0.0,
+    "auto_act_rate": 1.0,
+    "latency": {
+      "avg_ms": 380.25,
+      "p50_ms": 0.91,
+      "p95_ms": 1139.15,
+      "p99_ms": 1139.15,
+      "max_ms": 1139.15,
+      "min_ms": 0.68
+    },
+    "decisions": {
+      "auto_act": 3
+    },
+    "errors": {}
+  },
+  "records": [
+    {
+      "timestamp": 1770847510.010031,
+      "duration_ms": 1139.1489505767822,
+      "success": false,
+      "validation_passed": false,
+      "decision_type": "auto_act",
+      "error_type": null,
+      "metadata": {
+        "confidence": 0.95,
+        "risk_level": "High",
+        "trace_id": "1f12a81b999c4674"
+      }
+    },
+    {
+      "timestamp": 1770847510.010962,
+      "duration_ms": 0.9100437164306641,
+      "success": false,
+      "validation_passed": false,
+      "decision_type": "auto_act",
+      "error_type": null,
+      "metadata": {
+        "confidence": 0.95,
+        "risk_level": "High",
+        "trace_id": "1f12a81b999c4674"
+      }
+    },
+    {
+      "timestamp": 1770847510.011656,
+      "duration_ms": 0.6783008575439453,
+      "success": false,
+      "validation_passed": false,
+      "decision_type": "auto_act",
+      "error_type": null,
+      "metadata": {
+        "confidence": 0.95,
+        "risk_level": "High",
+        "trace_id": "1f12a81b999c4674"
+      }
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "skill_id": "devex_latency_advisor",
+  "generated_at": "2026-02-11T22:18:30.844966",
+  "num_cases": 9,
+  "test_cases": [
+    {
+      "inputs": {
+        "developer_id": "onlcx0579pa",
+        "time_range": {}
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "developer_id": "qcp76q5ifllcjj2cbspk"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "developer_id": "1",
+        "time_range": {},
+        "latency_target": 9424.19
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "endpoint": "ou4lx",
+        "latency_target": 1913.37
+      },
+      "label": "missing_developer_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "developer_id": 12345,
+        "latency_target": 4499.94
+      },
+      "label": "invalid_type_developer_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "developer_id": "hno7",
+        "endpoint": 12345,
+        "latency_target": 4044.54
+      },
+      "label": "invalid_type_endpoint",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "developer_id": "j3qn8dphrt",
+        "time_range": "not_an_object"
+      },
+      "label": "invalid_type_time_range",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "developer_id": "j1",
+        "time_range": {},
+        "latency_target": "not_a_number"
+      },
+      "label": "invalid_type_latency_target",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

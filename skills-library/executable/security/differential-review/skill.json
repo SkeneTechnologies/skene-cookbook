@@ -1,0 +1,473 @@
+{
+  "id": "security/differential-review",
+  "version": "1.0.0",
+  "name": "differential-review",
+  "description": "Performs security-focused differential review of code changes (PRs, commits, diffs). Adapts analysis depth to codebase size, uses git history for context, and generates comprehensive security reports.",
+  "domain": "security",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "changeType": {
+        "type": "string",
+        "enum": [
+          "pr",
+          "commit",
+          "diff",
+          "branch"
+        ],
+        "description": "Type of code change to review"
+      },
+      "changeIdentifier": {
+        "type": "string",
+        "description": "PR number, commit SHA, branch name, or diff reference"
+      },
+      "repositoryPath": {
+        "type": "string",
+        "description": "Absolute or relative path to the git repository"
+      },
+      "baseBranch": {
+        "type": "string",
+        "description": "Base branch for comparison (e.g., 'main', 'develop')",
+        "default": "main"
+      },
+      "analysisDepth": {
+        "type": "string",
+        "enum": [
+          "quick-triage",
+          "standard",
+          "deep-audit"
+        ],
+        "description": "Desired analysis depth level",
+        "default": "standard"
+      },
+      "focusAreas": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": [
+            "authentication",
+            "authorization",
+            "cryptography",
+            "value-transfer",
+            "external-calls",
+            "input-validation",
+            "all"
+          ]
+        },
+        "description": "Specific security domains to focus on",
+        "default": [
+          "all"
+        ]
+      },
+      "excludePatterns": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "File patterns to exclude from analysis (e.g., '*.test.js', 'docs/**')",
+        "default": []
+      },
+      "includeAdversarialAnalysis": {
+        "type": "boolean",
+        "description": "Whether to perform Phase 5 adversarial modeling for HIGH risk findings",
+        "default": true
+      },
+      "outputPath": {
+        "type": "string",
+        "description": "Path where the markdown report should be written",
+        "default": "./DIFFERENTIAL_REVIEW_REPORT.md"
+      },
+      "contextFromAudit": {
+        "type": "object",
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "description": "Whether to use audit-context-building skill for baseline"
+          },
+          "contextFile": {
+            "type": "string",
+            "description": "Path to existing audit context file"
+          }
+        },
+        "description": "Configuration for integrating with audit-context-building skill"
+      },
+      "timeboxMinutes": {
+        "type": "integer",
+        "minimum": 15,
+        "maximum": 480,
+        "description": "Maximum time to spend on analysis (affects depth and coverage)",
+        "default": 180
+      }
+    },
+    "required": [
+      "changeType",
+      "changeIdentifier",
+      "repositoryPath"
+    ],
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "reportPath": {
+        "type": "string",
+        "description": "Absolute path to the generated markdown report file"
+      },
+      "summary": {
+        "type": "object",
+        "properties": {
+          "totalFilesChanged": {
+            "type": "integer",
+            "description": "Total number of files modified in the change"
+          },
+          "filesAnalyzed": {
+            "type": "integer",
+            "description": "Number of files actually analyzed"
+          },
+          "codebaseSize": {
+            "type": "string",
+            "enum": [
+              "SMALL",
+              "MEDIUM",
+              "LARGE"
+            ],
+            "description": "Detected codebase size classification"
+          },
+          "strategyUsed": {
+            "type": "string",
+            "enum": [
+              "DEEP",
+              "FOCUSED",
+              "SURGICAL"
+            ],
+            "description": "Analysis strategy applied based on codebase size"
+          },
+          "analysisTimeMinutes": {
+            "type": "number",
+            "description": "Actual time spent on analysis"
+          }
+        },
+        "required": [
+          "totalFilesChanged",
+          "filesAnalyzed",
+          "codebaseSize",
+          "strategyUsed"
+        ]
+      },
+      "findings": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "Unique identifier for the finding"
+            },
+            "severity": {
+              "type": "string",
+              "enum": [
+                "CRITICAL",
+                "HIGH",
+                "MEDIUM",
+                "LOW",
+                "INFO"
+              ],
+              "description": "Security severity level"
+            },
+            "category": {
+              "type": "string",
+              "enum": [
+                "authentication",
+                "authorization",
+                "cryptography",
+                "value-transfer",
+                "external-calls",
+                "input-validation",
+                "regression",
+                "other"
+              ],
+              "description": "Security category of the finding"
+            },
+            "title": {
+              "type": "string",
+              "description": "Brief title of the finding"
+            },
+            "description": {
+              "type": "string",
+              "description": "Detailed description of the security issue"
+            },
+            "affectedFiles": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "path": {
+                    "type": "string"
+                  },
+                  "lineNumbers": {
+                    "type": "array",
+                    "items": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              },
+              "description": "Files and line numbers affected by this finding"
+            },
+            "gitContext": {
+              "type": "object",
+              "properties": {
+                "relevantCommits": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "blameInfo": {
+                  "type": "string",
+                  "description": "Git blame context for removed code"
+                }
+              },
+              "description": "Git history context for the finding"
+            },
+            "blastRadius": {
+              "type": "object",
+              "properties": {
+                "directCallers": {
+                  "type": "integer"
+                },
+                "transitiveCallers": {
+                  "type": "integer"
+                },
+                "riskLevel": {
+                  "type": "string",
+                  "enum": [
+                    "LOW",
+                    "MEDIUM",
+                    "HIGH",
+                    "CRITICAL"
+                  ]
+                }
+              },
+              "description": "Impact scope analysis"
+            },
+            "attackScenario": {
+              "type": "string",
+              "description": "Concrete attack scenario demonstrating exploitability"
+            },
+            "exploitability": {
+              "type": "string",
+              "enum": [
+                "THEORETICAL",
+                "DIFFICULT",
+                "MODERATE",
+                "EASY",
+                "TRIVIAL"
+              ],
+              "description": "Ease of exploitation rating"
+            },
+            "recommendation": {
+              "type": "string",
+              "description": "Specific remediation guidance"
+            },
+            "testCoverage": {
+              "type": "object",
+              "properties": {
+                "hasTests": {
+                  "type": "boolean"
+                },
+                "coverage": {
+                  "type": "string",
+                  "enum": [
+                    "NONE",
+                    "PARTIAL",
+                    "GOOD",
+                    "COMPREHENSIVE"
+                  ]
+                }
+              },
+              "description": "Test coverage status for affected code"
+            }
+          },
+          "required": [
+            "id",
+            "severity",
+            "category",
+            "title",
+            "description",
+            "affectedFiles"
+          ]
+        }
+      },
+      "riskAssessment": {
+        "type": "object",
+        "properties": {
+          "overallRisk": {
+            "type": "string",
+            "enum": [
+              "LOW",
+              "MEDIUM",
+              "HIGH",
+              "CRITICAL"
+            ],
+            "description": "Overall risk level of the changes"
+          },
+          "criticalFindingsCount": {
+            "type": "integer"
+          },
+          "highFindingsCount": {
+            "type": "integer"
+          },
+          "mediumFindingsCount": {
+            "type": "integer"
+          },
+          "lowFindingsCount": {
+            "type": "integer"
+          },
+          "regressionDetected": {
+            "type": "boolean",
+            "description": "Whether security regressions were detected"
+          },
+          "redFlags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of immediate escalation triggers found"
+          }
+        },
+        "required": [
+          "overallRisk",
+          "criticalFindingsCount",
+          "highFindingsCount",
+          "mediumFindingsCount",
+          "lowFindingsCount",
+          "regressionDetected"
+        ]
+      },
+      "coverage": {
+        "type": "object",
+        "properties": {
+          "completeness": {
+            "type": "string",
+            "enum": [
+              "PARTIAL",
+              "SUBSTANTIAL",
+              "COMPREHENSIVE"
+            ],
+            "description": "How complete the analysis was"
+          },
+          "limitations": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Explicit limitations of the review"
+          },
+          "confidenceLevel": {
+            "type": "string",
+            "enum": [
+              "LOW",
+              "MEDIUM",
+              "HIGH"
+            ],
+            "description": "Confidence level in the analysis"
+          },
+          "skippedFiles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Files not analyzed and reasons"
+          }
+        },
+        "required": [
+          "completeness",
+          "limitations",
+          "confidenceLevel"
+        ]
+      },
+      "metadata": {
+        "type": "object",
+        "properties": {
+          "reviewDate": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp of the review"
+          },
+          "skillVersion": {
+            "type": "string",
+            "description": "Version of the differential-review skill"
+          },
+          "phasesCompleted": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "Phase0-Triage",
+                "Phase1-CodeAnalysis",
+                "Phase2-TestCoverage",
+                "Phase3-BlastRadius",
+                "Phase4-DeepContext",
+                "Phase5-Adversarial",
+                "Phase6-Report"
+              ]
+            },
+            "description": "Which analysis phases were completed"
+          }
+        },
+        "required": [
+          "reviewDate",
+          "phasesCompleted"
+        ]
+      }
+    },
+    "required": [
+      "reportPath",
+      "summary",
+      "findings",
+      "riskAssessment",
+      "coverage",
+      "metadata"
+    ]
+  },
+  "temperature": 0,
+  "tags": [
+    "security",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with differential review"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "security_controls": {
+    "delete_operations": {
+      "soft_delete": true,
+      "retention_period_days": 30,
+      "undelete_capable": true,
+      "backup_before_delete": true,
+      "multi_party_approval": true,
+      "confirmation_required": {
+        "enabled": true,
+        "show_impact": true,
+        "require_reason": true
+      }
+    }
+  },
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.92
+  }
+}

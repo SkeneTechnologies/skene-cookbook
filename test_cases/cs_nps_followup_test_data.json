@@ -1,0 +1,122 @@
+{
+  "skill_id": "cs_nps_followup",
+  "generated_at": "2026-02-12T00:05:02.051721",
+  "num_cases": 12,
+  "test_cases": [
+    {
+      "inputs": {
+        "survey_response_id": "test_envagdwl",
+        "account_id": "test_tn1dv929",
+        "override_auto_send": true,
+        "csm_user_id": "test_3y9dltmp",
+        "include_referral_request": false
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "survey_response_id": "test_q86sjkjo",
+        "account_id": "test_xl0prez3",
+        "csm_user_id": "test_nxsmhgpx",
+        "include_referral_request": false
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "survey_response_id": "test_fv73ntqn",
+        "account_id": "test_e27rhtsu",
+        "override_auto_send": false,
+        "escalation_threshold": 2,
+        "include_referral_request": false
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "account_id": "test_bwrqh22i",
+        "escalation_threshold": 3
+      },
+      "label": "missing_survey_response_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "survey_response_id": "test_mjomfqbd",
+        "override_auto_send": true,
+        "csm_user_id": "test_yccq38eo",
+        "include_referral_request": true
+      },
+      "label": "missing_account_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "survey_response_id": 12345,
+        "account_id": "test_jd3zy45q",
+        "csm_user_id": "test_ir1t3mlq"
+      },
+      "label": "invalid_type_survey_response_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "survey_response_id": "test_e9snjiei",
+        "account_id": 12345,
+        "override_auto_send": false,
+        "escalation_threshold": 2
+      },
+      "label": "invalid_type_account_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "survey_response_id": "test_qwkbs7l1",
+        "account_id": "test_vcnvlm23",
+        "include_referral_request": false,
+        "override_auto_send": "yes"
+      },
+      "label": "invalid_type_override_auto_send",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "survey_response_id": "test_jglwc188",
+        "account_id": "test_0hvuyduj",
+        "override_auto_send": false,
+        "csm_user_id": 12345
+      },
+      "label": "invalid_type_csm_user_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "survey_response_id": "test_zywnwv2s",
+        "account_id": "test_wch591fv",
+        "escalation_threshold": "not_a_number",
+        "include_referral_request": true
+      },
+      "label": "invalid_type_escalation_threshold",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "survey_response_id": "test_ecrynzzx",
+        "account_id": "test_unysm1lt",
+        "csm_user_id": "test_f7xboic1",
+        "escalation_threshold": 0,
+        "include_referral_request": "yes"
+      },
+      "label": "invalid_type_include_referral_request",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

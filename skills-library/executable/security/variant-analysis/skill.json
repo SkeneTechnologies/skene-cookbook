@@ -1,0 +1,470 @@
+{
+  "id": "security/variant-analysis",
+  "version": "1.0.0",
+  "name": "variant-analysis",
+  "description": "Find similar vulnerabilities and bugs across codebases using pattern-based analysis. Use when hunting bug variants, building CodeQL/Semgrep queries, analyzing security vulnerabilities, or performing systematic code audits after finding an initial issue.",
+  "domain": "security",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "original_issue": {
+        "type": "object",
+        "description": "Details of the initial vulnerability or bug pattern to search for variants",
+        "properties": {
+          "description": {
+            "type": "string",
+            "description": "Clear description of the vulnerability or bug"
+          },
+          "root_cause": {
+            "type": "string",
+            "description": "The underlying cause of the vulnerability, not just symptoms"
+          },
+          "location": {
+            "type": "object",
+            "description": "Where the original issue was found",
+            "properties": {
+              "file_path": {
+                "type": "string",
+                "description": "Path to the file containing the original issue"
+              },
+              "line_number": {
+                "type": "integer",
+                "description": "Line number where the issue occurs"
+              },
+              "function_name": {
+                "type": "string",
+                "description": "Name of the function or method containing the issue"
+              }
+            },
+            "required": [
+              "file_path"
+            ]
+          },
+          "code_snippet": {
+            "type": "string",
+            "description": "The actual vulnerable code from the original issue"
+          },
+          "vulnerability_type": {
+            "type": "string",
+            "description": "Classification of the vulnerability (e.g., SQL Injection, XSS, Authentication Bypass, IDOR)",
+            "examples": [
+              "SQL Injection",
+              "XSS",
+              "Authentication Bypass",
+              "Path Traversal",
+              "IDOR"
+            ]
+          },
+          "exploitability_conditions": {
+            "type": "array",
+            "description": "Conditions required for the vulnerability to be exploitable",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "description",
+          "root_cause",
+          "location",
+          "code_snippet"
+        ]
+      },
+      "codebase_context": {
+        "type": "object",
+        "description": "Information about the codebase to analyze",
+        "properties": {
+          "root_directory": {
+            "type": "string",
+            "description": "Root directory path of the codebase to search"
+          },
+          "languages": {
+            "type": "array",
+            "description": "Programming languages used in the codebase",
+            "items": {
+              "type": "string",
+              "enum": [
+                "python",
+                "javascript",
+                "typescript",
+                "java",
+                "go",
+                "cpp",
+                "c",
+                "ruby",
+                "php",
+                "csharp"
+              ]
+            }
+          },
+          "exclude_paths": {
+            "type": "array",
+            "description": "Paths to exclude from analysis (e.g., vendor, node_modules, test files)",
+            "items": {
+              "type": "string"
+            },
+            "default": []
+          },
+          "frameworks": {
+            "type": "array",
+            "description": "Frameworks used that might affect pattern matching",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "root_directory",
+          "languages"
+        ]
+      },
+      "analysis_parameters": {
+        "type": "object",
+        "description": "Parameters to control the variant analysis",
+        "properties": {
+          "max_false_positive_rate": {
+            "type": "number",
+            "description": "Maximum acceptable false positive rate (0.0 to 1.0)",
+            "minimum": 0,
+            "maximum": 1,
+            "default": 0.5
+          },
+          "search_depth": {
+            "type": "string",
+            "description": "How aggressively to generalize patterns",
+            "enum": [
+              "conservative",
+              "moderate",
+              "aggressive"
+            ],
+            "default": "moderate"
+          },
+          "tool_preference": {
+            "type": "string",
+            "description": "Preferred tool for analysis",
+            "enum": [
+              "ripgrep",
+              "semgrep",
+              "codeql",
+              "auto"
+            ],
+            "default": "auto"
+          },
+          "include_data_flow": {
+            "type": "boolean",
+            "description": "Whether to perform data flow/taint analysis",
+            "default": false
+          },
+          "related_patterns": {
+            "type": "array",
+            "description": "Additional related patterns or functions to check beyond the exact match",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "required": [
+      "original_issue",
+      "codebase_context"
+    ],
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "analysis_summary": {
+        "type": "object",
+        "description": "High-level summary of the variant analysis",
+        "properties": {
+          "total_variants_found": {
+            "type": "integer",
+            "description": "Total number of potential variants identified"
+          },
+          "high_confidence_count": {
+            "type": "integer",
+            "description": "Number of high-confidence matches"
+          },
+          "medium_confidence_count": {
+            "type": "integer",
+            "description": "Number of medium-confidence matches"
+          },
+          "low_confidence_count": {
+            "type": "integer",
+            "description": "Number of low-confidence matches"
+          },
+          "false_positive_rate": {
+            "type": "number",
+            "description": "Estimated false positive rate",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "search_patterns_used": {
+            "type": "array",
+            "description": "Evolution of patterns used during generalization",
+            "items": {
+              "type": "object",
+              "properties": {
+                "iteration": {
+                  "type": "integer"
+                },
+                "pattern": {
+                  "type": "string"
+                },
+                "matches": {
+                  "type": "integer"
+                },
+                "tool": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "required": [
+          "total_variants_found",
+          "high_confidence_count",
+          "medium_confidence_count",
+          "low_confidence_count"
+        ]
+      },
+      "variants": {
+        "type": "array",
+        "description": "List of identified variant vulnerabilities",
+        "items": {
+          "type": "object",
+          "properties": {
+            "variant_id": {
+              "type": "string",
+              "description": "Unique identifier for this variant"
+            },
+            "location": {
+              "type": "object",
+              "properties": {
+                "file_path": {
+                  "type": "string"
+                },
+                "line_number": {
+                  "type": "integer"
+                },
+                "function_name": {
+                  "type": "string"
+                },
+                "module": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "file_path",
+                "line_number"
+              ]
+            },
+            "code_snippet": {
+              "type": "string",
+              "description": "The vulnerable code snippet"
+            },
+            "confidence": {
+              "type": "string",
+              "enum": [
+                "high",
+                "medium",
+                "low"
+              ],
+              "description": "Confidence level that this is a true positive"
+            },
+            "similarity_score": {
+              "type": "number",
+              "description": "Similarity to original issue (0.0 to 1.0)",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "exploitability": {
+              "type": "object",
+              "properties": {
+                "reachable": {
+                  "type": "boolean",
+                  "description": "Whether the code path is reachable"
+                },
+                "user_controllable": {
+                  "type": "boolean",
+                  "description": "Whether user input can reach this code"
+                },
+                "impact": {
+                  "type": "string",
+                  "enum": [
+                    "critical",
+                    "high",
+                    "medium",
+                    "low"
+                  ],
+                  "description": "Potential impact if exploited"
+                }
+              }
+            },
+            "priority": {
+              "type": "string",
+              "enum": [
+                "p0",
+                "p1",
+                "p2",
+                "p3"
+              ],
+              "description": "Remediation priority"
+            },
+            "differences_from_original": {
+              "type": "array",
+              "description": "How this variant differs from the original issue",
+              "items": {
+                "type": "string"
+              }
+            },
+            "notes": {
+              "type": "string",
+              "description": "Additional analysis notes"
+            }
+          },
+          "required": [
+            "variant_id",
+            "location",
+            "code_snippet",
+            "confidence",
+            "priority"
+          ]
+        }
+      },
+      "vulnerability_classes": {
+        "type": "array",
+        "description": "Different manifestations of the root cause found",
+        "items": {
+          "type": "object",
+          "properties": {
+            "class_name": {
+              "type": "string",
+              "description": "Name of the vulnerability class"
+            },
+            "description": {
+              "type": "string",
+              "description": "How this manifestation works"
+            },
+            "instance_count": {
+              "type": "integer",
+              "description": "Number of instances found"
+            },
+            "example_locations": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "queries": {
+        "type": "object",
+        "description": "Reusable queries generated for ongoing monitoring",
+        "properties": {
+          "codeql": {
+            "type": "string",
+            "description": "CodeQL query for this vulnerability pattern"
+          },
+          "semgrep": {
+            "type": "string",
+            "description": "Semgrep rule for this vulnerability pattern"
+          },
+          "ripgrep": {
+            "type": "array",
+            "description": "Ripgrep patterns for quick searching",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "recommendations": {
+        "type": "array",
+        "description": "Recommendations for remediation and prevention",
+        "items": {
+          "type": "string"
+        }
+      },
+      "missed_areas": {
+        "type": "array",
+        "description": "Areas where patterns were too specific and may have missed variants",
+        "items": {
+          "type": "object",
+          "properties": {
+            "area": {
+              "type": "string"
+            },
+            "reason": {
+              "type": "string"
+            },
+            "suggestion": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "required": [
+      "analysis_summary",
+      "variants",
+      "vulnerability_classes"
+    ]
+  },
+  "temperature": 0,
+  "tags": [
+    "security",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with variant analysis",
+        "security audit",
+        "code security",
+        "hunting bug variants, building codeql/semgrep queries, analyzing security vulnerabilities, or performing systematic code audits after finding an initial issue"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "security_controls": {
+    "execution_environment": {
+      "type": "sandboxed_container",
+      "resource_limits": {
+        "cpu_cores": 1,
+        "memory_mb": 512,
+        "timeout_seconds": 30,
+        "disk_mb": 100
+      },
+      "security": {
+        "network_access": false,
+        "filesystem": "read_only",
+        "user": "non_root",
+        "allowed_commands": [
+          "node",
+          "python3",
+          "npm"
+        ],
+        "blocked_syscalls": [
+          "exec",
+          "fork",
+          "kill"
+        ]
+      }
+    }
+  },
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.92
+  }
+}

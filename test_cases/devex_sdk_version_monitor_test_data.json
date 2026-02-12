@@ -1,0 +1,70 @@
+{
+  "skill_id": "devex_sdk_version_monitor",
+  "generated_at": "2026-02-11T22:18:30.809572",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "sdk_name": "b41n83kmj8",
+        "action": "analyze"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "action": "report",
+        "include_security": false
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "version_threshold": 841,
+        "include_security": false
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "version_threshold": 458,
+        "sdk_name": 12345
+      },
+      "label": "invalid_type_sdk_name",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "sdk_name": "pt6gahgc",
+        "version_threshold": 720,
+        "include_security": false,
+        "action": 12345
+      },
+      "label": "invalid_type_action",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "sdk_name": "ztss",
+        "version_threshold": "not_a_number"
+      },
+      "label": "invalid_type_version_threshold",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "version_threshold": 435,
+        "include_security": "yes"
+      },
+      "label": "invalid_type_include_security",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": true
+    }
+  ]
+}

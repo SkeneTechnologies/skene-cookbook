@@ -1,0 +1,397 @@
+{
+  "id": "cs_churn_prediction",
+  "version": "1.0.0",
+  "name": "Churn Prediction",
+  "description": "Predicts churn risk using behavioral signals and triggers proactive retention interventions.",
+  "domain": "customer_success",
+  "tools": [
+    {
+      "name": "lifecycle.get_segment",
+      "required": true
+    },
+    {
+      "name": "analytics.retention",
+      "required": true
+    },
+    {
+      "name": "analytics.query_events",
+      "required": true
+    },
+    {
+      "name": "crm.get_account",
+      "required": true
+    },
+    {
+      "name": "resend.send_template",
+      "required": false
+    },
+    {
+      "name": "messaging.send_alert",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "retention_play",
+    "executive_escalation",
+    "win_back",
+    "idle"
+  ],
+  "metrics": {
+    "primary": "churn_prediction_accuracy",
+    "benchmarks": {
+      "excellent": "> 85%",
+      "good": "70-85%",
+      "needs_improvement": "< 70%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "customer_success",
+    "churn",
+    "prediction",
+    "retention",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Churn Prediction",
+        "churn prevention"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "lifecycle.get_segment",
+          "required": true
+        },
+        {
+          "name": "analytics.get_cohort",
+          "required": false
+        },
+        {
+          "name": "crm.update_account",
+          "required": false
+        }
+      ]
+    }
+  },
+  "security_controls": {
+    "payment_controls": {
+      "preview_mode": true,
+      "per_transaction_approval": true,
+      "amount_limits": {
+        "max_per_transaction": 50000,
+        "daily_limit": 200000,
+        "additional_approval_threshold": 25000
+      },
+      "rollback": {
+        "enabled": true,
+        "window_seconds": 3600
+      },
+      "two_phase_commit": true,
+      "audit_logging": "detailed"
+    }
+  },
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "account_id": {
+        "type": "string",
+        "description": "Unique identifier for the customer account to assess"
+      },
+      "analysis_period_days": {
+        "type": "integer",
+        "description": "Number of days to look back for behavioral signals",
+        "default": 30,
+        "minimum": 7,
+        "maximum": 90
+      },
+      "include_intervention": {
+        "type": "boolean",
+        "description": "Whether to automatically trigger retention interventions based on risk score",
+        "default": true
+      },
+      "csm_email": {
+        "type": "string",
+        "format": "email",
+        "description": "Email address of the assigned Customer Success Manager to alert"
+      },
+      "renewal_date": {
+        "type": "string",
+        "format": "date",
+        "description": "Contract renewal date for the account (optional, will be fetched from CRM if not provided)"
+      },
+      "segment_name": {
+        "type": "string",
+        "description": "Customer segment name for cohort comparison (e.g., 'enterprise', 'mid-market')"
+      },
+      "threshold_critical": {
+        "type": "integer",
+        "description": "Minimum score to classify as critical risk",
+        "default": 80,
+        "minimum": 0,
+        "maximum": 100
+      },
+      "threshold_high": {
+        "type": "integer",
+        "description": "Minimum score to classify as high risk",
+        "default": 60,
+        "minimum": 0,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "account_id"
+    ],
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "account_id": {
+        "type": "string",
+        "description": "Account identifier that was assessed"
+      },
+      "account_name": {
+        "type": "string",
+        "description": "Name of the customer account"
+      },
+      "churn_score": {
+        "type": "integer",
+        "description": "Calculated churn risk score (0-100)",
+        "minimum": 0,
+        "maximum": 100
+      },
+      "churn_probability": {
+        "type": "number",
+        "description": "Probability of churn as a percentage (0-100)",
+        "minimum": 0,
+        "maximum": 100
+      },
+      "risk_level": {
+        "type": "string",
+        "enum": [
+          "critical",
+          "high",
+          "medium",
+          "low"
+        ],
+        "description": "Categorical risk level based on churn score"
+      },
+      "days_to_renewal": {
+        "type": "integer",
+        "description": "Number of days until contract renewal"
+      },
+      "arr_at_risk": {
+        "type": "number",
+        "description": "Annual Recurring Revenue at risk if account churns"
+      },
+      "risk_signals": {
+        "type": "array",
+        "description": "List of detected churn risk signals",
+        "items": {
+          "type": "object",
+          "properties": {
+            "signal_type": {
+              "type": "string",
+              "description": "Type of risk signal detected"
+            },
+            "severity": {
+              "type": "string",
+              "enum": [
+                "high",
+                "medium",
+                "low"
+              ],
+              "description": "Severity classification of the signal"
+            },
+            "points": {
+              "type": "integer",
+              "description": "Point value contribution to churn score"
+            },
+            "description": {
+              "type": "string",
+              "description": "Human-readable description of the signal"
+            },
+            "detected_at": {
+              "type": "string",
+              "format": "date-time",
+              "description": "When this signal was detected"
+            },
+            "metric_value": {
+              "type": "number",
+              "description": "Actual metric value (e.g., usage decline percentage)"
+            }
+          },
+          "required": [
+            "signal_type",
+            "severity",
+            "points",
+            "description"
+          ]
+        }
+      },
+      "root_cause": {
+        "type": "object",
+        "description": "Analysis of primary churn drivers",
+        "properties": {
+          "primary_driver": {
+            "type": "string",
+            "description": "Main reason for churn risk"
+          },
+          "contributing_factors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Additional factors contributing to risk"
+          }
+        },
+        "required": [
+          "primary_driver"
+        ]
+      },
+      "recommended_interventions": {
+        "type": "array",
+        "description": "Prioritized list of retention actions",
+        "items": {
+          "type": "object",
+          "properties": {
+            "priority": {
+              "type": "integer",
+              "description": "Priority order (1 = highest)"
+            },
+            "action": {
+              "type": "string",
+              "description": "Recommended intervention action"
+            },
+            "owner": {
+              "type": "string",
+              "description": "Who should execute this action (e.g., CSM, executive)"
+            },
+            "timeline": {
+              "type": "string",
+              "description": "Suggested timeline for action (e.g., 'immediate', 'within 48h')"
+            }
+          },
+          "required": [
+            "priority",
+            "action"
+          ]
+        }
+      },
+      "interventions_triggered": {
+        "type": "array",
+        "description": "List of automated interventions that were executed",
+        "items": {
+          "type": "object",
+          "properties": {
+            "intervention_type": {
+              "type": "string",
+              "enum": [
+                "csm_alert",
+                "email_campaign",
+                "executive_escalation",
+                "health_check"
+              ],
+              "description": "Type of intervention triggered"
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "success",
+                "failed",
+                "pending"
+              ],
+              "description": "Execution status"
+            },
+            "triggered_at": {
+              "type": "string",
+              "format": "date-time",
+              "description": "When the intervention was triggered"
+            },
+            "details": {
+              "type": "string",
+              "description": "Additional details about the intervention"
+            }
+          },
+          "required": [
+            "intervention_type",
+            "status"
+          ]
+        }
+      },
+      "cohort_comparison": {
+        "type": "object",
+        "description": "Comparison to similar accounts",
+        "properties": {
+          "similar_accounts_churned_percentage": {
+            "type": "number",
+            "description": "Percentage of similar accounts that churned with this risk profile"
+          },
+          "segment": {
+            "type": "string",
+            "description": "Customer segment used for comparison"
+          },
+          "sample_size": {
+            "type": "integer",
+            "description": "Number of similar accounts in comparison"
+          }
+        }
+      },
+      "usage_metrics": {
+        "type": "object",
+        "description": "Key usage metrics from analysis period",
+        "properties": {
+          "current_usage": {
+            "type": "number",
+            "description": "Current usage metric value"
+          },
+          "previous_usage": {
+            "type": "number",
+            "description": "Usage metric from comparison period"
+          },
+          "usage_change_percentage": {
+            "type": "number",
+            "description": "Percentage change in usage"
+          },
+          "last_login_days_ago": {
+            "type": "integer",
+            "description": "Days since last user login"
+          },
+          "active_users": {
+            "type": "integer",
+            "description": "Number of active users in analysis period"
+          }
+        }
+      },
+      "analyzed_at": {
+        "type": "string",
+        "format": "date-time",
+        "description": "Timestamp when the analysis was performed"
+      },
+      "next_review_date": {
+        "type": "string",
+        "format": "date",
+        "description": "Recommended date for next churn assessment"
+      }
+    },
+    "required": [
+      "account_id",
+      "account_name",
+      "churn_score",
+      "churn_probability",
+      "risk_level",
+      "risk_signals",
+      "root_cause",
+      "recommended_interventions",
+      "analyzed_at"
+    ]
+  },
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.92
+  }
+}

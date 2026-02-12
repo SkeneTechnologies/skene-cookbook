@@ -1,0 +1,68 @@
+{
+  "skill_id": "prodops_dogfooding_tracker",
+  "generated_at": "2026-02-12T00:05:02.211861",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "team": "ucdrpa8idrkhohlri",
+        "period": "monthly"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {},
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "team": "9vfsus7",
+        "includeExecSummary": true
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "period": "weekly",
+        "team": 12345
+      },
+      "label": "invalid_type_team",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": "weekly",
+        "feature": 12345
+      },
+      "label": "invalid_type_feature",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "team": "28fvf1zzq79j",
+        "feature": "uajx",
+        "includeExecSummary": true,
+        "period": 12345
+      },
+      "label": "invalid_type_period",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "team": "rdoq6fhjsctaibsq0v2",
+        "feature": "4mdp6b49imc",
+        "includeExecSummary": "yes"
+      },
+      "label": "invalid_type_includeExecSummary",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": true
+    }
+  ]
+}

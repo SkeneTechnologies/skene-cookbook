@@ -1,0 +1,112 @@
+{
+  "skill_id": "ai_response_suggester",
+  "generated_at": "2026-02-12T00:05:03.200660",
+  "num_cases": 10,
+  "test_cases": [
+    {
+      "inputs": {
+        "customer_message": "bbxpij52en3rg3cxof",
+        "tone": "technical"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "customer_message": "q",
+        "agent_id": "r4ty4gzu",
+        "context": {}
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "customer_message": "wxqq27pgyr",
+        "conversation": [
+          "usvohfd8p",
+          "bn5ou4958xspt"
+        ],
+        "agent_id": "vzxpajvan4bvz32"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "conversation": [
+          "t85t1jh",
+          "o604eifeqp6zzyj6oxxt",
+          "39ubizq0f7hy01"
+        ],
+        "agent_id": "gd7fefu301zew",
+        "context": {},
+        "tone": "friendly"
+      },
+      "label": "missing_customer_message",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "customer_message": "p7dxn7ymtnskvx",
+        "conversation": "not_an_array",
+        "agent_id": "ptqv",
+        "context": {},
+        "tone": "friendly"
+      },
+      "label": "invalid_type_conversation",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "customer_message": 12345,
+        "conversation": [],
+        "tone": "professional"
+      },
+      "label": "invalid_type_customer_message",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "customer_message": "jfq2akhn",
+        "conversation": [
+          "bidkx",
+          "8z25a1r3"
+        ],
+        "context": {},
+        "tone": "friendly",
+        "agent_id": 12345
+      },
+      "label": "invalid_type_agent_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "customer_message": "h2z5",
+        "agent_id": "bihq2kvrtkx8",
+        "tone": "technical",
+        "context": "not_an_object"
+      },
+      "label": "invalid_type_context",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "customer_message": "j",
+        "conversation": [
+          "lkr",
+          "6gsdwnttbey"
+        ],
+        "agent_id": "lp1gqnk1xm9t1mdydxx",
+        "tone": 12345
+      },
+      "label": "invalid_type_tone",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

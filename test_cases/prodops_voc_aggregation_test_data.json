@@ -1,0 +1,212 @@
+{
+  "skill_id": "prodops_voc_aggregation",
+  "generated_at": "2026-02-12T00:05:02.096344",
+  "num_cases": 13,
+  "test_cases": [
+    {
+      "inputs": {
+        "period": {
+          "start_date": "2026-02-12T00:05:02.096068",
+          "end_date": "2026-02-12T00:05:02.096075"
+        },
+        "sources": [
+          "user_interviews",
+          "in_app_feedback"
+        ],
+        "weight_by_customer_value": false,
+        "min_theme_mentions": 840,
+        "taxonomy_tags": [
+          "64hm9u80vkgt616hhg",
+          "m2n5pe",
+          "6y9"
+        ]
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "period": {
+          "start_date": "2026-02-12T00:05:02.096119",
+          "end_date": "2026-02-12T00:05:02.096121"
+        },
+        "sources": [
+          "community_forums",
+          "in_app_feedback"
+        ],
+        "weight_by_customer_value": false,
+        "include_competitive_analysis": true,
+        "taxonomy_tags": []
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "period": {
+          "start_date": "2026-02-12T00:05:02.096135",
+          "end_date": "2026-02-12T00:05:02.096137"
+        },
+        "sources": [
+          "user_interviews",
+          "support_tickets",
+          "nps"
+        ],
+        "segments": [
+          "chwp2yccn2",
+          "5ffphsepotkbv2ic81j",
+          "fnkbedtt6m3o"
+        ]
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "sources": [
+          "public_reviews"
+        ],
+        "segments": [
+          "xrx6enay84"
+        ],
+        "weight_by_customer_value": false
+      },
+      "label": "missing_period",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": {
+          "start_date": "2026-02-12T00:05:02.096180",
+          "end_date": "2026-02-12T00:05:02.096182"
+        },
+        "segments": [
+          "6udjpirqw95a",
+          "3itnn9",
+          "s"
+        ],
+        "weight_by_customer_value": false,
+        "min_theme_mentions": 989,
+        "taxonomy_tags": [
+          "x9hsgzx5ac0"
+        ]
+      },
+      "label": "missing_sources",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": "not_an_object",
+        "sources": [
+          "nps",
+          "csat",
+          "support_tickets"
+        ],
+        "segments": [],
+        "min_theme_mentions": 829
+      },
+      "label": "invalid_type_period",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": {
+          "start_date": "2026-02-12T00:05:02.096226",
+          "end_date": "2026-02-12T00:05:02.096228"
+        },
+        "sources": "not_an_array",
+        "weight_by_customer_value": true,
+        "min_theme_mentions": 408,
+        "taxonomy_tags": []
+      },
+      "label": "invalid_type_sources",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": {
+          "start_date": "2026-02-12T00:05:02.096240",
+          "end_date": "2026-02-12T00:05:02.096242"
+        },
+        "sources": [
+          "support_tickets",
+          "in_app_feedback"
+        ],
+        "include_competitive_analysis": true,
+        "taxonomy_tags": [
+          "m40pcb0y",
+          "r5bf813x8mvfeos"
+        ],
+        "segments": "not_an_array"
+      },
+      "label": "invalid_type_segments",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": {
+          "start_date": "2026-02-12T00:05:02.096261",
+          "end_date": "2026-02-12T00:05:02.096263"
+        },
+        "sources": [
+          "user_interviews"
+        ],
+        "weight_by_customer_value": "yes"
+      },
+      "label": "invalid_type_weight_by_customer_value",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": {
+          "start_date": "2026-02-12T00:05:02.096271",
+          "end_date": "2026-02-12T00:05:02.096273"
+        },
+        "sources": [
+          "community_forums"
+        ],
+        "include_competitive_analysis": "yes"
+      },
+      "label": "invalid_type_include_competitive_analysis",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": {
+          "start_date": "2026-02-12T00:05:02.096280",
+          "end_date": "2026-02-12T00:05:02.096282"
+        },
+        "sources": [
+          "nps",
+          "public_reviews",
+          "in_app_feedback"
+        ],
+        "include_competitive_analysis": true,
+        "taxonomy_tags": [],
+        "min_theme_mentions": "not_a_number"
+      },
+      "label": "invalid_type_min_theme_mentions",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": {
+          "start_date": "2026-02-12T00:05:02.096293",
+          "end_date": "2026-02-12T00:05:02.096294"
+        },
+        "sources": [
+          "nps",
+          "sales_calls"
+        ],
+        "taxonomy_tags": "not_an_array"
+      },
+      "label": "invalid_type_taxonomy_tags",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

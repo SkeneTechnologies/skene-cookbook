@@ -1,0 +1,64 @@
+{
+  "skill_id": "prodops_prioritization_engine",
+  "session_id": "batch_eval",
+  "summary": {
+    "skill_id": "prodops_prioritization_engine",
+    "total_executions": 3,
+    "success_rate": 1.0,
+    "validation_pass_rate": 1.0,
+    "auto_act_rate": 0.0,
+    "latency": {
+      "avg_ms": 38.21,
+      "p50_ms": 0.39,
+      "p95_ms": 114.14,
+      "p99_ms": 114.14,
+      "max_ms": 114.14,
+      "min_ms": 0.1
+    },
+    "decisions": {
+      "flag_for_review": 3
+    },
+    "errors": {}
+  },
+  "records": [
+    {
+      "timestamp": 1770847502.461906,
+      "duration_ms": 114.13812637329102,
+      "success": true,
+      "validation_passed": true,
+      "decision_type": "flag_for_review",
+      "error_type": null,
+      "metadata": {
+        "confidence": 0.817,
+        "risk_level": "High",
+        "trace_id": "dcfecad89e2f4c41"
+      }
+    },
+    {
+      "timestamp": 1770847502.4623082,
+      "duration_ms": 0.39124488830566406,
+      "success": true,
+      "validation_passed": true,
+      "decision_type": "flag_for_review",
+      "error_type": null,
+      "metadata": {
+        "confidence": 0.817,
+        "risk_level": "High",
+        "trace_id": "dcfecad89e2f4c41"
+      }
+    },
+    {
+      "timestamp": 1770847502.462413,
+      "duration_ms": 0.09584426879882812,
+      "success": true,
+      "validation_passed": true,
+      "decision_type": "flag_for_review",
+      "error_type": null,
+      "metadata": {
+        "confidence": 0.817,
+        "risk_level": "High",
+        "trace_id": "dcfecad89e2f4c41"
+      }
+    }
+  ]
+}

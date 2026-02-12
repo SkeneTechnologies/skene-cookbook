@@ -1,0 +1,35 @@
+{
+  "id": "cursor_rules/actix-web",
+  "version": "1.0.0",
+  "name": "actix-web",
+  "description": "Definitive guidelines for building high-performance, maintainable, and secure web applications with actix-web 4, focusing on modern Rust best practices.",
+  "domain": "cursor_rules",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "cursor_rules",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "cursor": {
+      "globs": [
+        "**/*.rs"
+      ]
+    },
+    "claude": {
+      "triggers": [
+        "help with actix web"
+      ]
+    },
+    "skeneflow": {}
+  },
+  "skipSchemaValidation": true
+}

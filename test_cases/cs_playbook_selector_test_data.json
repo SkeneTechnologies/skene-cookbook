@@ -1,0 +1,71 @@
+{
+  "skill_id": "cs_playbook_selector",
+  "generated_at": "2026-02-12T00:05:00.819046",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "accountId": "test_gg4s4wx5",
+        "situation": "uy0xlm",
+        "goal": "recover"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "accountId": "test_27iypl5y",
+        "situation": "oj30yr0vzyomp",
+        "goal": "recover"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "accountId": "test_ri05qv1b",
+        "situation": "78itqiag3defuz",
+        "goal": "renew"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "goal": "recover"
+      },
+      "label": "missing_accountId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": 12345,
+        "goal": "expand"
+      },
+      "label": "invalid_type_accountId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": "test_q6jx3ajw",
+        "goal": "recover",
+        "situation": 12345
+      },
+      "label": "invalid_type_situation",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": "test_jc6hchsh",
+        "goal": 12345
+      },
+      "label": "invalid_type_goal",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

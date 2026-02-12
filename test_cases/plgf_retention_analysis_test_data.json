@@ -1,0 +1,86 @@
+{
+  "skill_id": "plgf_retention_analysis",
+  "generated_at": "2026-02-11T22:14:32.216867",
+  "num_cases": 9,
+  "test_cases": [
+    {
+      "inputs": {
+        "productId": "awp3ss2tyfpcvtn",
+        "segmentBy": [
+          "hf",
+          "6jxbwtw2",
+          "6o69ewe70cv2jgewz"
+        ]
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "productId": "qrk5wy",
+        "retentionWindow": 9044.64
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "productId": "k"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "cohortPeriod": "1",
+        "retentionWindow": 5768.27
+      },
+      "label": "missing_productId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "productId": 12345
+      },
+      "label": "invalid_type_productId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "productId": "q",
+        "segmentBy": [],
+        "cohortPeriod": 12345
+      },
+      "label": "invalid_type_cohortPeriod",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "productId": "o7bym34j0z",
+        "cohortPeriod": "0htim9ifc4",
+        "retentionWindow": "not_a_number",
+        "segmentBy": [
+          "i2txcrra8jckdrpro",
+          "352ebbdjudl2ihkp",
+          "t"
+        ]
+      },
+      "label": "invalid_type_retentionWindow",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "productId": "4mhq79zq1kriwxdhdi",
+        "cohortPeriod": "wb8hb",
+        "segmentBy": "not_an_array"
+      },
+      "label": "invalid_type_segmentBy",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

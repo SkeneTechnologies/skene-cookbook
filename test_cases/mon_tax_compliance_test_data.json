@@ -1,0 +1,81 @@
+{
+  "skill_id": "mon_tax_compliance",
+  "generated_at": "2026-02-12T00:05:09.854824",
+  "num_cases": 9,
+  "test_cases": [
+    {
+      "inputs": {
+        "action": "calculate",
+        "customer_id": "15xqkwf",
+        "amount": 973.56,
+        "jurisdiction": "https://example.com/phef0odd"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "action": "nexus_check",
+        "jurisdiction": "https://example.com/bmoe859g"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "action": "calculate",
+        "jurisdiction": "https://example.com/zkcd0fgo"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "amount": 8802.27,
+        "jurisdiction": "https://example.com/xc8ja09q"
+      },
+      "label": "missing_action",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": 12345,
+        "jurisdiction": "https://example.com/4d2ln4mi"
+      },
+      "label": "invalid_type_action",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": "calculate",
+        "customer_id": 12345,
+        "amount": 4573.2
+      },
+      "label": "invalid_type_customer_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": "report",
+        "amount": "not_a_number"
+      },
+      "label": "invalid_type_amount",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": "validate_exemption",
+        "customer_id": "z0nz1zxryg5qv34",
+        "amount": 6618.78,
+        "jurisdiction": 12345
+      },
+      "label": "invalid_type_jurisdiction",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

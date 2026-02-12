@@ -1,0 +1,99 @@
+{
+  "skill_id": "devex_oauth_helper",
+  "generated_at": "2026-02-11T22:18:30.743995",
+  "num_cases": 10,
+  "test_cases": [
+    {
+      "inputs": {
+        "developer_id": "a3dga2",
+        "oauth_type": "authorization_code",
+        "platform": "smdg6djbcu59zo2h8",
+        "error_details": {}
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "developer_id": "x",
+        "oauth_type": "pkce",
+        "platform": "dc2pwjre7vckhvloj",
+        "action": "troubleshoot",
+        "error_details": {}
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "developer_id": "5yxjhzw2rsalfssd",
+        "platform": "rk0oqo7d85ia48bpnaj",
+        "action": "troubleshoot",
+        "error_details": {}
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "oauth_type": "pkce",
+        "platform": "4iuoznxsh7",
+        "error_details": {}
+      },
+      "label": "missing_developer_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "developer_id": 12345,
+        "platform": "y1f6cj4",
+        "error_details": {}
+      },
+      "label": "invalid_type_developer_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "developer_id": "gt0pgkqzrkgncl44",
+        "action": "refresh",
+        "error_details": {},
+        "oauth_type": 12345
+      },
+      "label": "invalid_type_oauth_type",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "developer_id": "tjdqjp",
+        "error_details": {},
+        "platform": 12345
+      },
+      "label": "invalid_type_platform",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "developer_id": "yncbud5bkv",
+        "platform": "xf3e73rhecncze3d0g",
+        "action": 12345
+      },
+      "label": "invalid_type_action",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "developer_id": "gu9al2eyqmm11t01t",
+        "platform": "aen4fjs",
+        "action": "troubleshoot",
+        "error_details": "not_an_object"
+      },
+      "label": "invalid_type_error_details",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "skill_id": "devex_support_deflector",
+  "generated_at": "2026-02-11T22:18:30.712697",
+  "num_cases": 9,
+  "test_cases": [
+    {
+      "inputs": {
+        "question": "szonw9wxwdbr47x",
+        "developer_id": "glulfl1n1h1siyaupq",
+        "channel": "chat"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "question": "kup0ds19833fp2w",
+        "context": {}
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "question": "aa9ya5tl",
+        "developer_id": "3f48",
+        "channel": "docs"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {},
+      "label": "missing_question",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "question": 12345
+      },
+      "label": "invalid_type_question",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "question": "d67lf7089i4wpr",
+        "context": {},
+        "channel": "docs",
+        "developer_id": 12345
+      },
+      "label": "invalid_type_developer_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "question": "c51khj4dcd",
+        "context": "not_an_object",
+        "channel": "ticket"
+      },
+      "label": "invalid_type_context",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "question": "r6krvb5o61phyole",
+        "context": {},
+        "channel": 12345
+      },
+      "label": "invalid_type_channel",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

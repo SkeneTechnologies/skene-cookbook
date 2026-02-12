@@ -1,0 +1,139 @@
+{
+  "skill_id": "data_funnel_optimizer",
+  "generated_at": "2026-02-11T22:18:31.151641",
+  "num_cases": 12,
+  "test_cases": [
+    {
+      "inputs": {
+        "funnel_name": "Test Name rtbo",
+        "steps": [],
+        "time_range": "5cqtxc"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "funnel_name": "Test Name ssnh",
+        "steps": [
+          "u",
+          "hwf1siso25c4aw8gh"
+        ],
+        "conversion_window": "l0anhhxkma0qgrlrzse",
+        "time_range": "x4taxrqv6w852v"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "funnel_name": "Test Name 26ob",
+        "steps": [
+          "evgo",
+          "rbjharfctpqcoj7o",
+          "osgwkb"
+        ],
+        "time_range": "jyef0sphr5x66zu83i",
+        "compare_to": "pyskxopr3v1447mu81"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "steps": [],
+        "conversion_window": "g1kw501tufgm",
+        "compare_to": "uy1x5pqme"
+      },
+      "label": "missing_funnel_name",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "funnel_name": "Test Name km14",
+        "conversion_window": "v",
+        "segment_by": [],
+        "time_range": "lfhx2"
+      },
+      "label": "missing_steps",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "funnel_name": 12345,
+        "steps": [
+          "gormu",
+          "fn"
+        ],
+        "time_range": "e"
+      },
+      "label": "invalid_type_funnel_name",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "funnel_name": "Test Name rtmo",
+        "steps": "not_an_array",
+        "segment_by": []
+      },
+      "label": "invalid_type_steps",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "funnel_name": "Test Name cw3h",
+        "steps": [
+          "315ac3cxa",
+          "xp84hqewhzp9wv"
+        ],
+        "time_range": "h",
+        "conversion_window": 12345
+      },
+      "label": "invalid_type_conversion_window",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "funnel_name": "Test Name beqr",
+        "steps": [
+          "4r6"
+        ],
+        "conversion_window": "nyc7w",
+        "segment_by": "not_an_array"
+      },
+      "label": "invalid_type_segment_by",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "funnel_name": "Test Name fxxl",
+        "steps": [
+          "znnntmj8wcxcjnb",
+          "vl"
+        ],
+        "segment_by": [],
+        "time_range": 12345
+      },
+      "label": "invalid_type_time_range",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "funnel_name": "Test Name fu4u",
+        "steps": [
+          "07g2b1kc",
+          "jl5hjnt9"
+        ],
+        "time_range": "n3arctgj55ti4nd3w",
+        "compare_to": 12345
+      },
+      "label": "invalid_type_compare_to",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

@@ -1,0 +1,105 @@
+{
+  "skill_id": "compliance_vendor_risk",
+  "generated_at": "2026-02-11T22:18:28.265168",
+  "num_cases": 10,
+  "test_cases": [
+    {
+      "inputs": {
+        "action": "report",
+        "vendorId": "test_5jkr63ry",
+        "vendorName": "Test Name utnl",
+        "dataShared": [
+          "x2gr12v0d89mf",
+          "rvw4gr7h6ewcfdlly"
+        ]
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "action": "report",
+        "vendorName": "Test Name swq6",
+        "dataShared": [
+          "rbb2gyk6md0wgjhl",
+          "m1wsm4wq",
+          "mn"
+        ]
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "action": "report",
+        "vendorId": "test_nu21q0e8",
+        "vendorName": "Test Name v3b8",
+        "riskCategory": "high"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "vendorName": "Test Name pywn",
+        "riskCategory": "medium"
+      },
+      "label": "missing_action",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": 12345,
+        "vendorId": "test_rtgn366g",
+        "riskCategory": "low"
+      },
+      "label": "invalid_type_action",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": "assess",
+        "vendorId": 12345,
+        "vendorName": "Test Name 940l",
+        "riskCategory": "high",
+        "dataShared": []
+      },
+      "label": "invalid_type_vendorId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": "report",
+        "vendorId": "test_49jg3fje",
+        "riskCategory": "critical",
+        "vendorName": 12345
+      },
+      "label": "invalid_type_vendorName",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": "monitor",
+        "vendorId": "test_4mrgs11x",
+        "riskCategory": 12345
+      },
+      "label": "invalid_type_riskCategory",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": "report",
+        "vendorId": "test_ns0usknu",
+        "riskCategory": "high",
+        "dataShared": "not_an_array"
+      },
+      "label": "invalid_type_dataShared",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

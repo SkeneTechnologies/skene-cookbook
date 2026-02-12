@@ -1,0 +1,106 @@
+{
+  "test_cases": [
+    {
+      "name": "Check budget - valid partner",
+      "inputs": {
+        "partnerId": "partner-123",
+        "action": "check_budget"
+      },
+      "expected_outputs": {
+        "available_budget": {"type": "number", "min": 0},
+        "allocated": {"type": "number", "min": 0},
+        "spent": {"type": "number", "min": 0}
+      }
+    },
+    {
+      "name": "Request MDF - valid request",
+      "inputs": {
+        "partnerId": "partner-456",
+        "action": "request",
+        "requestData": {
+          "amount": 5000,
+          "campaign": "Q1 2026 Marketing Campaign",
+          "description": "Joint marketing campaign for product launch"
+        }
+      },
+      "expected_outputs": {
+        "available_budget": {"type": "number"},
+        "allocated": {"type": "number"},
+        "spent": {"type": "number"},
+        "pending_requests": {"type": "array"}
+      }
+    },
+    {
+      "name": "Approve request - valid approval",
+      "inputs": {
+        "partnerId": "partner-789",
+        "action": "approve",
+        "requestData": {
+          "requestId": "req-001",
+          "approved": true
+        }
+      },
+      "expected_outputs": {
+        "available_budget": {"type": "number"},
+        "allocated": {"type": "number"}
+      }
+    },
+    {
+      "name": "Claim MDF - submit proof of performance",
+      "inputs": {
+        "partnerId": "partner-101",
+        "action": "claim",
+        "requestData": {
+          "requestId": "req-002",
+          "claimAmount": 3000,
+          "proofOfPerformance": {
+            "leads": 150,
+            "conversions": 25,
+            "campaign_url": "https://example.com/campaign"
+          }
+        }
+      },
+      "expected_outputs": {
+        "available_budget": {"type": "number"},
+        "spent": {"type": "number"}
+      }
+    },
+    {
+      "name": "Report - get MDF summary",
+      "inputs": {
+        "partnerId": "partner-202",
+        "action": "report"
+      },
+      "expected_outputs": {
+        "available_budget": {"type": "number"},
+        "allocated": {"type": "number"},
+        "spent": {"type": "number"},
+        "roi_summary": {"type": "object"}
+      }
+    },
+    {
+      "name": "Invalid action - should fail validation",
+      "inputs": {
+        "partnerId": "partner-303",
+        "action": "invalid_action"
+      },
+      "expected_decision": "block",
+      "expected_validation": false
+    },
+    {
+      "name": "Missing required field - should fail validation",
+      "inputs": {
+        "action": "check_budget"
+      },
+      "expected_decision": "block",
+      "expected_validation": false
+    }
+  ],
+  "metadata": {
+    "skill_id": "elg_mdf_tracker",
+    "skill_version": "1.0.0",
+    "test_suite": "MDF Tracker Comprehensive",
+    "created": "2026-02-11",
+    "description": "Comprehensive test cases for MDF Tracker skill including happy paths and error cases"
+  }
+}

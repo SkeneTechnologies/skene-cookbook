@@ -1,0 +1,109 @@
+{
+  "skill_id": "revops_quota_setter",
+  "generated_at": "2026-02-12T00:05:06.481617",
+  "num_cases": 11,
+  "test_cases": [
+    {
+      "inputs": {
+        "fiscalYear": 1758.59,
+        "revenueTarget": 8277.2,
+        "segment": "y64av1hnlzne6s"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "fiscalYear": 8256.93,
+        "revenueTarget": 5891.55,
+        "segment": "few2",
+        "adjustForRamp": false
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "fiscalYear": 8851.95,
+        "revenueTarget": 4223.11,
+        "segment": "xk2z3l6la6u35usg0",
+        "adjustForRamp": false
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "revenueTarget": 9689.51,
+        "segment": "nhux6lnaqz",
+        "adjustForRamp": false
+      },
+      "label": "missing_fiscalYear",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "fiscalYear": 5743.66,
+        "adjustForRamp": false
+      },
+      "label": "missing_revenueTarget",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "fiscalYear": "not_a_number",
+        "revenueTarget": 4605.14,
+        "segment": "wl2lsd0jwq33g",
+        "adjustForRamp": true
+      },
+      "label": "invalid_type_fiscalYear",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "fiscalYear": 4167.05,
+        "revenueTarget": "not_a_number",
+        "quotaModel": "hybrid",
+        "segment": "o6nb0gukg",
+        "adjustForRamp": true
+      },
+      "label": "invalid_type_revenueTarget",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "fiscalYear": 7842.15,
+        "revenueTarget": 9955.67,
+        "quotaModel": 12345,
+        "adjustForRamp": true
+      },
+      "label": "invalid_type_quotaModel",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "fiscalYear": 4678.91,
+        "revenueTarget": 2580.13,
+        "quotaModel": "bottom_up",
+        "segment": 12345
+      },
+      "label": "invalid_type_segment",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "fiscalYear": 5822.36,
+        "revenueTarget": 109.2,
+        "segment": "qb3gu35jvou",
+        "adjustForRamp": "yes"
+      },
+      "label": "invalid_type_adjustForRamp",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

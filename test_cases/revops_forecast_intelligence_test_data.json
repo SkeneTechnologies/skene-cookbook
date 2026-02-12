@@ -1,0 +1,55 @@
+{
+  "skill_id": "revops_forecast_intelligence",
+  "generated_at": "2026-02-12T00:05:05.288216",
+  "num_cases": 7,
+  "test_cases": [
+    {
+      "inputs": {
+        "period": "quarter"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "confidenceLevel": "aggressive"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "period": "quarter"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "period": 12345
+      },
+      "label": "invalid_type_period",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "team": 12345,
+        "confidenceLevel": "moderate"
+      },
+      "label": "invalid_type_team",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "confidenceLevel": 12345
+      },
+      "label": "invalid_type_confidenceLevel",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": true
+    }
+  ]
+}

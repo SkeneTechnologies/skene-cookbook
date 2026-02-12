@@ -1,0 +1,94 @@
+{
+  "skill_id": "elg_partner_mapping",
+  "generated_at": "2026-02-12T00:05:00.034241",
+  "num_cases": 10,
+  "test_cases": [
+    {
+      "inputs": {
+        "partnerId": "test_0qem4g5x",
+        "action": "get_mapping"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "partnerId": "test_oq4ionw4",
+        "action": "get_overlaps",
+        "accountId": "test_mrsxw2wp",
+        "includeInactive": false
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "partnerId": "test_4ccei49a",
+        "action": "get_overlaps",
+        "accountId": "test_ksgfk08w"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "action": "get_mapping",
+        "includeInactive": true
+      },
+      "label": "missing_partnerId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "partnerId": "test_ah7bi631",
+        "accountId": "test_upxw82vs"
+      },
+      "label": "missing_action",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "partnerId": 12345,
+        "action": "get_overlaps",
+        "accountId": "test_d0t5te5t",
+        "includeInactive": false
+      },
+      "label": "invalid_type_partnerId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "partnerId": "test_miybuxoh",
+        "action": "get_mapping",
+        "accountId": 12345,
+        "includeInactive": false
+      },
+      "label": "invalid_type_accountId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "partnerId": "test_cfh2ggfo",
+        "action": 12345,
+        "accountId": "test_rfdgix3b",
+        "includeInactive": true
+      },
+      "label": "invalid_type_action",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "partnerId": "test_i4xt9irq",
+        "action": "get_overlaps",
+        "includeInactive": "yes"
+      },
+      "label": "invalid_type_includeInactive",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

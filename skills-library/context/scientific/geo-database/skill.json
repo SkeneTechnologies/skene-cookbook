@@ -1,0 +1,44 @@
+{
+  "id": "scientific/geo-database",
+  "version": "1.0.0",
+  "name": "geo-database",
+  "description": "Access NCBI GEO for gene expression/genomics data. Search/download microarray and RNA-seq datasets (GSE, GSM, GPL), retrieve SOFT/Matrix files, for transcriptomics and expression analysis.",
+  "domain": "scientific",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "scientific",
+    "imported",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "license": "Unknown",
+      "triggers": [
+        "help with geo database",
+        "data analysis"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "security_controls": {
+    "authentication": {
+      "method": "oauth",
+      "provider": "managed_identity",
+      "scopes": [
+        "read:data",
+        "write:data"
+      ],
+      "token_lifetime": 3600
+    }
+  },
+  "skipSchemaValidation": true
+}

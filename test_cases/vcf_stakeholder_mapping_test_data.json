@@ -1,0 +1,100 @@
+{
+  "skill_id": "vcf_stakeholder_mapping",
+  "generated_at": "2026-02-11T22:18:31.192836",
+  "num_cases": 11,
+  "test_cases": [
+    {
+      "inputs": {
+        "dealId": "test_ftl0u5bi",
+        "accountId": "test_4o136m5a",
+        "dealSize": 294.16
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "dealId": "test_yottpl94",
+        "accountId": "test_o3ut4bg3",
+        "discoveryNotes": "s01pfsymviht"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "dealId": "test_iiir962o",
+        "accountId": "test_i6bbhno4",
+        "existingContacts": []
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "accountId": "test_obb9a2ii",
+        "discoveryNotes": "100"
+      },
+      "label": "missing_dealId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "dealId": "test_di1xz291",
+        "dealSize": 219.18
+      },
+      "label": "missing_accountId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "dealId": 12345,
+        "accountId": "test_kxzh52et",
+        "dealSize": 2082.07
+      },
+      "label": "invalid_type_dealId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "dealId": "test_nu41xpbz",
+        "accountId": 12345
+      },
+      "label": "invalid_type_accountId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "dealId": "test_bqi8hzgt",
+        "accountId": "test_44xq9gs1",
+        "dealSize": "not_a_number"
+      },
+      "label": "invalid_type_dealSize",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "dealId": "test_qj7jagxb",
+        "accountId": "test_ihesy099",
+        "discoveryNotes": "1d7i0l9wh4",
+        "existingContacts": "not_an_array"
+      },
+      "label": "invalid_type_existingContacts",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "dealId": "test_1i1sk57b",
+        "accountId": "test_pt21nkrx",
+        "discoveryNotes": 12345
+      },
+      "label": "invalid_type_discoveryNotes",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

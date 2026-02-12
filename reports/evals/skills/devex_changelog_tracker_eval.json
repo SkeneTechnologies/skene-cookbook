@@ -1,0 +1,78 @@
+{
+  "skill_id": "devex_changelog_tracker",
+  "session_id": "batch_eval",
+  "summary": {
+    "skill_id": "devex_changelog_tracker",
+    "total_executions": 4,
+    "success_rate": 1.0,
+    "validation_pass_rate": 1.0,
+    "auto_act_rate": 0.75,
+    "latency": {
+      "avg_ms": 34.01,
+      "p50_ms": 0.38,
+      "p95_ms": 135.38,
+      "p99_ms": 135.38,
+      "max_ms": 135.38,
+      "min_ms": 0.05
+    },
+    "decisions": {
+      "auto_act": 3,
+      "flag_for_review": 1
+    },
+    "errors": {}
+  },
+  "records": [
+    {
+      "timestamp": 1770841110.827002,
+      "duration_ms": 135.38098335266113,
+      "success": true,
+      "validation_passed": true,
+      "decision_type": "auto_act",
+      "error_type": null,
+      "metadata": {
+        "confidence": 0.95,
+        "risk_level": "High",
+        "trace_id": "1a3e24226bce4ddc"
+      }
+    },
+    {
+      "timestamp": 1770841110.827255,
+      "duration_ms": 0.2410411834716797,
+      "success": true,
+      "validation_passed": true,
+      "decision_type": "auto_act",
+      "error_type": null,
+      "metadata": {
+        "confidence": 0.95,
+        "risk_level": "High",
+        "trace_id": "1a3e24226bce4ddc"
+      }
+    },
+    {
+      "timestamp": 1770841110.827638,
+      "duration_ms": 0.3750324249267578,
+      "success": true,
+      "validation_passed": true,
+      "decision_type": "auto_act",
+      "error_type": null,
+      "metadata": {
+        "confidence": 0.95,
+        "risk_level": "High",
+        "trace_id": "1a3e24226bce4ddc"
+      }
+    },
+    {
+      "timestamp": 1770841110.827872,
+      "duration_ms": 0.051021575927734375,
+      "success": true,
+      "validation_passed": true,
+      "decision_type": "flag_for_review",
+      "error_type": null,
+      "metadata": {
+        "confidence": 0.67,
+        "risk_level": "High",
+        "trace_id": "1a3e24226bce4ddc"
+      }
+    }
+  ]
+}

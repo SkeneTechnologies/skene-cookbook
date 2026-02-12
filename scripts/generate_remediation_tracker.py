@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2024-2026 Skene Technologies
+
 """
 Remediation Tracker Generator
 Creates a prioritized task list for skill remediation with detailed analysis

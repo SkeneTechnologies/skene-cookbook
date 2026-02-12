@@ -1,0 +1,47 @@
+{
+  "id": "scientific/iso-13485-certification",
+  "version": "1.0.0",
+  "name": "iso-13485-certification",
+  "description": "Comprehensive toolkit for preparing ISO 13485 certification documentation for medical device Quality Management Systems. Use when users need help with ISO 13485 QMS documentation, including (1) conducting gap analysis of existing documentation, (2) creating Quality Manuals, (3) developing required procedures and work instructions, (4) preparing Medical Device Files, (5) understanding ISO 13485 requirements, or (6) identifying missing documentation for medical device certification. Also use when users mention medical device regulations, QMS certification, FDA QMSR, EU MDR, or need help with quality system documentation.",
+  "domain": "scientific",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "scientific",
+    "imported",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "license": "MIT license",
+      "triggers": [
+        "help with iso 13485 certification",
+        "users need help with iso 13485 qms documentation, including (1) conducting gap analysis of existing documentation, (2) creating quality manuals, (3) developing required procedures and work instructions, (4) preparing medical device files, (5) understanding iso 13485 requirements, or (6) identifying missing documentation for medical device certification"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "security_controls": {
+    "delete_operations": {
+      "soft_delete": true,
+      "retention_period_days": 30,
+      "undelete_capable": true,
+      "backup_before_delete": true,
+      "multi_party_approval": true,
+      "confirmation_required": {
+        "enabled": true,
+        "show_impact": true,
+        "require_reason": true
+      }
+    }
+  },
+  "skipSchemaValidation": true
+}

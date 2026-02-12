@@ -1,0 +1,218 @@
+{
+  "skill_id": "cs_health_scoring",
+  "generated_at": "2026-02-12T00:05:00.253661",
+  "num_cases": 15,
+  "test_cases": [
+    {
+      "inputs": {
+        "account_id": "test_jgicm54o",
+        "lookback_days": 320,
+        "segment_filters": {
+          "industry": "8sq8m"
+        },
+        "update_crm": false,
+        "send_alerts": true
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "account_id": "test_78hcoqe2",
+        "lookback_days": 246,
+        "comparison_period_days": 35,
+        "custom_weights": {
+          "outcomes": 5.71,
+          "financial": 48.44
+        },
+        "alert_threshold": 27.73
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "account_id": "test_6v2b3qa7",
+        "calculation_date": "2026-02-12",
+        "segment_filters": {
+          "tier": "enterprise",
+          "region": "z2sk6f7",
+          "industry": "eyfn39yo"
+        },
+        "custom_weights": {
+          "financial": 69.53
+        }
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "lookback_days": 126,
+        "segment_filters": {
+          "region": "bdagaee1ev",
+          "industry": "lebnxxc6a"
+        }
+      },
+      "label": "missing_account_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "account_id": 12345,
+        "account_name": "Test Name y026",
+        "calculation_date": "2026-02-12",
+        "lookback_days": 107,
+        "segment_filters": {},
+        "custom_weights": {
+          "outcomes": 84.7,
+          "financial": 62.92
+        },
+        "alert_threshold": 15.39,
+        "update_crm": false
+      },
+      "label": "invalid_type_account_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "account_id": "test_j7stqdn3",
+        "comparison_period_days": 31,
+        "custom_weights": {
+          "engagement": 56.88,
+          "relationship": 13.02,
+          "outcomes": 24.34
+        },
+        "update_crm": true,
+        "send_alerts": true,
+        "account_name": 12345
+      },
+      "label": "invalid_type_account_name",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "account_id": "test_uqsd47j7",
+        "account_name": "Test Name ednl",
+        "lookback_days": 70,
+        "comparison_period_days": 40,
+        "custom_weights": {
+          "product_usage": 54.57,
+          "engagement": 98.92,
+          "relationship": 17.43,
+          "outcomes": 37.55
+        },
+        "alert_threshold": 17.38,
+        "calculation_date": 12345
+      },
+      "label": "invalid_type_calculation_date",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "account_id": "test_v2bxe1tq",
+        "calculation_date": "2026-02-12",
+        "lookback_days": "not_a_number",
+        "send_alerts": false
+      },
+      "label": "invalid_type_lookback_days",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "account_id": "test_zfw50a1v",
+        "calculation_date": "2026-02-12",
+        "update_crm": true,
+        "send_alerts": true,
+        "comparison_period_days": "not_a_number"
+      },
+      "label": "invalid_type_comparison_period_days",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "account_id": "test_4xltfjbp",
+        "account_name": "Test Name vo0p",
+        "calculation_date": "2026-02-12",
+        "lookback_days": 93,
+        "alert_threshold": 39.12,
+        "update_crm": false,
+        "segment_filters": "not_an_object"
+      },
+      "label": "invalid_type_segment_filters",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "account_id": "test_k2aev9ix",
+        "calculation_date": "2026-02-12",
+        "lookback_days": 198,
+        "comparison_period_days": 7,
+        "segment_filters": {},
+        "custom_weights": "not_an_object",
+        "update_crm": false
+      },
+      "label": "invalid_type_custom_weights",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "account_id": "test_cb9mqvxb",
+        "account_name": "Test Name umuy",
+        "calculation_date": "2026-02-12",
+        "lookback_days": 211,
+        "comparison_period_days": 40,
+        "segment_filters": {
+          "tier": "enterprise"
+        },
+        "custom_weights": {
+          "product_usage": 84.55,
+          "relationship": 96.13
+        },
+        "alert_threshold": "not_a_number",
+        "update_crm": false,
+        "send_alerts": true
+      },
+      "label": "invalid_type_alert_threshold",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "account_id": "test_zbilyra0",
+        "account_name": "Test Name f3ly",
+        "comparison_period_days": 80,
+        "segment_filters": {},
+        "custom_weights": {
+          "engagement": 73.74,
+          "outcomes": 47.85,
+          "financial": 21.5
+        },
+        "update_crm": "yes"
+      },
+      "label": "invalid_type_update_crm",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "account_id": "test_6o7m5u8o",
+        "segment_filters": {
+          "industry": "uu1673"
+        },
+        "custom_weights": {
+          "product_usage": 21.91,
+          "engagement": 60.35,
+          "relationship": 12.64,
+          "outcomes": 50.31
+        },
+        "send_alerts": "yes"
+      },
+      "label": "invalid_type_send_alerts",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

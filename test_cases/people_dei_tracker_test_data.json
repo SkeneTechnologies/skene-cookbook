@@ -1,0 +1,93 @@
+{
+  "skill_id": "people_dei_tracker",
+  "generated_at": "2026-02-11T22:18:31.347912",
+  "num_cases": 10,
+  "test_cases": [
+    {
+      "inputs": {
+        "reportType": "lifecycle",
+        "targetId": "test_nwyiraz2",
+        "timePeriod": "gq432dqij"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "reportType": "trends",
+        "targetId": "test_nvcl546o",
+        "dimensions": []
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "reportType": "lifecycle",
+        "scope": "company",
+        "targetId": "test_jmbybfa7",
+        "timePeriod": "83vi7g852iqinhumi"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "timePeriod": "a3mzz7f04gqf8r"
+      },
+      "label": "missing_reportType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "reportType": 12345,
+        "scope": "department",
+        "targetId": "test_t2h5zvo3"
+      },
+      "label": "invalid_type_reportType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "reportType": "comprehensive",
+        "scope": 12345,
+        "targetId": "test_q6vhqmtu",
+        "timePeriod": "vtrd"
+      },
+      "label": "invalid_type_scope",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "reportType": "trends",
+        "targetId": 12345
+      },
+      "label": "invalid_type_targetId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "reportType": "lifecycle",
+        "targetId": "test_08s005ga",
+        "dimensions": [],
+        "timePeriod": 12345
+      },
+      "label": "invalid_type_timePeriod",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "reportType": "comprehensive",
+        "targetId": "test_ehp5u9vi",
+        "dimensions": "not_an_array"
+      },
+      "label": "invalid_type_dimensions",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

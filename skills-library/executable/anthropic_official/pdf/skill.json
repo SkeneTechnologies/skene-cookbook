@@ -1,0 +1,335 @@
+{
+  "id": "anthropic_official/pdf",
+  "version": "1.0.0",
+  "name": "pdf",
+  "description": "Comprehensive PDF manipulation toolkit for extracting text and tables, creating new PDFs, merging/splitting documents, and handling forms. When Claude needs to fill in a PDF form or programmatically process, generate, or analyze PDF documents at scale.",
+  "domain": "anthropic_official",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "operation": {
+        "type": "string",
+        "enum": [
+          "extract_text",
+          "extract_tables",
+          "extract_metadata",
+          "extract_images",
+          "create_pdf",
+          "merge_pdfs",
+          "split_pdf",
+          "rotate_pages",
+          "add_watermark",
+          "fill_form",
+          "encrypt_pdf",
+          "decrypt_pdf",
+          "ocr_pdf"
+        ],
+        "description": "The PDF operation to perform"
+      },
+      "input_file": {
+        "type": "string",
+        "description": "Path or URL to the input PDF file (required for most operations except create_pdf and merge_pdfs)"
+      },
+      "input_files": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Array of PDF file paths for merge operations"
+      },
+      "output_file": {
+        "type": "string",
+        "description": "Path for the output file (PDF, text, Excel, etc.)"
+      },
+      "page_range": {
+        "type": "object",
+        "properties": {
+          "start": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Starting page number (1-indexed)"
+          },
+          "end": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Ending page number (1-indexed)"
+          }
+        },
+        "description": "Optional page range for operations"
+      },
+      "rotation_angle": {
+        "type": "integer",
+        "enum": [
+          90,
+          180,
+          270,
+          -90,
+          -180,
+          -270
+        ],
+        "description": "Rotation angle in degrees for rotate operations"
+      },
+      "watermark_file": {
+        "type": "string",
+        "description": "Path to watermark PDF file for watermark operations"
+      },
+      "password": {
+        "type": "string",
+        "description": "Password for encryption/decryption operations"
+      },
+      "owner_password": {
+        "type": "string",
+        "description": "Owner password for PDF encryption"
+      },
+      "form_data": {
+        "type": "object",
+        "additionalProperties": {
+          "type": [
+            "string",
+            "boolean",
+            "number"
+          ]
+        },
+        "description": "Key-value pairs for filling PDF form fields"
+      },
+      "content": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Title for PDF creation"
+          },
+          "body": {
+            "type": "string",
+            "description": "Body text for PDF creation"
+          },
+          "sections": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "heading": {
+                  "type": "string"
+                },
+                "text": {
+                  "type": "string"
+                }
+              }
+            },
+            "description": "Structured content sections for PDF creation"
+          }
+        },
+        "description": "Content structure for creating new PDFs"
+      },
+      "extract_layout": {
+        "type": "boolean",
+        "default": false,
+        "description": "Preserve layout when extracting text"
+      },
+      "output_format": {
+        "type": "string",
+        "enum": [
+          "text",
+          "json",
+          "excel",
+          "csv"
+        ],
+        "default": "text",
+        "description": "Output format for extracted data"
+      },
+      "ocr_language": {
+        "type": "string",
+        "default": "eng",
+        "description": "Language code for OCR operations (e.g., 'eng', 'spa', 'fra')"
+      }
+    },
+    "required": [
+      "operation"
+    ],
+    "additionalProperties": false,
+    "allOf": [
+      {
+        "if": {
+          "properties": {
+            "operation": {
+              "enum": [
+                "extract_text",
+                "extract_tables",
+                "extract_metadata",
+                "extract_images",
+                "split_pdf",
+                "rotate_pages",
+                "decrypt_pdf",
+                "ocr_pdf"
+              ]
+            }
+          }
+        },
+        "then": {
+          "required": [
+            "input_file"
+          ]
+        }
+      },
+      {
+        "if": {
+          "properties": {
+            "operation": {
+              "const": "merge_pdfs"
+            }
+          }
+        },
+        "then": {
+          "required": [
+            "input_files"
+          ]
+        }
+      }
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "success": {
+        "type": "boolean",
+        "description": "Whether the operation completed successfully"
+      },
+      "operation": {
+        "type": "string",
+        "description": "The operation that was performed"
+      },
+      "output_file": {
+        "type": "string",
+        "description": "Path to the generated output file"
+      },
+      "extracted_text": {
+        "type": "string",
+        "description": "Extracted text content from PDF"
+      },
+      "metadata": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "author": {
+            "type": "string"
+          },
+          "subject": {
+            "type": "string"
+          },
+          "creator": {
+            "type": "string"
+          },
+          "producer": {
+            "type": "string"
+          },
+          "creation_date": {
+            "type": "string"
+          },
+          "modification_date": {
+            "type": "string"
+          }
+        },
+        "description": "PDF metadata information"
+      },
+      "tables": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "page_number": {
+              "type": "integer"
+            },
+            "table_index": {
+              "type": "integer"
+            },
+            "data": {
+              "type": "array",
+              "items": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "description": "Extracted tables with page and position information"
+      },
+      "page_count": {
+        "type": "integer",
+        "description": "Total number of pages in the PDF"
+      },
+      "images_extracted": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Paths to extracted image files"
+      },
+      "pages_processed": {
+        "type": "integer",
+        "description": "Number of pages processed"
+      },
+      "error": {
+        "type": "string",
+        "description": "Error message if operation failed"
+      },
+      "warnings": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Non-fatal warnings during processing"
+      }
+    },
+    "required": [
+      "success",
+      "operation"
+    ],
+    "additionalProperties": true
+  },
+  "temperature": 0,
+  "tags": [
+    "anthropic_official",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "license": "Proprietary. LICENSE.txt has complete terms",
+      "triggers": [
+        "help with pdf",
+        "document creation"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "categories": [
+    "marketing",
+    "marketing/documents"
+  ],
+  "security_controls": {
+    "authentication": {
+      "method": "oauth",
+      "provider": "managed_identity",
+      "scopes": [
+        "read:data",
+        "write:data"
+      ],
+      "token_lifetime": 3600
+    }
+  },
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.92
+  }
+}

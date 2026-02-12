@@ -1,0 +1,79 @@
+{
+  "skill_id": "plg_feature_request_handler",
+  "generated_at": "2026-02-12T00:05:11.258605",
+  "num_cases": 9,
+  "test_cases": [
+    {
+      "inputs": {
+        "userId": "4qeckvt",
+        "requestText": "o8uwnrmqd4c06"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "userId": "97w1h66n5zojv8ufwwxv",
+        "requestText": "xt77k8c96c4",
+        "requestSource": "survey"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "userId": "zoojvw",
+        "requestText": "1c2edq5q3wbj019o",
+        "requestSource": "in_app"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "requestText": "957frwhajy6xd",
+        "requestSource": "survey"
+      },
+      "label": "missing_userId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": "835h4jfumate3cih6"
+      },
+      "label": "missing_requestText",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": 12345,
+        "requestText": "kr2m",
+        "requestSource": "survey"
+      },
+      "label": "invalid_type_userId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": "abldcgb850t6",
+        "requestText": 12345
+      },
+      "label": "invalid_type_requestText",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": "43",
+        "requestText": "qmhc2qb",
+        "requestSource": 12345
+      },
+      "label": "invalid_type_requestSource",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

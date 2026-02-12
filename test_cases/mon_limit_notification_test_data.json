@@ -1,0 +1,127 @@
+{
+  "skill_id": "mon_limit_notification",
+  "generated_at": "2026-02-12T00:05:09.740370",
+  "num_cases": 12,
+  "test_cases": [
+    {
+      "inputs": {
+        "userId": "test_3ftytfp3",
+        "accountId": "test_yugailt8",
+        "usageDimension": "7n2a655cqb52",
+        "customThresholds": {
+          "soft": 54.45,
+          "warning": 21.86,
+          "urgent": 76.37
+        }
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "userId": "test_3gyecr7i",
+        "accountId": "test_dfoer101",
+        "usageDimension": "ftwovbm8rx9tdku2",
+        "customThresholds": {}
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "userId": "test_mxdbolca",
+        "accountId": "test_48qerhka",
+        "usageDimension": "fmjlqrq3he0dyj6cl",
+        "customThresholds": {},
+        "suppressNotificationUntil": "2026-02-12T00:05:09.740204"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "accountId": "test_5z9y4cgl",
+        "usageDimension": "69n"
+      },
+      "label": "missing_userId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": "test_2h3j2bt0",
+        "usageDimension": "6p2ei"
+      },
+      "label": "missing_accountId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": "test_3b5rtks0",
+        "accountId": "test_tttkqlhw",
+        "suppressNotificationUntil": "2026-02-12T00:05:09.740251"
+      },
+      "label": "missing_usageDimension",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": 12345,
+        "accountId": "test_b402nal7",
+        "usageDimension": "nbris8nxx9zdvi5uqj44",
+        "customThresholds": {
+          "urgent": 16.79
+        }
+      },
+      "label": "invalid_type_userId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": "test_lqz67597",
+        "accountId": 12345,
+        "usageDimension": "vbhmtex8mm23a2wz"
+      },
+      "label": "invalid_type_accountId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": "test_nmg1gnp7",
+        "accountId": "test_94nflmy7",
+        "usageDimension": 12345
+      },
+      "label": "invalid_type_usageDimension",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": "test_4c403rna",
+        "accountId": "test_cx7aaa5c",
+        "usageDimension": "rdpl",
+        "customThresholds": "not_an_object",
+        "suppressNotificationUntil": "2026-02-12T00:05:09.740306"
+      },
+      "label": "invalid_type_customThresholds",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": "test_ftafawv9",
+        "accountId": "test_xhcb8srn",
+        "usageDimension": "7",
+        "customThresholds": {
+          "soft": 76.27,
+          "warning": 17.23
+        },
+        "suppressNotificationUntil": 12345
+      },
+      "label": "invalid_type_suppressNotificationUntil",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

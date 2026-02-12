@@ -1,0 +1,67 @@
+{
+  "skill_id": "finops_burn_rate_monitor",
+  "generated_at": "2026-02-12T00:05:00.009808",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "period": "jcq1t0ln4fqa3fj5wemr",
+        "lookback_months": 293,
+        "runway_threshold_months": 824
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "period": "n19d8fks0xg"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "period": "slppd2",
+        "runway_threshold_months": 957
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "lookback_months": 755,
+        "runway_threshold_months": 169
+      },
+      "label": "missing_period",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": 12345
+      },
+      "label": "invalid_type_period",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": "9x2lllbdzp",
+        "lookback_months": "not_a_number"
+      },
+      "label": "invalid_type_lookback_months",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": "2lzv",
+        "runway_threshold_months": "not_a_number"
+      },
+      "label": "invalid_type_runway_threshold_months",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

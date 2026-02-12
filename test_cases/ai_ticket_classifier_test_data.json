@@ -1,0 +1,142 @@
+{
+  "skill_id": "ai_ticket_classifier",
+  "generated_at": "2026-02-12T00:05:03.503754",
+  "num_cases": 12,
+  "test_cases": [
+    {
+      "inputs": {
+        "subject": "7",
+        "body": "6pexi0hruz2iydyg"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "subject": "13og7zdeuvq8zjcjx",
+        "body": "znz1a7zg0dl",
+        "ticket_id": "sgd"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "subject": "6xvc8bllzkd6u8u",
+        "body": "9uhsc7asapig65",
+        "ticket_id": "1x",
+        "channel": "email",
+        "attachments": [
+          "stf3aqcr",
+          "o",
+          "kc1b94"
+        ]
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "body": "3ti9pf",
+        "ticket_id": "bdu42jc7iiz8",
+        "channel": "email",
+        "attachments": [
+          "riu3ah7l0",
+          "iyn47cafmqbnul1c",
+          "wo"
+        ]
+      },
+      "label": "missing_subject",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "subject": "orizjso9",
+        "ticket_id": "c77nh",
+        "channel": "email"
+      },
+      "label": "missing_body",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "subject": "ja",
+        "body": "dcprkosr9ea",
+        "ticket_id": 12345,
+        "customer_id": "a40l",
+        "attachments": [
+          "h2673rx"
+        ]
+      },
+      "label": "invalid_type_ticket_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "subject": 12345,
+        "body": "3o7n",
+        "ticket_id": "0mwlynoohlvec",
+        "customer_id": "8eh6ygvfxou9",
+        "attachments": []
+      },
+      "label": "invalid_type_subject",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "subject": "x",
+        "body": 12345,
+        "ticket_id": "42",
+        "attachments": [
+          "7dzuqyyrql4",
+          "ax2sxms1rk54wn2zmcj1",
+          "xm4ctqst2m"
+        ]
+      },
+      "label": "invalid_type_body",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "subject": "nwafltg7kozlc",
+        "body": "skhavfkecu9k46xagzh8",
+        "ticket_id": "7esa2cozcff7tf187",
+        "customer_id": 12345,
+        "channel": "form"
+      },
+      "label": "invalid_type_customer_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "subject": "ggm",
+        "body": "lraeaqqri7gpn",
+        "customer_id": "shebdy4a1y",
+        "channel": 12345,
+        "attachments": [
+          "efdu",
+          "n9hcl1i",
+          "sr5p3szb337abu"
+        ]
+      },
+      "label": "invalid_type_channel",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "subject": "90dmjxo",
+        "body": "u6et5z98wtz5",
+        "ticket_id": "82peil5tlfu5zh",
+        "channel": "form",
+        "attachments": "not_an_array"
+      },
+      "label": "invalid_type_attachments",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

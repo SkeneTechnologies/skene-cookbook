@@ -1,0 +1,65 @@
+{
+  "skill_id": "mon_price_experimentation",
+  "session_id": "batch_eval",
+  "summary": {
+    "skill_id": "mon_price_experimentation",
+    "total_executions": 3,
+    "success_rate": 1.0,
+    "validation_pass_rate": 1.0,
+    "auto_act_rate": 0.667,
+    "latency": {
+      "avg_ms": 464.74,
+      "p50_ms": 0.97,
+      "p95_ms": 1393.06,
+      "p99_ms": 1393.06,
+      "max_ms": 1393.06,
+      "min_ms": 0.21
+    },
+    "decisions": {
+      "auto_act": 2,
+      "flag_for_review": 1
+    },
+    "errors": {}
+  },
+  "records": [
+    {
+      "timestamp": 1770847511.0306041,
+      "duration_ms": 1393.0606842041016,
+      "success": true,
+      "validation_passed": true,
+      "decision_type": "auto_act",
+      "error_type": null,
+      "metadata": {
+        "confidence": 0.95,
+        "risk_level": "Medium",
+        "trace_id": "6a92c3f98d564312"
+      }
+    },
+    {
+      "timestamp": 1770847511.0315971,
+      "duration_ms": 0.9679794311523438,
+      "success": true,
+      "validation_passed": true,
+      "decision_type": "flag_for_review",
+      "error_type": null,
+      "metadata": {
+        "confidence": 0.79,
+        "risk_level": "Medium",
+        "trace_id": "6a92c3f98d564312"
+      }
+    },
+    {
+      "timestamp": 1770847511.031816,
+      "duration_ms": 0.20575523376464844,
+      "success": true,
+      "validation_passed": true,
+      "decision_type": "auto_act",
+      "error_type": null,
+      "metadata": {
+        "confidence": 0.85,
+        "risk_level": "Medium",
+        "trace_id": "6a92c3f98d564312"
+      }
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+# Dependencies
+node_modules/
+package-lock.json
+
+# Build output
+dist/
+build/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+.pytest_cache/
+htmlcov/
+.coverage
+coverage.xml
+
+# Git
+.git/
+
+# IDE
+.vscode/
+.idea/
+
+# Test artifacts
+test_cases/
+reports/
+
+# Archives
+archived/
+
+# Generated files
+*.min.js
+*.map

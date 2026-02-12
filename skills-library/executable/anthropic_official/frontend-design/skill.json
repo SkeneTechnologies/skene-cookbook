@@ -1,0 +1,248 @@
+{
+  "id": "anthropic_official/frontend-design",
+  "version": "1.0.0",
+  "name": "frontend-design",
+  "description": "Create distinctive, production-grade frontend interfaces with high design quality. Use this skill when the user asks to build web components, pages, artifacts, posters, or applications (examples include websites, landing pages, dashboards, React components, HTML/CSS layouts, or when styling/beautifying any web UI). Generates creative, polished code and UI design that avoids generic AI aesthetics.",
+  "domain": "anthropic_official",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "requirements": {
+        "type": "string",
+        "description": "Description of the frontend component, page, or application to build, including what it should do and display"
+      },
+      "interfaceType": {
+        "type": "string",
+        "enum": [
+          "landing-page",
+          "dashboard",
+          "web-component",
+          "full-application",
+          "poster",
+          "react-component",
+          "html-css-layout",
+          "other"
+        ],
+        "description": "Type of frontend interface to create"
+      },
+      "framework": {
+        "type": "string",
+        "enum": [
+          "html-css-js",
+          "react",
+          "vue",
+          "svelte",
+          "no-preference"
+        ],
+        "description": "Preferred frontend framework or technology stack",
+        "default": "no-preference"
+      },
+      "purpose": {
+        "type": "string",
+        "description": "The problem this interface solves and the target audience or users"
+      },
+      "aestheticDirection": {
+        "type": "string",
+        "description": "Optional aesthetic guidance (e.g., 'brutally minimal', 'retro-futuristic', 'organic/natural'). If not provided, the skill will choose a bold direction based on context"
+      },
+      "technicalConstraints": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Any technical requirements or constraints (performance, accessibility, browser support, etc.)"
+      },
+      "contentData": {
+        "type": "object",
+        "description": "Specific content, text, data, or assets to include in the interface",
+        "additionalProperties": true
+      },
+      "colorPreferences": {
+        "type": "object",
+        "properties": {
+          "primary": {
+            "type": "string",
+            "description": "Primary color preference (hex, rgb, or color name)"
+          },
+          "theme": {
+            "type": "string",
+            "enum": [
+              "light",
+              "dark",
+              "auto",
+              "no-preference"
+            ],
+            "default": "no-preference"
+          }
+        },
+        "description": "Optional color and theme preferences"
+      }
+    },
+    "required": [
+      "requirements"
+    ],
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "designConcept": {
+        "type": "object",
+        "properties": {
+          "purpose": {
+            "type": "string",
+            "description": "The problem this interface solves and target audience"
+          },
+          "aestheticDirection": {
+            "type": "string",
+            "description": "The chosen aesthetic tone and design philosophy"
+          },
+          "differentiator": {
+            "type": "string",
+            "description": "The memorable, distinctive element that makes this interface unforgettable"
+          },
+          "typographyChoices": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Selected fonts and typography rationale"
+          },
+          "colorPalette": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Color scheme with hex values and palette reasoning"
+          }
+        },
+        "required": [
+          "purpose",
+          "aestheticDirection",
+          "differentiator"
+        ]
+      },
+      "implementation": {
+        "type": "object",
+        "properties": {
+          "framework": {
+            "type": "string",
+            "description": "The framework or technology used"
+          },
+          "code": {
+            "type": "string",
+            "description": "Complete, production-ready code for the frontend interface"
+          },
+          "files": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "filename": {
+                  "type": "string",
+                  "description": "Name of the file"
+                },
+                "content": {
+                  "type": "string",
+                  "description": "File contents"
+                },
+                "language": {
+                  "type": "string",
+                  "description": "Programming language or file type"
+                }
+              },
+              "required": [
+                "filename",
+                "content"
+              ]
+            },
+            "description": "Multi-file implementations broken down by component or file"
+          }
+        },
+        "required": [
+          "framework",
+          "code"
+        ]
+      },
+      "features": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Key features and interactive elements implemented"
+      },
+      "animations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Animations and micro-interactions included"
+      },
+      "usageInstructions": {
+        "type": "string",
+        "description": "Instructions for running, deploying, or integrating the frontend code"
+      },
+      "accessibilityNotes": {
+        "type": "string",
+        "description": "Accessibility considerations and WCAG compliance details"
+      }
+    },
+    "required": [
+      "designConcept",
+      "implementation",
+      "features"
+    ]
+  },
+  "temperature": 0,
+  "tags": [
+    "anthropic_official",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "license": "Complete terms in LICENSE.txt",
+      "triggers": [
+        "help with frontend design"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "security_controls": {
+    "execution_environment": {
+      "type": "sandboxed_container",
+      "resource_limits": {
+        "cpu_cores": 1,
+        "memory_mb": 512,
+        "timeout_seconds": 30,
+        "disk_mb": 100
+      },
+      "security": {
+        "network_access": false,
+        "filesystem": "read_only",
+        "user": "non_root",
+        "allowed_commands": [
+          "node",
+          "python3",
+          "npm"
+        ],
+        "blocked_syscalls": [
+          "exec",
+          "fork",
+          "kill"
+        ]
+      }
+    }
+  },
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.92
+  }
+}

@@ -1,0 +1,391 @@
+{
+  "id": "superpowers/systematic-debugging",
+  "version": "1.0.0",
+  "name": "systematic-debugging",
+  "description": "Use when encountering any bug, test failure, or unexpected behavior, before proposing fixes",
+  "domain": "superpowers",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "issue_description": {
+        "type": "string",
+        "description": "Description of the bug, test failure, or unexpected behavior encountered"
+      },
+      "issue_type": {
+        "type": "string",
+        "enum": [
+          "test_failure",
+          "bug_production",
+          "unexpected_behavior",
+          "performance_problem",
+          "build_failure",
+          "integration_issue",
+          "other"
+        ],
+        "description": "Category of the technical issue"
+      },
+      "error_messages": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Complete error messages, stack traces, and warnings"
+      },
+      "reproduction_steps": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Steps to reproduce the issue, if known"
+      },
+      "recent_changes": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "code",
+                "config",
+                "dependency",
+                "environment"
+              ]
+            },
+            "description": {
+              "type": "string"
+            },
+            "timestamp": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        },
+        "description": "Recent changes that might be related (commits, config changes, dependency updates)"
+      },
+      "system_architecture": {
+        "type": "object",
+        "properties": {
+          "is_multi_component": {
+            "type": "boolean",
+            "description": "Whether the system has multiple interacting components"
+          },
+          "components": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of system components (e.g., CI, build, signing, API, database)"
+          }
+        },
+        "description": "Information about system architecture"
+      },
+      "previous_fix_attempts": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "outcome": {
+              "type": "string"
+            }
+          }
+        },
+        "description": "Previous attempts to fix this issue, if any (critical for detecting 3+ fix threshold)"
+      },
+      "time_pressure": {
+        "type": "boolean",
+        "description": "Whether there is time pressure or emergency status"
+      },
+      "working_examples_available": {
+        "type": "boolean",
+        "description": "Whether similar working code exists in the codebase"
+      }
+    },
+    "required": [
+      "issue_description",
+      "issue_type"
+    ],
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "current_phase": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 4,
+        "description": "Current debugging phase (1=Root Cause, 2=Pattern Analysis, 3=Hypothesis, 4=Implementation)"
+      },
+      "phase_completion_status": {
+        "type": "object",
+        "properties": {
+          "phase_1_root_cause": {
+            "type": "boolean"
+          },
+          "phase_2_pattern_analysis": {
+            "type": "boolean"
+          },
+          "phase_3_hypothesis": {
+            "type": "boolean"
+          },
+          "phase_4_implementation": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "phase_1_root_cause",
+          "phase_2_pattern_analysis",
+          "phase_3_hypothesis",
+          "phase_4_implementation"
+        ],
+        "description": "Completion status of each phase"
+      },
+      "root_cause_analysis": {
+        "type": "object",
+        "properties": {
+          "can_reproduce_consistently": {
+            "type": "boolean"
+          },
+          "error_analysis": {
+            "type": "string",
+            "description": "Analysis of error messages and stack traces"
+          },
+          "data_flow_trace": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "component": {
+                  "type": "string"
+                },
+                "input_state": {
+                  "type": "string"
+                },
+                "output_state": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "working",
+                    "failed",
+                    "unknown"
+                  ]
+                }
+              }
+            },
+            "description": "Traced data flow through system components"
+          },
+          "diagnostic_instrumentation_needed": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Diagnostic logging or instrumentation to add before proposing fixes"
+          },
+          "root_cause_identified": {
+            "type": "boolean"
+          },
+          "root_cause_description": {
+            "type": "string",
+            "description": "Clear description of the root cause, if identified"
+          }
+        },
+        "required": [
+          "can_reproduce_consistently",
+          "root_cause_identified"
+        ],
+        "description": "Results of Phase 1 root cause investigation"
+      },
+      "pattern_analysis": {
+        "type": "object",
+        "properties": {
+          "working_examples_found": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Similar working code found in codebase"
+          },
+          "differences_identified": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Differences between working and broken code"
+          },
+          "dependencies_understood": {
+            "type": "boolean"
+          }
+        },
+        "description": "Results of Phase 2 pattern analysis"
+      },
+      "hypothesis": {
+        "type": "object",
+        "properties": {
+          "statement": {
+            "type": "string",
+            "description": "Clear hypothesis: 'I think X is the root cause because Y'"
+          },
+          "test_approach": {
+            "type": "string",
+            "description": "Minimal change to test the hypothesis"
+          },
+          "test_result": {
+            "type": "string",
+            "enum": [
+              "not_tested",
+              "confirmed",
+              "rejected"
+            ],
+            "description": "Result of hypothesis test"
+          }
+        },
+        "description": "Current hypothesis from Phase 3"
+      },
+      "implementation": {
+        "type": "object",
+        "properties": {
+          "failing_test_created": {
+            "type": "boolean"
+          },
+          "test_description": {
+            "type": "string",
+            "description": "Description of the failing test case"
+          },
+          "fix_description": {
+            "type": "string",
+            "description": "Single fix addressing the root cause"
+          },
+          "fix_verified": {
+            "type": "boolean"
+          },
+          "verification_results": {
+            "type": "string",
+            "description": "Results of fix verification"
+          }
+        },
+        "description": "Results of Phase 4 implementation"
+      },
+      "warnings": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "red_flag_detected",
+                "three_plus_fixes_attempted",
+                "architectural_issue_suspected",
+                "incomplete_investigation",
+                "skipped_phase"
+              ]
+            },
+            "message": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "type",
+            "message"
+          ]
+        },
+        "description": "Warnings about process violations or concerning patterns"
+      },
+      "architectural_concerns": {
+        "type": "object",
+        "properties": {
+          "should_question_architecture": {
+            "type": "boolean",
+            "description": "Whether architecture should be questioned (3+ failed fixes)"
+          },
+          "concerns": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Specific architectural concerns identified"
+          },
+          "recommendation": {
+            "type": "string",
+            "description": "Recommendation for architectural discussion"
+          }
+        },
+        "description": "Architectural concerns if pattern of failures detected"
+      },
+      "next_actions": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Ordered list of next actions to take"
+      },
+      "process_adherence_score": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1,
+        "description": "Score indicating adherence to systematic debugging process (0-1)"
+      },
+      "related_skills_to_invoke": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": [
+            "superpowers:test-driven-development",
+            "superpowers:verification-before-completion"
+          ]
+        },
+        "description": "Related skills that should be invoked based on current phase"
+      }
+    },
+    "required": [
+      "current_phase",
+      "phase_completion_status",
+      "root_cause_analysis",
+      "warnings",
+      "next_actions",
+      "process_adherence_score"
+    ]
+  },
+  "temperature": 0,
+  "tags": [
+    "superpowers",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with systematic debugging",
+        "encountering any bug, test failure, or unexpected behavior, before proposing fixes"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "security_controls": {
+    "authentication": {
+      "method": "oauth",
+      "provider": "managed_identity",
+      "scopes": [
+        "read:data",
+        "write:data"
+      ],
+      "token_lifetime": 3600
+    }
+  },
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.92
+  }
+}

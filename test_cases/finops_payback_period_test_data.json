@@ -1,0 +1,68 @@
+{
+  "skill_id": "finops_payback_period",
+  "generated_at": "2026-02-12T00:05:00.031437",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "period": "0lqoa2y8avpwbic959v"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "period": "itfocnepi92"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "period": "avm9lbld",
+        "use_gross_margin": true
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "use_gross_margin": false
+      },
+      "label": "missing_period",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": 12345
+      },
+      "label": "invalid_type_period",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": "5ffmr1",
+        "use_gross_margin": "yes",
+        "segment_by": [
+          "4blip4",
+          "9iwlwfe5vieuk5o"
+        ]
+      },
+      "label": "invalid_type_use_gross_margin",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": "9krzzqrv2h",
+        "segment_by": "not_an_array"
+      },
+      "label": "invalid_type_segment_by",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

@@ -1,0 +1,144 @@
+{
+  "id": "superpowers/using-superpowers",
+  "version": "1.0.0",
+  "name": "using-superpowers",
+  "description": "Use when starting any conversation - establishes how to find and use skills, requiring Skill tool invocation before ANY response including clarifying questions",
+  "domain": "superpowers",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "conversationContext": {
+        "type": "string",
+        "description": "The initial user message or request that starts the conversation"
+      },
+      "taskType": {
+        "type": "string",
+        "description": "The type of task being requested (e.g., 'question', 'implementation', 'debugging', 'exploration')",
+        "enum": [
+          "question",
+          "implementation",
+          "debugging",
+          "exploration",
+          "clarification",
+          "other"
+        ]
+      },
+      "potentialSkills": {
+        "type": "array",
+        "description": "List of skill IDs that might apply to this conversation (even at 1% probability)",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "required": [
+      "conversationContext"
+    ],
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "skillsToInvoke": {
+        "type": "array",
+        "description": "Ordered list of skills that should be invoked for this conversation",
+        "items": {
+          "type": "object",
+          "properties": {
+            "skillId": {
+              "type": "string",
+              "description": "The skill identifier to invoke"
+            },
+            "purpose": {
+              "type": "string",
+              "description": "Why this skill is being invoked"
+            },
+            "priority": {
+              "type": "integer",
+              "description": "Priority order (1=highest, process skills first, then implementation)",
+              "minimum": 1
+            },
+            "skillType": {
+              "type": "string",
+              "description": "Whether the skill is rigid (follow exactly) or flexible (adapt principles)",
+              "enum": [
+                "rigid",
+                "flexible"
+              ]
+            }
+          },
+          "required": [
+            "skillId",
+            "purpose",
+            "priority"
+          ]
+        }
+      },
+      "workflowEstablished": {
+        "type": "boolean",
+        "description": "Whether the skill usage workflow has been established for the conversation"
+      },
+      "redFlagsDetected": {
+        "type": "array",
+        "description": "Any rationalization red flags that were detected and avoided",
+        "items": {
+          "type": "string"
+        }
+      },
+      "nextAction": {
+        "type": "string",
+        "description": "The immediate next action to take (e.g., 'invoke_skill', 'respond', 'create_todos')"
+      }
+    },
+    "required": [
+      "skillsToInvoke",
+      "workflowEstablished",
+      "nextAction"
+    ]
+  },
+  "temperature": 0,
+  "tags": [
+    "superpowers",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with using superpowers",
+        "starting any conversation - establishes how to find and use skills, requiring skill tool invocation before any response including clarifying questions"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "security_controls": {
+    "write_operations": {
+      "preview_mode": true,
+      "validation": {
+        "input_schema": true,
+        "business_rules": true,
+        "data_integrity": true
+      },
+      "rollback": {
+        "enabled": true,
+        "window_seconds": 1800
+      },
+      "audit": {
+        "log_before_state": true,
+        "log_after_state": true,
+        "track_user": true
+      }
+    }
+  },
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.9
+  }
+}

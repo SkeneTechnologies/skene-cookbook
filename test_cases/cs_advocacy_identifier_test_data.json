@@ -1,0 +1,71 @@
+{
+  "skill_id": "cs_advocacy_identifier",
+  "generated_at": "2026-02-12T00:05:00.802080",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "accountId": "test_0jwp4yns"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "accountId": "test_8ar2f91g"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "accountId": "test_1tjbqkaa",
+        "minimumScore": 5799.93
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "minimumScore": 1048.17
+      },
+      "label": "missing_accountId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": 12345,
+        "advocacyType": []
+      },
+      "label": "invalid_type_accountId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": "test_fbdf8ima",
+        "advocacyType": "not_an_array",
+        "minimumScore": 8645.03
+      },
+      "label": "invalid_type_advocacyType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": "test_ojsjcgr2",
+        "advocacyType": [
+          "speaker",
+          "referral",
+          "review"
+        ],
+        "minimumScore": "not_a_number"
+      },
+      "label": "invalid_type_minimumScore",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

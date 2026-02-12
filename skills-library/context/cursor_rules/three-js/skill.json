@@ -1,0 +1,36 @@
+{
+  "id": "cursor_rules/three-js",
+  "version": "1.0.0",
+  "name": "three-js",
+  "description": "Enforce modern, performant, and maintainable three-js development practices, focusing on WebGL error handling, efficient asset management, and render loop optimization.",
+  "domain": "cursor_rules",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "cursor_rules",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "cursor": {
+      "globs": [
+        "**/*.{js",
+        "jsx}"
+      ]
+    },
+    "claude": {
+      "triggers": [
+        "help with three js"
+      ]
+    },
+    "skeneflow": {}
+  },
+  "skipSchemaValidation": true
+}

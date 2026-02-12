@@ -1,0 +1,255 @@
+{
+  "id": "anthropic_official/brand-guidelines",
+  "version": "1.0.0",
+  "name": "brand-guidelines",
+  "description": "Applies Anthropic's official brand colors and typography to any sort of artifact that may benefit from having Anthropic's look-and-feel. Use it when brand colors or style guidelines, visual formatting, or company design standards apply.",
+  "domain": "anthropic_official",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "artifact_type": {
+        "type": "string",
+        "description": "Type of artifact to apply branding to (e.g., presentation, document, slide, report)",
+        "enum": [
+          "presentation",
+          "document",
+          "slide",
+          "report",
+          "diagram",
+          "infographic",
+          "other"
+        ]
+      },
+      "artifact_path": {
+        "type": "string",
+        "description": "File path or identifier of the artifact to brand",
+        "format": "uri-reference"
+      },
+      "artifact_content": {
+        "type": "object",
+        "description": "Content structure of the artifact if not file-based",
+        "properties": {
+          "headings": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of heading texts to style"
+          },
+          "body_text": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of body text content to style"
+          },
+          "shapes": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "description": "Shape type (rectangle, circle, etc.)"
+                },
+                "id": {
+                  "type": "string",
+                  "description": "Shape identifier"
+                }
+              }
+            },
+            "description": "Non-text shapes to apply accent colors to"
+          }
+        }
+      },
+      "apply_colors": {
+        "type": "boolean",
+        "description": "Whether to apply Anthropic brand colors",
+        "default": true
+      },
+      "apply_typography": {
+        "type": "boolean",
+        "description": "Whether to apply Anthropic typography (Poppins and Lora fonts)",
+        "default": true
+      },
+      "color_scheme": {
+        "type": "string",
+        "description": "Primary color scheme to use",
+        "enum": [
+          "dark",
+          "light",
+          "auto"
+        ],
+        "default": "auto"
+      },
+      "accent_priority": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": [
+            "orange",
+            "blue",
+            "green"
+          ]
+        },
+        "description": "Order of accent colors to cycle through",
+        "default": [
+          "orange",
+          "blue",
+          "green"
+        ]
+      }
+    },
+    "required": [
+      "artifact_type"
+    ],
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "success": {
+        "type": "boolean",
+        "description": "Whether branding was successfully applied"
+      },
+      "branded_artifact_path": {
+        "type": "string",
+        "description": "Path to the branded artifact output",
+        "format": "uri-reference"
+      },
+      "applied_styles": {
+        "type": "object",
+        "description": "Summary of styles applied",
+        "properties": {
+          "colors_applied": {
+            "type": "boolean",
+            "description": "Whether brand colors were applied"
+          },
+          "typography_applied": {
+            "type": "boolean",
+            "description": "Whether brand typography was applied"
+          },
+          "color_scheme_used": {
+            "type": "string",
+            "description": "The color scheme that was applied",
+            "enum": [
+              "dark",
+              "light"
+            ]
+          },
+          "fonts_available": {
+            "type": "object",
+            "description": "Availability of brand fonts",
+            "properties": {
+              "poppins": {
+                "type": "boolean",
+                "description": "Whether Poppins font was available"
+              },
+              "lora": {
+                "type": "boolean",
+                "description": "Whether Lora font was available"
+              }
+            }
+          },
+          "fallback_fonts_used": {
+            "type": "boolean",
+            "description": "Whether fallback fonts (Arial/Georgia) were used"
+          }
+        }
+      },
+      "elements_styled": {
+        "type": "object",
+        "description": "Count of elements styled",
+        "properties": {
+          "headings": {
+            "type": "integer",
+            "description": "Number of headings styled with Poppins"
+          },
+          "body_text": {
+            "type": "integer",
+            "description": "Number of body text elements styled with Lora"
+          },
+          "shapes": {
+            "type": "integer",
+            "description": "Number of shapes colored with accent colors"
+          }
+        }
+      },
+      "brand_colors_used": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Color name (e.g., Dark, Light, Orange)"
+            },
+            "hex": {
+              "type": "string",
+              "description": "Hex color code",
+              "pattern": "^#[0-9a-fA-F]{6}$"
+            },
+            "usage_count": {
+              "type": "integer",
+              "description": "Number of times this color was applied"
+            }
+          }
+        },
+        "description": "List of Anthropic brand colors used in the artifact"
+      },
+      "warnings": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Any warnings or issues encountered during branding"
+      },
+      "message": {
+        "type": "string",
+        "description": "Human-readable summary of the branding operation"
+      }
+    },
+    "required": [
+      "success",
+      "applied_styles",
+      "message"
+    ]
+  },
+  "temperature": 0,
+  "tags": [
+    "anthropic_official",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "license": "Complete terms in LICENSE.txt",
+      "triggers": [
+        "help with brand guidelines"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "categories": [
+    "marketing",
+    "marketing/brand"
+  ],
+  "security_controls": {
+    "review_note": {
+      "flagged_as": "false_positive",
+      "requires_manual_review": true,
+      "review_date": "2026-02-05T14:36:53.799704"
+    }
+  },
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.9
+  }
+}

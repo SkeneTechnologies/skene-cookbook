@@ -1,0 +1,76 @@
+{
+  "skill_id": "plgf_mental_models",
+  "generated_at": "2026-02-11T22:14:29.996156",
+  "num_cases": 9,
+  "test_cases": [
+    {
+      "inputs": {
+        "challenge": "9vd3ztp2f8z3xg1t",
+        "context": {}
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "challenge": "uclwpq3p3yy2",
+        "context": {}
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "challenge": "im1tjuvtbpzb9kve",
+        "specificModel": "46ngdsfznovr"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "context": {}
+      },
+      "label": "missing_challenge",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "challenge": 12345,
+        "category": "retention"
+      },
+      "label": "invalid_type_challenge",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "challenge": "dv",
+        "category": 12345
+      },
+      "label": "invalid_type_category",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "challenge": "fwhfl0m5a",
+        "context": "not_an_object"
+      },
+      "label": "invalid_type_context",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "challenge": "jswylbsg18a",
+        "category": "acquisition",
+        "specificModel": 12345
+      },
+      "label": "invalid_type_specificModel",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

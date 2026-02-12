@@ -1,0 +1,264 @@
+{
+  "id": "security/ask-questions-if-underspecified",
+  "version": "1.0.0",
+  "name": "ask-questions-if-underspecified",
+  "description": "Clarify requirements before implementing. Use when serious doubts arise.",
+  "domain": "security",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "originalRequest": {
+        "type": "string",
+        "description": "The original user request or task description that may be underspecified"
+      },
+      "ambiguities": {
+        "type": "array",
+        "description": "List of identified ambiguities or unclear aspects in the request",
+        "items": {
+          "type": "object",
+          "properties": {
+            "category": {
+              "type": "string",
+              "enum": [
+                "objective",
+                "done-criteria",
+                "scope",
+                "constraints",
+                "environment",
+                "safety"
+              ],
+              "description": "The category of ambiguity identified"
+            },
+            "description": {
+              "type": "string",
+              "description": "Description of what is unclear or ambiguous"
+            },
+            "plausibleInterpretations": {
+              "type": "array",
+              "description": "Multiple possible interpretations that exist",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "category",
+            "description"
+          ]
+        }
+      },
+      "context": {
+        "type": "object",
+        "description": "Additional context about the request environment and current state",
+        "properties": {
+          "domain": {
+            "type": "string",
+            "description": "Technical domain or area (e.g., backend, frontend, infrastructure)"
+          },
+          "projectType": {
+            "type": "string",
+            "description": "Type of project or codebase involved"
+          },
+          "riskLevel": {
+            "type": "string",
+            "enum": [
+              "low",
+              "medium",
+              "high",
+              "critical"
+            ],
+            "description": "Assessed risk level of proceeding without clarification"
+          }
+        }
+      }
+    },
+    "required": [
+      "originalRequest",
+      "ambiguities"
+    ],
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "isUnderspecified": {
+        "type": "boolean",
+        "description": "Whether the request is determined to be underspecified"
+      },
+      "reasoning": {
+        "type": "string",
+        "description": "Brief explanation of why the request is or is not underspecified"
+      },
+      "questions": {
+        "type": "array",
+        "description": "List of clarifying questions to ask the user",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "description": "Question number for easy reference"
+            },
+            "question": {
+              "type": "string",
+              "description": "The clarifying question text"
+            },
+            "category": {
+              "type": "string",
+              "enum": [
+                "objective",
+                "done-criteria",
+                "scope",
+                "constraints",
+                "environment",
+                "safety"
+              ],
+              "description": "Category of clarification needed"
+            },
+            "priority": {
+              "type": "string",
+              "enum": [
+                "must-have",
+                "nice-to-have"
+              ],
+              "description": "Whether this question must be answered before proceeding"
+            },
+            "options": {
+              "type": "array",
+              "description": "Multiple choice options if applicable",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "description": "Option identifier (e.g., 'a', 'b', 'c')"
+                  },
+                  "text": {
+                    "type": "string",
+                    "description": "Option text"
+                  },
+                  "isDefault": {
+                    "type": "boolean",
+                    "description": "Whether this is the recommended/default option"
+                  }
+                },
+                "required": [
+                  "id",
+                  "text"
+                ]
+              }
+            },
+            "suggestedDefault": {
+              "type": "string",
+              "description": "Suggested default answer if user is unsure"
+            }
+          },
+          "required": [
+            "id",
+            "question",
+            "category",
+            "priority"
+          ]
+        }
+      },
+      "fastPathResponse": {
+        "type": "string",
+        "description": "Quick response option for user to accept all defaults (e.g., 'defaults')"
+      },
+      "assumptionsIfProceeding": {
+        "type": "array",
+        "description": "Assumptions that would be made if user requests to proceed without answering",
+        "items": {
+          "type": "string"
+        }
+      },
+      "discoveryStepsAllowed": {
+        "type": "array",
+        "description": "Low-risk discovery steps that can be performed while waiting for answers",
+        "items": {
+          "type": "object",
+          "properties": {
+            "action": {
+              "type": "string",
+              "description": "Description of the discovery action"
+            },
+            "riskLevel": {
+              "type": "string",
+              "enum": [
+                "none",
+                "low"
+              ],
+              "description": "Risk level of this discovery step"
+            }
+          },
+          "required": [
+            "action",
+            "riskLevel"
+          ]
+        }
+      },
+      "formattedOutput": {
+        "type": "string",
+        "description": "Formatted question text ready to present to the user"
+      }
+    },
+    "required": [
+      "isUnderspecified",
+      "reasoning",
+      "questions",
+      "formattedOutput"
+    ]
+  },
+  "temperature": 0,
+  "tags": [
+    "security",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with ask questions if underspecified",
+        "serious doubts arise"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "security_controls": {
+    "execution_environment": {
+      "type": "sandboxed_container",
+      "resource_limits": {
+        "cpu_cores": 1,
+        "memory_mb": 512,
+        "timeout_seconds": 30,
+        "disk_mb": 100
+      },
+      "security": {
+        "network_access": false,
+        "filesystem": "read_only",
+        "user": "non_root",
+        "allowed_commands": [
+          "node",
+          "python3",
+          "npm"
+        ],
+        "blocked_syscalls": [
+          "exec",
+          "fork",
+          "kill"
+        ]
+      }
+    }
+  },
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.92
+  }
+}

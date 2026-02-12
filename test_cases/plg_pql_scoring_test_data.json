@@ -1,0 +1,68 @@
+{
+  "skill_id": "plg_pql_scoring",
+  "generated_at": "2026-02-12T00:05:11.567488",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "userId": "drjvg7xjxupnd8h"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "userId": "333bfqe3l7ihussgl",
+        "accountId": "y3ol85ow57xe4k9rt"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "userId": "y6w0y5j2ya4tocd14p3q",
+        "accountId": "w851h82nu1wgg",
+        "evaluationPeriod": "14d"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "evaluationPeriod": "14d"
+      },
+      "label": "missing_userId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": 12345,
+        "accountId": "mss75aab2u3cw"
+      },
+      "label": "invalid_type_userId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": "2dmury2o1i7fcf0",
+        "accountId": 12345
+      },
+      "label": "invalid_type_accountId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": "no8k28cukc96",
+        "accountId": "f",
+        "evaluationPeriod": 12345
+      },
+      "label": "invalid_type_evaluationPeriod",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

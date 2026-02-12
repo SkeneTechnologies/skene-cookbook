@@ -1,0 +1,259 @@
+{
+  "id": "superpowers/verification-before-completion",
+  "version": "1.0.0",
+  "name": "verification-before-completion",
+  "description": "Use when about to claim work is complete, fixed, or passing, before committing or creating PRs - requires running verification commands and confirming output before making any success claims; evidence before assertions always",
+  "domain": "superpowers",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "claim": {
+        "type": "string",
+        "description": "The completion or success claim being made (e.g., 'tests pass', 'bug fixed', 'build succeeds')"
+      },
+      "verificationCommands": {
+        "type": "array",
+        "description": "List of commands that must be executed to verify the claim",
+        "items": {
+          "type": "object",
+          "properties": {
+            "command": {
+              "type": "string",
+              "description": "The exact command to run for verification"
+            },
+            "purpose": {
+              "type": "string",
+              "description": "What this command verifies (e.g., 'run all tests', 'check linting', 'compile build')"
+            },
+            "expectedOutput": {
+              "type": "string",
+              "description": "Expected output pattern or exit code for success (e.g., '0 failures', 'exit 0')"
+            }
+          },
+          "required": [
+            "command",
+            "purpose"
+          ],
+          "additionalProperties": false
+        },
+        "minItems": 1
+      },
+      "workContext": {
+        "type": "object",
+        "description": "Context about the work being verified",
+        "properties": {
+          "taskDescription": {
+            "type": "string",
+            "description": "Description of the task or work completed"
+          },
+          "changedFiles": {
+            "type": "array",
+            "description": "Files modified in this work",
+            "items": {
+              "type": "string"
+            }
+          },
+          "requirementsChecklist": {
+            "type": "array",
+            "description": "List of requirements that must be met",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": true
+      },
+      "priorVerificationRun": {
+        "type": "boolean",
+        "description": "Whether verification commands were run in a previous message/context (always requires fresh run)",
+        "default": false
+      }
+    },
+    "required": [
+      "claim",
+      "verificationCommands"
+    ],
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "verificationStatus": {
+        "type": "string",
+        "enum": [
+          "verified",
+          "failed",
+          "incomplete",
+          "not_run"
+        ],
+        "description": "Overall status of verification process"
+      },
+      "claimValid": {
+        "type": "boolean",
+        "description": "Whether the original claim is supported by evidence"
+      },
+      "verificationResults": {
+        "type": "array",
+        "description": "Results from each verification command executed",
+        "items": {
+          "type": "object",
+          "properties": {
+            "command": {
+              "type": "string",
+              "description": "The command that was run"
+            },
+            "executed": {
+              "type": "boolean",
+              "description": "Whether the command was actually executed fresh"
+            },
+            "exitCode": {
+              "type": "integer",
+              "description": "Exit code from command execution"
+            },
+            "output": {
+              "type": "string",
+              "description": "Actual output from the command"
+            },
+            "passed": {
+              "type": "boolean",
+              "description": "Whether this verification passed"
+            },
+            "evidence": {
+              "type": "string",
+              "description": "Specific evidence from output supporting pass/fail determination"
+            }
+          },
+          "required": [
+            "command",
+            "executed",
+            "passed",
+            "evidence"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "validatedClaim": {
+        "type": "string",
+        "description": "The claim rewritten with evidence attached, or corrected claim if verification failed"
+      },
+      "redFlags": {
+        "type": "array",
+        "description": "Any red flags detected during verification process",
+        "items": {
+          "type": "string",
+          "enum": [
+            "used_hedging_language",
+            "premature_satisfaction",
+            "skipped_verification",
+            "trusted_agent_report",
+            "partial_verification_only",
+            "rationalization_detected",
+            "success_implication_without_evidence"
+          ]
+        }
+      },
+      "gateChecksPassed": {
+        "type": "object",
+        "description": "Status of each gate function step",
+        "properties": {
+          "identified": {
+            "type": "boolean",
+            "description": "Identified what command proves the claim"
+          },
+          "ran": {
+            "type": "boolean",
+            "description": "Executed the FULL command fresh"
+          },
+          "read": {
+            "type": "boolean",
+            "description": "Read full output and checked exit code"
+          },
+          "verified": {
+            "type": "boolean",
+            "description": "Confirmed output matches claim"
+          }
+        },
+        "required": [
+          "identified",
+          "ran",
+          "read",
+          "verified"
+        ],
+        "additionalProperties": false
+      },
+      "readyForCompletion": {
+        "type": "boolean",
+        "description": "Whether work can be claimed as complete based on verification"
+      },
+      "nextActions": {
+        "type": "array",
+        "description": "Required next actions based on verification results",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "required": [
+      "verificationStatus",
+      "claimValid",
+      "verificationResults",
+      "validatedClaim",
+      "gateChecksPassed",
+      "readyForCompletion",
+      "nextActions"
+    ],
+    "additionalProperties": false
+  },
+  "temperature": 0,
+  "tags": [
+    "superpowers",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with verification before completion",
+        "about to claim work is complete, fixed, or passing, before committing or creating prs - requires running verification commands and confirming output before making any success claims; evidence before assertions always"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "security_controls": {
+    "execution_environment": {
+      "type": "sandboxed_container",
+      "resource_limits": {
+        "cpu_cores": 1,
+        "memory_mb": 512,
+        "timeout_seconds": 30,
+        "disk_mb": 100
+      },
+      "security": {
+        "network_access": false,
+        "filesystem": "read_only",
+        "user": "non_root",
+        "allowed_commands": [
+          "node",
+          "python3",
+          "npm"
+        ],
+        "blocked_syscalls": [
+          "exec",
+          "fork",
+          "kill"
+        ]
+      }
+    }
+  },
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.92
+  }
+}

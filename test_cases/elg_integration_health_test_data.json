@@ -1,0 +1,70 @@
+{
+  "skill_id": "elg_integration_health",
+  "generated_at": "2026-02-12T00:04:59.913326",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "integrationId": "7jgyf1ep8qu65emp",
+        "partnerId": "zb25im",
+        "checkType": "performance"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "integrationId": "9",
+        "checkType": "health"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "integrationId": "alc291w29dtcqkv45",
+        "partnerId": "gqiaigm96zwuxsp0n"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "partnerId": "trefmek8rkx08ylh"
+      },
+      "label": "missing_integrationId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "integrationId": 12345,
+        "checkType": "full"
+      },
+      "label": "invalid_type_integrationId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "integrationId": "92e1gdg7nkrncwvq9",
+        "partnerId": 12345,
+        "checkType": "full"
+      },
+      "label": "invalid_type_partnerId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "integrationId": "7547uvxbnyqc8jzr7ii",
+        "partnerId": "h88yncsmrgfyx7pbgrgo",
+        "checkType": 12345
+      },
+      "label": "invalid_type_checkType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

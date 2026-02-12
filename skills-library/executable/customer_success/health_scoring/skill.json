@@ -1,0 +1,653 @@
+{
+  "id": "cs_health_scoring",
+  "version": "1.0.0",
+  "name": "Customer Health Scoring",
+  "description": "Calculates and monitors customer health scores to predict retention and identify at-risk accounts.",
+  "domain": "customer_success",
+  "tools": [
+    {
+      "name": "lifecycle.get_segment",
+      "required": true
+    },
+    {
+      "name": "analytics.query_events",
+      "required": true
+    },
+    {
+      "name": "analytics.feature_adoption",
+      "required": true
+    },
+    {
+      "name": "stripe.get_usage",
+      "required": false
+    },
+    {
+      "name": "crm.update_account",
+      "required": false
+    },
+    {
+      "name": "messaging.send_alert",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "churn_prediction",
+    "expansion_playbook",
+    "renewal_orchestration",
+    "idle"
+  ],
+  "metrics": {
+    "primary": "avg_health_score",
+    "benchmarks": {
+      "excellent": "> 80",
+      "good": "60-80",
+      "needs_improvement": "< 60"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "customer_success",
+    "health",
+    "retention",
+    "scoring",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Customer Health Scoring",
+        "customer health"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "lifecycle.get_segment",
+          "required": true
+        },
+        {
+          "name": "analytics.get_cohort",
+          "required": false
+        },
+        {
+          "name": "crm.update_account",
+          "required": false
+        }
+      ]
+    }
+  },
+  "security_controls": {
+    "payment_controls": {
+      "preview_mode": true,
+      "per_transaction_approval": true,
+      "amount_limits": {
+        "max_per_transaction": 50000,
+        "daily_limit": 200000,
+        "additional_approval_threshold": 25000
+      },
+      "rollback": {
+        "enabled": true,
+        "window_seconds": 3600
+      },
+      "two_phase_commit": true,
+      "audit_logging": "detailed"
+    }
+  },
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "account_id": {
+        "type": "string",
+        "description": "Unique identifier for the customer account"
+      },
+      "account_name": {
+        "type": "string",
+        "description": "Name of the customer account"
+      },
+      "calculation_date": {
+        "type": "string",
+        "format": "date",
+        "description": "Date for which to calculate the health score (defaults to today)"
+      },
+      "lookback_days": {
+        "type": "integer",
+        "minimum": 30,
+        "maximum": 365,
+        "default": 90,
+        "description": "Number of days of historical data to analyze"
+      },
+      "comparison_period_days": {
+        "type": "integer",
+        "minimum": 7,
+        "maximum": 90,
+        "default": 30,
+        "description": "Number of days to compare against for trend analysis"
+      },
+      "segment_filters": {
+        "type": "object",
+        "description": "Optional filters for customer segmentation",
+        "properties": {
+          "tier": {
+            "type": "string",
+            "enum": [
+              "enterprise",
+              "mid-market",
+              "smb"
+            ]
+          },
+          "region": {
+            "type": "string"
+          },
+          "industry": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": true
+      },
+      "custom_weights": {
+        "type": "object",
+        "description": "Optional custom weights for health score components (must sum to 100)",
+        "properties": {
+          "product_usage": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100,
+            "default": 30
+          },
+          "engagement": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100,
+            "default": 25
+          },
+          "relationship": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100,
+            "default": 20
+          },
+          "outcomes": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100,
+            "default": 15
+          },
+          "financial": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100,
+            "default": 10
+          }
+        },
+        "additionalProperties": false
+      },
+      "alert_threshold": {
+        "type": "number",
+        "minimum": 1,
+        "maximum": 50,
+        "default": 10,
+        "description": "Point drop threshold to trigger alerts"
+      },
+      "update_crm": {
+        "type": "boolean",
+        "default": true,
+        "description": "Whether to update the CRM with calculated health score"
+      },
+      "send_alerts": {
+        "type": "boolean",
+        "default": true,
+        "description": "Whether to send alerts for at-risk accounts"
+      }
+    },
+    "required": [
+      "account_id"
+    ],
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "account_id": {
+        "type": "string",
+        "description": "Customer account identifier"
+      },
+      "account_name": {
+        "type": "string",
+        "description": "Customer account name"
+      },
+      "calculation_date": {
+        "type": "string",
+        "format": "date-time",
+        "description": "Timestamp when the score was calculated"
+      },
+      "health_score": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 100,
+        "description": "Overall weighted health score"
+      },
+      "health_status": {
+        "type": "string",
+        "enum": [
+          "healthy",
+          "neutral",
+          "at-risk",
+          "critical"
+        ],
+        "description": "Health status category based on score thresholds"
+      },
+      "trend": {
+        "type": "string",
+        "enum": [
+          "increasing",
+          "stable",
+          "decreasing"
+        ],
+        "description": "Trend direction compared to previous period"
+      },
+      "trend_change": {
+        "type": "number",
+        "description": "Numeric change in health score from previous period"
+      },
+      "previous_score": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 100,
+        "description": "Health score from the comparison period"
+      },
+      "component_scores": {
+        "type": "object",
+        "description": "Breakdown of individual component scores",
+        "properties": {
+          "product_usage": {
+            "type": "object",
+            "properties": {
+              "score": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 100
+              },
+              "weight": {
+                "type": "number"
+              },
+              "weighted_score": {
+                "type": "number"
+              },
+              "trend": {
+                "type": "string",
+                "enum": [
+                  "increasing",
+                  "stable",
+                  "decreasing"
+                ]
+              },
+              "key_signals": {
+                "type": "object",
+                "properties": {
+                  "dau_mau_ratio": {
+                    "type": "number"
+                  },
+                  "feature_adoption_rate": {
+                    "type": "number"
+                  },
+                  "avg_session_depth": {
+                    "type": "number"
+                  },
+                  "active_users": {
+                    "type": "integer"
+                  }
+                }
+              }
+            },
+            "required": [
+              "score",
+              "weight",
+              "weighted_score",
+              "trend"
+            ]
+          },
+          "engagement": {
+            "type": "object",
+            "properties": {
+              "score": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 100
+              },
+              "weight": {
+                "type": "number"
+              },
+              "weighted_score": {
+                "type": "number"
+              },
+              "trend": {
+                "type": "string",
+                "enum": [
+                  "increasing",
+                  "stable",
+                  "decreasing"
+                ]
+              },
+              "key_signals": {
+                "type": "object",
+                "properties": {
+                  "support_tickets_count": {
+                    "type": "integer"
+                  },
+                  "nps_score": {
+                    "type": "number"
+                  },
+                  "meetings_held": {
+                    "type": "integer"
+                  },
+                  "training_sessions_completed": {
+                    "type": "integer"
+                  }
+                }
+              }
+            },
+            "required": [
+              "score",
+              "weight",
+              "weighted_score",
+              "trend"
+            ]
+          },
+          "relationship": {
+            "type": "object",
+            "properties": {
+              "score": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 100
+              },
+              "weight": {
+                "type": "number"
+              },
+              "weighted_score": {
+                "type": "number"
+              },
+              "trend": {
+                "type": "string",
+                "enum": [
+                  "increasing",
+                  "stable",
+                  "decreasing"
+                ]
+              },
+              "key_signals": {
+                "type": "object",
+                "properties": {
+                  "stakeholder_count": {
+                    "type": "integer"
+                  },
+                  "champion_strength": {
+                    "type": "string",
+                    "enum": [
+                      "strong",
+                      "moderate",
+                      "weak",
+                      "none"
+                    ]
+                  },
+                  "executive_engagement": {
+                    "type": "boolean"
+                  },
+                  "last_contact_days": {
+                    "type": "integer"
+                  }
+                }
+              }
+            },
+            "required": [
+              "score",
+              "weight",
+              "weighted_score",
+              "trend"
+            ]
+          },
+          "outcomes": {
+            "type": "object",
+            "properties": {
+              "score": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 100
+              },
+              "weight": {
+                "type": "number"
+              },
+              "weighted_score": {
+                "type": "number"
+              },
+              "trend": {
+                "type": "string",
+                "enum": [
+                  "increasing",
+                  "stable",
+                  "decreasing"
+                ]
+              },
+              "key_signals": {
+                "type": "object",
+                "properties": {
+                  "goals_achieved_count": {
+                    "type": "integer"
+                  },
+                  "goals_total_count": {
+                    "type": "integer"
+                  },
+                  "value_delivered": {
+                    "type": "number"
+                  },
+                  "roi_realized": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            },
+            "required": [
+              "score",
+              "weight",
+              "weighted_score",
+              "trend"
+            ]
+          },
+          "financial": {
+            "type": "object",
+            "properties": {
+              "score": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 100
+              },
+              "weight": {
+                "type": "number"
+              },
+              "weighted_score": {
+                "type": "number"
+              },
+              "trend": {
+                "type": "string",
+                "enum": [
+                  "increasing",
+                  "stable",
+                  "decreasing"
+                ]
+              },
+              "key_signals": {
+                "type": "object",
+                "properties": {
+                  "payment_status": {
+                    "type": "string",
+                    "enum": [
+                      "current",
+                      "past_due",
+                      "delinquent"
+                    ]
+                  },
+                  "mrr_growth_rate": {
+                    "type": "number"
+                  },
+                  "contract_value": {
+                    "type": "number"
+                  },
+                  "expansion_revenue": {
+                    "type": "number"
+                  }
+                }
+              }
+            },
+            "required": [
+              "score",
+              "weight",
+              "weighted_score",
+              "trend"
+            ]
+          }
+        },
+        "required": [
+          "product_usage",
+          "engagement",
+          "relationship",
+          "outcomes",
+          "financial"
+        ]
+      },
+      "recommended_actions": {
+        "type": "array",
+        "description": "Prioritized list of recommended actions",
+        "items": {
+          "type": "object",
+          "properties": {
+            "priority": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "action": {
+              "type": "string"
+            },
+            "reason": {
+              "type": "string"
+            },
+            "component": {
+              "type": "string",
+              "enum": [
+                "product_usage",
+                "engagement",
+                "relationship",
+                "outcomes",
+                "financial"
+              ]
+            }
+          },
+          "required": [
+            "priority",
+            "action",
+            "reason",
+            "component"
+          ]
+        }
+      },
+      "risk_factors": {
+        "type": "array",
+        "description": "Identified risk factors contributing to low scores",
+        "items": {
+          "type": "object",
+          "properties": {
+            "factor": {
+              "type": "string"
+            },
+            "severity": {
+              "type": "string",
+              "enum": [
+                "high",
+                "medium",
+                "low"
+              ]
+            },
+            "component": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "factor",
+            "severity"
+          ]
+        }
+      },
+      "alerts_sent": {
+        "type": "array",
+        "description": "List of alerts sent based on health score",
+        "items": {
+          "type": "object",
+          "properties": {
+            "alert_type": {
+              "type": "string"
+            },
+            "recipients": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "email"
+              }
+            },
+            "sent_at": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        }
+      },
+      "crm_updated": {
+        "type": "boolean",
+        "description": "Whether the CRM was successfully updated"
+      },
+      "data_quality": {
+        "type": "object",
+        "description": "Data quality metrics for the calculation",
+        "properties": {
+          "sufficient_data": {
+            "type": "boolean"
+          },
+          "data_age_days": {
+            "type": "integer"
+          },
+          "missing_components": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "confidence_level": {
+            "type": "string",
+            "enum": [
+              "high",
+              "medium",
+              "low"
+            ]
+          }
+        },
+        "required": [
+          "sufficient_data",
+          "confidence_level"
+        ]
+      }
+    },
+    "required": [
+      "account_id",
+      "calculation_date",
+      "health_score",
+      "health_status",
+      "trend",
+      "component_scores",
+      "recommended_actions",
+      "data_quality"
+    ]
+  },
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.92
+  }
+}

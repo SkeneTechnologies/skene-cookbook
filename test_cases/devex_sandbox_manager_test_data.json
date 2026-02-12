@@ -1,0 +1,95 @@
+{
+  "skill_id": "devex_sandbox_manager",
+  "generated_at": "2026-02-11T22:18:31.040483",
+  "num_cases": 10,
+  "test_cases": [
+    {
+      "inputs": {
+        "developer_id": "aslrij1bsq",
+        "action": "reset",
+        "sandbox_type": "clone"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "developer_id": "elv2jmsl3",
+        "expiration_days": 407
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "developer_id": "texjxt63h9",
+        "action": "extend",
+        "data_preset": "o0gmae7fmp1k",
+        "expiration_days": 430
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "action": "delete",
+        "data_preset": "wacqf2g3rsc7p4tdx"
+      },
+      "label": "missing_developer_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "developer_id": 12345,
+        "sandbox_type": "seeded",
+        "expiration_days": 120
+      },
+      "label": "invalid_type_developer_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "developer_id": "mo5cao192kpaufd6ko1",
+        "data_preset": "2pno6nepyoy24datg",
+        "expiration_days": 338,
+        "action": 12345
+      },
+      "label": "invalid_type_action",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "developer_id": "mro2u01kgg5bdjjuv",
+        "action": "delete",
+        "sandbox_type": 12345,
+        "expiration_days": 753
+      },
+      "label": "invalid_type_sandbox_type",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "developer_id": "kqhg8udn7hi7fq93",
+        "sandbox_type": "seeded",
+        "expiration_days": 516,
+        "data_preset": 12345
+      },
+      "label": "invalid_type_data_preset",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "developer_id": "t6cyz8ka13b",
+        "sandbox_type": "seeded",
+        "expiration_days": "not_a_number"
+      },
+      "label": "invalid_type_expiration_days",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

@@ -1,0 +1,271 @@
+{
+  "id": "security/semgrep-rule-variant-creator",
+  "version": "1.0.0",
+  "name": "semgrep-rule-variant-creator",
+  "description": "Creates language variants of existing Semgrep rules. Use when porting a Semgrep rule to specified target languages. Takes an existing rule and target languages as input, produces independent rule+test directories for each language.",
+  "domain": "security",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "existingRule": {
+        "type": "object",
+        "description": "The existing Semgrep rule to port to other languages",
+        "properties": {
+          "filePath": {
+            "type": "string",
+            "description": "Path to the existing YAML rule file"
+          },
+          "content": {
+            "type": "string",
+            "description": "Raw YAML content of the existing rule"
+          }
+        },
+        "oneOf": [
+          {
+            "required": [
+              "filePath"
+            ]
+          },
+          {
+            "required": [
+              "content"
+            ]
+          }
+        ]
+      },
+      "targetLanguages": {
+        "type": "array",
+        "description": "List of programming languages to port the rule to",
+        "items": {
+          "type": "string",
+          "enum": [
+            "python",
+            "javascript",
+            "typescript",
+            "java",
+            "go",
+            "golang",
+            "ruby",
+            "php",
+            "c",
+            "cpp",
+            "csharp",
+            "rust",
+            "kotlin",
+            "swift",
+            "scala",
+            "bash",
+            "yaml",
+            "json",
+            "terraform",
+            "dockerfile"
+          ]
+        },
+        "minItems": 1,
+        "uniqueItems": true
+      },
+      "outputDirectory": {
+        "type": "string",
+        "description": "Base directory where language-specific rule variants will be created",
+        "default": "."
+      }
+    },
+    "required": [
+      "existingRule",
+      "targetLanguages"
+    ],
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "variants": {
+        "type": "array",
+        "description": "Array of created rule variants, one per target language",
+        "items": {
+          "type": "object",
+          "properties": {
+            "language": {
+              "type": "string",
+              "description": "Target language for this variant"
+            },
+            "applicability": {
+              "type": "string",
+              "enum": [
+                "APPLICABLE",
+                "APPLICABLE_WITH_ADAPTATION",
+                "NOT_APPLICABLE"
+              ],
+              "description": "Applicability verdict from Phase 1 analysis"
+            },
+            "applicabilityReasoning": {
+              "type": "string",
+              "description": "Explanation of the applicability verdict"
+            },
+            "directoryPath": {
+              "type": "string",
+              "description": "Path to the created directory for this variant"
+            },
+            "ruleFilePath": {
+              "type": "string",
+              "description": "Path to the ported YAML rule file"
+            },
+            "testFilePath": {
+              "type": "string",
+              "description": "Path to the test file with annotations"
+            },
+            "validationStatus": {
+              "type": "string",
+              "enum": [
+                "PASSED",
+                "FAILED",
+                "SKIPPED"
+              ],
+              "description": "Result of Phase 4 validation"
+            },
+            "validationDetails": {
+              "type": "object",
+              "properties": {
+                "yamlValidation": {
+                  "type": "boolean",
+                  "description": "Whether YAML validation passed"
+                },
+                "testsRun": {
+                  "type": "integer",
+                  "description": "Number of test cases executed",
+                  "minimum": 0
+                },
+                "testsPassed": {
+                  "type": "integer",
+                  "description": "Number of test cases that passed",
+                  "minimum": 0
+                },
+                "testsFailed": {
+                  "type": "integer",
+                  "description": "Number of test cases that failed",
+                  "minimum": 0
+                },
+                "errorMessages": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Any error messages from validation"
+                }
+              }
+            },
+            "adaptations": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "List of key adaptations made for the target language"
+            }
+          },
+          "required": [
+            "language",
+            "applicability"
+          ]
+        }
+      },
+      "summary": {
+        "type": "object",
+        "properties": {
+          "originalRuleId": {
+            "type": "string",
+            "description": "ID of the original rule that was ported"
+          },
+          "totalLanguages": {
+            "type": "integer",
+            "description": "Total number of target languages requested",
+            "minimum": 1
+          },
+          "applicableLanguages": {
+            "type": "integer",
+            "description": "Number of languages where rule was applicable",
+            "minimum": 0
+          },
+          "successfulPorts": {
+            "type": "integer",
+            "description": "Number of successfully created and validated variants",
+            "minimum": 0
+          },
+          "failedPorts": {
+            "type": "integer",
+            "description": "Number of variants that failed validation",
+            "minimum": 0
+          },
+          "skippedLanguages": {
+            "type": "integer",
+            "description": "Number of languages skipped due to non-applicability",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "totalLanguages",
+          "applicableLanguages",
+          "successfulPorts"
+        ]
+      }
+    },
+    "required": [
+      "variants",
+      "summary"
+    ],
+    "additionalProperties": true
+  },
+  "temperature": 0,
+  "tags": [
+    "security",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with semgrep rule variant creator",
+        "porting a semgrep rule to specified target languages"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "security_controls": {
+    "execution_environment": {
+      "type": "sandboxed_container",
+      "resource_limits": {
+        "cpu_cores": 1,
+        "memory_mb": 512,
+        "timeout_seconds": 30,
+        "disk_mb": 100
+      },
+      "security": {
+        "network_access": false,
+        "filesystem": "read_only",
+        "user": "non_root",
+        "allowed_commands": [
+          "node",
+          "python3",
+          "npm"
+        ],
+        "blocked_syscalls": [
+          "exec",
+          "fork",
+          "kill"
+        ]
+      }
+    }
+  },
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.92
+  }
+}

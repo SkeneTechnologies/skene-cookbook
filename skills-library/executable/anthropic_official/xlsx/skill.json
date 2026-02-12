@@ -1,0 +1,339 @@
+{
+  "id": "anthropic_official/xlsx",
+  "version": "1.0.0",
+  "name": "xlsx",
+  "description": "\"Comprehensive spreadsheet creation, editing, and analysis with support for formulas, formatting, data analysis, and visualization. When Claude needs to work with spreadsheets (.xlsx, .xlsm, .csv, .tsv, etc) for: (1) Creating new spreadsheets with formulas and formatting, (2) Reading or analyzing data, (3) Modify existing spreadsheets while preserving formulas, (4) Data analysis and visualization in spreadsheets, or (5) Recalculating formulas\"",
+  "domain": "anthropic_official",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "operation": {
+        "type": "string",
+        "enum": [
+          "create",
+          "read",
+          "update",
+          "analyze"
+        ],
+        "description": "Type of spreadsheet operation to perform"
+      },
+      "file_path": {
+        "type": "string",
+        "description": "Path to the Excel file (required for read/update/analyze operations)"
+      },
+      "output_path": {
+        "type": "string",
+        "description": "Path where the output file should be saved (for create/update operations)"
+      },
+      "sheet_name": {
+        "type": "string",
+        "description": "Name of the worksheet to operate on (defaults to active sheet if not specified)"
+      },
+      "data": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "description": "Data to write to the spreadsheet (for create/update operations)"
+      },
+      "formulas": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "string"
+        },
+        "description": "Cell references mapped to Excel formulas (e.g., {'B2': '=SUM(A1:A10)'})"
+      },
+      "formatting": {
+        "type": "object",
+        "properties": {
+          "font_styles": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "properties": {
+                "bold": {
+                  "type": "boolean"
+                },
+                "color": {
+                  "type": "string",
+                  "pattern": "^[0-9A-Fa-f]{6}$"
+                },
+                "size": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "cell_fills": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string",
+              "pattern": "^[0-9A-Fa-f]{6}$"
+            }
+          },
+          "column_widths": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "number"
+            }
+          },
+          "number_formats": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        },
+        "description": "Formatting specifications for cells, columns, and ranges"
+      },
+      "analysis_type": {
+        "type": "string",
+        "enum": [
+          "summary",
+          "statistics",
+          "pivot",
+          "chart",
+          "custom"
+        ],
+        "description": "Type of analysis to perform (for analyze operations)"
+      },
+      "preserve_formulas": {
+        "type": "boolean",
+        "default": true,
+        "description": "Whether to preserve existing formulas when updating files"
+      },
+      "recalculate": {
+        "type": "boolean",
+        "default": true,
+        "description": "Whether to recalculate formulas after modifications"
+      },
+      "read_options": {
+        "type": "object",
+        "properties": {
+          "use_cols": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "skip_rows": {
+            "type": "integer"
+          },
+          "parse_dates": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "description": "Options for reading Excel files with pandas"
+      }
+    },
+    "required": [
+      "operation"
+    ],
+    "additionalProperties": false,
+    "allOf": [
+      {
+        "if": {
+          "properties": {
+            "operation": {
+              "enum": [
+                "read",
+                "update",
+                "analyze"
+              ]
+            }
+          }
+        },
+        "then": {
+          "required": [
+            "file_path"
+          ]
+        }
+      },
+      {
+        "if": {
+          "properties": {
+            "operation": {
+              "enum": [
+                "create",
+                "update"
+              ]
+            }
+          }
+        },
+        "then": {
+          "required": [
+            "output_path"
+          ]
+        }
+      }
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "string",
+        "enum": [
+          "success",
+          "errors_found",
+          "error"
+        ],
+        "description": "Overall status of the operation"
+      },
+      "file_path": {
+        "type": "string",
+        "description": "Path to the created or modified Excel file"
+      },
+      "sheets": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "List of worksheet names in the file"
+      },
+      "data": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "description": "Data read from the spreadsheet (for read/analyze operations)"
+      },
+      "analysis_results": {
+        "type": "object",
+        "properties": {
+          "summary_statistics": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "row_count": {
+            "type": "integer"
+          },
+          "column_count": {
+            "type": "integer"
+          },
+          "data_types": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "visualizations": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string"
+                },
+                "file_path": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "description": "Results of data analysis operations"
+      },
+      "formula_validation": {
+        "type": "object",
+        "properties": {
+          "total_formulas": {
+            "type": "integer",
+            "description": "Total number of formulas in the file"
+          },
+          "total_errors": {
+            "type": "integer",
+            "description": "Total number of formula errors detected"
+          },
+          "error_summary": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "properties": {
+                "count": {
+                  "type": "integer"
+                },
+                "locations": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "description": "Summary of errors by type (#REF!, #DIV/0!, etc.)"
+          }
+        },
+        "description": "Formula validation results from recalc.py"
+      },
+      "warnings": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Non-critical warnings or recommendations"
+      },
+      "error_message": {
+        "type": "string",
+        "description": "Error message if operation failed"
+      }
+    },
+    "required": [
+      "status"
+    ],
+    "additionalProperties": true
+  },
+  "temperature": 0,
+  "tags": [
+    "anthropic_official",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "license": "Proprietary. LICENSE.txt has complete terms",
+      "triggers": [
+        "help with xlsx",
+        "spreadsheet"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "categories": [
+    "marketing",
+    "marketing/documents"
+  ],
+  "security_controls": {
+    "payment_controls": {
+      "preview_mode": true,
+      "per_transaction_approval": true,
+      "amount_limits": {
+        "max_per_transaction": 50000,
+        "daily_limit": 200000,
+        "additional_approval_threshold": 25000
+      },
+      "rollback": {
+        "enabled": true,
+        "window_seconds": 3600
+      },
+      "two_phase_commit": true,
+      "audit_logging": "detailed"
+    }
+  },
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.9
+  }
+}

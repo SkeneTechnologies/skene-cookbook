@@ -1,0 +1,93 @@
+{
+  "skill_id": "devex_webhook_tester",
+  "generated_at": "2026-02-11T22:18:30.951053",
+  "num_cases": 10,
+  "test_cases": [
+    {
+      "inputs": {
+        "webhook_url": "vhhir4zqlk",
+        "action": "send_test"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "webhook_url": "v5n"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "webhook_url": "m8p5u6rcxf",
+        "event_type": "johgk",
+        "payload_override": {}
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "event_type": "al",
+        "payload_override": {},
+        "action": "send_test"
+      },
+      "label": "missing_webhook_url",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "webhook_url": 12345,
+        "action": "inspect",
+        "developer_id": "a2njd8m0evfvn2colf"
+      },
+      "label": "invalid_type_webhook_url",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "webhook_url": "fxph3nf6wx6b6jgr",
+        "event_type": 12345,
+        "payload_override": {},
+        "action": "diagnose"
+      },
+      "label": "invalid_type_event_type",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "webhook_url": "mze72qt4pttb5",
+        "payload_override": "not_an_object",
+        "action": "send_test",
+        "developer_id": "irtv9rhdqv"
+      },
+      "label": "invalid_type_payload_override",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "webhook_url": "00xr",
+        "event_type": "pr1r8k0lh5h",
+        "action": 12345
+      },
+      "label": "invalid_type_action",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "webhook_url": "tc4gmrjbtau90lrpl",
+        "event_type": "95sd841ptjoodi2mcsi",
+        "payload_override": {},
+        "developer_id": 12345
+      },
+      "label": "invalid_type_developer_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

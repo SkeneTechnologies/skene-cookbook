@@ -1,0 +1,69 @@
+{
+  "skill_id": "plgf_viral_loops",
+  "generated_at": "2026-02-11T22:14:32.804255",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "analysisType": "invite_optimization"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "analysisType": "k_factor_analysis",
+        "loopType": "inherent"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "analysisType": "loop_design",
+        "loopType": "network"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "loopType": "collaborative",
+        "productCategory": "e4o9m8v20h53046uo7f"
+      },
+      "label": "missing_analysisType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "analysisType": 12345,
+        "productCategory": "x30akz"
+      },
+      "label": "invalid_type_analysisType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "analysisType": "loop_design",
+        "loopType": 12345,
+        "productCategory": "myefo20m"
+      },
+      "label": "invalid_type_loopType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "analysisType": "loop_design",
+        "loopType": "content",
+        "productCategory": 12345
+      },
+      "label": "invalid_type_productCategory",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

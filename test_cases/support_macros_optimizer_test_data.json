@@ -1,0 +1,66 @@
+{
+  "skill_id": "support_macros_optimizer",
+  "generated_at": "2026-02-12T00:05:04.327864",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "suggest_new_macros": false
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "min_usage": 4575.67,
+        "suggest_new_macros": false
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "time_period": "08suxh"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "time_period": 12345,
+        "min_usage": 5472.48,
+        "suggest_new_macros": true
+      },
+      "label": "invalid_type_time_period",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "min_usage": "not_a_number",
+        "suggest_new_macros": false
+      },
+      "label": "invalid_type_min_usage",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "suggest_new_macros": true,
+        "analyze_modifications": "yes"
+      },
+      "label": "invalid_type_analyze_modifications",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "suggest_new_macros": "yes"
+      },
+      "label": "invalid_type_suggest_new_macros",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": true
+    }
+  ]
+}

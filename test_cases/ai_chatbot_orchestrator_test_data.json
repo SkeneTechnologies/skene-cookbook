@@ -1,0 +1,108 @@
+{
+  "skill_id": "ai_chatbot_orchestrator",
+  "generated_at": "2026-02-12T00:05:03.423368",
+  "num_cases": 11,
+  "test_cases": [
+    {
+      "inputs": {
+        "message": "kojqmusvfj655dx1m54",
+        "conversation_id": "zqhhj89mlw50d",
+        "context": {},
+        "user_id": "8fu3en2p6jj9vnubbv",
+        "channel": "web"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "message": "p",
+        "conversation_id": "ugtis6o3sg",
+        "user_id": "8u2cfc78"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "message": "xa3",
+        "conversation_id": "y7f7gdokbyx86izz",
+        "user_id": "p05n7ds3p39",
+        "channel": "web"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "conversation_id": "46o",
+        "context": {},
+        "user_id": "m2ir9s8",
+        "channel": "teams"
+      },
+      "label": "missing_message",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "message": "z2",
+        "context": {}
+      },
+      "label": "missing_conversation_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "message": 12345,
+        "conversation_id": "a4oam",
+        "user_id": "vld94qku3rbvp"
+      },
+      "label": "invalid_type_message",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "message": "bbhw71q4lt1i8ddq0v",
+        "conversation_id": 12345,
+        "user_id": "4s1hz0y8tlngophpej"
+      },
+      "label": "invalid_type_conversation_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "message": "vn05mlv2ska0k4dc",
+        "conversation_id": "0mg63xsfjj",
+        "channel": "mobile",
+        "context": "not_an_object"
+      },
+      "label": "invalid_type_context",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "message": "bf04drinu1f5iv4xsd9y",
+        "conversation_id": "61lznhiedjw2turd6",
+        "channel": "teams",
+        "user_id": 12345
+      },
+      "label": "invalid_type_user_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "message": "3849zqgk68byt5gfmi",
+        "conversation_id": "jf3mh",
+        "user_id": "6ffhnz",
+        "channel": 12345
+      },
+      "label": "invalid_type_channel",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

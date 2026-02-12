@@ -1,0 +1,78 @@
+{
+  "skill_id": "mon_consumption_analyzer",
+  "generated_at": "2026-02-12T00:05:10.066776",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "account_id": "jckq1qb6od",
+        "period": "7d"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "account_id": "5oeinjjsp",
+        "dimensions": [
+          "lwbotz3zw",
+          "xy9ixu2a9fb2ucdt4yv7"
+        ]
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "account_id": "lc5vu2qeo1r5m3p6y07u",
+        "dimensions": []
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "period": "7d",
+        "dimensions": [
+          "ybernswqy5s6ajfr",
+          "n1nja8uk4x4"
+        ]
+      },
+      "label": "missing_account_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "account_id": 12345
+      },
+      "label": "invalid_type_account_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "account_id": "r",
+        "dimensions": [
+          "fn7ef",
+          "4h03dgv9og0nxal",
+          "ek"
+        ],
+        "period": 12345
+      },
+      "label": "invalid_type_period",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "account_id": "m",
+        "dimensions": "not_an_array"
+      },
+      "label": "invalid_type_dimensions",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

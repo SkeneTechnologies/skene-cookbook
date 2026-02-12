@@ -1,0 +1,109 @@
+{
+  "skill_id": "community_user_group_manager",
+  "generated_at": "2026-02-11T22:18:28.672193",
+  "num_cases": 11,
+  "test_cases": [
+    {
+      "inputs": {
+        "groupType": "industry",
+        "action": "manage",
+        "groupName": "Test Name xphx",
+        "region": "2q",
+        "leaderId": "test_0yjx2zz5"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "groupType": "regional",
+        "action": "create",
+        "groupName": "Test Name 3kde",
+        "leaderId": "test_4p2r71y5"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "groupType": "industry",
+        "action": "create",
+        "leaderId": "test_w2bmp9hn"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "action": "create",
+        "groupName": "Test Name em80",
+        "region": "qi7voxwlnxf",
+        "leaderId": "test_nsmi0xj8"
+      },
+      "label": "missing_groupType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "groupType": "regional",
+        "region": "h12xs6dqg"
+      },
+      "label": "missing_action",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "groupType": 12345,
+        "action": "report",
+        "region": "vth17ym8id5vlvpr",
+        "leaderId": "test_xdvp1q65"
+      },
+      "label": "invalid_type_groupType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "groupType": "regional",
+        "action": "recruit",
+        "groupName": 12345,
+        "leaderId": "test_fftxde83"
+      },
+      "label": "invalid_type_groupName",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "groupType": "regional",
+        "action": "manage",
+        "region": 12345
+      },
+      "label": "invalid_type_region",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "groupType": "industry",
+        "action": "recruit",
+        "groupName": "Test Name 1npc",
+        "region": "3mxpdw6r8bvy7ttub",
+        "leaderId": 12345
+      },
+      "label": "invalid_type_leaderId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "groupType": "interest",
+        "action": 12345,
+        "region": "e6fd8ncaxm"
+      },
+      "label": "invalid_type_action",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

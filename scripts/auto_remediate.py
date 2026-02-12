@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2024-2026 Skene Technologies
+
 """
 Automated Skill Remediation
 Applies security fixes to skills based on their risk category

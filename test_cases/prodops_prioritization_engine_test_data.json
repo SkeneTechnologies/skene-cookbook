@@ -1,0 +1,107 @@
+{
+  "skill_id": "prodops_prioritization_engine",
+  "generated_at": "2026-02-12T00:05:02.346764",
+  "num_cases": 10,
+  "test_cases": [
+    {
+      "inputs": {
+        "items": [
+          {},
+          {}
+        ],
+        "framework": "kano",
+        "constraints": {}
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "items": [
+          {},
+          {}
+        ],
+        "framework": "weighted",
+        "weights": {}
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "items": [
+          {}
+        ],
+        "framework": "rice",
+        "constraints": {}
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "framework": "rice",
+        "constraints": {}
+      },
+      "label": "missing_items",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "items": [],
+        "weights": {}
+      },
+      "label": "missing_framework",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "items": "not_an_array",
+        "framework": "moscow",
+        "constraints": {},
+        "weights": {}
+      },
+      "label": "invalid_type_items",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "items": [
+          {}
+        ],
+        "framework": 12345,
+        "weights": {}
+      },
+      "label": "invalid_type_framework",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "items": [],
+        "framework": "rice",
+        "constraints": "not_an_object",
+        "weights": {}
+      },
+      "label": "invalid_type_constraints",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "items": [
+          {},
+          {},
+          {}
+        ],
+        "framework": "ice",
+        "weights": "not_an_object"
+      },
+      "label": "invalid_type_weights",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

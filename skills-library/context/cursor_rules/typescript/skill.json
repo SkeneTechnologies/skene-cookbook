@@ -1,0 +1,36 @@
+{
+  "id": "cursor_rules/typescript",
+  "version": "1.0.0",
+  "name": "typescript",
+  "description": "Enforce modern TypeScript best practices for robust, type-safe JavaScript applications, focusing on strictness, clear type definitions, and runtime validation.",
+  "domain": "cursor_rules",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "cursor_rules",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "cursor": {
+      "globs": [
+        "**/*.{js",
+        "jsx}"
+      ]
+    },
+    "claude": {
+      "triggers": [
+        "help with typescript"
+      ]
+    },
+    "skeneflow": {}
+  },
+  "skipSchemaValidation": true
+}

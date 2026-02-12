@@ -1,0 +1,94 @@
+{
+  "skill_id": "prodops_api_deprecation",
+  "generated_at": "2026-02-12T00:05:01.923563",
+  "num_cases": 10,
+  "test_cases": [
+    {
+      "inputs": {
+        "endpoint": "u",
+        "replacementEndpoint": "d3",
+        "deprecationDate": "2026-02-12",
+        "sunsetDate": "2026-02-12"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "endpoint": "nh8coi",
+        "sunsetDate": "2026-02-12"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "endpoint": "aonzsvor0ll6ppi8",
+        "deprecationDate": "2026-02-12",
+        "action": "announce"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "replacementEndpoint": "qevsw5outpvtw6yg",
+        "sunsetDate": "2026-02-12"
+      },
+      "label": "missing_endpoint",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "endpoint": 12345,
+        "replacementEndpoint": "8brwbv7kk8bquy5geka",
+        "deprecationDate": "2026-02-12"
+      },
+      "label": "invalid_type_endpoint",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "endpoint": "pcyyn595regk5inbkt",
+        "replacementEndpoint": 12345,
+        "deprecationDate": "2026-02-12",
+        "action": "analyze"
+      },
+      "label": "invalid_type_replacementEndpoint",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "endpoint": "686axaw8",
+        "replacementEndpoint": "98nynwqk",
+        "deprecationDate": 12345,
+        "sunsetDate": "2026-02-12"
+      },
+      "label": "invalid_type_deprecationDate",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "endpoint": "4q6u54l",
+        "replacementEndpoint": "0x37rb5",
+        "action": "announce",
+        "sunsetDate": 12345
+      },
+      "label": "invalid_type_sunsetDate",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "endpoint": "8koy26nfwnn",
+        "action": 12345
+      },
+      "label": "invalid_type_action",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

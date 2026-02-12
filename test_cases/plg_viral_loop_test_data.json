@@ -1,0 +1,69 @@
+{
+  "skill_id": "plg_viral_loop",
+  "generated_at": "2026-02-12T00:05:11.720713",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "userId": "jq4zpukzb",
+        "viralTrigger": "aha_moment",
+        "incentiveEnabled": false
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "userId": "dshj97c5n",
+        "incentiveEnabled": true
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "userId": "7x2nbu66bn0bf"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "viralTrigger": "share_prompt"
+      },
+      "label": "missing_userId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": 12345,
+        "viralTrigger": "referral_request"
+      },
+      "label": "invalid_type_userId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": "thctm6",
+        "viralTrigger": 12345,
+        "incentiveEnabled": true
+      },
+      "label": "invalid_type_viralTrigger",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": "dmn",
+        "viralTrigger": "aha_moment",
+        "incentiveEnabled": "yes"
+      },
+      "label": "invalid_type_incentiveEnabled",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

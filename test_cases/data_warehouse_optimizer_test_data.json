@@ -1,0 +1,92 @@
+{
+  "skill_id": "data_warehouse_optimizer",
+  "generated_at": "2026-02-11T22:18:29.349267",
+  "num_cases": 10,
+  "test_cases": [
+    {
+      "inputs": {
+        "warehouse_type": "bigquery",
+        "time_range": "r"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "warehouse_type": "databricks",
+        "time_range": "18q4t0indefmlvwv",
+        "include_costs": false
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "warehouse_type": "databricks",
+        "min_duration_seconds": 7627.25,
+        "include_costs": true
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "include_costs": false
+      },
+      "label": "missing_warehouse_type",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "warehouse_type": 12345,
+        "time_range": "bxrz9ntnq",
+        "auto_apply_optimizations": true
+      },
+      "label": "invalid_type_warehouse_type",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "warehouse_type": "bigquery",
+        "time_range": 12345
+      },
+      "label": "invalid_type_time_range",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "warehouse_type": "snowflake",
+        "time_range": "1mcy",
+        "include_costs": false,
+        "auto_apply_optimizations": false,
+        "min_duration_seconds": "not_a_number"
+      },
+      "label": "invalid_type_min_duration_seconds",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "warehouse_type": "databricks",
+        "time_range": "hra0z",
+        "min_duration_seconds": 8431.18,
+        "include_costs": "yes",
+        "auto_apply_optimizations": false
+      },
+      "label": "invalid_type_include_costs",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "warehouse_type": "snowflake",
+        "auto_apply_optimizations": "yes"
+      },
+      "label": "invalid_type_auto_apply_optimizations",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

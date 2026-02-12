@@ -1,0 +1,123 @@
+{
+  "skill_id": "data_etl_monitor",
+  "generated_at": "2026-02-11T22:18:29.334998",
+  "num_cases": 11,
+  "test_cases": [
+    {
+      "inputs": {
+        "pipelines": [
+          "onk029",
+          "9wdrgf",
+          "0opuyx0irwqv"
+        ],
+        "alert_on_failure": false,
+        "delay_threshold_minutes": 8741.33
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "pipelines": [
+          "t9"
+        ],
+        "check_freshness": true,
+        "alert_on_delay": false
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "pipelines": [
+          "3k16wqp23w21tt3",
+          "oppdq5w"
+        ]
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "freshness_slas": {}
+      },
+      "label": "missing_pipelines",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "pipelines": "not_an_array",
+        "freshness_slas": {},
+        "alert_on_failure": true,
+        "alert_on_delay": true,
+        "delay_threshold_minutes": 3518.9
+      },
+      "label": "invalid_type_pipelines",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "pipelines": [],
+        "alert_on_failure": true,
+        "alert_on_delay": true,
+        "delay_threshold_minutes": 502.89,
+        "check_freshness": "yes"
+      },
+      "label": "invalid_type_check_freshness",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "pipelines": [
+          "8lppx"
+        ],
+        "alert_on_failure": false,
+        "alert_on_delay": false,
+        "delay_threshold_minutes": 3213.39,
+        "freshness_slas": "not_an_object"
+      },
+      "label": "invalid_type_freshness_slas",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "pipelines": [
+          "t8z90thnh"
+        ],
+        "check_freshness": false,
+        "freshness_slas": {},
+        "alert_on_failure": "yes",
+        "alert_on_delay": true,
+        "delay_threshold_minutes": 1777.2
+      },
+      "label": "invalid_type_alert_on_failure",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "pipelines": [
+          "gewo2hi8"
+        ],
+        "alert_on_failure": true,
+        "alert_on_delay": "yes",
+        "delay_threshold_minutes": 7565.17
+      },
+      "label": "invalid_type_alert_on_delay",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "pipelines": [],
+        "alert_on_failure": false,
+        "delay_threshold_minutes": "not_a_number"
+      },
+      "label": "invalid_type_delay_threshold_minutes",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

@@ -1,0 +1,324 @@
+{
+  "skill_id": "cs_expansion_playbook",
+  "generated_at": "2026-02-12T00:05:00.777907",
+  "num_cases": 21,
+  "test_cases": [
+    {
+      "inputs": {
+        "account_id": "test_x4z6z17h",
+        "account_name": "Test Name 3996",
+        "current_arr": 4835.61,
+        "health_score": 48.65,
+        "subscription_id": "test_19q2aivx",
+        "csm_owner": "qtqwtv0ztva8xic"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "account_id": "test_1oicl2ye",
+        "account_name": "Test Name fkg6",
+        "current_arr": 1663.58,
+        "health_score": 27.56,
+        "subscription_id": "test_35qiur9d",
+        "signal_filters": []
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "account_id": "test_qehfgoe1",
+        "account_name": "Test Name 7or9",
+        "current_arr": 2501.77,
+        "health_score": 12.64,
+        "subscription_id": "test_pk5oi409",
+        "current_plan_tier": "starter",
+        "seat_count": 461,
+        "csm_owner": "0bkwc6yngj"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "account_name": "Test Name ygr4",
+        "current_arr": 4637.71,
+        "health_score": 40.21,
+        "subscription_id": "test_1p65eeiy",
+        "seat_count": 791,
+        "csm_owner": "1d0m"
+      },
+      "label": "missing_account_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "account_id": "test_6dytsfnx",
+        "current_arr": 3065.18,
+        "health_score": 58.06,
+        "subscription_id": "test_exmz6b3m",
+        "analysis_period_days": 69,
+        "nps_score": -80,
+        "renewal_date": "2026-02-12",
+        "csm_owner": "zneemt",
+        "signal_filters": [
+          "team_growth"
+        ]
+      },
+      "label": "missing_account_name",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "account_id": "test_tdnptdj9",
+        "account_name": "Test Name 7ifu",
+        "health_score": 4.58,
+        "subscription_id": "test_ll2mw3p0",
+        "renewal_date": "2026-02-12",
+        "csm_owner": "9fvdp17tbrrxyryeb"
+      },
+      "label": "missing_current_arr",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "account_id": "test_gl5rps66",
+        "account_name": "Test Name vtre",
+        "current_arr": 7271.02,
+        "subscription_id": "test_e368p18k",
+        "seat_count": 916,
+        "analysis_period_days": 23
+      },
+      "label": "missing_health_score",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "account_id": "test_ytm5pck5",
+        "account_name": "Test Name y54d",
+        "current_arr": 5704.94,
+        "health_score": 74.49,
+        "seat_count": 760,
+        "renewal_date": "2026-02-12",
+        "csm_owner": "pxenm9"
+      },
+      "label": "missing_subscription_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "account_id": 12345,
+        "account_name": "Test Name 335m",
+        "current_arr": 8907.22,
+        "health_score": 88.61,
+        "subscription_id": "test_i8fldzml",
+        "current_plan_tier": "starter",
+        "seat_count": 213,
+        "analysis_period_days": 61,
+        "signal_filters": [
+          "cross_sell",
+          "high_engagement"
+        ]
+      },
+      "label": "invalid_type_account_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "account_id": "test_axgbh519",
+        "account_name": 12345,
+        "current_arr": 5264.55,
+        "health_score": 74.29,
+        "subscription_id": "test_6n1k1mew",
+        "current_plan_tier": "starter",
+        "seat_count": 772,
+        "analysis_period_days": 15,
+        "renewal_date": "2026-02-12",
+        "signal_filters": [
+          "team_growth"
+        ]
+      },
+      "label": "invalid_type_account_name",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "account_id": "test_48de6mpb",
+        "account_name": "Test Name y0vi",
+        "current_arr": "not_a_number",
+        "health_score": 92.08,
+        "subscription_id": "test_d7j7pdqo",
+        "analysis_period_days": 9,
+        "nps_score": -36,
+        "renewal_date": "2026-02-12"
+      },
+      "label": "invalid_type_current_arr",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "account_id": "test_m7no0qjl",
+        "account_name": "Test Name 0n53",
+        "current_arr": 7189.07,
+        "health_score": "not_a_number",
+        "subscription_id": "test_e4al9f1o",
+        "current_plan_tier": "starter",
+        "analysis_period_days": 76,
+        "csm_owner": "vu28ql5huh",
+        "signal_filters": [
+          "feature_limit",
+          "feature_limit"
+        ]
+      },
+      "label": "invalid_type_health_score",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "account_id": "test_aqplxdd3",
+        "account_name": "Test Name dys9",
+        "current_arr": 1996.34,
+        "health_score": 40.56,
+        "subscription_id": 12345,
+        "current_plan_tier": "starter",
+        "analysis_period_days": 41,
+        "nps_score": -23,
+        "renewal_date": "2026-02-12",
+        "csm_owner": "6fambr0kuiui88o75461",
+        "signal_filters": [
+          "team_growth"
+        ]
+      },
+      "label": "invalid_type_subscription_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "account_id": "test_xhfy9p8i",
+        "account_name": "Test Name dwg1",
+        "current_arr": 1191.56,
+        "health_score": 74.8,
+        "subscription_id": "test_z1cir0cu",
+        "seat_count": 719,
+        "analysis_period_days": 16,
+        "renewal_date": "2026-02-12",
+        "signal_filters": [
+          "cross_sell",
+          "high_engagement",
+          "high_engagement"
+        ],
+        "current_plan_tier": 12345
+      },
+      "label": "invalid_type_current_plan_tier",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "account_id": "test_1xmluwmg",
+        "account_name": "Test Name n9tl",
+        "current_arr": 6243.01,
+        "health_score": 85.56,
+        "subscription_id": "test_zs34o56o",
+        "seat_count": "not_a_number",
+        "analysis_period_days": 78,
+        "csm_owner": "c85o6c"
+      },
+      "label": "invalid_type_seat_count",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "account_id": "test_t5uhoz2p",
+        "account_name": "Test Name 20l8",
+        "current_arr": 240.77,
+        "health_score": 49.73,
+        "subscription_id": "test_vhn22uwa",
+        "nps_score": 27,
+        "renewal_date": "2026-02-12",
+        "csm_owner": "x",
+        "signal_filters": [
+          "usage_limit"
+        ],
+        "analysis_period_days": "not_a_number"
+      },
+      "label": "invalid_type_analysis_period_days",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "account_id": "test_34yoxi3s",
+        "account_name": "Test Name ph82",
+        "current_arr": 9915.97,
+        "health_score": 39.47,
+        "subscription_id": "test_wze4jace",
+        "renewal_date": "2026-02-12",
+        "csm_owner": "125k",
+        "nps_score": "not_a_number"
+      },
+      "label": "invalid_type_nps_score",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "account_id": "test_znhtukxg",
+        "account_name": "Test Name ymrg",
+        "current_arr": 1290.95,
+        "health_score": 89.68,
+        "subscription_id": "test_s9hcr0fb",
+        "current_plan_tier": "custom",
+        "analysis_period_days": 74,
+        "nps_score": 4,
+        "renewal_date": 12345,
+        "signal_filters": [
+          "cross_sell",
+          "team_growth",
+          "team_growth"
+        ]
+      },
+      "label": "invalid_type_renewal_date",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "account_id": "test_77nxbtdr",
+        "account_name": "Test Name u9fx",
+        "current_arr": 6201.1,
+        "health_score": 35.94,
+        "subscription_id": "test_l9p45fii",
+        "seat_count": 242,
+        "analysis_period_days": 16,
+        "nps_score": 58,
+        "renewal_date": "2026-02-12",
+        "csm_owner": 12345,
+        "signal_filters": [
+          "team_growth",
+          "feature_limit",
+          "high_engagement"
+        ]
+      },
+      "label": "invalid_type_csm_owner",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "account_id": "test_yndquwon",
+        "account_name": "Test Name p38s",
+        "current_arr": 2830.02,
+        "health_score": 87.39,
+        "subscription_id": "test_v3cwpbpg",
+        "seat_count": 564,
+        "analysis_period_days": 51,
+        "signal_filters": "not_an_array"
+      },
+      "label": "invalid_type_signal_filters",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

@@ -1,0 +1,469 @@
+{
+  "id": "plg_frameworks/boyce",
+  "version": "1.0.0",
+  "name": "boyce",
+  "description": "Boyce PLG Framework - A comprehensive collection of product-led growth skills including acquisition loops, pricing architecture, enterprise PLG transition, and growth team orchestration.",
+  "domain": "plg_frameworks",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "skill_name": {
+        "type": "string",
+        "enum": [
+          "acquisition_loop_designer",
+          "ai_gtm_automator",
+          "boyce_plg_audit",
+          "enterprise_plg_transition",
+          "first_impact_optimizer",
+          "growth_team_orchestrator",
+          "multi_gtm_orchestrator",
+          "plg_bowtie_mapper",
+          "plg_business_case",
+          "plg_pricing_architect",
+          "product_led_sales",
+          "sidecar_product_builder",
+          "usage_retention_optimizer"
+        ],
+        "description": "The specific Boyce PLG framework skill to execute"
+      },
+      "company_context": {
+        "type": "object",
+        "properties": {
+          "company_name": {
+            "type": "string",
+            "description": "Name of the company"
+          },
+          "industry": {
+            "type": "string",
+            "description": "Industry or vertical"
+          },
+          "product_description": {
+            "type": "string",
+            "description": "Brief description of the product"
+          },
+          "target_customer": {
+            "type": "string",
+            "description": "Primary target customer segment"
+          },
+          "current_gtm_motion": {
+            "type": "string",
+            "enum": [
+              "sales_led",
+              "product_led",
+              "hybrid",
+              "marketing_led",
+              "undefined"
+            ],
+            "description": "Current go-to-market approach"
+          },
+          "company_stage": {
+            "type": "string",
+            "enum": [
+              "pre_seed",
+              "seed",
+              "series_a",
+              "series_b",
+              "series_c_plus",
+              "enterprise"
+            ],
+            "description": "Company funding/maturity stage"
+          }
+        },
+        "required": [
+          "product_description",
+          "target_customer"
+        ],
+        "additionalProperties": true
+      },
+      "current_metrics": {
+        "type": "object",
+        "properties": {
+          "monthly_active_users": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Current monthly active users"
+          },
+          "signup_conversion_rate": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100,
+            "description": "Visitor to signup conversion rate (%)"
+          },
+          "activation_rate": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100,
+            "description": "Signup to activation rate (%)"
+          },
+          "retention_rate_30d": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100,
+            "description": "30-day retention rate (%)"
+          },
+          "free_to_paid_conversion": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100,
+            "description": "Free to paid conversion rate (%)"
+          },
+          "monthly_recurring_revenue": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Current MRR in USD"
+          },
+          "average_revenue_per_user": {
+            "type": "number",
+            "minimum": 0,
+            "description": "ARPU in USD"
+          },
+          "customer_acquisition_cost": {
+            "type": "number",
+            "minimum": 0,
+            "description": "CAC in USD"
+          },
+          "lifetime_value": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Customer LTV in USD"
+          }
+        },
+        "additionalProperties": true
+      },
+      "specific_goals": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Specific objectives for this PLG initiative"
+      },
+      "constraints": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Known constraints or limitations (e.g., engineering capacity, budget)"
+      },
+      "additional_context": {
+        "type": "string",
+        "description": "Any additional context or specific questions"
+      }
+    },
+    "required": [
+      "skill_name",
+      "company_context"
+    ],
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "skill_executed": {
+        "type": "string",
+        "description": "Name of the executed skill"
+      },
+      "analysis": {
+        "type": "object",
+        "properties": {
+          "current_state_assessment": {
+            "type": "string",
+            "description": "Assessment of current PLG maturity and state"
+          },
+          "key_findings": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "finding": {
+                  "type": "string"
+                },
+                "impact": {
+                  "type": "string",
+                  "enum": [
+                    "high",
+                    "medium",
+                    "low"
+                  ]
+                },
+                "category": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "finding",
+                "impact"
+              ]
+            },
+            "description": "Key findings from the analysis"
+          },
+          "opportunities": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Growth opportunities identified"
+          },
+          "risks": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Potential risks or challenges"
+          }
+        },
+        "required": [
+          "current_state_assessment",
+          "key_findings"
+        ]
+      },
+      "recommendations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string",
+              "description": "Recommendation title"
+            },
+            "description": {
+              "type": "string",
+              "description": "Detailed description of the recommendation"
+            },
+            "priority": {
+              "type": "string",
+              "enum": [
+                "critical",
+                "high",
+                "medium",
+                "low"
+              ]
+            },
+            "effort": {
+              "type": "string",
+              "enum": [
+                "low",
+                "medium",
+                "high"
+              ]
+            },
+            "expected_impact": {
+              "type": "string",
+              "description": "Expected business impact"
+            },
+            "implementation_steps": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Concrete steps to implement"
+            },
+            "success_metrics": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "How to measure success"
+            },
+            "timeline_weeks": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Estimated timeline in weeks"
+            }
+          },
+          "required": [
+            "title",
+            "description",
+            "priority",
+            "effort"
+          ]
+        },
+        "description": "Prioritized recommendations"
+      },
+      "framework_application": {
+        "type": "object",
+        "properties": {
+          "first_impact_score": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 10,
+            "description": "Score for delivering value before signup"
+          },
+          "acquisition_loops_score": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 10,
+            "description": "Score for self-sustaining growth mechanisms"
+          },
+          "usage_retention_score": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 10,
+            "description": "Score for product-driven engagement"
+          },
+          "expansion_revenue_score": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 10,
+            "description": "Score for natural upgrade paths"
+          },
+          "product_led_sales_score": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 10,
+            "description": "Score for usage-informed sales motion"
+          },
+          "overall_plg_readiness": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 10,
+            "description": "Overall PLG readiness score"
+          },
+          "framework_insights": {
+            "type": "string",
+            "description": "Insights on framework application"
+          }
+        }
+      },
+      "action_plan": {
+        "type": "object",
+        "properties": {
+          "immediate_actions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Actions to take in next 30 days"
+          },
+          "short_term_actions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Actions for next 90 days"
+          },
+          "long_term_strategy": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Strategic initiatives for 6-12 months"
+          }
+        }
+      },
+      "projected_impact": {
+        "type": "object",
+        "properties": {
+          "estimated_user_growth": {
+            "type": "string",
+            "description": "Projected user growth impact"
+          },
+          "estimated_revenue_impact": {
+            "type": "string",
+            "description": "Projected revenue impact"
+          },
+          "estimated_efficiency_gains": {
+            "type": "string",
+            "description": "Projected efficiency improvements"
+          }
+        }
+      },
+      "resources_needed": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "resource_type": {
+              "type": "string",
+              "enum": [
+                "engineering",
+                "design",
+                "product",
+                "marketing",
+                "sales",
+                "data",
+                "budget",
+                "tools"
+              ]
+            },
+            "description": {
+              "type": "string"
+            },
+            "quantity": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "resource_type",
+            "description"
+          ]
+        },
+        "description": "Resources needed for implementation"
+      },
+      "next_steps": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Immediate next steps to take"
+      }
+    },
+    "required": [
+      "skill_executed",
+      "analysis",
+      "recommendations",
+      "next_steps"
+    ],
+    "additionalProperties": true
+  },
+  "temperature": 0,
+  "tags": [
+    "plg_frameworks",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with boyce"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "security_controls": {
+    "execution_environment": {
+      "type": "sandboxed_container",
+      "resource_limits": {
+        "cpu_cores": 1,
+        "memory_mb": 512,
+        "timeout_seconds": 30,
+        "disk_mb": 100
+      },
+      "security": {
+        "network_access": false,
+        "filesystem": "read_only",
+        "user": "non_root",
+        "allowed_commands": [
+          "node",
+          "python3",
+          "npm"
+        ],
+        "blocked_syscalls": [
+          "exec",
+          "fork",
+          "kill"
+        ]
+      }
+    }
+  },
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.88
+  }
+}

@@ -1,0 +1,459 @@
+{
+  "id": "development/d3js",
+  "version": "1.0.0",
+  "name": "d3js",
+  "description": "Creating interactive data visualisations using d3.js. This skill should be used when creating custom charts, graphs, network diagrams, geographic visualisations, or any complex SVG-based data visualisation that requires fine-grained control over visual elements, transitions, or interactions. Use this for bespoke visualisations beyond standard charting libraries, whether in React, Vue, Svelte, vanilla JavaScript, or any other environment.",
+  "domain": "development",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "visualisationType": {
+        "type": "string",
+        "enum": [
+          "bar",
+          "line",
+          "scatter",
+          "pie",
+          "chord",
+          "heatmap",
+          "force-directed",
+          "network",
+          "tree",
+          "geographic",
+          "custom"
+        ],
+        "description": "The type of visualisation to create"
+      },
+      "data": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        },
+        "description": "The dataset to visualise, format varies by visualisation type",
+        "minItems": 1
+      },
+      "dimensions": {
+        "type": "object",
+        "properties": {
+          "width": {
+            "type": "integer",
+            "minimum": 100,
+            "description": "Width of the visualisation in pixels"
+          },
+          "height": {
+            "type": "integer",
+            "minimum": 100,
+            "description": "Height of the visualisation in pixels"
+          },
+          "responsive": {
+            "type": "boolean",
+            "default": true,
+            "description": "Whether the visualisation should be responsive"
+          }
+        },
+        "required": [
+          "width",
+          "height"
+        ]
+      },
+      "targetElement": {
+        "type": "string",
+        "description": "CSS selector or element ID where the visualisation will be rendered",
+        "pattern": "^[#.]?[a-zA-Z0-9_-]+$"
+      },
+      "framework": {
+        "type": "string",
+        "enum": [
+          "vanilla",
+          "react",
+          "vue",
+          "svelte",
+          "angular"
+        ],
+        "default": "vanilla",
+        "description": "JavaScript framework being used"
+      },
+      "integrationPattern": {
+        "type": "string",
+        "enum": [
+          "direct-dom",
+          "declarative"
+        ],
+        "default": "direct-dom",
+        "description": "How d3 should integrate with the framework"
+      },
+      "styling": {
+        "type": "object",
+        "properties": {
+          "colourScheme": {
+            "type": "string",
+            "description": "D3 colour scheme to use (e.g., schemeCategory10, interpolateBlues)"
+          },
+          "customColours": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+            },
+            "description": "Custom colour palette as hex values"
+          },
+          "fontFamily": {
+            "type": "string",
+            "default": "Inter, sans-serif"
+          },
+          "fontSize": {
+            "type": "integer",
+            "default": 12,
+            "minimum": 8
+          }
+        }
+      },
+      "interactivity": {
+        "type": "object",
+        "properties": {
+          "tooltips": {
+            "type": "boolean",
+            "default": false,
+            "description": "Enable tooltips on hover"
+          },
+          "zoom": {
+            "type": "boolean",
+            "default": false,
+            "description": "Enable zoom and pan functionality"
+          },
+          "clickable": {
+            "type": "boolean",
+            "default": false,
+            "description": "Enable click interactions on elements"
+          },
+          "draggable": {
+            "type": "boolean",
+            "default": false,
+            "description": "Enable drag interactions (for force layouts)"
+          }
+        }
+      },
+      "transitions": {
+        "type": "object",
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "default": true
+          },
+          "duration": {
+            "type": "integer",
+            "default": 750,
+            "minimum": 0,
+            "description": "Transition duration in milliseconds"
+          },
+          "easing": {
+            "type": "string",
+            "enum": [
+              "easeLinear",
+              "easeBounceOut",
+              "easeElasticOut",
+              "easeCubicInOut"
+            ],
+            "default": "easeCubicInOut"
+          }
+        }
+      },
+      "axes": {
+        "type": "object",
+        "properties": {
+          "xLabel": {
+            "type": "string",
+            "description": "Label for x-axis"
+          },
+          "yLabel": {
+            "type": "string",
+            "description": "Label for y-axis"
+          },
+          "xScale": {
+            "type": "string",
+            "enum": [
+              "linear",
+              "log",
+              "time",
+              "band",
+              "point"
+            ],
+            "default": "linear"
+          },
+          "yScale": {
+            "type": "string",
+            "enum": [
+              "linear",
+              "log",
+              "time",
+              "band",
+              "point"
+            ],
+            "default": "linear"
+          }
+        }
+      },
+      "accessibility": {
+        "type": "object",
+        "properties": {
+          "ariaLabel": {
+            "type": "string",
+            "description": "ARIA label for the visualisation"
+          },
+          "title": {
+            "type": "string",
+            "description": "Accessible title for the visualisation"
+          },
+          "description": {
+            "type": "string",
+            "description": "Detailed description for screen readers"
+          }
+        }
+      },
+      "customOptions": {
+        "type": "object",
+        "description": "Visualisation-specific options (e.g., innerRadius for pie charts, link distance for force layouts)",
+        "additionalProperties": true
+      }
+    },
+    "required": [
+      "visualisationType",
+      "data",
+      "dimensions",
+      "targetElement"
+    ],
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "success": {
+        "type": "boolean",
+        "description": "Whether the visualisation was created successfully"
+      },
+      "visualisation": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Type of visualisation created"
+          },
+          "elementId": {
+            "type": "string",
+            "description": "DOM element ID where visualisation was rendered"
+          },
+          "dimensions": {
+            "type": "object",
+            "properties": {
+              "width": {
+                "type": "integer"
+              },
+              "height": {
+                "type": "integer"
+              }
+            },
+            "required": [
+              "width",
+              "height"
+            ]
+          },
+          "dataPointCount": {
+            "type": "integer",
+            "description": "Number of data points rendered"
+          }
+        },
+        "required": [
+          "type",
+          "elementId",
+          "dimensions",
+          "dataPointCount"
+        ]
+      },
+      "code": {
+        "type": "object",
+        "properties": {
+          "javascript": {
+            "type": "string",
+            "description": "Generated JavaScript code for the visualisation"
+          },
+          "html": {
+            "type": "string",
+            "description": "HTML structure needed for the visualisation"
+          },
+          "css": {
+            "type": "string",
+            "description": "CSS styles for the visualisation"
+          }
+        },
+        "required": [
+          "javascript"
+        ]
+      },
+      "events": {
+        "type": "object",
+        "properties": {
+          "available": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of custom events the visualisation emits"
+          },
+          "handlers": {
+            "type": "object",
+            "description": "Event handler functions that can be attached",
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "cleanup": {
+        "type": "object",
+        "properties": {
+          "function": {
+            "type": "string",
+            "description": "Cleanup function code to prevent memory leaks"
+          },
+          "instructions": {
+            "type": "string",
+            "description": "Instructions for when to call cleanup"
+          }
+        }
+      },
+      "performance": {
+        "type": "object",
+        "properties": {
+          "renderTime": {
+            "type": "number",
+            "description": "Time taken to render in milliseconds"
+          },
+          "elementCount": {
+            "type": "integer",
+            "description": "Number of DOM elements created"
+          },
+          "optimisations": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Applied performance optimisations"
+          }
+        }
+      },
+      "dependencies": {
+        "type": "object",
+        "properties": {
+          "d3Version": {
+            "type": "string",
+            "description": "D3.js version used"
+          },
+          "modules": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "D3 modules required"
+          },
+          "cdnUrl": {
+            "type": "string",
+            "format": "uri",
+            "description": "CDN URL for d3.js if applicable"
+          }
+        },
+        "required": [
+          "d3Version"
+        ]
+      },
+      "accessibility": {
+        "type": "object",
+        "properties": {
+          "implemented": {
+            "type": "boolean",
+            "description": "Whether accessibility features were implemented"
+          },
+          "features": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of accessibility features added"
+          }
+        }
+      },
+      "warnings": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Any warnings or recommendations for the implementation"
+      },
+      "errors": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "message": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string"
+            },
+            "recoverable": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "message"
+          ]
+        },
+        "description": "Any errors encountered during visualisation creation"
+      }
+    },
+    "required": [
+      "success",
+      "visualisation",
+      "code",
+      "dependencies"
+    ]
+  },
+  "temperature": 0,
+  "tags": [
+    "development",
+    "imported",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with d3js"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "security_controls": {
+    "delete_operations": {
+      "soft_delete": true,
+      "retention_period_days": 30,
+      "undelete_capable": true,
+      "backup_before_delete": true,
+      "multi_party_approval": true,
+      "confirmation_required": {
+        "enabled": true,
+        "show_impact": true,
+        "require_reason": true
+      }
+    }
+  },
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.92
+  }
+}

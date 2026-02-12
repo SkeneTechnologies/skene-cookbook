@@ -1,0 +1,78 @@
+{
+  "skill_id": "elg_referral_program",
+  "generated_at": "2026-02-12T00:04:59.964294",
+  "num_cases": 9,
+  "test_cases": [
+    {
+      "inputs": {
+        "partnerId": "9h9j",
+        "action": "report",
+        "referralData": {}
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "partnerId": "fk1l1bo92iwhoj",
+        "action": "report",
+        "referralData": {}
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "partnerId": "gxi",
+        "action": "payout"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "action": "track"
+      },
+      "label": "missing_partnerId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "partnerId": "yzcwql71waujlm8htg",
+        "referralData": {}
+      },
+      "label": "missing_action",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "partnerId": 12345,
+        "action": "track"
+      },
+      "label": "invalid_type_partnerId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "partnerId": "0esob0xsl77tc0pf",
+        "action": 12345
+      },
+      "label": "invalid_type_action",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "partnerId": "o9ra1k3qpi5n0kr6umoz",
+        "action": "payout",
+        "referralData": "not_an_object"
+      },
+      "label": "invalid_type_referralData",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

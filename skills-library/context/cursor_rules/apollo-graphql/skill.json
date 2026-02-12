@@ -1,0 +1,36 @@
+{
+  "id": "cursor_rules/apollo-graphql",
+  "version": "1.0.0",
+  "name": "apollo-graphql",
+  "description": "Definitive guidelines for building robust, performant, and maintainable apollo-graphql applications using modern best practices and tooling.",
+  "domain": "cursor_rules",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "cursor_rules",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "cursor": {
+      "globs": [
+        "**/*.{js",
+        "jsx}"
+      ]
+    },
+    "claude": {
+      "triggers": [
+        "help with apollo graphql"
+      ]
+    },
+    "skeneflow": {}
+  },
+  "skipSchemaValidation": true
+}

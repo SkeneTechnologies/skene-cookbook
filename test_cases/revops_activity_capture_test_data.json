@@ -1,0 +1,90 @@
+{
+  "skill_id": "revops_activity_capture",
+  "generated_at": "2026-02-12T00:05:05.187340",
+  "num_cases": 9,
+  "test_cases": [
+    {
+      "inputs": {
+        "repId": "9stbqibzvogj09ugji",
+        "autoLink": false
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "repId": "5x6oaqc4wkomgk3",
+        "syncWindow": "kz02u2nmprtn",
+        "sources": [
+          "linkedin",
+          "calendar"
+        ],
+        "autoLink": false
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "repId": "ijba683ovkqfs426yno",
+        "sources": []
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "syncWindow": "fsg24e",
+        "sources": [],
+        "autoLink": false
+      },
+      "label": "missing_repId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "repId": 12345,
+        "sources": [
+          "email",
+          "calendar"
+        ],
+        "autoLink": false
+      },
+      "label": "invalid_type_repId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "repId": "s926kbt4fepjosc8p0j",
+        "autoLink": false,
+        "syncWindow": 12345
+      },
+      "label": "invalid_type_syncWindow",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "repId": "7gcvckn69imub8vjnh",
+        "autoLink": false,
+        "sources": "not_an_array"
+      },
+      "label": "invalid_type_sources",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "repId": "crndxkpw9wuu",
+        "syncWindow": "jkkf13j3",
+        "sources": [],
+        "autoLink": "yes"
+      },
+      "label": "invalid_type_autoLink",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "skill_id": "plgf_feature_adoption",
+  "generated_at": "2026-02-11T22:14:34.504122",
+  "num_cases": 10,
+  "test_cases": [
+    {
+      "inputs": {
+        "featureId": "1etb2z9l",
+        "productId": "g1umt6qkujka1ahoifn",
+        "launchDate": "2026-02-11"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "featureId": "l10dvdcgtnbo0r0i",
+        "productId": "rhvzxnf",
+        "launchDate": "2026-02-11"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "featureId": "wld",
+        "productId": "pb6v9rrao4"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "productId": "8pb6drthpmdtl3ei3i",
+        "analysisType": "stickiness"
+      },
+      "label": "missing_featureId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "featureId": "zqfvgtpgs5eqym"
+      },
+      "label": "missing_productId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "featureId": 12345,
+        "productId": "wvqr28r7zf8m39ife9lv",
+        "launchDate": "2026-02-11",
+        "analysisType": "adoption"
+      },
+      "label": "invalid_type_featureId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "featureId": "jg67xt2z",
+        "productId": 12345,
+        "analysisType": "deprecation"
+      },
+      "label": "invalid_type_productId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "featureId": "yzdg81566i6",
+        "productId": "4z9qopk1imbu88",
+        "launchDate": 12345
+      },
+      "label": "invalid_type_launchDate",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "featureId": "y2",
+        "productId": "fipghsljuuvhgh3wr4",
+        "analysisType": 12345
+      },
+      "label": "invalid_type_analysisType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

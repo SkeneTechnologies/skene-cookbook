@@ -1,0 +1,80 @@
+{
+  "skill_id": "plg_personalized_checklist",
+  "generated_at": "2026-02-12T00:05:12.752858",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "userId": "lehn0njhsrv0olsspp",
+        "checklistType": "custom",
+        "goals": [
+          "5k3",
+          "61tk3nfsljotk",
+          "h33ka"
+        ]
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "userId": "nn36ay9v6y",
+        "checklistType": "goal",
+        "goals": [
+          "g5ti9uiarce",
+          "8y80m9i7q2mgzeva20",
+          "4ej2tt5n2nw0nvn1e"
+        ]
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "userId": "aksoyexntfxqj",
+        "checklistType": "custom"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "goals": []
+      },
+      "label": "missing_userId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": 12345,
+        "goals": []
+      },
+      "label": "invalid_type_userId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": "uhbgik6abxnxm5u",
+        "goals": [
+          "4bljeazwiggib43scdh8"
+        ],
+        "checklistType": 12345
+      },
+      "label": "invalid_type_checklistType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": "9biox8",
+        "goals": "not_an_array"
+      },
+      "label": "invalid_type_goals",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

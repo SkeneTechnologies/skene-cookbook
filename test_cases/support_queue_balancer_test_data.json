@@ -1,0 +1,72 @@
+{
+  "skill_id": "support_queue_balancer",
+  "generated_at": "2026-02-12T00:05:04.300047",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "scope": "all",
+        "balance_mode": "skill_weighted",
+        "auto_rebalance": true
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "scope": "queue",
+        "scope_id": "qgjh8u"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "scope_id": "clqzdufgw3pdn7xbh7o",
+        "balance_mode": "equal",
+        "auto_rebalance": false
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "scope": 12345,
+        "balance_mode": "skill_weighted"
+      },
+      "label": "invalid_type_scope",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "balance_mode": "equal",
+        "auto_rebalance": true,
+        "scope_id": 12345
+      },
+      "label": "invalid_type_scope_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "scope": "queue",
+        "balance_mode": 12345
+      },
+      "label": "invalid_type_balance_mode",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "scope_id": "onxfou2t7idq985ku",
+        "balance_mode": "equal",
+        "auto_rebalance": "yes"
+      },
+      "label": "invalid_type_auto_rebalance",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": true
+    }
+  ]
+}

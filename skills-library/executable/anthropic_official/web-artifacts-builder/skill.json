@@ -1,0 +1,228 @@
+{
+  "id": "anthropic_official/web-artifacts-builder",
+  "version": "1.0.0",
+  "name": "web-artifacts-builder",
+  "description": "Suite of tools for creating elaborate, multi-component claude.ai HTML artifacts using modern frontend web technologies (React, Tailwind CSS, shadcn/ui). Use for complex artifacts requiring state management, routing, or shadcn/ui components - not for simple single-file HTML/JSX artifacts.",
+  "domain": "anthropic_official",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "projectName": {
+        "type": "string",
+        "description": "Name of the artifact project to create (used for directory naming)",
+        "pattern": "^[a-z0-9-]+$",
+        "minLength": 1,
+        "maxLength": 100
+      },
+      "artifactDescription": {
+        "type": "string",
+        "description": "Detailed description of the artifact to build, including functionality, components needed, and user requirements"
+      },
+      "shadcnComponents": {
+        "type": "array",
+        "description": "List of shadcn/ui components needed for the artifact (e.g., button, dialog, dropdown-menu)",
+        "items": {
+          "type": "string"
+        },
+        "default": []
+      },
+      "requiresStateManagement": {
+        "type": "boolean",
+        "description": "Whether the artifact requires complex state management",
+        "default": false
+      },
+      "requiresRouting": {
+        "type": "boolean",
+        "description": "Whether the artifact requires client-side routing",
+        "default": false
+      },
+      "stylePreferences": {
+        "type": "object",
+        "description": "Design and styling preferences to avoid 'AI slop'",
+        "properties": {
+          "avoidCenteredLayouts": {
+            "type": "boolean",
+            "default": true
+          },
+          "avoidPurpleGradients": {
+            "type": "boolean",
+            "default": true
+          },
+          "avoidUniformRoundedCorners": {
+            "type": "boolean",
+            "default": true
+          },
+          "avoidInterFont": {
+            "type": "boolean",
+            "default": true
+          },
+          "preferredColorScheme": {
+            "type": "string",
+            "enum": [
+              "light",
+              "dark",
+              "auto"
+            ],
+            "default": "auto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "testAfterBuild": {
+        "type": "boolean",
+        "description": "Whether to test/visualize the artifact after building (optional, adds latency)",
+        "default": false
+      }
+    },
+    "required": [
+      "projectName",
+      "artifactDescription"
+    ],
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "success": {
+        "type": "boolean",
+        "description": "Whether the artifact was successfully created and bundled"
+      },
+      "projectName": {
+        "type": "string",
+        "description": "Name of the created project"
+      },
+      "bundledArtifactPath": {
+        "type": "string",
+        "description": "File path to the bundled HTML artifact (bundle.html)"
+      },
+      "bundledArtifactContent": {
+        "type": "string",
+        "description": "Complete HTML content of the bundled artifact, ready to share with user"
+      },
+      "componentsUsed": {
+        "type": "array",
+        "description": "List of shadcn/ui components included in the artifact",
+        "items": {
+          "type": "string"
+        }
+      },
+      "technologiesUsed": {
+        "type": "array",
+        "description": "Technologies and libraries used in the artifact",
+        "items": {
+          "type": "string"
+        },
+        "default": [
+          "React 18",
+          "TypeScript",
+          "Vite",
+          "Tailwind CSS",
+          "shadcn/ui",
+          "Parcel"
+        ]
+      },
+      "fileSize": {
+        "type": "integer",
+        "description": "Size of the bundled HTML file in bytes"
+      },
+      "buildTime": {
+        "type": "number",
+        "description": "Time taken to build and bundle the artifact in seconds"
+      },
+      "testResults": {
+        "type": "object",
+        "description": "Optional test/visualization results if testing was performed",
+        "properties": {
+          "tested": {
+            "type": "boolean"
+          },
+          "passed": {
+            "type": "boolean"
+          },
+          "issues": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "screenshotPath": {
+            "type": "string",
+            "format": "uri-reference"
+          }
+        }
+      },
+      "errors": {
+        "type": "array",
+        "description": "Any errors encountered during the build process",
+        "items": {
+          "type": "object",
+          "properties": {
+            "stage": {
+              "type": "string",
+              "enum": [
+                "initialization",
+                "development",
+                "bundling",
+                "testing"
+              ]
+            },
+            "message": {
+              "type": "string"
+            },
+            "details": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "warnings": {
+        "type": "array",
+        "description": "Non-critical warnings from the build process",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "required": [
+      "success",
+      "projectName"
+    ]
+  },
+  "temperature": 0,
+  "tags": [
+    "anthropic_official",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "license": "Complete terms in LICENSE.txt",
+      "triggers": [
+        "help with web artifacts builder"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "categories": [
+    "marketing",
+    "marketing/media"
+  ],
+  "security_controls": {
+    "review_note": {
+      "flagged_as": "false_positive",
+      "requires_manual_review": true,
+      "review_date": "2026-02-05T14:36:53.802171"
+    }
+  },
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.92
+  }
+}

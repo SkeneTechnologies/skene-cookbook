@@ -1,0 +1,441 @@
+{
+  "id": "security/modern-python",
+  "version": "1.0.0",
+  "name": "modern-python",
+  "description": "Configures Python projects with modern tooling (uv, ruff, ty). Use when creating projects, writing standalone scripts, or migrating from pip/Poetry/mypy/black.",
+  "domain": "security",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "action": {
+        "type": "string",
+        "enum": [
+          "create_project",
+          "create_script",
+          "migrate_project",
+          "configure_tools",
+          "add_dependency",
+          "remove_dependency"
+        ],
+        "description": "The type of Python modernization action to perform"
+      },
+      "project_name": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9_-]*$",
+        "description": "Name of the Python project (lowercase, hyphens/underscores allowed)"
+      },
+      "project_type": {
+        "type": "string",
+        "enum": [
+          "simple",
+          "package",
+          "library"
+        ],
+        "description": "Type of project: simple (non-distributed), package (distributable), or library (reusable)"
+      },
+      "python_version": {
+        "type": "string",
+        "pattern": "^3\\.(11|12|13)$",
+        "default": "3.11",
+        "description": "Minimum Python version required (3.11+)"
+      },
+      "use_cookiecutter": {
+        "type": "boolean",
+        "default": false,
+        "description": "Whether to use Trail of Bits cookiecutter template for full project setup"
+      },
+      "dependencies": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "List of runtime dependencies to add (e.g., ['requests', 'rich>=13.0'])"
+      },
+      "dev_dependencies": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "List of development dependencies to add to dev group"
+      },
+      "dependency_groups": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "description": "Custom dependency groups (e.g., {'test': ['pytest', 'coverage'], 'docs': ['sphinx']})"
+      },
+      "migration_source": {
+        "type": "string",
+        "enum": [
+          "requirements_txt",
+          "setup_py",
+          "poetry",
+          "pipenv",
+          "legacy_tools"
+        ],
+        "description": "Source tooling to migrate from"
+      },
+      "legacy_files": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Paths to legacy configuration files (requirements.txt, setup.py, etc.)"
+      },
+      "enable_tools": {
+        "type": "object",
+        "properties": {
+          "ruff": {
+            "type": "boolean",
+            "default": true,
+            "description": "Enable ruff for linting and formatting"
+          },
+          "ty": {
+            "type": "boolean",
+            "default": true,
+            "description": "Enable ty for type checking"
+          },
+          "pytest": {
+            "type": "boolean",
+            "default": true,
+            "description": "Enable pytest for testing"
+          },
+          "prek": {
+            "type": "boolean",
+            "default": false,
+            "description": "Enable prek for pre-commit hooks"
+          },
+          "security_tools": {
+            "type": "boolean",
+            "default": false,
+            "description": "Enable security tools (pip-audit, detect-secrets, etc.)"
+          }
+        }
+      },
+      "ruff_config": {
+        "type": "object",
+        "properties": {
+          "line_length": {
+            "type": "integer",
+            "default": 100,
+            "minimum": 80,
+            "maximum": 120
+          },
+          "select_all": {
+            "type": "boolean",
+            "default": true,
+            "description": "Use 'ALL' rule selection (recommended for new projects)"
+          },
+          "ignore_rules": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "default": [
+              "D",
+              "COM812",
+              "ISC001"
+            ],
+            "description": "Ruff rules to ignore"
+          }
+        }
+      },
+      "test_coverage_minimum": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 100,
+        "default": 80,
+        "description": "Minimum test coverage percentage required"
+      },
+      "use_src_layout": {
+        "type": "boolean",
+        "default": true,
+        "description": "Use src/ layout for package structure (recommended)"
+      },
+      "script_content": {
+        "type": "string",
+        "description": "Python script content for PEP 723 standalone script creation"
+      },
+      "script_dependencies": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Dependencies for standalone script (will be added as PEP 723 inline metadata)"
+      },
+      "preserve_legacy_tools": {
+        "type": "boolean",
+        "default": false,
+        "description": "Keep existing legacy tools if explicitly requested by user"
+      }
+    },
+    "required": [
+      "action"
+    ],
+    "additionalProperties": false,
+    "allOf": [
+      {
+        "if": {
+          "properties": {
+            "action": {
+              "const": "create_project"
+            }
+          }
+        },
+        "then": {
+          "required": [
+            "project_name",
+            "project_type"
+          ]
+        }
+      },
+      {
+        "if": {
+          "properties": {
+            "action": {
+              "const": "create_script"
+            }
+          }
+        },
+        "then": {
+          "required": [
+            "script_content"
+          ]
+        }
+      },
+      {
+        "if": {
+          "properties": {
+            "action": {
+              "const": "migrate_project"
+            }
+          }
+        },
+        "then": {
+          "required": [
+            "migration_source"
+          ]
+        }
+      }
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "success": {
+        "type": "boolean",
+        "description": "Whether the operation completed successfully"
+      },
+      "action_performed": {
+        "type": "string",
+        "description": "The action that was executed"
+      },
+      "project_path": {
+        "type": "string",
+        "description": "Absolute path to the project directory"
+      },
+      "files_created": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "List of files created during setup"
+      },
+      "files_modified": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "List of files modified during migration or configuration"
+      },
+      "files_deleted": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "List of legacy files removed during migration"
+      },
+      "dependencies_added": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "version": {
+              "type": "string"
+            },
+            "group": {
+              "type": "string",
+              "description": "Dependency group (runtime, dev, test, etc.)"
+            }
+          },
+          "required": [
+            "name"
+          ]
+        },
+        "description": "Dependencies added to the project"
+      },
+      "tools_configured": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": [
+            "uv",
+            "ruff",
+            "ty",
+            "pytest",
+            "prek",
+            "pip-audit",
+            "detect-secrets"
+          ]
+        },
+        "description": "List of tools successfully configured"
+      },
+      "configuration": {
+        "type": "object",
+        "properties": {
+          "python_version": {
+            "type": "string"
+          },
+          "project_type": {
+            "type": "string"
+          },
+          "src_layout": {
+            "type": "boolean"
+          },
+          "test_coverage_minimum": {
+            "type": "integer"
+          },
+          "ruff_line_length": {
+            "type": "integer"
+          }
+        },
+        "description": "Final project configuration details"
+      },
+      "next_steps": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "command": {
+              "type": "string",
+              "description": "Command to run"
+            },
+            "description": {
+              "type": "string",
+              "description": "What the command does"
+            }
+          },
+          "required": [
+            "command",
+            "description"
+          ]
+        },
+        "description": "Recommended next steps for the user"
+      },
+      "migration_summary": {
+        "type": "object",
+        "properties": {
+          "source": {
+            "type": "string"
+          },
+          "dependencies_migrated": {
+            "type": "integer"
+          },
+          "manual_review_needed": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Dependencies or configurations requiring manual review"
+          }
+        },
+        "description": "Summary of migration from legacy tooling"
+      },
+      "warnings": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Warnings about potential issues or manual steps required"
+      },
+      "errors": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Errors encountered during execution"
+      },
+      "lockfile_generated": {
+        "type": "boolean",
+        "description": "Whether uv.lock was successfully generated"
+      },
+      "script_path": {
+        "type": "string",
+        "description": "Path to created standalone script (for create_script action)"
+      },
+      "pep723_metadata": {
+        "type": "object",
+        "properties": {
+          "dependencies": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "requires_python": {
+            "type": "string"
+          }
+        },
+        "description": "PEP 723 inline metadata added to script"
+      }
+    },
+    "required": [
+      "success",
+      "action_performed"
+    ]
+  },
+  "temperature": 0,
+  "tags": [
+    "security",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with modern python",
+        "creating projects, writing standalone scripts, or migrating from pip/poetry/mypy/black"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "security_controls": {
+    "authentication": {
+      "method": "oauth",
+      "provider": "managed_identity",
+      "scopes": [
+        "read:data",
+        "write:data"
+      ],
+      "token_lifetime": 3600
+    }
+  },
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.92
+  }
+}

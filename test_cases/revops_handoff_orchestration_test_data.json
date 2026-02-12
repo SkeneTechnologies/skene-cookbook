@@ -1,0 +1,105 @@
+{
+  "skill_id": "revops_handoff_orchestration",
+  "generated_at": "2026-02-12T00:05:07.456195",
+  "num_cases": 11,
+  "test_cases": [
+    {
+      "inputs": {
+        "handoffType": "closed_to_cs",
+        "accountId": "wdduxllj4od",
+        "toTeam": "h"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "handoffType": "mql_to_sales",
+        "accountId": "q769na",
+        "fromTeam": "hpskba4v"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "handoffType": "sql_to_ae",
+        "accountId": "kwbzv4e7n2l",
+        "fromTeam": "g3ly5o",
+        "toTeam": "8qg8gahrbuhqr"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "accountId": "n5mdefp",
+        "dealId": "cg2kd197np"
+      },
+      "label": "missing_handoffType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "handoffType": "expansion_to_sales",
+        "dealId": "56wxhrrhx0z145pd6r",
+        "toTeam": "5gqtcyynv7wmimu"
+      },
+      "label": "missing_accountId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "handoffType": 12345,
+        "accountId": "wgev618eos49i9",
+        "toTeam": "hcm86q9qi1035fkkw7"
+      },
+      "label": "invalid_type_handoffType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "handoffType": "closed_to_cs",
+        "accountId": 12345,
+        "dealId": "ihtish7yre"
+      },
+      "label": "invalid_type_accountId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "handoffType": "mql_to_sales",
+        "accountId": "je1sfq23xn3wi59y5",
+        "dealId": 12345,
+        "toTeam": "8d7wgwyq5tb8taw8h1p7"
+      },
+      "label": "invalid_type_dealId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "handoffType": "mql_to_sales",
+        "accountId": "5zd4m75b7nh0dixlo",
+        "dealId": "eyd3t7sx58y2nrckv",
+        "fromTeam": 12345
+      },
+      "label": "invalid_type_fromTeam",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "handoffType": "closed_to_cs",
+        "accountId": "l9iejd4ur0qwc",
+        "dealId": "ipy4jd1rfhafo",
+        "toTeam": 12345
+      },
+      "label": "invalid_type_toTeam",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

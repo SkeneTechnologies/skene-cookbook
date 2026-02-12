@@ -1,0 +1,35 @@
+{
+  "id": "cursor_rules/aws",
+  "version": "1.0.0",
+  "name": "aws",
+  "description": "This guide provides opinionated, actionable best practices for developing and deploying applications on AWS, emphasizing CDK v2, serverless patterns, and Well-Architected principles.",
+  "domain": "cursor_rules",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "cursor_rules",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "cursor": {
+      "globs": [
+        "**/*"
+      ]
+    },
+    "claude": {
+      "triggers": [
+        "help with aws"
+      ]
+    },
+    "skeneflow": {}
+  },
+  "skipSchemaValidation": true
+}

@@ -1,0 +1,379 @@
+{
+  "id": "ai_autonomous_outreach",
+  "version": "1.0.0",
+  "name": "Autonomous Outreach",
+  "description": "AI-powered autonomous outbound outreach with personalization and sequence management.",
+  "domain": "ai_ops",
+  "tools": [
+    {
+      "name": "ai.personalize",
+      "required": true
+    },
+    {
+      "name": "ai.generate_content",
+      "required": true
+    },
+    {
+      "name": "crm.get_contacts",
+      "required": true
+    },
+    {
+      "name": "resend.send_email",
+      "required": true
+    },
+    {
+      "name": "crm.log_activity",
+      "required": true
+    }
+  ],
+  "exitStates": [
+    "lead_qualification",
+    "meeting_scheduled",
+    "nurture",
+    "idle"
+  ],
+  "metrics": {
+    "primary": "outreach_reply_rate",
+    "benchmarks": {
+      "excellent": "> 15%",
+      "good": "8-15%",
+      "needs_improvement": "< 8%"
+    }
+  },
+  "temperature": 0.3,
+  "tags": [
+    "ai_ops",
+    "outreach",
+    "automation",
+    "sales",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Autonomous Outreach"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "ai.classify",
+          "required": false
+        },
+        {
+          "name": "ai.generate",
+          "required": false
+        },
+        {
+          "name": "ai.score_lead",
+          "required": false
+        }
+      ]
+    }
+  },
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "campaign_name": {
+        "type": "string",
+        "description": "Name of the outreach campaign"
+      },
+      "sequence_step": {
+        "type": "integer",
+        "description": "Current step in the outreach sequence (1-4)",
+        "minimum": 1,
+        "maximum": 4
+      },
+      "contact_filters": {
+        "type": "object",
+        "description": "Filters to select contacts from CRM",
+        "properties": {
+          "segment": {
+            "type": "string",
+            "description": "Contact segment or list ID"
+          },
+          "industry": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Target industries"
+          },
+          "company_size": {
+            "type": "string",
+            "enum": [
+              "1-10",
+              "11-50",
+              "51-200",
+              "201-500",
+              "501-1000",
+              "1000+"
+            ],
+            "description": "Company size range"
+          },
+          "job_titles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Target job titles or roles"
+          },
+          "exclude_existing_customers": {
+            "type": "boolean",
+            "description": "Exclude contacts from existing customer accounts",
+            "default": true
+          }
+        }
+      },
+      "personalization_config": {
+        "type": "object",
+        "description": "Configuration for personalization layers",
+        "properties": {
+          "use_company_signals": {
+            "type": "boolean",
+            "description": "Include company-level personalization",
+            "default": true
+          },
+          "use_role_based_hooks": {
+            "type": "boolean",
+            "description": "Include role-specific pain points",
+            "default": true
+          },
+          "use_behavioral_triggers": {
+            "type": "boolean",
+            "description": "Include product behavior data",
+            "default": true
+          },
+          "use_news_triggers": {
+            "type": "boolean",
+            "description": "Include recent company news/events",
+            "default": true
+          }
+        }
+      },
+      "email_config": {
+        "type": "object",
+        "description": "Email sending configuration",
+        "properties": {
+          "from_email": {
+            "type": "string",
+            "format": "email",
+            "description": "Sender email address"
+          },
+          "from_name": {
+            "type": "string",
+            "description": "Sender name"
+          },
+          "reply_to": {
+            "type": "string",
+            "format": "email",
+            "description": "Reply-to email address"
+          },
+          "daily_send_limit": {
+            "type": "integer",
+            "description": "Maximum emails to send per day",
+            "minimum": 1,
+            "default": 100
+          }
+        },
+        "required": [
+          "from_email",
+          "from_name"
+        ]
+      },
+      "require_human_review": {
+        "type": "boolean",
+        "description": "Require human approval before sending (recommended for new sequences)",
+        "default": false
+      },
+      "test_mode": {
+        "type": "boolean",
+        "description": "Run in test mode without actually sending emails",
+        "default": false
+      }
+    },
+    "required": [
+      "campaign_name",
+      "sequence_step",
+      "email_config"
+    ],
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "campaign_name": {
+        "type": "string",
+        "description": "Name of the executed campaign"
+      },
+      "sequence_step": {
+        "type": "integer",
+        "description": "Sequence step that was executed"
+      },
+      "execution_summary": {
+        "type": "object",
+        "description": "Summary of the outreach execution",
+        "properties": {
+          "contacts_processed": {
+            "type": "integer",
+            "description": "Total number of contacts processed"
+          },
+          "emails_sent": {
+            "type": "integer",
+            "description": "Number of emails successfully sent"
+          },
+          "emails_failed": {
+            "type": "integer",
+            "description": "Number of emails that failed to send"
+          },
+          "opted_out": {
+            "type": "integer",
+            "description": "Number of contacts who had opted out"
+          },
+          "execution_time": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When the execution completed"
+          }
+        },
+        "required": [
+          "contacts_processed",
+          "emails_sent",
+          "execution_time"
+        ]
+      },
+      "personalization_applied": {
+        "type": "object",
+        "description": "Breakdown of personalization layers used",
+        "properties": {
+          "company_signals": {
+            "type": "integer",
+            "description": "Number of emails with company signals"
+          },
+          "role_based_hooks": {
+            "type": "integer",
+            "description": "Number of emails with role-based personalization"
+          },
+          "behavioral_triggers": {
+            "type": "integer",
+            "description": "Number of emails with behavioral triggers"
+          },
+          "news_triggers": {
+            "type": "integer",
+            "description": "Number of emails with news/event triggers"
+          }
+        }
+      },
+      "sample_email": {
+        "type": "object",
+        "description": "Representative sample of generated email",
+        "properties": {
+          "subject": {
+            "type": "string",
+            "description": "Email subject line"
+          },
+          "body": {
+            "type": "string",
+            "description": "Email body content"
+          },
+          "personalization_tokens": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of personalization tokens used"
+          }
+        },
+        "required": [
+          "subject",
+          "body"
+        ]
+      },
+      "metrics": {
+        "type": "object",
+        "description": "Campaign performance metrics",
+        "properties": {
+          "sent": {
+            "type": "integer",
+            "description": "Total emails sent"
+          },
+          "opened": {
+            "type": "integer",
+            "description": "Number of emails opened"
+          },
+          "open_rate": {
+            "type": "number",
+            "description": "Open rate percentage",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "replied": {
+            "type": "integer",
+            "description": "Number of replies received"
+          },
+          "reply_rate": {
+            "type": "number",
+            "description": "Reply rate percentage",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "meetings_booked": {
+            "type": "integer",
+            "description": "Number of meetings scheduled"
+          },
+          "positive_replies": {
+            "type": "integer",
+            "description": "Number of positive/interested replies"
+          },
+          "opt_outs": {
+            "type": "integer",
+            "description": "Number of opt-out requests"
+          }
+        },
+        "required": [
+          "sent"
+        ]
+      },
+      "next_steps": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "action": {
+              "type": "string",
+              "description": "Recommended next action"
+            },
+            "scheduled_for": {
+              "type": "string",
+              "format": "date-time",
+              "description": "When this action should occur"
+            },
+            "contact_count": {
+              "type": "integer",
+              "description": "Number of contacts this applies to"
+            }
+          }
+        },
+        "description": "Recommended next steps for campaign continuation"
+      },
+      "warnings": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Any warnings or issues encountered during execution"
+      }
+    },
+    "required": [
+      "campaign_name",
+      "sequence_step",
+      "execution_summary",
+      "metrics"
+    ]
+  },
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.92
+  }
+}

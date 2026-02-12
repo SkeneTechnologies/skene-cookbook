@@ -1,0 +1,78 @@
+{
+  "skill_id": "revops_sales_coaching",
+  "generated_at": "2026-02-12T00:05:05.367986",
+  "num_cases": 9,
+  "test_cases": [
+    {
+      "inputs": {
+        "repId": "0px0ogajbuph",
+        "period": "mubuh"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "repId": "e3",
+        "coachingArea": "discovery"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "repId": "hxiafptepmw",
+        "period": "cv0a4zv0vzy",
+        "includeCallReview": false
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "period": "ptds5",
+        "includeCallReview": false
+      },
+      "label": "missing_repId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "repId": 12345
+      },
+      "label": "invalid_type_repId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "repId": "lislq6mr",
+        "coachingArea": 12345,
+        "includeCallReview": true
+      },
+      "label": "invalid_type_coachingArea",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "repId": "472ebj4pt4kgsrztx",
+        "coachingArea": "objection_handling",
+        "period": 12345
+      },
+      "label": "invalid_type_period",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "repId": "x97cg",
+        "includeCallReview": "yes"
+      },
+      "label": "invalid_type_includeCallReview",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2024-2026 Skene Technologies
+
 """
 Workflow Chain Visualizer
 Generates Mermaid diagrams from workflow blueprint YAML files

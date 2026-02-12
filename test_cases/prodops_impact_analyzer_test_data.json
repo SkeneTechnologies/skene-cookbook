@@ -1,0 +1,116 @@
+{
+  "skill_id": "prodops_impact_analyzer",
+  "generated_at": "2026-02-12T00:05:02.400536",
+  "num_cases": 10,
+  "test_cases": [
+    {
+      "inputs": {
+        "featureId": "z2ygy8p8k2",
+        "launchDate": "2026-02-12",
+        "targetMetrics": [
+          "1tijogpc6ibxmf",
+          "az67or"
+        ],
+        "analysisType": "cohort"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "featureId": "697wejxhespzp",
+        "launchDate": "2026-02-12",
+        "targetMetrics": [
+          "zo717frgt8ktemhp",
+          "mo",
+          "ph933t8wzftgolon"
+        ],
+        "analysisType": "causal"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "featureId": "a06h16gxul1",
+        "launchDate": "2026-02-12",
+        "targetMetrics": [
+          "ou1sjopcwnp0w1zp1bv3",
+          "jl9a62n"
+        ],
+        "analysisType": "causal"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "launchDate": "2026-02-12",
+        "targetMetrics": [
+          "ocv4i",
+          "g"
+        ],
+        "analysisType": "causal"
+      },
+      "label": "missing_featureId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "featureId": "3f5z1k",
+        "analysisType": "pre_post"
+      },
+      "label": "missing_launchDate",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "featureId": 12345,
+        "launchDate": "2026-02-12",
+        "targetMetrics": [
+          "4op",
+          "t5cat1v"
+        ],
+        "analysisType": "cohort"
+      },
+      "label": "invalid_type_featureId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "featureId": "ouucfq",
+        "launchDate": 12345,
+        "analysisType": "pre_post"
+      },
+      "label": "invalid_type_launchDate",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "featureId": "uzb14",
+        "launchDate": "2026-02-12",
+        "targetMetrics": "not_an_array"
+      },
+      "label": "invalid_type_targetMetrics",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "featureId": "b4421qt2kfg2hw15c",
+        "launchDate": "2026-02-12",
+        "targetMetrics": [
+          "2bxl6gndb3",
+          "z6"
+        ],
+        "analysisType": 12345
+      },
+      "label": "invalid_type_analysisType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

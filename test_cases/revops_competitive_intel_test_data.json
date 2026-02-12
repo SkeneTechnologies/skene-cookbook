@@ -1,0 +1,74 @@
+{
+  "skill_id": "revops_competitive_intel",
+  "generated_at": "2026-02-12T00:05:06.575418",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "period": "jbjml0",
+        "segment": "y5eo"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "period": "c39euo",
+        "segment": "ohljvvdd3v322hfu739"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "competitor": "mp6blduz03jnusd",
+        "period": "ukhc79fujula9dkz",
+        "dealId": "tj",
+        "segment": "bp403q"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "competitor": 12345,
+        "period": "3jgqw8v3beu2zs",
+        "dealId": "8lf80fbj5v9f115kp"
+      },
+      "label": "invalid_type_competitor",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "competitor": "erdtf0dx7u2r",
+        "dealId": "g0yqoys3",
+        "segment": "fjw07",
+        "period": 12345
+      },
+      "label": "invalid_type_period",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "competitor": "jhoiatltos4vi4",
+        "segment": "qz23ybnn4zeyaf",
+        "dealId": 12345
+      },
+      "label": "invalid_type_dealId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "competitor": "7xle08jmx",
+        "segment": 12345
+      },
+      "label": "invalid_type_segment",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": true
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "skill_id": "compliance_soc2_tracker",
+  "generated_at": "2026-02-11T22:18:27.674465",
+  "num_cases": 9,
+  "test_cases": [
+    {
+      "inputs": {
+        "action": "status_check",
+        "trustCriteria": [
+          "processing_integrity",
+          "availability"
+        ],
+        "scope": "failing"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "action": "gap_analysis",
+        "trustCriteria": [
+          "availability",
+          "availability"
+        ],
+        "scope": "critical",
+        "auditPeriod": "8wuvpvwfewf"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "action": "evidence_collection",
+        "trustCriteria": [
+          "processing_integrity",
+          "processing_integrity",
+          "processing_integrity"
+        ],
+        "scope": "failing"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "auditPeriod": "a99"
+      },
+      "label": "missing_action",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": 12345
+      },
+      "label": "invalid_type_action",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": "evidence_collection",
+        "trustCriteria": "not_an_array",
+        "scope": "all"
+      },
+      "label": "invalid_type_trustCriteria",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": "gap_analysis",
+        "scope": 12345,
+        "auditPeriod": "4emhmuk"
+      },
+      "label": "invalid_type_scope",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": "gap_analysis",
+        "auditPeriod": 12345
+      },
+      "label": "invalid_type_auditPeriod",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

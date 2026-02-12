@@ -1,0 +1,35 @@
+{
+  "id": "cursor_rules/rocket",
+  "version": "1.0.0",
+  "name": "rocket",
+  "description": "Definitive guidelines for building robust, performant, and maintainable backend services with Rocket 0.5+, focusing on modern Rust async patterns, API design, and testing.",
+  "domain": "cursor_rules",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "cursor_rules",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "cursor": {
+      "globs": [
+        "**/*.rs"
+      ]
+    },
+    "claude": {
+      "triggers": [
+        "help with rocket"
+      ]
+    },
+    "skeneflow": {}
+  },
+  "skipSchemaValidation": true
+}

@@ -1,0 +1,231 @@
+{
+  "skill_id": "prodops_feedback_synthesis",
+  "generated_at": "2026-02-12T00:05:01.791348",
+  "num_cases": 12,
+  "test_cases": [
+    {
+      "inputs": {
+        "period": {
+          "start_date": "2026-02-12T00:05:01.790585",
+          "end_date": "2026-02-12T00:05:01.790593"
+        },
+        "sources": [
+          "user_interviews",
+          "in_app"
+        ],
+        "segments": [
+          "wh8ppaer1ttc1m",
+          "uhx6p48ha"
+        ],
+        "filters": {
+          "min_sentiment_score": 45.89,
+          "exclude_tags": []
+        },
+        "prioritization_weights": {
+          "impact": 0.08
+        }
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "period": {
+          "start_date": "2026-02-12T00:05:01.790642",
+          "end_date": "2026-02-12T00:05:01.790644"
+        },
+        "sources": [
+          "reviews",
+          "in_app"
+        ],
+        "filters": {
+          "min_sentiment_score": -92.41,
+          "product_areas": [
+            "v85z0zsk7782ix4i3zwm"
+          ]
+        },
+        "prioritization_weights": {
+          "frequency": 0.68
+        }
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "period": {
+          "start_date": "2026-02-12T00:05:01.790667",
+          "end_date": "2026-02-12T00:05:01.790669"
+        },
+        "sources": [
+          "user_interviews",
+          "support_tickets",
+          "support_tickets"
+        ],
+        "segments": [
+          "hh",
+          "0hxmhqyt6"
+        ],
+        "filters": {
+          "exclude_tags": []
+        },
+        "prioritization_weights": {
+          "urgency": 0.82,
+          "impact": 0.08,
+          "frequency": 0.9
+        }
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "sources": [
+          "reviews"
+        ],
+        "filters": {}
+      },
+      "label": "missing_period",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": {
+          "start_date": "2026-02-12T00:05:01.790708",
+          "end_date": "2026-02-12T00:05:01.790709"
+        },
+        "segments": [
+          "v30gtdau",
+          "se8suzt",
+          "l8gjuz"
+        ],
+        "filters": {
+          "min_sentiment_score": -63.79,
+          "product_areas": [
+            "l86thxcu5e6"
+          ],
+          "exclude_tags": [
+            "czni55fgmgiphb"
+          ]
+        }
+      },
+      "label": "missing_sources",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": "not_an_object",
+        "sources": [
+          "reviews",
+          "user_interviews",
+          "user_interviews"
+        ]
+      },
+      "label": "invalid_type_period",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": {
+          "start_date": "2026-02-12T00:05:01.790760",
+          "end_date": "2026-02-12T00:05:01.790762"
+        },
+        "sources": "not_an_array",
+        "filters": {
+          "product_areas": [
+            "ti19vrks",
+            "9ucbp",
+            "fy6y1e8zcmgi7"
+          ],
+          "exclude_tags": []
+        },
+        "analysis_depth": "summary"
+      },
+      "label": "invalid_type_sources",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": {
+          "start_date": "2026-02-12T00:05:01.790787",
+          "end_date": "2026-02-12T00:05:01.790789"
+        },
+        "sources": [
+          "support_tickets"
+        ],
+        "prioritization_weights": {
+          "urgency": 0.86,
+          "impact": 0.04
+        },
+        "segments": "not_an_array"
+      },
+      "label": "invalid_type_segments",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": {
+          "start_date": "2026-02-12T00:05:01.790800",
+          "end_date": "2026-02-12T00:05:01.790806"
+        },
+        "sources": [
+          "support_tickets"
+        ],
+        "segments": [
+          "s8xzb7"
+        ],
+        "analysis_depth": "detailed",
+        "prioritization_weights": {
+          "urgency": 0.92,
+          "impact": 0.35
+        },
+        "filters": "not_an_object"
+      },
+      "label": "invalid_type_filters",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": {
+          "start_date": "2026-02-12T00:05:01.790824",
+          "end_date": "2026-02-12T00:05:01.790826"
+        },
+        "sources": [
+          "nps_surveys",
+          "user_interviews",
+          "nps_surveys"
+        ],
+        "segments": [],
+        "analysis_depth": 12345
+      },
+      "label": "invalid_type_analysis_depth",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": {
+          "start_date": "2026-02-12T00:05:01.790836",
+          "end_date": "2026-02-12T00:05:01.790838"
+        },
+        "sources": [
+          "nps_surveys"
+        ],
+        "filters": {
+          "min_sentiment_score": 56.86,
+          "product_areas": [
+            "6nuz0cw"
+          ]
+        },
+        "analysis_depth": "standard",
+        "prioritization_weights": "not_an_object"
+      },
+      "label": "invalid_type_prioritization_weights",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

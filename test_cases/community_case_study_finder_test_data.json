@@ -1,0 +1,93 @@
+{
+  "skill_id": "community_case_study_finder",
+  "generated_at": "2026-02-11T22:18:28.706641",
+  "num_cases": 10,
+  "test_cases": [
+    {
+      "inputs": {
+        "action": "qualify",
+        "useCase": "s9qhy00wa"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "action": "outreach",
+        "userId": "wbry45wd1uoh244zr5ia",
+        "industry": "qiyrtkv5"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "action": "discover",
+        "userId": "q2fv1o3hm2xg1",
+        "industry": "g5h3axx2xi2n4y"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "userId": "3q93drxw",
+        "industry": "o8rf373kpr4ktxpjg",
+        "useCase": "e27r2"
+      },
+      "label": "missing_action",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": 12345,
+        "userId": "nx7yitneyjkax3oi0d",
+        "industry": "0eksnc0knx9"
+      },
+      "label": "invalid_type_action",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": "track",
+        "userId": 12345
+      },
+      "label": "invalid_type_userId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": "discover",
+        "criteria": "not_an_object",
+        "industry": "5cbg",
+        "useCase": "3lzb7ism"
+      },
+      "label": "invalid_type_criteria",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": "outreach",
+        "userId": "axab49n5dj6dngpu21x",
+        "criteria": {},
+        "industry": 12345,
+        "useCase": "4osnerd8z4aeqxpq302g"
+      },
+      "label": "invalid_type_industry",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": "track",
+        "useCase": 12345
+      },
+      "label": "invalid_type_useCase",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "skill_id": "plgf_activation_metrics",
+  "generated_at": "2026-02-11T22:14:30.039989",
+  "num_cases": 9,
+  "test_cases": [
+    {
+      "inputs": {
+        "productId": "y8",
+        "currentActivationMetric": "e9l9tf1"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "productId": "4u",
+        "cohortPeriod": "45fuinwuikx47ktw",
+        "targetTimeToValue": 2948.48
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "productId": "h5fk",
+        "targetTimeToValue": 2837.88
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "cohortPeriod": "l2kc50",
+        "currentActivationMetric": "rrlg2bcrzby6a8amkv",
+        "targetTimeToValue": 6728.08
+      },
+      "label": "missing_productId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "productId": 12345,
+        "currentActivationMetric": "8he"
+      },
+      "label": "invalid_type_productId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "productId": "k6",
+        "currentActivationMetric": "qwqyt9fqbt9obdpq8w",
+        "targetTimeToValue": 2844.34,
+        "cohortPeriod": 12345
+      },
+      "label": "invalid_type_cohortPeriod",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "productId": "car1l2",
+        "currentActivationMetric": 12345,
+        "targetTimeToValue": 6821.26
+      },
+      "label": "invalid_type_currentActivationMetric",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "productId": "chr0m0g",
+        "targetTimeToValue": "not_a_number"
+      },
+      "label": "invalid_type_targetTimeToValue",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

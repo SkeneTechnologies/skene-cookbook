@@ -1,0 +1,244 @@
+{
+  "id": "anthropic_official/algorithmic-art",
+  "version": "1.0.0",
+  "name": "algorithmic-art",
+  "description": "Creating algorithmic art using p5.js with seeded randomness and interactive parameter exploration. Use this when users request creating art using code, generative art, algorithmic art, flow fields, or particle systems. Create original algorithmic art rather than copying existing artists' work to avoid copyright violations.",
+  "domain": "anthropic_official",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "userRequest": {
+        "type": "string",
+        "description": "The user's request for algorithmic art - can be a theme, concept, aesthetic direction, or artistic idea that serves as inspiration for the generative algorithm",
+        "minLength": 1
+      },
+      "generateVariations": {
+        "type": "boolean",
+        "description": "Whether to generate multiple variations (seeds 1-100) or just a single interactive viewer",
+        "default": false
+      },
+      "specificSeed": {
+        "type": "integer",
+        "description": "Optional specific seed number to start with for reproducible results",
+        "minimum": 0
+      },
+      "preferredStyle": {
+        "type": "string",
+        "enum": [
+          "organic",
+          "geometric",
+          "abstract",
+          "flow_field",
+          "particle_system",
+          "recursive",
+          "mathematical",
+          "chaotic",
+          "minimal",
+          "any"
+        ],
+        "description": "Optional hint about preferred algorithmic style - serves as guidance but doesn't constrain creative freedom",
+        "default": "any"
+      },
+      "animated": {
+        "type": "boolean",
+        "description": "Whether the artwork should be animated (continuous draw) or static (single frame)",
+        "default": false
+      },
+      "colorPreference": {
+        "type": "string",
+        "description": "Optional color direction or palette preference (e.g., 'warm tones', 'monochrome', 'vibrant', 'pastel')",
+        "maxLength": 200
+      }
+    },
+    "required": [
+      "userRequest"
+    ],
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "algorithmicPhilosophy": {
+        "type": "object",
+        "description": "The conceptual framework and computational aesthetic movement created",
+        "properties": {
+          "movementName": {
+            "type": "string",
+            "description": "1-2 word name for the generative art movement",
+            "minLength": 1,
+            "maxLength": 50
+          },
+          "philosophyText": {
+            "type": "string",
+            "description": "4-6 paragraph manifesto explaining the algorithmic philosophy, computational processes, and aesthetic vision",
+            "minLength": 500
+          },
+          "conceptualSeed": {
+            "type": "string",
+            "description": "The subtle conceptual thread deduced from the original request and woven into the algorithm",
+            "minLength": 1
+          },
+          "fileName": {
+            "type": "string",
+            "description": "Filename of the philosophy markdown file",
+            "pattern": "^.*\\.md$"
+          }
+        },
+        "required": [
+          "movementName",
+          "philosophyText",
+          "conceptualSeed",
+          "fileName"
+        ]
+      },
+      "interactiveArtwork": {
+        "type": "object",
+        "description": "The self-contained HTML artifact with p5.js implementation",
+        "properties": {
+          "fileName": {
+            "type": "string",
+            "description": "Filename of the HTML artifact",
+            "pattern": "^.*\\.html$"
+          },
+          "defaultSeed": {
+            "type": "integer",
+            "description": "The default seed value used in the artwork",
+            "minimum": 0
+          },
+          "parameters": {
+            "type": "array",
+            "description": "List of adjustable parameters in the artwork",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Parameter name"
+                },
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "slider",
+                    "color",
+                    "input",
+                    "checkbox"
+                  ],
+                  "description": "UI control type"
+                },
+                "defaultValue": {
+                  "description": "Default value for the parameter"
+                },
+                "range": {
+                  "type": "object",
+                  "description": "Min/max/step for numeric parameters",
+                  "properties": {
+                    "min": {
+                      "type": "number"
+                    },
+                    "max": {
+                      "type": "number"
+                    },
+                    "step": {
+                      "type": "number"
+                    }
+                  }
+                }
+              },
+              "required": [
+                "name",
+                "type",
+                "defaultValue"
+              ]
+            },
+            "minItems": 1
+          },
+          "isAnimated": {
+            "type": "boolean",
+            "description": "Whether the artwork uses continuous animation or is static"
+          },
+          "canvasSize": {
+            "type": "object",
+            "description": "Dimensions of the p5.js canvas",
+            "properties": {
+              "width": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "height": {
+                "type": "integer",
+                "minimum": 1
+              }
+            },
+            "required": [
+              "width",
+              "height"
+            ]
+          },
+          "features": {
+            "type": "array",
+            "description": "Key features of the implemented algorithm",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "fileName",
+          "defaultSeed",
+          "parameters",
+          "isAnimated",
+          "canvasSize"
+        ]
+      },
+      "usageInstructions": {
+        "type": "string",
+        "description": "Brief instructions on how to use the interactive artwork (seed navigation, parameter adjustment, etc.)"
+      }
+    },
+    "required": [
+      "algorithmicPhilosophy",
+      "interactiveArtwork",
+      "usageInstructions"
+    ]
+  },
+  "temperature": 0,
+  "tags": [
+    "anthropic_official",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "license": "Complete terms in LICENSE.txt",
+      "triggers": [
+        "help with algorithmic art"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "security_controls": {
+    "delete_operations": {
+      "soft_delete": true,
+      "retention_period_days": 30,
+      "undelete_capable": true,
+      "backup_before_delete": true,
+      "multi_party_approval": true,
+      "confirmation_required": {
+        "enabled": true,
+        "show_impact": true,
+        "require_reason": true
+      }
+    }
+  },
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.92
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "skill_id": "devex_integration_health",
+  "generated_at": "2026-02-11T22:18:30.700731",
+  "num_cases": 9,
+  "test_cases": [
+    {
+      "inputs": {
+        "developer_id": "pkif4v289rlg5b"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "developer_id": "2kjzhrmb1ovll",
+        "time_range": {},
+        "include_recommendations": true
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "developer_id": "0trvf2q27",
+        "alert_on_issues": false
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "time_range": {},
+        "include_recommendations": true
+      },
+      "label": "missing_developer_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "developer_id": 12345,
+        "include_recommendations": false
+      },
+      "label": "invalid_type_developer_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "developer_id": "x8ll8o",
+        "time_range": "not_an_object"
+      },
+      "label": "invalid_type_time_range",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "developer_id": "40p9dvue6",
+        "time_range": {},
+        "include_recommendations": "yes"
+      },
+      "label": "invalid_type_include_recommendations",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "developer_id": "5ao35q6iaiqfqgtr3o",
+        "time_range": {},
+        "include_recommendations": false,
+        "alert_on_issues": "yes"
+      },
+      "label": "invalid_type_alert_on_issues",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

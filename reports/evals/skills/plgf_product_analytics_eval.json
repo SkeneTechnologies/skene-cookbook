@@ -1,0 +1,64 @@
+{
+  "skill_id": "plgf_product_analytics",
+  "session_id": "batch_eval",
+  "summary": {
+    "skill_id": "plgf_product_analytics",
+    "total_executions": 3,
+    "success_rate": 1.0,
+    "validation_pass_rate": 1.0,
+    "auto_act_rate": 1.0,
+    "latency": {
+      "avg_ms": 560.58,
+      "p50_ms": 0.08,
+      "p95_ms": 1681.61,
+      "p99_ms": 1681.61,
+      "max_ms": 1681.61,
+      "min_ms": 0.06
+    },
+    "decisions": {
+      "auto_act": 3
+    },
+    "errors": {}
+  },
+  "records": [
+    {
+      "timestamp": 1770840874.109833,
+      "duration_ms": 1681.6067695617676,
+      "success": true,
+      "validation_passed": true,
+      "decision_type": "auto_act",
+      "error_type": null,
+      "metadata": {
+        "confidence": 0.95,
+        "risk_level": "Medium",
+        "trace_id": "6e8d2e9cdf1041a7"
+      }
+    },
+    {
+      "timestamp": 1770840874.109921,
+      "duration_ms": 0.0782012939453125,
+      "success": true,
+      "validation_passed": true,
+      "decision_type": "auto_act",
+      "error_type": null,
+      "metadata": {
+        "confidence": 0.95,
+        "risk_level": "Medium",
+        "trace_id": "6e8d2e9cdf1041a7"
+      }
+    },
+    {
+      "timestamp": 1770840874.1099882,
+      "duration_ms": 0.06103515625,
+      "success": true,
+      "validation_passed": true,
+      "decision_type": "auto_act",
+      "error_type": null,
+      "metadata": {
+        "confidence": 0.95,
+        "risk_level": "Medium",
+        "trace_id": "6e8d2e9cdf1041a7"
+      }
+    }
+  ]
+}

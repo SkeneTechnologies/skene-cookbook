@@ -1,0 +1,80 @@
+{
+  "skill_id": "prodops_release_notes_generator",
+  "generated_at": "2026-02-12T00:05:02.226202",
+  "num_cases": 9,
+  "test_cases": [
+    {
+      "inputs": {
+        "releaseTag": "d1a0hnvf4heavv",
+        "previousTag": "1yi8xbdiwt2p309an3ra"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "releaseTag": "hu9myjv9mez1hz4mgn1",
+        "audience": "internal"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "releaseTag": "g6xldthpqms3shlj78nq",
+        "previousTag": "icklzm3lg022u2to5"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "previousTag": "8c0s0iw1kkt",
+        "audience": "internal"
+      },
+      "label": "missing_releaseTag",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "releaseTag": 12345,
+        "format": "html"
+      },
+      "label": "invalid_type_releaseTag",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "releaseTag": "c3ok73rf",
+        "audience": "users",
+        "previousTag": 12345
+      },
+      "label": "invalid_type_previousTag",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "releaseTag": "8l81803xiccvhm6rla",
+        "previousTag": "v4czec0ek6c4vn",
+        "format": "slack",
+        "audience": 12345
+      },
+      "label": "invalid_type_audience",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "releaseTag": "g0o",
+        "audience": "users",
+        "format": 12345
+      },
+      "label": "invalid_type_format",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

@@ -1,0 +1,297 @@
+{
+  "id": "superpowers/dispatching-parallel-agents",
+  "version": "1.0.0",
+  "name": "dispatching-parallel-agents",
+  "description": "Use when facing 2+ independent tasks that can be worked on without shared state or sequential dependencies",
+  "domain": "superpowers",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "tasks": {
+        "type": "array",
+        "description": "List of independent tasks to be worked on in parallel",
+        "items": {
+          "type": "object",
+          "properties": {
+            "taskId": {
+              "type": "string",
+              "description": "Unique identifier for this task"
+            },
+            "domain": {
+              "type": "string",
+              "description": "Problem domain or subsystem this task addresses (e.g., 'agent-tool-abort.test.ts', 'batch-completion-behavior')"
+            },
+            "goal": {
+              "type": "string",
+              "description": "Clear goal for the agent (e.g., 'Make these tests pass', 'Fix race conditions')"
+            },
+            "context": {
+              "type": "string",
+              "description": "All context needed for the agent to understand and solve the problem (error messages, test names, relevant code snippets)"
+            },
+            "constraints": {
+              "type": "array",
+              "description": "Constraints the agent must follow (e.g., 'Don't change other code', 'Fix tests only')",
+              "items": {
+                "type": "string"
+              }
+            },
+            "expectedOutput": {
+              "type": "string",
+              "description": "What the agent should return (e.g., 'Summary of root cause and changes')"
+            }
+          },
+          "required": [
+            "taskId",
+            "domain",
+            "goal",
+            "context",
+            "expectedOutput"
+          ],
+          "additionalProperties": false
+        },
+        "minItems": 2
+      },
+      "verificationStrategy": {
+        "type": "object",
+        "description": "How to verify results after agents complete their work",
+        "properties": {
+          "runFullTestSuite": {
+            "type": "boolean",
+            "description": "Whether to run full test suite after integration",
+            "default": true
+          },
+          "checkForConflicts": {
+            "type": "boolean",
+            "description": "Whether to check if agents edited the same code",
+            "default": true
+          },
+          "spotCheckChanges": {
+            "type": "boolean",
+            "description": "Whether to manually review changes for systematic errors",
+            "default": true
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "required": [
+      "tasks"
+    ],
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "dispatchSummary": {
+        "type": "object",
+        "description": "Summary of the parallel dispatch operation",
+        "properties": {
+          "totalTasksDispatched": {
+            "type": "integer",
+            "description": "Number of parallel agents dispatched",
+            "minimum": 2
+          },
+          "dispatchTimestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When the parallel tasks were dispatched"
+          }
+        },
+        "required": [
+          "totalTasksDispatched",
+          "dispatchTimestamp"
+        ]
+      },
+      "taskResults": {
+        "type": "array",
+        "description": "Results from each parallel agent",
+        "items": {
+          "type": "object",
+          "properties": {
+            "taskId": {
+              "type": "string",
+              "description": "Identifier matching the input task"
+            },
+            "domain": {
+              "type": "string",
+              "description": "Problem domain that was addressed"
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "completed",
+                "failed",
+                "partial"
+              ],
+              "description": "Status of the task completion"
+            },
+            "summary": {
+              "type": "string",
+              "description": "Agent's summary of what they found and fixed"
+            },
+            "rootCause": {
+              "type": "string",
+              "description": "Root cause identified by the agent"
+            },
+            "changesMade": {
+              "type": "array",
+              "description": "List of changes the agent made",
+              "items": {
+                "type": "string"
+              }
+            },
+            "filesModified": {
+              "type": "array",
+              "description": "Files that were modified by this agent",
+              "items": {
+                "type": "string"
+              }
+            },
+            "completionTime": {
+              "type": "string",
+              "format": "date-time",
+              "description": "When this agent completed its work"
+            }
+          },
+          "required": [
+            "taskId",
+            "domain",
+            "status",
+            "summary",
+            "changesMade",
+            "filesModified"
+          ]
+        }
+      },
+      "integration": {
+        "type": "object",
+        "description": "Results of integrating all parallel agent changes",
+        "properties": {
+          "conflicts": {
+            "type": "array",
+            "description": "Any conflicts found between agent changes",
+            "items": {
+              "type": "object",
+              "properties": {
+                "file": {
+                  "type": "string",
+                  "description": "File with conflicting changes"
+                },
+                "conflictingTasks": {
+                  "type": "array",
+                  "description": "Task IDs that modified the same file",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "resolved": {
+                  "type": "boolean",
+                  "description": "Whether the conflict was resolved"
+                }
+              },
+              "required": [
+                "file",
+                "conflictingTasks",
+                "resolved"
+              ]
+            }
+          },
+          "fullTestSuiteStatus": {
+            "type": "string",
+            "enum": [
+              "passed",
+              "failed",
+              "not_run"
+            ],
+            "description": "Status of full test suite after integration"
+          },
+          "allTasksSuccessful": {
+            "type": "boolean",
+            "description": "Whether all parallel tasks completed successfully"
+          }
+        },
+        "required": [
+          "conflicts",
+          "allTasksSuccessful"
+        ]
+      },
+      "timeSaved": {
+        "type": "object",
+        "description": "Estimation of time saved by parallel execution",
+        "properties": {
+          "estimatedSequentialTime": {
+            "type": "number",
+            "description": "Estimated time if tasks were done sequentially (in minutes)"
+          },
+          "actualParallelTime": {
+            "type": "number",
+            "description": "Actual time taken with parallel execution (in minutes)"
+          },
+          "efficiencyGain": {
+            "type": "number",
+            "description": "Percentage time saved (0-100)",
+            "minimum": 0,
+            "maximum": 100
+          }
+        },
+        "required": [
+          "estimatedSequentialTime",
+          "actualParallelTime",
+          "efficiencyGain"
+        ]
+      }
+    },
+    "required": [
+      "dispatchSummary",
+      "taskResults",
+      "integration",
+      "timeSaved"
+    ]
+  },
+  "temperature": 0,
+  "tags": [
+    "superpowers",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with dispatching parallel agents",
+        "facing 2+ independent tasks that can be worked on without shared state or sequential dependencies"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "security_controls": {
+    "write_operations": {
+      "preview_mode": true,
+      "validation": {
+        "input_schema": true,
+        "business_rules": true,
+        "data_integrity": true
+      },
+      "rollback": {
+        "enabled": true,
+        "window_seconds": 1800
+      },
+      "audit": {
+        "log_before_state": true,
+        "log_after_state": true,
+        "track_user": true
+      }
+    }
+  },
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.92
+  }
+}

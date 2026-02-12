@@ -1,0 +1,108 @@
+{
+  "skill_id": "compliance_audit_preparer",
+  "generated_at": "2026-02-11T22:18:27.691974",
+  "num_cases": 11,
+  "test_cases": [
+    {
+      "inputs": {
+        "action": "report",
+        "framework": "gdpr",
+        "auditor": "Test Name tjq1"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "action": "schedule",
+        "framework": "gdpr",
+        "auditPeriod": "o45dwm1yejlsjry79",
+        "auditDate": "ybhjqkuiz4"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "action": "prepare",
+        "framework": "gdpr",
+        "auditDate": "pytckzd1g291sf9"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "framework": "pci-dss",
+        "auditDate": "vckz285bjoulcyfd87",
+        "auditor": "Test Name x86k"
+      },
+      "label": "missing_action",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": "gap_analysis",
+        "auditDate": "50",
+        "auditor": "Test Name 0oot"
+      },
+      "label": "missing_framework",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": 12345,
+        "framework": "gdpr",
+        "auditPeriod": "n1apo3vt20v9cj9zlm",
+        "auditDate": "d2ltj2ri53ntu6ung",
+        "auditor": "Test Name r0vi"
+      },
+      "label": "invalid_type_action",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": "collect",
+        "framework": 12345,
+        "auditDate": "efa9vk",
+        "auditor": "Test Name n9ha"
+      },
+      "label": "invalid_type_framework",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": "gap_analysis",
+        "framework": "iso27001",
+        "auditPeriod": 12345
+      },
+      "label": "invalid_type_auditPeriod",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": "gap_analysis",
+        "framework": "soc2",
+        "auditDate": 12345,
+        "auditor": "Test Name w8vx"
+      },
+      "label": "invalid_type_auditDate",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": "gap_analysis",
+        "framework": "gdpr",
+        "auditDate": "hxsq",
+        "auditor": 12345
+      },
+      "label": "invalid_type_auditor",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

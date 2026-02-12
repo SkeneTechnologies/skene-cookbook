@@ -1,0 +1,103 @@
+{
+  "skill_id": "mon_discount_optimizer",
+  "generated_at": "2026-02-12T00:05:09.575356",
+  "num_cases": 11,
+  "test_cases": [
+    {
+      "inputs": {
+        "account_id": "ydbcb1",
+        "requested_discount": 364.47,
+        "reason": "competitive"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "account_id": "yqlxuhmljny",
+        "requested_discount": 8079.64,
+        "reason": "budget"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "account_id": "jdiui1g8jlfnq8iro",
+        "requested_discount": 6180.69,
+        "reason": "multi_year"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "requested_discount": 4430.53,
+        "reason": "multi_year"
+      },
+      "label": "missing_account_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "account_id": "z0",
+        "reason": "multi_year",
+        "deal_context": {}
+      },
+      "label": "missing_requested_discount",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "account_id": "t0nxdxa7",
+        "requested_discount": 6382.91,
+        "deal_context": {}
+      },
+      "label": "missing_reason",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "account_id": 12345,
+        "requested_discount": 2446.52,
+        "reason": "expansion",
+        "deal_context": {}
+      },
+      "label": "invalid_type_account_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "account_id": "k4ux08l4ky",
+        "requested_discount": "not_a_number",
+        "reason": "competitive"
+      },
+      "label": "invalid_type_requested_discount",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "account_id": "i590r",
+        "requested_discount": 7405.74,
+        "reason": 12345
+      },
+      "label": "invalid_type_reason",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "account_id": "b00l8kzob70y9cnqk",
+        "requested_discount": 5382.11,
+        "reason": "competitive",
+        "deal_context": "not_an_object"
+      },
+      "label": "invalid_type_deal_context",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

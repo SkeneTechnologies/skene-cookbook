@@ -1,0 +1,175 @@
+name: Security Vulnerability
+description: Report a security vulnerability (private disclosure)
+title: "[Security]: "
+labels: ["security", "triage"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## ⚠️ Security Vulnerability Report
+
+        **IMPORTANT:** If you've discovered a critical security vulnerability, please report it privately:
+
+        1. **Preferred:** Email security@skene.io (if available)
+        2. **Alternative:** Use GitHub's private security advisory feature
+        3. **Last resort:** Use this issue template (will be made private immediately)
+
+        **Please do NOT:**
+        - Publicly disclose the vulnerability before it's fixed
+        - Exploit the vulnerability
+        - Test on production systems
+
+        See our [Security Policy](../SECURITY_POLICY.md) for full guidelines.
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      description: How severe is this vulnerability?
+      options:
+        - Critical - Remote code execution, privilege escalation
+        - High - Authentication bypass, data exposure
+        - Medium - Local privilege escalation, DoS
+        - Low - Information disclosure, minor security issue
+    validations:
+      required: true
+
+  - type: dropdown
+    id: vulnerability-type
+    attributes:
+      label: Vulnerability Type
+      description: What type of vulnerability is this?
+      options:
+        - Code Injection (SQL, Command, etc.)
+        - Path Traversal
+        - Authentication/Authorization
+        - Credential Exposure
+        - Insecure Deserialization
+        - XML External Entity (XXE)
+        - Server-Side Request Forgery (SSRF)
+        - Cross-Site Scripting (XSS)
+        - Denial of Service (DoS)
+        - Insecure Dependencies
+        - Cryptographic Issue
+        - Other (describe below)
+    validations:
+      required: true
+
+  - type: textarea
+    id: affected-component
+    attributes:
+      label: Affected Component
+      description: Which skill, script, or module is affected?
+      placeholder: |
+        - Skill: data-processing/parse-user-input
+        - File: eval_harness/core/executor.py
+        - Version: 0.1.0
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Vulnerability Description
+      description: Detailed description of the vulnerability
+      placeholder: Describe the vulnerability without revealing exploitation details publicly
+    validations:
+      required: true
+
+  - type: textarea
+    id: impact
+    attributes:
+      label: Impact Assessment
+      description: What is the potential impact?
+      placeholder: |
+        - Affected users: All users of skill X
+        - Potential damage: Arbitrary code execution
+        - Prerequisites: Authenticated access required
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to Reproduce (Private Information)
+      description: How to reproduce (will be kept confidential)
+      placeholder: |
+        **DO NOT include actual exploit code in public issues**
+
+        High-level steps:
+        1. Access skill with malicious input
+        2. Trigger vulnerable code path
+        3. Observe unauthorized behavior
+    validations:
+      required: true
+
+  - type: textarea
+    id: mitigation
+    attributes:
+      label: Suggested Mitigation
+      description: Do you have suggestions for fixing this?
+      placeholder: |
+        Potential fixes:
+        - Input validation on parameter X
+        - Use parameterized queries
+        - Implement proper authentication
+    validations:
+      required: false
+
+  - type: dropdown
+    id: disclosure-timeline
+    attributes:
+      label: Disclosure Timeline
+      description: How urgently should this be fixed?
+      options:
+        - Immediate - Already being exploited
+        - 7 days - Critical severity
+        - 30 days - High severity
+        - 90 days - Medium/Low severity
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment Details
+      description: Your testing environment
+      placeholder: |
+        - OS: Ubuntu 22.04
+        - Python version: 3.9.0
+        - skene-cookbook version: 0.1.0
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: responsible-disclosure
+    attributes:
+      label: Responsible Disclosure Agreement
+      description: Please confirm your commitment to responsible disclosure
+      options:
+        - label: I will not publicly disclose this vulnerability until it is fixed
+          required: true
+        - label: I will not exploit this vulnerability maliciously
+          required: true
+        - label: I have not tested this on production systems
+          required: true
+
+  - type: textarea
+    id: contact
+    attributes:
+      label: Contact Information (Optional)
+      description: How can we reach you for follow-up? (email, Discord, etc.)
+      placeholder: |
+        Email: your.email@example.com (preferred for security issues)
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: Any other relevant information
+    validations:
+      required: false

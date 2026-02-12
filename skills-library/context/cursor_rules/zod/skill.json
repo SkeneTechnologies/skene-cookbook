@@ -1,0 +1,36 @@
+{
+  "id": "cursor_rules/zod",
+  "version": "1.0.0",
+  "name": "zod",
+  "description": "This guide outlines definitive best practices for using Zod in TypeScript projects, ensuring robust runtime validation, superior type safety, and maintainable schemas.",
+  "domain": "cursor_rules",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "cursor_rules",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "cursor": {
+      "globs": [
+        "**/*.{ts",
+        "tsx}"
+      ]
+    },
+    "claude": {
+      "triggers": [
+        "help with zod"
+      ]
+    },
+    "skeneflow": {}
+  },
+  "skipSchemaValidation": true
+}

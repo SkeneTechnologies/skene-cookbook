@@ -1,0 +1,589 @@
+{
+  "id": "ai_conversation_intelligence",
+  "version": "1.0.0",
+  "name": "Conversation Intelligence",
+  "description": "Analyzes sales and support conversations for insights, coaching, and deal intelligence.",
+  "domain": "ai_ops",
+  "tools": [
+    {
+      "name": "ai.summarize_conversation",
+      "required": true
+    },
+    {
+      "name": "ai.analyze_sentiment",
+      "required": true
+    },
+    {
+      "name": "ai.detect_intent",
+      "required": false
+    },
+    {
+      "name": "crm.log_activity",
+      "required": true
+    },
+    {
+      "name": "crm.update_deal",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "deal_update",
+    "coaching_alert",
+    "escalation",
+    "idle"
+  ],
+  "metrics": {
+    "primary": "conversation_analysis_accuracy",
+    "benchmarks": {
+      "excellent": "> 90%",
+      "good": "80-90%",
+      "needs_improvement": "< 80%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "ai_ops",
+    "conversation",
+    "intelligence",
+    "coaching",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Conversation Intelligence"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "ai.classify",
+          "required": false
+        },
+        {
+          "name": "ai.generate",
+          "required": false
+        },
+        {
+          "name": "ai.score_lead",
+          "required": false
+        }
+      ]
+    }
+  },
+  "security_controls": {
+    "write_operations": {
+      "preview_mode": true,
+      "validation": {
+        "input_schema": true,
+        "business_rules": true,
+        "data_integrity": true
+      },
+      "rollback": {
+        "enabled": true,
+        "window_seconds": 1800
+      },
+      "audit": {
+        "log_before_state": true,
+        "log_after_state": true,
+        "track_user": true
+      }
+    }
+  },
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "conversation_id": {
+        "type": "string",
+        "description": "Unique identifier for the conversation"
+      },
+      "conversation_type": {
+        "type": "string",
+        "enum": [
+          "sales_call",
+          "support_ticket",
+          "meeting",
+          "demo",
+          "discovery_call"
+        ],
+        "description": "Type of conversation being analyzed"
+      },
+      "transcript": {
+        "type": "string",
+        "description": "Full text transcript of the conversation"
+      },
+      "participants": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Participant name"
+            },
+            "role": {
+              "type": "string",
+              "enum": [
+                "customer",
+                "prospect",
+                "sales_rep",
+                "support_agent",
+                "account_manager",
+                "other"
+              ],
+              "description": "Role of the participant"
+            },
+            "email": {
+              "type": "string",
+              "format": "email",
+              "description": "Email address of participant"
+            }
+          },
+          "required": [
+            "name",
+            "role"
+          ]
+        },
+        "minItems": 1,
+        "description": "List of conversation participants"
+      },
+      "duration_minutes": {
+        "type": "integer",
+        "minimum": 0,
+        "description": "Duration of the conversation in minutes"
+      },
+      "timestamp": {
+        "type": "string",
+        "format": "date-time",
+        "description": "When the conversation occurred"
+      },
+      "crm_contact_id": {
+        "type": "string",
+        "description": "CRM contact ID to associate this conversation with"
+      },
+      "crm_deal_id": {
+        "type": "string",
+        "description": "CRM deal/opportunity ID if associated with a sales deal"
+      },
+      "analysis_options": {
+        "type": "object",
+        "properties": {
+          "include_sentiment": {
+            "type": "boolean",
+            "default": true,
+            "description": "Whether to perform sentiment analysis"
+          },
+          "detect_competitors": {
+            "type": "boolean",
+            "default": true,
+            "description": "Whether to detect competitor mentions"
+          },
+          "generate_coaching": {
+            "type": "boolean",
+            "default": true,
+            "description": "Whether to generate coaching recommendations"
+          },
+          "update_crm": {
+            "type": "boolean",
+            "default": true,
+            "description": "Whether to update CRM with findings"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "required": [
+      "conversation_id",
+      "conversation_type",
+      "transcript",
+      "participants",
+      "timestamp"
+    ],
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "conversation_id": {
+        "type": "string",
+        "description": "Unique identifier for the analyzed conversation"
+      },
+      "conversation_type": {
+        "type": "string",
+        "description": "Type of conversation analyzed"
+      },
+      "duration_minutes": {
+        "type": "integer",
+        "minimum": 0,
+        "description": "Duration of the conversation in minutes"
+      },
+      "participants": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "role": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "name",
+            "role"
+          ]
+        },
+        "description": "List of conversation participants"
+      },
+      "summary": {
+        "type": "string",
+        "description": "2-3 sentence overview of the conversation"
+      },
+      "sentiment": {
+        "type": "object",
+        "properties": {
+          "overall_score": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 100,
+            "description": "Overall sentiment score (0-100)"
+          },
+          "overall_label": {
+            "type": "string",
+            "enum": [
+              "positive",
+              "neutral",
+              "negative"
+            ],
+            "description": "Overall sentiment classification"
+          },
+          "customer_sentiment": {
+            "type": "string",
+            "enum": [
+              "positive",
+              "neutral",
+              "negative"
+            ],
+            "description": "Customer sentiment during conversation"
+          },
+          "rep_sentiment": {
+            "type": "string",
+            "enum": [
+              "positive",
+              "neutral",
+              "negative"
+            ],
+            "description": "Sales/support rep sentiment"
+          },
+          "by_topic": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "topic": {
+                  "type": "string"
+                },
+                "sentiment": {
+                  "type": "string",
+                  "enum": [
+                    "positive",
+                    "neutral",
+                    "negative"
+                  ]
+                }
+              },
+              "required": [
+                "topic",
+                "sentiment"
+              ]
+            },
+            "description": "Sentiment breakdown by topic discussed"
+          }
+        },
+        "required": [
+          "overall_score",
+          "overall_label"
+        ],
+        "description": "Sentiment analysis results"
+      },
+      "key_moments": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "objection",
+                "commitment",
+                "pain_point",
+                "buying_signal",
+                "risk",
+                "concern",
+                "success_story"
+              ],
+              "description": "Type of key moment"
+            },
+            "quote": {
+              "type": "string",
+              "description": "Relevant quote from conversation"
+            },
+            "timestamp_minutes": {
+              "type": "number",
+              "minimum": 0,
+              "description": "When in the conversation this occurred"
+            },
+            "speaker": {
+              "type": "string",
+              "description": "Who said this"
+            }
+          },
+          "required": [
+            "type",
+            "quote"
+          ]
+        },
+        "description": "Critical moments identified in the conversation"
+      },
+      "topics_discussed": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "List of topics covered in the conversation"
+      },
+      "action_items": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "action": {
+              "type": "string",
+              "description": "Description of the action to be taken"
+            },
+            "owner": {
+              "type": "string",
+              "description": "Person responsible for this action"
+            },
+            "due_date": {
+              "type": "string",
+              "format": "date",
+              "description": "Due date for the action if mentioned"
+            },
+            "priority": {
+              "type": "string",
+              "enum": [
+                "high",
+                "medium",
+                "low"
+              ],
+              "description": "Priority level of the action item"
+            }
+          },
+          "required": [
+            "action",
+            "owner"
+          ]
+        },
+        "description": "Next steps and action items identified"
+      },
+      "competitor_mentions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "competitor_name": {
+              "type": "string",
+              "description": "Name of competitor mentioned"
+            },
+            "context": {
+              "type": "string",
+              "description": "Context in which competitor was mentioned"
+            },
+            "sentiment": {
+              "type": "string",
+              "enum": [
+                "positive",
+                "neutral",
+                "negative"
+              ],
+              "description": "How competitor was framed"
+            }
+          },
+          "required": [
+            "competitor_name",
+            "context"
+          ]
+        },
+        "description": "Competitive intelligence gathered"
+      },
+      "coaching_notes": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "category": {
+              "type": "string",
+              "enum": [
+                "questioning",
+                "listening",
+                "objection_handling",
+                "closing",
+                "product_knowledge",
+                "rapport_building",
+                "time_management"
+              ],
+              "description": "Coaching category"
+            },
+            "note": {
+              "type": "string",
+              "description": "Specific coaching recommendation"
+            },
+            "severity": {
+              "type": "string",
+              "enum": [
+                "improvement_opportunity",
+                "strength",
+                "critical"
+              ],
+              "description": "Importance level of this coaching point"
+            }
+          },
+          "required": [
+            "category",
+            "note"
+          ]
+        },
+        "description": "Coaching recommendations for the rep"
+      },
+      "intent_detected": {
+        "type": "object",
+        "properties": {
+          "primary_intent": {
+            "type": "string",
+            "enum": [
+              "buying",
+              "researching",
+              "comparing",
+              "support_seeking",
+              "complaining",
+              "renewing",
+              "churning"
+            ],
+            "description": "Primary intent detected from customer"
+          },
+          "confidence": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1,
+            "description": "Confidence score for intent detection"
+          },
+          "secondary_intents": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Additional intents detected"
+          }
+        },
+        "required": [
+          "primary_intent",
+          "confidence"
+        ],
+        "description": "Customer intent analysis"
+      },
+      "crm_updates": {
+        "type": "object",
+        "properties": {
+          "activity_logged": {
+            "type": "boolean",
+            "description": "Whether activity was logged in CRM"
+          },
+          "activity_id": {
+            "type": "string",
+            "description": "CRM activity ID if logged"
+          },
+          "deal_updated": {
+            "type": "boolean",
+            "description": "Whether associated deal was updated"
+          },
+          "deal_stage_change": {
+            "type": "string",
+            "description": "New deal stage if changed"
+          },
+          "fields_updated": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of CRM fields that were updated"
+          }
+        },
+        "required": [
+          "activity_logged"
+        ],
+        "description": "Summary of CRM updates performed"
+      },
+      "alerts": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "risk",
+                "opportunity",
+                "coaching_urgent",
+                "competitor_threat"
+              ],
+              "description": "Type of alert"
+            },
+            "message": {
+              "type": "string",
+              "description": "Alert message"
+            },
+            "severity": {
+              "type": "string",
+              "enum": [
+                "low",
+                "medium",
+                "high",
+                "critical"
+              ],
+              "description": "Alert severity"
+            }
+          },
+          "required": [
+            "type",
+            "message",
+            "severity"
+          ]
+        },
+        "description": "Alerts or escalations generated from analysis"
+      },
+      "analysis_timestamp": {
+        "type": "string",
+        "format": "date-time",
+        "description": "When this analysis was performed"
+      }
+    },
+    "required": [
+      "conversation_id",
+      "conversation_type",
+      "summary",
+      "sentiment",
+      "key_moments",
+      "topics_discussed",
+      "action_items",
+      "crm_updates",
+      "analysis_timestamp"
+    ]
+  },
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.92
+  }
+}

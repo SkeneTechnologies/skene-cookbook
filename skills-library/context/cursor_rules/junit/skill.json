@@ -1,0 +1,35 @@
+{
+  "id": "cursor_rules/junit",
+  "version": "1.0.0",
+  "name": "junit",
+  "description": "This guide provides definitive, opinionated best practices for writing high-quality, maintainable, and effective unit tests using JUnit 5 (Jupiter) in Java projects.",
+  "domain": "cursor_rules",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "cursor_rules",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "cursor": {
+      "globs": [
+        "**/*.java"
+      ]
+    },
+    "claude": {
+      "triggers": [
+        "help with junit"
+      ]
+    },
+    "skeneflow": {}
+  },
+  "skipSchemaValidation": true
+}

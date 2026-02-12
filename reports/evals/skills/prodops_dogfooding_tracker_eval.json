@@ -1,0 +1,78 @@
+{
+  "skill_id": "prodops_dogfooding_tracker",
+  "session_id": "batch_eval",
+  "summary": {
+    "skill_id": "prodops_dogfooding_tracker",
+    "total_executions": 4,
+    "success_rate": 1.0,
+    "validation_pass_rate": 1.0,
+    "auto_act_rate": 0.5,
+    "latency": {
+      "avg_ms": 30.57,
+      "p50_ms": 0.15,
+      "p95_ms": 121.88,
+      "p99_ms": 121.88,
+      "max_ms": 121.88,
+      "min_ms": 0.13
+    },
+    "decisions": {
+      "auto_act": 2,
+      "flag_for_review": 2
+    },
+    "errors": {}
+  },
+  "records": [
+    {
+      "timestamp": 1770847502.334827,
+      "duration_ms": 121.87576293945312,
+      "success": true,
+      "validation_passed": true,
+      "decision_type": "auto_act",
+      "error_type": null,
+      "metadata": {
+        "confidence": 0.95,
+        "risk_level": "Medium",
+        "trace_id": "9ed3812cbc7a47d7"
+      }
+    },
+    {
+      "timestamp": 1770847502.334968,
+      "duration_ms": 0.12993812561035156,
+      "success": true,
+      "validation_passed": true,
+      "decision_type": "flag_for_review",
+      "error_type": null,
+      "metadata": {
+        "confidence": 0.67,
+        "risk_level": "Medium",
+        "trace_id": "9ed3812cbc7a47d7"
+      }
+    },
+    {
+      "timestamp": 1770847502.335125,
+      "duration_ms": 0.14901161193847656,
+      "success": true,
+      "validation_passed": true,
+      "decision_type": "auto_act",
+      "error_type": null,
+      "metadata": {
+        "confidence": 0.95,
+        "risk_level": "Medium",
+        "trace_id": "9ed3812cbc7a47d7"
+      }
+    },
+    {
+      "timestamp": 1770847502.3354728,
+      "duration_ms": 0.1361370086669922,
+      "success": true,
+      "validation_passed": true,
+      "decision_type": "flag_for_review",
+      "error_type": null,
+      "metadata": {
+        "confidence": 0.67,
+        "risk_level": "Medium",
+        "trace_id": "9ed3812cbc7a47d7"
+      }
+    }
+  ]
+}

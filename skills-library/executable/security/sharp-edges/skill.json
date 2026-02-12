@@ -1,0 +1,442 @@
+{
+  "id": "security/sharp-edges",
+  "version": "1.0.0",
+  "name": "sharp-edges",
+  "description": "\"Identifies error-prone APIs, dangerous configurations, and footgun designs that enable security mistakes. Use when reviewing API designs, configuration schemas, cryptographic library ergonomics, or evaluating whether code follows 'secure by default' and 'pit of success' principles. Triggers: footgun, misuse-resistant, secure defaults, API usability, dangerous configuration.\"",
+  "domain": "security",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "target": {
+        "type": "object",
+        "description": "The code/API/configuration to analyze for sharp edges",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "api",
+              "configuration",
+              "library",
+              "cryptographic_api",
+              "authentication_interface",
+              "authorization_interface",
+              "generic"
+            ],
+            "description": "Type of security-relevant interface being analyzed"
+          },
+          "paths": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "File paths or glob patterns to analyze"
+          },
+          "language": {
+            "type": "string",
+            "enum": [
+              "c",
+              "cpp",
+              "go",
+              "rust",
+              "swift",
+              "java",
+              "kotlin",
+              "csharp",
+              "php",
+              "javascript",
+              "typescript",
+              "python",
+              "ruby",
+              "other"
+            ],
+            "description": "Programming language of the target code"
+          },
+          "entry_points": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Specific functions, classes, or config files to focus on"
+          }
+        },
+        "required": [
+          "type",
+          "paths"
+        ]
+      },
+      "focus_areas": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": [
+            "algorithm_selection",
+            "dangerous_defaults",
+            "primitive_apis",
+            "configuration_validation",
+            "silent_failures",
+            "stringly_typed_security",
+            "type_confusion",
+            "error_handling"
+          ]
+        },
+        "description": "Specific sharp edge categories to prioritize (if empty, analyze all)"
+      },
+      "adversary_models": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": [
+            "scoundrel",
+            "lazy_developer",
+            "confused_developer"
+          ]
+        },
+        "default": [
+          "scoundrel",
+          "lazy_developer",
+          "confused_developer"
+        ],
+        "description": "Which adversary types to consider during threat modeling"
+      },
+      "severity_threshold": {
+        "type": "string",
+        "enum": [
+          "critical",
+          "high",
+          "medium",
+          "low"
+        ],
+        "default": "low",
+        "description": "Minimum severity level to report (inclusive)"
+      },
+      "include_examples": {
+        "type": "boolean",
+        "default": true,
+        "description": "Include code examples demonstrating each sharp edge"
+      },
+      "check_documentation": {
+        "type": "boolean",
+        "default": true,
+        "description": "Check if dangers are documented (affects severity assessment)"
+      }
+    },
+    "required": [
+      "target"
+    ],
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "summary": {
+        "type": "object",
+        "description": "High-level summary of findings",
+        "properties": {
+          "total_sharp_edges": {
+            "type": "integer",
+            "description": "Total number of sharp edges identified"
+          },
+          "by_severity": {
+            "type": "object",
+            "properties": {
+              "critical": {
+                "type": "integer"
+              },
+              "high": {
+                "type": "integer"
+              },
+              "medium": {
+                "type": "integer"
+              },
+              "low": {
+                "type": "integer"
+              }
+            }
+          },
+          "by_category": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "description": "Count of findings per sharp edge category"
+          },
+          "overall_assessment": {
+            "type": "string",
+            "enum": [
+              "secure_by_default",
+              "needs_improvement",
+              "dangerous",
+              "critical_issues"
+            ],
+            "description": "Overall security ergonomics rating"
+          }
+        },
+        "required": [
+          "total_sharp_edges",
+          "by_severity",
+          "by_category",
+          "overall_assessment"
+        ]
+      },
+      "findings": {
+        "type": "array",
+        "description": "Detailed list of identified sharp edges",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "Unique identifier for this finding"
+            },
+            "severity": {
+              "type": "string",
+              "enum": [
+                "critical",
+                "high",
+                "medium",
+                "low"
+              ]
+            },
+            "category": {
+              "type": "string",
+              "enum": [
+                "algorithm_selection",
+                "dangerous_defaults",
+                "primitive_apis",
+                "configuration_cliffs",
+                "silent_failures",
+                "stringly_typed_security"
+              ]
+            },
+            "title": {
+              "type": "string",
+              "description": "Brief title of the sharp edge"
+            },
+            "description": {
+              "type": "string",
+              "description": "Detailed explanation of the footgun"
+            },
+            "location": {
+              "type": "object",
+              "properties": {
+                "file": {
+                  "type": "string"
+                },
+                "line": {
+                  "type": "integer"
+                },
+                "function": {
+                  "type": "string"
+                },
+                "context": {
+                  "type": "string",
+                  "description": "Surrounding code context"
+                }
+              },
+              "required": [
+                "file"
+              ]
+            },
+            "vulnerability_type": {
+              "type": "string",
+              "description": "Type of vulnerability this enables (e.g., 'authentication_bypass', 'weak_crypto')"
+            },
+            "misuse_example": {
+              "type": "string",
+              "description": "Code example demonstrating the footgun"
+            },
+            "exploit_scenario": {
+              "type": "string",
+              "description": "How an attacker or confused developer could trigger this"
+            },
+            "affected_adversaries": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "scoundrel",
+                  "lazy_developer",
+                  "confused_developer"
+                ]
+              },
+              "description": "Which adversary models can exploit this"
+            },
+            "is_documented": {
+              "type": "boolean",
+              "description": "Whether the danger is mentioned in documentation"
+            },
+            "edge_cases_tested": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Edge cases probed (e.g., 'zero', 'null', 'empty_string', 'negative')"
+            },
+            "remediation": {
+              "type": "object",
+              "properties": {
+                "recommendation": {
+                  "type": "string",
+                  "description": "How to fix this sharp edge"
+                },
+                "secure_alternative": {
+                  "type": "string",
+                  "description": "Example of secure implementation"
+                },
+                "effort": {
+                  "type": "string",
+                  "enum": [
+                    "trivial",
+                    "low",
+                    "medium",
+                    "high",
+                    "redesign_required"
+                  ]
+                }
+              },
+              "required": [
+                "recommendation"
+              ]
+            }
+          },
+          "required": [
+            "id",
+            "severity",
+            "category",
+            "title",
+            "description",
+            "location",
+            "remediation"
+          ]
+        }
+      },
+      "pit_of_success_analysis": {
+        "type": "object",
+        "description": "Assessment of whether secure usage is the path of least resistance",
+        "properties": {
+          "default_is_secure": {
+            "type": "boolean",
+            "description": "Are default values/behaviors secure?"
+          },
+          "easy_path_is_secure": {
+            "type": "boolean",
+            "description": "Does the simplest code example lead to security?"
+          },
+          "type_safety_enforces_correctness": {
+            "type": "boolean",
+            "description": "Do types prevent misuse?"
+          },
+          "errors_guide_to_security": {
+            "type": "boolean",
+            "description": "Do error messages help developers use APIs securely?"
+          },
+          "observations": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Specific observations about API ergonomics"
+          }
+        },
+        "required": [
+          "default_is_secure",
+          "easy_path_is_secure",
+          "type_safety_enforces_correctness"
+        ]
+      },
+      "quality_checklist": {
+        "type": "object",
+        "description": "Verification that all analysis steps were completed",
+        "properties": {
+          "edge_cases_probed": {
+            "type": "boolean"
+          },
+          "defaults_verified": {
+            "type": "boolean"
+          },
+          "algorithm_selection_checked": {
+            "type": "boolean"
+          },
+          "type_confusion_tested": {
+            "type": "boolean"
+          },
+          "adversaries_considered": {
+            "type": "boolean"
+          },
+          "error_paths_verified": {
+            "type": "boolean"
+          },
+          "configuration_validated": {
+            "type": "boolean"
+          },
+          "constructor_params_validated": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "edge_cases_probed",
+          "defaults_verified",
+          "algorithm_selection_checked",
+          "type_confusion_tested",
+          "adversaries_considered",
+          "error_paths_verified",
+          "configuration_validated",
+          "constructor_params_validated"
+        ]
+      },
+      "references_consulted": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "List of reference documents consulted (e.g., 'crypto-apis.md', 'lang-python.md')"
+      }
+    },
+    "required": [
+      "summary",
+      "findings",
+      "pit_of_success_analysis",
+      "quality_checklist"
+    ]
+  },
+  "temperature": 0,
+  "tags": [
+    "security",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with sharp edges",
+        "security audit",
+        "code security",
+        "secure coding",
+        "reviewing api designs, configuration schemas, cryptographic library ergonomics, or evaluating whether code follows 'secure by default' and 'pit of success' principles"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "security_controls": {
+    "authentication": {
+      "method": "oauth",
+      "provider": "managed_identity",
+      "scopes": [
+        "read:data",
+        "write:data"
+      ],
+      "token_lifetime": 3600
+    }
+  },
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.92
+  }
+}

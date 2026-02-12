@@ -1,0 +1,39 @@
+{
+  "id": "scientific/medchem",
+  "version": "1.0.0",
+  "name": "medchem",
+  "description": "Medicinal chemistry filters. Apply drug-likeness rules (Lipinski, Veber), PAINS filters, structural alerts, complexity metrics, for compound prioritization and library filtering.",
+  "domain": "scientific",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "scientific",
+    "imported",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "license": "Apache-2.0 license",
+      "triggers": [
+        "help with medchem"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "security_controls": {
+    "review_note": {
+      "flagged_as": "false_positive",
+      "requires_manual_review": true,
+      "review_date": "2026-02-05T14:36:53.805282"
+    }
+  },
+  "skipSchemaValidation": true
+}

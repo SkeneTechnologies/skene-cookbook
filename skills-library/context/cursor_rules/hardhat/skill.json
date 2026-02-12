@@ -1,0 +1,36 @@
+{
+  "id": "cursor_rules/hardhat",
+  "version": "1.0.0",
+  "name": "hardhat",
+  "description": "Ensure Hardhat projects follow modern best practices for configuration, testing, deployment, and security using TypeScript and Hardhat 3's Rust runtime.",
+  "domain": "cursor_rules",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "cursor_rules",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "cursor": {
+      "globs": [
+        "**/*.{js",
+        "jsx}"
+      ]
+    },
+    "claude": {
+      "triggers": [
+        "help with hardhat"
+      ]
+    },
+    "skeneflow": {}
+  },
+  "skipSchemaValidation": true
+}

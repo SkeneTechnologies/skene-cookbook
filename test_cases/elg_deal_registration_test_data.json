@@ -1,0 +1,78 @@
+{
+  "skill_id": "elg_deal_registration",
+  "generated_at": "2026-02-12T00:04:59.938704",
+  "num_cases": 9,
+  "test_cases": [
+    {
+      "inputs": {
+        "partnerId": "d",
+        "action": "reject",
+        "registrationData": {}
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "partnerId": "z2lw8ntutqw",
+        "action": "approve"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "partnerId": "f9ebiglfgl",
+        "action": "extend"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "action": "submit"
+      },
+      "label": "missing_partnerId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "partnerId": "ox9jube0gs82zmtus"
+      },
+      "label": "missing_action",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "partnerId": 12345,
+        "action": "submit",
+        "registrationData": {}
+      },
+      "label": "invalid_type_partnerId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "partnerId": "g2pme93rmg58kbs",
+        "action": 12345,
+        "registrationData": {}
+      },
+      "label": "invalid_type_action",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "partnerId": "gv9n2vp7ssg0xz40",
+        "action": "approve",
+        "registrationData": "not_an_object"
+      },
+      "label": "invalid_type_registrationData",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

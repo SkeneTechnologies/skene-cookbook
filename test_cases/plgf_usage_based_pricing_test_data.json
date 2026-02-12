@@ -1,0 +1,77 @@
+{
+  "skill_id": "plgf_usage_based_pricing",
+  "generated_at": "2026-02-11T22:14:34.772810",
+  "num_cases": 9,
+  "test_cases": [
+    {
+      "inputs": {
+        "accountId": "qv4hzbr7x87nenobdm8",
+        "analysisType": "pricing_optimization",
+        "currentModel": "flat_rate"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "accountId": "ij",
+        "currentModel": "flat_rate",
+        "usageMetric": "8ljjk7bdqgrl52rxu8n"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "accountId": "skqdaxdya"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "currentModel": "tiered"
+      },
+      "label": "missing_accountId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": 12345,
+        "currentModel": "tiered"
+      },
+      "label": "invalid_type_accountId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": "n950bxf1yka2knmff",
+        "analysisType": 12345
+      },
+      "label": "invalid_type_analysisType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": "kih3ka6wr",
+        "analysisType": "model_design",
+        "currentModel": 12345
+      },
+      "label": "invalid_type_currentModel",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": "an64fvbg2mv0h8urrows",
+        "usageMetric": 12345
+      },
+      "label": "invalid_type_usageMetric",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

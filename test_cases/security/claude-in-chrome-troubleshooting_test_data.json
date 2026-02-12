@@ -1,0 +1,22 @@
+{
+  "skill_id": "security/claude-in-chrome-troubleshooting",
+  "generated_at": "2026-02-11T22:18:34.383300",
+  "num_cases": 3,
+  "test_cases": [
+    {
+      "inputs": {},
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {},
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {},
+      "label": "valid_case_3",
+      "expected_valid": true
+    }
+  ]
+}

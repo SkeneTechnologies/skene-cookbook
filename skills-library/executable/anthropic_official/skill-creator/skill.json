@@ -1,0 +1,447 @@
+{
+  "id": "anthropic_official/skill-creator",
+  "version": "1.0.0",
+  "name": "skill-creator",
+  "description": "Guide for creating effective skills. This skill should be used when users want to create a new skill (or update an existing skill) that extends Claude's capabilities with specialized knowledge, workflows, or tool integrations.",
+  "domain": "anthropic_official",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "intent": {
+        "type": "string",
+        "enum": [
+          "create",
+          "update",
+          "validate",
+          "package",
+          "learn"
+        ],
+        "description": "The primary intent: create a new skill, update existing skill, validate skill structure, package for distribution, or learn about skill creation"
+      },
+      "skillName": {
+        "type": "string",
+        "pattern": "^[a-z0-9-]+$",
+        "description": "The skill identifier in kebab-case format (e.g., 'pdf-editor', 'bigquery-analyst')"
+      },
+      "skillDescription": {
+        "type": "string",
+        "minLength": 50,
+        "description": "Comprehensive description of what the skill does and when it should be used, including specific triggers and contexts"
+      },
+      "concreteExamples": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "userQuery": {
+              "type": "string",
+              "description": "Example user query that should trigger this skill"
+            },
+            "expectedBehavior": {
+              "type": "string",
+              "description": "What the skill should do in response to this query"
+            }
+          },
+          "required": [
+            "userQuery",
+            "expectedBehavior"
+          ]
+        },
+        "description": "Concrete examples of how the skill will be used to understand usage patterns"
+      },
+      "existingSkillPath": {
+        "type": "string",
+        "format": "uri-reference",
+        "description": "Path to existing skill directory if updating or packaging an existing skill"
+      },
+      "resourcePlanning": {
+        "type": "object",
+        "properties": {
+          "scripts": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "filename": {
+                  "type": "string",
+                  "description": "Script filename (e.g., 'rotate_pdf.py')"
+                },
+                "purpose": {
+                  "type": "string",
+                  "description": "What this script accomplishes"
+                },
+                "language": {
+                  "type": "string",
+                  "enum": [
+                    "python",
+                    "bash",
+                    "javascript",
+                    "typescript"
+                  ],
+                  "description": "Programming language for the script"
+                }
+              },
+              "required": [
+                "filename",
+                "purpose"
+              ]
+            },
+            "description": "Planned executable scripts for deterministic operations"
+          },
+          "references": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "filename": {
+                  "type": "string",
+                  "description": "Reference document filename (e.g., 'schema.md', 'api_docs.md')"
+                },
+                "content": {
+                  "type": "string",
+                  "description": "Documentation content, schemas, or reference material"
+                }
+              },
+              "required": [
+                "filename",
+                "content"
+              ]
+            },
+            "description": "Planned reference documentation to be loaded as needed"
+          },
+          "assets": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "filename": {
+                  "type": "string",
+                  "description": "Asset filename or directory path"
+                },
+                "purpose": {
+                  "type": "string",
+                  "description": "How this asset will be used in output"
+                }
+              },
+              "required": [
+                "filename",
+                "purpose"
+              ]
+            },
+            "description": "Planned assets to be used in final output (templates, images, boilerplate)"
+          }
+        },
+        "description": "Planned reusable resources to include in the skill"
+      },
+      "outputDirectory": {
+        "type": "string",
+        "format": "uri-reference",
+        "description": "Target directory for skill initialization or packaging output"
+      },
+      "iterationFeedback": {
+        "type": "object",
+        "properties": {
+          "usageObservations": {
+            "type": "string",
+            "description": "Observations from using the skill on real tasks"
+          },
+          "struggles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Identified inefficiencies or struggles during skill usage"
+          },
+          "proposedChanges": {
+            "type": "string",
+            "description": "Suggested improvements to SKILL.md or bundled resources"
+          }
+        },
+        "description": "Feedback for iterating on an existing skill"
+      }
+    },
+    "required": [
+      "intent"
+    ],
+    "additionalProperties": false,
+    "allOf": [
+      {
+        "if": {
+          "properties": {
+            "intent": {
+              "enum": [
+                "create"
+              ]
+            }
+          }
+        },
+        "then": {
+          "required": [
+            "skillName",
+            "skillDescription"
+          ]
+        }
+      },
+      {
+        "if": {
+          "properties": {
+            "intent": {
+              "enum": [
+                "update",
+                "validate",
+                "package"
+              ]
+            }
+          }
+        },
+        "then": {
+          "required": [
+            "existingSkillPath"
+          ]
+        }
+      }
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "string",
+        "enum": [
+          "success",
+          "validation_error",
+          "needs_input",
+          "in_progress"
+        ],
+        "description": "Overall status of the skill creation/modification operation"
+      },
+      "skillPath": {
+        "type": "string",
+        "format": "uri-reference",
+        "description": "Path to the skill directory that was created or modified"
+      },
+      "packagePath": {
+        "type": "string",
+        "format": "uri-reference",
+        "description": "Path to the generated .skill package file (if packaged)"
+      },
+      "validationResults": {
+        "type": "object",
+        "properties": {
+          "isValid": {
+            "type": "boolean",
+            "description": "Whether the skill passes all validation checks"
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "category": {
+                  "type": "string",
+                  "enum": [
+                    "frontmatter",
+                    "naming",
+                    "structure",
+                    "description",
+                    "references"
+                  ],
+                  "description": "Category of validation error"
+                },
+                "message": {
+                  "type": "string",
+                  "description": "Detailed error message"
+                },
+                "location": {
+                  "type": "string",
+                  "description": "File or section where error occurred"
+                }
+              },
+              "required": [
+                "category",
+                "message"
+              ]
+            },
+            "description": "List of validation errors found"
+          },
+          "warnings": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Non-critical warnings about skill structure or content"
+          }
+        },
+        "required": [
+          "isValid"
+        ],
+        "description": "Results from skill validation checks"
+      },
+      "skillMetadata": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The skill's name from YAML frontmatter"
+          },
+          "description": {
+            "type": "string",
+            "description": "The skill's description from YAML frontmatter"
+          },
+          "resourceCounts": {
+            "type": "object",
+            "properties": {
+              "scripts": {
+                "type": "integer",
+                "minimum": 0,
+                "description": "Number of scripts included"
+              },
+              "references": {
+                "type": "integer",
+                "minimum": 0,
+                "description": "Number of reference documents included"
+              },
+              "assets": {
+                "type": "integer",
+                "minimum": 0,
+                "description": "Number of assets included"
+              }
+            },
+            "description": "Count of bundled resources by type"
+          },
+          "estimatedTokens": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Estimated token count for SKILL.md body (should be under 5000 words)"
+          }
+        },
+        "description": "Metadata about the created or modified skill"
+      },
+      "nextSteps": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "step": {
+              "type": "string",
+              "enum": [
+                "understand_examples",
+                "plan_resources",
+                "initialize",
+                "edit",
+                "package",
+                "iterate"
+              ],
+              "description": "Which step in the skill creation process"
+            },
+            "action": {
+              "type": "string",
+              "description": "Specific action to take for this step"
+            },
+            "completed": {
+              "type": "boolean",
+              "description": "Whether this step has been completed"
+            }
+          },
+          "required": [
+            "step",
+            "action",
+            "completed"
+          ]
+        },
+        "description": "Guidance on next steps in the skill creation process"
+      },
+      "commandsExecuted": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "command": {
+              "type": "string",
+              "description": "Command that was executed (e.g., 'init_skill.py', 'package_skill.py')"
+            },
+            "exitCode": {
+              "type": "integer",
+              "description": "Exit code from command execution"
+            },
+            "output": {
+              "type": "string",
+              "description": "Output from command execution"
+            }
+          },
+          "required": [
+            "command",
+            "exitCode"
+          ]
+        },
+        "description": "Scripts executed during the operation"
+      },
+      "recommendations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Recommendations for improving the skill based on best practices"
+      },
+      "questionsForUser": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Questions to ask the user for clarification or additional information"
+      }
+    },
+    "required": [
+      "status",
+      "nextSteps"
+    ],
+    "additionalProperties": true
+  },
+  "temperature": 0,
+  "tags": [
+    "anthropic_official",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "license": "Complete terms in LICENSE.txt",
+      "triggers": [
+        "help with skill creator"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "categories": [
+    "marketing",
+    "marketing/tools"
+  ],
+  "security_controls": {
+    "payment_controls": {
+      "preview_mode": true,
+      "per_transaction_approval": true,
+      "amount_limits": {
+        "max_per_transaction": 50000,
+        "daily_limit": 200000,
+        "additional_approval_threshold": 25000
+      },
+      "rollback": {
+        "enabled": true,
+        "window_seconds": 3600
+      },
+      "two_phase_commit": true,
+      "audit_logging": "detailed"
+    }
+  },
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.92
+  }
+}

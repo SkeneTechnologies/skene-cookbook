@@ -1,0 +1,67 @@
+{
+  "skill_id": "mon_commitment_tracker",
+  "generated_at": "2026-02-12T00:05:09.664372",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "account_id": "yxxuptx6a4hppp",
+        "commitment_id": "ot",
+        "include_forecast": true
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "account_id": "9gu4u2aw9a",
+        "commitment_id": "higgyekhzabxrhu",
+        "include_forecast": false
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "account_id": "6",
+        "commitment_id": "4gzd531ib",
+        "include_forecast": false
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {},
+      "label": "missing_account_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "account_id": 12345
+      },
+      "label": "invalid_type_account_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "account_id": "srdm",
+        "commitment_id": 12345
+      },
+      "label": "invalid_type_commitment_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "account_id": "txyxzx44ou3gfvn8b9",
+        "include_forecast": "yes"
+      },
+      "label": "invalid_type_include_forecast",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

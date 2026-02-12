@@ -1,0 +1,81 @@
+{
+  "skill_id": "support_first_response",
+  "generated_at": "2026-02-12T00:05:04.372435",
+  "num_cases": 9,
+  "test_cases": [
+    {
+      "inputs": {
+        "ticket_id": "nbm",
+        "response_type": "handoff",
+        "tone": "technical",
+        "include_kb_links": true
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "ticket_id": "gsbq7kyr92c6pg",
+        "tone": "empathetic",
+        "include_kb_links": false
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "ticket_id": "16qbhnrb6",
+        "response_type": "acknowledgment"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "include_kb_links": true
+      },
+      "label": "missing_ticket_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "ticket_id": 12345,
+        "response_type": "acknowledgment"
+      },
+      "label": "invalid_type_ticket_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "ticket_id": "c62c",
+        "response_type": 12345,
+        "tone": "friendly"
+      },
+      "label": "invalid_type_response_type",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "ticket_id": "1xwp7c82d4dddod1x",
+        "response_type": "solution",
+        "tone": 12345
+      },
+      "label": "invalid_type_tone",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "ticket_id": "34s7ye6jkem79t",
+        "response_type": "acknowledgment",
+        "include_kb_links": "yes"
+      },
+      "label": "invalid_type_include_kb_links",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

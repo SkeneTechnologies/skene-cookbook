@@ -1,0 +1,90 @@
+{
+  "skill_id": "revops_win_loss_analyzer",
+  "generated_at": "2026-02-12T00:05:07.040891",
+  "num_cases": 10,
+  "test_cases": [
+    {
+      "inputs": {
+        "period": "z3833tl2v644urlkovs",
+        "segment": "dwc",
+        "outcome": "both",
+        "competitor": "v4m4nv6chxsits",
+        "minDealSize": 2739.8
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "period": "1330hzr8shj61h9am"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "period": "ffugbadpn7",
+        "segment": "icv4kg1"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "outcome": "won",
+        "competitor": "f3dh47bh0xsohh"
+      },
+      "label": "missing_period",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": 12345,
+        "outcome": "lost"
+      },
+      "label": "invalid_type_period",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": "egr1dzj5",
+        "outcome": "won",
+        "segment": 12345
+      },
+      "label": "invalid_type_segment",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": "svgv5qqq06xbesd",
+        "outcome": 12345
+      },
+      "label": "invalid_type_outcome",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": "w8",
+        "outcome": "won",
+        "minDealSize": 7479.58,
+        "competitor": 12345
+      },
+      "label": "invalid_type_competitor",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": "zkrgrbc4",
+        "competitor": "w3eexv3nw",
+        "minDealSize": "not_a_number"
+      },
+      "label": "invalid_type_minDealSize",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

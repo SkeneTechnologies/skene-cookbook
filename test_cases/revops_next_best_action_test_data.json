@@ -1,0 +1,68 @@
+{
+  "skill_id": "revops_next_best_action",
+  "generated_at": "2026-02-12T00:05:07.270294",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "dealId": "s7x6q9j60xi3svrkyzv"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "dealId": "6ml333b9awr2",
+        "urgency": "this_week"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "dealId": "6agu",
+        "actionType": "meeting"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "urgency": "this_week"
+      },
+      "label": "missing_dealId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "dealId": 12345,
+        "actionType": "any"
+      },
+      "label": "invalid_type_dealId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "dealId": "hzz94j0n",
+        "urgency": "today",
+        "actionType": 12345
+      },
+      "label": "invalid_type_actionType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "dealId": "af0",
+        "actionType": "content",
+        "urgency": 12345
+      },
+      "label": "invalid_type_urgency",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

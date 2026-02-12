@@ -1,0 +1,512 @@
+{
+  "id": "prodops_feedback_synthesis",
+  "version": "1.0.0",
+  "name": "Feedback Synthesis",
+  "description": "Aggregates and synthesizes customer feedback into actionable product insights.",
+  "domain": "product_ops",
+  "tools": [
+    {
+      "name": "feedback.list",
+      "required": true
+    },
+    {
+      "name": "feedback.aggregate",
+      "required": true
+    },
+    {
+      "name": "feedback.sentiment",
+      "required": true
+    },
+    {
+      "name": "ai.analyze_sentiment",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "roadmap_alignment",
+    "feature_request_prioritization",
+    "product_review",
+    "idle"
+  ],
+  "metrics": {
+    "primary": "feedback_to_action_rate",
+    "benchmarks": {
+      "excellent": "> 40%",
+      "good": "25-40%",
+      "needs_improvement": "< 25%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "product_ops",
+    "feedback",
+    "synthesis",
+    "insights",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Feedback Synthesis"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "period": {
+        "type": "object",
+        "properties": {
+          "start_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Start date for feedback collection period"
+          },
+          "end_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "End date for feedback collection period"
+          }
+        },
+        "required": [
+          "start_date",
+          "end_date"
+        ],
+        "description": "Time period for feedback analysis"
+      },
+      "sources": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": [
+            "in_app",
+            "support_tickets",
+            "nps_surveys",
+            "user_interviews",
+            "reviews"
+          ]
+        },
+        "description": "Feedback sources to include in synthesis",
+        "minItems": 1
+      },
+      "segments": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "User segments to analyze (e.g., enterprise, smb, free_tier)",
+        "default": []
+      },
+      "filters": {
+        "type": "object",
+        "properties": {
+          "min_sentiment_score": {
+            "type": "number",
+            "minimum": -100,
+            "maximum": 100,
+            "description": "Minimum sentiment score threshold"
+          },
+          "product_areas": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Specific product areas or features to focus on"
+          },
+          "exclude_tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Tags to exclude from analysis"
+          }
+        },
+        "additionalProperties": false
+      },
+      "analysis_depth": {
+        "type": "string",
+        "enum": [
+          "summary",
+          "standard",
+          "detailed"
+        ],
+        "description": "Level of analysis detail required",
+        "default": "standard"
+      },
+      "prioritization_weights": {
+        "type": "object",
+        "properties": {
+          "urgency": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1,
+            "default": 0.33
+          },
+          "impact": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1,
+            "default": 0.33
+          },
+          "frequency": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1,
+            "default": 0.34
+          }
+        },
+        "description": "Weights for prioritization formula (should sum to ~1.0)",
+        "additionalProperties": false
+      }
+    },
+    "required": [
+      "period",
+      "sources"
+    ],
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "report_metadata": {
+        "type": "object",
+        "properties": {
+          "period_start": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "period_end": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "total_feedback_items": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "generated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "period_start",
+          "period_end",
+          "total_feedback_items",
+          "generated_at"
+        ]
+      },
+      "sentiment_overview": {
+        "type": "object",
+        "properties": {
+          "overall_score": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100,
+            "description": "Overall sentiment score out of 100"
+          },
+          "trend": {
+            "type": "string",
+            "enum": [
+              "improving",
+              "stable",
+              "declining"
+            ],
+            "description": "Sentiment trend compared to previous period"
+          },
+          "trend_delta": {
+            "type": "number",
+            "description": "Change in sentiment score vs previous period"
+          },
+          "distribution": {
+            "type": "object",
+            "properties": {
+              "positive_percent": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 100
+              },
+              "neutral_percent": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 100
+              },
+              "negative_percent": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 100
+              }
+            },
+            "required": [
+              "positive_percent",
+              "neutral_percent",
+              "negative_percent"
+            ]
+          }
+        },
+        "required": [
+          "overall_score",
+          "trend",
+          "distribution"
+        ]
+      },
+      "top_themes": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "theme_name": {
+              "type": "string",
+              "description": "Name of the feedback theme"
+            },
+            "mention_count": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "sentiment_score": {
+              "type": "number",
+              "minimum": -100,
+              "maximum": 100
+            },
+            "sentiment_label": {
+              "type": "string",
+              "enum": [
+                "positive",
+                "neutral",
+                "negative"
+              ]
+            },
+            "key_quotes": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Representative customer quotes"
+            },
+            "recommendation": {
+              "type": "string",
+              "description": "Actionable recommendation based on theme"
+            },
+            "priority_score": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100,
+              "description": "Calculated priority score (urgency \u00d7 impact \u00d7 frequency)"
+            },
+            "related_features": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "theme_name",
+            "mention_count",
+            "sentiment_score",
+            "sentiment_label",
+            "recommendation",
+            "priority_score"
+          ]
+        },
+        "description": "Top themes identified from feedback"
+      },
+      "segment_analysis": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "segment_name": {
+              "type": "string"
+            },
+            "feedback_volume": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "sentiment_score": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100
+            },
+            "top_issue": {
+              "type": "string"
+            },
+            "unique_concerns": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Issues unique to this segment"
+            }
+          },
+          "required": [
+            "segment_name",
+            "feedback_volume",
+            "sentiment_score",
+            "top_issue"
+          ]
+        }
+      },
+      "actionable_insights": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "insight": {
+              "type": "string",
+              "description": "Clear, actionable insight statement"
+            },
+            "supporting_data": {
+              "type": "object",
+              "properties": {
+                "mention_count": {
+                  "type": "integer"
+                },
+                "affected_users": {
+                  "type": "integer"
+                },
+                "revenue_impact": {
+                  "type": "string"
+                },
+                "correlation_metrics": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "confidence_level": {
+              "type": "string",
+              "enum": [
+                "high",
+                "medium",
+                "low"
+              ]
+            }
+          },
+          "required": [
+            "insight",
+            "supporting_data",
+            "confidence_level"
+          ]
+        }
+      },
+      "recommended_actions": {
+        "type": "object",
+        "properties": {
+          "p0_urgent": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "action": {
+                  "type": "string"
+                },
+                "rationale": {
+                  "type": "string"
+                },
+                "estimated_impact": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "action",
+                "rationale"
+              ]
+            }
+          },
+          "p1_important": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "action": {
+                  "type": "string"
+                },
+                "rationale": {
+                  "type": "string"
+                },
+                "estimated_impact": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "action",
+                "rationale"
+              ]
+            }
+          },
+          "p2_nice_to_have": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "action": {
+                  "type": "string"
+                },
+                "rationale": {
+                  "type": "string"
+                },
+                "estimated_impact": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "action",
+                "rationale"
+              ]
+            }
+          }
+        },
+        "required": [
+          "p0_urgent",
+          "p1_important",
+          "p2_nice_to_have"
+        ]
+      },
+      "patterns_and_correlations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "pattern_description": {
+              "type": "string"
+            },
+            "correlation_strength": {
+              "type": "string",
+              "enum": [
+                "strong",
+                "moderate",
+                "weak"
+              ]
+            },
+            "variables": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "pattern_description",
+            "correlation_strength"
+          ]
+        }
+      }
+    },
+    "required": [
+      "report_metadata",
+      "sentiment_overview",
+      "top_themes",
+      "segment_analysis",
+      "actionable_insights",
+      "recommended_actions"
+    ]
+  },
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.92
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "skill_id": "cs_outcome_tracker",
+  "generated_at": "2026-02-12T00:05:02.019619",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "accountId": "test_7sjovivj",
+        "outcomeCategories": [
+          "revenue",
+          "efficiency"
+        ],
+        "reportingPeriod": "quarterly"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "accountId": "test_jbxiu2me"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "accountId": "test_twnvrp1c",
+        "reportingPeriod": "custom"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "outcomeCategories": [
+          "experience"
+        ],
+        "reportingPeriod": "quarterly"
+      },
+      "label": "missing_accountId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": 12345
+      },
+      "label": "invalid_type_accountId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": "test_1ca151h0",
+        "reportingPeriod": "quarterly",
+        "outcomeCategories": "not_an_array"
+      },
+      "label": "invalid_type_outcomeCategories",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": "test_nb5wlgq2",
+        "reportingPeriod": 12345
+      },
+      "label": "invalid_type_reportingPeriod",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

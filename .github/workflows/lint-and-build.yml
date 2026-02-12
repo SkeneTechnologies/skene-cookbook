@@ -7,9 +7,67 @@ on:
     branches: [ main ]
 
 jobs:
+  lint-python:
+    runs-on: ubuntu-latest
+    name: Python Code Quality (Black, Flake8, isort)
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+          cache: 'pip'
+
+      - name: Install linting tools
+        run: |
+          python -m pip install --upgrade pip
+          pip install black==24.1.1 flake8==7.0.0 isort==5.13.2
+
+      - name: Run Black (formatting check)
+        run: |
+          black --check --diff .
+
+      - name: Run Flake8 (linting)
+        run: |
+          flake8 .
+
+      - name: Run isort (import sorting check)
+        run: |
+          isort --check-only --diff .
+
+  lint-javascript:
+    runs-on: ubuntu-latest
+    name: JavaScript Code Quality (ESLint, Prettier)
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: |
+          npm ci
+
+      - name: Run ESLint
+        run: |
+          npm run lint:js
+
+      - name: Run Prettier (formatting check)
+        run: |
+          npm run format:check
+
   validate-schemas:
     runs-on: ubuntu-latest
     name: Validate JSON/YAML Schemas
+    needs: [lint-python, lint-javascript]
 
     steps:
       - name: Checkout code
@@ -70,9 +128,48 @@ jobs:
           name: generated-docs
           path: docs/
 
+  security-dependencies:
+    runs-on: ubuntu-latest
+    name: Dependency Vulnerability Scanning
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install Python security tools
+        run: |
+          python -m pip install --upgrade pip
+          pip install pip-audit==2.7.0 safety==3.0.1
+
+      - name: Run npm audit
+        run: |
+          npm audit --audit-level=moderate
+        continue-on-error: false
+
+      - name: Run pip-audit
+        run: |
+          pip-audit -r requirements-test.txt --desc
+        continue-on-error: false
+
+      - name: Run safety check
+        run: |
+          safety check -r requirements-test.txt --output text
+        continue-on-error: false
+
   security-scan:
     runs-on: ubuntu-latest
     name: Security Analysis
+    needs: security-dependencies
 
     steps:
       - name: Checkout code
@@ -107,8 +204,8 @@ jobs:
 
           print(f'Critical risk skills: {critical}')
           if critical > 0:
-              print('⚠️  Warning: Critical risk skills detected - this should be reviewed')
-              # Changed from exit(1) to warning only - don't fail the build
+              print('❌ ERROR: Critical risk skills detected - must be reviewed before release')
+              exit(1)  # FAIL the build on Critical risks
           else:
               print('✅ No critical risk skills')
           "
@@ -162,13 +259,16 @@ jobs:
           tree = ET.parse('coverage.xml')
           coverage = float(tree.getroot().attrib['line-rate']) * 100
           print(f'Coverage: {coverage:.2f}%')
-          # Target threshold is 80%, but currently treating as warning only
-          if coverage < 80:
-              print('⚠️  Warning: Coverage below 80% target - currently at {:.2f}%'.format(coverage))
-              print('📊 Coverage improvement recommended but not blocking builds')
-              # Changed from exit(1) to warning only
+          # Pragmatic threshold: 60% (target: 80% long-term)
+          if coverage < 60:
+              print('❌ ERROR: Coverage {:.2f}% is below 60% threshold'.format(coverage))
+              print('📊 Minimum 60% coverage required for release readiness')
+              exit(1)  # FAIL the build on low coverage
+          elif coverage < 80:
+              print('⚠️  Warning: Coverage {:.2f}% is below 80% target (meets 60% minimum)'.format(coverage))
+              print('✅ Coverage meets 60% minimum threshold')
           else:
-              print('✅ Coverage meets 80% threshold')
+              print('✅ Coverage meets 80% target threshold')
           "
 
       - name: Upload test results

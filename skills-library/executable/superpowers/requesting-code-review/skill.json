@@ -1,0 +1,166 @@
+{
+  "id": "superpowers/requesting-code-review",
+  "version": "1.0.0",
+  "name": "requesting-code-review",
+  "description": "Use when completing tasks, implementing major features, or before merging to verify work meets requirements",
+  "domain": "superpowers",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "whatWasImplemented": {
+        "type": "string",
+        "description": "Description of what was just built or implemented",
+        "minLength": 1
+      },
+      "planOrRequirements": {
+        "type": "string",
+        "description": "The plan, requirements, or task specification that guided the implementation",
+        "minLength": 1
+      },
+      "baseSha": {
+        "type": "string",
+        "description": "Git commit SHA for the starting point of changes (e.g., HEAD~1 or origin/main)",
+        "pattern": "^[a-f0-9]{7,40}$"
+      },
+      "headSha": {
+        "type": "string",
+        "description": "Git commit SHA for the ending point of changes (typically current HEAD)",
+        "pattern": "^[a-f0-9]{7,40}$"
+      },
+      "description": {
+        "type": "string",
+        "description": "Brief summary of the changes for quick context",
+        "minLength": 1
+      },
+      "reviewContext": {
+        "type": "string",
+        "description": "Optional context about why review is being requested (e.g., 'after task 2', 'before merge', 'stuck on bug')",
+        "enum": [
+          "after-task",
+          "after-feature",
+          "before-merge",
+          "stuck",
+          "before-refactoring",
+          "after-bugfix",
+          "other"
+        ]
+      },
+      "specificConcerns": {
+        "type": "array",
+        "description": "Optional list of specific areas or concerns to focus review on",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "required": [
+      "whatWasImplemented",
+      "planOrRequirements",
+      "baseSha",
+      "headSha",
+      "description"
+    ],
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "reviewStatus": {
+        "type": "string",
+        "description": "Overall assessment of the code review",
+        "enum": [
+          "ready-to-proceed",
+          "needs-fixes",
+          "blocked"
+        ]
+      },
+      "strengths": {
+        "type": "array",
+        "description": "Positive aspects identified in the code review",
+        "items": {
+          "type": "string"
+        }
+      },
+      "issues": {
+        "type": "array",
+        "description": "Issues found during code review, categorized by severity",
+        "items": {
+          "type": "object",
+          "properties": {
+            "severity": {
+              "type": "string",
+              "enum": [
+                "critical",
+                "important",
+                "minor"
+              ],
+              "description": "Severity level of the issue"
+            },
+            "description": {
+              "type": "string",
+              "description": "Description of the issue found"
+            },
+            "location": {
+              "type": "string",
+              "description": "File path or code location where issue was found"
+            },
+            "recommendation": {
+              "type": "string",
+              "description": "Suggested fix or improvement"
+            }
+          },
+          "required": [
+            "severity",
+            "description"
+          ]
+        }
+      },
+      "assessment": {
+        "type": "string",
+        "description": "Overall assessment and recommendation from the reviewer"
+      },
+      "nextSteps": {
+        "type": "array",
+        "description": "Recommended actions to take based on review findings",
+        "items": {
+          "type": "string"
+        }
+      },
+      "reviewerNotes": {
+        "type": "string",
+        "description": "Additional notes or context from the code reviewer"
+      }
+    },
+    "required": [
+      "reviewStatus",
+      "issues",
+      "assessment"
+    ]
+  },
+  "temperature": 0,
+  "tags": [
+    "superpowers",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with requesting code review",
+        "completing tasks, implementing major features, or before merging to verify work meets requirements"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.92
+  }
+}

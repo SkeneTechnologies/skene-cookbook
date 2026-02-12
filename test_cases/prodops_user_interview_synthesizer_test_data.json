@@ -1,0 +1,101 @@
+{
+  "skill_id": "prodops_user_interview_synthesizer",
+  "generated_at": "2026-02-12T00:05:01.658838",
+  "num_cases": 10,
+  "test_cases": [
+    {
+      "inputs": {
+        "transcripts": [
+          "o0q2uqu8s4j5ahvnbxyk",
+          "qfnb50lyat",
+          "p1vuc46o84diaxywbc"
+        ],
+        "researchQuestion": "b1zg0ztfwu21wksw53ed"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "transcripts": [
+          "aefj7",
+          "29xig7a2t"
+        ],
+        "researchQuestion": "l1qs"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "transcripts": [],
+        "researchQuestion": "8dnueph3ehkbp2s6"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "researchQuestion": "1y",
+        "userSegment": "78renaqe7ye9lvb9g",
+        "projectId": "test_hhesgmnf"
+      },
+      "label": "missing_transcripts",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "transcripts": [],
+        "userSegment": "naspard4hete8"
+      },
+      "label": "missing_researchQuestion",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "transcripts": "not_an_array",
+        "researchQuestion": "5j2ijxoydfh21",
+        "userSegment": "r3s2w"
+      },
+      "label": "invalid_type_transcripts",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "transcripts": [
+          "eqvt9",
+          "3irioco5rxz1o7h"
+        ],
+        "researchQuestion": 12345,
+        "userSegment": "2m06ja8502xra",
+        "projectId": "test_smwe0wy9"
+      },
+      "label": "invalid_type_researchQuestion",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "transcripts": [],
+        "researchQuestion": "73ri",
+        "userSegment": 12345
+      },
+      "label": "invalid_type_userSegment",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "transcripts": [],
+        "researchQuestion": "gmveb68l2gmfdb",
+        "userSegment": "bmjdt2erd9vdf",
+        "projectId": 12345
+      },
+      "label": "invalid_type_projectId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

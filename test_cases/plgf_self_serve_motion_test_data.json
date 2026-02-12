@@ -1,0 +1,95 @@
+{
+  "skill_id": "plgf_self_serve_motion",
+  "generated_at": "2026-02-11T22:14:32.505240",
+  "num_cases": 9,
+  "test_cases": [
+    {
+      "inputs": {
+        "productId": "1ardh0oe642f",
+        "targetSegment": "ldk9dlhqee4xaza"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "productId": "o98di0cgdwnriu",
+        "funnelStage": "upgrade",
+        "targetSegment": "u543a724"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "productId": "7n5kv6",
+        "funnelStage": "activation",
+        "currentGates": [
+          "gbw6gsz"
+        ],
+        "targetSegment": "mag2iwg7z3przqcf3vt"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "currentGates": [
+          "jy2n82a6x7i94kvxrr6",
+          "q4auzy73bmcgqkshmk91"
+        ],
+        "targetSegment": "ynphqbno4y29"
+      },
+      "label": "missing_productId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "productId": 12345,
+        "currentGates": [
+          "vae4cb7sknpqgn8rhr2",
+          "a1luxrf9jq0bwnwt"
+        ],
+        "targetSegment": "tzlx931hb8fv6n4"
+      },
+      "label": "invalid_type_productId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "productId": "nz7ez0owzd",
+        "funnelStage": 12345,
+        "targetSegment": "1jmd"
+      },
+      "label": "invalid_type_funnelStage",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "productId": "4uwi8e20qr0vnnde0x",
+        "funnelStage": "upgrade",
+        "currentGates": "not_an_array",
+        "targetSegment": "4y1jzmxso55f3gi"
+      },
+      "label": "invalid_type_currentGates",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "productId": "s2smvzanxk7p",
+        "currentGates": [
+          "bc2l26ncpykdt56njm",
+          "62hwh9ow0rcmsp"
+        ],
+        "targetSegment": 12345
+      },
+      "label": "invalid_type_targetSegment",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

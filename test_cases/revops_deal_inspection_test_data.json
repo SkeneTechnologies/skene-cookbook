@@ -1,0 +1,67 @@
+{
+  "skill_id": "revops_deal_inspection",
+  "generated_at": "2026-02-12T00:05:05.199058",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "dealId": "0c",
+        "inspectionType": "quick"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "dealId": "mhxid7uwy8103k8"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "dealId": "smdmdje",
+        "inspectionType": "full"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "inspectionType": "full",
+        "framework": "custom"
+      },
+      "label": "missing_dealId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "dealId": 12345,
+        "inspectionType": "quick"
+      },
+      "label": "invalid_type_dealId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "dealId": "dyo3d8p0l36s4zg8a52",
+        "inspectionType": 12345
+      },
+      "label": "invalid_type_inspectionType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "dealId": "qmut15se8bsxsa",
+        "framework": 12345
+      },
+      "label": "invalid_type_framework",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

@@ -1,0 +1,125 @@
+{
+  "id": "elg_partner_mapping",
+  "version": "1.0.0",
+  "name": "Partner Account Mapping",
+  "description": "Maps accounts between partners to identify overlaps and co-selling opportunities.",
+  "domain": "ecosystem",
+  "tools": [
+    {
+      "name": "partner.account_map",
+      "required": true
+    },
+    {
+      "name": "partner.list",
+      "required": true
+    },
+    {
+      "name": "crm.list_accounts",
+      "required": true
+    },
+    {
+      "name": "crm.get_account",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "co_sell_trigger",
+    "eql_scoring",
+    "partner_outreach",
+    "idle"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "partnerId": {
+        "type": "string",
+        "description": "Partner identifier"
+      },
+      "accountId": {
+        "type": "string",
+        "description": "Account ID to map (optional)"
+      },
+      "action": {
+        "type": "string",
+        "enum": ["map_accounts", "get_overlaps", "get_mapping"],
+        "description": "Mapping action"
+      },
+      "includeInactive": {
+        "type": "boolean",
+        "description": "Include inactive accounts in mapping",
+        "default": false
+      }
+    },
+    "required": ["partnerId", "action"]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "overlap_accounts": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "account_id": {"type": "string"},
+            "overlap_score": {"type": "number"}
+          }
+        }
+      },
+      "total_overlaps": {
+        "type": "number"
+      },
+      "mapping_status": {
+        "type": "string",
+        "enum": ["complete", "partial", "failed"]
+      },
+      "co_sell_opportunities": {
+        "type": "array",
+        "items": {"type": "object"}
+      }
+    }
+  },
+  "metrics": {
+    "primary": "overlap_identification_rate",
+    "benchmarks": {
+      "excellent": "> 80%",
+      "good": "60-80%",
+      "needs_improvement": "< 60%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "ecosystem",
+    "partner",
+    "mapping",
+    "overlap",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Partner Account Mapping"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "security_controls": {
+    "write_operations": {
+      "preview_mode": true,
+      "validation": {
+        "input_schema": true,
+        "business_rules": true,
+        "data_integrity": true
+      },
+      "rollback": {
+        "enabled": true,
+        "window_seconds": 1800
+      },
+      "audit": {
+        "log_before_state": true,
+        "log_after_state": true,
+        "track_user": true
+      }
+    }
+  }
+}

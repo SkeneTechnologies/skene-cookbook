@@ -1,0 +1,109 @@
+{
+  "skill_id": "ai_summarization_agent",
+  "generated_at": "2026-02-12T00:05:04.642049",
+  "num_cases": 10,
+  "test_cases": [
+    {
+      "inputs": {
+        "content": "ey6qcl1dkka8",
+        "focus_areas": [
+          "58x27c",
+          "gm7slwsak3yq"
+        ]
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "content": "1d2x36pxwp",
+        "content_type": "report",
+        "focus_areas": [
+          "oo2fd",
+          "j79if",
+          "a5bgsdb"
+        ],
+        "audience": "executive"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "content": "zhvjtot5en7mpup1xh1u",
+        "target_length": "detailed",
+        "audience": "general"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "target_length": "tldr",
+        "focus_areas": [
+          "q"
+        ],
+        "audience": "executive"
+      },
+      "label": "missing_content",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "content": 12345,
+        "content_type": "conversation",
+        "target_length": "brief",
+        "focus_areas": [
+          "mc2",
+          "yadi8pac27"
+        ]
+      },
+      "label": "invalid_type_content",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "content": "wfy5ihiqg",
+        "content_type": 12345,
+        "target_length": "brief",
+        "audience": "executive"
+      },
+      "label": "invalid_type_content_type",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "content": "yzhq",
+        "focus_areas": [
+          "6v2"
+        ],
+        "target_length": 12345
+      },
+      "label": "invalid_type_target_length",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "content": "r6z0",
+        "target_length": "brief",
+        "audience": "technical",
+        "focus_areas": "not_an_array"
+      },
+      "label": "invalid_type_focus_areas",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "content": "qbw",
+        "audience": 12345
+      },
+      "label": "invalid_type_audience",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

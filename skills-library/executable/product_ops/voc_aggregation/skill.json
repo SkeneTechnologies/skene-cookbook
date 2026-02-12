@@ -1,0 +1,426 @@
+{
+  "id": "prodops_voc_aggregation",
+  "version": "1.0.0",
+  "name": "Voice of Customer Aggregation",
+  "description": "Aggregates Voice of Customer data from all touchpoints into unified insights.",
+  "domain": "product_ops",
+  "tools": [
+    {
+      "name": "feedback.list",
+      "required": true
+    },
+    {
+      "name": "feedback.get_survey",
+      "required": true
+    },
+    {
+      "name": "feedback.sentiment",
+      "required": true
+    },
+    {
+      "name": "crm.get_activities",
+      "required": false
+    },
+    {
+      "name": "ai.analyze_sentiment",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "feedback_synthesis",
+    "executive_report",
+    "product_review",
+    "idle"
+  ],
+  "metrics": {
+    "primary": "voc_coverage",
+    "benchmarks": {
+      "excellent": "> 80%",
+      "good": "60-80%",
+      "needs_improvement": "< 60%"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "product_ops",
+    "voc",
+    "customer",
+    "insights",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Voice of Customer Aggregation"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "period": {
+        "type": "object",
+        "properties": {
+          "start_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Start date for VoC data aggregation"
+          },
+          "end_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "End date for VoC data aggregation"
+          }
+        },
+        "required": [
+          "start_date",
+          "end_date"
+        ],
+        "description": "Time period for aggregating Voice of Customer data"
+      },
+      "sources": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": [
+            "nps",
+            "csat",
+            "support_tickets",
+            "in_app_feedback",
+            "sales_calls",
+            "user_interviews",
+            "public_reviews",
+            "community_forums"
+          ]
+        },
+        "minItems": 1,
+        "description": "List of VoC sources to include in aggregation"
+      },
+      "segments": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Customer segments to analyze separately (e.g., enterprise, SMB, freemium)"
+      },
+      "weight_by_customer_value": {
+        "type": "boolean",
+        "default": false,
+        "description": "Whether to weight feedback by customer lifetime value or ARR"
+      },
+      "include_competitive_analysis": {
+        "type": "boolean",
+        "default": true,
+        "description": "Whether to extract and analyze competitor mentions"
+      },
+      "min_theme_mentions": {
+        "type": "integer",
+        "minimum": 1,
+        "default": 3,
+        "description": "Minimum number of mentions required to surface a theme"
+      },
+      "taxonomy_tags": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Custom taxonomy tags to apply during categorization"
+      }
+    },
+    "required": [
+      "period",
+      "sources"
+    ],
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "summary": {
+        "type": "object",
+        "properties": {
+          "period_start": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "period_end": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "total_feedback_items": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "period_start",
+          "period_end",
+          "total_feedback_items"
+        ]
+      },
+      "source_breakdown": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "source": {
+              "type": "string"
+            },
+            "volume": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "sentiment_score": {
+              "type": "number",
+              "minimum": -100,
+              "maximum": 100
+            },
+            "top_theme": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "source",
+            "volume",
+            "sentiment_score"
+          ]
+        }
+      },
+      "overall_sentiment": {
+        "type": "object",
+        "properties": {
+          "score": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100,
+            "description": "Aggregated sentiment score"
+          },
+          "previous_period_score": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "trend": {
+            "type": "string",
+            "enum": [
+              "improving",
+              "declining",
+              "stable"
+            ]
+          },
+          "change_percentage": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "score",
+          "trend"
+        ]
+      },
+      "top_themes": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "mentions": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "sources": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "Number of different sources mentioning this theme"
+            },
+            "sentiment": {
+              "type": "string",
+              "enum": [
+                "positive",
+                "negative",
+                "neutral",
+                "mixed"
+              ]
+            },
+            "sentiment_score": {
+              "type": "number",
+              "minimum": -100,
+              "maximum": 100
+            },
+            "segments_affected": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "representative_quote": {
+              "type": "string"
+            },
+            "tags": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "name",
+            "mentions",
+            "sources",
+            "sentiment"
+          ]
+        }
+      },
+      "segment_insights": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "segment_name": {
+              "type": "string"
+            },
+            "feedback_volume": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "primary_concern": {
+              "type": "string"
+            },
+            "sentiment": {
+              "type": "string",
+              "enum": [
+                "positive",
+                "negative",
+                "neutral",
+                "mixed"
+              ]
+            },
+            "sentiment_score": {
+              "type": "number",
+              "minimum": -100,
+              "maximum": 100
+            },
+            "recommended_action": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "segment_name",
+            "feedback_volume",
+            "primary_concern",
+            "sentiment"
+          ]
+        }
+      },
+      "competitive_mentions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "competitor_name": {
+              "type": "string"
+            },
+            "mention_count": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "sentiment": {
+              "type": "string",
+              "enum": [
+                "positive",
+                "negative",
+                "neutral",
+                "mixed"
+              ]
+            },
+            "sentiment_score": {
+              "type": "number",
+              "minimum": -100,
+              "maximum": 100
+            },
+            "context": {
+              "type": "string",
+              "description": "Common context in which competitor is mentioned"
+            }
+          },
+          "required": [
+            "competitor_name",
+            "mention_count",
+            "sentiment"
+          ]
+        }
+      },
+      "recommended_actions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "priority": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "action": {
+              "type": "string"
+            },
+            "justification": {
+              "type": "string"
+            },
+            "affected_customers": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "urgency": {
+              "type": "string",
+              "enum": [
+                "critical",
+                "high",
+                "medium",
+                "low"
+              ]
+            }
+          },
+          "required": [
+            "priority",
+            "action",
+            "justification"
+          ]
+        },
+        "minItems": 1
+      },
+      "metadata": {
+        "type": "object",
+        "properties": {
+          "generated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "deduplication_count": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Number of duplicate feedback items removed"
+          },
+          "sources_processed": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "required": [
+      "summary",
+      "source_breakdown",
+      "overall_sentiment",
+      "top_themes",
+      "recommended_actions"
+    ]
+  },
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.92
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "skill_id": "compliance_consent_manager",
+  "generated_at": "2026-02-11T22:18:27.696959",
+  "num_cases": 11,
+  "test_cases": [
+    {
+      "inputs": {
+        "action": "history",
+        "subjectId": "test_ohcble0g",
+        "consent": false,
+        "source": "mobile"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "action": "get",
+        "subjectId": "test_xeeg8kga",
+        "purposeId": "test_55owcy75",
+        "source": "api"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "action": "get",
+        "subjectId": "test_ey9vp87j",
+        "consent": true,
+        "source": "phone"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "subjectId": "test_tt5jjpyl"
+      },
+      "label": "missing_action",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": "update",
+        "consent": false,
+        "source": "web"
+      },
+      "label": "missing_subjectId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": 12345,
+        "subjectId": "test_49k5pd1s",
+        "purposeId": "test_llvy7zs2",
+        "consent": false,
+        "source": "phone"
+      },
+      "label": "invalid_type_action",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": "audit",
+        "subjectId": 12345,
+        "purposeId": "test_brassrn0",
+        "source": "email"
+      },
+      "label": "invalid_type_subjectId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": "history",
+        "subjectId": "test_dtfzz9ow",
+        "purposeId": 12345
+      },
+      "label": "invalid_type_purposeId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": "sync",
+        "subjectId": "test_erhc809z",
+        "consent": "yes"
+      },
+      "label": "invalid_type_consent",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": "sync",
+        "subjectId": "test_367wf706",
+        "purposeId": "test_eyea13r4",
+        "source": 12345
+      },
+      "label": "invalid_type_source",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

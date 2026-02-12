@@ -1,0 +1,96 @@
+{
+  "skill_id": "ai_meeting_intelligence",
+  "generated_at": "2026-02-12T00:05:03.447152",
+  "num_cases": 10,
+  "test_cases": [
+    {
+      "inputs": {
+        "transcript": "9ftgqmatk6556bwpk0vx",
+        "participants": [
+          "c53gl2onu7w"
+        ]
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "transcript": "pkdf59p",
+        "recording_url": "https://example.com/gl4uicfa",
+        "participants": []
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "transcript": "cc",
+        "deal_id": "test_9w69u56b"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "participants": []
+      },
+      "label": "missing_transcript",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "transcript": 12345,
+        "recording_url": "https://example.com/xb69743g",
+        "participants": [
+          "3wfi97dbyg",
+          "5",
+          "1fs9ra0orq43ety48"
+        ]
+      },
+      "label": "invalid_type_transcript",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "transcript": "wofnagel3mrllso1",
+        "recording_url": 12345
+      },
+      "label": "invalid_type_recording_url",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "transcript": "pgzo5kbjj",
+        "recording_url": "https://example.com/z24j7hnq",
+        "meeting_type": 12345
+      },
+      "label": "invalid_type_meeting_type",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "transcript": "0ptrfe",
+        "recording_url": "https://example.com/yi05kg10",
+        "deal_id": "test_rzz1xvox",
+        "participants": "not_an_array"
+      },
+      "label": "invalid_type_participants",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "transcript": "z8uxgq",
+        "recording_url": "https://example.com/y4nxz9hd",
+        "meeting_type": "sales",
+        "deal_id": 12345
+      },
+      "label": "invalid_type_deal_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

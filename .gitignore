@@ -25,3 +25,4 @@ htmlcov/
 
 # Central strategy docs (symlinked from ~/skene-strategy)
 docs/strategy
+.claude/settings.local.json

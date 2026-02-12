@@ -1,0 +1,75 @@
+{
+  "skill_id": "finops_gross_margin",
+  "generated_at": "2026-02-12T00:05:00.031133",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "period": "6fs1ebush9k0",
+        "breakdown_by": [
+          "0eaet3618ocn1m2",
+          "mt814gfavc"
+        ]
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "period": "uhgd",
+        "breakdown_by": [],
+        "include_cogs_detail": true
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "period": "rpkvba",
+        "breakdown_by": [],
+        "include_cogs_detail": false
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "breakdown_by": [
+          "biwx1dyij3d7o4u",
+          "1c"
+        ]
+      },
+      "label": "missing_period",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": 12345,
+        "breakdown_by": []
+      },
+      "label": "invalid_type_period",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": "qakpr9e33nzc",
+        "breakdown_by": "not_an_array"
+      },
+      "label": "invalid_type_breakdown_by",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": "6gfpk2iih1b",
+        "include_cogs_detail": "yes"
+      },
+      "label": "invalid_type_include_cogs_detail",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

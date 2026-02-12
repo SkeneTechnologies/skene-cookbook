@@ -1,0 +1,66 @@
+{
+  "skill_id": "finops_benchmark_comparator",
+  "generated_at": "2026-02-12T00:05:00.030433",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "period": "zv5",
+        "peer_criteria": {}
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "period": "lmryb566xt9a"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "period": "iud6"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "benchmark_sources": [
+          "qne99lqz3"
+        ]
+      },
+      "label": "missing_period",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": 12345
+      },
+      "label": "invalid_type_period",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": "kl2qd6h9ufyh",
+        "benchmark_sources": "not_an_array"
+      },
+      "label": "invalid_type_benchmark_sources",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "period": "kampgg4kuh",
+        "peer_criteria": "not_an_object"
+      },
+      "label": "invalid_type_peer_criteria",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

@@ -1,0 +1,203 @@
+name: Skill Proposal
+description: Propose a new AI agent skill
+title: "[Skill]: "
+labels: ["skill-proposal", "triage"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Proposing a New Skill
+
+        Thank you for proposing a new skill! Please provide comprehensive details to help us evaluate and implement your proposal.
+
+        **Before submitting:**
+        - Search existing skills to avoid duplicates
+        - Review [CONTRIBUTING.md](../CONTRIBUTING.md) for skill guidelines
+        - Consider security implications (see [SECURITY_POLICY.md](../SECURITY_POLICY.md))
+
+  - type: input
+    id: skill-name
+    attributes:
+      label: Skill Name
+      description: Proposed name for the skill (use kebab-case)
+      placeholder: e.g., parse-json-logs, fetch-api-data
+    validations:
+      required: true
+
+  - type: dropdown
+    id: skill-domain
+    attributes:
+      label: Skill Domain
+      description: Which domain does this skill belong to?
+      options:
+        - data-processing
+        - web-scraping
+        - api-integration
+        - file-operations
+        - text-analysis
+        - database
+        - security
+        - devops
+        - testing
+        - monitoring
+        - communication
+        - authentication
+        - workflow
+        - New domain (specify in description)
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Skill Description
+      description: Clear description of what the skill does
+      placeholder: This skill enables AI agents to...
+    validations:
+      required: true
+
+  - type: textarea
+    id: use-cases
+    attributes:
+      label: Primary Use Cases
+      description: When would an AI agent use this skill?
+      placeholder: |
+        1. Agent needs to parse JSON logs from CloudWatch
+        2. Agent needs to extract structured data from log files
+        3. Agent needs to identify error patterns in logs
+    validations:
+      required: true
+
+  - type: textarea
+    id: input-parameters
+    attributes:
+      label: Input Parameters
+      description: What parameters does the skill require?
+      placeholder: |
+        - log_file_path (string, required): Path to the log file
+        - filter_pattern (string, optional): Regex pattern to filter logs
+        - max_entries (integer, optional): Maximum number of entries to return
+    validations:
+      required: true
+
+  - type: textarea
+    id: output-format
+    attributes:
+      label: Output Format
+      description: What does the skill return?
+      placeholder: |
+        Returns a JSON object with:
+        - parsed_entries (array): List of parsed log entries
+        - total_count (integer): Total number of entries found
+        - errors (array): Any parsing errors encountered
+    validations:
+      required: true
+
+  - type: dropdown
+    id: risk-level
+    attributes:
+      label: Risk Level
+      description: What is the security/operational risk of this skill?
+      options:
+        - Low - Read-only, no sensitive data
+        - Medium - Writes data, moderate impact
+        - High - System modifications, significant impact
+        - Critical - High-privilege operations, security implications
+    validations:
+      required: true
+
+  - type: textarea
+    id: security-considerations
+    attributes:
+      label: Security Considerations
+      description: What security concerns should be addressed?
+      placeholder: |
+        - Requires read access to log files
+        - Should validate file paths to prevent directory traversal
+        - May contain sensitive information in logs (PII, credentials)
+        - Rate limiting may be needed for large files
+    validations:
+      required: true
+
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies
+      description: What external libraries or services are required?
+      placeholder: |
+        - Python: json, re (stdlib)
+        - External: None
+    validations:
+      required: false
+
+  - type: textarea
+    id: testing-approach
+    attributes:
+      label: Testing Approach
+      description: How should this skill be tested?
+      placeholder: |
+        Unit tests:
+        - Test with valid JSON logs
+        - Test with malformed logs
+        - Test with empty files
+        - Test filter patterns
+
+        Integration tests:
+        - Test with real CloudWatch log samples
+    validations:
+      required: false
+
+  - type: textarea
+    id: example-usage
+    attributes:
+      label: Example Usage
+      description: Provide example usage in agent context
+      placeholder: |
+        ```python
+        skill_result = agent.execute_skill(
+            "parse-json-logs",
+            {
+                "log_file_path": "/var/log/app.json",
+                "filter_pattern": "ERROR",
+                "max_entries": 100
+            }
+        )
+        ```
+    validations:
+      required: false
+
+  - type: textarea
+    id: similar-skills
+    attributes:
+      label: Similar Existing Skills
+      description: Are there any similar skills? How is this different?
+      placeholder: Similar to parse-logs, but specifically handles JSON format...
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: implementation-checklist
+    attributes:
+      label: Implementation Readiness
+      description: Check all that apply
+      options:
+        - label: I have reviewed existing skills to avoid duplication
+          required: false
+        - label: I have considered security implications
+          required: false
+        - label: I have outlined test cases
+          required: false
+        - label: I am willing to implement this skill
+          required: false
+        - label: I am willing to write tests for this skill
+          required: false
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: Any other information, examples, or references
+    validations:
+      required: false

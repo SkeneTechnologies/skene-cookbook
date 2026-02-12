@@ -1,0 +1,91 @@
+{
+  "skill_id": "elg_joint_marketing",
+  "generated_at": "2026-02-12T00:05:00.034674",
+  "num_cases": 10,
+  "test_cases": [
+    {
+      "inputs": {
+        "partnerId": "s",
+        "campaignType": "webinar",
+        "budget": 3461.83
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "partnerId": "ynobr5gs",
+        "campaignType": "email",
+        "budget": 5638.84
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "partnerId": "8w91pe5apylpdjzi0v1",
+        "campaignType": "digital_ads"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "campaignType": "email",
+        "targetAudience": "pjtpezu"
+      },
+      "label": "missing_partnerId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "partnerId": "ilvx1rna7hxq59y6x"
+      },
+      "label": "missing_campaignType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "partnerId": 12345,
+        "campaignType": "content",
+        "budget": 4246.44
+      },
+      "label": "invalid_type_partnerId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "partnerId": "wjecrgeyo9k5l7b4rojh",
+        "campaignType": 12345,
+        "budget": 7331.68
+      },
+      "label": "invalid_type_campaignType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "partnerId": "mpg6i90qj",
+        "campaignType": "event",
+        "targetAudience": 12345,
+        "budget": 5660.46
+      },
+      "label": "invalid_type_targetAudience",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "partnerId": "emqi3vdtg",
+        "campaignType": "event",
+        "targetAudience": "ksrxdaau98d2nta",
+        "budget": "not_a_number"
+      },
+      "label": "invalid_type_budget",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

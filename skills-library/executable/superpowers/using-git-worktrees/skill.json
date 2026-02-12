@@ -1,0 +1,200 @@
+{
+  "id": "superpowers/using-git-worktrees",
+  "version": "1.0.0",
+  "name": "using-git-worktrees",
+  "description": "Use when starting feature work that needs isolation from current workspace or before executing implementation plans - creates isolated git worktrees with smart directory selection and safety verification",
+  "domain": "superpowers",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "branchName": {
+        "type": "string",
+        "description": "Name of the new branch to create for the worktree",
+        "pattern": "^[a-zA-Z0-9/_-]+$",
+        "minLength": 1
+      },
+      "featureDescription": {
+        "type": "string",
+        "description": "Brief description of the feature or work being isolated"
+      },
+      "preferredDirectory": {
+        "type": "string",
+        "description": "Optional user preference for worktree directory location",
+        "enum": [
+          ".worktrees",
+          "worktrees",
+          "~/.config/superpowers/worktrees"
+        ]
+      },
+      "skipTests": {
+        "type": "boolean",
+        "description": "Whether to skip baseline test verification (not recommended)",
+        "default": false
+      },
+      "forceCreate": {
+        "type": "boolean",
+        "description": "Proceed even if tests fail during baseline verification",
+        "default": false
+      }
+    },
+    "required": [
+      "branchName"
+    ],
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "success": {
+        "type": "boolean",
+        "description": "Whether the worktree was successfully created and verified"
+      },
+      "worktreePath": {
+        "type": "string",
+        "description": "Full path to the created worktree directory"
+      },
+      "branchName": {
+        "type": "string",
+        "description": "Name of the branch created in the worktree"
+      },
+      "projectName": {
+        "type": "string",
+        "description": "Detected name of the project"
+      },
+      "directoryUsed": {
+        "type": "string",
+        "description": "The directory location pattern used",
+        "enum": [
+          ".worktrees",
+          "worktrees",
+          "~/.config/superpowers/worktrees"
+        ]
+      },
+      "gitignoreUpdated": {
+        "type": "boolean",
+        "description": "Whether .gitignore was updated to ignore the worktree directory"
+      },
+      "dependenciesInstalled": {
+        "type": "boolean",
+        "description": "Whether project dependencies were successfully installed"
+      },
+      "setupCommands": {
+        "type": "array",
+        "description": "List of setup commands that were executed",
+        "items": {
+          "type": "string"
+        }
+      },
+      "baselineTestsRun": {
+        "type": "boolean",
+        "description": "Whether baseline tests were executed"
+      },
+      "testResults": {
+        "type": "object",
+        "description": "Results of baseline test verification",
+        "properties": {
+          "passed": {
+            "type": "boolean",
+            "description": "Whether all tests passed"
+          },
+          "totalTests": {
+            "type": "integer",
+            "description": "Total number of tests run",
+            "minimum": 0
+          },
+          "failures": {
+            "type": "integer",
+            "description": "Number of test failures",
+            "minimum": 0
+          },
+          "command": {
+            "type": "string",
+            "description": "The test command that was executed"
+          }
+        }
+      },
+      "warnings": {
+        "type": "array",
+        "description": "Any warnings encountered during worktree creation",
+        "items": {
+          "type": "string"
+        }
+      },
+      "errors": {
+        "type": "array",
+        "description": "Any errors encountered during worktree creation",
+        "items": {
+          "type": "string"
+        }
+      },
+      "message": {
+        "type": "string",
+        "description": "Human-readable summary message about the worktree creation"
+      }
+    },
+    "required": [
+      "success",
+      "worktreePath",
+      "branchName",
+      "projectName",
+      "directoryUsed",
+      "gitignoreUpdated",
+      "dependenciesInstalled",
+      "baselineTestsRun",
+      "message"
+    ],
+    "additionalProperties": false
+  },
+  "temperature": 0,
+  "tags": [
+    "superpowers",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with using git worktrees",
+        "starting feature work that needs isolation from current workspace or before executing implementation plans - creates isolated git worktrees with smart directory selection and safety verification"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "security_controls": {
+    "execution_environment": {
+      "type": "sandboxed_container",
+      "resource_limits": {
+        "cpu_cores": 1,
+        "memory_mb": 512,
+        "timeout_seconds": 30,
+        "disk_mb": 100
+      },
+      "security": {
+        "network_access": false,
+        "filesystem": "read_only",
+        "user": "non_root",
+        "allowed_commands": [
+          "node",
+          "python3",
+          "npm"
+        ],
+        "blocked_syscalls": [
+          "exec",
+          "fork",
+          "kill"
+        ]
+      }
+    }
+  },
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.92
+  }
+}

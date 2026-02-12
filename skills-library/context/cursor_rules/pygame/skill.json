@@ -1,0 +1,35 @@
+{
+  "id": "cursor_rules/pygame",
+  "version": "1.0.0",
+  "name": "pygame",
+  "description": "Definitive guide for building modern, performant, and maintainable Pygame applications using `pygame-gui` for UI, focusing on structure, responsive layout, theme-driven styling, and performance best practices.",
+  "domain": "cursor_rules",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "cursor_rules",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "cursor": {
+      "globs": [
+        "**/*.py"
+      ]
+    },
+    "claude": {
+      "triggers": [
+        "help with pygame"
+      ]
+    },
+    "skeneflow": {}
+  },
+  "skipSchemaValidation": true
+}

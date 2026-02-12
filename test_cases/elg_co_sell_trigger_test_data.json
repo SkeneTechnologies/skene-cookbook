@@ -1,0 +1,101 @@
+{
+  "skill_id": "elg_co_sell_trigger",
+  "generated_at": "2026-02-12T00:04:59.915981",
+  "num_cases": 11,
+  "test_cases": [
+    {
+      "inputs": {
+        "accountId": "test_e6n9e1fu",
+        "partnerId": "test_mcp8zc20",
+        "action": "trigger"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "accountId": "test_ybr1ab1q",
+        "partnerId": "test_k0p3559l",
+        "action": "status",
+        "dealValue": 2024.03
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "accountId": "test_m1bhavq1",
+        "partnerId": "test_uszxjn2e",
+        "action": "status"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "partnerId": "test_r6i6mxi8",
+        "action": "update"
+      },
+      "label": "missing_accountId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": "test_4upkgub7",
+        "action": "update"
+      },
+      "label": "missing_partnerId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": "test_cucgqai0",
+        "partnerId": "test_9n8ci8n7"
+      },
+      "label": "missing_action",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": 12345,
+        "partnerId": "test_ztyi7h3g",
+        "action": "status"
+      },
+      "label": "invalid_type_accountId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": "test_2vyj9ugv",
+        "partnerId": 12345,
+        "action": "status"
+      },
+      "label": "invalid_type_partnerId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": "test_ojfzja8e",
+        "partnerId": "test_yiamcgkh",
+        "action": "trigger",
+        "dealValue": "not_a_number"
+      },
+      "label": "invalid_type_dealValue",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": "test_46lwo824",
+        "partnerId": "test_qgmchpf5",
+        "action": 12345
+      },
+      "label": "invalid_type_action",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

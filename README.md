@@ -1,5 +1,11 @@
 # Build AI Agents in Days, Not Months
 
+[![GitHub Actions](https://github.com/SkeneTechnologies/skene-cookbook/workflows/Lint%20&%20Build%20Documentation/badge.svg)](https://github.com/SkeneTechnologies/skene-cookbook/actions)
+[![Test Coverage](https://codecov.io/gh/SkeneTechnologies/skene-cookbook/branch/main/graph/badge.svg)](https://codecov.io/gh/SkeneTechnologies/skene-cookbook)
+[![Code of Conduct](https://img.shields.io/badge/code%20of%20conduct-contributor%20covenant-green.svg)](CODE_OF_CONDUCT.md)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![npm version](https://img.shields.io/npm/v/@skene/skills-directory.svg)](https://www.npmjs.com/package/@skene/skills-directory)
+
 **Compose 760+ skills into powerful AI agents** — No ML expertise required
 
 Install once. Build unlimited agents. Deploy in days.
@@ -191,9 +197,44 @@ Cursor and Claude automatically pick the right skill based on your prompt. Chain
 - [AI Agent Composability Analysis](docs/technical/AI_AGENT_COMPOSABILITY_ANALYSIS.md) — Deep dive into agent composition
 - [Security Policy](SECURITY_POLICY.md) — Security best practices
 
+### 👨‍💻 Development Setup
+
+If you're contributing to skene-cookbook, set up your development environment:
+
+```bash
+# Clone the repository
+git clone https://github.com/SkeneTechnologies/skene-cookbook.git
+cd skene-cookbook
+
+# Install Python dependencies
+pip install -r requirements-test.txt
+
+# Install Node.js dependencies
+npm install
+
+# Install pre-commit hooks (runs linting and security checks automatically)
+pre-commit install
+
+# Verify installation
+pre-commit run --all-files
+```
+
+**Pre-commit hooks will automatically:**
+- Format Python code (Black, isort)
+- Lint Python code (Flake8)
+- Format JavaScript/JSON/YAML (Prettier)
+- Lint JavaScript (ESLint)
+- Detect secrets and credentials
+- Check for common issues (trailing whitespace, merge conflicts, etc.)
+
+To bypass hooks in emergencies: `git commit --no-verify`
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for full contribution guidelines.
+
 ### 🤝 Community
 - **[Build Your First Skill](docs/BUILD_YOUR_FIRST_SKILL.md)** — Step-by-step skill creation tutorial
 - [Contributing Guidelines](CONTRIBUTING.md) — How to contribute to the library
+- [Code of Conduct](CODE_OF_CONDUCT.md) — Community standards and expectations
 - [GitHub Discussions](https://github.com/SkeneTechnologies/skene-cookbook/discussions) — Ask questions and share ideas
 
 ---

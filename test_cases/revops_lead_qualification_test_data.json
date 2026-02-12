@@ -1,0 +1,81 @@
+{
+  "skill_id": "revops_lead_qualification",
+  "generated_at": "2026-02-12T00:05:07.523597",
+  "num_cases": 9,
+  "test_cases": [
+    {
+      "inputs": {
+        "leadId": "pvom5xr91ilff0irg2i",
+        "framework": "BANT"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "leadId": "fbmrmdb7m0j0jvodm",
+        "accountId": "r15c6a4oxayouf",
+        "framework": "custom",
+        "source": "971nmgryi"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "leadId": "apkoh8j1rm1ve9qco2de",
+        "source": "t2eszpte6"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "accountId": "bl8lo4",
+        "framework": "CHAMP",
+        "source": "kz09mo"
+      },
+      "label": "missing_leadId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "leadId": 12345
+      },
+      "label": "invalid_type_leadId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "leadId": "1ro0bu827w",
+        "accountId": 12345,
+        "source": "wzkhxi9il21oxh"
+      },
+      "label": "invalid_type_accountId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "leadId": "l",
+        "accountId": "xv9ezbqh6",
+        "source": "qkf4bbt5ngyl",
+        "framework": 12345
+      },
+      "label": "invalid_type_framework",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "leadId": "3atyi4c1",
+        "source": 12345
+      },
+      "label": "invalid_type_source",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

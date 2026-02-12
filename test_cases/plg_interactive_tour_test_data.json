@@ -1,0 +1,84 @@
+{
+  "skill_id": "plg_interactive_tour",
+  "generated_at": "2026-02-12T00:05:12.658561",
+  "num_cases": 9,
+  "test_cases": [
+    {
+      "inputs": {
+        "userId": "kpkg44rl0yf"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "userId": "aop",
+        "tourType": "full"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "userId": "kxlma4",
+        "featureId": "82uuzp170",
+        "tourType": "full",
+        "resumeFrom": 9466.2
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "tourType": "full",
+        "resumeFrom": 5808.63
+      },
+      "label": "missing_userId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": 12345,
+        "featureId": "s",
+        "tourType": "full",
+        "resumeFrom": 9914.21
+      },
+      "label": "invalid_type_userId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": "ey40",
+        "tourType": "full",
+        "resumeFrom": 3539.59,
+        "featureId": 12345
+      },
+      "label": "invalid_type_featureId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": "c7",
+        "resumeFrom": 9189.49,
+        "tourType": 12345
+      },
+      "label": "invalid_type_tourType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": "dh1xywbm7d",
+        "featureId": "msv0nnyt",
+        "tourType": "full",
+        "resumeFrom": "not_a_number"
+      },
+      "label": "invalid_type_resumeFrom",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

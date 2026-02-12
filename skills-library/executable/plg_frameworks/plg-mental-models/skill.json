@@ -1,0 +1,465 @@
+{
+  "id": "plg_frameworks/plg-mental-models",
+  "version": "1.0.0",
+  "name": "plg-mental-models",
+  "description": "When the user needs mental models or frameworks for PLG decisions -- including product-channel fit, time-to-value, network effects, habit loops, or pricing psychology. Also use when the user asks \"what framework should I use,\" \"how should I think about this,\" or references a specific model like \"adjacent user theory\" or \"bowling alley framework.\" For comprehensive PLG strategy, see plg-strategy. For growth loops, see growth-loops.",
+  "domain": "plg_frameworks",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "challenge": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string",
+            "description": "Detailed description of the PLG challenge or decision the user is facing"
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "acquisition",
+              "activation",
+              "retention",
+              "monetization",
+              "growth",
+              "decision",
+              "strategy",
+              "unknown"
+            ],
+            "description": "Primary category of the PLG challenge if known"
+          },
+          "context": {
+            "type": "object",
+            "properties": {
+              "productType": {
+                "type": "string",
+                "description": "Type of product (e.g., B2B SaaS, consumer app, marketplace, collaboration tool)"
+              },
+              "stage": {
+                "type": "string",
+                "enum": [
+                  "early",
+                  "growth",
+                  "scale",
+                  "mature"
+                ],
+                "description": "Company/product stage"
+              },
+              "currentMetrics": {
+                "type": "object",
+                "properties": {
+                  "signupRate": {
+                    "type": "number",
+                    "description": "Weekly or monthly signups"
+                  },
+                  "activationRate": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1,
+                    "description": "Percentage of signups that activate"
+                  },
+                  "retentionRate": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1,
+                    "description": "User retention rate (e.g., D30, M1)"
+                  },
+                  "conversionRate": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1,
+                    "description": "Free to paid conversion rate"
+                  },
+                  "timeToValue": {
+                    "type": "number",
+                    "description": "Average time to value in minutes"
+                  },
+                  "viralCoefficient": {
+                    "type": "number",
+                    "description": "K-factor for viral growth"
+                  }
+                },
+                "description": "Current performance metrics if available"
+              },
+              "pricingModel": {
+                "type": "string",
+                "enum": [
+                  "freemium",
+                  "free-trial",
+                  "usage-based",
+                  "seat-based",
+                  "tiered",
+                  "hybrid",
+                  "other"
+                ],
+                "description": "Current pricing/monetization model"
+              },
+              "hasFreeTier": {
+                "type": "boolean",
+                "description": "Whether the product offers a free tier"
+              },
+              "teamSize": {
+                "type": "integer",
+                "description": "Size of the growth/product team"
+              }
+            },
+            "description": "Additional context about the product and situation"
+          }
+        },
+        "required": [
+          "description"
+        ],
+        "description": "The PLG challenge or question the user needs help with"
+      },
+      "specificModels": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Specific mental models the user wants to apply (e.g., 'Adjacent User Theory', 'Bowling Alley Framework')"
+      },
+      "focusArea": {
+        "type": "string",
+        "enum": [
+          "acquisition",
+          "activation",
+          "retention",
+          "monetization",
+          "growth-loops",
+          "decision-making",
+          "all"
+        ],
+        "description": "Specific area to focus the mental model analysis on"
+      },
+      "prioritizationNeeded": {
+        "type": "boolean",
+        "description": "Whether the user needs help prioritizing multiple potential solutions"
+      },
+      "constraints": {
+        "type": "object",
+        "properties": {
+          "engineeringResources": {
+            "type": "string",
+            "enum": [
+              "limited",
+              "moderate",
+              "abundant"
+            ],
+            "description": "Available engineering resources"
+          },
+          "timeline": {
+            "type": "string",
+            "description": "Timeline constraints (e.g., 'need results in 2 weeks', 'long-term strategy')"
+          },
+          "budget": {
+            "type": "string",
+            "enum": [
+              "limited",
+              "moderate",
+              "flexible"
+            ],
+            "description": "Budget constraints for implementation"
+          }
+        },
+        "description": "Constraints that should inform model selection and recommendations"
+      }
+    },
+    "required": [
+      "challenge"
+    ],
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "mentalModelApplication": {
+        "type": "object",
+        "properties": {
+          "challenge": {
+            "type": "object",
+            "properties": {
+              "description": {
+                "type": "string",
+                "description": "Restated challenge description"
+              },
+              "category": {
+                "type": "string",
+                "enum": [
+                  "acquisition",
+                  "activation",
+                  "retention",
+                  "monetization",
+                  "growth",
+                  "decision"
+                ],
+                "description": "Identified category of the challenge"
+              }
+            },
+            "required": [
+              "description",
+              "category"
+            ]
+          },
+          "modelsApplied": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "modelName": {
+                  "type": "string",
+                  "description": "Name of the mental model applied"
+                },
+                "modelCategory": {
+                  "type": "string",
+                  "enum": [
+                    "foundational",
+                    "acquisition",
+                    "activation",
+                    "retention",
+                    "monetization",
+                    "growth",
+                    "decision"
+                  ],
+                  "description": "Category of the mental model"
+                },
+                "relevance": {
+                  "type": "string",
+                  "description": "Why this model is relevant to the specific challenge"
+                },
+                "diagnostic": {
+                  "type": "string",
+                  "description": "Answer to the model's diagnostic question using the user's context"
+                },
+                "insight": {
+                  "type": "string",
+                  "description": "What the model reveals about the situation"
+                },
+                "action": {
+                  "type": "string",
+                  "description": "Specific recommendation based on this model"
+                },
+                "expectedImpact": {
+                  "type": "string",
+                  "enum": [
+                    "low",
+                    "medium",
+                    "high"
+                  ],
+                  "description": "Expected impact of the recommended action"
+                }
+              },
+              "required": [
+                "modelName",
+                "relevance",
+                "diagnostic",
+                "insight",
+                "action"
+              ]
+            },
+            "minItems": 2,
+            "maxItems": 5,
+            "description": "Mental models applied to the challenge"
+          },
+          "synthesis": {
+            "type": "object",
+            "properties": {
+              "keyInsight": {
+                "type": "string",
+                "description": "What the combination of models reveals that no single model would"
+              },
+              "primaryRecommendation": {
+                "type": "string",
+                "description": "The most important action to take"
+              },
+              "secondaryRecommendations": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Additional actions in priority order"
+              },
+              "potentialRisks": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Potential risks or second-order effects to watch for"
+              }
+            },
+            "required": [
+              "keyInsight",
+              "primaryRecommendation"
+            ]
+          },
+          "nextSteps": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "step": {
+                  "type": "string",
+                  "description": "Concrete action to take"
+                },
+                "priority": {
+                  "type": "integer",
+                  "description": "Priority order (1 = highest)"
+                },
+                "effort": {
+                  "type": "string",
+                  "enum": [
+                    "low",
+                    "medium",
+                    "high"
+                  ],
+                  "description": "Effort required"
+                },
+                "timeline": {
+                  "type": "string",
+                  "description": "Estimated timeline (e.g., '1 week', '2-4 weeks')"
+                },
+                "successMetric": {
+                  "type": "string",
+                  "description": "How to measure success of this step"
+                }
+              },
+              "required": [
+                "step",
+                "priority"
+              ]
+            },
+            "minItems": 1,
+            "description": "Prioritized next steps with implementation details"
+          },
+          "experimentationPriority": {
+            "type": "object",
+            "properties": {
+              "method": {
+                "type": "string",
+                "enum": [
+                  "ICE",
+                  "RICE",
+                  "qualitative"
+                ],
+                "description": "Prioritization method used"
+              },
+              "scores": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "recommendation": {
+                      "type": "string"
+                    },
+                    "impact": {
+                      "type": "number",
+                      "minimum": 1,
+                      "maximum": 10
+                    },
+                    "confidence": {
+                      "type": "number",
+                      "minimum": 1,
+                      "maximum": 10
+                    },
+                    "ease": {
+                      "type": "number",
+                      "minimum": 1,
+                      "maximum": 10
+                    },
+                    "totalScore": {
+                      "type": "number"
+                    }
+                  }
+                },
+                "description": "ICE/RICE scores if prioritization was requested"
+              }
+            },
+            "description": "Experiment prioritization if requested"
+          },
+          "relatedModels": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "modelName": {
+                  "type": "string"
+                },
+                "whenToUse": {
+                  "type": "string"
+                }
+              }
+            },
+            "description": "Additional models that may be relevant for future consideration"
+          }
+        },
+        "required": [
+          "challenge",
+          "modelsApplied",
+          "synthesis",
+          "nextSteps"
+        ]
+      },
+      "crossReferences": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "skillId": {
+              "type": "string",
+              "description": "Related skill identifier (e.g., plg-strategy, growth-loops)"
+            },
+            "reason": {
+              "type": "string",
+              "description": "Why this related skill might be helpful"
+            }
+          }
+        },
+        "description": "Related skills that might provide deeper dive into specific areas"
+      }
+    },
+    "required": [
+      "mentalModelApplication"
+    ]
+  },
+  "temperature": 0,
+  "tags": [
+    "plg_frameworks",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with plg mental models",
+        "growth framework",
+        "pricing strategy",
+        "the user asks \"what framework should i use,\" \"how should i think about this,\" or references a specific model like \"adjacent user theory\" or \"bowling alley framework"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "security_controls": {
+    "delete_operations": {
+      "soft_delete": true,
+      "retention_period_days": 30,
+      "undelete_capable": true,
+      "backup_before_delete": true,
+      "multi_party_approval": true,
+      "confirmation_required": {
+        "enabled": true,
+        "show_impact": true,
+        "require_reason": true
+      }
+    }
+  },
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.92
+  }
+}

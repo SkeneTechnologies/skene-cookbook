@@ -1,0 +1,68 @@
+{
+  "skill_id": "support_escalation_predictor",
+  "generated_at": "2026-02-12T00:05:04.417773",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "ticket_id": "1558",
+        "include_customer_history": false
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "ticket_id": "hv2n",
+        "include_customer_history": true,
+        "alert_threshold": 788.06
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "ticket_id": "wqwfr9g3zx",
+        "alert_threshold": 3766.4
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "alert_threshold": 7665.26
+      },
+      "label": "missing_ticket_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "ticket_id": 12345
+      },
+      "label": "invalid_type_ticket_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "ticket_id": "6yqmei",
+        "alert_threshold": 4677.66,
+        "include_customer_history": "yes"
+      },
+      "label": "invalid_type_include_customer_history",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "ticket_id": "wj4fsh0r81ok",
+        "alert_threshold": "not_a_number"
+      },
+      "label": "invalid_type_alert_threshold",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

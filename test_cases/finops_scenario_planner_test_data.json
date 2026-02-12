@@ -1,0 +1,98 @@
+{
+  "skill_id": "finops_scenario_planner",
+  "generated_at": "2026-02-12T00:05:00.014787",
+  "num_cases": 9,
+  "test_cases": [
+    {
+      "inputs": {
+        "base_period": "px2oqk7",
+        "forecast_periods": 245
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "base_period": "rmyzvlq0w7ssszh9",
+        "key_variables": [
+          "n4vz20e19me"
+        ]
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "base_period": "kuoy2wl96cllg0",
+        "forecast_periods": 909,
+        "key_variables": []
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "scenarios": [
+          "82rcc2a81edpz",
+          "2xcy",
+          "93cksr6wckep8t4"
+        ],
+        "key_variables": [
+          "u84hoepnq4vlo8"
+        ]
+      },
+      "label": "missing_base_period",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "base_period": 12345
+      },
+      "label": "invalid_type_base_period",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "base_period": "lrotfv1e0lmtf",
+        "scenarios": [
+          "d",
+          "0hepgq0ijvt",
+          "qc4kkw5so94kdk8wj0"
+        ],
+        "forecast_periods": "not_a_number"
+      },
+      "label": "invalid_type_forecast_periods",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "base_period": "778trpuzfa7j",
+        "key_variables": [
+          "gj41hy4zszcevrk7ax16"
+        ],
+        "scenarios": "not_an_array"
+      },
+      "label": "invalid_type_scenarios",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "base_period": "sqkdqaxv3ebmsvh9r",
+        "forecast_periods": 676,
+        "scenarios": [
+          "cri4b2b",
+          "1whi1zbcyzkawso7xqh",
+          "4w1xis"
+        ],
+        "key_variables": "not_an_array"
+      },
+      "label": "invalid_type_key_variables",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

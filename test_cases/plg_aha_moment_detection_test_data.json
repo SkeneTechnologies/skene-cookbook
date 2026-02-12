@@ -1,0 +1,71 @@
+{
+  "skill_id": "plg_aha_moment_detection",
+  "generated_at": "2026-02-12T00:05:12.335827",
+  "num_cases": 7,
+  "test_cases": [
+    {
+      "inputs": {
+        "userId": "rhg02dmdumvogerdxm"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "userId": "wbmny40"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "userId": "of"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "ahaDefinitions": [
+          {
+            "timeframe": "ci1w6rcxi1g4gq3u"
+          },
+          {
+            "threshold": 7525.18
+          },
+          {
+            "threshold": 6095.7,
+            "timeframe": "eb2fr0y"
+          }
+        ]
+      },
+      "label": "missing_userId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": 12345,
+        "ahaDefinitions": [
+          {
+            "timeframe": "kmkjzw0jpzh4pk"
+          }
+        ]
+      },
+      "label": "invalid_type_userId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": "r",
+        "ahaDefinitions": "not_an_array"
+      },
+      "label": "invalid_type_ahaDefinitions",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

@@ -1,0 +1,123 @@
+{
+  "skill_id": "ai_translation_localizer",
+  "generated_at": "2026-02-12T00:05:03.218602",
+  "num_cases": 11,
+  "test_cases": [
+    {
+      "inputs": {
+        "content": "nkaga2",
+        "target_languages": [
+          "vmeqm5juoubxyzc7x",
+          "at3n3vphewodkylb"
+        ],
+        "content_type": "legal"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "content": "ojb5",
+        "target_languages": [
+          "jhdyyyqeizm5",
+          "pjartktjf5ltxe2mv1"
+        ],
+        "glossary": {}
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "content": "62axacrk2w9mjejvfn",
+        "target_languages": [
+          "sjyx4lwt",
+          "naia3w4j36yaixky"
+        ],
+        "source_language": "c4bz6e",
+        "content_type": "support",
+        "glossary": {}
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "target_languages": [
+          "3ua3b5d597"
+        ]
+      },
+      "label": "missing_content",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "content": "ycjd8mc",
+        "source_language": "muxce9ssvr7ehx93"
+      },
+      "label": "missing_target_languages",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "content": 12345,
+        "target_languages": [
+          "x"
+        ],
+        "source_language": "xz40q718k"
+      },
+      "label": "invalid_type_content",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "content": "5uhuh",
+        "target_languages": [],
+        "source_language": 12345
+      },
+      "label": "invalid_type_source_language",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "content": "3ajsnt7zz9y2q",
+        "target_languages": "not_an_array",
+        "source_language": "fn2zzp86wpavo5ld",
+        "content_type": "legal",
+        "glossary": {}
+      },
+      "label": "invalid_type_target_languages",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "content": "f89z4yfdiex2428l5ypm",
+        "target_languages": [
+          "atc8gre"
+        ],
+        "content_type": 12345
+      },
+      "label": "invalid_type_content_type",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "content": "om2srdw3u4h3eodkpz",
+        "target_languages": [
+          "6i41i",
+          "3339",
+          "ysi1xyol1cya3g0ra"
+        ],
+        "source_language": "w51kt6c7ath3oa",
+        "glossary": "not_an_object"
+      },
+      "label": "invalid_type_glossary",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

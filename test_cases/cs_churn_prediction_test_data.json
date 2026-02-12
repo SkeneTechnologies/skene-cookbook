@@ -1,0 +1,136 @@
+{
+  "skill_id": "cs_churn_prediction",
+  "generated_at": "2026-02-12T00:05:00.812285",
+  "num_cases": 13,
+  "test_cases": [
+    {
+      "inputs": {
+        "account_id": "test_y8wjoc0k",
+        "analysis_period_days": 31,
+        "include_intervention": false,
+        "segment_name": "test_xyzd1vfg",
+        "threshold_critical": 96
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "account_id": "test_ub8xku3o",
+        "renewal_date": "2026-02-12",
+        "threshold_critical": 29,
+        "threshold_high": 79
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "account_id": "test_onk65uxg",
+        "include_intervention": true,
+        "csm_email": "user_bctrx@example.com",
+        "renewal_date": "2026-02-12",
+        "threshold_high": 25
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "segment_name": "test_ucl5tgpq",
+        "threshold_high": 43
+      },
+      "label": "missing_account_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "account_id": 12345,
+        "analysis_period_days": 9,
+        "csm_email": "user_en53r@example.com",
+        "segment_name": "test_kftsew5v",
+        "threshold_critical": 55,
+        "threshold_high": 70
+      },
+      "label": "invalid_type_account_id",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "account_id": "test_032cnpu0",
+        "renewal_date": "2026-02-12",
+        "threshold_critical": 46,
+        "threshold_high": 96,
+        "analysis_period_days": "not_a_number"
+      },
+      "label": "invalid_type_analysis_period_days",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "account_id": "test_scisv78h",
+        "analysis_period_days": 74,
+        "include_intervention": "yes",
+        "csm_email": "user_iefoa@example.com",
+        "threshold_critical": 39
+      },
+      "label": "invalid_type_include_intervention",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "account_id": "test_akvazo65",
+        "renewal_date": "2026-02-12",
+        "threshold_critical": 98,
+        "csm_email": 12345
+      },
+      "label": "invalid_type_csm_email",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "account_id": "test_ynkvgi83",
+        "analysis_period_days": 37,
+        "include_intervention": false,
+        "renewal_date": 12345,
+        "threshold_high": 54
+      },
+      "label": "invalid_type_renewal_date",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "account_id": "test_xlaws25u",
+        "renewal_date": "2026-02-12",
+        "segment_name": 12345
+      },
+      "label": "invalid_type_segment_name",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "account_id": "test_tu6xntpo",
+        "renewal_date": "2026-02-12",
+        "segment_name": "test_yxv9zzph",
+        "threshold_critical": "not_a_number"
+      },
+      "label": "invalid_type_threshold_critical",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "account_id": "test_eg6t8inn",
+        "analysis_period_days": 33,
+        "threshold_critical": 97,
+        "threshold_high": "not_a_number"
+      },
+      "label": "invalid_type_threshold_high",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

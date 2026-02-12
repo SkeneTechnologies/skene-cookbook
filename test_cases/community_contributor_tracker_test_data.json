@@ -1,0 +1,82 @@
+{
+  "skill_id": "community_contributor_tracker",
+  "generated_at": "2026-02-11T22:18:28.714733",
+  "num_cases": 9,
+  "test_cases": [
+    {
+      "inputs": {
+        "action": "analyze",
+        "githubUsername": "Test Name a7ab",
+        "repository": "b9ke3u0w7"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "action": "analyze"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "action": "report",
+        "githubUsername": "Test Name z9f0",
+        "timeRange": "90d"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "githubUsername": "Test Name ueqy",
+        "repository": "t4gayfd"
+      },
+      "label": "missing_action",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": 12345,
+        "githubUsername": "Test Name wsc4",
+        "repository": "gvz2hl",
+        "timeRange": "30d"
+      },
+      "label": "invalid_type_action",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": "analyze",
+        "repository": "mq9v",
+        "githubUsername": 12345
+      },
+      "label": "invalid_type_githubUsername",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": "track",
+        "githubUsername": "Test Name ql73",
+        "repository": 12345,
+        "timeRange": "30d"
+      },
+      "label": "invalid_type_repository",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "action": "analyze",
+        "timeRange": 12345
+      },
+      "label": "invalid_type_timeRange",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

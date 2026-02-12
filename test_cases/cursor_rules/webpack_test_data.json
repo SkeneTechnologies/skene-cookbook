@@ -1,0 +1,22 @@
+{
+  "skill_id": "cursor_rules/webpack",
+  "generated_at": "2026-02-11T22:14:23.825854",
+  "num_cases": 3,
+  "test_cases": [
+    {
+      "inputs": {},
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {},
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {},
+      "label": "valid_case_3",
+      "expected_valid": true
+    }
+  ]
+}

@@ -1,0 +1,97 @@
+{
+  "skill_id": "prodops_competitive_feature_tracker",
+  "generated_at": "2026-02-12T00:05:02.388179",
+  "num_cases": 9,
+  "test_cases": [
+    {
+      "inputs": {
+        "competitors": [
+          "6cwbcwpdom0dv43c5",
+          "da4pwt1",
+          "cjj55ap3bilz7"
+        ],
+        "trackingPeriod": "monthly",
+        "focusAreas": []
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "competitors": [
+          "d3",
+          "l9bl"
+        ],
+        "alertThreshold": "critical"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "competitors": [
+          "c7i",
+          "deol1jwxmkj1t",
+          "hb8stfz2osqtxr1m"
+        ]
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "alertThreshold": "critical"
+      },
+      "label": "missing_competitors",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "competitors": "not_an_array",
+        "focusAreas": []
+      },
+      "label": "invalid_type_competitors",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "competitors": [
+          "4v5yilw"
+        ],
+        "trackingPeriod": 12345,
+        "focusAreas": [],
+        "alertThreshold": "significant"
+      },
+      "label": "invalid_type_trackingPeriod",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "competitors": [
+          "xfvlv6jp7w1hdcbaus",
+          "swm6gv87kead0k4",
+          "36t6wh1hf96nc"
+        ],
+        "trackingPeriod": "monthly",
+        "focusAreas": "not_an_array"
+      },
+      "label": "invalid_type_focusAreas",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "competitors": [
+          "v8xctvtkb8b"
+        ],
+        "alertThreshold": 12345
+      },
+      "label": "invalid_type_alertThreshold",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

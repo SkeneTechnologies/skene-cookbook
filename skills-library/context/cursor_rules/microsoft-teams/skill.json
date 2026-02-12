@@ -1,0 +1,42 @@
+{
+  "id": "cursor_rules/microsoft-teams",
+  "version": "1.0.0",
+  "name": "microsoft-teams",
+  "description": "This rule file provides opinionated best practices for developing and managing applications within the Microsoft Teams ecosystem, ensuring high-quality, performant, and maintainable solutions.",
+  "domain": "cursor_rules",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "cursor_rules",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "cursor": {
+      "globs": [
+        "**/*"
+      ]
+    },
+    "claude": {
+      "triggers": [
+        "help with microsoft teams"
+      ]
+    },
+    "skeneflow": {}
+  },
+  "security_controls": {
+    "review_note": {
+      "flagged_as": "false_positive",
+      "requires_manual_review": true,
+      "review_date": "2026-02-05T14:36:53.797592"
+    }
+  },
+  "skipSchemaValidation": true
+}

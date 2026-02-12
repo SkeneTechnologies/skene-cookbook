@@ -1,0 +1,594 @@
+{
+  "id": "mon_pricing_optimization",
+  "version": "1.0.0",
+  "name": "Pricing Optimization",
+  "description": "Analyzes pricing effectiveness and recommends optimizations for revenue growth.",
+  "domain": "monetization",
+  "tools": [
+    {
+      "name": "analytics.get_metrics",
+      "required": true
+    },
+    {
+      "name": "analytics.cohort",
+      "required": true
+    },
+    {
+      "name": "stripe.get_subscription",
+      "required": false
+    },
+    {
+      "name": "crm.get_deal_velocity",
+      "required": false
+    }
+  ],
+  "exitStates": [
+    "pricing_test",
+    "tier_restructure",
+    "value_metric_update",
+    "idle"
+  ],
+  "metrics": {
+    "primary": "arpu_growth",
+    "benchmarks": {
+      "excellent": "> 20% YoY",
+      "good": "10-20% YoY",
+      "needs_improvement": "< 10% YoY"
+    }
+  },
+  "temperature": 0,
+  "tags": [
+    "monetization",
+    "pricing",
+    "optimization",
+    "revenue",
+    "community"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with Pricing Optimization",
+        "pricing",
+        "revenue optimization"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {
+      "tools": [
+        {
+          "name": "stripe.get_customer",
+          "required": true
+        },
+        {
+          "name": "stripe.list_subscriptions",
+          "required": false
+        },
+        {
+          "name": "stripe.create_checkout",
+          "required": false
+        }
+      ]
+    }
+  },
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "analysis_period": {
+        "type": "object",
+        "properties": {
+          "start_date": {
+            "type": "string",
+            "format": "date",
+            "description": "Start date for pricing analysis period"
+          },
+          "end_date": {
+            "type": "string",
+            "format": "date",
+            "description": "End date for pricing analysis period"
+          }
+        },
+        "required": [
+          "start_date",
+          "end_date"
+        ]
+      },
+      "pricing_plans": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "plan_id": {
+              "type": "string",
+              "description": "Unique identifier for the pricing plan"
+            },
+            "plan_name": {
+              "type": "string",
+              "description": "Display name of the pricing plan (e.g., Free, Pro, Enterprise)"
+            },
+            "list_price": {
+              "type": "number",
+              "minimum": 0,
+              "description": "Published list price for the plan"
+            },
+            "billing_period": {
+              "type": "string",
+              "enum": [
+                "monthly",
+                "annual",
+                "quarterly"
+              ],
+              "description": "Billing frequency for the plan"
+            }
+          },
+          "required": [
+            "plan_id",
+            "plan_name"
+          ]
+        },
+        "minItems": 1,
+        "description": "List of pricing plans to analyze"
+      },
+      "metrics_to_analyze": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": [
+            "arpu",
+            "price_realization",
+            "upgrade_rate",
+            "discount_rate",
+            "price_sensitivity",
+            "ltv",
+            "conversion_rate",
+            "churn_rate"
+          ]
+        },
+        "description": "Specific pricing metrics to focus on in the analysis",
+        "default": [
+          "arpu",
+          "upgrade_rate",
+          "discount_rate"
+        ]
+      },
+      "cohort_segments": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Customer segments for cohort analysis (e.g., by signup date, industry, company size)",
+        "default": [
+          "signup_month"
+        ]
+      },
+      "competitive_benchmarks": {
+        "type": "object",
+        "properties": {
+          "include_comparison": {
+            "type": "boolean",
+            "description": "Whether to include competitive pricing comparison",
+            "default": false
+          },
+          "competitor_data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "competitor_name": {
+                  "type": "string"
+                },
+                "plan_tier": {
+                  "type": "string"
+                },
+                "price": {
+                  "type": "number",
+                  "minimum": 0
+                }
+              }
+            }
+          }
+        }
+      },
+      "optimization_goals": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": [
+            "maximize_revenue",
+            "maximize_conversions",
+            "reduce_churn",
+            "improve_upgrade_rate",
+            "optimize_discounting"
+          ]
+        },
+        "description": "Primary goals for pricing optimization",
+        "default": [
+          "maximize_revenue"
+        ]
+      },
+      "constraints": {
+        "type": "object",
+        "properties": {
+          "max_price_increase_percent": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100,
+            "description": "Maximum allowable price increase percentage"
+          },
+          "max_churn_tolerance_percent": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100,
+            "description": "Maximum acceptable churn rate increase"
+          },
+          "grandfather_existing_customers": {
+            "type": "boolean",
+            "description": "Whether to maintain current pricing for existing customers",
+            "default": true
+          }
+        }
+      }
+    },
+    "required": [
+      "analysis_period",
+      "pricing_plans"
+    ],
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "analysis_summary": {
+        "type": "object",
+        "properties": {
+          "period_analyzed": {
+            "type": "object",
+            "properties": {
+              "start_date": {
+                "type": "string",
+                "format": "date"
+              },
+              "end_date": {
+                "type": "string",
+                "format": "date"
+              }
+            },
+            "required": [
+              "start_date",
+              "end_date"
+            ]
+          },
+          "total_mrr": {
+            "type": "number",
+            "description": "Total monthly recurring revenue"
+          },
+          "total_users": {
+            "type": "integer",
+            "description": "Total number of users across all plans"
+          },
+          "overall_arpu": {
+            "type": "number",
+            "description": "Overall average revenue per user"
+          }
+        },
+        "required": [
+          "period_analyzed",
+          "total_mrr",
+          "total_users",
+          "overall_arpu"
+        ]
+      },
+      "plan_performance": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "plan_id": {
+              "type": "string"
+            },
+            "plan_name": {
+              "type": "string"
+            },
+            "mrr": {
+              "type": "number",
+              "description": "Monthly recurring revenue for this plan"
+            },
+            "users": {
+              "type": "integer",
+              "description": "Number of active users on this plan"
+            },
+            "arpu": {
+              "type": "number",
+              "description": "Average revenue per user for this plan"
+            },
+            "conversion_rate": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100,
+              "description": "Conversion rate percentage"
+            },
+            "churn_rate": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100,
+              "description": "Monthly churn rate percentage"
+            },
+            "upgrade_rate": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100,
+              "description": "Monthly upgrade rate percentage"
+            },
+            "average_discount_applied": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100,
+              "description": "Average discount percentage applied"
+            },
+            "price_realization": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100,
+              "description": "Actual price vs list price percentage"
+            }
+          },
+          "required": [
+            "plan_id",
+            "plan_name",
+            "mrr",
+            "users",
+            "arpu",
+            "conversion_rate",
+            "churn_rate"
+          ]
+        }
+      },
+      "opportunities_identified": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "opportunity_type": {
+              "type": "string",
+              "enum": [
+                "price_increase",
+                "price_decrease",
+                "new_tier",
+                "feature_bundling",
+                "discount_reduction",
+                "upgrade_incentive"
+              ]
+            },
+            "description": {
+              "type": "string",
+              "description": "Detailed description of the opportunity"
+            },
+            "supporting_data": {
+              "type": "object",
+              "description": "Key metrics and data points supporting this opportunity"
+            },
+            "estimated_impact_mrr": {
+              "type": "number",
+              "description": "Estimated monthly recurring revenue impact"
+            },
+            "confidence_level": {
+              "type": "string",
+              "enum": [
+                "low",
+                "medium",
+                "high"
+              ]
+            }
+          },
+          "required": [
+            "opportunity_type",
+            "description",
+            "confidence_level"
+          ]
+        }
+      },
+      "recommendations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "recommendation_id": {
+              "type": "string",
+              "description": "Unique identifier for this recommendation"
+            },
+            "change_type": {
+              "type": "string",
+              "enum": [
+                "price_adjustment",
+                "plan_restructure",
+                "discount_policy",
+                "feature_gating",
+                "billing_frequency"
+              ]
+            },
+            "title": {
+              "type": "string",
+              "description": "Brief title of the recommendation"
+            },
+            "rationale": {
+              "type": "string",
+              "description": "Detailed explanation and data-driven reasoning"
+            },
+            "affected_plans": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Plan IDs affected by this recommendation"
+            },
+            "expected_impact": {
+              "type": "object",
+              "properties": {
+                "mrr_change": {
+                  "type": "number",
+                  "description": "Expected monthly recurring revenue change"
+                },
+                "conversion_rate_change": {
+                  "type": "number",
+                  "description": "Expected conversion rate change percentage"
+                },
+                "churn_rate_change": {
+                  "type": "number",
+                  "description": "Expected churn rate change percentage"
+                }
+              }
+            },
+            "risk_level": {
+              "type": "string",
+              "enum": [
+                "low",
+                "medium",
+                "high"
+              ]
+            },
+            "implementation_complexity": {
+              "type": "string",
+              "enum": [
+                "low",
+                "medium",
+                "high"
+              ]
+            },
+            "priority": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "Priority ranking (1 = highest)"
+            }
+          },
+          "required": [
+            "recommendation_id",
+            "change_type",
+            "title",
+            "rationale",
+            "risk_level",
+            "priority"
+          ]
+        }
+      },
+      "suggested_ab_tests": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "test_name": {
+              "type": "string",
+              "description": "Name of the A/B test"
+            },
+            "hypothesis": {
+              "type": "string",
+              "description": "What this test aims to validate"
+            },
+            "control_variant": {
+              "type": "string",
+              "description": "Description of the control (current state)"
+            },
+            "test_variant": {
+              "type": "string",
+              "description": "Description of the test variant"
+            },
+            "success_metrics": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Metrics to measure for determining success"
+            },
+            "recommended_duration_days": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "Recommended test duration in days"
+            },
+            "minimum_sample_size": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "Minimum users needed per variant"
+            }
+          },
+          "required": [
+            "test_name",
+            "hypothesis",
+            "control_variant",
+            "test_variant",
+            "success_metrics"
+          ]
+        }
+      },
+      "pricing_elasticity": {
+        "type": "object",
+        "properties": {
+          "by_plan": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "plan_id": {
+                  "type": "string"
+                },
+                "elasticity_coefficient": {
+                  "type": "number",
+                  "description": "Price elasticity of demand coefficient"
+                },
+                "interpretation": {
+                  "type": "string",
+                  "enum": [
+                    "elastic",
+                    "inelastic",
+                    "unit_elastic"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "market_position": {
+        "type": "object",
+        "properties": {
+          "competitive_standing": {
+            "type": "string",
+            "enum": [
+              "below_market",
+              "at_market",
+              "above_market",
+              "premium"
+            ]
+          },
+          "price_gaps": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "gap_description": {
+                  "type": "string"
+                },
+                "opportunity": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "generated_at": {
+        "type": "string",
+        "format": "date-time",
+        "description": "Timestamp when this analysis was generated"
+      }
+    },
+    "required": [
+      "analysis_summary",
+      "plan_performance",
+      "opportunities_identified",
+      "recommendations",
+      "generated_at"
+    ]
+  },
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.92
+  }
+}

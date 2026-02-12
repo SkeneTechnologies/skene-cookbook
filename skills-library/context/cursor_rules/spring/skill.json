@@ -1,0 +1,35 @@
+{
+  "id": "cursor_rules/spring",
+  "version": "1.0.0",
+  "name": "spring",
+  "description": "Definitive guidelines for building robust, maintainable, and performant Spring Boot applications using modern best practices.",
+  "domain": "cursor_rules",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "cursor_rules",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "cursor": {
+      "globs": [
+        "**/*.java"
+      ]
+    },
+    "claude": {
+      "triggers": [
+        "help with spring"
+      ]
+    },
+    "skeneflow": {}
+  },
+  "skipSchemaValidation": true
+}

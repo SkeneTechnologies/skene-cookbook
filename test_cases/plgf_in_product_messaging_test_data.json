@@ -1,0 +1,107 @@
+{
+  "skill_id": "plgf_in_product_messaging",
+  "generated_at": "2026-02-11T22:14:34.501309",
+  "num_cases": 11,
+  "test_cases": [
+    {
+      "inputs": {
+        "userId": "87c7bk13hbp4",
+        "messageType": "slideout",
+        "objective": "feature_adoption",
+        "priority": "high"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "userId": "m8",
+        "messageType": "banner",
+        "objective": "upgrade"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "userId": "1p7c53gp1am",
+        "messageType": "modal",
+        "objective": "onboarding",
+        "priority": "low"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "messageType": "banner",
+        "objective": "upgrade",
+        "priority": "medium"
+      },
+      "label": "missing_userId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": "53tys8o2ywzh",
+        "objective": "feature_adoption",
+        "priority": "low"
+      },
+      "label": "missing_messageType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": "m3jbq4n2kjul",
+        "messageType": "hotspot"
+      },
+      "label": "missing_objective",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": 12345,
+        "messageType": "modal",
+        "objective": "feedback",
+        "priority": "low"
+      },
+      "label": "invalid_type_userId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": "neraojbmk24p6zqyils",
+        "messageType": 12345,
+        "objective": "onboarding",
+        "priority": "low"
+      },
+      "label": "invalid_type_messageType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": "y6p",
+        "messageType": "tooltip",
+        "objective": 12345,
+        "priority": "high"
+      },
+      "label": "invalid_type_objective",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "userId": "ob5fta57pqe17",
+        "messageType": "hotspot",
+        "objective": "upgrade",
+        "priority": 12345
+      },
+      "label": "invalid_type_priority",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

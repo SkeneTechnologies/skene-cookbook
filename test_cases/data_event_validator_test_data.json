@@ -1,0 +1,135 @@
+{
+  "skill_id": "data_event_validator",
+  "generated_at": "2026-02-11T22:18:28.983815",
+  "num_cases": 11,
+  "test_cases": [
+    {
+      "inputs": {
+        "source": "test_e82n430u",
+        "event_types": [
+          "e428d89ludxcf",
+          "b35kvtbyqn44bibwl",
+          "w3wo99h"
+        ],
+        "sample_size": 2514.84,
+        "strict_mode": true
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "source": "test_r1apq685",
+        "schema_url": "https://example.com/6nfundrt",
+        "event_types": [
+          "3kzj9nfvqpowwt5q0iq",
+          "orolq",
+          "k7l"
+        ]
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "source": "test_k7pv12te",
+        "time_range": "hq8ybq7p7f8fynz1pk6o",
+        "sample_size": 2398.81
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "schema_url": "https://example.com/gqm9rmld",
+        "event_types": [
+          "l4i5edrkiepwv1qkytj",
+          "yb3kzkja1a",
+          "ca4sw2d2rx"
+        ],
+        "strict_mode": true
+      },
+      "label": "missing_source",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "source": 12345,
+        "event_types": [
+          "0ww3ntqk7",
+          "xjkd2kfd8ldu4e",
+          "ro8dr7"
+        ],
+        "sample_size": 7457.01
+      },
+      "label": "invalid_type_source",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "source": "test_9hqof8ts",
+        "schema_url": 12345,
+        "event_types": [
+          "l6qfrd7iw1"
+        ],
+        "time_range": "mynj7gktmmajxge3lu7j",
+        "sample_size": 1425.4
+      },
+      "label": "invalid_type_schema_url",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "source": "test_podavy9j",
+        "schema_url": "https://example.com/iob6u97z",
+        "time_range": "0c0kpfb5",
+        "event_types": "not_an_array"
+      },
+      "label": "invalid_type_event_types",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "source": "test_zzl9hev7",
+        "event_types": [
+          "ddiq8ua9hytqz",
+          "260616zuufbntelmfit"
+        ],
+        "sample_size": 5688.62,
+        "strict_mode": false,
+        "time_range": 12345
+      },
+      "label": "invalid_type_time_range",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "source": "test_p0mi8m5l",
+        "schema_url": "https://example.com/hy9fv9d4",
+        "time_range": "d0k1etnn0nchfs",
+        "sample_size": "not_a_number"
+      },
+      "label": "invalid_type_sample_size",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "source": "test_keg66630",
+        "schema_url": "https://example.com/lj18lt12",
+        "event_types": [
+          "ruzb15cickd"
+        ],
+        "time_range": "ht0oz9",
+        "sample_size": 1708.25,
+        "strict_mode": "yes"
+      },
+      "label": "invalid_type_strict_mode",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

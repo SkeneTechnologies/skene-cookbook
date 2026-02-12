@@ -1,0 +1,36 @@
+{
+  "id": "cursor_rules/detox",
+  "version": "1.0.0",
+  "name": "detox",
+  "description": "This guide provides definitive, opinionated best practices for writing reliable, maintainable, and performant end-to-end tests with Detox in React Native applications.",
+  "domain": "cursor_rules",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "cursor_rules",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "cursor": {
+      "globs": [
+        "**/*.{js",
+        "jsx}"
+      ]
+    },
+    "claude": {
+      "triggers": [
+        "help with detox"
+      ]
+    },
+    "skeneflow": {}
+  },
+  "skipSchemaValidation": true
+}

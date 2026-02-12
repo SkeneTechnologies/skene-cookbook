@@ -1,0 +1,67 @@
+{
+  "skill_id": "cs_customer_maturity_model",
+  "generated_at": "2026-02-12T00:05:00.268122",
+  "num_cases": 8,
+  "test_cases": [
+    {
+      "inputs": {
+        "accountId": "test_xhde6l4w"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "accountId": "test_pxipbchu"
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "accountId": "test_oki058fm",
+        "includeRoadmap": true
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {},
+      "label": "missing_accountId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": 12345
+      },
+      "label": "invalid_type_accountId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": "test_kq2l2yi8",
+        "maturityDimensions": "not_an_array"
+      },
+      "label": "invalid_type_maturityDimensions",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "accountId": "test_wve5dz1i",
+        "maturityDimensions": [
+          "governance",
+          "integration",
+          "innovation"
+        ],
+        "includeRoadmap": "yes"
+      },
+      "label": "invalid_type_includeRoadmap",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

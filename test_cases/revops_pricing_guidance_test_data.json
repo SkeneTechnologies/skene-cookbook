@@ -1,0 +1,97 @@
+{
+  "skill_id": "revops_pricing_guidance",
+  "generated_at": "2026-02-12T00:05:05.244413",
+  "num_cases": 10,
+  "test_cases": [
+    {
+      "inputs": {
+        "dealId": "hu4r5rzazk0m2gzmm",
+        "proposedPrice": 4361.87,
+        "competitorPrice": 9097.66
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "dealId": "qds1mlzxwq8es4",
+        "proposedPrice": 3447.6,
+        "discountRequest": 5910.15
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "dealId": "28t7yr4z8ogiyvnhjcf",
+        "proposedPrice": 8303.03,
+        "competitorPrice": 8375.77,
+        "urgency": "high"
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "discountRequest": 2608.27,
+        "competitorPrice": 4955.49,
+        "urgency": "critical"
+      },
+      "label": "missing_dealId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "dealId": 12345,
+        "proposedPrice": 857.71,
+        "discountRequest": 7701.02,
+        "competitorPrice": 8038.56
+      },
+      "label": "invalid_type_dealId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "dealId": "j8r5okdg",
+        "proposedPrice": "not_a_number"
+      },
+      "label": "invalid_type_proposedPrice",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "dealId": "4",
+        "proposedPrice": 4231.31,
+        "competitorPrice": 3262.39,
+        "urgency": "medium",
+        "discountRequest": "not_a_number"
+      },
+      "label": "invalid_type_discountRequest",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "dealId": "57pn1sg",
+        "proposedPrice": 4885.16,
+        "urgency": "critical",
+        "competitorPrice": "not_a_number"
+      },
+      "label": "invalid_type_competitorPrice",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "dealId": "z2pbjgotrpou",
+        "proposedPrice": 358.84,
+        "urgency": 12345
+      },
+      "label": "invalid_type_urgency",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

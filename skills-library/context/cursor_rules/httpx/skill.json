@@ -1,0 +1,35 @@
+{
+  "id": "cursor_rules/httpx",
+  "version": "1.0.0",
+  "name": "httpx",
+  "description": "This guide outlines definitive best practices for using httpx, Python's modern HTTP client, ensuring robust, performant, and maintainable network interactions in both synchronous and asynchronous applications.",
+  "domain": "cursor_rules",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {},
+  "outputSchema": {},
+  "temperature": 0,
+  "tags": [
+    "cursor_rules",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "cursor": {
+      "globs": [
+        "**/*.py"
+      ]
+    },
+    "claude": {
+      "triggers": [
+        "help with httpx"
+      ]
+    },
+    "skeneflow": {}
+  },
+  "skipSchemaValidation": true
+}

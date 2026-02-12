@@ -1,0 +1,421 @@
+{
+  "id": "security/fix-review",
+  "version": "1.0.0",
+  "name": "fix-review",
+  "description": "Verifies that git commits address security audit findings without introducing bugs. Use when reviewing fix branches, validating remediation commits, or checking if specific findings have been addressed.",
+  "domain": "security",
+  "source": "external",
+  "tools": [],
+  "exitStates": [
+    "success",
+    "failure"
+  ],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "sourceCommit": {
+        "type": "string",
+        "description": "Git commit hash or ref representing the baseline before fixes were applied",
+        "pattern": "^[a-f0-9]{7,40}$|^[a-zA-Z0-9/_-]+$",
+        "examples": [
+          "abc123def",
+          "main",
+          "v1.0.0"
+        ]
+      },
+      "targetCommits": {
+        "type": "array",
+        "description": "One or more commit hashes or refs to analyze for fixes",
+        "items": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{7,40}$|^[a-zA-Z0-9/_-]+$"
+        },
+        "minItems": 1,
+        "examples": [
+          [
+            "def456abc"
+          ],
+          [
+            "fix-branch",
+            "abc123def"
+          ]
+        ]
+      },
+      "securityReport": {
+        "type": "object",
+        "description": "Optional security audit report to cross-reference against commits",
+        "properties": {
+          "source": {
+            "type": "string",
+            "enum": [
+              "local",
+              "url",
+              "gdrive",
+              "none"
+            ],
+            "description": "Source type of the security report"
+          },
+          "path": {
+            "type": "string",
+            "description": "File path for local reports or URL for remote reports",
+            "examples": [
+              "/path/to/audit-report.pdf",
+              "https://example.com/report.pdf",
+              "https://drive.google.com/file/d/..."
+            ]
+          },
+          "format": {
+            "type": "string",
+            "enum": [
+              "pdf",
+              "markdown",
+              "json",
+              "html"
+            ],
+            "description": "Format of the security report"
+          }
+        },
+        "required": [
+          "source"
+        ],
+        "if": {
+          "properties": {
+            "source": {
+              "enum": [
+                "local",
+                "url",
+                "gdrive"
+              ]
+            }
+          }
+        },
+        "then": {
+          "required": [
+            "path"
+          ]
+        }
+      },
+      "findingIds": {
+        "type": "array",
+        "description": "Optional list of specific finding IDs to focus on (e.g., TOB-XXX-1)",
+        "items": {
+          "type": "string",
+          "pattern": "^[A-Z]+-[A-Z]+-[0-9]+$|^Finding [0-9]+$",
+          "examples": [
+            "TOB-ABC-001",
+            "Finding 1"
+          ]
+        }
+      },
+      "includeBugDetection": {
+        "type": "boolean",
+        "description": "Whether to run comprehensive bug introduction pattern detection",
+        "default": true
+      }
+    },
+    "required": [
+      "sourceCommit",
+      "targetCommits"
+    ],
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "summary": {
+        "type": "object",
+        "description": "Executive summary of the fix review",
+        "properties": {
+          "sourceCommit": {
+            "type": "string",
+            "description": "Source commit analyzed"
+          },
+          "targetCommits": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Target commits analyzed"
+          },
+          "reportSource": {
+            "type": "string",
+            "description": "Path or URL of security report, or 'none'"
+          },
+          "totalFindings": {
+            "type": "integer",
+            "description": "Total number of findings in the report",
+            "minimum": 0
+          },
+          "findingsFixed": {
+            "type": "integer",
+            "description": "Number of findings with FIXED status",
+            "minimum": 0
+          },
+          "findingsPartiallyFixed": {
+            "type": "integer",
+            "description": "Number of findings with PARTIALLY_FIXED status",
+            "minimum": 0
+          },
+          "findingsNotAddressed": {
+            "type": "integer",
+            "description": "Number of findings with NOT_ADDRESSED status",
+            "minimum": 0
+          },
+          "findingsCannotDetermine": {
+            "type": "integer",
+            "description": "Number of findings with CANNOT_DETERMINE status",
+            "minimum": 0
+          },
+          "bugConcernsCount": {
+            "type": "integer",
+            "description": "Number of potential bug introduction concerns detected",
+            "minimum": 0
+          },
+          "reviewDate": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp of the review"
+          }
+        },
+        "required": [
+          "sourceCommit",
+          "targetCommits",
+          "reportSource",
+          "totalFindings",
+          "findingsFixed",
+          "findingsNotAddressed",
+          "bugConcernsCount",
+          "reviewDate"
+        ]
+      },
+      "findings": {
+        "type": "array",
+        "description": "Detailed status of each finding from the security report",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "Finding identifier (e.g., TOB-XXX-001)"
+            },
+            "title": {
+              "type": "string",
+              "description": "Finding title or brief description"
+            },
+            "severity": {
+              "type": "string",
+              "enum": [
+                "Critical",
+                "High",
+                "Medium",
+                "Low",
+                "Informational"
+              ],
+              "description": "Severity level of the finding"
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "FIXED",
+                "PARTIALLY_FIXED",
+                "NOT_ADDRESSED",
+                "CANNOT_DETERMINE"
+              ],
+              "description": "Status of the finding after reviewing commits"
+            },
+            "evidence": {
+              "type": "object",
+              "description": "Evidence supporting the status determination",
+              "properties": {
+                "commits": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Commit hashes that address this finding"
+                },
+                "filesChanged": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Files modified to address the finding"
+                },
+                "explanation": {
+                  "type": "string",
+                  "description": "Detailed explanation of how the fix addresses the finding"
+                }
+              },
+              "required": [
+                "commits",
+                "explanation"
+              ]
+            }
+          },
+          "required": [
+            "id",
+            "title",
+            "severity",
+            "status",
+            "evidence"
+          ]
+        }
+      },
+      "bugConcerns": {
+        "type": "array",
+        "description": "Potential bugs or regressions detected in the commits",
+        "items": {
+          "type": "object",
+          "properties": {
+            "commit": {
+              "type": "string",
+              "description": "Commit hash where concern was detected"
+            },
+            "file": {
+              "type": "string",
+              "description": "File path where concern exists"
+            },
+            "pattern": {
+              "type": "string",
+              "description": "Type of anti-pattern detected",
+              "examples": [
+                "access-control-weakening",
+                "validation-removal",
+                "external-call-reordering"
+              ]
+            },
+            "severity": {
+              "type": "string",
+              "enum": [
+                "Critical",
+                "High",
+                "Medium",
+                "Low"
+              ],
+              "description": "Severity of the potential bug"
+            },
+            "description": {
+              "type": "string",
+              "description": "Detailed description of the concern"
+            },
+            "lineNumbers": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              },
+              "description": "Line numbers where the concern appears"
+            }
+          },
+          "required": [
+            "commit",
+            "file",
+            "pattern",
+            "severity",
+            "description"
+          ]
+        }
+      },
+      "commitAnalysis": {
+        "type": "array",
+        "description": "Per-commit detailed analysis",
+        "items": {
+          "type": "object",
+          "properties": {
+            "commitHash": {
+              "type": "string",
+              "description": "Full commit hash"
+            },
+            "commitMessage": {
+              "type": "string",
+              "description": "Commit message"
+            },
+            "filesChanged": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "List of files modified in this commit"
+            },
+            "findingsAddressed": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Finding IDs addressed by this commit"
+            },
+            "concerns": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "List of concerns detected in this commit"
+            },
+            "analysis": {
+              "type": "string",
+              "description": "Detailed analysis of the commit"
+            }
+          },
+          "required": [
+            "commitHash",
+            "commitMessage",
+            "filesChanged",
+            "findingsAddressed",
+            "analysis"
+          ]
+        }
+      },
+      "recommendations": {
+        "type": "array",
+        "description": "Follow-up actions and recommendations",
+        "items": {
+          "type": "string"
+        }
+      },
+      "reportPath": {
+        "type": "string",
+        "description": "Path to the generated FIX_REVIEW_REPORT.md file"
+      }
+    },
+    "required": [
+      "summary",
+      "findings",
+      "bugConcerns",
+      "commitAnalysis",
+      "recommendations",
+      "reportPath"
+    ]
+  },
+  "temperature": 0,
+  "tags": [
+    "security",
+    "imported",
+    "verified"
+  ],
+  "platforms": {
+    "claude": {
+      "triggers": [
+        "help with fix review"
+      ]
+    },
+    "cursor": {},
+    "skeneflow": {}
+  },
+  "security_controls": {
+    "delete_operations": {
+      "soft_delete": true,
+      "retention_period_days": 30,
+      "undelete_capable": true,
+      "backup_before_delete": true,
+      "multi_party_approval": true,
+      "confirmation_required": {
+        "enabled": true,
+        "show_impact": true,
+        "require_reason": true
+      }
+    }
+  },
+  "metadata": {
+    "schemaGenerated": true,
+    "schemaConfidence": 0.92
+  }
+}

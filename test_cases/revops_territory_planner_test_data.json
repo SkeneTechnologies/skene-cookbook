@@ -1,0 +1,91 @@
+{
+  "skill_id": "revops_territory_planner",
+  "generated_at": "2026-02-12T00:05:05.169129",
+  "num_cases": 10,
+  "test_cases": [
+    {
+      "inputs": {
+        "planningYear": 3438.42,
+        "region": "nidcjad",
+        "segment": "enterprise",
+        "balanceMetric": "accounts"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "planningYear": 3031.04,
+        "region": "f52v21",
+        "headcount": 1275.6
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "planningYear": 5476.13
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "balanceMetric": "revenue"
+      },
+      "label": "missing_planningYear",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "planningYear": "not_a_number",
+        "segment": "all",
+        "headcount": 2986.28
+      },
+      "label": "invalid_type_planningYear",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "planningYear": 1251.18,
+        "balanceMetric": "revenue",
+        "region": 12345
+      },
+      "label": "invalid_type_region",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "planningYear": 8148.17,
+        "region": "uanb09zdqy49g8wflu8a",
+        "segment": 12345,
+        "balanceMetric": "opportunities"
+      },
+      "label": "invalid_type_segment",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "planningYear": 1920.87,
+        "region": "2a2shgozvqw5xvz5",
+        "headcount": "not_a_number"
+      },
+      "label": "invalid_type_headcount",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "planningYear": 438.97,
+        "headcount": 5751.97,
+        "balanceMetric": 12345
+      },
+      "label": "invalid_type_balanceMetric",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

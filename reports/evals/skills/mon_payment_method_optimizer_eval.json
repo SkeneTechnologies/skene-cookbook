@@ -1,0 +1,64 @@
+{
+  "skill_id": "mon_payment_method_optimizer",
+  "session_id": "batch_eval",
+  "summary": {
+    "skill_id": "mon_payment_method_optimizer",
+    "total_executions": 3,
+    "success_rate": 1.0,
+    "validation_pass_rate": 1.0,
+    "auto_act_rate": 1.0,
+    "latency": {
+      "avg_ms": 491.15,
+      "p50_ms": 0.24,
+      "p95_ms": 1473.16,
+      "p99_ms": 1473.16,
+      "max_ms": 1473.16,
+      "min_ms": 0.07
+    },
+    "decisions": {
+      "auto_act": 3
+    },
+    "errors": {}
+  },
+  "records": [
+    {
+      "timestamp": 1770847512.270512,
+      "duration_ms": 1473.1559753417969,
+      "success": true,
+      "validation_passed": true,
+      "decision_type": "auto_act",
+      "error_type": null,
+      "metadata": {
+        "confidence": 0.95,
+        "risk_level": "High",
+        "trace_id": "3135687eecfa4931"
+      }
+    },
+    {
+      "timestamp": 1770847512.270769,
+      "duration_ms": 0.2391338348388672,
+      "success": true,
+      "validation_passed": true,
+      "decision_type": "auto_act",
+      "error_type": null,
+      "metadata": {
+        "confidence": 0.95,
+        "risk_level": "High",
+        "trace_id": "3135687eecfa4931"
+      }
+    },
+    {
+      "timestamp": 1770847512.270845,
+      "duration_ms": 0.06890296936035156,
+      "success": true,
+      "validation_passed": true,
+      "decision_type": "auto_act",
+      "error_type": null,
+      "metadata": {
+        "confidence": 0.95,
+        "risk_level": "High",
+        "trace_id": "3135687eecfa4931"
+      }
+    }
+  ]
+}

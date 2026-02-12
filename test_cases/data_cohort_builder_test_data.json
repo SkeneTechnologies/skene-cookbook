@@ -1,0 +1,163 @@
+{
+  "skill_id": "data_cohort_builder",
+  "generated_at": "2026-02-11T22:18:28.959947",
+  "num_cases": 13,
+  "test_cases": [
+    {
+      "inputs": {
+        "name": "Test Name nsv7",
+        "description": "vddrp7gx9chel0qg9kbf",
+        "base_table": "g6o0e2uuhpzt43a2n6",
+        "refresh_frequency": "mtlkcafio9"
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "name": "Test Name h95n",
+        "description": "p5ezeqzpkuvfg16",
+        "lookback_days": 9136.53,
+        "sync_to": [
+          "1envp4cbowm96io",
+          "3zz14i",
+          "9cjjv1e10y1c89n6sqq"
+        ]
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "name": "Test Name albn",
+        "description": "r9nav8m5",
+        "criteria": {},
+        "base_table": "myblqq5ml8khoh3g",
+        "lookback_days": 2572.0,
+        "refresh_frequency": "a7g1x1zhb4wtrxl4j13",
+        "sync_to": [
+          "hsk9s8",
+          "j7f5eqq5isvs"
+        ]
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "description": "4pu8mo",
+        "lookback_days": 9589.96,
+        "sync_to": [
+          "o8sxw5a5rdo"
+        ]
+      },
+      "label": "missing_name",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "name": "Test Name 1gij",
+        "criteria": {},
+        "base_table": "pf0md6xqftlpp",
+        "sync_to": [
+          "owdhsl4htloo0",
+          "0b",
+          "okgzyjzpqwsqy3"
+        ]
+      },
+      "label": "missing_description",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "name": 12345,
+        "description": "62csfek",
+        "base_table": "x2hyl0tt89qv9",
+        "lookback_days": 8181.39,
+        "sync_to": [
+          "dlf7",
+          "ecioh"
+        ]
+      },
+      "label": "invalid_type_name",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "name": "Test Name iqbo",
+        "description": 12345,
+        "criteria": {},
+        "sync_to": [
+          "1ni74qk9qrzya1fy"
+        ]
+      },
+      "label": "invalid_type_description",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "name": "Test Name 66ir",
+        "description": "9f1qsvpnyc0ftwl26yat",
+        "lookback_days": 8631.33,
+        "refresh_frequency": "osjwgejkv",
+        "criteria": "not_an_object"
+      },
+      "label": "invalid_type_criteria",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "name": "Test Name satx",
+        "description": "f",
+        "criteria": {},
+        "base_table": 12345,
+        "refresh_frequency": "rnrn6gdz"
+      },
+      "label": "invalid_type_base_table",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "name": "Test Name bqeq",
+        "description": "ujnd292t0louac",
+        "criteria": {},
+        "lookback_days": "not_a_number"
+      },
+      "label": "invalid_type_lookback_days",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "name": "Test Name 02th",
+        "description": "2q2",
+        "criteria": {},
+        "lookback_days": 8554.19,
+        "sync_to": [
+          "1yvxwc4lt",
+          "5wa4s82rtys5tss70od",
+          "ijbemjmi30i5"
+        ],
+        "refresh_frequency": 12345
+      },
+      "label": "invalid_type_refresh_frequency",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "name": "Test Name fsnw",
+        "description": "on3ya520xo4dpzjlnoi",
+        "criteria": {},
+        "base_table": "c7dm45br69z22tgwng4",
+        "lookback_days": 8113.04,
+        "sync_to": "not_an_array"
+      },
+      "label": "invalid_type_sync_to",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}

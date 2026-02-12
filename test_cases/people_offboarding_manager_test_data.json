@@ -1,0 +1,122 @@
+{
+  "skill_id": "people_offboarding_manager",
+  "generated_at": "2026-02-11T22:18:31.437494",
+  "num_cases": 12,
+  "test_cases": [
+    {
+      "inputs": {
+        "employeeId": "test_iidu1p7e",
+        "lastDay": "2026-02-11",
+        "separationType": "involuntary",
+        "knowledgeTransferRequired": true
+      },
+      "label": "valid_case_1",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "employeeId": "test_ueut8h1w",
+        "lastDay": "2026-02-11",
+        "separationType": "contract_end",
+        "knowledgeTransferRequired": false
+      },
+      "label": "valid_case_2",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "employeeId": "test_u3wrtxmk",
+        "lastDay": "2026-02-11",
+        "separationType": "involuntary",
+        "rehireEligible": false
+      },
+      "label": "valid_case_3",
+      "expected_valid": true
+    },
+    {
+      "inputs": {
+        "lastDay": "2026-02-11",
+        "separationType": "retirement",
+        "knowledgeTransferRequired": true
+      },
+      "label": "missing_employeeId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "employeeId": "test_gp6284fa",
+        "separationType": "retirement",
+        "knowledgeTransferRequired": false
+      },
+      "label": "missing_lastDay",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "employeeId": "test_ljwezwfs",
+        "lastDay": "2026-02-11",
+        "rehireEligible": false,
+        "knowledgeTransferRequired": true
+      },
+      "label": "missing_separationType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "employeeId": 12345,
+        "lastDay": "2026-02-11",
+        "separationType": "involuntary",
+        "knowledgeTransferRequired": false
+      },
+      "label": "invalid_type_employeeId",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "employeeId": "test_wrenqfmn",
+        "lastDay": 12345,
+        "separationType": "contract_end",
+        "rehireEligible": true
+      },
+      "label": "invalid_type_lastDay",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "employeeId": "test_c2zuc4vp",
+        "lastDay": "2026-02-11",
+        "separationType": 12345,
+        "knowledgeTransferRequired": false
+      },
+      "label": "invalid_type_separationType",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "employeeId": "test_xc2b5ky4",
+        "lastDay": "2026-02-11",
+        "separationType": "voluntary",
+        "rehireEligible": "yes",
+        "knowledgeTransferRequired": false
+      },
+      "label": "invalid_type_rehireEligible",
+      "expected_valid": false
+    },
+    {
+      "inputs": {
+        "employeeId": "test_r7zgbbou",
+        "lastDay": "2026-02-11",
+        "separationType": "retirement",
+        "rehireEligible": true,
+        "knowledgeTransferRequired": "yes"
+      },
+      "label": "invalid_type_knowledgeTransferRequired",
+      "expected_valid": false
+    },
+    {
+      "inputs": {},
+      "label": "empty_object",
+      "expected_valid": false
+    }
+  ]
+}
