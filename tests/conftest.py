@@ -25,7 +25,8 @@ import pytest
 def mock_sentence_transformer(monkeypatch):
     """
     Mock sentence-transformers to avoid loading 500MB+ model.
-    Returns deterministic numpy arrays for testing.
+    Returns deterministic numpy arrays for testing, with similarity
+    preservation for related text.
     """
     class MockSentenceTransformer:
         def __init__(self, *args, **kwargs):
@@ -36,12 +37,32 @@ def mock_sentence_transformer(monkeypatch):
             if isinstance(texts, str):
                 texts = [texts]
 
-            # Generate deterministic embeddings based on text hash
+            # Generate embeddings that preserve similarity
             embeddings = []
             for text in texts:
-                # Use hash of text to create deterministic but varied embeddings
+                text_lower = text.lower()
+
+                # Create base embedding from text hash
                 np.random.seed(hash(text) % (2**32))
-                embedding = np.random.randn(384)
+                base = np.random.randn(384)
+
+                # Add semantic components for common words to create similarity
+                # This ensures similar texts get similar embeddings
+                words = set(text_lower.split())
+                semantic_component = np.zeros(384)
+                for i, word in enumerate(sorted(words)):
+                    # Each word adds a small consistent component
+                    np.random.seed(hash(word) % (2**32))
+                    word_vec = np.random.randn(384) * 0.3
+                    semantic_component += word_vec
+
+                # Combine base and semantic components
+                # Normalize to unit length (as real sentence transformers do)
+                embedding = base * 0.3 + semantic_component * 0.7
+                norm = np.linalg.norm(embedding)
+                if norm > 0:
+                    embedding = embedding / norm
+
                 embeddings.append(embedding)
 
             return np.array(embeddings)
@@ -106,21 +127,21 @@ def mock_registry_data():
 def sample_skill_complete():
     """A complete skill with all required fields."""
     return {
-        "skill_id": "complete_skill",
+        "id": "complete_skill",
         "name": "Complete Skill",
         "description": "A fully specified skill",
         "version": "1.0.0",
         "verified": True,
         "job_function": "engineering",
-        "domains": ["testing"],
+        "domain": "testing",
         "instructions": "Do something useful",
-        "input_schema": {
+        "inputSchema": {
             "type": "object",
             "properties": {
                 "input": {"type": "string"}
             }
         },
-        "output_schema": {
+        "outputSchema": {
             "type": "object",
             "properties": {
                 "output": {"type": "string"}
@@ -137,13 +158,13 @@ def sample_skill_complete():
 def sample_skill_incomplete():
     """An incomplete skill missing I/O schemas."""
     return {
-        "skill_id": "incomplete_skill",
+        "id": "incomplete_skill",
         "name": "Incomplete Skill",
         "description": "Missing schemas",
         "version": "1.0.0",
         "verified": False,
         "job_function": "engineering",
-        "domains": ["testing"],
+        "domain": "testing",
         "instructions": "Do something"
     }
 
@@ -152,21 +173,21 @@ def sample_skill_incomplete():
 def sample_skill_high_risk():
     """A high-risk skill with dangerous operations."""
     return {
-        "skill_id": "high_risk_skill",
+        "id": "high_risk_skill",
         "name": "Dangerous Operation",
         "description": "Delete user password and payment data",
         "version": "1.0.0",
         "verified": False,
         "job_function": "engineering",
-        "domains": ["admin"],
+        "domain": "admin",
         "instructions": "Delete all user data including passwords and payment information",
-        "input_schema": {
+        "inputSchema": {
             "type": "object",
             "properties": {
                 "user_id": {"type": "string"}
             }
         },
-        "output_schema": {
+        "outputSchema": {
             "type": "object",
             "properties": {
                 "deleted": {"type": "boolean"}
@@ -196,7 +217,7 @@ def temp_skills_directory(mock_skills_data):
 
     # Create skill directories and files
     for skill in mock_skills_data:
-        skill_id = skill["skill_id"]
+        skill_id = skill.get("id") or skill.get("skill_id")
         job_function = skill.get("job_function", "engineering")
         skill_dir = skills_library / job_function / skill_id
         skill_dir.mkdir(parents=True, exist_ok=True)
@@ -256,7 +277,7 @@ def risk_level(request):
 
 def create_mock_skill_file(directory: Path, skill_data: dict) -> Path:
     """Helper to create a mock skill file in a directory."""
-    skill_id = skill_data["skill_id"]
+    skill_id = skill_data.get("id") or skill_data.get("skill_id")
     job_function = skill_data.get("job_function", "engineering")
     skill_dir = directory / "skills-library" / job_function / skill_id
     skill_dir.mkdir(parents=True, exist_ok=True)

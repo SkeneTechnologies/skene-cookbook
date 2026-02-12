@@ -1,12 +1,19 @@
 {
   "metadata": {
-    "generated_at": "2026-02-05"
+    "generated_at": "2026-02-12T09:34:39.886322",
+    "total_skills_analyzed": 765
   },
   "summary": {
-    "chainable_patterns": 323,
+    "chainable_patterns": 383,
     "missing_workflow_links": 5,
-    "job_functions": 13,
-    "blueprints_generated": 6
+    "output_types_identified": 10,
+    "job_functions": 13
   },
-  "status": "Chain analysis complete"
-}
+  "chainability": {
+    "patterns": [
+      {
+        "producer": {
+          "skill_id": "elg_mdf_tracker",
+          "name": "MDF Allocation Tracker",
+          "domain": "ecosystem",
+          "input_types": 
