@@ -1,5 +1,5 @@
 # Skill Chain Cookbook
-## 10+ Ready-to-Use Recipes
+## 28 Ready-to-Use Recipes
 
 This cookbook provides proven skill chain recipes you can deploy immediately. Each recipe includes:
 - **Use case** — What problem it solves
