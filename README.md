@@ -106,19 +106,29 @@ npx skills-directory install --target claude
 
 ### Executable Skills (383)
 ✅ **70 PLG skills** — Product-led growth, activation, onboarding (plg + plg_frameworks)
+
 ✅ **52 Marketing skills** — Content, SEO, campaigns, analytics
+
 ✅ **29 Customer Success skills** — Health scoring, churn prediction, retention
+
 ✅ **25 RevOps skills** — Sales pipeline, forecasting, GTM alignment
+
 ✅ **20 Monetization skills** — Pricing, billing, revenue optimization
+
 ✅ **19 AI Ops skills** — Intelligent automation and ML operations
+
 ✅ **187 more skills** — Across security, data ops, devex, finance, HR, and more
 
 ### Context Skills (382)
+
 ✅ **241 Cursor Rules** — IDE guidelines for 241+ frameworks and tools
+
 ✅ **141 Scientific Computing** — Research tools, bioinformatics, data analysis
 
 ### Infrastructure
+
 ✅ **40+ standardized tools** — CRM, analytics, messaging, billing integrations
+
 ✅ **Production-ready security** — Approval gates, rollback, audit trails
 
 [Browse all skills by domain →](docs/directory.md) | [See detailed metrics →](METRICS.md)
