@@ -28,6 +28,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Documentation discrepancies across multiple files (README, SKILLS_CATALOG, index.json)
 - Inconsistent skill counting methodology (now documented in METRICS.md)
 - Missing context skills in summary counts (cursor_rules: 241, scientific: 141)
+- Skill chain recipe count: Updated from "20+" to accurate "28" recipes (README.md x2, SKILL_CHAINS.md x1)
 
 ## [0.1.1] - 2026-02-12
 

@@ -143,7 +143,7 @@ Skills are automatically installed to Cursor and Claude during this step.
 
 ### 3. Explore Recipes
 
-Browse [20+ ready-to-use skill chain recipes](docs/SKILL_CHAINS.md) with step-by-step instructions across 15+ domains.
+Browse [28 ready-to-use skill chain recipes](docs/SKILL_CHAINS.md) with step-by-step instructions across 15+ domains.
 
 ---
 
@@ -201,7 +201,7 @@ Cursor and Claude automatically pick the right skill based on your prompt. Chain
 ### 🚀 Getting Started
 - **[VALUE.md](docs/VALUE.md)** — Why skill chains? ROI calculations & 5 use cases
 - **[QUICK_WINS.md](docs/QUICK_WINS.md)** — Deploy your first agent in 15 min to 4 hours
-- **[SKILL_CHAINS.md](docs/SKILL_CHAINS.md)** — 20+ ready-to-use recipes with step-by-step instructions (PLG, RevOps, Marketing, HR, Security, Data Ops, and more)
+- **[SKILL_CHAINS.md](docs/SKILL_CHAINS.md)** — 28 ready-to-use recipes with step-by-step instructions (PLG, RevOps, Marketing, HR, Security, Data Ops, and more)
 - **[SHOWCASE.md](docs/SHOWCASE.md)** — Real-world agent examples and case studies
 
 ### 📚 Reference
