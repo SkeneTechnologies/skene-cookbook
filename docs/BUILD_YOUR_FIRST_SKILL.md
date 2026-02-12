@@ -25,12 +25,14 @@ This tutorial walks you through creating a simple skill from scratch. We'll buil
 ## Prerequisites
 
 **Required:**
+
 - Git installed
 - Node.js 18+ installed
 - Python 3.8+ installed (for security analysis)
 - GitHub account
 
 **Helpful:**
+
 - Familiarity with JSON format
 - Basic command line usage
 - Understanding of the domain you're contributing to
@@ -42,12 +44,15 @@ This tutorial walks you through creating a simple skill from scratch. We'll buil
 Before writing code, answer these questions:
 
 ### What does your skill do?
+
 **Example:** Tracks competitor mentions in customer conversations and emails
 
 ### Which domain does it belong to?
+
 **Example:** `sales` or `customer_success`
 
 **Available domains:**
+
 - `sales` - Pipeline, deals, CRM
 - `marketing` - Campaigns, content, SEO
 - `customer_success` - Health, churn, retention
@@ -60,20 +65,26 @@ Before writing code, answer these questions:
 - ...and more
 
 ### What are the inputs?
+
 **Example:**
+
 - `conversation_id` - ID of conversation to analyze
 - `competitors` - List of competitor names to track
 - `time_range` - Time period to analyze
 
 ### What are the outputs?
+
 **Example:**
+
 - `mentions_found` - Number of competitor mentions
 - `competitor_breakdown` - Mentions per competitor
 - `context` - Surrounding text for each mention
 - `sentiment` - Sentiment analysis (positive/negative/neutral)
 
 ### What tools does it need?
+
 **Example:**
+
 - `crm.conversations.read` - Read conversation data
 - `ai.analyze_text` - Analyze text for mentions
 - `ai.sentiment_analysis` - Sentiment scoring
@@ -112,6 +123,7 @@ touch instructions.md
 ```
 
 Your structure should look like:
+
 ```
 skills-library/sales/competitor_mention_tracker/
 ├── skill.json        # Skill definition and schema
@@ -160,7 +172,7 @@ Create `skill.json` with this template:
       },
       "competitors": {
         "type": "array",
-        "items": {"type": "string"},
+        "items": { "type": "string" },
         "description": "List of competitor names to track",
         "example": ["Competitor A", "Competitor B"]
       },
@@ -188,7 +200,7 @@ Create `skill.json` with this template:
       "competitor_breakdown": {
         "type": "object",
         "description": "Mentions count per competitor",
-        "additionalProperties": {"type": "integer"}
+        "additionalProperties": { "type": "integer" }
       },
       "mentions": {
         "type": "array",
@@ -196,9 +208,9 @@ Create `skill.json` with this template:
         "items": {
           "type": "object",
           "properties": {
-            "competitor": {"type": "string"},
-            "context": {"type": "string"},
-            "timestamp": {"type": "string", "format": "date-time"},
+            "competitor": { "type": "string" },
+            "context": { "type": "string" },
+            "timestamp": { "type": "string", "format": "date-time" },
             "sentiment": {
               "type": "string",
               "enum": ["positive", "neutral", "negative"]
@@ -228,18 +240,9 @@ Create `skill.json` with this template:
     }
   },
 
-  "tags": [
-    "sales",
-    "competitive-intelligence",
-    "conversation-analysis",
-    "sentiment-analysis"
-  ],
+  "tags": ["sales", "competitive-intelligence", "conversation-analysis", "sentiment-analysis"],
 
-  "jobFunctions": [
-    "sales_ops",
-    "competitive_intelligence",
-    "product_marketing"
-  ],
+  "jobFunctions": ["sales_ops", "competitive_intelligence", "product_marketing"],
 
   "platforms": {
     "claude": {
@@ -290,44 +293,55 @@ Automatically tracks and analyzes competitor mentions in customer conversations,
 ## Prerequisites
 
 ### Required Tools
+
 - `crm.conversations.read` - Access to conversation history
 - `ai.analyze_text` - Text analysis capability
 
 ### Optional Tools
+
 - `ai.sentiment_analysis` - For sentiment scoring
 
 ### Data Access
+
 - Read access to CRM conversation data
 - List of competitor names to track
 
 ## Execution Steps
 
 ### 1. Fetch Conversation Data
+
 - Retrieve conversation history for given `conversation_id`
 - Filter by `time_range` if specified
 - Pull full conversation thread (not just summary)
 
 ### 2. Analyze for Competitor Mentions
+
 For each competitor in `competitors` list:
+
 - Search conversation text for mentions (case-insensitive)
 - Include variations (e.g., "Acme", "Acme Corp", "Acme Software")
 - Extract surrounding context (±50 words)
 - Record timestamp of mention
 
 ### 3. Sentiment Analysis (if enabled)
+
 For each mention found:
+
 - Analyze sentiment of context (positive/neutral/negative)
 - Score confidence (0-1)
 - Flag highly positive or negative mentions
 
 ### 4. Generate Summary
+
 - Count total mentions
 - Break down by competitor
 - Identify patterns or trends
 - Generate actionable summary
 
 ### 5. Return Results
+
 Exit with appropriate state:
+
 - `mentions_found`: If 1+ mentions detected
 - `no_mentions`: If 0 mentions found
 - `error`: If analysis failed
@@ -335,44 +349,46 @@ Exit with appropriate state:
 ## Example Usage
 
 ### Input
+
 \`\`\`json
 {
-  "conversation_id": "conv_12345",
-  "competitors": ["Competitor A", "Competitor B"],
-  "time_range": "30d",
-  "include_sentiment": true
+"conversation_id": "conv_12345",
+"competitors": ["Competitor A", "Competitor B"],
+"time_range": "30d",
+"include_sentiment": true
 }
 \`\`\`
 
 ### Output
+
 \`\`\`json
 {
-  "total_mentions": 3,
-  "competitor_breakdown": {
-    "Competitor A": 2,
-    "Competitor B": 1
-  },
-  "mentions": [
-    {
-      "competitor": "Competitor A",
-      "context": "We looked at Competitor A but their pricing was too high...",
-      "timestamp": "2026-01-15T10:30:00Z",
-      "sentiment": "negative"
-    },
-    {
-      "competitor": "Competitor A",
-      "context": "Competitor A has a nice feature for reporting...",
-      "timestamp": "2026-01-20T14:15:00Z",
-      "sentiment": "positive"
-    },
-    {
-      "competitor": "Competitor B",
-      "context": "Currently using Competitor B but not satisfied...",
-      "timestamp": "2026-01-25T09:00:00Z",
-      "sentiment": "negative"
-    }
-  ],
-  "summary": "3 competitor mentions found. Customer evaluated Competitor A (pricing concerns) and is currently using Competitor B with dissatisfaction. Opportunity to position on price/value and switching benefits."
+"total_mentions": 3,
+"competitor_breakdown": {
+"Competitor A": 2,
+"Competitor B": 1
+},
+"mentions": [
+{
+"competitor": "Competitor A",
+"context": "We looked at Competitor A but their pricing was too high...",
+"timestamp": "2026-01-15T10:30:00Z",
+"sentiment": "negative"
+},
+{
+"competitor": "Competitor A",
+"context": "Competitor A has a nice feature for reporting...",
+"timestamp": "2026-01-20T14:15:00Z",
+"sentiment": "positive"
+},
+{
+"competitor": "Competitor B",
+"context": "Currently using Competitor B but not satisfied...",
+"timestamp": "2026-01-25T09:00:00Z",
+"sentiment": "negative"
+}
+],
+"summary": "3 competitor mentions found. Customer evaluated Competitor A (pricing concerns) and is currently using Competitor B with dissatisfaction. Opportunity to position on price/value and switching benefits."
 }
 \`\`\`
 
@@ -381,16 +397,19 @@ Exit with appropriate state:
 ### Common Errors
 
 **Error: Conversation not found**
+
 - Cause: Invalid `conversation_id`
 - Solution: Verify conversation ID exists in CRM
 - Exit state: `error`
 
 **Error: Insufficient permissions**
+
 - Cause: Missing read access to conversations
 - Solution: Grant `crm.conversations.read` permission
 - Exit state: `error`
 
 **Error: Rate limit exceeded**
+
 - Cause: Too many API calls to CRM
 - Solution: Implement rate limiting, retry with backoff
 - Exit state: `error`
@@ -398,19 +417,23 @@ Exit with appropriate state:
 ## Security Considerations
 
 ### Data Access
+
 - **Scope**: Read-only access to conversation data
 - **Sensitivity**: May contain customer PII and confidential discussions
 - **Retention**: Do not store conversation data beyond analysis
 
 ### Risk Level
+
 **Medium** - Accesses customer conversation data
 
 ### Required Security Controls
+
 - ✅ Audit logging enabled
 - ✅ Read-only access (no modifications)
 - ⚠️ Recommend human review for sensitive accounts
 
 ### Compliance Notes
+
 - Ensure compliance with data retention policies
 - Mask PII in exported reports if required
 - Log all access for audit trails
@@ -418,6 +441,7 @@ Exit with appropriate state:
 ## Recommended Next Skills
 
 If `mentions_found`:
+
 - `competitive_battlecard` - Generate battle card for mentioned competitor
 - `competitive_analysis` - Deep dive into competitive positioning
 - `win_loss_analyzer` - Correlate mentions with deal outcomes
@@ -449,20 +473,21 @@ python scripts/analyze_skills.py --action metadata
 Review the generated `metadata.yaml`:
 
 ```yaml
-risk_level: "Medium"
+risk_level: 'Medium'
 security_requirements:
   audit_logging: true
   read_only: true
   human_in_loop_recommended: true
   data_access_scope:
-    - "customer_conversations"
-    - "crm_data"
+    - 'customer_conversations'
+    - 'crm_data'
 
-job_function: "sales_ops"
-jtbd: "Track competitive mentions in customer conversations"
+job_function: 'sales_ops'
+jtbd: 'Track competitive mentions in customer conversations'
 ```
 
 **Risk Levels:**
+
 - **Low**: Read-only, public data, no credentials
 - **Medium**: Read-only, internal data, some credentials
 - **High**: Write operations, financial data, PII access
@@ -475,11 +500,13 @@ jtbd: "Track competitive mentions in customer conversations"
 ### Manual Testing
 
 1. **Validate JSON syntax**:
+
    ```bash
    cat skill.json | python -m json.tool
    ```
 
 2. **Check schema compliance** (future feature):
+
    ```bash
    npm run validate:skill skills-library/sales/competitor_mention_tracker/skill.json
    ```
@@ -526,7 +553,7 @@ git push origin add-skill-competitor-mention-tracker
 
 Go to GitHub and create a PR with this template:
 
-````markdown
+```markdown
 ## Skill Addition: Competitor Mention Tracker
 
 **Domain:** sales
@@ -548,12 +575,14 @@ Tracks and analyzes competitor mentions in customer conversations with sentiment
 ### Security Analysis
 
 **Risk Level**: Medium
+
 - Read-only access to customer conversation data
 - No write operations
 - Audit logging enabled
 - PII considerations in conversation content
 
 **Required Controls**:
+
 - ✅ Audit logging
 - ✅ Read-only access
 - ⚠️ Human review recommended for sensitive accounts
@@ -582,11 +611,12 @@ Tracks and analyzes competitor mentions in customer conversations with sentiment
 - [x] Examples provided
 - [x] Exit states defined with recommendations
 - [x] Tags and job functions assigned
-````
+```
 
 ### 3. Wait for Review
 
 Maintainers will review your skill for:
+
 - ✅ Schema compliance
 - ✅ Security requirements
 - ✅ Documentation quality

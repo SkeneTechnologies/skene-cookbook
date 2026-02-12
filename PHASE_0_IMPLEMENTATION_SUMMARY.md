@@ -27,6 +27,7 @@ Successfully implemented Phase 0 of the Eval Harness Rollout plan, building auto
 **File**: `eval_harness/test_data_generator.py`
 
 **Capabilities**:
+
 - Generates valid test cases from JSON Schema definitions
 - Supports all JSON Schema types (string, number, integer, boolean, array, object)
 - Smart value generation (emails, URLs, dates) based on field descriptions
@@ -35,6 +36,7 @@ Successfully implemented Phase 0 of the Eval Harness Rollout plan, building auto
 - Saves test data to `test_cases/{skill_id}_test_data.json`
 
 **Example**:
+
 ```python
 generator = TestDataGenerator()
 test_cases = generator.generate_from_skill('elg_mdf_tracker', num_valid_cases=3)
@@ -46,6 +48,7 @@ test_cases = generator.generate_from_skill('elg_mdf_tracker', num_valid_cases=3)
 **File**: `scripts/batch_eval_skills.py`
 
 **Capabilities**:
+
 - Parallel skill evaluation (configurable concurrency)
 - Domain-based or skill-list evaluation
 - Automatic skill discovery (scans skills-library/)
@@ -54,6 +57,7 @@ test_cases = generator.generate_from_skill('elg_mdf_tracker', num_valid_cases=3)
 - Test data caching (optional --use-existing-test-data)
 
 **Usage**:
+
 ```bash
 # Evaluate entire domain
 python scripts/batch_eval_skills.py --domain ecosystem --parallel 5
@@ -70,6 +74,7 @@ python scripts/batch_eval_skills.py --skills elg_mdf_tracker,elg_partner_tier_ma
 **File**: `scripts/analyze_eval_failures.py`
 
 **Capabilities**:
+
 - Pattern-based failure categorization (10 categories)
 - Prioritized action plans (by priority and affected skill count)
 - Summary statistics (by category, domain, priority, effort)
@@ -77,6 +82,7 @@ python scripts/batch_eval_skills.py --skills elg_mdf_tracker,elg_partner_tier_ma
 - Actionable recommendations for each failure type
 
 **Usage**:
+
 ```bash
 python scripts/analyze_eval_failures.py --session batch_20260211_171252 --prioritize
 ```
@@ -97,6 +103,7 @@ Duration:           ~8 seconds (5 workers)
 ```
 
 **Failed Skills** (all due to missing schemas):
+
 - elg_co_sell_trigger
 - elg_eql_scoring
 - elg_marketplace_integration
@@ -112,6 +119,7 @@ Failure Category:   skill_not_found
 ```
 
 **Root Cause**: Skill ID naming mismatch
+
 - Skill IDs: `finops_arr_waterfall`
 - Directory names: `arr_waterfall`
 - Test data generator expects `elg_*` prefix handling only
@@ -126,16 +134,17 @@ Failure Category:   skill_not_found
 
 **Finding**: Significant variation in schema completeness across domains.
 
-| Domain | Schema Issue | Impact |
-|--------|--------------|--------|
+| Domain    | Schema Issue            | Impact                             |
+| --------- | ----------------------- | ---------------------------------- |
 | ecosystem | 25% missing inputSchema | 4 skills cannot generate test data |
-| finops | 100% naming mismatch | All 12 skills fail discovery |
+| finops    | 100% naming mismatch    | All 12 skills fail discovery       |
 
 **Recommendation**: Add schema validation to CI/CD (block PRs without schemas).
 
 ### 2. Naming Convention Inconsistency
 
 **Finding**: Two naming patterns exist:
+
 - Pattern A: `elg_{skill_name}` (ecosystem, marketing, revops)
 - Pattern B: `{domain}_{skill_name}` (finops)
 
@@ -147,17 +156,18 @@ Failure Category:   skill_not_found
 
 **Finding**: Evaluation is **much faster** than expected.
 
-| Metric | Estimated | Actual | Speedup |
-|--------|-----------|--------|---------|
-| Single skill eval | 2 hours | ~0.5 sec | ~14,400x |
-| Domain eval (16 skills) | N/A | ~8 sec | N/A |
-| Full library (765 skills) | 1,647 hours | ~4 min | ~24,705x |
+| Metric                    | Estimated   | Actual   | Speedup  |
+| ------------------------- | ----------- | -------- | -------- |
+| Single skill eval         | 2 hours     | ~0.5 sec | ~14,400x |
+| Domain eval (16 skills)   | N/A         | ~8 sec   | N/A      |
+| Full library (765 skills) | 1,647 hours | ~4 min   | ~24,705x |
 
 **Reason**: Schema-first approach (no execution needed) + parallel processing.
 
 ### 4. Failure Categorization Works
 
 **Finding**: Automated categorization identified actionable patterns:
+
 - `skill_not_found` → Fix naming conventions
 - `No metrics collected` → Add missing schemas
 - `schema_missing` → Add inputSchema/outputSchema
@@ -217,16 +227,16 @@ reports/evals/
 
 ## Validation Checklist
 
-| Item | Status | Evidence |
-|------|--------|----------|
-| Test data generator works | ✅ | Generated 12+ test files |
-| Batch evaluation works | ✅ | Evaluated 28 skills across 2 domains |
-| Parallel execution works | ✅ | 5 workers, ~0.5 sec/skill |
-| Reports generated | ✅ | Markdown + JSON for all evaluations |
-| Failure analysis works | ✅ | Categorized 16 failures |
-| Schema validation works | ✅ | Identified 4 missing schemas |
-| Performance target met | ✅ | Full library projected at 3-4 min |
-| Documentation complete | ✅ | 1,200+ lines of docs |
+| Item                      | Status | Evidence                             |
+| ------------------------- | ------ | ------------------------------------ |
+| Test data generator works | ✅     | Generated 12+ test files             |
+| Batch evaluation works    | ✅     | Evaluated 28 skills across 2 domains |
+| Parallel execution works  | ✅     | 5 workers, ~0.5 sec/skill            |
+| Reports generated         | ✅     | Markdown + JSON for all evaluations  |
+| Failure analysis works    | ✅     | Categorized 16 failures              |
+| Schema validation works   | ✅     | Identified 4 missing schemas         |
+| Performance target met    | ✅     | Full library projected at 3-4 min    |
+| Documentation complete    | ✅     | 1,200+ lines of docs                 |
 
 ---
 
@@ -237,6 +247,7 @@ reports/evals/
 ### Week 1: Schema Remediation (2 days)
 
 1. **Fix ecosystem schema gaps** (4 skills):
+
    ```bash
    # Add inputSchema/outputSchema to:
    - elg_co_sell_trigger
@@ -246,6 +257,7 @@ reports/evals/
    ```
 
 2. **Fix finops naming convention**:
+
    ```bash
    # Update test_data_generator.py to handle domain prefixes
    # OR rename skill directories to match IDs
@@ -261,6 +273,7 @@ reports/evals/
 ### Week 1: Pilot Domain Evaluation (3 days)
 
 4. **Evaluate 5 pilot domains** (50 skills):
+
    ```bash
    python scripts/batch_eval_skills.py \
      --domains customer_success,ai_ops,product_ops,support_ops,finops \
@@ -268,6 +281,7 @@ reports/evals/
    ```
 
 5. **Analyze results**:
+
    ```bash
    python scripts/analyze_eval_failures.py --domain customer_success --prioritize
    # Repeat for each domain
@@ -290,16 +304,16 @@ reports/evals/
 
 ## Revised Rollout Timeline
 
-| Phase | Original | Revised | Status |
-|-------|----------|---------|--------|
-| **Phase 0**: Infrastructure | 2 weeks | ✅ 1 day | COMPLETE |
-| **Phase 1**: Pilot (50 skills) | 3 weeks | 5 days | READY |
-| **Phase 2**: Business (150 skills) | 6 weeks | 2 weeks | PLANNED |
-| **Phase 3**: Platform (287 skills) | 8 weeks | 3 weeks | PLANNED |
-| **Phase 4**: Scientific (141 skills) | 5 weeks | 2 weeks | PLANNED |
-| **Phase 5**: Long Tail (137 skills) | 4 weeks | 1 week | PLANNED |
-| **Phase 6**: Validation | 2 weeks | 1 week | PLANNED |
-| **TOTAL** | **30 weeks** | **~10 weeks** | **3x faster** |
+| Phase                                | Original     | Revised       | Status        |
+| ------------------------------------ | ------------ | ------------- | ------------- |
+| **Phase 0**: Infrastructure          | 2 weeks      | ✅ 1 day      | COMPLETE      |
+| **Phase 1**: Pilot (50 skills)       | 3 weeks      | 5 days        | READY         |
+| **Phase 2**: Business (150 skills)   | 6 weeks      | 2 weeks       | PLANNED       |
+| **Phase 3**: Platform (287 skills)   | 8 weeks      | 3 weeks       | PLANNED       |
+| **Phase 4**: Scientific (141 skills) | 5 weeks      | 2 weeks       | PLANNED       |
+| **Phase 5**: Long Tail (137 skills)  | 4 weeks      | 1 week        | PLANNED       |
+| **Phase 6**: Validation              | 2 weeks      | 1 week        | PLANNED       |
+| **TOTAL**                            | **30 weeks** | **~10 weeks** | **3x faster** |
 
 **Confidence**: High (Phase 0 validated automation works)
 
@@ -334,6 +348,7 @@ reports/evals/
 **Q: How big of a job is extending this to all 765 skills?**
 
 **A**: **10 weeks with 1 engineer** (revised from 30 weeks), assuming:
+
 - Schema remediation: ~1-2 weeks
 - Batch evaluation: ~1-2 days per 100 skills
 - Failure triage: ~1 week per phase
@@ -346,6 +361,7 @@ reports/evals/
 **Q: What are the main risks?**
 
 **A**:
+
 1. ✅ **Schema gaps** - Discovered and fixable
 2. ✅ **Naming inconsistencies** - Discovered and fixable
 3. ⚠️ **Platform-specific issues** - TBD (cursor_rules, scientific)
@@ -435,6 +451,7 @@ reports/evals/*.json                             # JSON reports (16+ files)
 ✅ **Phase 0 is production-ready.**
 
 **Achievements**:
+
 - Built 1,527 LOC of automation infrastructure
 - Evaluated 28 skills across 2 domains
 - Discovered and categorized 16 failures
@@ -442,6 +459,7 @@ reports/evals/*.json                             # JSON reports (16+ files)
 - Generated comprehensive documentation (1,200+ lines)
 
 **Blockers Resolved**:
+
 - Test data generation: ✅ Automated
 - Parallel execution: ✅ Working (5-20 workers)
 - Failure analysis: ✅ Automated with 10 categories

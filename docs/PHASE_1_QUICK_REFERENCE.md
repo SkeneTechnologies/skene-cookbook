@@ -9,14 +9,14 @@
 
 ### Domains Evaluated (6 total, 106 skills)
 
-| Domain | Result | Command |
-|--------|--------|---------|
-| ✅ ecosystem (16) | 100% | `python scripts/batch_eval_skills.py --domain ecosystem --parallel 10` |
-| ✅ finops (12) | 100% | `python scripts/batch_eval_skills.py --domain finops --parallel 10` |
-| ✅ support_ops (12) | 100% | `python scripts/batch_eval_skills.py --domain support_ops --parallel 10` |
-| 🟨 customer_success (29) | 76% | `python scripts/batch_eval_skills.py --domain customer_success --parallel 10` |
-| 🟨 ai_ops (19) | 74% | `python scripts/batch_eval_skills.py --domain ai_ops --parallel 10` |
-| 🟨 product_ops (18) | 78% | `python scripts/batch_eval_skills.py --domain product_ops --parallel 10` |
+| Domain                   | Result | Command                                                                       |
+| ------------------------ | ------ | ----------------------------------------------------------------------------- |
+| ✅ ecosystem (16)        | 100%   | `python scripts/batch_eval_skills.py --domain ecosystem --parallel 10`        |
+| ✅ finops (12)           | 100%   | `python scripts/batch_eval_skills.py --domain finops --parallel 10`           |
+| ✅ support_ops (12)      | 100%   | `python scripts/batch_eval_skills.py --domain support_ops --parallel 10`      |
+| 🟨 customer_success (29) | 76%    | `python scripts/batch_eval_skills.py --domain customer_success --parallel 10` |
+| 🟨 ai_ops (19)           | 74%    | `python scripts/batch_eval_skills.py --domain ai_ops --parallel 10`           |
+| 🟨 product_ops (18)      | 78%    | `python scripts/batch_eval_skills.py --domain product_ops --parallel 10`      |
 
 ---
 
@@ -25,6 +25,7 @@
 ### 1. Ecosystem Schemas (4 skills)
 
 Added `inputSchema` and `outputSchema` to:
+
 - `skills-library/ecosystem/co_sell_trigger/skill.json`
 - `skills-library/ecosystem/eql_scoring/skill.json`
 - `skills-library/ecosystem/marketplace_integration/skill.json`
@@ -33,6 +34,7 @@ Added `inputSchema` and `outputSchema` to:
 ### 2. Naming Convention (generator fix)
 
 Updated `eval_harness/test_data_generator.py`:
+
 - Added domain abbreviation mapping (`cs_`, `ai_`, `prodops_`, etc.)
 - Handles multiple naming patterns
 - Fixed 52 "skill_not_found" errors
@@ -44,6 +46,7 @@ Updated `eval_harness/test_data_generator.py`:
 ### Skills Needing Schemas (14 total)
 
 **Customer Success (7)**:
+
 ```bash
 # These need inputSchema/outputSchema added:
 skills-library/customer_success/health_scoring/skill.json
@@ -55,6 +58,7 @@ skills-library/customer_success/value_realization/skill.json
 ```
 
 **AI Ops (5)**:
+
 ```bash
 # These need inputSchema/outputSchema added:
 skills-library/ai_ops/conversation_intelligence/skill.json
@@ -64,6 +68,7 @@ skills-library/ai_ops/predictive_lead_scoring/skill.json
 ```
 
 **Product Ops (4)**:
+
 ```bash
 # These need inputSchema/outputSchema added:
 skills-library/product_ops/feedback_synthesis/skill.json
@@ -223,6 +228,7 @@ python scripts/batch_eval_skills.py --domains marketing,revops,plg,monetization 
 **Target**: 150 skills across 4 business-critical domains
 
 **Commands**:
+
 ```bash
 # Marketing (52 skills)
 python scripts/batch_eval_skills.py --domain marketing --parallel 10
@@ -268,6 +274,7 @@ Skill is missing `inputSchema` or `outputSchema` in `skill.json`.
 ### Evaluation taking too long
 
 Reduce `--parallel` workers:
+
 ```bash
 python scripts/batch_eval_skills.py --domain ecosystem --parallel 3
 ```

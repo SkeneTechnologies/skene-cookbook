@@ -46,6 +46,7 @@ skene-skills-directory/
 ### Skill Definition (`skill.json`)
 
 Every skill has a `skill.json` file containing:
+
 - **Identity**: id, version, name, description
 - **Categorization**: domain, job_function, JTBD
 - **Security**: risk level, requirements, data access scope
@@ -59,6 +60,7 @@ See `schemas/skill_definition.json` for the complete schema.
 ### Workflow Blueprint (`*.yaml`)
 
 Workflows define how skills are chained together:
+
 - **Chain Sequence**: ordered steps with input/output mapping
 - **Logic Gates**: conditional branching, parallel execution
 - **Error Handling**: retries, fallbacks, rollbacks
@@ -78,6 +80,7 @@ See `schemas/workflow_blueprint.json` and `registry/blueprints/example_workflow.
 ### Security Requirements
 
 Based on risk level, skills may require:
+
 - **Sandboxing**: Execute in isolated environment
 - **Human-in-loop**: Require approval before execution
 - **Audit Logging**: Log all executions for compliance
@@ -86,6 +89,7 @@ Based on risk level, skills may require:
 ### Analysis Process
 
 The `analyze_skills.py` script:
+
 1. Parses skill definitions and instructions
 2. Identifies security keywords and risky operations
 3. Assigns risk levels and generates requirements
@@ -95,11 +99,13 @@ The `analyze_skills.py` script:
 ## Jobs to be Done (JTBD) Framework
 
 Every skill is mapped to a JTBD structure:
+
 - **Job**: The functional job the skill performs
 - **Context**: When/where the job occurs
 - **Outcome**: Desired outcome/success criteria
 
 This enables:
+
 - Discovery by user intent rather than technical implementation
 - Better skill recommendations
 - Workflow optimization based on outcome alignment
@@ -107,6 +113,7 @@ This enables:
 ## Job Functions
 
 Skills are categorized by primary job function:
+
 - Engineering, Marketing, Sales, Customer Success
 - Product, Finance, Legal, HR
 - Operations, Executive, Security, Data, Design
@@ -116,12 +123,14 @@ This enables role-based filtering and recommendations.
 ## Composability System
 
 Skills declare how they can be composed:
+
 - **Exit States**: Named states that trigger other skills
 - **Output Schema**: Structured data other skills can consume
 - **Dependencies**: Skills that must run first
 - **Compatibility**: Explicit "can chain with" declarations
 
 Workflows use this metadata to:
+
 - Validate chain sequences
 - Map data between steps
 - Suggest optimal skill combinations
@@ -129,17 +138,22 @@ Workflows use this metadata to:
 ## Execution Model
 
 ### Standalone Execution
+
 Single skill execution with direct input/output.
 
 ### Workflow Execution
+
 Multi-skill chain with:
+
 - Sequential steps with data flow
 - Parallel execution groups
 - Conditional branching (decision points)
 - Error handling and retries
 
 ### Orchestration
+
 The orchestrator (future):
+
 - Validates workflow blueprints
 - Manages execution state
 - Handles failures and retries
@@ -149,6 +163,7 @@ The orchestrator (future):
 ## Extension Points
 
 ### Adding New Skills
+
 1. Create skill directory in appropriate domain
 2. Write `skill.json` following schema
 3. Add `instructions.md` with execution details
@@ -157,6 +172,7 @@ The orchestrator (future):
 6. Add to appropriate workflow blueprints
 
 ### Creating Workflows
+
 1. Identify skill sequence
 2. Write blueprint YAML following schema
 3. Define input/output mappings
@@ -166,6 +182,7 @@ The orchestrator (future):
 7. Test end-to-end
 
 ### Security Auditing
+
 1. Run `analyze_skills.py --action analyze`
 2. Review security report
 3. Identify high-risk skills
@@ -176,24 +193,28 @@ The orchestrator (future):
 ## Design Philosophy
 
 ### Scannability
+
 - Clear file structure
 - Consistent naming
 - Rich metadata
 - Self-documenting schemas
 
 ### Modularity
+
 - Loose coupling between skills
 - Well-defined interfaces
 - Independent testing
 - Incremental deployment
 
 ### Security by Design
+
 - Risk analysis automation
 - Explicit security requirements
 - Approval workflows
 - Audit logging
 
 ### Open Source Ready
+
 - Clear contribution guidelines
 - Schema-driven development
 - Automated validation

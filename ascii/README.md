@@ -16,6 +16,7 @@ Provides consistent Skene branding across terminal interfaces.
 No installation needed - this is a local module.
 
 **Dependencies:**
+
 ```bash
 pip3 install rich
 ```
@@ -158,12 +159,13 @@ console.print(table)
 
 ## Environment Variables
 
-| Variable | Effect |
-|----------|--------|
+| Variable            | Effect                                                        |
+| ------------------- | ------------------------------------------------------------- |
 | `ASCII_RENDER_MODE` | Override mode: `terminal`, `ide-chat`, `mobile-chat`, `plain` |
-| `NO_COLOR` | Disable all ANSI colors (falls back to plain mode) |
+| `NO_COLOR`          | Disable all ANSI colors (falls back to plain mode)            |
 
 **Example:**
+
 ```bash
 # Force plain mode (no colors)
 NO_COLOR=1 python3 skill-loom-cli.py
@@ -185,6 +187,7 @@ ascii/
 ## Design Philosophy
 
 This system follows the **Skene ASCII Design Spec** from `skene-flow`:
+
 - **Terminal-first**: Designed for CLI, works everywhere
 - **Adaptive**: Detects environment and adjusts rendering
 - **Consistent**: Same colors/symbols across all Skene tools
@@ -200,22 +203,23 @@ This system follows the **Skene ASCII Design Spec** from `skene-flow`:
 
 ### Skene Brand Palette
 
-| Token | Hex | Usage |
-|-------|-----|-------|
-| **PRIMARY** | `#EDC29C` | Headers, borders, primary text |
-| **PRIMARY_GOLD** | `#E8C260` | Accents, highlights, logo |
-| **PRIMARY_BRONZE** | `#8C6B47` | Secondary emphasis |
-| **BEACON_ACTIVE** | `#00FFC2` | Active CTA, links, highlights |
-| **SUCCESS** | `#9CEDC7` | Success states, completed |
-| **ERROR** | `#ED9C9C` | Error states, critical alerts |
-| **WARNING** | `#FFAA00` | Warning states, attention |
-| **WHITE** | `#FAF1E9` | Body text, light backgrounds |
-| **BLACK** | `#060606` | Deep backgrounds |
-| **DIM** | `#9ca3af` | Secondary text, muted |
+| Token              | Hex       | Usage                          |
+| ------------------ | --------- | ------------------------------ |
+| **PRIMARY**        | `#EDC29C` | Headers, borders, primary text |
+| **PRIMARY_GOLD**   | `#E8C260` | Accents, highlights, logo      |
+| **PRIMARY_BRONZE** | `#8C6B47` | Secondary emphasis             |
+| **BEACON_ACTIVE**  | `#00FFC2` | Active CTA, links, highlights  |
+| **SUCCESS**        | `#9CEDC7` | Success states, completed      |
+| **ERROR**          | `#ED9C9C` | Error states, critical alerts  |
+| **WARNING**        | `#FFAA00` | Warning states, attention      |
+| **WHITE**          | `#FAF1E9` | Body text, light backgrounds   |
+| **BLACK**          | `#060606` | Deep backgrounds               |
+| **DIM**            | `#9ca3af` | Secondary text, muted          |
 
 ## Contributing
 
 When adding new symbols or colors:
+
 1. Add to `design_tokens.py`
 2. Update this README
 3. Follow existing naming conventions (SCREAMING_SNAKE_CASE)

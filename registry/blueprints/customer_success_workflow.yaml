@@ -4,38 +4,38 @@ name: Customer Health Monitoring
 description: Monitor customer health, detect churn risk, and intervene
 category: Customer Success
 chain_sequence:
-- step_id: step_1_health_scoring
-  skill_id: elg_partner_tier_manager
-  action: execute
-  description: Execute health scoring
-  timeout_seconds: 300
-  error_handling:
-    on_failure: stop
-    max_retries: 2
-- step_id: step_2_churn_prediction
-  skill_id: prodops_beta_program_manager
-  action: execute
-  description: Execute churn prediction
-  timeout_seconds: 300
-  error_handling:
-    on_failure: continue
-    max_retries: 2
-- step_id: step_3_intervention
-  skill_id: support_escalation_predictor
-  action: execute
-  description: Execute intervention
-  timeout_seconds: 300
-  error_handling:
-    on_failure: continue
-    max_retries: 2
-- step_id: step_4_follow_up
-  skill_id: support_kb_gap_finder
-  action: execute
-  description: Execute follow up
-  timeout_seconds: 300
-  error_handling:
-    on_failure: continue
-    max_retries: 2
+  - step_id: step_1_health_scoring
+    skill_id: elg_partner_tier_manager
+    action: execute
+    description: Execute health scoring
+    timeout_seconds: 300
+    error_handling:
+      on_failure: stop
+      max_retries: 2
+  - step_id: step_2_churn_prediction
+    skill_id: prodops_beta_program_manager
+    action: execute
+    description: Execute churn prediction
+    timeout_seconds: 300
+    error_handling:
+      on_failure: continue
+      max_retries: 2
+  - step_id: step_3_intervention
+    skill_id: support_escalation_predictor
+    action: execute
+    description: Execute intervention
+    timeout_seconds: 300
+    error_handling:
+      on_failure: continue
+      max_retries: 2
+  - step_id: step_4_follow_up
+    skill_id: support_kb_gap_finder
+    action: execute
+    description: Execute follow up
+    timeout_seconds: 300
+    error_handling:
+      on_failure: continue
+      max_retries: 2
 metadata:
   author: Chain Architect
   created_at: '2026-02-12T09:34:39.861849'

@@ -1,4 +1,5 @@
 # AI Agent Composability Analysis
+
 ## Can AI Agents Be Built By Composing Skills?
 
 **Analysis Date:** February 6, 2026
@@ -12,6 +13,7 @@
 **Answer: YES, many AI agents can be built by composing existing skills**, particularly in B2B SaaS, finance, and e-commerce domains.
 
 ### Quick Stats
+
 - **Coverage Assessment**:
   - ✅ **Strong Coverage (50%)**: Sales/Marketing, Finance, E-commerce, Productivity (5 categories)
   - ⚠️ **Partial Coverage (20%)**: HR/Talent, Creative/Design (2 categories)
@@ -58,6 +60,7 @@ The Skills Directory is **fundamentally designed for AI agent composition**. Eac
 ### Skills Available
 
 **Superpowers Domain** (Meta-execution patterns):
+
 - `dispatching-parallel-agents` - Coordinate multiple agents in parallel
 - `subagent-driven-development` - Break tasks into sub-agents
 - `systematic-debugging` - Structured debugging workflows
@@ -67,6 +70,7 @@ The Skills Directory is **fundamentally designed for AI agent composition**. Eac
 - `verification-before-completion` - Quality gates before delivery
 
 **AI Ops Domain** (AI-powered automation):
+
 - `ai_agent_performance` - Monitor and optimize AI agent execution
 - `ai_workflow_automator` - Automate multi-step workflows
 - `ai_document_parser` - Extract structured data from documents
@@ -108,6 +112,7 @@ The Skills Directory is **fundamentally designed for AI agent composition**. Eac
 ```
 
 ### Tools Required
+
 - `lifecycle.*` (task tracking, milestone recording)
 - `ai.generate`, `ai.classify`
 - `github.*` (PR creation, code review)
@@ -120,6 +125,7 @@ The Skills Directory is **fundamentally designed for AI agent composition**. Eac
 The Skills Directory has comprehensive productivity and workflow orchestration capabilities through the `superpowers` domain, which provides meta-patterns for agent coordination. Combined with AI Ops automation skills, it can build sophisticated project management, code generation, and workflow automation agents.
 
 ### Missing Capabilities
+
 - Calendar/scheduling integrations (Google Calendar, Outlook)
 - Meeting scheduling optimization (FindTime-like)
 - Resource allocation algorithms
@@ -135,6 +141,7 @@ The Skills Directory has comprehensive productivity and workflow orchestration c
 ### Skills Available
 
 **Marketing Domain** (11 subdomains):
+
 - **Content** (14 skills): copywriting, content_research_writer, social_content_generator, email_sequence
 - **CRO** (7 skills): ab_test_setup, page_cro, signup_flow_cro, popup_cro, onboarding_cro
 - **Outreach** (3 skills): outreach_personalizer, paid_ads, twitter_algorithm_optimizer
@@ -144,6 +151,7 @@ The Skills Directory has comprehensive productivity and workflow orchestration c
 - **Research** (6 skills): competitive_ads_extractor, lead_research_assistant, social_listening_analyzer
 
 **RevOps Domain** (25 skills):
+
 - `lead_qualification` - BANT, MEDDIC, CHAMP frameworks
 - `opportunity_scoring` - AI-powered deal prioritization
 - `deal_inspection` - Health checks and risk detection
@@ -154,6 +162,7 @@ The Skills Directory has comprehensive productivity and workflow orchestration c
 - `multi_thread_tracker` - Stakeholder mapping
 
 **PLG Domain** (24 execution-focused skills):
+
 - `activation` - First value moment optimization
 - `friction_detector` - UX friction identification
 - `onboarding_flow` - Personalized onboarding
@@ -204,6 +213,7 @@ stage_4_closing:
 ```
 
 ### Tools Required
+
 - `analytics.*` (events, cohorts, funnels, metrics)
 - `crm.*` (leads, deals, accounts, pipeline)
 - `messaging.*` (email, SMS, in-app)
@@ -215,6 +225,7 @@ stage_4_closing:
 **✅ Strong Coverage (Best in Class)**
 
 With 156 skills across the entire customer journey, the Skills Directory has unparalleled coverage for sales and marketing agents. It covers:
+
 - Full-funnel optimization (acquisition → activation → conversion → closing)
 - Multi-channel marketing (content, SEO, paid, outbound)
 - PLG motion (self-serve, trial optimization, viral loops)
@@ -222,6 +233,7 @@ With 156 skills across the entire customer journey, the Skills Directory has unp
 - Attribution and analytics
 
 ### Missing Capabilities
+
 **None** - Comprehensive coverage across all major use cases
 
 ---
@@ -234,6 +246,7 @@ With 156 skills across the entire customer journey, the Skills Directory has unp
 ### Skills Available
 
 **People Ops Domain** (8 skills):
+
 - `people_candidate_sourcer` - Automated candidate sourcing
 - `people_comp_benchmarker` - Compensation benchmarking
 - `people_dei_tracker` - Diversity metrics tracking
@@ -267,6 +280,7 @@ With 156 skills across the entire customer journey, the Skills Directory has unp
 ```
 
 ### Tools Required
+
 - `ats.*` (Applicant Tracking System - **NOT AVAILABLE**)
 - `calendar.*` (scheduling - **NOT AVAILABLE**)
 - `docusign.*` (offer letters - **NOT AVAILABLE**)
@@ -277,12 +291,14 @@ With 156 skills across the entire customer journey, the Skills Directory has unp
 **⚠️ Partial Coverage**
 
 The Skills Directory has basic HR capabilities (sourcing, compensation, onboarding, offboarding) but lacks:
+
 - **Critical gaps** in recruiting pipeline (screening, interviews, offers)
 - **No ATS integrations** (Greenhouse, Lever, Workday)
 - **No scheduling** tools for interview coordination
 - **No assessment** or evaluation frameworks
 
 ### Missing Capabilities
+
 - Automated interview scheduling
 - Technical assessment evaluation
 - Background check orchestration
@@ -308,6 +324,7 @@ The Skills Directory has basic HR capabilities (sourcing, compensation, onboardi
 **N/A** - Cannot build healthcare agents with current skills
 
 ### Tools Required (Missing)
+
 - `ehr.*` (Electronic Health Records - **NOT AVAILABLE**)
 - `fhir.*` (Healthcare data standards - **NOT AVAILABLE**)
 - `hipaa.*` (Compliance and audit - **NOT AVAILABLE**)
@@ -320,6 +337,7 @@ The Skills Directory has basic HR capabilities (sourcing, compensation, onboardi
 **❌ Complete Gap**
 
 The Skills Directory has **no healthcare capabilities**. Building healthcare agents would require:
+
 - Domain-specific knowledge (medical diagnosis, treatment protocols)
 - Regulatory compliance (HIPAA, FDA, clinical trial regulations)
 - Integration with healthcare systems (EMRs, lab systems, imaging)
@@ -362,6 +380,7 @@ The Skills Directory has **no healthcare capabilities**. Building healthcare age
 ### Skills Available
 
 **FinOps Domain** (13 skills):
+
 - `burn_rate_monitor` - Cash burn and runway tracking
 - `scenario_planner` - Financial scenario modeling
 - `arr_waterfall` - ARR movement analysis
@@ -372,6 +391,7 @@ The Skills Directory has **no healthcare capabilities**. Building healthcare age
 - `magic_number` - Sales efficiency calculation
 
 **Monetization Domain** (20 skills):
+
 - `cohort_ltv_analyzer` - Customer lifetime value by cohort
 - `consumption_analyzer` - Usage-based billing optimization
 - `discount_optimizer` - Pricing strategy optimization
@@ -428,6 +448,7 @@ aggregation:
 ```
 
 ### Tools Required
+
 - `accounting.*` (cash flow, P&L, balance sheet)
 - `banking.*` (account balances, transactions)
 - `stripe.*` (subscriptions, invoices, payments)
@@ -439,6 +460,7 @@ aggregation:
 **✅ Strong Coverage**
 
 The Skills Directory has comprehensive financial operations coverage:
+
 - **Cash management**: Burn rate, runway, scenario planning
 - **Revenue analytics**: ARR/MRR waterfalls, cohort LTV
 - **Pricing & packaging**: Experimentation, optimization, discount strategy
@@ -446,6 +468,7 @@ The Skills Directory has comprehensive financial operations coverage:
 - **Investor metrics**: Board-ready dashboards and benchmarks
 
 ### Missing Capabilities
+
 - Tax compliance and reporting
 - Multi-currency handling
 - Equity management (cap table, vesting)
@@ -462,6 +485,7 @@ The Skills Directory has comprehensive financial operations coverage:
 ### Skills Available
 
 **Monetization** (E-commerce relevant):
+
 - `consumption_analyzer` - Cart and purchase behavior
 - `discount_optimizer` - Dynamic pricing and promotions
 - `price_experimentation` - A/B test pricing strategies
@@ -469,6 +493,7 @@ The Skills Directory has comprehensive financial operations coverage:
 - `usage_metering` - Track product usage and engagement
 
 **PLG** (Self-serve purchase flows):
+
 - `activation` - First purchase conversion
 - `friction_detector` - Checkout friction identification
 - `onboarding_flow` - Product discovery and education
@@ -476,6 +501,7 @@ The Skills Directory has comprehensive financial operations coverage:
 - `trial_optimization` - Free trial to paid conversion
 
 **Marketing/CRO**:
+
 - `ab_test_setup` - Experiment framework
 - `page_cro` - Landing page optimization
 - `signup_flow_cro` - Registration optimization
@@ -526,6 +552,7 @@ stage_4_post_purchase:
 ```
 
 ### Tools Required
+
 - `stripe.*` (payments, subscriptions)
 - `analytics.*` (cart abandonment, funnel metrics)
 - `messaging.*` (abandoned cart emails)
@@ -538,12 +565,14 @@ stage_4_post_purchase:
 **✅ Strong Coverage (with gaps)**
 
 The Skills Directory has excellent coverage for **digital/SaaS e-commerce**:
+
 - Conversion funnel optimization (discovery → cart → checkout → post-purchase)
 - Pricing and promotion optimization
 - Friction detection and removal
 - Viral growth mechanics
 
 **Gaps for physical goods e-commerce**:
+
 - Inventory management and forecasting
 - Shipping and fulfillment optimization
 - Returns and exchanges processing
@@ -551,6 +580,7 @@ The Skills Directory has excellent coverage for **digital/SaaS e-commerce**:
 - Visual search and discovery
 
 ### Missing Capabilities
+
 - Inventory forecasting and restocking alerts
 - Multi-warehouse fulfillment routing
 - Shipping carrier selection and optimization
@@ -574,6 +604,7 @@ The Skills Directory has excellent coverage for **digital/SaaS e-commerce**:
 **N/A** - Cannot build education agents with current skills
 
 ### Tools Required (Missing)
+
 - `lms.*` (Learning Management System - **NOT AVAILABLE**)
 - `assessment.*` (Testing and grading - **NOT AVAILABLE**)
 - `curriculum.*` (Content and progression - **NOT AVAILABLE**)
@@ -584,6 +615,7 @@ The Skills Directory has excellent coverage for **digital/SaaS e-commerce**:
 **❌ Complete Gap**
 
 The Skills Directory has **no education capabilities**. Building education agents would require:
+
 - Learning science expertise (pedagogy, assessment design)
 - Content management (curriculum, lessons, assessments)
 - Student data privacy (FERPA compliance)
@@ -631,6 +663,7 @@ The Skills Directory has **no education capabilities**. Building education agent
 **N/A** - Cannot build real estate/construction agents with current skills
 
 ### Tools Required (Missing)
+
 - `mls.*` (Multiple Listing Service - **NOT AVAILABLE**)
 - `property.*` (Property data and valuation - **NOT AVAILABLE**)
 - `permit.*` (Building permits and compliance - **NOT AVAILABLE**)
@@ -642,6 +675,7 @@ The Skills Directory has **no education capabilities**. Building education agent
 **❌ Complete Gap**
 
 The Skills Directory has **no real estate or construction capabilities**. Building agents in this space would require:
+
 - Domain expertise (property valuation, building codes, zoning)
 - Physical world integrations (IoT sensors, site inspections)
 - Regulatory compliance (permits, inspections, certifications)
@@ -703,6 +737,7 @@ The Skills Directory has **no real estate or construction capabilities**. Buildi
 **N/A** - Cannot build logistics agents with current skills
 
 ### Tools Required (Missing)
+
 - `warehouse.*` (Warehouse management - **NOT AVAILABLE**)
 - `fleet.*` (Fleet management and routing - **NOT AVAILABLE**)
 - `shipping.*` (Carrier integration - **NOT AVAILABLE**)
@@ -714,6 +749,7 @@ The Skills Directory has **no real estate or construction capabilities**. Buildi
 **❌ Complete Gap**
 
 The Skills Directory has **no logistics capabilities**. Building logistics agents would require:
+
 - Operations research expertise (routing, scheduling, optimization)
 - IoT integrations (GPS, sensors, telemetry)
 - Physical world constraints (vehicle capacity, warehouse space)
@@ -755,14 +791,17 @@ The Skills Directory has **no logistics capabilities**. Building logistics agent
 ### Skills Available
 
 **Marketing/Media**:
+
 - `slack_gif_creator` - Animated GIF generation for Slack
 
 **Marketing/Brand**:
+
 - `humanization_engine` - Brand voice humanization
 - `interface_design` - UI/UX design assistance
 - `skene_voice_guardian` - Brand voice consistency
 
 **Marketing/Content** (Creative):
+
 - `copywriting` - Marketing copy generation
 - `content_research_writer` - Long-form content creation
 - `social_content_generator` - Social media posts
@@ -805,6 +844,7 @@ The Skills Directory has **no logistics capabilities**. Building logistics agent
 ```
 
 ### Tools Required
+
 - `ai.generate` (text generation)
 - `ai.edit` (content refinement)
 - `rag.query` (knowledge retrieval)
@@ -817,11 +857,13 @@ The Skills Directory has **no logistics capabilities**. Building logistics agent
 **⚠️ Partial Coverage**
 
 The Skills Directory has solid **text-based creative capabilities**:
+
 - Copywriting and content generation
 - Brand voice consistency
 - Multi-channel content (web, social, email)
 
 **Gaps in visual/design capabilities**:
+
 - No image generation or editing
 - No design tool integrations (Figma, Adobe, Canva)
 - No video editing or production
@@ -829,6 +871,7 @@ The Skills Directory has solid **text-based creative capabilities**:
 - No 3D modeling or rendering
 
 ### Missing Capabilities
+
 - AI image generation (DALL-E, Midjourney style)
 - Design system management
 - Asset library management
@@ -855,15 +898,16 @@ Skills declare named exit states that trigger specific downstream skills. This c
 {
   "id": "cs_health_scoring",
   "exitStates": [
-    "churn_prediction",      // → Triggers churn prediction skill
-    "expansion_playbook",     // → Triggers expansion opportunity skill
-    "renewal_orchestration",  // → Triggers renewal workflow
-    "idle"                    // → No action needed
+    "churn_prediction", // → Triggers churn prediction skill
+    "expansion_playbook", // → Triggers expansion opportunity skill
+    "renewal_orchestration", // → Triggers renewal workflow
+    "idle" // → No action needed
   ]
 }
 ```
 
 **Workflow**:
+
 ```
 health_scoring → {
   if health_score < 60: exit(churn_prediction)
@@ -902,6 +946,7 @@ Meta-skills evaluate context and dispatch to appropriate skills based on busines
 ```
 
 **Orchestration Logic**:
+
 ```
 1. Evaluate account context:
    - Product usage signals → PLG motion
@@ -927,17 +972,17 @@ Meta-skills evaluate context and dispatch to appropriate skills based on busines
 
 **Most Common Tools** (showing composition pattern):
 
-| Tool Category | Uses | Enables Composition |
-|---------------|------|---------------------|
-| `lifecycle.get_segment` | 109 | Customer context sharing |
-| `analytics.track_event` | 74 | Behavior tracking |
-| `analytics.get_metrics` | 71 | Performance data |
-| `messaging.send_in_app` | 59 | User communication |
-| `crm.get_account` | 40 | Account data retrieval |
-| `crm.update_account` | 38 | Account data writes |
-| `ai.generate` | 33 | Content creation |
-| `ai.classify` | 28 | Classification tasks |
-| `stripe.*` | 75+ | Billing operations |
+| Tool Category           | Uses | Enables Composition      |
+| ----------------------- | ---- | ------------------------ |
+| `lifecycle.get_segment` | 109  | Customer context sharing |
+| `analytics.track_event` | 74   | Behavior tracking        |
+| `analytics.get_metrics` | 71   | Performance data         |
+| `messaging.send_in_app` | 59   | User communication       |
+| `crm.get_account`       | 40   | Account data retrieval   |
+| `crm.update_account`    | 38   | Account data writes      |
+| `ai.generate`           | 33   | Content creation         |
+| `ai.classify`           | 28   | Classification tasks     |
+| `stripe.*`              | 75+  | Billing operations       |
 
 **Example Composition**:
 
@@ -971,7 +1016,7 @@ description: Multi-stage churn prevention workflow
 steps:
   - id: step_1
     skill: customer_success/health_scoring
-    input: { accountId: "{{context.accountId}}" }
+    input: { accountId: '{{context.accountId}}' }
     timeout: 300s
     retry:
       max_attempts: 3
@@ -984,8 +1029,8 @@ steps:
   - id: step_2
     skill: customer_success/churn_prediction
     input:
-      healthScore: "{{step_1.output.health_score}}"
-      accountMetrics: "{{step_1.output.metrics}}"
+      healthScore: '{{step_1.output.health_score}}'
+      accountMetrics: '{{step_1.output.metrics}}'
     timeout: 300s
     exit_routing:
       high_churn_risk: step_3
@@ -995,8 +1040,8 @@ steps:
   - id: step_3
     skill: customer_success/retention_playbook
     input:
-      churnRisk: "{{step_2.output.churn_risk}}"
-      accountContext: "{{step_1.output}}"
+      churnRisk: '{{step_2.output.churn_risk}}'
+      accountContext: '{{step_1.output}}'
     timeout: 300s
     outputs:
       - recommendedActions
@@ -1008,10 +1053,10 @@ steps:
   - id: step_4
     skill: customer_success/nps_followup
     input:
-      accountId: "{{context.accountId}}"
-      sentiment: "{{step_2.output.sentiment}}"
+      accountId: '{{context.accountId}}'
+      sentiment: '{{step_2.output.sentiment}}'
     timeout: 300s
-    conditional: "sentiment < 7"
+    conditional: 'sentiment < 7'
     exit_routing:
       followup_sent: complete
       skip: complete
@@ -1034,11 +1079,11 @@ Every skill includes security controls appropriate to its risk level:
 
 ### Risk Levels
 
-| Level | Examples | Controls |
-|-------|----------|----------|
-| **Low** | Copywriting, content generation | Basic sandboxing |
-| **Medium** | Analytics queries, read-only CRM | Rate limiting, audit logging |
-| **High** | CRM writes, messaging | Preview mode, approval gates |
+| Level        | Examples                          | Controls                           |
+| ------------ | --------------------------------- | ---------------------------------- |
+| **Low**      | Copywriting, content generation   | Basic sandboxing                   |
+| **Medium**   | Analytics queries, read-only CRM  | Rate limiting, audit logging       |
+| **High**     | CRM writes, messaging             | Preview mode, approval gates       |
 | **Critical** | Payment operations, data deletion | Two-phase commit, rollback windows |
 
 ### Security Controls Example
@@ -1154,13 +1199,13 @@ From `revops/lead_qualification`:
 
 **Skills Composition**:
 
-| Step | Skill | Input | Output | Exit States |
-|------|-------|-------|--------|-------------|
-| 1 | `revops/lead_qualification` | `{ leadId, framework }` | `{ qualified, score, frameworkResults }` | qualified, nurture, disqualified |
-| 2 | `revops/opportunity_scoring` | `{ dealId }` | `{ priorityScore, signals, forecastCategory }` | high_priority, medium_priority, low_priority |
-| 3 | `revops/deal_inspection` | `{ dealId }` | `{ healthScore, redFlags[], risks[] }` | red_flags_found, healthy, stalled |
-| 4 | `revops/next_best_action` | `{ dealContext }` | `{ recommendedActions[], contentRecs[] }` | content_needed, actions_clear |
-| 5 | `revops/sales_content_recommender` | `{ dealStage, objections }` | `{ content[], battleCards[] }` | content_delivered |
+| Step | Skill                              | Input                       | Output                                         | Exit States                                  |
+| ---- | ---------------------------------- | --------------------------- | ---------------------------------------------- | -------------------------------------------- |
+| 1    | `revops/lead_qualification`        | `{ leadId, framework }`     | `{ qualified, score, frameworkResults }`       | qualified, nurture, disqualified             |
+| 2    | `revops/opportunity_scoring`       | `{ dealId }`                | `{ priorityScore, signals, forecastCategory }` | high_priority, medium_priority, low_priority |
+| 3    | `revops/deal_inspection`           | `{ dealId }`                | `{ healthScore, redFlags[], risks[] }`         | red_flags_found, healthy, stalled            |
+| 4    | `revops/next_best_action`          | `{ dealContext }`           | `{ recommendedActions[], contentRecs[] }`      | content_needed, actions_clear                |
+| 5    | `revops/sales_content_recommender` | `{ dealStage, objections }` | `{ content[], battleCards[] }`                 | content_delivered                            |
 
 **Data Flow**:
 
@@ -1262,7 +1307,7 @@ workflow: customer_churn_prevention
 parallel_group_1:
   - step: health_scoring
     skill: customer_success/health_scoring
-    input: { accountId: "{{trigger.accountId}}" }
+    input: { accountId: '{{trigger.accountId}}' }
     timeout: 300s
     outputs:
       - health_score
@@ -1271,7 +1316,7 @@ parallel_group_1:
 
   - step: sentiment_analysis
     skill: customer_success/sentiment_analyzer
-    input: { accountId: "{{trigger.accountId}}" }
+    input: { accountId: '{{trigger.accountId}}' }
     timeout: 300s
     outputs:
       - sentiment_score
@@ -1298,8 +1343,8 @@ high_risk_path:
   - step: churn_prediction
     skill: customer_success/churn_prediction
     input:
-      healthScore: "{{health_scoring.output.health_score}}"
-      accountMetrics: "{{health_scoring.output}}"
+      healthScore: '{{health_scoring.output.health_score}}'
+      accountMetrics: '{{health_scoring.output}}'
     timeout: 300s
     exit_routing:
       high_churn_risk: retention_playbook
@@ -1309,8 +1354,8 @@ high_risk_path:
   - step: retention_playbook
     skill: customer_success/retention_playbook
     input:
-      churnRisk: "{{churn_prediction.output.churn_risk}}"
-      accountContext: "{{health_scoring.output}}"
+      churnRisk: '{{churn_prediction.output.churn_risk}}'
+      accountContext: '{{health_scoring.output}}'
     timeout: 300s
     outputs:
       - recommended_actions
@@ -1326,8 +1371,8 @@ medium_risk_path:
   - step: nps_followup
     skill: customer_success/nps_followup
     input:
-      accountId: "{{trigger.accountId}}"
-      sentiment: "{{sentiment_analysis.output.sentiment_score}}"
+      accountId: '{{trigger.accountId}}'
+      sentiment: '{{sentiment_analysis.output.sentiment_score}}'
     timeout: 300s
     conditional: sentiment_score < 70
     actions:
@@ -1339,8 +1384,8 @@ finalize:
   - step: record_intervention
     skill: customer_success/red_flag_detector
     input:
-      accountId: "{{trigger.accountId}}"
-      intervention: "{{retention_playbook.output}}"
+      accountId: '{{trigger.accountId}}'
+      intervention: '{{retention_playbook.output}}'
     outputs:
       - intervention_logged
       - next_review_date
@@ -1348,13 +1393,13 @@ finalize:
 
 **Skills Composition**:
 
-| Step | Skill | Input | Output | Exit States |
-|------|-------|-------|--------|-------------|
-| 1a | `customer_success/health_scoring` | `{ accountId }` | `{ health_score, metrics, trends }` | at_risk, healthy |
-| 1b | `customer_success/sentiment_analyzer` | `{ accountId }` | `{ sentiment_score, nps, ticket_sentiment }` | negative, neutral, positive |
-| 2 | `customer_success/churn_prediction` | `{ healthScore, metrics }` | `{ churn_risk, likelihood, timeline }` | high_churn_risk, medium, low |
-| 3 | `customer_success/retention_playbook` | `{ churnRisk, context }` | `{ actions[], stakeholders[] }` | playbook_executed |
-| 4 | `customer_success/nps_followup` | `{ accountId, sentiment }` | `{ survey_sent, feedback }` | followup_sent |
+| Step | Skill                                 | Input                      | Output                                       | Exit States                  |
+| ---- | ------------------------------------- | -------------------------- | -------------------------------------------- | ---------------------------- |
+| 1a   | `customer_success/health_scoring`     | `{ accountId }`            | `{ health_score, metrics, trends }`          | at_risk, healthy             |
+| 1b   | `customer_success/sentiment_analyzer` | `{ accountId }`            | `{ sentiment_score, nps, ticket_sentiment }` | negative, neutral, positive  |
+| 2    | `customer_success/churn_prediction`   | `{ healthScore, metrics }` | `{ churn_risk, likelihood, timeline }`       | high_churn_risk, medium, low |
+| 3    | `customer_success/retention_playbook` | `{ churnRisk, context }`   | `{ actions[], stakeholders[] }`              | playbook_executed            |
+| 4    | `customer_success/nps_followup`       | `{ accountId, sentiment }` | `{ survey_sent, feedback }`                  | followup_sent                |
 
 **Data Flow with Parallel Execution**:
 
@@ -1484,29 +1529,29 @@ Trigger: Daily cron OR health_score_change event
 async function diagnoseFunnelBottlenecks(focusArea: string) {
   // 1. Analyze funnel metrics
   const funnelMetrics = await analytics.get_funnel_metrics({
-    stages: ['signup', 'activation', 'engagement', 'conversion', 'retention']
+    stages: ['signup', 'activation', 'engagement', 'conversion', 'retention'],
   });
 
   // 2. Identify biggest drops
   const drops = funnelMetrics.stages
     .map((stage, i) => ({
       stage: stage.name,
-      drop: stage.conversion_rate - funnelMetrics.stages[i+1]?.conversion_rate,
-      benchmark_gap: stage.benchmark - stage.conversion_rate
+      drop: stage.conversion_rate - funnelMetrics.stages[i + 1]?.conversion_rate,
+      benchmark_gap: stage.benchmark - stage.conversion_rate,
     }))
     .sort((a, b) => b.benchmark_gap - a.benchmark_gap)
-    .slice(0, 3);  // Top 3 opportunities
+    .slice(0, 3); // Top 3 opportunities
 
   // 3. Route to appropriate skills based on stage
   const optimizations = [];
 
   for (const drop of drops) {
-    switch(drop.stage) {
+    switch (drop.stage) {
       case 'signup':
         optimizations.push({
           skill: 'marketing/cro/signup_flow_cro',
           priority: 'high',
-          expected_impact: `${drop.benchmark_gap}% conversion lift`
+          expected_impact: `${drop.benchmark_gap}% conversion lift`,
         });
         break;
 
@@ -1517,14 +1562,14 @@ async function diagnoseFunnelBottlenecks(focusArea: string) {
         if (frictions.blockers.includes('onboarding_complexity')) {
           optimizations.push({
             skill: 'plg/onboarding_flow',
-            input: { segment: 'all', optimize_for: 'time_to_value' }
+            input: { segment: 'all', optimize_for: 'time_to_value' },
           });
         }
 
         if (frictions.blockers.includes('aha_moment_unclear')) {
           optimizations.push({
             skill: 'plg/aha_moment_detection',
-            input: { trigger_early: true }
+            input: { trigger_early: true },
           });
         }
         break;
@@ -1532,7 +1577,7 @@ async function diagnoseFunnelBottlenecks(focusArea: string) {
       case 'engagement':
         optimizations.push({
           skill: 'plg/habit_loop_builder',
-          input: { frequency_target: 'daily' }
+          input: { frequency_target: 'daily' },
         });
         break;
 
@@ -1543,12 +1588,12 @@ async function diagnoseFunnelBottlenecks(focusArea: string) {
         if (plan.model === 'trial') {
           optimizations.push({
             skill: 'plg/trial_extension_evaluator',
-            input: { extend_high_usage_users: true }
+            input: { extend_high_usage_users: true },
           });
         } else {
           optimizations.push({
             skill: 'marketing/cro/paywall_upgrade_cro',
-            input: { test_pricing_display: true }
+            input: { test_pricing_display: true },
           });
         }
         break;
@@ -1556,7 +1601,7 @@ async function diagnoseFunnelBottlenecks(focusArea: string) {
       case 'retention':
         optimizations.push({
           skill: 'customer_success/churn_prediction',
-          input: { proactive_mode: true }
+          input: { proactive_mode: true },
         });
         break;
     }
@@ -1575,30 +1620,30 @@ async function diagnoseFunnelBottlenecks(focusArea: string) {
     top_opportunities: drops,
     optimizations_deployed: optimizations.length,
     estimated_impact: calculateTotalImpact(optimizations),
-    next_steps: generateExperimentPlan(results)
+    next_steps: generateExperimentPlan(results),
   };
 }
 ```
 
 **Skills Composition by Funnel Stage**:
 
-| Funnel Stage | Blocker Type | Skills to Trigger | Exit State |
-|--------------|--------------|-------------------|------------|
-| **Acquisition** | Traffic quality | `marketing/channel_optimizer` | channels_optimized |
-| | Messaging fit | `marketing/copywriting` | messaging_tested |
-| **Activation** | Onboarding friction | `plg/friction_detector` → `plg/onboarding_flow` | friction_resolved |
-| | Time to value | `plg/aha_moment_detection` | aha_moment_optimized |
-| | Empty states | `plg/empty_state_optimizer` | empty_states_engaging |
-| **Engagement** | Habit formation | `plg/habit_loop_builder` | habit_established |
-| | Feature discovery | `plg/interactive_tour` | features_discovered |
-| | Network effects | `plg/network_effect_amplifier` | network_triggered |
-| **Conversion** | Trial expiration | `plg/trial_extension_evaluator` | trial_extended OR convert |
-| | Pricing friction | `marketing/cro/paywall_upgrade_cro` | paywall_optimized |
-| | Value demonstration | `plg/milestone_celebration` | value_demonstrated |
-| **Retention** | Churn risk | `customer_success/churn_prediction` | retention_triggered |
-| | Engagement drop | `plg/usage_depth_analyzer` | re_engagement_sent |
-| **Expansion** | Upsell timing | `monetization/upgrade_trigger` | upsell_presented |
-| | Feature limits | `monetization/entitlement_manager` | limit_reached_trigger |
+| Funnel Stage    | Blocker Type        | Skills to Trigger                               | Exit State                |
+| --------------- | ------------------- | ----------------------------------------------- | ------------------------- |
+| **Acquisition** | Traffic quality     | `marketing/channel_optimizer`                   | channels_optimized        |
+|                 | Messaging fit       | `marketing/copywriting`                         | messaging_tested          |
+| **Activation**  | Onboarding friction | `plg/friction_detector` → `plg/onboarding_flow` | friction_resolved         |
+|                 | Time to value       | `plg/aha_moment_detection`                      | aha_moment_optimized      |
+|                 | Empty states        | `plg/empty_state_optimizer`                     | empty_states_engaging     |
+| **Engagement**  | Habit formation     | `plg/habit_loop_builder`                        | habit_established         |
+|                 | Feature discovery   | `plg/interactive_tour`                          | features_discovered       |
+|                 | Network effects     | `plg/network_effect_amplifier`                  | network_triggered         |
+| **Conversion**  | Trial expiration    | `plg/trial_extension_evaluator`                 | trial_extended OR convert |
+|                 | Pricing friction    | `marketing/cro/paywall_upgrade_cro`             | paywall_optimized         |
+|                 | Value demonstration | `plg/milestone_celebration`                     | value_demonstrated        |
+| **Retention**   | Churn risk          | `customer_success/churn_prediction`             | retention_triggered       |
+|                 | Engagement drop     | `plg/usage_depth_analyzer`                      | re_engagement_sent        |
+| **Expansion**   | Upsell timing       | `monetization/upgrade_trigger`                  | upsell_presented          |
+|                 | Feature limits      | `monetization/entitlement_manager`              | limit_reached_trigger     |
 
 **Tools Used**:
 
@@ -1706,51 +1751,51 @@ workflow: financial_intelligence_dashboard
 parallel_data_collection:
   - step: burn_rate
     skill: finops/burn_rate_monitor
-    input: { period: "{{current_month}}", lookback_months: 6 }
+    input: { period: '{{current_month}}', lookback_months: 6 }
     timeout: 60s
 
   - step: arr_waterfall
     skill: finops/arr_waterfall
-    input: { period: "{{current_quarter}}" }
+    input: { period: '{{current_quarter}}' }
     timeout: 60s
 
   - step: mrr_movement
     skill: monetization/mrr_movement_tracker
-    input: { period: "{{current_month}}" }
+    input: { period: '{{current_month}}' }
     timeout: 60s
 
   - step: gross_margin
     skill: finops/gross_margin
-    input: { segment: "all" }
+    input: { segment: 'all' }
     timeout: 60s
 
   - step: magic_number
     skill: finops/magic_number
-    input: { period: "{{current_quarter}}" }
+    input: { period: '{{current_quarter}}' }
     timeout: 60s
 
 # Conditional alerts based on thresholds
 conditional_routing:
-  - condition: "{{burn_rate.runway_months}} < 12"
+  - condition: '{{burn_rate.runway_months}} < 12'
     skill: finops/scenario_planner
     input:
-      current_burn: "{{burn_rate.net_burn}}"
-      scenarios: ["reduce_burn_20", "raise_capital", "accelerate_revenue"]
+      current_burn: '{{burn_rate.net_burn}}'
+      scenarios: ['reduce_burn_20', 'raise_capital', 'accelerate_revenue']
     priority: critical
 
   - condition: "{{burn_rate.burn_trend}} == 'increasing'"
     skill: finops/expense_allocator
-    input: { focus: "cost_reduction_opportunities" }
+    input: { focus: 'cost_reduction_opportunities' }
     priority: high
 
-  - condition: "{{mrr_movement.churn_rate}} > 0.05"
+  - condition: '{{mrr_movement.churn_rate}} > 0.05'
     skill: monetization/dunning_automation
     input: { aggressive_mode: true }
     priority: high
 
-  - condition: "{{magic_number.value}} < 0.75"
+  - condition: '{{magic_number.value}} < 0.75'
     skill: finops/benchmark_comparator
-    input: { metric: "sales_efficiency" }
+    input: { metric: 'sales_efficiency' }
     priority: medium
 
 # Aggregation and synthesis
@@ -1759,9 +1804,9 @@ synthesis:
     type: ai_synthesis
     model: claude-4.5-sonnet
     input:
-      metrics: "{{all_parallel_outputs}}"
-      alerts: "{{triggered_alerts}}"
-      context: "{{company_stage}}"
+      metrics: '{{all_parallel_outputs}}'
+      alerts: '{{triggered_alerts}}'
+      context: '{{company_stage}}'
     output:
       - executive_summary
       - key_metrics_dashboard
@@ -1771,24 +1816,24 @@ synthesis:
 
 # Distribution
 notify:
-  - recipients: ["cfo@company.com", "ceo@company.com"]
+  - recipients: ['cfo@company.com', 'ceo@company.com']
     channel: email
     template: financial_intelligence_report
-    schedule: "{{report_frequency}}"
+    schedule: '{{report_frequency}}'
 ```
 
 **Skills Composition**:
 
-| Parallel Group | Skill | Input | Output | Timeout |
-|----------------|-------|-------|--------|---------|
-| 1 | `finops/burn_rate_monitor` | `{ period }` | `{ runway_months, burn_trend }` | 60s |
-| 1 | `finops/arr_waterfall` | `{ period }` | `{ new_arr, expansion, churn }` | 60s |
-| 1 | `monetization/mrr_movement_tracker` | `{ period }` | `{ mrr_change, churn_rate }` | 60s |
-| 1 | `finops/gross_margin` | `{ segment }` | `{ margin_percent, cogs }` | 60s |
-| 1 | `finops/magic_number` | `{ period }` | `{ efficiency_score }` | 60s |
-| 2 | `finops/scenario_planner` | `{ scenarios }` | `{ runway_projections }` | conditional |
-| 2 | `finops/expense_allocator` | `{ focus }` | `{ cost_opportunities }` | conditional |
-| 2 | `monetization/dunning_automation` | `{ mode }` | `{ recovery_campaigns }` | conditional |
+| Parallel Group | Skill                               | Input           | Output                          | Timeout     |
+| -------------- | ----------------------------------- | --------------- | ------------------------------- | ----------- |
+| 1              | `finops/burn_rate_monitor`          | `{ period }`    | `{ runway_months, burn_trend }` | 60s         |
+| 1              | `finops/arr_waterfall`              | `{ period }`    | `{ new_arr, expansion, churn }` | 60s         |
+| 1              | `monetization/mrr_movement_tracker` | `{ period }`    | `{ mrr_change, churn_rate }`    | 60s         |
+| 1              | `finops/gross_margin`               | `{ segment }`   | `{ margin_percent, cogs }`      | 60s         |
+| 1              | `finops/magic_number`               | `{ period }`    | `{ efficiency_score }`          | 60s         |
+| 2              | `finops/scenario_planner`           | `{ scenarios }` | `{ runway_projections }`        | conditional |
+| 2              | `finops/expense_allocator`          | `{ focus }`     | `{ cost_opportunities }`        | conditional |
+| 2              | `monetization/dunning_automation`   | `{ mode }`      | `{ recovery_campaigns }`        | conditional |
 
 **Data Flow**:
 
@@ -1923,13 +1968,13 @@ async function automateContentMarketing(topic: string, targetAudience: string) {
     topic,
     targetAudience,
     depth: 'comprehensive',
-    sources: 10
+    sources: 10,
   });
 
   // 2. Brand voice validation
   const voiceCheck = await marketing.skene_voice_guardian({
     content: research.outline,
-    strict_mode: true
+    strict_mode: true,
   });
 
   if (!voiceCheck.approved) {
@@ -1944,14 +1989,14 @@ async function automateContentMarketing(topic: string, targetAudience: string) {
       type: 'blog_post',
       outline: research.outline,
       word_count: 2000,
-      tone: 'professional_friendly'
+      tone: 'professional_friendly',
     }),
 
     // Social media content
     marketing.social_content_generator({
       source_content: research.summary,
       platforms: ['twitter', 'linkedin'],
-      posts_per_platform: 5
+      posts_per_platform: 5,
     }),
 
     // Email nurture sequence
@@ -1959,22 +2004,22 @@ async function automateContentMarketing(topic: string, targetAudience: string) {
       topic,
       audience: targetAudience,
       sequence_length: 5,
-      cadence: 'weekly'
-    })
+      cadence: 'weekly',
+    }),
   ]);
 
   // 4. SEO optimization
   const seoAudit = await marketing.seo_audit({
     content: longForm.content,
     target_keywords: research.keywords,
-    optimize: true
+    optimize: true,
   });
 
   const optimizedContent = {
     ...longForm,
     content: seoAudit.optimized_content,
     meta_description: seoAudit.meta_description,
-    schema_markup: seoAudit.schema
+    schema_markup: seoAudit.schema,
   };
 
   // 5. Publishing and tracking
@@ -1983,7 +2028,7 @@ async function automateContentMarketing(topic: string, targetAudience: string) {
   await marketing.analytics_tracking({
     content_id: published.id,
     campaign: topic,
-    track_events: ['page_view', 'scroll_depth', 'cta_click']
+    track_events: ['page_view', 'scroll_depth', 'cta_click'],
   });
 
   return {
@@ -1992,7 +2037,7 @@ async function automateContentMarketing(topic: string, targetAudience: string) {
     email_sequence: email.emails,
     published_url: published.url,
     tracking_setup: true,
-    estimated_reach: calculateReach(research.target_audience)
+    estimated_reach: calculateReach(research.target_audience),
   };
 }
 ```
@@ -2025,18 +2070,18 @@ async function automateContentMarketing(topic: string, targetAudience: string) {
 
 ## Coverage Matrix
 
-| Category | Domains | Skill Count | Orchestrators | Coverage | Gap Areas | Buildable Agents |
-|----------|---------|-------------|---------------|----------|-----------|------------------|
-| **Productivity & Workflow** | superpowers, ai_ops, development | 38 | 1 | ✅ Strong | Calendar scheduling, resource allocation | ✅ Project Manager, Code Assistant, Meeting Bot |
-| **Sales & Marketing** | marketing (11 subdomains), revops, plg, plg_frameworks | 156 | 3 | ✅ Strong | None | ✅ Deal-Closing Agent, Funnel Optimizer, Campaign Manager |
-| **HR & Talent** | people_ops | 8 | 0 | ⚠️ Partial | Recruiting pipeline, ATS, interviews, offers | ⚠️ Basic Recruiting, Onboarding |
-| **Healthcare** | - | 0 | 0 | ❌ Gap | Everything (compliance, EHR, clinical) | ❌ No |
-| **Finance** | finops, monetization | 33 | 1 | ✅ Strong | Tax, multi-currency, payroll | ✅ CFO Dashboard, Pricing Agent, Billing Bot |
-| **E-commerce** | monetization, plg, marketing/cro | 51 | 2 | ✅ Strong | Inventory, shipping, recommendations | ✅ Conversion Optimizer, Cart Recovery (digital goods) |
-| **Education** | - | 0 | 0 | ❌ Gap | Everything (LMS, assessment, curriculum) | ❌ No |
-| **Real Estate & Construction** | - | 0 | 0 | ❌ Gap | Everything (MLS, permits, project mgmt) | ❌ No |
-| **Logistics** | - | 0 | 0 | ❌ Gap | Everything (fleet, warehouse, routing) | ❌ No |
-| **Creative & Design** | marketing/media, brand, content | 18 | 0 | ⚠️ Partial | Image/video, design tools, asset mgmt | ⚠️ Content Writer, Brand Guardian |
+| Category                       | Domains                                                | Skill Count | Orchestrators | Coverage   | Gap Areas                                    | Buildable Agents                                          |
+| ------------------------------ | ------------------------------------------------------ | ----------- | ------------- | ---------- | -------------------------------------------- | --------------------------------------------------------- |
+| **Productivity & Workflow**    | superpowers, ai_ops, development                       | 38          | 1             | ✅ Strong  | Calendar scheduling, resource allocation     | ✅ Project Manager, Code Assistant, Meeting Bot           |
+| **Sales & Marketing**          | marketing (11 subdomains), revops, plg, plg_frameworks | 156         | 3             | ✅ Strong  | None                                         | ✅ Deal-Closing Agent, Funnel Optimizer, Campaign Manager |
+| **HR & Talent**                | people_ops                                             | 8           | 0             | ⚠️ Partial | Recruiting pipeline, ATS, interviews, offers | ⚠️ Basic Recruiting, Onboarding                           |
+| **Healthcare**                 | -                                                      | 0           | 0             | ❌ Gap     | Everything (compliance, EHR, clinical)       | ❌ No                                                     |
+| **Finance**                    | finops, monetization                                   | 33          | 1             | ✅ Strong  | Tax, multi-currency, payroll                 | ✅ CFO Dashboard, Pricing Agent, Billing Bot              |
+| **E-commerce**                 | monetization, plg, marketing/cro                       | 51          | 2             | ✅ Strong  | Inventory, shipping, recommendations         | ✅ Conversion Optimizer, Cart Recovery (digital goods)    |
+| **Education**                  | -                                                      | 0           | 0             | ❌ Gap     | Everything (LMS, assessment, curriculum)     | ❌ No                                                     |
+| **Real Estate & Construction** | -                                                      | 0           | 0             | ❌ Gap     | Everything (MLS, permits, project mgmt)      | ❌ No                                                     |
+| **Logistics**                  | -                                                      | 0           | 0             | ❌ Gap     | Everything (fleet, warehouse, routing)       | ❌ No                                                     |
+| **Creative & Design**          | marketing/media, brand, content                        | 18          | 0             | ⚠️ Partial | Image/video, design tools, asset mgmt        | ⚠️ Content Writer, Brand Guardian                         |
 
 ### Summary Statistics
 
@@ -2068,6 +2113,7 @@ The Skills Directory demonstrates **production-ready composability** with four k
 **Exit States**: Semantic workflow routing enables skills to automatically hand off to appropriate next steps based on business logic.
 
 **Example**:
+
 ```json
 health_scoring → {
   "churn_prediction" (if health < 60),
@@ -2095,6 +2141,7 @@ health_scoring → {
 ### 3. Regulated Industries Are Gaps
 
 **Healthcare, Education have zero skills** because they require:
+
 - Domain-specific compliance (HIPAA, FERPA)
 - Regulatory expertise (FDA approval, accreditation)
 - Specialized integrations (EMR, LMS)
@@ -2105,6 +2152,7 @@ These barriers prevent simple skill composition.
 ### 4. Physical World Integration Missing
 
 **Logistics, Real Estate, Construction have zero skills** because they require:
+
 - IoT sensors and telemetry
 - Geospatial data processing
 - Physical infrastructure (warehouses, properties, construction sites)
@@ -2115,6 +2163,7 @@ The Skills Directory is optimized for **digital-first workflows**, not physical 
 ### 5. Composition Scales Exponentially
 
 **Mathematical Power**:
+
 - 773 atomic skills
 - Average 3 exit states per skill
 - Average 2-5 skills per workflow
@@ -2124,12 +2173,14 @@ The Skills Directory is optimized for **digital-first workflows**, not physical 
 **With orchestrators**: Add conditional routing and parallel execution → **millions of possible agent behaviors**
 
 The framework supports both:
+
 - **Predefined blueprints** (common patterns like churn prevention)
 - **Dynamic composition** (LLM-powered routing based on context)
 
 ### 6. Security Model Enables Production Use
 
 Unlike generic AI agent frameworks, the Skills Directory has:
+
 - **Risk levels** per skill (Low/Medium/High/Critical)
 - **Preview mode** for dangerous operations
 - **Rollback windows** (30-60 minutes for CRM/financial changes)
@@ -2173,6 +2224,7 @@ These categories have comprehensive skill coverage and proven orchestration patt
 These categories need 5-10 additional skills before full agent coverage:
 
 **HR & Talent Gaps**:
+
 - `recruiting_automation` - Interview scheduling, ATS integration
 - `technical_assessment` - Code challenges, technical screens
 - `offer_generation` - Automated offer letters with e-signature
@@ -2180,6 +2232,7 @@ These categories need 5-10 additional skills before full agent coverage:
 - `performance_cycle` - Automate review cycles, 360 feedback
 
 **Creative & Design Gaps**:
+
 - `image_generation` - AI image creation (DALL-E, Midjourney)
 - `design_tool_integration` - Figma, Adobe API connections
 - `video_editing` - Automated video production
@@ -2187,6 +2240,7 @@ These categories need 5-10 additional skills before full agent coverage:
 - `collaboration_workflow` - Review/approval workflows
 
 **Interim Solution**:
+
 - Use existing skills where possible (copywriting, voice guardian)
 - Integrate with external tools for gaps (Zapier, Make.com)
 - Build missing skills using the Skills Directory framework
@@ -2198,22 +2252,26 @@ These categories need 5-10 additional skills before full agent coverage:
 These categories need ground-up development:
 
 **Priority 1: Regulatory & Compliance Skills**
+
 - Healthcare: HIPAA compliance, audit trails, patient consent
 - Education: FERPA compliance, grade confidentiality
 - Real Estate: MLS access, license verification
 
 **Priority 2: Domain-Specific Tools**
+
 - Healthcare: EHR/EMR integrations (Epic, Cerner, HL7/FHIR)
 - Education: LMS integrations (Canvas, Blackboard, Moodle)
 - Real Estate: MLS APIs, property databases (Zillow, Redfin)
 - Logistics: Warehouse management, TMS, fleet tracking
 
 **Priority 3: Physical World Integrations**
+
 - IoT sensor data (GPS, telemetry, RFID)
 - Computer vision (site inspections, progress tracking)
 - Geospatial processing (routing, territory optimization)
 
 **Estimated Effort**:
+
 - Each new domain: 20-30 foundational skills
 - Each skill: 40-80 hours development + testing
 - Total per domain: 800-2400 hours (4-12 developer-months)
@@ -2230,16 +2288,19 @@ These categories need ground-up development:
 **YES**, with important caveats:
 
 **✅ Comprehensive Coverage (50% of categories)**:
+
 - **B2B SaaS domains** (Sales, Marketing, Customer Success, PLG) have 150+ skills and proven orchestration patterns
 - **Financial operations** (Burn rate, ARR/MRR, pricing) have 33 skills covering CFO workflows
 - **E-commerce (digital)** has 51 skills for conversion optimization and self-serve funnels
 - **Productivity** has 38 meta-skills for workflow orchestration
 
 **⚠️ Partial Coverage (20% of categories)**:
+
 - **HR & Talent** (8 skills) needs recruiting pipeline skills
 - **Creative & Design** (18 skills) needs visual creation tools
 
 **❌ Complete Gaps (30% of categories)**:
+
 - **Healthcare** (0 skills) - Requires regulatory compliance and EHR integration
 - **Education** (0 skills) - Requires LMS integration and learning science expertise
 - **Real Estate** (0 skills) - Requires MLS and geospatial data
@@ -2266,12 +2327,14 @@ The Skills Directory provides:
 ### Final Thoughts
 
 The Skills Directory demonstrates that **AI agent composition is not just possible, it's practical**—but only for domains with:
+
 1. Digital-first workflows (not physical world)
 2. Standardized tool ecosystems (CRM, analytics, messaging)
 3. Clear business logic (sales funnels, financial metrics)
 4. Manageable regulatory complexity
 
 For these domains, the Skills Directory enables rapid agent development (days/weeks vs months) by providing:
+
 - Pre-built atomic skills
 - Proven composition patterns
 - Production-ready security controls
@@ -2285,18 +2348,18 @@ For these domains, the Skills Directory enables rapid agent development (days/we
 
 ### Most Common Tool Categories
 
-| Tool Category | Description | Example Methods | Skills Using |
-|---------------|-------------|-----------------|--------------|
-| `lifecycle.*` | Customer lifecycle management | `get_segment`, `record_moment` | 109 |
-| `analytics.*` | Product and marketing analytics | `track_event`, `get_metrics`, `get_cohort` | 150+ |
-| `crm.*` | Customer relationship management | `get_account`, `update_account`, `get_pipeline` | 80+ |
-| `messaging.*` | Multi-channel messaging | `send_email`, `send_in_app`, `send_alert` | 60+ |
-| `ai.*` | AI model operations | `generate`, `classify`, `score`, `forecast` | 50+ |
-| `stripe.*` | Subscription and billing | `get_usage`, `get_subscriptions`, `create_invoice` | 40+ |
-| `monetization.*` | Pricing and packaging | `calculate_mrr`, `track_expansion`, `get_entitlements` | 30+ |
-| `product.*` | Product feature management | `get_feature_flags`, `track_adoption` | 25+ |
-| `partner.*` | Partner ecosystem | `get_overlaps`, `track_influenced_revenue` | 20+ |
-| `rag.*` | Retrieval augmented generation | `query`, `index`, `semantic_search` | 15+ |
+| Tool Category    | Description                      | Example Methods                                        | Skills Using |
+| ---------------- | -------------------------------- | ------------------------------------------------------ | ------------ |
+| `lifecycle.*`    | Customer lifecycle management    | `get_segment`, `record_moment`                         | 109          |
+| `analytics.*`    | Product and marketing analytics  | `track_event`, `get_metrics`, `get_cohort`             | 150+         |
+| `crm.*`          | Customer relationship management | `get_account`, `update_account`, `get_pipeline`        | 80+          |
+| `messaging.*`    | Multi-channel messaging          | `send_email`, `send_in_app`, `send_alert`              | 60+          |
+| `ai.*`           | AI model operations              | `generate`, `classify`, `score`, `forecast`            | 50+          |
+| `stripe.*`       | Subscription and billing         | `get_usage`, `get_subscriptions`, `create_invoice`     | 40+          |
+| `monetization.*` | Pricing and packaging            | `calculate_mrr`, `track_expansion`, `get_entitlements` | 30+          |
+| `product.*`      | Product feature management       | `get_feature_flags`, `track_adoption`                  | 25+          |
+| `partner.*`      | Partner ecosystem                | `get_overlaps`, `track_influenced_revenue`             | 20+          |
+| `rag.*`          | Retrieval augmented generation   | `query`, `index`, `semantic_search`                    | 15+          |
 
 ### Tool Standardization Benefits
 

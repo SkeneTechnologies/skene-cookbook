@@ -6,25 +6,21 @@ job function categorization, and composability analysis.
 """
 
 import json
-import pytest
+import sys
 from pathlib import Path
 from unittest.mock import Mock, patch
-import sys
+
+import pytest
 
 # Add scripts directory to path
 sys.path.insert(0, str(Path(__file__).parent.parent.parent / "scripts"))
 
-from analyze_skills import (
-    SkillAnalyzer,
-    SkillAnalysis,
-    SECURITY_KEYWORDS,
-    JOB_FUNCTION_MAPPINGS
-)
-
+from analyze_skills import JOB_FUNCTION_MAPPINGS, SECURITY_KEYWORDS, SkillAnalysis, SkillAnalyzer
 
 # =============================================================================
 # Test Initialization
 # =============================================================================
+
 
 @pytest.mark.unit
 def test_initialization():
@@ -47,6 +43,7 @@ def test_initialization_default_path():
 # Test Risk Level Calculation
 # =============================================================================
 
+
 @pytest.mark.unit
 def test_calculate_risk_level_critical():
     """Test detection of critical risk keywords."""
@@ -60,7 +57,7 @@ def test_calculate_risk_level_critical():
 
     assert risk_level == "Critical"
     assert len(factors) > 0
-    assert any(keyword in text for keyword in SECURITY_KEYWORDS['Critical'])
+    assert any(keyword in text for keyword in SECURITY_KEYWORDS["Critical"])
 
 
 @pytest.mark.unit
@@ -105,6 +102,7 @@ def test_calculate_risk_level_low():
 # =============================================================================
 # Test Job Function Determination
 # =============================================================================
+
 
 @pytest.mark.unit
 def test_determine_job_function_engineering():
@@ -176,6 +174,7 @@ def test_determine_job_function_default():
 # Test JTBD Extraction
 # =============================================================================
 
+
 @pytest.mark.unit
 def test_extract_jtbd():
     """Test Jobs-to-be-Done extraction."""
@@ -187,7 +186,7 @@ def test_extract_jtbd():
     jtbd = analyzer._extract_jtbd(skill_data)
 
     assert isinstance(jtbd, dict)
-    assert 'job' in jtbd or 'context' in jtbd or jtbd != {}
+    assert "job" in jtbd or "context" in jtbd or jtbd != {}
 
 
 @pytest.mark.unit
@@ -198,7 +197,7 @@ def test_extract_jtbd_from_description():
     skill_data = {
         "name": "Report Generator",
         "description": "Generate formatted reports from raw data",
-        "domain": "data"
+        "domain": "data",
     }
 
     jtbd = analyzer._extract_jtbd(skill_data)
@@ -210,6 +209,7 @@ def test_extract_jtbd_from_description():
 # Test Security Requirements Determination
 # =============================================================================
 
+
 @pytest.mark.unit
 def test_determine_security_requirements_critical():
     """Test security requirements for critical risk skills."""
@@ -218,7 +218,7 @@ def test_determine_security_requirements_critical():
     skill_data = {
         "name": "User Delete",
         "description": "Delete user accounts and payment data",
-        "tools": [{"name": "admin_delete"}]
+        "tools": [{"name": "admin_delete"}],
     }
 
     risk_level = "Critical"
@@ -227,7 +227,10 @@ def test_determine_security_requirements_critical():
     requirements = analyzer._determine_security_requirements(risk_level, risk_factors, skill_data)
 
     assert isinstance(requirements, dict)
-    assert requirements.get('human_in_loop_required') is True or requirements.get('sandboxing_required') is True
+    assert (
+        requirements.get("human_in_loop_required") is True
+        or requirements.get("sandboxing_required") is True
+    )
 
 
 @pytest.mark.unit
@@ -238,7 +241,7 @@ def test_determine_security_requirements_low():
     skill_data = {
         "name": "List Reports",
         "description": "List available reports",
-        "tools": [{"name": "read"}]
+        "tools": [{"name": "read"}],
     }
 
     risk_level = "Low"
@@ -248,13 +251,14 @@ def test_determine_security_requirements_low():
 
     assert isinstance(requirements, dict)
     # Low risk should have minimal requirements
-    assert requirements.get('human_in_loop_required') is False
-    assert requirements.get('sandboxing_required') is False
+    assert requirements.get("human_in_loop_required") is False
+    assert requirements.get("sandboxing_required") is False
 
 
 # =============================================================================
 # Test Composability Analysis
 # =============================================================================
+
 
 @pytest.mark.unit
 def test_analyze_composability():
@@ -264,14 +268,9 @@ def test_analyze_composability():
     skill_data = {
         "exitStates": [
             {"state": "complete", "nextSkills": ["skill_2", "skill_3"]},
-            {"state": "error", "nextSkills": ["error_handler"]}
+            {"state": "error", "nextSkills": ["error_handler"]},
         ],
-        "outputSchema": {
-            "type": "object",
-            "properties": {
-                "data": {"type": "string"}
-            }
-        }
+        "outputSchema": {"type": "object", "properties": {"data": {"type": "string"}}},
     }
 
     hints = analyzer._analyze_composability(skill_data)
@@ -285,14 +284,7 @@ def test_analyze_composability_no_exitstates():
     """Test composability when no exitStates defined."""
     analyzer = SkillAnalyzer()
 
-    skill_data = {
-        "outputSchema": {
-            "type": "object",
-            "properties": {
-                "result": {"type": "string"}
-            }
-        }
-    }
+    skill_data = {"outputSchema": {"type": "object", "properties": {"result": {"type": "string"}}}}
 
     hints = analyzer._analyze_composability(skill_data)
 
@@ -303,6 +295,7 @@ def test_analyze_composability_no_exitstates():
 # =============================================================================
 # Test Skill File Analysis
 # =============================================================================
+
 
 @pytest.mark.unit
 def test_analyze_skill_file_complete(temp_skills_directory, sample_skill_complete):
@@ -375,6 +368,7 @@ def test_analyze_skill_file_invalid_json(temp_skills_directory):
 # Test Report Generation
 # =============================================================================
 
+
 @pytest.mark.unit
 def test_generate_security_report(temp_output_directory):
     """Test security report generation."""
@@ -389,7 +383,7 @@ def test_generate_security_report(temp_output_directory):
             job_function="engineering",
             jtbd={"job": "test"},
             risk_factors=["delete", "password"],
-            composability_hints=["chains with X"]
+            composability_hints=["chains with X"],
         ),
         SkillAnalysis(
             skill_id="test_2",
@@ -398,14 +392,14 @@ def test_generate_security_report(temp_output_directory):
             job_function="marketing",
             jtbd={"job": "test"},
             risk_factors=[],
-            composability_hints=[]
-        )
+            composability_hints=[],
+        ),
     ]
 
     output_file = temp_output_directory / "security_report.md"
 
     # Check if method exists, if not skip test gracefully
-    if hasattr(analyzer, 'generate_security_report'):
+    if hasattr(analyzer, "generate_security_report"):
         analyzer.generate_security_report(str(output_file))
         assert output_file.exists()
         content = output_file.read_text()
@@ -429,7 +423,7 @@ def test_generate_job_function_index(temp_output_directory):
             job_function="engineering",
             jtbd={"job": "test"},
             risk_factors=[],
-            composability_hints=[]
+            composability_hints=[],
         ),
         SkillAnalysis(
             skill_id="mkt_1",
@@ -438,8 +432,8 @@ def test_generate_job_function_index(temp_output_directory):
             job_function="marketing",
             jtbd={"job": "test"},
             risk_factors=[],
-            composability_hints=[]
-        )
+            composability_hints=[],
+        ),
     ]
 
     output_file = temp_output_directory / "job_function_index.json"
@@ -456,6 +450,7 @@ def test_generate_job_function_index(temp_output_directory):
 # =============================================================================
 # Test Full Analysis Workflow
 # =============================================================================
+
 
 @pytest.mark.unit
 def test_analyze_all_skills(temp_skills_directory, mock_skills_data):

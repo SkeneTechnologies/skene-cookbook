@@ -18,18 +18,18 @@ Evaluated **3 of 4** business-critical domains successfully, achieving **93% suc
 
 ### ✅ Successfully Evaluated (3 domains, 69 skills)
 
-| Domain | Skills | Successful | Failed | Success Rate | Notes |
-|--------|--------|------------|--------|--------------|-------|
-| **revops** | 25 | 25 | 0 | ✅ **100%** | Perfect execution |
-| **plg** | 24 | 24 | 0 | ✅ **100%** | Perfect execution |
-| **monetization** | 20 | 15 | 5 | 🟨 **75%** | 5 missing schemas |
-| **TOTAL (Phase 2)** | **69** | **64** | **5** | ✅ **93%** | Excellent |
+| Domain              | Skills | Successful | Failed | Success Rate | Notes             |
+| ------------------- | ------ | ---------- | ------ | ------------ | ----------------- |
+| **revops**          | 25     | 25         | 0      | ✅ **100%**  | Perfect execution |
+| **plg**             | 24     | 24         | 0      | ✅ **100%**  | Perfect execution |
+| **monetization**    | 20     | 15         | 5      | 🟨 **75%**   | 5 missing schemas |
+| **TOTAL (Phase 2)** | **69** | **64**     | **5**  | ✅ **93%**   | Excellent         |
 
 ### ❌ Blocked (1 domain, 52 skills)
 
-| Domain | Skills | Issue | Impact |
-|--------|--------|-------|--------|
-| **marketing** | 52 | Empty schemas | 0% success rate |
+| Domain        | Skills | Issue         | Impact          |
+| ------------- | ------ | ------------- | --------------- |
+| **marketing** | 52     | Empty schemas | 0% success rate |
 
 **Total Skills Attempted**: 121 skills
 **Successfully Evaluated**: 69 skills (57%)
@@ -46,6 +46,7 @@ Evaluated **3 of 4** business-critical domains successfully, achieving **93% suc
 **Result**: Now discovers skills in nested subdirectories
 
 **Code Changed**:
+
 ```python
 # Before: Only looked at domain_dir.iterdir()
 # After: Uses domain_dir.rglob('skill.json') for recursive search
@@ -58,6 +59,7 @@ Evaluated **3 of 4** business-critical domains successfully, achieving **93% suc
 **Result**: Finds skills regardless of nesting depth
 
 **Code Changed**:
+
 ```python
 # Added fallback:
 for skill_json_path in domain_dir.rglob(f'{pattern}/skill.json'):
@@ -88,6 +90,7 @@ for skill_json_path in domain_dir.rglob(f'{pattern}/skill.json'):
 **All have empty placeholder schemas**:
 
 **Example** (`marketing_competitive_ads_extractor/skill.json`):
+
 ```json
 {
   "inputSchema": {
@@ -108,6 +111,7 @@ for skill_json_path in domain_dir.rglob(f'{pattern}/skill.json'):
 **Root Cause**: Marketing skills were scaffolded with placeholder schemas but never filled in.
 
 **Fix Options**:
+
 1. **Manual schema completion** (52 skills × 10 min = 8-9 hours)
 2. **AI-assisted schema generation** from skill descriptions (2-3 hours)
 3. **Defer to Phase 3+** and prioritize other domains
@@ -136,12 +140,12 @@ for skill_json_path in domain_dir.rglob(f'{pattern}/skill.json'):
 
 ### Phase 0 + Phase 1 + Phase 2
 
-| Metric | Count | Percentage |
-|--------|-------|------------|
-| **Total Skills Evaluated** | 175 | 23% of 765 |
-| **Successful** | 154 | 88% |
-| **Failed - Missing Schemas** | 21 | 12% |
-| **Failed - Empty Schemas** | 52* | (marketing, not counted in eval) |
+| Metric                       | Count | Percentage                       |
+| ---------------------------- | ----- | -------------------------------- |
+| **Total Skills Evaluated**   | 175   | 23% of 765                       |
+| **Successful**               | 154   | 88%                              |
+| **Failed - Missing Schemas** | 21    | 12%                              |
+| **Failed - Empty Schemas**   | 52\*  | (marketing, not counted in eval) |
 
 \* Marketing not included in evaluation due to empty schemas
 
@@ -179,13 +183,13 @@ Based on Phase 1 and Phase 2, skills fall into 3 schema quality tiers:
 
 ## Phase 2 Success Criteria
 
-| Criteria | Target | Actual | Status |
-|----------|--------|--------|--------|
-| Success rate | 90%+ | 93% | ✅ Exceeded |
-| Domains evaluated | 4 | 3 of 4 | 🟨 75% (marketing blocked) |
-| Domain dashboards | Yes | Yes | ✅ Complete |
-| Business stakeholder reports | Yes | Yes | ✅ Complete |
-| < 5% manual intervention | < 5% | 7%* | 🟨 Close |
+| Criteria                     | Target | Actual | Status                     |
+| ---------------------------- | ------ | ------ | -------------------------- |
+| Success rate                 | 90%+   | 93%    | ✅ Exceeded                |
+| Domains evaluated            | 4      | 3 of 4 | 🟨 75% (marketing blocked) |
+| Domain dashboards            | Yes    | Yes    | ✅ Complete                |
+| Business stakeholder reports | Yes    | Yes    | ✅ Complete                |
+| < 5% manual intervention     | < 5%   | 7%\*   | 🟨 Close                   |
 
 \* 5/69 monetization skills need schemas (7.2%)
 
@@ -198,14 +202,17 @@ Based on Phase 1 and Phase 2, skills fall into 3 schema quality tiers:
 ### 1. Schema Maturity Varies by Domain
 
 **High Maturity** (95%+ schema completeness):
+
 - finops, support_ops, revops, plg
 - These domains likely had formal schema reviews
 
 **Medium Maturity** (75-90% completeness):
+
 - ecosystem, customer_success, ai_ops, product_ops, monetization
 - Missing schemas are scattered, easy to fix
 
 **Low Maturity** (0% functional schemas):
+
 - marketing
 - Systematic issue requiring domain-wide remediation
 
@@ -220,10 +227,12 @@ Based on Phase 1 and Phase 2, skills fall into 3 schema quality tiers:
 ### 3. Empty Schemas ≠ Missing Schemas
 
 **Missing Schema** (Tier 2):
+
 - Quick fix: Copy template, add 2-3 properties
 - Time: 6-10 minutes per skill
 
 **Empty Schema** (Tier 3):
+
 - Requires understanding skill purpose
 - Needs tool analysis, exit state analysis
 - Time: 10-20 minutes per skill
@@ -258,6 +267,7 @@ skills-library/monetization/upgrade_trigger/skill.json
 **All skills** in marketing domain have empty placeholder schemas.
 
 **Example paths**:
+
 ```
 skills-library/marketing/research/competitive_ads_extractor/
 skills-library/marketing/research/social_listening_analyzer/
@@ -334,6 +344,7 @@ skills-library/marketing/seo/programmatic_seo/
 **Confidence Level**: High (93% success rate on Phase 2)
 
 **Estimated Phase 3 Duration**: 3 weeks (vs 8 weeks original plan)
+
 - Week 1: Evaluate cursor_rules + plg_frameworks (287 skills)
 - Week 2: Schema remediation for Tier 2 issues
 - Week 3: Re-evaluate + analysis
@@ -345,20 +356,24 @@ skills-library/marketing/seo/programmatic_seo/
 **Target**: 287 skills across 2 platform-specific domains
 
 **Domains**:
+
 1. **cursor_rules** (241 skills) - IDE-specific
 2. **plg_frameworks** (46 skills) - Framework patterns
 
 **Challenge**: Platform-specific skills may have:
+
 - Special execution requirements
 - Mock IDE APIs needed
 - Different validation logic
 
 **Approach**:
+
 - Validation-only mode (no execution)
 - Schema completeness assessment
 - Document platform limitations
 
 **Timeline**: 3 weeks
+
 - Day 1-3: Evaluate both domains
 - Day 4-7: Analyze patterns, identify blockers
 - Day 8-14: Schema remediation
@@ -485,12 +500,14 @@ python scripts/batch_eval_skills.py --domains cursor_rules,plg_frameworks --para
 ✅ **Phase 2 is operationally complete** (3 of 4 domains evaluated successfully)
 
 **Key Achievements**:
+
 - 69 skills evaluated with 93% success rate
 - Fixed nested directory discovery
 - Identified new schema quality tier (empty schemas)
 - 3 domains at 100% success (revops, plg)
 
 **Blockers Identified**:
+
 - 5 monetization schemas (30 min fix)
 - 52 marketing schemas (8-17 hour remediation)
 
@@ -520,12 +537,12 @@ All 52 marketing skills follow this pattern:
   "description": "Extracts and analyzes competitive advertising strategies...",
   "inputSchema": {
     "type": "object",
-    "properties": {},   // ← EMPTY
-    "required": []       // ← NO REQUIRED FIELDS
+    "properties": {}, // ← EMPTY
+    "required": [] // ← NO REQUIRED FIELDS
   },
   "outputSchema": {
     "type": "object",
-    "properties": {},   // ← EMPTY
+    "properties": {}, // ← EMPTY
     "required": []
   }
 }
@@ -543,14 +560,14 @@ Compare to revops skills:
   "inputSchema": {
     "type": "object",
     "properties": {
-      "pipelineId": {"type": "string"},
+      "pipelineId": { "type": "string" },
       "action": {
         "type": "string",
         "enum": ["analyze", "report", "alert"]
       },
-      "timeframe": {"type": "string"}
+      "timeframe": { "type": "string" }
     },
-    "required": ["pipelineId", "action"]  // ← REQUIRED FIELDS DEFINED
+    "required": ["pipelineId", "action"] // ← REQUIRED FIELDS DEFINED
   }
 }
 ```

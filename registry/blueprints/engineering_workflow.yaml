@@ -4,38 +4,38 @@ name: Code Review & Deployment Pipeline
 description: Automated code review, testing, and deployment workflow
 category: Engineering
 chain_sequence:
-- step_id: step_1_code_review
-  skill_id: devex_code_sample_generator
-  action: execute
-  description: Execute code review
-  timeout_seconds: 300
-  error_handling:
-    on_failure: stop
-    max_retries: 2
-- step_id: step_2_run_tests
-  skill_id: elg_channel_enablement
-  action: execute
-  description: Execute run tests
-  timeout_seconds: 300
-  error_handling:
-    on_failure: continue
-    max_retries: 2
-- step_id: step_3_security_scan
-  skill_id: prodops_incident_analyzer
-  action: execute
-  description: Execute security scan
-  timeout_seconds: 300
-  error_handling:
-    on_failure: continue
-    max_retries: 2
-- step_id: step_4_deploy
-  skill_id: prodops_release_notes_generator
-  action: execute
-  description: Execute deploy
-  timeout_seconds: 300
-  error_handling:
-    on_failure: continue
-    max_retries: 2
+  - step_id: step_1_code_review
+    skill_id: devex_code_sample_generator
+    action: execute
+    description: Execute code review
+    timeout_seconds: 300
+    error_handling:
+      on_failure: stop
+      max_retries: 2
+  - step_id: step_2_run_tests
+    skill_id: elg_channel_enablement
+    action: execute
+    description: Execute run tests
+    timeout_seconds: 300
+    error_handling:
+      on_failure: continue
+      max_retries: 2
+  - step_id: step_3_security_scan
+    skill_id: prodops_incident_analyzer
+    action: execute
+    description: Execute security scan
+    timeout_seconds: 300
+    error_handling:
+      on_failure: continue
+      max_retries: 2
+  - step_id: step_4_deploy
+    skill_id: prodops_release_notes_generator
+    action: execute
+    description: Execute deploy
+    timeout_seconds: 300
+    error_handling:
+      on_failure: continue
+      max_retries: 2
 metadata:
   author: Chain Architect
   created_at: '2026-02-12T09:34:39.855507'

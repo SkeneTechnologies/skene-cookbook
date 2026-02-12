@@ -1,0 +1,38 @@
+id: workflow_data_ops_experimentation
+version: 1.0.0
+name: Data Ops Experimentation Pipeline
+description: Cohort builder, experiment analyzer, funnel optimizer
+category: Data Ops
+chain_sequence:
+  - step_id: step_1_cohort_builder
+    skill_id: data_cohort_builder
+    action: execute
+    description: Builds user cohorts for analysis
+    timeout_seconds: 300
+    error_handling:
+      on_failure: stop
+      max_retries: 1
+  - step_id: step_2_experiment_analyzer
+    skill_id: data_experiment_analyzer
+    action: execute
+    description: Analyzes A/B tests and significance
+    timeout_seconds: 300
+    error_handling:
+      on_failure: continue
+      max_retries: 2
+  - step_id: step_3_funnel_optimizer
+    skill_id: data_funnel_optimizer
+    action: execute
+    description: Optimizes conversion funnels
+    timeout_seconds: 300
+    error_handling:
+      on_failure: stop
+      max_retries: 1
+metadata:
+  author: Skene Cookbook
+  created_at: '2026-02-12'
+  tags:
+    - data_ops
+    - experimentation
+    - funnel
+  estimated_duration_seconds: 900

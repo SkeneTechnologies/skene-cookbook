@@ -15,7 +15,6 @@
  */
 
 const fs = require('fs');
-const path = require('path');
 const { execSync } = require('child_process');
 
 // ANSI color codes
@@ -153,7 +152,7 @@ function verifyDocumentation(actual) {
   }
 
   // Check index.json separately
-  log(`\n   Checking: skills-library/index.json`, 'blue');
+  log('\n   Checking: skills-library/index.json', 'blue');
   try {
     const index = JSON.parse(fs.readFileSync('skills-library/index.json', 'utf8'));
 
@@ -179,7 +178,7 @@ function verifyDocumentation(actual) {
         hasErrors = true;
       }
     } else {
-      log(`      ⚠️ No metrics section found in index.json`, 'yellow');
+      log('      ⚠️ No metrics section found in index.json', 'yellow');
     }
   } catch (error) {
     log(`      ❌ Error reading index.json: ${error.message}`, 'red');

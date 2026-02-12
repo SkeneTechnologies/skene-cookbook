@@ -12,14 +12,14 @@ Non-breaking wrapper for skill execution that provides:
 """
 
 import time
-from typing import Dict, Any, Optional, Callable
 from dataclasses import dataclass
+from typing import Any, Callable, Dict, Optional
 
-from .core.validator import SkillValidator, ValidationResult
-from .core.tracer import SkillTracer
 from .core.metrics_collector import MetricsCollector
-from .decision.decision_engine import DecisionEngine, DecisionType, Decision
+from .core.tracer import SkillTracer
+from .core.validator import SkillValidator, ValidationResult
 from .decision.confidence_scorer import ConfidenceScorer
+from .decision.decision_engine import Decision, DecisionEngine, DecisionType
 from .decision.risk_evaluator import RiskEvaluator
 
 
@@ -51,7 +51,7 @@ class InstrumentedSkillExecutor:
         metrics_collector: Optional[MetricsCollector] = None,
         decision_engine: Optional[DecisionEngine] = None,
         confidence_scorer: Optional[ConfidenceScorer] = None,
-        risk_evaluator: Optional[RiskEvaluator] = None
+        risk_evaluator: Optional[RiskEvaluator] = None,
     ):
         """
         Initialize instrumented executor.
@@ -65,7 +65,7 @@ class InstrumentedSkillExecutor:
             risk_evaluator: Optional custom risk evaluator
         """
         self.validator = validator or SkillValidator()
-        self.tracer = tracer or SkillTracer(provider='console')
+        self.tracer = tracer or SkillTracer(provider="console")
         self.metrics_collector = metrics_collector or MetricsCollector()
         self.decision_engine = decision_engine or DecisionEngine()
         self.confidence_scorer = confidence_scorer or ConfidenceScorer()
@@ -78,7 +78,7 @@ class InstrumentedSkillExecutor:
         inputs: Dict[str, Any],
         skill_logic: Callable[[Dict[str, Any]], Dict[str, Any]],
         context: Optional[Dict[str, Any]] = None,
-        runtime_risk_factors: Optional[Dict[str, Any]] = None
+        runtime_risk_factors: Optional[Dict[str, Any]] = None,
     ) -> ExecutionResult:
         """
         Execute skill with full instrumentation.
@@ -102,10 +102,7 @@ class InstrumentedSkillExecutor:
 
         # Step 2: Get risk level
         static_risk_level = self.validator.get_risk_level(skill_id)
-        risk_assessment = self.risk_evaluator.evaluate_risk(
-            static_risk_level,
-            runtime_risk_factors
-        )
+        risk_assessment = self.risk_evaluator.evaluate_risk(static_risk_level, runtime_risk_factors)
 
         # Step 3: Calculate confidence
         execution_history = self.decision_engine.get_execution_history(skill_id)
@@ -114,16 +111,16 @@ class InstrumentedSkillExecutor:
             input_data=inputs,
             validation_passed=input_validation.valid,
             execution_history=execution_history,
-            context=context
+            context=context,
         )
 
         # Step 4: Make decision (auto-act vs flag vs block)
         decision = self.decision_engine.make_decision(
             skill_id=skill_id,
             confidence=confidence,
-            risk_level=risk_assessment['risk_level'],
+            risk_level=risk_assessment["risk_level"],
             validation_passed=input_validation.valid,
-            execution_history=execution_history
+            execution_history=execution_history,
         )
 
         # Step 5: Check if execution should be blocked
@@ -136,7 +133,7 @@ class InstrumentedSkillExecutor:
                 input_validation=input_validation,
                 output_validation=ValidationResult(valid=False),
                 duration_ms=duration_ms,
-                error=f"Execution blocked: {decision.reasoning}"
+                error=f"Execution blocked: {decision.reasoning}",
             )
 
         # Step 6: Execute with tracing
@@ -144,30 +141,26 @@ class InstrumentedSkillExecutor:
         error = None
         trace_id = None
 
-        with self.tracer.trace_skill_execution(
-            skill_id,
-            skill_version,
-            inputs
-        ) as span:
+        with self.tracer.trace_skill_execution(skill_id, skill_version, inputs) as span:
             try:
                 # Set trace attributes
-                span.set_attribute('validation.input_passed', input_validation.valid)
-                span.set_attribute('decision.type', decision.type.value)
-                span.set_attribute('decision.confidence', confidence)
-                span.set_attribute('risk.level', risk_assessment['risk_level'])
+                span.set_attribute("validation.input_passed", input_validation.valid)
+                span.set_attribute("decision.type", decision.type.value)
+                span.set_attribute("decision.confidence", confidence)
+                span.set_attribute("risk.level", risk_assessment["risk_level"])
 
                 # Execute skill logic
                 outputs = skill_logic(inputs)
 
                 # Mark as successful
-                span.set_attribute('execution.success', True)
+                span.set_attribute("execution.success", True)
                 trace_id = span.trace_id
 
             except Exception as e:
                 error = str(e)
-                span.set_status('error', error)
-                span.set_attribute('execution.success', False)
-                span.set_attribute('error.type', type(e).__name__)
+                span.set_status("error", error)
+                span.set_attribute("execution.success", False)
+                span.set_attribute("error.type", type(e).__name__)
                 trace_id = span.trace_id
 
         # Step 7: Validate outputs (if execution succeeded)
@@ -189,17 +182,15 @@ class InstrumentedSkillExecutor:
             error_type=type(error).__name__ if error else None,
             error_message=error,
             metadata={
-                'confidence': confidence,
-                'risk_level': risk_assessment['risk_level'],
-                'trace_id': trace_id
-            }
+                "confidence": confidence,
+                "risk_level": risk_assessment["risk_level"],
+                "trace_id": trace_id,
+            },
         )
 
         # Step 9: Record execution outcome for history tracking
         self.decision_engine.record_execution_outcome(
-            skill_id=skill_id,
-            success=success,
-            confidence=confidence
+            skill_id=skill_id, success=success, confidence=confidence
         )
 
         return ExecutionResult(
@@ -210,7 +201,7 @@ class InstrumentedSkillExecutor:
             output_validation=output_validation,
             duration_ms=duration_ms,
             error=error,
-            trace_id=trace_id
+            trace_id=trace_id,
         )
 
 
@@ -225,7 +216,7 @@ class InstrumentedWorkflowExecutor:
         self,
         skill_executor: Optional[InstrumentedSkillExecutor] = None,
         validator: Optional[SkillValidator] = None,
-        tracer: Optional[SkillTracer] = None
+        tracer: Optional[SkillTracer] = None,
     ):
         """
         Initialize instrumented workflow executor.
@@ -244,7 +235,7 @@ class InstrumentedWorkflowExecutor:
         workflow_id: str,
         workflow_version: str,
         steps: list,  # List of (skill_id, skill_logic, field_mappings)
-        initial_inputs: Dict[str, Any]
+        initial_inputs: Dict[str, Any],
     ) -> Dict[str, Any]:
         """
         Execute workflow with instrumentation.
@@ -269,13 +260,12 @@ class InstrumentedWorkflowExecutor:
                     chain_validation = self.validator.validate_chain_compatibility(
                         producer_skill_id=prev_skill_id,
                         consumer_skill_id=skill_id,
-                        field_mappings=field_mappings
+                        field_mappings=field_mappings,
                     )
 
                     if not chain_validation.valid:
                         workflow_span.set_attribute(
-                            f'step_{step_idx}.chain_validation_failed',
-                            True
+                            f"step_{step_idx}.chain_validation_failed", True
                         )
                         print(f"Warning: Chain validation failed: {chain_validation.errors}")
 
@@ -285,28 +275,26 @@ class InstrumentedWorkflowExecutor:
                 # Execute step
                 result = self.skill_executor.execute_skill(
                     skill_id=skill_id,
-                    skill_version='1.0.0',  # TODO: Get from workflow config
+                    skill_version="1.0.0",  # TODO: Get from workflow config
                     inputs=step_inputs,
                     skill_logic=skill_logic,
-                    context={'workflow_id': workflow_id, 'step_idx': step_idx}
+                    context={"workflow_id": workflow_id, "step_idx": step_idx},
                 )
 
                 if not result.success:
-                    workflow_span.set_status('error', result.error)
+                    workflow_span.set_status("error", result.error)
                     raise RuntimeError(f"Step {step_idx} failed: {result.error}")
 
                 outputs = result.outputs
                 previous_outputs = {**previous_outputs, **outputs}
 
-                workflow_span.set_attribute(f'step_{step_idx}.success', True)
+                workflow_span.set_attribute(f"step_{step_idx}.success", True)
 
-            workflow_span.set_attribute('workflow.steps_completed', len(steps))
+            workflow_span.set_attribute("workflow.steps_completed", len(steps))
             return outputs
 
     def _map_inputs(
-        self,
-        outputs: Dict[str, Any],
-        field_mappings: Optional[Dict[str, str]]
+        self, outputs: Dict[str, Any], field_mappings: Optional[Dict[str, str]]
     ) -> Dict[str, Any]:
         """
         Map outputs from previous step to inputs for next step.
@@ -323,8 +311,8 @@ class InstrumentedWorkflowExecutor:
 
         mapped = {}
         for output_field, input_field in field_mappings.items():
-            output_key = output_field.split('.')[-1]
-            input_key = input_field.split('.')[-1]
+            output_key = output_field.split(".")[-1]
+            input_key = input_field.split(".")[-1]
 
             if output_key in outputs:
                 mapped[input_key] = outputs[output_key]

@@ -24,6 +24,7 @@ ascii/
 **Key Components:**
 
 **`design_tokens.py`:**
+
 - `SkeneColors` class — All hex colors from design system
 - `Tokens` class — Rich-compatible color tokens
 - `Symbols` class — Unicode characters (◈, ✓, →, ◉, etc.)
@@ -32,6 +33,7 @@ ascii/
 - `should_use_color()` — NO_COLOR env var support
 
 **`environment.py`:**
+
 - `RenderMode` enum — Terminal, IDE chat, mobile, plain
 - `get_render_mode()` — Auto-detect environment
 - `get_terminal_width()` — Width detection with fallbacks
@@ -46,6 +48,7 @@ ascii/
 Replaced all hardcoded Rich colors with Skene design tokens:
 
 **Before:**
+
 ```python
 console.print("[bold cyan]Header[/bold cyan]")
 table = Table(border_style="cyan")
@@ -54,6 +57,7 @@ console.print("[red]✗[/red] Error")
 ```
 
 **After:**
+
 ```python
 console.print(f"[bold {SkeneColors.PRIMARY}]Header[/bold {SkeneColors.PRIMARY}]")
 table = Table(border_style=SkeneColors.PRIMARY)
@@ -62,6 +66,7 @@ console.print(f"[{SkeneColors.ERROR}]{Symbols.CROSS}[/{SkeneColors.ERROR}] Error
 ```
 
 **Updated Methods:**
+
 1. ✓ `show_banner()` — Primary gold banner, Skene symbols
 2. ✓ `main_menu()` — Primary border, primary gold options
 3. ✓ `browse_job_functions()` — Risk colors (error/warning/beacon_active/success)
@@ -79,59 +84,64 @@ console.print(f"[{SkeneColors.ERROR}]{Symbols.CROSS}[/{SkeneColors.ERROR}] Error
 
 ## Color Mapping
 
-| Old (Generic) | New (Skene) | Hex | Use Case |
-|---------------|-------------|-----|----------|
-| `cyan` | `PRIMARY` | `#EDC29C` | Headers, borders, prompts |
-| `yellow` (accent) | `PRIMARY_GOLD` | `#E8C260` | Option numbers, highlights |
-| `green` | `SUCCESS` | `#9CEDC7` | Success states, checkmarks |
-| `red` | `ERROR` | `#ED9C9C` | Critical risk, errors |
-| `yellow` (warning) | `WARNING` | `#FFAA00` | High risk, warnings |
-| `cyan` (medium) | `BEACON_ACTIVE` | `#00FFC2` | Medium risk, active states |
-| `white` | `WHITE` | `#FAF1E9` | Body text |
-| `dim` | `DIM` | `#9ca3af` | Secondary text, muted |
+| Old (Generic)      | New (Skene)     | Hex       | Use Case                   |
+| ------------------ | --------------- | --------- | -------------------------- |
+| `cyan`             | `PRIMARY`       | `#EDC29C` | Headers, borders, prompts  |
+| `yellow` (accent)  | `PRIMARY_GOLD`  | `#E8C260` | Option numbers, highlights |
+| `green`            | `SUCCESS`       | `#9CEDC7` | Success states, checkmarks |
+| `red`              | `ERROR`         | `#ED9C9C` | Critical risk, errors      |
+| `yellow` (warning) | `WARNING`       | `#FFAA00` | High risk, warnings        |
+| `cyan` (medium)    | `BEACON_ACTIVE` | `#00FFC2` | Medium risk, active states |
+| `white`            | `WHITE`         | `#FAF1E9` | Body text                  |
+| `dim`              | `DIM`           | `#9ca3af` | Secondary text, muted      |
 
 ---
 
 ## Symbol Mapping
 
-| Old | New | Unicode | Use Case |
-|-----|-----|---------|----------|
-| `✓` | `Symbols.CHECKMARK` | U+2713 | Success, completed |
-| `✗` | `Symbols.CROSS` | U+2717 | Error, failed |
-| `●` | `Symbols.BEACON` | U+25C9 | Active state, risk indicator |
-| `⚠` | `Symbols.BEACON_WARN` | (custom) | Warnings |
-| `•` | `Symbols.BULLET` | U+2022 | List items |
-| `→` | `Symbols.ARROW` | U+2192 | Navigation |
-| `▸` | `Symbols.ARROW_RIGHT` | U+25B8 | Workflow connectors |
-| `█` | `Symbols.PROGRESS_FULL` | U+2588 | Progress bars |
-| `[⋯]` | `Symbols.SKENE_LOGO` | custom | Branding |
+| Old   | New                     | Unicode  | Use Case                     |
+| ----- | ----------------------- | -------- | ---------------------------- |
+| `✓`   | `Symbols.CHECKMARK`     | U+2713   | Success, completed           |
+| `✗`   | `Symbols.CROSS`         | U+2717   | Error, failed                |
+| `●`   | `Symbols.BEACON`        | U+25C9   | Active state, risk indicator |
+| `⚠`   | `Symbols.BEACON_WARN`   | (custom) | Warnings                     |
+| `•`   | `Symbols.BULLET`        | U+2022   | List items                   |
+| `→`   | `Symbols.ARROW`         | U+2192   | Navigation                   |
+| `▸`   | `Symbols.ARROW_RIGHT`   | U+25B8   | Workflow connectors          |
+| `█`   | `Symbols.PROGRESS_FULL` | U+2588   | Progress bars                |
+| `[⋯]` | `Symbols.SKENE_LOGO`    | custom   | Branding                     |
 
 ---
 
 ## Features Added
 
 ### 1. Consistent Branding
+
 - All colors match Skene Design System
 - Unified color palette across all screens
 - Brand recognition through consistent peach (#EDC29C) accent
 
 ### 2. Semantic Color System
+
 - **PRIMARY** (#EDC29C) — Headers, borders, interactive prompts
 - **PRIMARY_GOLD** (#E8C260) — Highlights, option numbers
 - **BEACON_ACTIVE** (#00FFC2) — Active CTAs, medium risk
 - **SUCCESS/ERROR/WARNING** — Clear status indicators
 
 ### 3. Unicode Symbol Library
+
 - Professional symbols (◈, ✓, ◉) instead of plain text
 - Consistent bullet points and arrows
 - Progress bars with block characters (█░▓)
 
 ### 4. Adaptive Rendering
+
 - Respects `NO_COLOR` environment variable
 - Detects IDE chat vs terminal
 - Terminal width detection (narrow/compact/standard/wide)
 
 ### 5. Future-Proof Architecture
+
 - Easy to extend with new colors/symbols
 - Centralized design token management
 - No hardcoded colors in application code
@@ -156,6 +166,7 @@ ASCII_RENDER_MODE=ide-chat python3 skill-loom-cli.py
 ```
 
 **Results:**
+
 - ✓ CLI launches successfully
 - ✓ Banner displays with proper colors
 - ✓ Menu renders with Skene branding
@@ -168,6 +179,7 @@ ASCII_RENDER_MODE=ide-chat python3 skill-loom-cli.py
 ## Before vs After
 
 ### Before (Generic Rich colors)
+
 ```
 ┌──────────────────────────────┐  (cyan border)
 │ Skills Directory             │  (cyan text)
@@ -177,6 +189,7 @@ ASCII_RENDER_MODE=ide-chat python3 skill-loom-cli.py
 ```
 
 ### After (Skene Design System)
+
 ```
 ┌──────────────────────────────┐  (#EDC29C peach border)
 │ Skills Directory             │  (#EDC29C peach text)
@@ -189,14 +202,14 @@ ASCII_RENDER_MODE=ide-chat python3 skill-loom-cli.py
 
 ## File Changes Summary
 
-| File | Status | Lines | Description |
-|------|--------|-------|-------------|
-| `ascii/__init__.py` | ✅ Created | 52 | Module exports |
-| `ascii/design_tokens.py` | ✅ Created | 182 | Colors, symbols, tokens |
-| `ascii/environment.py` | ✅ Created | 132 | Environment detection |
-| `ascii/README.md` | ✅ Created | 290 | Complete documentation |
-| `skill-loom-cli.py` | ✅ Refactored | 608 | Applied design system |
-| `ASCII_DESIGN_SYSTEM_PORT.md` | ✅ Created | This file | Port summary |
+| File                          | Status        | Lines     | Description             |
+| ----------------------------- | ------------- | --------- | ----------------------- |
+| `ascii/__init__.py`           | ✅ Created    | 52        | Module exports          |
+| `ascii/design_tokens.py`      | ✅ Created    | 182       | Colors, symbols, tokens |
+| `ascii/environment.py`        | ✅ Created    | 132       | Environment detection   |
+| `ascii/README.md`             | ✅ Created    | 290       | Complete documentation  |
+| `skill-loom-cli.py`           | ✅ Refactored | 608       | Applied design system   |
+| `ASCII_DESIGN_SYSTEM_PORT.md` | ✅ Created    | This file | Port summary            |
 
 **Total:** 6 files, ~1,264 lines of code and documentation
 
@@ -249,6 +262,7 @@ This Python port maintains **100% design parity** with:
 3. **Figma Design System** — `~/skene-strategy/projects/design-system/src/styles/figma-design-tokens.css`
 
 **Cross-platform consistency:**
+
 - Same hex colors across all platforms
 - Same unicode symbols
 - Same semantic token names
@@ -259,7 +273,9 @@ This Python port maintains **100% design parity** with:
 ## Next Steps (Optional Enhancements)
 
 ### 1. Extended Symbols
+
 Add more emojis and unicode for different contexts:
+
 ```python
 Symbols.SPARKLE = "✨"
 Symbols.FIRE = "🔥"
@@ -267,7 +283,9 @@ Symbols.SHIELD = "🛡️"
 ```
 
 ### 2. Theme Variants
+
 Add dark/light theme support:
+
 ```python
 class SkeneTheme:
     LIGHT = {...}
@@ -275,14 +293,18 @@ class SkeneTheme:
 ```
 
 ### 3. Animation Support
+
 Add spinner/progress animation utilities:
+
 ```python
 from rich.spinner import Spinner
 spinner = Spinner("dots", text="Loading...", style=SkeneColors.PRIMARY)
 ```
 
 ### 4. Export to JSON
+
 Generate JSON config for other tools:
+
 ```python
 python3 -m ascii.export --format json > skene-colors.json
 ```

@@ -23,6 +23,7 @@ skills-directory install --target all
 ```
 
 Or install for specific tools:
+
 ```bash
 skills-directory install --target cursor  # For Cursor IDE
 skills-directory install --target claude  # For Claude Desktop
@@ -31,24 +32,28 @@ skills-directory install --target claude  # For Claude Desktop
 ## 🎯 Use Cases
 
 **For Engineering Teams:**
+
 - Automated code reviews and testing
 - CI/CD pipeline management
 - Security vulnerability scanning
 - DevOps automation
 
 **For Marketing Teams:**
+
 - Campaign planning and execution
 - SEO optimization
 - Content generation and scheduling
 - Analytics and reporting
 
 **For Sales Teams:**
+
 - Pipeline management and forecasting
 - Deal tracking and analysis
 - CRM automation
 - Customer engagement workflows
 
 **For Product Teams:**
+
 - User onboarding flows
 - Feature activation tracking
 - Retention analysis
@@ -57,6 +62,7 @@ skills-directory install --target claude  # For Claude Desktop
 ## 🔒 Security First
 
 Every skill includes:
+
 - **Risk Level Classification** (Critical, High, Medium, Low)
 - **Security Requirements** (approval workflows, sandboxing)
 - **Schema Validation** (type-safe inputs/outputs)
@@ -74,6 +80,7 @@ Every skill includes:
 ## 🤝 Community & Contributing
 
 We welcome contributions! Check out:
+
 - 📖 [Documentation](https://github.com/SkeneTechnologies/skene-cookbook#readme)
 - 🐛 [Issue Templates](https://github.com/SkeneTechnologies/skene-cookbook/issues/new/choose)
 - 🤝 [Contributing Guide](https://github.com/SkeneTechnologies/skene-cookbook/blob/main/CONTRIBUTING.md)

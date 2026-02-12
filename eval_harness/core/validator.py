@@ -8,10 +8,11 @@ Runtime JSON Schema validation for skill inputs, outputs, and chain compatibilit
 import json
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Dict, List, Optional, Any
+from typing import Any, Dict, List, Optional
+
 import jsonschema
-from jsonschema import Draft202012Validator, ValidationError
 import yaml
+from jsonschema import Draft202012Validator, ValidationError
 
 
 @dataclass
@@ -59,9 +60,7 @@ class SkillValidator:
         self._metadata_cache: Dict[str, Dict[str, Any]] = {}
 
         if not self.skills_library_path.exists():
-            raise FileNotFoundError(
-                f"Skills library not found at: {self.skills_library_path}"
-            )
+            raise FileNotFoundError(f"Skills library not found at: {self.skills_library_path}")
 
     def _load_skill_schema(self, skill_id: str) -> Dict[str, Any]:
         """Load skill.json for a given skill_id."""
@@ -70,10 +69,10 @@ class SkillValidator:
 
         # Support new directory structure (executable/ and context/)
         search_paths = []
-        if (self.skills_library_path / 'executable').exists():
-            search_paths.append(self.skills_library_path / 'executable')
-        if (self.skills_library_path / 'context').exists():
-            search_paths.append(self.skills_library_path / 'context')
+        if (self.skills_library_path / "executable").exists():
+            search_paths.append(self.skills_library_path / "executable")
+        if (self.skills_library_path / "context").exists():
+            search_paths.append(self.skills_library_path / "context")
         if not search_paths:
             # Fallback to root if new structure doesn't exist
             search_paths = [self.skills_library_path]
@@ -90,16 +89,14 @@ class SkillValidator:
 
                     skill_json_path = skill_dir / "skill.json"
                     if skill_json_path.exists():
-                        with open(skill_json_path, 'r') as f:
+                        with open(skill_json_path, "r") as f:
                             schema = json.load(f)
 
-                        if schema.get('id') == skill_id:
+                        if schema.get("id") == skill_id:
                             self._schema_cache[skill_id] = schema
                             return schema
 
-        raise FileNotFoundError(
-            f"Skill '{skill_id}' not found in {self.skills_library_path}"
-        )
+        raise FileNotFoundError(f"Skill '{skill_id}' not found in {self.skills_library_path}")
 
     def _load_skill_metadata(self, skill_id: str) -> Dict[str, Any]:
         """Load metadata.yaml for a given skill_id."""
@@ -108,10 +105,10 @@ class SkillValidator:
 
         # Support new directory structure (executable/ and context/)
         search_paths = []
-        if (self.skills_library_path / 'executable').exists():
-            search_paths.append(self.skills_library_path / 'executable')
-        if (self.skills_library_path / 'context').exists():
-            search_paths.append(self.skills_library_path / 'context')
+        if (self.skills_library_path / "executable").exists():
+            search_paths.append(self.skills_library_path / "executable")
+        if (self.skills_library_path / "context").exists():
+            search_paths.append(self.skills_library_path / "context")
         if not search_paths:
             # Fallback to root if new structure doesn't exist
             search_paths = [self.skills_library_path]
@@ -130,22 +127,18 @@ class SkillValidator:
                     metadata_path = skill_dir / "metadata.yaml"
 
                     if skill_json_path.exists() and metadata_path.exists():
-                        with open(skill_json_path, 'r') as f:
+                        with open(skill_json_path, "r") as f:
                             schema = json.load(f)
 
-                        if schema.get('id') == skill_id:
-                            with open(metadata_path, 'r') as f:
+                        if schema.get("id") == skill_id:
+                            with open(metadata_path, "r") as f:
                                 metadata = yaml.safe_load(f)
                             self._metadata_cache[skill_id] = metadata
                             return metadata
 
         return {}
 
-    def validate_input(
-        self,
-        skill_id: str,
-        input_data: Dict[str, Any]
-    ) -> ValidationResult:
+    def validate_input(self, skill_id: str, input_data: Dict[str, Any]) -> ValidationResult:
         """
         Validate input data against skill's inputSchema.
 
@@ -158,12 +151,11 @@ class SkillValidator:
         """
         try:
             schema = self._load_skill_schema(skill_id)
-            input_schema = schema.get('inputSchema')
+            input_schema = schema.get("inputSchema")
 
             if not input_schema:
                 return ValidationResult(
-                    valid=False,
-                    errors=[f"Skill '{skill_id}' has no inputSchema defined"]
+                    valid=False, errors=[f"Skill '{skill_id}' has no inputSchema defined"]
                 )
 
             # Validate against JSON Schema
@@ -179,22 +171,15 @@ class SkillValidator:
             return ValidationResult(
                 valid=len(errors) == 0,
                 errors=errors,
-                details={'schema': input_schema, 'data': input_data}
+                details={"schema": input_schema, "data": input_data},
             )
 
         except FileNotFoundError as e:
             return ValidationResult(valid=False, errors=[str(e)])
         except Exception as e:
-            return ValidationResult(
-                valid=False,
-                errors=[f"Validation error: {str(e)}"]
-            )
+            return ValidationResult(valid=False, errors=[f"Validation error: {str(e)}"])
 
-    def validate_output(
-        self,
-        skill_id: str,
-        output_data: Dict[str, Any]
-    ) -> ValidationResult:
+    def validate_output(self, skill_id: str, output_data: Dict[str, Any]) -> ValidationResult:
         """
         Validate output data against skill's outputSchema.
 
@@ -207,12 +192,11 @@ class SkillValidator:
         """
         try:
             schema = self._load_skill_schema(skill_id)
-            output_schema = schema.get('outputSchema')
+            output_schema = schema.get("outputSchema")
 
             if not output_schema:
                 return ValidationResult(
-                    valid=False,
-                    errors=[f"Skill '{skill_id}' has no outputSchema defined"]
+                    valid=False, errors=[f"Skill '{skill_id}' has no outputSchema defined"]
                 )
 
             # Validate against JSON Schema
@@ -221,28 +205,27 @@ class SkillValidator:
 
             for error in validator.iter_errors(output_data):
                 path = ".".join(str(p) for p in error.absolute_path)
-                error_msg = f"output.{path}: {error.message}" if path else f"output: {error.message}"
+                error_msg = (
+                    f"output.{path}: {error.message}" if path else f"output: {error.message}"
+                )
                 errors.append(error_msg)
 
             return ValidationResult(
                 valid=len(errors) == 0,
                 errors=errors,
-                details={'schema': output_schema, 'data': output_data}
+                details={"schema": output_schema, "data": output_data},
             )
 
         except FileNotFoundError as e:
             return ValidationResult(valid=False, errors=[str(e)])
         except Exception as e:
-            return ValidationResult(
-                valid=False,
-                errors=[f"Validation error: {str(e)}"]
-            )
+            return ValidationResult(valid=False, errors=[f"Validation error: {str(e)}"])
 
     def validate_chain_compatibility(
         self,
         producer_skill_id: str,
         consumer_skill_id: str,
-        field_mappings: Optional[Dict[str, str]] = None
+        field_mappings: Optional[Dict[str, str]] = None,
     ) -> ValidationResult:
         """
         Validate that two skills can be chained together.
@@ -262,10 +245,10 @@ class SkillValidator:
             producer_schema = self._load_skill_schema(producer_skill_id)
             consumer_schema = self._load_skill_schema(consumer_skill_id)
 
-            producer_output = producer_schema.get('outputSchema', {}).get('properties', {})
-            consumer_input = consumer_schema.get('inputSchema', {})
-            consumer_required = consumer_input.get('required', [])
-            consumer_props = consumer_input.get('properties', {})
+            producer_output = producer_schema.get("outputSchema", {}).get("properties", {})
+            consumer_input = consumer_schema.get("inputSchema", {})
+            consumer_required = consumer_input.get("required", [])
+            consumer_props = consumer_input.get("properties", {})
 
             errors = []
             warnings = []
@@ -277,7 +260,7 @@ class SkillValidator:
                     mapped = False
                     for output_field, input_field in field_mappings.items():
                         if input_field.endswith(required_field):
-                            output_field_name = output_field.split('.')[-1]
+                            output_field_name = output_field.split(".")[-1]
                             if output_field_name not in producer_output:
                                 errors.append(
                                     f"Required field '{required_field}' mapped to "
@@ -314,13 +297,12 @@ class SkillValidator:
             # Type compatibility check (basic)
             if field_mappings:
                 for output_field, input_field in field_mappings.items():
-                    output_field_name = output_field.split('.')[-1]
-                    input_field_name = input_field.split('.')[-1]
+                    output_field_name = output_field.split(".")[-1]
+                    input_field_name = input_field.split(".")[-1]
 
-                    if output_field_name in producer_output and \
-                       input_field_name in consumer_props:
-                        producer_type = producer_output[output_field_name].get('type')
-                        consumer_type = consumer_props[input_field_name].get('type')
+                    if output_field_name in producer_output and input_field_name in consumer_props:
+                        producer_type = producer_output[output_field_name].get("type")
+                        consumer_type = consumer_props[input_field_name].get("type")
 
                         if producer_type and consumer_type and producer_type != consumer_type:
                             warnings.append(
@@ -333,19 +315,16 @@ class SkillValidator:
                 errors=errors,
                 warnings=warnings,
                 details={
-                    'producer_output_fields': list(producer_output.keys()),
-                    'consumer_required_fields': consumer_required,
-                    'field_mappings': field_mappings
-                }
+                    "producer_output_fields": list(producer_output.keys()),
+                    "consumer_required_fields": consumer_required,
+                    "field_mappings": field_mappings,
+                },
             )
 
         except FileNotFoundError as e:
             return ValidationResult(valid=False, errors=[str(e)])
         except Exception as e:
-            return ValidationResult(
-                valid=False,
-                errors=[f"Chain validation error: {str(e)}"]
-            )
+            return ValidationResult(valid=False, errors=[f"Chain validation error: {str(e)}"])
 
     def get_risk_level(self, skill_id: str) -> str:
         """
@@ -358,4 +337,4 @@ class SkillValidator:
             Risk level: 'Low', 'Medium', 'High', or 'Critical'
         """
         metadata = self._load_skill_metadata(skill_id)
-        return metadata.get('security', {}).get('risk_level', 'Medium')
+        return metadata.get("security", {}).get("risk_level", "Medium")

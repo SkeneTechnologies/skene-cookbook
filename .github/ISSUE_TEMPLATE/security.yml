@@ -1,7 +1,7 @@
 name: Security Vulnerability
 description: Report a security vulnerability (private disclosure)
-title: "[Security]: "
-labels: ["security", "triage"]
+title: '[Security]: '
+labels: ['security', 'triage']
 assignees: []
 
 body:

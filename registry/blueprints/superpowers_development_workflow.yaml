@@ -1,0 +1,47 @@
+id: workflow_superpowers_development
+version: 1.0.0
+name: Superpowers Development Workflow
+description: Brainstorm → plan → execute → verify for structured development
+category: Development
+chain_sequence:
+  - step_id: step_1_brainstorming
+    skill_id: superpowers/brainstorming
+    action: execute
+    description: Explore intent, requirements, and design
+    timeout_seconds: 300
+    error_handling:
+      on_failure: stop
+      max_retries: 1
+  - step_id: step_2_writing_plans
+    skill_id: superpowers/writing-plans
+    action: execute
+    description: Produce implementation plan
+    timeout_seconds: 300
+    error_handling:
+      on_failure: continue
+      max_retries: 2
+  - step_id: step_3_executing_plans
+    skill_id: superpowers/executing-plans
+    action: execute
+    description: Run the plan (e.g. code changes)
+    timeout_seconds: 600
+    error_handling:
+      on_failure: continue
+      max_retries: 2
+  - step_id: step_4_verification
+    skill_id: superpowers/verification-before-completion
+    action: execute
+    description: Validate work before marking done
+    timeout_seconds: 300
+    error_handling:
+      on_failure: stop
+      max_retries: 1
+metadata:
+  author: Skene Cookbook
+  created_at: '2026-02-12'
+  tags:
+    - superpowers
+    - development
+    - planning
+    - verification
+  estimated_duration_seconds: 1500

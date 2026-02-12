@@ -37,6 +37,7 @@ const box = {
 
 // Strip ANSI codes for accurate length calculation
 function stripAnsi(str) {
+  // eslint-disable-next-line no-control-regex -- intentional ANSI escape sequence
   return str.replace(/\x1b\[[0-9;]*m/g, '');
 }
 

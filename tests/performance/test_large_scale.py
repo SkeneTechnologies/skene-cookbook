@@ -6,22 +6,23 @@ complete within acceptable time limits.
 """
 
 import json
-import pytest
-from pathlib import Path
 import sys
 import time
+from pathlib import Path
+
+import pytest
 
 # Add scripts to path
 sys.path.insert(0, str(Path(__file__).parent.parent.parent / "scripts"))
 
-from dedupe_skills import SkillDeduplicator
 from analyze_skills import SkillAnalyzer
+from dedupe_skills import SkillDeduplicator
 from generate_blueprints import ChainArchitect
-
 
 # =============================================================================
 # Deduplication Performance Tests
 # =============================================================================
+
 
 @pytest.mark.performance
 @pytest.mark.slow
@@ -70,8 +71,9 @@ def test_dedupe_performance_full_dataset():
 def test_dedupe_memory_usage():
     """Test that deduplication doesn't use excessive memory."""
 
-    import psutil
     import os
+
+    import psutil
 
     process = psutil.Process(os.getpid())
     initial_memory = process.memory_info().rss / 1024 / 1024  # MB
@@ -98,6 +100,7 @@ def test_dedupe_memory_usage():
 # =============================================================================
 # Analysis Performance Tests
 # =============================================================================
+
 
 @pytest.mark.performance
 @pytest.mark.slow
@@ -156,6 +159,7 @@ def test_analyze_scales_linearly():
 # Blueprint Generation Performance Tests
 # =============================================================================
 
+
 @pytest.mark.performance
 @pytest.mark.slow
 def test_blueprint_generation_performance():
@@ -187,6 +191,7 @@ def test_blueprint_generation_performance():
 # =============================================================================
 # Concurrent Operations Tests
 # =============================================================================
+
 
 @pytest.mark.performance
 @pytest.mark.slow
@@ -237,6 +242,7 @@ def test_concurrent_analysis_and_dedupe():
 # Batch Processing Tests
 # =============================================================================
 
+
 @pytest.mark.performance
 def test_batch_skill_processing():
     """Test processing skills in batches for efficiency."""
@@ -266,6 +272,7 @@ def test_batch_skill_processing():
 # =============================================================================
 # I/O Performance Tests
 # =============================================================================
+
 
 @pytest.mark.performance
 def test_file_io_performance():
@@ -304,6 +311,7 @@ def test_file_io_performance():
 # Report Generation Performance Tests
 # =============================================================================
 
+
 @pytest.mark.performance
 def test_report_generation_performance(temp_output_directory):
     """Test report generation performance."""
@@ -334,6 +342,7 @@ def test_report_generation_performance(temp_output_directory):
 # =============================================================================
 # Stress Tests
 # =============================================================================
+
 
 @pytest.mark.performance
 @pytest.mark.slow

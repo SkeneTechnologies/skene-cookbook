@@ -20,16 +20,19 @@ Common issues and solutions for Skene Skills Directory
 ### Issue: Post-install script doesn't run
 
 **Symptoms:**
+
 - Skills not installed automatically after `npm install`
 - No "What can you build today?" message
 - Directories `~/.claude/skills/` or `~/.cursor/skills/` are empty
 
 **Causes:**
+
 - CI/CD environment detected
 - `--ignore-scripts` flag used
 - `SKIP_SKILLS_INSTALL=true` environment variable set
 
 **Solution:**
+
 ```bash
 # Manual installation
 npx skills-directory install --target all
@@ -39,6 +42,7 @@ npx skills-directory status
 ```
 
 **Prevention:**
+
 - Avoid using `--ignore-scripts` in local development
 - Check for `SKIP_SKILLS_INSTALL` in your shell profile
 
@@ -47,15 +51,18 @@ npx skills-directory status
 ### Issue: Permission denied errors during install
 
 **Symptoms:**
+
 ```
 Error: EACCES: permission denied, mkdir '/Users/username/.claude/skills'
 ```
 
 **Causes:**
+
 - Insufficient permissions to create directories in home folder
 - Parent directories have restrictive permissions
 
 **Solution:**
+
 ```bash
 # Check current permissions
 ls -la ~/.claude
@@ -72,6 +79,7 @@ npx skills-directory install --target all
 ```
 
 **Prevention:**
+
 - Ensure your home directory is writable
 - Don't run npm install with sudo (creates permission issues)
 
@@ -80,11 +88,13 @@ npx skills-directory install --target all
 ### Issue: Peer dependency warnings
 
 **Symptoms:**
+
 ```
 npm WARN peer dependencies: @skene/skills-directory requires zod@3.x but found 4.x
 ```
 
 **Causes:**
+
 - Other packages in your project have different version requirements
 - Common with AI SDK packages
 
@@ -92,6 +102,7 @@ npm WARN peer dependencies: @skene/skills-directory requires zod@3.x but found 4
 These warnings are **safe to ignore** - Skills Directory has no direct zod or react dependencies.
 
 If you want to resolve them:
+
 ```bash
 # Check which packages have conflicts
 npm ls zod
@@ -102,6 +113,7 @@ npm install --legacy-peer-deps
 ```
 
 **Prevention:**
+
 - Use `--legacy-peer-deps` flag when installing in complex projects
 
 ---
@@ -109,13 +121,16 @@ npm install --legacy-peer-deps
 ### Issue: Installation in Docker containers
 
 **Symptoms:**
+
 - Auto-installation skips in Docker
 - Skills not available in containerized environments
 
 **Causes:**
+
 - Postinstall detects Docker environment and skips auto-installation
 
 **Solution:**
+
 ```dockerfile
 # In your Dockerfile, add manual installation step
 RUN npx skills-directory install --target all
@@ -126,6 +141,7 @@ RUN npm install @skene/skills-directory
 ```
 
 **Prevention:**
+
 - Always manually install skills in Docker images
 - Document in your Docker setup instructions
 
@@ -136,16 +152,19 @@ RUN npm install @skene/skills-directory
 ### Issue: Claude/Cursor doesn't recognize skills
 
 **Symptoms:**
+
 - Prompts like "use lead_qualification skill" don't work
 - Claude/Cursor says "I don't have that skill"
 - Skills directory seems installed but not activated
 
 **Causes:**
+
 - Skills not installed to correct location
 - Manifest file missing or corrupted
 - IDE/CLI not reading from skills directory
 
 **Solution:**
+
 ```bash
 # 1. Verify installation status
 npx skills-directory status
@@ -167,6 +186,7 @@ npx skills-directory install --target all
 ```
 
 **Prevention:**
+
 - Run `npx skills-directory status` after installation
 - Restart IDE/CLI after installing skills
 
@@ -175,15 +195,18 @@ npx skills-directory install --target all
 ### Issue: Some skills missing or incomplete
 
 **Symptoms:**
+
 - Status shows fewer skills than expected (should be 764+)
 - Some skill files are missing
 
 **Causes:**
+
 - Partial installation failure
 - Disk space issues during installation
 - File system corruption
 
 **Solution:**
+
 ```bash
 # 1. Check installation integrity
 npx skills-directory status
@@ -198,6 +221,7 @@ npx skills-directory status
 ```
 
 **Prevention:**
+
 - Ensure sufficient disk space (need ~50MB for all skills)
 - Run status check after installation
 
@@ -206,14 +230,17 @@ npx skills-directory status
 ### Issue: Skills work in Claude but not Cursor (or vice versa)
 
 **Symptoms:**
+
 - Skills recognized in one IDE but not the other
 - Status shows one installed, one not
 
 **Causes:**
+
 - Selective installation using `--target` flag
 - One IDE reinstalled, cleared skills directory
 
 **Solution:**
+
 ```bash
 # Install to both
 npx skills-directory install --target all
@@ -227,6 +254,7 @@ npx skills-directory status
 ```
 
 **Prevention:**
+
 - Use `--target all` to install to both by default
 
 ---
@@ -236,15 +264,18 @@ npx skills-directory status
 ### Issue: Exit state mismatch when chaining skills
 
 **Symptoms:**
+
 - Error: "Previous skill exited with 'qualified' but next skill expects 'approved'"
 - Skill chain breaks mid-execution
 - Data not passing between skills
 
 **Causes:**
+
 - Exit state from previous skill doesn't match input expectations of next skill
 - Incorrect routing configuration
 
 **Solution:**
+
 ```json
 // Check exit states in skill definitions
 // Example: lead_qualification has exit states: qualified, nurture, disqualified
@@ -268,6 +299,7 @@ npx skills-directory status
 ```
 
 **Prevention:**
+
 - Review exit states in [SKILL_CHAINS.md](SKILL_CHAINS.md)
 - Use recommended skill chain recipes
 - Test chains with sample data before production
@@ -277,15 +309,18 @@ npx skills-directory status
 ### Issue: Data format incompatibility between skills
 
 **Symptoms:**
+
 - Skills execute but data isn't passed correctly
 - Next skill receives undefined or null values
 - Type errors in skill execution
 
 **Causes:**
+
 - Output format of skill A doesn't match input format of skill B
 - Missing data transformation
 
 **Solution:**
+
 ```json
 // Add data transformation in routing
 {
@@ -303,6 +338,7 @@ npx skills-directory status
 ```
 
 **Prevention:**
+
 - Check skill schemas in directory.md
 - Use transformation layers when needed
 - Test data flow with sample inputs
@@ -314,16 +350,19 @@ npx skills-directory status
 ### Issue: Skill execution is slow
 
 **Symptoms:**
+
 - Skills take longer than expected to execute
 - Timeouts when running skill chains
 - High memory usage
 
 **Causes:**
+
 - Too many skills loaded in memory
 - Large data sets being processed
 - Network latency to external APIs
 
 **Solution:**
+
 ```bash
 # 1. Install only needed skill domains
 npx skills-directory uninstall
@@ -343,6 +382,7 @@ npx skills-directory install --target all
 ```
 
 **Prevention:**
+
 - Only install skills you actively use
 - Monitor execution times
 - Implement caching for repeated queries
@@ -352,16 +392,19 @@ npx skills-directory install --target all
 ### Issue: High memory usage
 
 **Symptoms:**
+
 - System running slow when using skills
 - Out of memory errors
 - Performance degradation over time
 
 **Causes:**
+
 - All 764 skills loaded in memory
 - Memory leaks in skill execution
 - Large data structures retained
 
 **Solution:**
+
 ```bash
 # 1. Restart IDE/CLI to clear memory
 # 2. Check memory usage
@@ -376,6 +419,7 @@ npm update @skene/skills-directory
 ```
 
 **Prevention:**
+
 - Restart IDE periodically
 - Monitor system resources
 - Use domain-specific installations when available
@@ -387,17 +431,20 @@ npm update @skene/skills-directory
 ### Issue: Skill wants to access sensitive data
 
 **Symptoms:**
+
 - Skill requests access to files, APIs, or credentials
 - Approval prompt shown
 - Unsure if access should be granted
 
 **Solution:**
+
 1. **Review the skill's risk level** in directory.md:
    - Low risk: Safe to approve (read-only operations)
    - Medium risk: Review carefully (write operations)
    - High risk: Requires approval (destructive operations)
 
 2. **Check what the skill needs**:
+
    ```bash
    # View skill details
    npx skills-directory list --skill <skill-name>
@@ -408,6 +455,7 @@ npm update @skene/skills-directory
    - Persistent approval: Add to approved list (use cautiously)
 
 **Prevention:**
+
 - Read skill descriptions before use
 - Start with low-risk skills
 - Use sandbox environments for testing
@@ -417,15 +465,18 @@ npm update @skene/skills-directory
 ### Issue: Skill requires API keys or credentials
 
 **Symptoms:**
+
 - Error: "Missing API key for [service]"
 - Authentication failures
 - Skill can't access external services
 
 **Causes:**
+
 - Skills integrating with external services need credentials
 - Environment variables not set
 
 **Solution:**
+
 ```bash
 # 1. Check which credentials are needed
 # See skill description in directory.md
@@ -443,6 +494,7 @@ echo $OPENAI_API_KEY
 ```
 
 **Prevention:**
+
 - Document required API keys
 - Use secure credential management (1Password, env files)
 - Never commit API keys to git
@@ -452,16 +504,19 @@ echo $OPENAI_API_KEY
 ### Issue: Audit trail not capturing all actions
 
 **Symptoms:**
+
 - Missing audit logs
 - Can't trace skill execution
 - Compliance concerns
 
 **Causes:**
+
 - Audit logging not enabled
 - Log files not writable
 - Incorrect log configuration
 
 **Solution:**
+
 ```bash
 # 1. Enable audit logging
 # Add to your config or environment
@@ -478,6 +533,7 @@ chmod 644 ~/.claude/logs/audit.log
 ```
 
 **Prevention:**
+
 - Enable audit logging from day one
 - Regular log reviews
 - Set up log rotation

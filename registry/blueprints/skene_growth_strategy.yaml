@@ -1,0 +1,47 @@
+id: workflow_skene_growth_strategy
+version: 1.0.0
+name: Skene Growth Strategy Chain
+description: Tech stack analysis → growth hubs → growth manifest → growth template
+category: Strategy
+chain_sequence:
+  - step_id: step_1_analyze_tech_stack
+    skill_id: skene_analyze_tech_stack
+    action: execute
+    description: Detect framework, language, database, auth, deployment
+    timeout_seconds: 300
+    error_handling:
+      on_failure: stop
+      max_retries: 1
+  - step_id: step_2_analyze_growth_hubs
+    skill_id: skene_analyze_growth_hubs
+    action: execute
+    description: Identify viral, onboarding, monetization potential
+    timeout_seconds: 300
+    error_handling:
+      on_failure: continue
+      max_retries: 2
+  - step_id: step_3_generate_manifest
+    skill_id: skene_generate_growth_manifest
+    action: execute
+    description: Combine tech and growth gaps into manifest
+    timeout_seconds: 300
+    error_handling:
+      on_failure: continue
+      max_retries: 2
+  - step_id: step_4_generate_template
+    skill_id: skene_generate_growth_template
+    action: execute
+    description: Produce actionable PLG growth recommendations
+    timeout_seconds: 300
+    error_handling:
+      on_failure: stop
+      max_retries: 1
+metadata:
+  author: Skene Cookbook
+  created_at: '2026-02-12'
+  tags:
+    - skene
+    - growth
+    - plg
+    - strategy
+  estimated_duration_seconds: 1200

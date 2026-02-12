@@ -1,6 +1,6 @@
 # Quick Wins: Value in Your First Day
 
-Get immediate value from Skills Directory with these time-boxed quick wins. Start small, prove ROI, then expand.
+Get immediate value from Skills Directory with these time-boxed quick wins. Start small, prove ROI, then expand. For full multi-step workflows, see the **[Skill Chain Cookbook](SKILL_CHAINS.md)** — 36 ready-to-use recipes.
 
 ---
 
@@ -11,6 +11,7 @@ Get immediate value from Skills Directory with these time-boxed quick wins. Star
 **Value:** Save 5-10 hours/week on manual lead research
 
 **Skills Used:** 2 skills
+
 - `lead_qualification`
 - `opportunity_scoring`
 
@@ -107,6 +108,7 @@ Add `deal_inspection` skill to analyze deal health once opportunity is created.
 **Value:** Catch churning customers 60-90 days earlier
 
 **Skills Used:** 3 skills
+
 - `health_scoring`
 - `churn_prediction`
 - `escalation_manager`
@@ -249,11 +251,13 @@ curl -X POST http://localhost:3000/api/chains/churn-prevention \
 ### What This Saves
 
 **Before:**
+
 - Manual quarterly business reviews catch issues late
 - Reactive responses after customers already frustrated
 - Lost: $50K-$100K ARR per churned account
 
 **After:**
+
 - Proactive intervention 60-90 days early
 - Time to recover at-risk accounts
 - Saved: $200K-$400K ARR annually (4-8 accounts)
@@ -271,6 +275,7 @@ Add `risk_mitigation_playbook` to automatically start intervention strategies.
 **Value:** Cut campaign launch time from 2 weeks to 2 days
 
 **Skills Used:** 5 skills
+
 - `content_research_writer`
 - `copywriting`
 - `social_content_generator`
@@ -319,11 +324,7 @@ Polish the messaging:
     "draft": "{{previous.output}}",
     "tone": "professional_friendly",
     "brandVoice": "{{company.brand_guidelines}}",
-    "optimizeFor": [
-      "clarity",
-      "engagement",
-      "cta_conversion"
-    ],
+    "optimizeFor": ["clarity", "engagement", "cta_conversion"],
     "includeCTA": {
       "primary": "Start free trial",
       "secondary": "Book demo"
@@ -423,12 +424,7 @@ Track everything:
         "trial_started",
         "demo_booked"
       ],
-      "properties": [
-        "source",
-        "medium",
-        "campaign",
-        "content_variant"
-      ]
+      "properties": ["source", "medium", "campaign", "content_variant"]
     },
     "destinations": ["mixpanel", "google_analytics", "crm"],
     "dashboards": ["campaign_overview", "conversion_funnel"]
@@ -513,11 +509,13 @@ After launch, monitor:
 ### What This Saves
 
 **Before:**
+
 - 2 weeks: Content writer, designer, campaign manager
 - Cost: $10K-$15K in agency/team time
 - Launch: Often delayed, inconsistent messaging
 
 **After:**
+
 - 4 hours: One marketing person + skill chain
 - Cost: $500-$1K in time
 - Launch: On time, consistent across channels
@@ -533,19 +531,25 @@ Add `ab_test_setup` to test subject lines and CTAs automatically.
 ## Choose Your Path
 
 ### New to AI Agents?
+
 → Start with **15-Minute Win: Lead Scoring**
+
 - Simplest chain (2 skills)
 - Immediate, tangible value
 - Foundation for more complex chains
 
 ### Have CRM/Analytics Already?
+
 → Try **1-Hour Win: Churn Alerts**
+
 - Leverages existing data
 - High-value outcomes (save ARR)
 - Minimal setup required
 
 ### Ready to Scale?
+
 → Deploy **Half-Day Win: Campaign Automation**
+
 - Complex multi-skill chain
 - End-to-end workflow
 - Maximum time savings
@@ -564,6 +568,7 @@ Add `ab_test_setup` to test subject lines and CTAs automatically.
 ### Building Confidence
 
 Each quick win teaches you:
+
 - How to chain skills together
 - How to configure inputs/outputs
 - How to test and iterate
@@ -572,6 +577,7 @@ Each quick win teaches you:
 ### Scaling Up
 
 Once you've proven value with a quick win:
+
 - Browse [SKILL_CHAINS.md](./SKILL_CHAINS.md) for more complex recipes
 - Read [VALUE.md](./VALUE.md) for ROI calculations
 - Join the community to share your success
@@ -584,6 +590,7 @@ Once you've proven value with a quick win:
 
 **Problem:** Skill isn't installed
 **Solution:**
+
 ```bash
 npx skills-directory install --target all --domain [domain_name]
 ```
@@ -592,6 +599,7 @@ npx skills-directory install --target all --domain [domain_name]
 
 **Problem:** Input JSON doesn't match skill's expected format
 **Solution:**
+
 ```bash
 # View skill documentation
 npx skills-directory info [skill_name]
@@ -601,6 +609,7 @@ npx skills-directory info [skill_name]
 
 **Problem:** Exit states don't match next skill's entry points
 **Solution:**
+
 - Check exit_routing matches available states
 - Review skill documentation for valid exit states
 
@@ -608,6 +617,7 @@ npx skills-directory info [skill_name]
 
 **Problem:** Not enough context in inputs
 **Solution:**
+
 - Add more customer/account-specific data
 - Include historical context
 - Use richer data sources

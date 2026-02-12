@@ -5,15 +5,16 @@ Tests end-to-end CLI command execution and workflow integration.
 """
 
 import json
-import pytest
-from pathlib import Path
 import subprocess
 import sys
+from pathlib import Path
 
+import pytest
 
 # =============================================================================
 # CLI Command Integration Tests
 # =============================================================================
+
 
 @pytest.mark.integration
 @pytest.mark.cli
@@ -25,7 +26,7 @@ def test_dedupe_command_end_to_end(temp_skills_directory, temp_output_directory)
         [sys.executable, "scripts/dedupe_skills.py", "--base-path", str(temp_skills_directory)],
         capture_output=True,
         text=True,
-        cwd=Path(__file__).parent.parent.parent
+        cwd=Path(__file__).parent.parent.parent,
     )
 
     # Should complete (may not find duplicates with test data)
@@ -39,10 +40,15 @@ def test_analyze_command_end_to_end(temp_skills_directory, temp_output_directory
     """Test analyze command runs successfully end-to-end."""
 
     result = subprocess.run(
-        [sys.executable, "scripts/analyze_skills.py", "--skills-path", str(temp_skills_directory / "skills-library")],
+        [
+            sys.executable,
+            "scripts/analyze_skills.py",
+            "--skills-path",
+            str(temp_skills_directory / "skills-library"),
+        ],
         capture_output=True,
         text=True,
-        cwd=Path(__file__).parent.parent.parent
+        cwd=Path(__file__).parent.parent.parent,
     )
 
     # Should complete successfully
@@ -51,7 +57,9 @@ def test_analyze_command_end_to_end(temp_skills_directory, temp_output_directory
 
 @pytest.mark.integration
 @pytest.mark.cli
-def test_blueprints_command_end_to_end(temp_skills_directory, temp_output_directory, mock_registry_data):
+def test_blueprints_command_end_to_end(
+    temp_skills_directory, temp_output_directory, mock_registry_data
+):
     """Test blueprint generation runs successfully end-to-end."""
 
     # Create registry
@@ -62,10 +70,15 @@ def test_blueprints_command_end_to_end(temp_skills_directory, temp_output_direct
         json.dump(mock_registry_data, f)
 
     result = subprocess.run(
-        [sys.executable, "scripts/generate_blueprints.py", "--base-path", str(temp_skills_directory)],
+        [
+            sys.executable,
+            "scripts/generate_blueprints.py",
+            "--base-path",
+            str(temp_skills_directory),
+        ],
         capture_output=True,
         text=True,
-        cwd=Path(__file__).parent.parent.parent
+        cwd=Path(__file__).parent.parent.parent,
     )
 
     # Should complete
@@ -75,6 +88,7 @@ def test_blueprints_command_end_to_end(temp_skills_directory, temp_output_direct
 # =============================================================================
 # CLI Output Validation Tests
 # =============================================================================
+
 
 @pytest.mark.integration
 @pytest.mark.cli
@@ -103,6 +117,7 @@ def test_cli_produces_valid_output_files(temp_skills_directory, temp_output_dire
 # CLI Error Handling Tests
 # =============================================================================
 
+
 @pytest.mark.integration
 @pytest.mark.cli
 def test_cli_handles_missing_directory():
@@ -112,7 +127,7 @@ def test_cli_handles_missing_directory():
         [sys.executable, "scripts/dedupe_skills.py", "--base-path", "/nonexistent/path"],
         capture_output=True,
         text=True,
-        cwd=Path(__file__).parent.parent.parent
+        cwd=Path(__file__).parent.parent.parent,
     )
 
     # Should fail gracefully with clear error
@@ -128,16 +143,21 @@ def test_cli_shows_help():
         [sys.executable, "scripts/dedupe_skills.py", "--help"],
         capture_output=True,
         text=True,
-        cwd=Path(__file__).parent.parent.parent
+        cwd=Path(__file__).parent.parent.parent,
     )
 
     # Should show help
-    assert result.returncode == 0 or "usage" in result.stdout.lower() or "help" in result.stdout.lower()
+    assert (
+        result.returncode == 0
+        or "usage" in result.stdout.lower()
+        or "help" in result.stdout.lower()
+    )
 
 
 # =============================================================================
 # Workflow Chain Tests
 # =============================================================================
+
 
 @pytest.mark.integration
 @pytest.mark.slow
@@ -152,17 +172,12 @@ def test_sequential_workflow_execution(temp_skills_directory):
     commands = [
         [sys.executable, "scripts/analyze_skills.py"],
         [sys.executable, "scripts/dedupe_skills.py"],
-        [sys.executable, "scripts/generate_blueprints.py"]
+        [sys.executable, "scripts/generate_blueprints.py"],
     ]
 
     cwd = Path(__file__).parent.parent.parent
 
     for cmd in commands:
-        result = subprocess.run(
-            cmd,
-            capture_output=True,
-            text=True,
-            cwd=cwd
-        )
+        result = subprocess.run(cmd, capture_output=True, text=True, cwd=cwd)
         # Commands may fail with test data, but should not crash
         # Accept both success and controlled failure

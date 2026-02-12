@@ -53,6 +53,7 @@ npx skills-directory ecosystem --repo-root /path/to/project
 ### Automatic (Postinstall)
 
 When users install `@skene/skills-directory`, the postinstall script automatically:
+
 1. Installs skills to Claude/Cursor
 2. Generates `ECOSYSTEM.md` in their project root
 3. Tailors content based on detected repo type
@@ -104,6 +105,7 @@ Caching significantly reduces GitHub API calls and improves performance.
 {Tailored intro based on repo type}
 
 ### [repo-name](https://github.com/SkeneTechnologies/repo-name)
+
 {Benefit-oriented line extracted from README}
 
 **[Secondary link text](url)** (for specific repos)

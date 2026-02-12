@@ -10,6 +10,7 @@
 The batch evaluation infrastructure allows you to evaluate multiple skills at once with automatic test data generation, parallel execution, and comprehensive reporting.
 
 **Key Features**:
+
 - ⚡ Parallel evaluation (5-20 workers)
 - 🤖 Automatic test data generation from schemas
 - 📊 Aggregate reports (domain-level and session-level)
@@ -176,22 +177,26 @@ done
 **Location**: `reports/evals/`
 
 **Files**:
+
 - `batch_{timestamp}_aggregate.md` - Human-readable summary
 - `batch_{timestamp}_aggregate.json` - Machine-readable data
 
 **Example**:
+
 ```markdown
 # Batch Evaluation Report: batch_20260211_171252
 
 ## Overall Summary
+
 - **Total Skills**: 16
 - **Successful**: 12 (75.0%)
 - **Failed**: 4 (25.0%)
 
 ## Domain Breakdown
-| Domain | Total | Success | Failed | Avg Success Rate | Avg Auto-Act Rate |
-|--------|-------|---------|--------|------------------|-------------------|
-| ecosystem | 16 | 12 | 4 | 100.0% | 90.0% |
+
+| Domain    | Total | Success | Failed | Avg Success Rate | Avg Auto-Act Rate |
+| --------- | ----- | ------- | ------ | ---------------- | ----------------- |
+| ecosystem | 16    | 12      | 4      | 100.0%           | 90.0%             |
 ```
 
 ### Failure Analysis Reports
@@ -204,9 +209,11 @@ done
 # Evaluation Failure Analysis
 
 ## Summary Statistics
+
 - **Total Failures**: 4
 
 ## Action Plan (Prioritized)
+
 1. Schema Missing (Priority 5/5)
    - Fix: Add inputSchema/outputSchema to skill.json
    - Affected Skills: 4
@@ -242,6 +249,7 @@ python scripts/batch_eval_skills.py --domain ecosystem --verbose
 ```
 
 **Output**:
+
 ```
 [1/16] ✓ ecosystem/elg_mdf_tracker
     Success: 100.0%, Auto-act: 33.3%
@@ -284,7 +292,7 @@ find skills-library/ecosystem -name "skill.json" -exec jq -r '.id' {} \;
   "inputSchema": {
     "type": "object",
     "properties": {
-      "action": {"type": "string"}
+      "action": { "type": "string" }
     },
     "required": ["action"]
   }
@@ -388,6 +396,7 @@ A: The generator will create empty inputs `{}`. Consider adding at least one req
 
 **Q: How do I export failures to CSV?**
 A: Use `--export` flag:
+
 ```bash
 python scripts/analyze_eval_failures.py --session batch_20260211_171252 --export failures.csv
 ```
@@ -397,6 +406,7 @@ A: Yes! See "Integration with Existing Tools" section above.
 
 **Q: What's the difference between batch eval and single eval?**
 A:
+
 - **Single eval** (`run_eval_harness.py`): Deep dive on one skill with tracing
 - **Batch eval** (`batch_eval_skills.py`): Fast validation of many skills
 
@@ -405,6 +415,7 @@ A:
 ## Next Steps
 
 1. **Run Phase 1 Pilot** (5 domains, 50 skills):
+
    ```bash
    python scripts/batch_eval_skills.py \
      --domains customer_success,ai_ops,product_ops,support_ops,finops \

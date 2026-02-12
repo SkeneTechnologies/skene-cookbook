@@ -10,7 +10,7 @@ intelligent decisions about skill execution.
 
 from dataclasses import dataclass
 from enum import Enum
-from typing import Optional, Dict, Any
+from typing import Any, Dict, Optional
 
 
 class DecisionType(Enum):
@@ -95,7 +95,7 @@ class DecisionEngine:
         confidence: float,
         risk_level: str,
         validation_passed: bool,
-        execution_history: Optional[Dict[str, Any]] = None
+        execution_history: Optional[Dict[str, Any]] = None,
     ) -> Decision:
         """
         Make execution decision based on multiple factors.
@@ -111,10 +111,10 @@ class DecisionEngine:
             Decision with type and reasoning
         """
         metadata = {
-            'skill_id': skill_id,
-            'confidence': confidence,
-            'risk_level': risk_level,
-            'validation_passed': validation_passed
+            "skill_id": skill_id,
+            "confidence": confidence,
+            "risk_level": risk_level,
+            "validation_passed": validation_passed,
         }
 
         # Rule 1: Validation failure -> BLOCK
@@ -125,7 +125,7 @@ class DecisionEngine:
                 risk_level=risk_level,
                 validation_passed=validation_passed,
                 reasoning="Blocked: I/O validation failed",
-                metadata=metadata
+                metadata=metadata,
             )
 
         # Rule 2: Critical risk -> REQUIRE_APPROVAL
@@ -136,7 +136,7 @@ class DecisionEngine:
                 risk_level=risk_level,
                 validation_passed=validation_passed,
                 reasoning="Requires approval: Critical risk level",
-                metadata=metadata
+                metadata=metadata,
             )
 
         # Rule 3: Very low confidence -> BLOCK
@@ -147,7 +147,7 @@ class DecisionEngine:
                 risk_level=risk_level,
                 validation_passed=validation_passed,
                 reasoning=f"Blocked: Confidence too low ({confidence:.2f} < {self.config.block_threshold})",
-                metadata=metadata
+                metadata=metadata,
             )
 
         # Rule 4: High risk requires higher confidence
@@ -158,13 +158,13 @@ class DecisionEngine:
                 risk_level=risk_level,
                 validation_passed=validation_passed,
                 reasoning=f"Flagged: High risk requires confidence >= {self.config.high_risk_min_confidence}",
-                metadata=metadata
+                metadata=metadata,
             )
 
         # Rule 5: Check execution history (if available)
         if execution_history and self.config.use_execution_history:
-            total_execs = execution_history.get('total_executions', 0)
-            success_rate = execution_history.get('success_rate', 0.0)
+            total_execs = execution_history.get("total_executions", 0)
+            success_rate = execution_history.get("success_rate", 0.0)
 
             if total_execs >= self.config.min_executions_for_history:
                 if success_rate < self.config.history_success_rate_threshold:
@@ -174,7 +174,7 @@ class DecisionEngine:
                         risk_level=risk_level,
                         validation_passed=validation_passed,
                         reasoning=f"Flagged: Low historical success rate ({success_rate:.1%})",
-                        metadata={**metadata, 'history': execution_history}
+                        metadata={**metadata, "history": execution_history},
                     )
 
         # Rule 6: High confidence -> AUTO_ACT
@@ -185,7 +185,7 @@ class DecisionEngine:
                 risk_level=risk_level,
                 validation_passed=validation_passed,
                 reasoning=f"Auto-executing: High confidence ({confidence:.2f}), acceptable risk",
-                metadata=metadata
+                metadata=metadata,
             )
 
         # Rule 7: Medium confidence -> FLAG_FOR_REVIEW
@@ -196,7 +196,7 @@ class DecisionEngine:
                 risk_level=risk_level,
                 validation_passed=validation_passed,
                 reasoning=f"Flagged: Medium confidence ({confidence:.2f})",
-                metadata=metadata
+                metadata=metadata,
             )
 
         # Rule 8: Low confidence -> REQUIRE_APPROVAL
@@ -206,15 +206,10 @@ class DecisionEngine:
             risk_level=risk_level,
             validation_passed=validation_passed,
             reasoning=f"Requires approval: Low confidence ({confidence:.2f})",
-            metadata=metadata
+            metadata=metadata,
         )
 
-    def record_execution_outcome(
-        self,
-        skill_id: str,
-        success: bool,
-        confidence: float
-    ):
+    def record_execution_outcome(self, skill_id: str, success: bool, confidence: float):
         """
         Record execution outcome for history tracking.
 
@@ -225,16 +220,16 @@ class DecisionEngine:
         """
         if skill_id not in self._execution_history:
             self._execution_history[skill_id] = {
-                'total_executions': 0,
-                'successful_executions': 0,
-                'success_rate': 0.0
+                "total_executions": 0,
+                "successful_executions": 0,
+                "success_rate": 0.0,
             }
 
         history = self._execution_history[skill_id]
-        history['total_executions'] += 1
+        history["total_executions"] += 1
         if success:
-            history['successful_executions'] += 1
-        history['success_rate'] = history['successful_executions'] / history['total_executions']
+            history["successful_executions"] += 1
+        history["success_rate"] = history["successful_executions"] / history["total_executions"]
 
     def get_execution_history(self, skill_id: str) -> Optional[Dict[str, Any]]:
         """

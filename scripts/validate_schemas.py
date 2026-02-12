@@ -7,12 +7,13 @@ Schema Validator for Skills Directory
 Validates JSON/YAML files against schemas
 """
 
-import json
-import yaml
-import sys
 import argparse
+import json
+import sys
 from pathlib import Path
-from jsonschema import validate, ValidationError, Draft7Validator
+
+import yaml
+from jsonschema import Draft7Validator, ValidationError, validate
 
 
 class SchemaValidator:
@@ -29,7 +30,7 @@ class SchemaValidator:
 
         # Load schema
         schema_path = self.schemas_path / "skill_definition.json"
-        with open(schema_path, 'r') as f:
+        with open(schema_path, "r") as f:
             schema = json.load(f)
 
         # Find all skill.json files
@@ -39,14 +40,14 @@ class SchemaValidator:
         errors = 0
         for skill_file in skill_files:
             try:
-                with open(skill_file, 'r') as f:
+                with open(skill_file, "r") as f:
                     skill_data = json.load(f)
 
                 # Basic structure validation (schema might be too strict for existing files)
-                if 'id' not in skill_data:
+                if "id" not in skill_data:
                     print(f"   ❌ {skill_file}: Missing 'id' field")
                     errors += 1
-                elif 'version' not in skill_data:
+                elif "version" not in skill_data:
                     print(f"   ⚠️  {skill_file}: Missing 'version' field")
 
             except json.JSONDecodeError as e:
@@ -72,14 +73,14 @@ class SchemaValidator:
         errors = 0
         for metadata_file in metadata_files:
             try:
-                with open(metadata_file, 'r') as f:
+                with open(metadata_file, "r") as f:
                     metadata = yaml.safe_load(f)
 
                 # Basic structure validation
-                if 'security' not in metadata:
+                if "security" not in metadata:
                     print(f"   ❌ {metadata_file}: Missing 'security' section")
                     errors += 1
-                elif 'risk_level' not in metadata['security']:
+                elif "risk_level" not in metadata["security"]:
                     print(f"   ❌ {metadata_file}: Missing 'risk_level'")
                     errors += 1
 
@@ -106,11 +107,11 @@ class SchemaValidator:
         errors = 0
         for blueprint_file in blueprint_files:
             try:
-                with open(blueprint_file, 'r') as f:
+                with open(blueprint_file, "r") as f:
                     blueprint = yaml.safe_load(f)
 
                 # Basic structure validation
-                required_fields = ['id', 'name', 'chain_sequence']
+                required_fields = ["id", "name", "chain_sequence"]
                 for field in required_fields:
                     if field not in blueprint:
                         print(f"   ❌ {blueprint_file}: Missing '{field}'")
@@ -131,25 +132,29 @@ class SchemaValidator:
 
 
 def main():
-    parser = argparse.ArgumentParser(description='Validate schema files')
-    parser.add_argument('--type', choices=['skills', 'metadata', 'workflows', 'all'],
-                       default='all', help='Type of files to validate')
+    parser = argparse.ArgumentParser(description="Validate schema files")
+    parser.add_argument(
+        "--type",
+        choices=["skills", "metadata", "workflows", "all"],
+        default="all",
+        help="Type of files to validate",
+    )
 
     args = parser.parse_args()
 
     validator = SchemaValidator()
 
-    if args.type in ['skills', 'all']:
+    if args.type in ["skills", "all"]:
         validator.validate_skills()
 
-    if args.type in ['metadata', 'all']:
+    if args.type in ["metadata", "all"]:
         validator.validate_metadata()
 
-    if args.type in ['workflows', 'all']:
+    if args.type in ["workflows", "all"]:
         validator.validate_workflows()
 
     print("\n✅ Validation complete!")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

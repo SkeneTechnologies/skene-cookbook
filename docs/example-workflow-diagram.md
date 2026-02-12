@@ -5,7 +5,6 @@
 Complete workflow that onboards a new partner, monitors integration health,
 and tracks revenue attribution from partner activities.
 
-
 ## Workflow Diagram
 
 ```mermaid
@@ -71,4 +70,3 @@ graph TD
 - **Skill:** `elg_co_sell_trigger`
 - **Action:** enable_partner
 - **On Failure:** continue
-

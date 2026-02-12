@@ -18,9 +18,11 @@ pytest tests/e2e -v
 ## E2E Test Categories
 
 ### 1. Fresh Installation Tests
+
 **File**: `test_fresh_install.py`
 
 Simulates new user installation experience:
+
 - Dependency installation
 - Script execution
 - Skills library accessibility
@@ -30,9 +32,11 @@ Simulates new user installation experience:
 **Run**: `pytest tests/e2e/test_fresh_install.py -v`
 
 ### 2. User Workflow Tests
+
 **File**: `test_user_workflows.py`
 
 Tests complete user journeys:
+
 - First-time user experience
 - Data analyst workflow (deduplication)
 - Security auditor workflow (risk analysis)
@@ -41,9 +45,11 @@ Tests complete user journeys:
 **Run**: `pytest tests/e2e/test_user_workflows.py -v`
 
 ### 3. Security Readiness Tests
+
 **File**: `test_fresh_install.py::TestSecurityReadiness`
 
 Pre-release security validation:
+
 - No .env files committed
 - .gitignore comprehensive
 - No hardcoded secrets
@@ -54,11 +60,13 @@ Pre-release security validation:
 ## Automated Test Scripts
 
 ### Full E2E Test Suite
+
 ```bash
 ./scripts/run_e2e_tests.sh
 ```
 
 **Tests**:
+
 - ✅ Environment & dependencies
 - ✅ Project structure
 - ✅ Automated test suite (unit, integration, E2E)
@@ -70,11 +78,13 @@ Pre-release security validation:
 **Output**: Pass/fail with detailed report
 
 ### Cross-Platform Testing
+
 ```bash
 ./scripts/test_cross_platform.sh
 ```
 
 **Platforms tested**:
+
 - Ubuntu 22.04 LTS
 - Ubuntu 24.04 LTS
 - Python 3.9 (Debian)
@@ -87,6 +97,7 @@ Pre-release security validation:
 ## Pre-Release Checklist
 
 ### Phase 1: Local Validation (Day -7)
+
 ```bash
 # 1. Run full test suite
 pytest tests/ -v --cov
@@ -105,6 +116,7 @@ pytest tests/e2e -v
 **Gate**: All tests pass, coverage ≥ 80%
 
 ### Phase 2: Security Audit (Day -6)
+
 ```bash
 # 1. Scan for secrets
 trufflehog filesystem . --only-verified
@@ -122,6 +134,7 @@ grep -E "\.env|__pycache__|\.pyc" .gitignore
 **Gate**: No secrets, no critical vulnerabilities
 
 ### Phase 3: Cross-Platform (Day -5)
+
 ```bash
 # Test on multiple platforms
 ./scripts/test_cross_platform.sh
@@ -130,6 +143,7 @@ grep -E "\.env|__pycache__|\.pyc" .gitignore
 **Gate**: ≥ 80% platform success rate
 
 ### Phase 4: Performance Validation (Day -4)
+
 ```bash
 # Run performance tests with full dataset
 pytest tests/performance -v
@@ -141,6 +155,7 @@ python -m memory_profiler scripts/dedupe_skills.py
 **Gate**: Meets performance benchmarks
 
 ### Phase 5: Documentation Review (Day -3)
+
 ```bash
 # Test all documentation examples
 python scripts/validate_docs.py
@@ -152,6 +167,7 @@ python scripts/validate_docs.py
 **Gate**: All examples work, no broken links
 
 ### Phase 6: Beta Testing (Day -2 to Day 0)
+
 ```bash
 # Create RC tag
 git tag v1.0.0-rc1
@@ -164,6 +180,7 @@ git tag v1.0.0-rc1
 **Gate**: No critical bugs, positive feedback
 
 ### Phase 7: Final Validation (Day 0)
+
 ```bash
 # Run complete validation
 ./scripts/run_e2e_tests.sh
@@ -181,6 +198,7 @@ git push origin main --tags
 ## Manual Testing Scenarios
 
 ### Scenario 1: Fresh Ubuntu Install
+
 ```bash
 # On fresh Ubuntu 22.04 system
 sudo apt update
@@ -196,6 +214,7 @@ python3 scripts/dedupe_skills.py --help
 ```
 
 ### Scenario 2: First-Time User
+
 ```bash
 # User reads README and follows quick start
 cat README.md
@@ -212,6 +231,7 @@ python3 scripts/generate_blueprints.py
 ```
 
 ### Scenario 3: Data Analyst
+
 ```bash
 # Analyst wants to find duplicate skills
 python3 scripts/dedupe_skills.py
@@ -226,6 +246,7 @@ cat reports/dedupe_report.json | jq '.similar_pairs | length'
 ```
 
 ### Scenario 4: Security Auditor
+
 ```bash
 # Auditor runs security analysis
 python3 scripts/analyze_skills.py
@@ -242,6 +263,7 @@ grep -A5 "security_requirements" registry/job_functions/index.json
 ## Troubleshooting E2E Tests
 
 ### Tests Fail on Import
+
 ```bash
 # Add project to PYTHONPATH
 export PYTHONPATH="${PYTHONPATH}:$(pwd):$(pwd)/scripts"
@@ -251,6 +273,7 @@ pytest tests/e2e -v
 ```
 
 ### Docker Tests Fail
+
 ```bash
 # Check Docker is running
 docker ps
@@ -263,6 +286,7 @@ docker run -v $(pwd):/test ubuntu ls /test
 ```
 
 ### Performance Tests Too Slow
+
 ```bash
 # Skip slow tests during development
 pytest tests/e2e -m "not slow"
@@ -272,6 +296,7 @@ pytest tests/performance -v
 ```
 
 ### Coverage Below Threshold
+
 ```bash
 # Identify uncovered code
 pytest --cov=scripts --cov-report=term-missing
@@ -283,21 +308,25 @@ pytest tests/unit/test_dedupe_skills.py --cov=scripts/dedupe_skills.py
 ## Best Practices
 
 ### 1. Test Early, Test Often
+
 - Run E2E tests before every commit
 - Use pre-commit hooks for quick validation
 - CI/CD runs full suite on every PR
 
 ### 2. Isolate Test Environments
+
 - Use Docker for clean-room testing
 - Don't test on development machines
 - Use temporary directories
 
 ### 3. Document Failures
+
 - Capture logs for failed tests
 - Document workarounds
 - Create issues for recurring failures
 
 ### 4. Monitor Real Usage
+
 - After release, track real usage patterns
 - Compare to E2E test scenarios
 - Update tests based on user feedback
@@ -305,12 +334,13 @@ pytest tests/unit/test_dedupe_skills.py --cov=scripts/dedupe_skills.py
 ## CI/CD Integration
 
 ### GitHub Actions Workflow
+
 ```yaml
 name: E2E Tests
 
 on:
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   e2e-tests:
@@ -335,14 +365,14 @@ jobs:
 
 ### Release Readiness Score
 
-| Category | Weight | Target | Status |
-|----------|--------|--------|--------|
-| Functionality | 20% | 100% pass | ⏳ |
-| Security | 20% | 0 critical | ⏳ |
-| Performance | 15% | Meets benchmarks | ⏳ |
-| Documentation | 15% | Complete | ⏳ |
-| Cross-platform | 15% | ≥80% platforms | ⏳ |
-| User testing | 15% | ≥80% approval | ⏳ |
+| Category       | Weight | Target           | Status |
+| -------------- | ------ | ---------------- | ------ |
+| Functionality  | 20%    | 100% pass        | ⏳     |
+| Security       | 20%    | 0 critical       | ⏳     |
+| Performance    | 15%    | Meets benchmarks | ⏳     |
+| Documentation  | 15%    | Complete         | ⏳     |
+| Cross-platform | 15%    | ≥80% platforms   | ⏳     |
+| User testing   | 15%    | ≥80% approval    | ⏳     |
 
 **Minimum Score**: 85/100 for release approval
 
@@ -356,6 +386,7 @@ jobs:
 ## Support
 
 For E2E testing issues:
+
 1. Check troubleshooting section above
 2. Review test logs in `/tmp/`
 3. Run with verbose output: `pytest -vv`

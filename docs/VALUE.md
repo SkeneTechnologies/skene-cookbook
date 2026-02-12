@@ -26,23 +26,23 @@ Result: Complete sales automation from first touch to meeting booked
 
 ### Traditional AI Agent Development
 
-| Phase | Time | Cost |
-|-------|------|------|
-| Requirements gathering | 2-4 weeks | $15K-$30K |
-| Custom development | 8-12 weeks | $80K-$120K |
-| Testing & debugging | 2-4 weeks | $20K-$40K |
-| Deployment & training | 1-2 weeks | $10K-$15K |
-| **Total** | **3-6 months** | **$125K-$205K** |
+| Phase                  | Time           | Cost            |
+| ---------------------- | -------------- | --------------- |
+| Requirements gathering | 2-4 weeks      | $15K-$30K       |
+| Custom development     | 8-12 weeks     | $80K-$120K      |
+| Testing & debugging    | 2-4 weeks      | $20K-$40K       |
+| Deployment & training  | 1-2 weeks      | $10K-$15K       |
+| **Total**              | **3-6 months** | **$125K-$205K** |
 
 ### Skill Chains Approach
 
-| Phase | Time | Cost |
-|-------|------|------|
-| Browse & select skills | 2-4 hours | $500 |
-| Chain design & config | 1-2 days | $2K-$4K |
-| Testing & refinement | 2-3 days | $3K-$5K |
-| Deploy & monitor | 1 day | $1K |
-| **Total** | **1 week** | **$6.5K-$10.5K** |
+| Phase                  | Time       | Cost             |
+| ---------------------- | ---------- | ---------------- |
+| Browse & select skills | 2-4 hours  | $500             |
+| Chain design & config  | 1-2 days   | $2K-$4K          |
+| Testing & refinement   | 2-3 days   | $3K-$5K          |
+| Deploy & monitor       | 1 day      | $1K              |
+| **Total**              | **1 week** | **$6.5K-$10.5K** |
 
 ### The Difference
 
@@ -60,6 +60,7 @@ Result: Complete sales automation from first touch to meeting booked
 **Problem:** Sales reps spend 60% of time on manual qualification and admin work instead of selling.
 
 **Before:**
+
 - Manually qualify 50 leads/month
 - Time per lead: 2-3 hours (research, scoring, routing)
 - Total time: 100-150 hours/month
@@ -67,10 +68,12 @@ Result: Complete sales automation from first touch to meeting booked
 - Result: Only 10-15 leads actually qualify
 
 **After (5-skill chain):**
+
 ```
 lead_qualification → opportunity_scoring → deal_inspection →
 next_best_action → content_recommender
 ```
+
 - Automated qualification of 200+ leads/month
 - Time per lead: 5 minutes (automated)
 - Total time: 4 hours/month (rep review only)
@@ -88,6 +91,7 @@ next_best_action → content_recommender
 **Problem:** By the time you notice a customer is unhappy, it's too late to save them.
 
 **Before:**
+
 - Quarterly business reviews catch issues late
 - Manual health score updates
 - Reactive outreach after usage drops
@@ -95,10 +99,12 @@ next_best_action → content_recommender
 - Lost ARR: $500K-$800K/year
 
 **After (4-skill chain):**
+
 ```
 health_scoring → churn_prediction → risk_mitigation_playbook →
 escalation_manager
 ```
+
 - Real-time health monitoring
 - Predictive alerts 60-90 days before churn risk
 - Automated intervention playbooks
@@ -116,6 +122,7 @@ escalation_manager
 **Problem:** CFOs and finance teams spend weeks preparing board reports and answering ad-hoc questions.
 
 **Before:**
+
 - Monthly board prep: 40-60 hours
 - Ad-hoc metric requests: 20-30 hours/month
 - Data collection from 5-10 systems
@@ -123,10 +130,12 @@ escalation_manager
 - Result: Stale data, slow decision-making
 
 **After (5-skill chain):**
+
 ```
 arr_waterfall → burn_rate_monitor → magic_number →
 investor_metrics → scenario_planner
 ```
+
 - Real-time dashboards (update every hour)
 - One-click board report generation
 - Instant answers to "what if" questions
@@ -144,6 +153,7 @@ investor_metrics → scenario_planner
 **Problem:** Growth teams manually run A/B tests and optimization experiments that take weeks to set up and analyze.
 
 **Before:**
+
 - Launch 2-4 experiments/month
 - Setup time: 3-5 days per experiment
 - Analysis time: 2-3 days per experiment
@@ -151,10 +161,12 @@ investor_metrics → scenario_planner
 - Cost: $8K-$15K/month
 
 **After (6-skill chain):**
+
 ```
 signup_flow_cro → page_cro → ab_test_setup →
 analytics_tracking → activation_metrics → feature_adoption
 ```
+
 - Launch 10-15 experiments/month
 - Setup time: 2-4 hours per experiment
 - Real-time analysis and recommendations
@@ -172,6 +184,7 @@ analytics_tracking → activation_metrics → feature_adoption
 **Problem:** Content teams manually create, distribute, and track content performance across channels.
 
 **Before:**
+
 - Create 8-10 pieces/month
 - Time per piece: 8-12 hours (research, write, edit, publish)
 - Distribution: 2-3 hours/piece
@@ -180,11 +193,13 @@ analytics_tracking → activation_metrics → feature_adoption
 - Cost: $8K-$12K/month
 
 **After (7-skill chain):**
+
 ```
 content_research_writer → copywriting → seo_audit →
 social_content_generator → email_sequence →
 analytics_tracking → social_listening_analyzer
 ```
+
 - Create 20-25 pieces/month
 - Time per piece: 2-3 hours (review & refinement)
 - Automated distribution across channels
@@ -283,35 +298,43 @@ Start with a proven recipe from [SKILL_CHAINS.md](./SKILL_CHAINS.md), or:
 
 ## What Makes Skill Chains Different?
 
+We don't just give you skills — we give you the **chains** that turn them into workflows. The **Skill Chain Cookbook** is the product: recipes first, skills as ingredients.
+
+| Others                          | Skene Cookbook                                    |
+| ------------------------------- | ------------------------------------------------- |
+| Single skills or ad-hoc prompts | **Skill Chains** — multi-step workflows           |
+| Build from scratch              | **Recipes** — copy-paste, deploy in days          |
+| Generic "AI agent"              | Domain recipes (sales, churn, PLG, compliance, …) |
+
 ### vs. Building Custom AI Agents
 
-| Custom Development | Skill Chains |
-|-------------------|--------------|
-| 3-6 months to build | 1-2 weeks to deploy |
-| $125K-$205K cost | $6.5K-$10.5K cost |
+| Custom Development   | Skill Chains                |
+| -------------------- | --------------------------- |
+| 3-6 months to build  | 1-2 weeks to deploy         |
+| $125K-$205K cost     | $6.5K-$10.5K cost           |
 | Single-purpose agent | Reusable, composable skills |
-| Hard to maintain | Update skills independently |
-| Reinvent the wheel | Battle-tested patterns |
+| Hard to maintain     | Update skills independently |
+| Reinvent the wheel   | Battle-tested patterns      |
 
 ### vs. Prompt Engineering
 
-| Raw Prompts | Skill Chains |
-|-------------|--------------|
-| Start from scratch every time | Pre-built, tested skills |
-| No state management | Persistent state across chain |
-| No tool integration | 40+ tools built-in |
-| Manual error handling | Automatic retries & fallbacks |
-| Hard to share/reuse | Shareable recipes |
+| Raw Prompts                   | Skill Chains                  |
+| ----------------------------- | ----------------------------- |
+| Start from scratch every time | Pre-built, tested skills      |
+| No state management           | Persistent state across chain |
+| No tool integration           | 40+ tools built-in            |
+| Manual error handling         | Automatic retries & fallbacks |
+| Hard to share/reuse           | Shareable recipes             |
 
 ### vs. No-Code Automation
 
-| No-Code Tools | Skill Chains |
-|---------------|--------------|
-| Limited to predefined actions | Any action Claude can do |
-| Rigid workflows | Flexible, intelligent routing |
-| No learning/adaptation | Context-aware decisions |
-| Template-based | True AI reasoning |
-| Separate from development | Integrated with your codebase |
+| No-Code Tools                 | Skill Chains                  |
+| ----------------------------- | ----------------------------- |
+| Limited to predefined actions | Any action Claude can do      |
+| Rigid workflows               | Flexible, intelligent routing |
+| No learning/adaptation        | Context-aware decisions       |
+| Template-based                | True AI reasoning             |
+| Separate from development     | Integrated with your codebase |
 
 ---
 
@@ -319,7 +342,7 @@ Start with a proven recipe from [SKILL_CHAINS.md](./SKILL_CHAINS.md), or:
 
 ### Explore Recipes
 
-Browse [SKILL_CHAINS.md](./SKILL_CHAINS.md) for 10+ ready-to-use skill chain recipes with step-by-step instructions.
+Browse the [Skill Chain Cookbook](./SKILL_CHAINS.md) — 36+ ready-to-use recipes with step-by-step instructions.
 
 ### Start Small
 
@@ -339,34 +362,40 @@ Try a [Quick Win](./QUICK_WINS.md) — Deploy your first skill chain in 15 minut
 
 ---
 
-## Expanded Recipe Coverage (20+ Recipes Across 15+ Domains)
+## Recipe Coverage (36 Recipes Across 9 Domain Groups)
 
 ### New Domains Now Covered
 
 **PLG & Monetization:**
+
 - Freemium Conversion Optimization (35% trial-to-paid lift)
 - Usage-Based Pricing Engine (25% revenue increase per customer)
 - Product-Led Sales Handoff (3x PQL-to-opportunity conversion)
 
 **Developer Experience:**
+
 - API Onboarding & Integration Health (60% faster integration)
 - Error Explanation & Changelog Tracking
 
 **Support & AI Operations:**
+
 - AI Support Deflection System (70% ticket deflection, $150K-$300K savings)
 - Intelligent Response Generation
 
 **People Operations:**
+
 - Employee Onboarding Automation (70% faster onboarding)
 - Compensation Benchmarking & Skill Gap Analysis
 - DEI Tracking & Pulse Monitoring
 
 **Data & Analytics:**
+
 - Data Quality Automation (80% error reduction)
 - Funnel Optimization & Experiment Analysis
 - Real-time Anomaly Detection
 
 **Community & Growth:**
+
 - Community-Led Growth Engine (40% organic growth increase)
 - Ambassador Program Management
 - UGC Curation & Event Management
@@ -375,9 +404,9 @@ Try a [Quick Win](./QUICK_WINS.md) — Deploy your first skill chain in 15 minut
 
 ### Market Expansion Potential
 
-- **Current Coverage:** 10 original recipes across 9 domains
-- **New Coverage:** 20+ recipes across 15+ domains
-- **New Customer Segments:** 20+ new segments (HR tech, DevTools, FinTech, Healthcare, etc.)
+- **Skill Chain Cookbook:** 36 ready-to-use recipes across 9 domain groups (Sales, CS, Growth, Product, Brand, Ops, Research, Community, FinOps)
+- **Supported by:** 765 skills (383 executable + 382 context) — each recipe chains 2–7 skills
+- **New Customer Segments:** 20+ segments (HR tech, DevTools, FinTech, Healthcare, etc.)
 - **Estimated Value:** $2M-$5M ARR expansion opportunity
 
 ---

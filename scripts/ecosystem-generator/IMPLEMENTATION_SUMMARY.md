@@ -217,11 +217,13 @@ npm install @skene/skills-directory
 Building with Next.js? These Skene tools integrate seamlessly:
 
 ### [skene-cookbook](https://github.com/SkeneTechnologies/skene-cookbook)
+
 Compose 760+ skills into powerful AI agents — No ML expertise required
 
 **[Browse skill chains →](https://github.com/SkeneTechnologies/skene-cookbook/blob/main/docs/SKILL_CHAINS.md)**
 
 ### [skene-growth](https://github.com/SkeneTechnologies/skene-growth)
+
 PLG (Product-Led Growth) codebase analysis toolkit. Scan your codebase, detect growth opportunities, and generate act…
 
 ---
@@ -232,17 +234,20 @@ PLG (Product-Led Growth) codebase analysis toolkit. Scan your codebase, detect g
 ## Architecture Highlights
 
 ### Zero External Dependencies
+
 - Uses built-in `fetch()` (Node 18+)
 - Uses built-in `fs/promises`
 - Consistent with existing CLI infrastructure
 
 ### Caching Strategy
+
 - 1-hour TTL on all cached data
 - Separate cache for org repos and individual READMEs
 - Automatic cleanup of expired entries
 - Fallback to `/tmp/` if `.skene/cache/` creation fails
 
 ### Detection Priority
+
 1. Next.js (package.json → next dependency)
 2. React (package.json → react dependency)
 3. Node.js (package.json exists)
@@ -251,6 +256,7 @@ PLG (Product-Led Growth) codebase analysis toolkit. Scan your codebase, detect g
 6. Generic (fallback)
 
 ### GitHub API Integration
+
 - Automatic retry on timeout (1 retry with 1s delay)
 - 5-second timeout per request
 - Rate limit detection and warning
@@ -266,6 +272,7 @@ PLG (Product-Led Growth) codebase analysis toolkit. Scan your codebase, detect g
 ## Future Enhancements
 
 ### Planned (from README)
+
 - [ ] Support for more repo types (Go, Rust, Java, etc.)
 - [ ] GitHub GraphQL API for better rate limits
 - [ ] Integration with Claude Code context sync
@@ -274,6 +281,7 @@ PLG (Product-Led Growth) codebase analysis toolkit. Scan your codebase, detect g
 - [ ] A/B testing of intro copy
 
 ### Possible Additions
+
 - [ ] Custom relevance config via `.skene/ecosystem-config.json`
 - [ ] Support for private/enterprise GitHub instances
 - [ ] RSS feed generation
@@ -283,6 +291,7 @@ PLG (Product-Led Growth) codebase analysis toolkit. Scan your codebase, detect g
 ## Notes
 
 ### Repository Availability
+
 - Only 5 public repos currently exist in SkeneTechnologies org:
   - skene-cookbook
   - skene-growth

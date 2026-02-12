@@ -11,7 +11,7 @@ Calculates confidence based on multiple factors:
 - Execution context
 """
 
-from typing import Dict, Any, Optional
+from typing import Any, Dict, Optional
 
 
 class ConfidenceScorer:
@@ -32,7 +32,7 @@ class ConfidenceScorer:
         input_data: Dict[str, Any],
         validation_passed: bool,
         execution_history: Optional[Dict[str, Any]] = None,
-        context: Optional[Dict[str, Any]] = None
+        context: Optional[Dict[str, Any]] = None,
     ) -> float:
         """
         Calculate confidence score for skill execution.
@@ -61,8 +61,8 @@ class ConfidenceScorer:
         weights.append(0.25)
 
         # Factor 3: Historical success rate (30% weight if available, else redistribute)
-        if execution_history and execution_history.get('total_executions', 0) >= 5:
-            history_score = execution_history.get('success_rate', 0.5)
+        if execution_history and execution_history.get("total_executions", 0) >= 5:
+            history_score = execution_history.get("success_rate", 0.5)
             scores.append(history_score)
             weights.append(0.30)
         else:
@@ -146,23 +146,23 @@ class ConfidenceScorer:
         total_indicators = 5
 
         # Has user information
-        if context.get('user_id') or context.get('user'):
+        if context.get("user_id") or context.get("user"):
             quality_indicators += 1
 
         # Has session information
-        if context.get('session_id') or context.get('session'):
+        if context.get("session_id") or context.get("session"):
             quality_indicators += 1
 
         # Has previous results (for chaining)
-        if context.get('previous_results') or context.get('upstream_outputs'):
+        if context.get("previous_results") or context.get("upstream_outputs"):
             quality_indicators += 1
 
         # Has timestamp
-        if context.get('timestamp'):
+        if context.get("timestamp"):
             quality_indicators += 1
 
         # Has metadata
-        if context.get('metadata'):
+        if context.get("metadata"):
             quality_indicators += 1
 
         return round(quality_indicators / total_indicators, 3)

@@ -11,8 +11,8 @@ import json
 from pathlib import Path
 from typing import Optional
 
-from ..core.metrics_collector import AggregatedMetrics
 from ..core.eval_session import EvalSessionResult
+from ..core.metrics_collector import AggregatedMetrics
 
 
 class JSONReporter:
@@ -33,10 +33,7 @@ class JSONReporter:
         self.output_dir = output_dir or Path("reports/evals")
 
     def generate_skill_report(
-        self,
-        skill_id: str,
-        metrics: AggregatedMetrics,
-        session_id: str
+        self, skill_id: str, metrics: AggregatedMetrics, session_id: str
     ) -> dict:
         """
         Generate JSON report for a single skill evaluation.
@@ -50,27 +47,24 @@ class JSONReporter:
             Report as dictionary
         """
         return {
-            'skill_id': skill_id,
-            'session_id': session_id,
-            'summary': metrics.to_dict(),
-            'records': [
+            "skill_id": skill_id,
+            "session_id": session_id,
+            "summary": metrics.to_dict(),
+            "records": [
                 {
-                    'timestamp': record.timestamp,
-                    'duration_ms': record.duration_ms,
-                    'success': record.success,
-                    'validation_passed': record.validation_passed,
-                    'decision_type': record.decision_type,
-                    'error_type': record.error_type,
-                    'metadata': record.metadata
+                    "timestamp": record.timestamp,
+                    "duration_ms": record.duration_ms,
+                    "success": record.success,
+                    "validation_passed": record.validation_passed,
+                    "decision_type": record.decision_type,
+                    "error_type": record.error_type,
+                    "metadata": record.metadata,
                 }
                 for record in metrics.records
-            ]
+            ],
         }
 
-    def generate_session_report(
-        self,
-        session_result: EvalSessionResult
-    ) -> dict:
+    def generate_session_report(self, session_result: EvalSessionResult) -> dict:
         """
         Generate JSON report for entire evaluation session.
 
@@ -82,12 +76,7 @@ class JSONReporter:
         """
         return session_result.to_dict()
 
-    def save_skill_report(
-        self,
-        skill_id: str,
-        metrics: AggregatedMetrics,
-        session_id: str
-    ) -> Path:
+    def save_skill_report(self, skill_id: str, metrics: AggregatedMetrics, session_id: str) -> Path:
         """
         Generate and save skill evaluation report as JSON.
 
@@ -104,15 +93,12 @@ class JSONReporter:
         output_path = self.output_dir / "skills" / f"{skill_id}_eval.json"
         output_path.parent.mkdir(parents=True, exist_ok=True)
 
-        with open(output_path, 'w') as f:
+        with open(output_path, "w") as f:
             json.dump(report, f, indent=2)
 
         return output_path
 
-    def save_session_report(
-        self,
-        session_result: EvalSessionResult
-    ) -> Path:
+    def save_session_report(self, session_result: EvalSessionResult) -> Path:
         """
         Generate and save session evaluation report as JSON.
 
@@ -124,13 +110,10 @@ class JSONReporter:
         """
         report = self.generate_session_report(session_result)
 
-        output_path = (
-            self.output_dir / "sessions" /
-            f"{session_result.session_id}_eval.json"
-        )
+        output_path = self.output_dir / "sessions" / f"{session_result.session_id}_eval.json"
         output_path.parent.mkdir(parents=True, exist_ok=True)
 
-        with open(output_path, 'w') as f:
+        with open(output_path, "w") as f:
             json.dump(report, f, indent=2)
 
         return output_path

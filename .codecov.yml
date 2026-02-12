@@ -6,7 +6,7 @@ codecov:
 coverage:
   precision: 2
   round: down
-  range: "60...100"
+  range: '60...100'
 
   status:
     project:
@@ -21,16 +21,16 @@ coverage:
         informational: false
 
 comment:
-  layout: "reach, diff, flags, files"
+  layout: 'reach, diff, flags, files'
   behavior: default
   require_changes: false
   require_base: false
   require_head: true
 
 ignore:
-  - "tests/**/*"
-  - "**/__pycache__"
-  - "**/*.pyc"
-  - "node_modules/**/*"
-  - "htmlcov/**/*"
-  - ".pytest_cache/**/*"
+  - 'tests/**/*'
+  - '**/__pycache__'
+  - '**/*.pyc'
+  - 'node_modules/**/*'
+  - 'htmlcov/**/*'
+  - '.pytest_cache/**/*'

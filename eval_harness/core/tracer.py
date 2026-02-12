@@ -5,12 +5,12 @@
 OpenTelemetry-based distributed tracing for skill execution.
 """
 
+import json
 import time
 from contextlib import contextmanager
 from dataclasses import dataclass, field
-from typing import Dict, Any, Optional, List
 from datetime import datetime
-import json
+from typing import Any, Dict, List, Optional
 
 
 @dataclass
@@ -36,16 +36,16 @@ class SpanContext:
     def to_dict(self) -> Dict[str, Any]:
         """Convert to dictionary."""
         return {
-            'span_id': self.span_id,
-            'trace_id': self.trace_id,
-            'parent_span_id': self.parent_span_id,
-            'name': self.name,
-            'start_time': self.start_time,
-            'end_time': self.end_time,
-            'duration_ms': self.duration_ms(),
-            'attributes': self.attributes,
-            'status': self.status,
-            'error_message': self.error_message,
+            "span_id": self.span_id,
+            "trace_id": self.trace_id,
+            "parent_span_id": self.parent_span_id,
+            "name": self.name,
+            "start_time": self.start_time,
+            "end_time": self.end_time,
+            "duration_ms": self.duration_ms(),
+            "attributes": self.attributes,
+            "status": self.status,
+            "error_message": self.error_message,
         }
 
 
@@ -58,9 +58,9 @@ class SkillTracer:
 
     def __init__(
         self,
-        provider: str = 'console',
+        provider: str = "console",
         endpoint: Optional[str] = None,
-        service_name: str = 'skene-cookbook'
+        service_name: str = "skene-cookbook",
     ):
         """
         Initialize tracer.
@@ -80,6 +80,7 @@ class SkillTracer:
     def _generate_id(self) -> str:
         """Generate unique span/trace ID."""
         import uuid
+
         return uuid.uuid4().hex[:16]
 
     @contextmanager
@@ -88,7 +89,7 @@ class SkillTracer:
         skill_id: str,
         skill_version: str,
         inputs: Dict[str, Any],
-        parent_span: Optional[SpanContext] = None
+        parent_span: Optional[SpanContext] = None,
     ):
         """
         Context manager for tracing skill execution.
@@ -129,10 +130,10 @@ class SkillTracer:
             name=f"skill.{skill_id}",
             start_time=time.time(),
             attributes={
-                'skill.id': skill_id,
-                'skill.version': skill_version,
-                'skill.input_keys': list(inputs.keys()) if inputs else [],
-            }
+                "skill.id": skill_id,
+                "skill.version": skill_version,
+                "skill.input_keys": list(inputs.keys()) if inputs else [],
+            },
         )
 
         self._span_stack.append(span)
@@ -161,11 +162,7 @@ class SkillTracer:
             self._export_span(span)
 
     @contextmanager
-    def trace_workflow_execution(
-        self,
-        workflow_id: str,
-        workflow_version: str
-    ):
+    def trace_workflow_execution(self, workflow_id: str, workflow_version: str):
         """
         Context manager for tracing workflow execution.
 
@@ -187,9 +184,9 @@ class SkillTracer:
             name=f"workflow.{workflow_id}",
             start_time=time.time(),
             attributes={
-                'workflow.id': workflow_id,
-                'workflow.version': workflow_version,
-            }
+                "workflow.id": workflow_id,
+                "workflow.version": workflow_version,
+            },
         )
 
         self._span_stack.append(span)
@@ -212,9 +209,9 @@ class SkillTracer:
 
     def _export_span(self, span: SpanContext):
         """Export span to configured provider."""
-        if self.provider == 'console':
+        if self.provider == "console":
             self._export_console(span)
-        elif self.provider == 'otlp':
+        elif self.provider == "otlp":
             self._export_otlp(span)
         # 'none' provider does nothing
 
@@ -248,10 +245,7 @@ class SkillTracer:
 
     def export_json(self) -> str:
         """Export all spans as JSON."""
-        return json.dumps(
-            [span.to_dict() for span in self._spans],
-            indent=2
-        )
+        return json.dumps([span.to_dict() for span in self._spans], indent=2)
 
     def reset(self):
         """Reset tracer state (useful for testing)."""

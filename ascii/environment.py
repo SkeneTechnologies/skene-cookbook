@@ -15,6 +15,7 @@ from enum import Enum
 
 class RenderMode(Enum):
     """Rendering mode for terminal output"""
+
     TERMINAL = "terminal"  # Full terminal with ANSI colors
     IDE_CHAT = "ide-chat"  # Desktop agent chat (Cursor, Claude)
     MOBILE_CHAT = "mobile-chat"  # Mobile agent chat
@@ -32,29 +33,29 @@ def get_render_mode() -> RenderMode:
     """
 
     # Explicit override
-    mode_override = os.environ.get('ASCII_RENDER_MODE')
+    mode_override = os.environ.get("ASCII_RENDER_MODE")
     if mode_override:
         mode_map = {
-            'terminal': RenderMode.TERMINAL,
-            'ide-chat': RenderMode.IDE_CHAT,
-            'mobile-chat': RenderMode.MOBILE_CHAT,
-            'plain': RenderMode.PLAIN,
+            "terminal": RenderMode.TERMINAL,
+            "ide-chat": RenderMode.IDE_CHAT,
+            "mobile-chat": RenderMode.MOBILE_CHAT,
+            "plain": RenderMode.PLAIN,
         }
         return mode_map.get(mode_override.lower(), RenderMode.TERMINAL)
 
     # NO_COLOR forces plain mode
-    if os.environ.get('NO_COLOR'):
+    if os.environ.get("NO_COLOR"):
         return RenderMode.PLAIN
 
     # Detect IDE chat environments
-    cursor_agent = os.environ.get('CURSOR_AGENT')
-    cloud_agent = os.environ.get('CLOUD_AGENT')
+    cursor_agent = os.environ.get("CURSOR_AGENT")
+    cloud_agent = os.environ.get("CLOUD_AGENT")
     if cursor_agent or cloud_agent:
         return RenderMode.IDE_CHAT
 
     # Detect mobile
-    term_program = os.environ.get('TERM_PROGRAM', '').lower()
-    if 'mobile' in term_program:
+    term_program = os.environ.get("TERM_PROGRAM", "").lower()
+    if "mobile" in term_program:
         return RenderMode.MOBILE_CHAT
 
     # Check if it's a TTY (interactive terminal)
@@ -123,10 +124,10 @@ def get_layout_classification() -> str:
     width = get_terminal_width()
 
     if width < 40:
-        return 'narrow'
+        return "narrow"
     elif width < 80:
-        return 'compact'
+        return "compact"
     elif width < 120:
-        return 'standard'
+        return "standard"
     else:
-        return 'wide'
+        return "wide"

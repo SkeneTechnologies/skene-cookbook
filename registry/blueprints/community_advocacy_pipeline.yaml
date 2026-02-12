@@ -1,0 +1,38 @@
+id: workflow_community_advocacy
+version: 1.0.0
+name: Community Advocacy Pipeline
+description: Champion identification, case study finder, ambassador program
+category: Community
+chain_sequence:
+  - step_id: step_1_champion_identifier
+    skill_id: community_champion_identifier
+    action: execute
+    description: Finds power users and advocates
+    timeout_seconds: 300
+    error_handling:
+      on_failure: stop
+      max_retries: 1
+  - step_id: step_2_case_study_finder
+    skill_id: community_case_study_finder
+    action: execute
+    description: Identifies case study candidates
+    timeout_seconds: 300
+    error_handling:
+      on_failure: continue
+      max_retries: 2
+  - step_id: step_3_ambassador_program
+    skill_id: community_ambassador_program
+    action: execute
+    description: Manages ambassador pipeline
+    timeout_seconds: 300
+    error_handling:
+      on_failure: stop
+      max_retries: 1
+metadata:
+  author: Skene Cookbook
+  created_at: '2026-02-12'
+  tags:
+    - community
+    - advocacy
+    - case_studies
+  estimated_duration_seconds: 900

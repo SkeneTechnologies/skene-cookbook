@@ -1,7 +1,7 @@
 name: Skill Proposal
 description: Propose a new AI agent skill
-title: "[Skill]: "
-labels: ["skill-proposal", "triage"]
+title: '[Skill]: '
+labels: ['skill-proposal', 'triage']
 assignees: []
 
 body:

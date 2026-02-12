@@ -3,184 +3,183 @@
 
 id: workflow_partner_onboarding_revenue
 version: 1.0.0
-name: "Partner Onboarding to Revenue Tracking"
+name: 'Partner Onboarding to Revenue Tracking'
 description: |
   Complete workflow that onboards a new partner, monitors integration health,
   and tracks revenue attribution from partner activities.
-category: "Ecosystem Management"
-
+category: 'Ecosystem Management'
 chain_sequence:
   # Step 1: Onboard Partner
-  - step_id: "step_1_onboard"
-    skill_id: "ecosystem_partner_onboard"
-    action: "create_partner_profile"
+  - step_id: 'step_1_onboard'
+    skill_id: 'ecosystem_partner_onboard'
+    action: 'create_partner_profile'
     input_mapping:
       static_values:
-        partner_tier: "silver"
+        partner_tier: 'silver'
         initial_mdf_budget: 50000
     error_handling:
-      on_failure: "stop"
+      on_failure: 'stop'
       max_retries: 2
     timeout_seconds: 60
 
   # Step 2: Setup Integration
-  - step_id: "step_2_integration"
-    skill_id: "tech_partner_finder"
-    action: "setup_integration"
+  - step_id: 'step_2_integration'
+    skill_id: 'tech_partner_finder'
+    action: 'setup_integration'
     input_mapping:
-      from_step: "step_1_onboard"
+      from_step: 'step_1_onboard'
       field_mappings:
-        partner_id: "output.partner_id"
-        integration_type: "output.requested_integration"
+        partner_id: 'output.partner_id'
+        integration_type: 'output.requested_integration'
     conditions:
-      execute_if: "$.step_1_onboard.output.requires_integration == true"
+      execute_if: '$.step_1_onboard.output.requires_integration == true'
     error_handling:
-      on_failure: "fallback"
-      fallback_step: "step_2b_manual_setup"
+      on_failure: 'fallback'
+      fallback_step: 'step_2b_manual_setup'
       max_retries: 3
     timeout_seconds: 120
 
   # Step 2b: Manual Setup Fallback
-  - step_id: "step_2b_manual_setup"
-    skill_id: "support_ops_ticket"
-    action: "create_ticket"
+  - step_id: 'step_2b_manual_setup'
+    skill_id: 'support_ops_ticket'
+    action: 'create_ticket'
     input_mapping:
-      from_step: "step_1_onboard"
+      from_step: 'step_1_onboard'
       field_mappings:
-        partner_id: "output.partner_id"
+        partner_id: 'output.partner_id'
       static_values:
-        ticket_type: "integration_setup"
-        priority: "high"
+        ticket_type: 'integration_setup'
+        priority: 'high'
     error_handling:
-      on_failure: "continue"
+      on_failure: 'continue'
 
   # Step 3: Monitor Integration Health
-  - step_id: "step_3_health_check"
-    skill_id: "elg_integration_health"
-    action: "monitor"
+  - step_id: 'step_3_health_check'
+    skill_id: 'elg_integration_health'
+    action: 'monitor'
     input_mapping:
-      from_step: "step_2_integration"
+      from_step: 'step_2_integration'
       field_mappings:
-        integration_id: "output.integration_id"
-        partner_id: "output.partner_id"
+        integration_id: 'output.integration_id'
+        partner_id: 'output.partner_id'
       static_values:
-        check_type: "full"
+        check_type: 'full'
     conditions:
       skip_if: "$.step_2_integration.status == 'failed'"
     error_handling:
-      on_failure: "continue"
+      on_failure: 'continue'
     timeout_seconds: 90
 
   # Step 4: Initialize Revenue Tracking
-  - step_id: "step_4_revenue_tracking"
-    skill_id: "elg_partner_influenced_revenue"
-    action: "initialize_tracking"
+  - step_id: 'step_4_revenue_tracking'
+    skill_id: 'elg_partner_influenced_revenue'
+    action: 'initialize_tracking'
     input_mapping:
-      from_step: "step_1_onboard"
+      from_step: 'step_1_onboard'
       field_mappings:
-        partner_id: "output.partner_id"
+        partner_id: 'output.partner_id'
       static_values:
-        attribution_model: "time_decay"
-        tracking_period: "ongoing"
+        attribution_model: 'time_decay'
+        tracking_period: 'ongoing'
     error_handling:
-      on_failure: "retry"
+      on_failure: 'retry'
       max_retries: 3
     timeout_seconds: 60
 
   # Step 5: Setup Co-Sell Motion
-  - step_id: "step_5_cosell_enable"
-    skill_id: "elg_co_sell_trigger"
-    action: "enable_partner"
+  - step_id: 'step_5_cosell_enable'
+    skill_id: 'elg_co_sell_trigger'
+    action: 'enable_partner'
     input_mapping:
-      from_step: "step_1_onboard"
+      from_step: 'step_1_onboard'
       field_mappings:
-        partner_id: "output.partner_id"
+        partner_id: 'output.partner_id'
     conditions:
       execute_if: "$.step_1_onboard.output.partner_tier in ['gold', 'platinum']"
     error_handling:
-      on_failure: "continue"
+      on_failure: 'continue'
 
 # Parallel execution groups
 logic_gates:
   parallel_groups:
     # Steps 3, 4, and 5 can run in parallel after step 2
-    - group_id: "post_integration_setup"
+    - group_id: 'post_integration_setup'
       step_ids:
-        - "step_3_health_check"
-        - "step_4_revenue_tracking"
-        - "step_5_cosell_enable"
+        - 'step_3_health_check'
+        - 'step_4_revenue_tracking'
+        - 'step_5_cosell_enable'
       wait_for_all: true
 
   decision_points:
     # Decide on partner tier upgrades
-    - decision_id: "tier_upgrade_check"
-      after_step: "step_4_revenue_tracking"
+    - decision_id: 'tier_upgrade_check'
+      after_step: 'step_4_revenue_tracking'
       conditions:
-        - if: "$.step_4_revenue_tracking.output.attributed_revenue > 100000"
-          then_step: "step_6_upgrade_tier"
-        - if: "$.step_4_revenue_tracking.output.attributed_revenue > 50000"
-          then_step: "step_6_send_upgrade_offer"
-      default_step: "step_7_complete"
+        - if: '$.step_4_revenue_tracking.output.attributed_revenue > 100000'
+          then_step: 'step_6_upgrade_tier'
+        - if: '$.step_4_revenue_tracking.output.attributed_revenue > 50000'
+          then_step: 'step_6_send_upgrade_offer'
+      default_step: 'step_7_complete'
 
 # Global error handling
 error_handling:
   global_timeout_seconds: 600
   failure_notification:
     channels:
-      - "email"
-      - "slack"
+      - 'email'
+      - 'slack'
     recipients:
-      - "ecosystem-team@company.com"
+      - 'ecosystem-team@company.com'
 
 # Security context
 security_context:
-  max_risk_level: "Medium"
+  max_risk_level: 'Medium'
   requires_approval: false
   approval_at_steps:
-    - "step_4_revenue_tracking"  # Requires approval due to financial data access
+    - 'step_4_revenue_tracking' # Requires approval due to financial data access
 
 # Input schema for workflow
 input_schema:
-  type: "object"
+  type: 'object'
   required:
-    - "partner_name"
-    - "partner_email"
+    - 'partner_name'
+    - 'partner_email'
   properties:
     partner_name:
-      type: "string"
-      description: "Legal name of the partner organization"
+      type: 'string'
+      description: 'Legal name of the partner organization'
     partner_email:
-      type: "string"
-      format: "email"
+      type: 'string'
+      format: 'email'
     partner_tier:
-      type: "string"
-      enum: ["bronze", "silver", "gold", "platinum"]
-      default: "bronze"
+      type: 'string'
+      enum: ['bronze', 'silver', 'gold', 'platinum']
+      default: 'bronze'
     initial_mdf_budget:
-      type: "number"
+      type: 'number'
       minimum: 0
 
 # Output schema
 output_schema:
-  type: "object"
+  type: 'object'
   properties:
     partner_id:
-      type: "string"
+      type: 'string'
     integration_status:
-      type: "string"
+      type: 'string'
     revenue_tracking_enabled:
-      type: "boolean"
+      type: 'boolean'
     setup_completion_time:
-      type: "string"
-      format: "date-time"
+      type: 'string'
+      format: 'date-time'
 
 # Metadata
 metadata:
-  author: "Skene AI"
-  created_at: "2024-02-05T00:00:00Z"
+  author: 'Skene AI'
+  created_at: '2024-02-05T00:00:00Z'
   tags:
-    - "ecosystem"
-    - "partner"
-    - "onboarding"
-    - "revenue"
+    - 'ecosystem'
+    - 'partner'
+    - 'onboarding'
+    - 'revenue'
   estimated_duration_seconds: 300

@@ -8,7 +8,12 @@
 
 ## Official Numbers
 
-### Skill Counts
+### Skill Chain Cookbook
+
+- **Ready-to-use recipes**: 36 (Skill Chains — the primary product)
+- **Each recipe** chains 2–7 skills from the library below; see [SKILL_CHAINS.md](docs/SKILL_CHAINS.md).
+
+### Skill Counts (ingredients for recipes)
 
 - **Total Skills**: 765
 - **Executable Skills**: 383
@@ -28,49 +33,49 @@
 
 ### By Domain
 
-| Domain | Skills | Description |
-|--------|--------|-------------|
-| **marketing** | 52 | Content creation, SEO, campaigns, analytics |
-| **plg_frameworks** | 46 | Product-led growth frameworks and patterns |
-| **customer_success** | 29 | Health scoring, churn prediction, retention |
-| **revops** | 25 | Sales pipeline, forecasting, GTM alignment |
-| **plg** | 24 | User activation, onboarding, viral growth |
-| **monetization** | 20 | Pricing, billing, revenue optimization |
-| **ai_ops** | 19 | AI model operations and management |
-| **product_ops** | 18 | Product analytics and operations |
-| **security** | 17 | Security analysis, compliance, threat detection |
-| **anthropic_official** | 16 | Official Anthropic skills and tools |
-| **ecosystem** | 16 | Ecosystem-led growth and partnerships |
-| **devex** | 14 | Developer experience and tooling |
-| **superpowers** | 14 | Power user workflows and automations |
-| **finops** | 12 | Financial operations and reporting |
-| **support_ops** | 12 | Customer support operations |
-| **community** | 12 | Community management and engagement |
-| **compliance** | 11 | Regulatory compliance and governance |
-| **data_ops** | 10 | Data pipelines and analytics operations |
-| **people_ops** | 8 | HR, recruiting, people management |
-| **development** | 5 | Software development workflows |
-| **vcf** | 3 | Value creation frameworks |
+| Domain                 | Skills | Description                                     |
+| ---------------------- | ------ | ----------------------------------------------- |
+| **marketing**          | 52     | Content creation, SEO, campaigns, analytics     |
+| **plg_frameworks**     | 46     | Product-led growth frameworks and patterns      |
+| **customer_success**   | 29     | Health scoring, churn prediction, retention     |
+| **revops**             | 25     | Sales pipeline, forecasting, GTM alignment      |
+| **plg**                | 24     | User activation, onboarding, viral growth       |
+| **monetization**       | 20     | Pricing, billing, revenue optimization          |
+| **ai_ops**             | 19     | AI model operations and management              |
+| **product_ops**        | 18     | Product analytics and operations                |
+| **security**           | 17     | Security analysis, compliance, threat detection |
+| **anthropic_official** | 16     | Official Anthropic skills and tools             |
+| **ecosystem**          | 16     | Ecosystem-led growth and partnerships           |
+| **devex**              | 14     | Developer experience and tooling                |
+| **superpowers**        | 14     | Power user workflows and automations            |
+| **finops**             | 12     | Financial operations and reporting              |
+| **support_ops**        | 12     | Customer support operations                     |
+| **community**          | 12     | Community management and engagement             |
+| **compliance**         | 11     | Regulatory compliance and governance            |
+| **data_ops**           | 10     | Data pipelines and analytics operations         |
+| **people_ops**         | 8      | HR, recruiting, people management               |
+| **development**        | 5      | Software development workflows                  |
+| **vcf**                | 3      | Value creation frameworks                       |
 
 **Total Executable:** 383 skills across 21 domains
 
 ### By Job Function
 
-*Mapping domains to typical job functions:*
+_Mapping domains to typical job functions:_
 
-| Job Function | Skill Count | Primary Domains |
-|-------------|-------------|-----------------|
-| **Engineering** | 77 | development (5), devex (14), ai_ops (19), data_ops (10), security (17), superpowers (14) |
-| **Marketing** | 52 | marketing (52) |
-| **Product** | 88 | plg (24), plg_frameworks (46), product_ops (18) |
-| **Sales** | 25 | revops (25) |
-| **Customer Success** | 41 | customer_success (29), support_ops (12) |
-| **Finance** | 12 | finops (12) |
-| **Operations** | 49 | monetization (20), ecosystem (16), compliance (11), vcf (3) |
-| **People/HR** | 8 | people_ops (8) |
-| **Community** | 28 | community (12), anthropic_official (16) |
+| Job Function         | Skill Count | Primary Domains                                                                          |
+| -------------------- | ----------- | ---------------------------------------------------------------------------------------- |
+| **Engineering**      | 77          | development (5), devex (14), ai_ops (19), data_ops (10), security (17), superpowers (14) |
+| **Marketing**        | 52          | marketing (52)                                                                           |
+| **Product**          | 88          | plg (24), plg_frameworks (46), product_ops (18)                                          |
+| **Sales**            | 25          | revops (25)                                                                              |
+| **Customer Success** | 41          | customer_success (29), support_ops (12)                                                  |
+| **Finance**          | 12          | finops (12)                                                                              |
+| **Operations**       | 49          | monetization (20), ecosystem (16), compliance (11), vcf (3)                              |
+| **People/HR**        | 8           | people_ops (8)                                                                           |
+| **Community**        | 28          | community (12), anthropic_official (16)                                                  |
 
-*Note: Some domains serve multiple functions. Total exceeds 383 due to overlapping categorization.*
+_Note: Some domains serve multiple functions. Total exceeds 383 due to overlapping categorization._
 
 ---
 
@@ -79,6 +84,7 @@
 ### Cursor Rules (241 skills)
 
 Technology-specific coding guidelines and best practices for Cursor IDE:
+
 - Web frameworks (React, Vue, Angular, etc.)
 - Backend frameworks (Flask, Django, Express, etc.)
 - Cloud platforms (AWS, GCP, Azure)
@@ -92,6 +98,7 @@ Technology-specific coding guidelines and best practices for Cursor IDE:
 ### Scientific Computing (141 skills)
 
 Domain-specific knowledge for research and scientific workflows:
+
 - Bioinformatics tools (BLAST, UniProt, PDB, etc.)
 - Data analysis libraries (NumPy, Pandas, SciPy, etc.)
 - Visualization tools (Matplotlib, Seaborn, Plotly, etc.)
@@ -110,6 +117,7 @@ Domain-specific knowledge for research and scientific workflows:
 A skill is defined by the presence of a `skill.json` file in a skill directory.
 
 **Example skill directory structure:**
+
 ```
 skills-library/executable/marketing/seo-optimizer/
 ├── skill.json          ← This defines the skill
@@ -121,6 +129,7 @@ skills-library/executable/marketing/seo-optimizer/
 ```
 
 **Counting Command:**
+
 ```bash
 # Count executable skills
 find skills-library/executable -name "skill.json" | wc -l
@@ -135,6 +144,7 @@ find skills-library -name "skill.json" | wc -l
 ### Executable vs Context Skills
 
 **Executable Skills** (`skills-library/executable/`):
+
 - AI agent skills with tools and execution logic
 - Invokable by Claude/Cursor to perform actions
 - Include tool definitions, parameters, error handling
@@ -142,6 +152,7 @@ find skills-library -name "skill.json" | wc -l
 - **Count: 383 skills**
 
 **Context Skills** (`skills-library/context/`):
+
 - Reference materials and domain knowledge
 - Cursor rules for IDE-specific guidance
 - Scientific computing documentation
@@ -152,15 +163,16 @@ find skills-library -name "skill.json" | wc -l
 
 You may see different numbers referenced in different contexts:
 
-| Context | Number Used | Reasoning |
-|---------|-------------|-----------|
-| Marketing materials | "760+ skills" | Total skills (765), rounded for simplicity |
-| Technical documentation | "383 executable" | Precise count of action-taking skills |
-| User-facing features | "765 total resources" | All skills including context |
-| Domain browsing | "21 domains" | Executable domains only |
-| Complete catalog | "23 domains" | All domains including context |
+| Context                 | Number Used           | Reasoning                                  |
+| ----------------------- | --------------------- | ------------------------------------------ |
+| Marketing materials     | "760+ skills"         | Total skills (765), rounded for simplicity |
+| Technical documentation | "383 executable"      | Precise count of action-taking skills      |
+| User-facing features    | "765 total resources" | All skills including context               |
+| Domain browsing         | "21 domains"          | Executable domains only                    |
+| Complete catalog        | "23 domains"          | All domains including context              |
 
 **All of these are correct** for their respective audiences. When in doubt:
+
 - **User-facing claims:** Use "760+ skills" (total)
 - **Technical accuracy:** Use "383 executable + 382 context = 765 total"
 - **Marketing copy:** Use "760+ skills across 23 domains"
@@ -224,12 +236,14 @@ See `scripts/sync_metrics.js` for implementation details.
 ### Why This File Exists
 
 Prior to v0.1.2, skill counts were inconsistent across documentation:
+
 - README.md claimed "760+ skills"
 - index.json showed different numbers
 - Various docs had conflicting domain counts
 - No clear definition of "what is a skill"
 
 **This file solves that problem** by establishing:
+
 1. Clear counting methodology
 2. Single canonical source
 3. Automated verification
@@ -238,12 +252,12 @@ Prior to v0.1.2, skill counts were inconsistent across documentation:
 ### Version History
 
 | Version | Total Skills | Executable | Context | Domains |
-|---------|-------------|------------|---------|---------|
-| 0.1.2 | 765 | 383 | 382 | 23 |
-| 0.1.1 | ~760 | ~383 | ~382 | 23 |
-| 0.1.0 | ~760 | ~383 | ~382 | 23 |
+| ------- | ------------ | ---------- | ------- | ------- |
+| 0.1.2   | 765          | 383        | 382     | 23      |
+| 0.1.1   | ~760         | ~383       | ~382    | 23      |
+| 0.1.0   | ~760         | ~383       | ~382    | 23      |
 
-*Note: Counts for 0.1.0 and 0.1.1 are retroactive estimates based on git history.*
+_Note: Counts for 0.1.0 and 0.1.1 are retroactive estimates based on git history._
 
 ---
 
@@ -262,6 +276,7 @@ Prior to v0.1.2, skill counts were inconsistent across documentation:
 ### Quarterly Reviews
 
 Every quarter, verify:
+
 - [ ] Skill counts match filesystem
 - [ ] Domain categorization is accurate
 - [ ] Job function mappings are current
@@ -282,12 +297,15 @@ Total Domains: 23
 ```
 
 **Marketing Tagline:**
+
 > "760+ AI skills for Claude and Cursor across 23 domains"
 
 **Technical Description:**
+
 > "383 executable AI agent skills + 382 context skills = 765 total resources"
 
 **Domain Breakdown:**
+
 > "21 executable domains (marketing, PLG, RevOps, etc.) + 2 context domains (cursor_rules, scientific)"
 
 ---
@@ -302,4 +320,4 @@ Total Domains: 23
 
 ---
 
-*This file is the canonical source of truth for all skill metrics. When in doubt, reference this file.*
+_This file is the canonical source of truth for all skill metrics. When in doubt, reference this file._

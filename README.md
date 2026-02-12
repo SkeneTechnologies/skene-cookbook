@@ -9,15 +9,15 @@
 </p>
 
 <p align="left">
-  <a href="METRICS.md"><img src="https://img.shields.io/badge/skills-765%20total-blue" alt="Total Skills"></a>
-  <a href="METRICS.md"><img src="https://img.shields.io/badge/executable-383%20skills-green" alt="Executable"></a>
-  <a href="METRICS.md"><img src="https://img.shields.io/badge/context-382%20skills-orange" alt="Context"></a>
-  <a href="METRICS.md"><img src="https://img.shields.io/badge/domains-23%20total-purple" alt="Domains"></a>
+  <a href="docs/SKILL_CHAINS.md"><img src="https://img.shields.io/badge/recipes-36%20Skill%20Chains-blue" alt="Skill Chain Recipes"></a>
+  <a href="METRICS.md"><img src="https://img.shields.io/badge/skills-765%20ingredients-green" alt="Skills (ingredients)"></a>
+  <a href="METRICS.md"><img src="https://img.shields.io/badge/executable-383-orange" alt="Executable"></a>
+  <a href="METRICS.md"><img src="https://img.shields.io/badge/domains-23-purple" alt="Domains"></a>
 </p>
 
-**Compose 765 AI skills into powerful AI agents** — No ML expertise required. Skene allows you to bridge the gap between "cool demo" and "production tool" using pre-built **Skill Chains**.
+**Production AI agents from Skill Chains, not from scratch.** Start with **36 ready-to-use recipes** (the chains); each recipe is built from our library of **765 skills**. No ML expertise required — copy-paste a recipe, deploy in days, get real ROI.
 
-[**Explore the Directory**](docs/directory.md) • [**View ROI Metrics**](METRICS.md) • [**Quick Start**](#-quick-start) • [**Documentation**](#-documentation)
+[**Browse Skill Chain Recipes**](docs/SKILL_CHAINS.md) • [**Explore the Directory**](docs/directory.md) • [**View ROI Metrics**](METRICS.md) • [**Quick Start**](#-quick-start)
 
 ---
 
@@ -32,13 +32,19 @@ _Tailored guides to get you up and running based on your role._
 | 🔬 **Researcher**   | Scientific tools & data analysis   | [View Guide →](docs/personas/researcher.md)   |
 | 💼 **Finance/CFO**  | Financial intelligence & reporting | [View Guide →](docs/personas/cfo.md)          |
 
-Or [browse all 765 skills →](docs/directory.md)
+Or [browse the Skill Chain Cookbook (36 recipes) →](docs/SKILL_CHAINS.md) · [browse 765 skills →](docs/directory.md)
 
 ---
 
 ## ⚡ Why Skill Chains?
 
-Traditional agents are built as monolithic codebases. **Skill Chains** are modular, composable sequences that significantly reduce time-to-market.
+We don't just give you skills — we give you the **chains** that turn them into workflows. The **Skill Chain Cookbook** is ready-to-deploy recipes; skills are the ingredients.
+
+| Others                          | Skene Cookbook                                    |
+| ------------------------------- | ------------------------------------------------- |
+| Single skills or ad-hoc prompts | **Skill Chains** — multi-step workflows           |
+| Build from scratch              | **Recipes** — copy-paste, deploy in days          |
+| Generic "AI agent"              | Domain recipes (sales, churn, PLG, compliance, …) |
 
 | Traditional AI Agents         | Skill Chains                   |
 | ----------------------------- | ------------------------------ |
@@ -84,8 +90,10 @@ SKIP_SKILLS_INSTALL=true npm install @skene/skills-directory
 
 ## 📂 What's Included?
 
+**Skill Chain Cookbook first:** [36 recipes](docs/SKILL_CHAINS.md) — copy-paste workflows for sales, CS, growth, product, compliance, and more. Each recipe chains 2–7 skills from the library below.
+
 <details open>
-<summary><b>Executable Skills (383)</b></summary>
+<summary><b>Skills library (765 total: 383 executable + 382 context)</b></summary>
 
 - **70 PLG Skills**: Product-led growth, activation, and onboarding.
 - **52 Marketing Skills**: Content, SEO, campaigns, and analytics.
@@ -116,7 +124,6 @@ SKIP_SKILLS_INSTALL=true npm install @skene/skills-directory
 1. **Install the library** (as shown above).
 
 2. **Pick a "Win" level** to deploy your first agent:
-
    - ⏱️ **15-Min Win**: [Lead Scoring Agent](docs/QUICK_WINS.md#15-minute-win-lead-scoring) (2 skills)
    - 🕐 **1-Hour Win**: [Churn Prevention Agent](docs/QUICK_WINS.md#1-hour-win-churn-risk-alerts) (3 skills)
    - 🌅 **Half-Day Win**: [Campaign Automation Agent](docs/QUICK_WINS.md#half-day-win-campaign-launch-automation) (5 skills)
@@ -127,8 +134,8 @@ SKIP_SKILLS_INSTALL=true npm install @skene/skills-directory
    npx skills-directory status
    ```
 
-4. **Explore recipes:**
-   Browse [28 ready-to-use skill chain recipes](docs/SKILL_CHAINS.md) with step-by-step instructions across 15+ domains.
+4. **Deploy from a recipe:**
+   Browse the [Skill Chain Cookbook](docs/SKILL_CHAINS.md) — 36+ ready-to-use recipes with step-by-step instructions across 15+ domains.
 
 ---
 
@@ -181,7 +188,7 @@ SKIP_SKILLS_INSTALL=true npm install @skene/skills-directory
 ### 🚀 Strategy
 
 - **[VALUE.md](docs/VALUE.md)** — ROI calculations & 5 core use cases.
-- **[SKILL_CHAINS.md](docs/SKILL_CHAINS.md)** — 28 ready-to-use recipes.
+- **[SKILL_CHAINS.md](docs/SKILL_CHAINS.md)** — Skill Chain Cookbook: 36+ ready-to-use recipes.
 - **[SHOWCASE.md](docs/SHOWCASE.md)** — Real-world case studies.
 - **[QUICK_WINS.md](docs/QUICK_WINS.md)** — Deploy your first agent in 15 min to 4 hours.
 

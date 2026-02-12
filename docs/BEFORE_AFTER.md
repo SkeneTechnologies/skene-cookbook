@@ -3,6 +3,7 @@
 ## Before
 
 ### Help Command
+
 ```
 ╔═══════════════════════════════════════════════════════════════╗
 ║                     Skene Skills CLI                          ║
@@ -21,6 +22,7 @@ Commands:
 ```
 
 **Issues:**
+
 - ❌ No branding/logo
 - ❌ ASCII art borders (═, ║) less professional
 - ❌ Not responsive to terminal width
@@ -29,16 +31,19 @@ Commands:
 - ❌ Technical path visible (`npx tsx scripts/...`)
 
 ### Post-Install
+
 ```
 ✅ Installed! Run: npx skills-directory install --target all
 ```
 
 **Issues:**
+
 - ❌ No branding
 - ❌ No visual appeal
 - ❌ Plain text only
 
 ### Installation Success
+
 ```
 ✅ Installation complete!
 
@@ -51,6 +56,7 @@ Commands:
 ```
 
 **Issues:**
+
 - ❌ No visual framing
 - ❌ Plain text
 - ❌ No color hierarchy
@@ -60,6 +66,7 @@ Commands:
 ## After
 
 ### Help Command
+
 ```
           · · · · · · · · · ·
       · · · · · · · · · · · · · · ·
@@ -121,6 +128,7 @@ Examples:
 ```
 
 **Improvements:**
+
 - ✅ **Branded S logo** in dot-matrix style
 - ✅ **Professional rounded borders** (╭╮╰╯) via boxen
 - ✅ **Color highlighting** (white bold for titles, dim for secondary, cyan for examples)
@@ -130,6 +138,7 @@ Examples:
 - ✅ **Centered content** for balanced appearance
 
 ### Post-Install
+
 ```
 ╭─────────────────────────────────────────────────╮
 │                                                 │
@@ -144,6 +153,7 @@ Examples:
 ```
 
 **Improvements:**
+
 - ✅ **Boxen frame** with rounded corners
 - ✅ **Professional branding**
 - ✅ **Clear call-to-action** with actual command
@@ -152,6 +162,7 @@ Examples:
 - ✅ **Cyan border** for positive reinforcement
 
 ### Installation Success (First-Time)
+
 ```
           · · · · · · · · · ·
       · · · · · · · · · · · · · · ·
@@ -190,6 +201,7 @@ Found 773 skills to install
 ```
 
 **Improvements:**
+
 - ✅ **Welcome screen** on first install (with logo)
 - ✅ **"Installing for the first time..."** message for context
 - ✅ **Styled success message** in green bordered box
@@ -202,30 +214,32 @@ Found 773 skills to install
 
 ## Key Improvements Summary
 
-| Aspect | Before | After |
-|--------|--------|-------|
-| **Branding** | None | ✅ Skene "S" logo in ASCII art |
-| **Borders** | ASCII art (═║) | ✅ Professional rounded corners (╭╮╰╯) |
-| **Colors** | Plain text | ✅ Chalk color highlighting |
-| **Responsive** | Fixed width | ✅ Adapts to terminal width |
-| **Visual Hierarchy** | Flat | ✅ Bold/dim text for hierarchy |
-| **First-Time Detection** | None | ✅ Shows welcome on first install |
-| **Post-Install** | Plain echo | ✅ Styled boxen message |
-| **Success Messages** | Plain text | ✅ Framed with color-coded borders |
-| **Call-to-Action** | Buried in text | ✅ Prominent with examples |
-| **Professional Appearance** | Basic | ✅ Production-quality CLI |
+| Aspect                      | Before         | After                                  |
+| --------------------------- | -------------- | -------------------------------------- |
+| **Branding**                | None           | ✅ Skene "S" logo in ASCII art         |
+| **Borders**                 | ASCII art (═║) | ✅ Professional rounded corners (╭╮╰╯) |
+| **Colors**                  | Plain text     | ✅ Chalk color highlighting            |
+| **Responsive**              | Fixed width    | ✅ Adapts to terminal width            |
+| **Visual Hierarchy**        | Flat           | ✅ Bold/dim text for hierarchy         |
+| **First-Time Detection**    | None           | ✅ Shows welcome on first install      |
+| **Post-Install**            | Plain echo     | ✅ Styled boxen message                |
+| **Success Messages**        | Plain text     | ✅ Framed with color-coded borders     |
+| **Call-to-Action**          | Buried in text | ✅ Prominent with examples             |
+| **Professional Appearance** | Basic          | ✅ Production-quality CLI              |
 
 ---
 
 ## Technical Stack
 
 ### Before
+
 - Plain `console.log()` statements
 - ASCII art borders (manual)
 - No terminal detection
 - No color support
 
 ### After
+
 - **chalk** (^5.3.0) - Terminal string styling
 - **boxen** (^7.1.1) - Professional border rendering
 - **terminal-size** (^4.0.0) - Responsive width detection
@@ -237,12 +251,14 @@ Found 773 skills to install
 ## User Experience Impact
 
 ### Before
+
 - ⚠️ Functional but forgettable
 - ⚠️ No brand recognition
 - ⚠️ Unclear next steps
 - ⚠️ Poor visual appeal
 
 ### After
+
 - ✅ **Professional first impression**
 - ✅ **Strong brand identity**
 - ✅ **Clear user guidance**
@@ -262,6 +278,7 @@ The implementation follows best practices from [Charm.sh](https://charm.sh), the
 - **Cross-platform compatibility**
 
 Similar quality to:
+
 - [gum](https://github.com/charmbracelet/gum) - Charm's shell script helper
 - [glow](https://github.com/charmbracelet/glow) - Markdown renderer
 - [vhs](https://github.com/charmbracelet/vhs) - Terminal recorder

@@ -4,38 +4,38 @@ name: Content Marketing Campaign
 description: Research, create, optimize, and distribute content
 category: Marketing
 chain_sequence:
-- step_id: step_1_keyword_research
-  skill_id: marketing_competitor_alternatives
-  action: execute
-  description: Execute keyword research
-  timeout_seconds: 300
-  error_handling:
-    on_failure: stop
-    max_retries: 2
-- step_id: step_2_content_creation
-  skill_id: elg_joint_marketing
-  action: execute
-  description: Execute content creation
-  timeout_seconds: 300
-  error_handling:
-    on_failure: continue
-    max_retries: 2
-- step_id: step_3_seo_optimization
-  skill_id: marketing_competitor_alternatives
-  action: execute
-  description: Execute seo optimization
-  timeout_seconds: 300
-  error_handling:
-    on_failure: continue
-    max_retries: 2
-- step_id: step_4_distribution
-  skill_id: development/web-assets
-  action: execute
-  description: Execute distribution
-  timeout_seconds: 300
-  error_handling:
-    on_failure: continue
-    max_retries: 2
+  - step_id: step_1_keyword_research
+    skill_id: marketing_competitor_alternatives
+    action: execute
+    description: Execute keyword research
+    timeout_seconds: 300
+    error_handling:
+      on_failure: stop
+      max_retries: 2
+  - step_id: step_2_content_creation
+    skill_id: elg_joint_marketing
+    action: execute
+    description: Execute content creation
+    timeout_seconds: 300
+    error_handling:
+      on_failure: continue
+      max_retries: 2
+  - step_id: step_3_seo_optimization
+    skill_id: marketing_competitor_alternatives
+    action: execute
+    description: Execute seo optimization
+    timeout_seconds: 300
+    error_handling:
+      on_failure: continue
+      max_retries: 2
+  - step_id: step_4_distribution
+    skill_id: development/web-assets
+    action: execute
+    description: Execute distribution
+    timeout_seconds: 300
+    error_handling:
+      on_failure: continue
+      max_retries: 2
 metadata:
   author: Chain Architect
   created_at: '2026-02-12T09:34:39.858896'

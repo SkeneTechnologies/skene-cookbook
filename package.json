@@ -49,8 +49,8 @@
     "verify:metrics": "node scripts/sync_metrics.cjs",
     "pretest": "npm run verify:metrics",
     "lint": "npm run lint:js && npm run lint:format",
-    "lint:js": "eslint bin/ scripts/",
-    "lint:js:fix": "eslint --fix bin/ scripts/",
+    "lint:js": "eslint \"bin/**/*.js\" \"scripts/**/*.cjs\"",
+    "lint:js:fix": "eslint --fix \"bin/**/*.js\" \"scripts/**/*.cjs\"",
     "lint:format": "prettier --check '**/*.{js,json,md,yml,yaml}'",
     "format": "prettier --write '**/*.{js,json,md,yml,yaml}'",
     "format:check": "prettier --check '**/*.{js,json,md,yml,yaml}'"

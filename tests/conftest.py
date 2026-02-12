@@ -9,17 +9,18 @@ This module provides:
 """
 
 import json
-import tempfile
 import shutil
+import tempfile
 from pathlib import Path
-from unittest.mock import Mock, MagicMock, patch
+from unittest.mock import MagicMock, Mock, patch
+
 import numpy as np
 import pytest
-
 
 # =============================================================================
 # Mock Sentence Transformers (Critical - Prevents Heavy ML Model Loading)
 # =============================================================================
+
 
 @pytest.fixture(autouse=True)
 def mock_sentence_transformer(monkeypatch):
@@ -28,6 +29,7 @@ def mock_sentence_transformer(monkeypatch):
     Returns deterministic numpy arrays for testing, with similarity
     preservation for related text.
     """
+
     class MockSentenceTransformer:
         def __init__(self, *args, **kwargs):
             pass
@@ -68,13 +70,14 @@ def mock_sentence_transformer(monkeypatch):
             return np.array(embeddings)
 
     # Patch at the module level
-    monkeypatch.setattr('sentence_transformers.SentenceTransformer', MockSentenceTransformer)
+    monkeypatch.setattr("sentence_transformers.SentenceTransformer", MockSentenceTransformer)
     return MockSentenceTransformer
 
 
 # =============================================================================
 # Mock Rich Console & Pyfiglet (Prevents Interactive UI Rendering)
 # =============================================================================
+
 
 @pytest.fixture
 def mock_console():
@@ -89,10 +92,11 @@ def mock_console():
 @pytest.fixture(autouse=True)
 def mock_pyfiglet(monkeypatch):
     """Mock pyfiglet to avoid ASCII art rendering in tests."""
+
     def mock_figlet_format(text, **kwargs):
         return f"MOCKED_BANNER: {text}"
 
-    monkeypatch.setattr('pyfiglet.figlet_format', mock_figlet_format)
+    monkeypatch.setattr("pyfiglet.figlet_format", mock_figlet_format)
 
 
 @pytest.fixture(autouse=True)
@@ -100,12 +104,13 @@ def mock_rich_prompt(monkeypatch):
     """Mock Rich Prompt to avoid interactive input in tests."""
     mock_prompt_class = MagicMock()
     mock_prompt_class.ask = MagicMock(return_value="1")
-    monkeypatch.setattr('rich.prompt.Prompt', mock_prompt_class)
+    monkeypatch.setattr("rich.prompt.Prompt", mock_prompt_class)
 
 
 # =============================================================================
 # Test Data Fixtures
 # =============================================================================
+
 
 @pytest.fixture
 def mock_skills_data():
@@ -135,22 +140,10 @@ def sample_skill_complete():
         "job_function": "engineering",
         "domain": "testing",
         "instructions": "Do something useful",
-        "inputSchema": {
-            "type": "object",
-            "properties": {
-                "input": {"type": "string"}
-            }
-        },
-        "outputSchema": {
-            "type": "object",
-            "properties": {
-                "output": {"type": "string"}
-            }
-        },
+        "inputSchema": {"type": "object", "properties": {"input": {"type": "string"}}},
+        "outputSchema": {"type": "object", "properties": {"output": {"type": "string"}}},
         "tools": [{"name": "test_tool"}],
-        "exitStates": [
-            {"state": "complete", "description": "Done"}
-        ]
+        "exitStates": [{"state": "complete", "description": "Done"}],
     }
 
 
@@ -165,7 +158,7 @@ def sample_skill_incomplete():
         "verified": False,
         "job_function": "engineering",
         "domain": "testing",
-        "instructions": "Do something"
+        "instructions": "Do something",
     }
 
 
@@ -181,25 +174,16 @@ def sample_skill_high_risk():
         "job_function": "engineering",
         "domain": "admin",
         "instructions": "Delete all user data including passwords and payment information",
-        "inputSchema": {
-            "type": "object",
-            "properties": {
-                "user_id": {"type": "string"}
-            }
-        },
-        "outputSchema": {
-            "type": "object",
-            "properties": {
-                "deleted": {"type": "boolean"}
-            }
-        },
-        "tools": [{"name": "database_delete"}]
+        "inputSchema": {"type": "object", "properties": {"user_id": {"type": "string"}}},
+        "outputSchema": {"type": "object", "properties": {"deleted": {"type": "boolean"}}},
+        "tools": [{"name": "database_delete"}],
     }
 
 
 # =============================================================================
 # Temporary Directory Fixtures
 # =============================================================================
+
 
 @pytest.fixture
 def temp_skills_directory(mock_skills_data):
@@ -244,6 +228,7 @@ def temp_output_directory():
 # Mock External Dependencies
 # =============================================================================
 
+
 @pytest.fixture
 def mock_subprocess(monkeypatch):
     """Mock subprocess.run for CLI testing."""
@@ -251,13 +236,14 @@ def mock_subprocess(monkeypatch):
     mock_run.return_value.returncode = 0
     mock_run.return_value.stdout = "Success"
     mock_run.return_value.stderr = ""
-    monkeypatch.setattr('subprocess.run', mock_run)
+    monkeypatch.setattr("subprocess.run", mock_run)
     return mock_run
 
 
 # =============================================================================
 # Parametrized Test Data
 # =============================================================================
+
 
 @pytest.fixture(params=[0.95, 0.88, 0.70])
 def similarity_threshold(request):
@@ -274,6 +260,7 @@ def risk_level(request):
 # =============================================================================
 # Helper Functions
 # =============================================================================
+
 
 def create_mock_skill_file(directory: Path, skill_data: dict) -> Path:
     """Helper to create a mock skill file in a directory."""

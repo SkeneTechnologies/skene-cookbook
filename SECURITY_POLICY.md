@@ -7,37 +7,45 @@ The Skills Directory takes security seriously. Every skill is analyzed for poten
 ## Security Risk Levels
 
 ### Low Risk
+
 **Definition**: Read-only operations, public data access, no external API calls
 
 **Examples**:
+
 - List available skills
 - Format/transform data
 - Calculate metrics
 - Display information
 
 **Requirements**:
+
 - No special requirements
 - Standard execution allowed
 - Audit logging optional
 
 ### Medium Risk
+
 **Definition**: Write operations, internal data access, external API calls without sensitive data
 
 **Examples**:
+
 - Send notifications
 - Update non-critical records
 - Query analytics
 - Create tickets
 
 **Requirements**:
+
 - ✅ Audit logging enabled
 - Standard execution allowed
 - No sandboxing required
 
 ### High Risk
+
 **Definition**: Modify/delete operations, PII access, sensitive data handling, risky external calls
 
 **Examples**:
+
 - Update customer records
 - Access PII data
 - Modify financial data
@@ -45,15 +53,18 @@ The Skills Directory takes security seriously. Every skill is analyzed for poten
 - Execute external webhooks
 
 **Requirements**:
+
 - ✅ Sandboxing required
 - ✅ Audit logging enabled
 - ⚠️ Human-in-loop recommended
 - Access controls enforced
 
 ### Critical Risk
+
 **Definition**: Financial operations, credential handling, destructive actions, regulatory data
 
 **Examples**:
+
 - Process payments
 - Access credentials/secrets
 - Delete production data
@@ -61,6 +72,7 @@ The Skills Directory takes security seriously. Every skill is analyzed for poten
 - Execute system commands
 
 **Requirements**:
+
 - ✅ Sandboxing required
 - ✅ Human-in-loop required
 - ✅ Audit logging enabled
@@ -70,7 +82,9 @@ The Skills Directory takes security seriously. Every skill is analyzed for poten
 ## Security Requirements
 
 ### Sandboxing
+
 Isolates skill execution to prevent:
+
 - Unauthorized system access
 - Data leakage
 - Privilege escalation
@@ -79,15 +93,18 @@ Isolates skill execution to prevent:
 **Implementation**: Skills run in isolated containers with limited permissions.
 
 ### Human-in-Loop (HITL)
+
 Requires explicit human approval before execution.
 
 **When Required**:
+
 - Critical risk level skills
 - Financial transactions
 - Destructive operations
 - Regulatory compliance needs
 
 **Process**:
+
 1. Skill execution initiated
 2. Request sent to authorized approvers
 3. Approver reviews context and impact
@@ -95,7 +112,9 @@ Requires explicit human approval before execution.
 5. Execution proceeds or aborts
 
 ### Audit Logging
+
 All executions are logged with:
+
 - Skill ID and version
 - Execution timestamp
 - Input parameters (sanitized)
@@ -112,14 +131,14 @@ All executions are logged with:
 
 Skills must declare what types of data they access:
 
-| Scope | Description | Examples |
-|-------|-------------|----------|
-| `public` | Publicly available data | Documentation, public APIs |
-| `internal` | Company-internal data | Internal analytics, metrics |
-| `confidential` | Sensitive business data | Strategy, financials, deals |
-| `pii` | Personally Identifiable Information | Names, emails, addresses |
-| `financial` | Financial/payment data | Revenue, transactions, invoices |
-| `health` | Health/medical data | PHI, medical records |
+| Scope          | Description                         | Examples                        |
+| -------------- | ----------------------------------- | ------------------------------- |
+| `public`       | Publicly available data             | Documentation, public APIs      |
+| `internal`     | Company-internal data               | Internal analytics, metrics     |
+| `confidential` | Sensitive business data             | Strategy, financials, deals     |
+| `pii`          | Personally Identifiable Information | Names, emails, addresses        |
+| `financial`    | Financial/payment data              | Revenue, transactions, invoices |
+| `health`       | Health/medical data                 | PHI, medical records            |
 
 **Access Control**: Skills can only access scopes they declare, enforced at runtime.
 
@@ -171,6 +190,7 @@ All skills undergo manual security review before production:
 A workflow's risk level is the **highest risk level** of any skill in the chain.
 
 **Example**:
+
 ```
 Skill A (Low) → Skill B (Medium) → Skill C (High)
 = Workflow Risk Level: High
@@ -182,15 +202,16 @@ Workflows define security context:
 
 ```yaml
 security_context:
-  max_risk_level: "Medium"          # Maximum allowed skill risk
-  requires_approval: true            # Entire workflow needs approval
-  approval_at_steps:                # Individual step approvals
-    - "step_3_delete_data"
+  max_risk_level: 'Medium' # Maximum allowed skill risk
+  requires_approval: true # Entire workflow needs approval
+  approval_at_steps: # Individual step approvals
+    - 'step_3_delete_data'
 ```
 
 ### Approval Gates
 
 Workflows can require approval at specific steps:
+
 - Before execution (entire workflow)
 - At individual steps (step-level gates)
 - After failures (recovery actions)
@@ -200,6 +221,7 @@ Workflows can require approval at specific steps:
 ### Prohibited Actions
 
 Skills MAY NOT:
+
 - Execute arbitrary code
 - Access filesystem outside sandbox
 - Make network requests to undeclared endpoints
@@ -232,6 +254,7 @@ If you discover a security vulnerability:
 ### Rewards
 
 We offer recognition (and potentially rewards) for:
+
 - Critical vulnerability discoveries
 - Security enhancement proposals
 - Malicious skill detection
@@ -241,6 +264,7 @@ We offer recognition (and potentially rewards) for:
 ### Skill Provenance
 
 All skills include:
+
 - Author identification
 - Source attribution
 - License information
@@ -249,11 +273,13 @@ All skills include:
 ### Dependency Management
 
 Skills declare dependencies:
+
 - Other skills required
 - External tools/APIs
 - Minimum versions
 
 Dependencies are:
+
 - Validated at registration
 - Checked for vulnerabilities
 - Pinned to specific versions
@@ -261,6 +287,7 @@ Dependencies are:
 ### Code Signing (Future)
 
 Future releases will support:
+
 - Cryptographic signing of skills
 - Verification at execution time
 - Trusted skill registries
@@ -270,6 +297,7 @@ Future releases will support:
 ### Regulatory Frameworks
 
 Skills handling regulated data must comply with:
+
 - **GDPR**: Personal data of EU residents
 - **HIPAA**: Health information (US)
 - **SOC 2**: Security controls
@@ -278,14 +306,15 @@ Skills handling regulated data must comply with:
 ### Data Residency
 
 Skills declare data residency requirements:
+
 ```yaml
 compliance:
   regulations:
-    - "GDPR"
-    - "HIPAA"
+    - 'GDPR'
+    - 'HIPAA'
   data_residency:
-    - "EU"
-    - "US"
+    - 'EU'
+    - 'US'
 ```
 
 Execution restricted to compliant regions.
@@ -295,6 +324,7 @@ Execution restricted to compliant regions.
 ### Versioning
 
 Security-related changes increment version:
+
 - **Patch** (1.0.x): Security fix, no breaking changes
 - **Minor** (1.x.0): New security requirements
 - **Major** (x.0.0): Breaking security changes
@@ -302,6 +332,7 @@ Security-related changes increment version:
 ### Deprecation
 
 Skills with unresolvable security issues:
+
 1. Marked as deprecated
 2. Removed from recommendations
 3. Execution disabled (with grace period)
@@ -310,6 +341,7 @@ Skills with unresolvable security issues:
 ### Security Advisories
 
 Critical issues are disclosed via:
+
 - GitHub Security Advisories
 - Email to skill authors
 - Community notifications
@@ -320,6 +352,7 @@ Critical issues are disclosed via:
 ### For Skill Authors
 
 ✅ **Do:**
+
 - Declare all data access explicitly
 - Follow principle of least privilege
 - Validate all inputs
@@ -328,6 +361,7 @@ Critical issues are disclosed via:
 - Document security considerations
 
 ❌ **Don't:**
+
 - Store credentials in skill code
 - Access undeclared data
 - Execute arbitrary user input
@@ -336,12 +370,14 @@ Critical issues are disclosed via:
 ### For Skill Users
 
 ✅ **Do:**
+
 - Review security metadata before execution
 - Approve HITL requests promptly
 - Monitor execution logs
 - Report suspicious behavior
 
 ❌ **Don't:**
+
 - Override security controls
 - Share approval credentials
 - Execute untrusted skills
@@ -350,6 +386,7 @@ Critical issues are disclosed via:
 ## Questions?
 
 For security questions:
+
 - 📧 Email: security@skene.ai
 - 📖 Read: [CONTRIBUTING.md](CONTRIBUTING.md)
 - 💬 Discuss: GitHub Discussions (non-sensitive only)

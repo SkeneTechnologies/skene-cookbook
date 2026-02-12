@@ -10,7 +10,8 @@ Uses Claude API to generate JSON schemas from skill descriptions and instruction
 import json
 import os
 from pathlib import Path
-from typing import Dict, Any, Optional, Tuple
+from typing import Any, Dict, Optional, Tuple
+
 import anthropic
 
 
@@ -30,7 +31,7 @@ class SchemaGenerator:
             api_key: Anthropic API key (defaults to ANTHROPIC_API_KEY env var)
             model: Claude model to use
         """
-        self.api_key = api_key or os.getenv('ANTHROPIC_API_KEY')
+        self.api_key = api_key or os.getenv("ANTHROPIC_API_KEY")
         if not self.api_key:
             raise ValueError("ANTHROPIC_API_KEY not found in environment")
 
@@ -43,7 +44,7 @@ class SchemaGenerator:
         description: str,
         tools: list,
         instructions: Optional[str] = None,
-        domain: Optional[str] = None
+        domain: Optional[str] = None,
     ) -> Tuple[Dict[str, Any], Dict[str, Any], float]:
         """
         Generate input and output schemas for a skill.
@@ -64,17 +65,14 @@ class SchemaGenerator:
             response = self.client.messages.create(
                 model=self.model,
                 max_tokens=8192,  # Increased for complex schemas
-                messages=[{
-                    "role": "user",
-                    "content": prompt
-                }]
+                messages=[{"role": "user", "content": prompt}],
             )
 
             # Parse response
             content = response.content[0].text
             result = self._parse_response(content)
 
-            return result['inputSchema'], result['outputSchema'], result['confidence']
+            return result["inputSchema"], result["outputSchema"], result["confidence"]
 
         except Exception as e:
             raise RuntimeError(f"Schema generation failed for {skill_id}: {e}")
@@ -85,10 +83,12 @@ class SchemaGenerator:
         description: str,
         tools: list,
         instructions: Optional[str],
-        domain: Optional[str]
+        domain: Optional[str],
     ) -> str:
         """Build prompt for schema generation."""
-        tools_desc = "\n".join([f"- {tool.get('name', tool)}" for tool in tools]) if tools else "None"
+        tools_desc = (
+            "\n".join([f"- {tool.get('name', tool)}" for tool in tools]) if tools else "None"
+        )
 
         prompt = f"""You are a JSON Schema expert. Generate input and output schemas for a skill.
 
@@ -151,27 +151,27 @@ Generate the schemas now:"""
         # Try to extract JSON from response (handle markdown code blocks)
         content = content.strip()
 
-        if '```json' in content:
+        if "```json" in content:
             # Extract from markdown code block
-            start = content.find('```json') + 7
-            end = content.find('```', start)
+            start = content.find("```json") + 7
+            end = content.find("```", start)
             content = content[start:end].strip()
-        elif '```' in content:
+        elif "```" in content:
             # Generic code block
-            start = content.find('```') + 3
-            end = content.find('```', start)
+            start = content.find("```") + 3
+            end = content.find("```", start)
             content = content[start:end].strip()
 
         try:
             result = json.loads(content)
 
             # Validate structure
-            if 'inputSchema' not in result or 'outputSchema' not in result:
+            if "inputSchema" not in result or "outputSchema" not in result:
                 raise ValueError("Missing inputSchema or outputSchema in response")
 
             # Add default confidence if missing
-            if 'confidence' not in result:
-                result['confidence'] = 0.7
+            if "confidence" not in result:
+                result["confidence"] = 0.7
 
             return result
 
@@ -192,15 +192,15 @@ Generate the schemas now:"""
             return False
 
         # Check required fields
-        if 'type' not in schema:
+        if "type" not in schema:
             return False
 
-        if schema['type'] == 'object':
-            if 'properties' not in schema:
+        if schema["type"] == "object":
+            if "properties" not in schema:
                 return False
 
             # Validate properties
-            properties = schema.get('properties', {})
+            properties = schema.get("properties", {})
             if not isinstance(properties, dict):
                 return False
 
@@ -208,9 +208,7 @@ Generate the schemas now:"""
 
 
 def generate_for_skill_file(
-    skill_json_path: Path,
-    generator: SchemaGenerator,
-    dry_run: bool = False
+    skill_json_path: Path, generator: SchemaGenerator, dry_run: bool = False
 ) -> Dict[str, Any]:
     """
     Generate schemas for a skill.json file.
@@ -223,19 +221,19 @@ def generate_for_skill_file(
     Returns:
         Dictionary with result details
     """
-    with open(skill_json_path, 'r') as f:
+    with open(skill_json_path, "r") as f:
         skill = json.load(f)
 
-    skill_id = skill.get('id', 'unknown')
-    description = skill.get('description', '')
-    tools = skill.get('tools', [])
-    domain = skill.get('domain', '')
+    skill_id = skill.get("id", "unknown")
+    description = skill.get("description", "")
+    tools = skill.get("tools", [])
+    domain = skill.get("domain", "")
 
     # Check if instructions file exists
     instructions = None
-    instructions_path = skill_json_path.parent / 'instructions.md'
+    instructions_path = skill_json_path.parent / "instructions.md"
     if instructions_path.exists():
-        with open(instructions_path, 'r') as f:
+        with open(instructions_path, "r") as f:
             instructions = f.read()
 
     # Generate schemas
@@ -245,50 +243,46 @@ def generate_for_skill_file(
             description=description,
             tools=tools,
             instructions=instructions,
-            domain=domain
+            domain=domain,
         )
 
         # Validate
         if not generator.validate_generated_schema(input_schema):
             return {
-                'success': False,
-                'skill_id': skill_id,
-                'error': 'Generated inputSchema is invalid'
+                "success": False,
+                "skill_id": skill_id,
+                "error": "Generated inputSchema is invalid",
             }
 
         if not generator.validate_generated_schema(output_schema):
             return {
-                'success': False,
-                'skill_id': skill_id,
-                'error': 'Generated outputSchema is invalid'
+                "success": False,
+                "skill_id": skill_id,
+                "error": "Generated outputSchema is invalid",
             }
 
         # Update skill.json
         if not dry_run:
-            skill['inputSchema'] = input_schema
-            skill['outputSchema'] = output_schema
+            skill["inputSchema"] = input_schema
+            skill["outputSchema"] = output_schema
 
             # Add metadata about generation
-            if 'metadata' not in skill:
-                skill['metadata'] = {}
-            skill['metadata']['schemaGenerated'] = True
-            skill['metadata']['schemaConfidence'] = confidence
+            if "metadata" not in skill:
+                skill["metadata"] = {}
+            skill["metadata"]["schemaGenerated"] = True
+            skill["metadata"]["schemaConfidence"] = confidence
 
-            with open(skill_json_path, 'w') as f:
+            with open(skill_json_path, "w") as f:
                 json.dump(skill, f, indent=2)
-                f.write('\n')
+                f.write("\n")
 
         return {
-            'success': True,
-            'skill_id': skill_id,
-            'confidence': confidence,
-            'input_fields': len(input_schema.get('properties', {})),
-            'output_fields': len(output_schema.get('properties', {}))
+            "success": True,
+            "skill_id": skill_id,
+            "confidence": confidence,
+            "input_fields": len(input_schema.get("properties", {})),
+            "output_fields": len(output_schema.get("properties", {})),
         }
 
     except Exception as e:
-        return {
-            'success': False,
-            'skill_id': skill_id,
-            'error': str(e)
-        }
+        return {"success": False, "skill_id": skill_id, "error": str(e)}

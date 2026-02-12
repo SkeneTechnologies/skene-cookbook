@@ -5,15 +5,15 @@
 Evaluation session management for batch evaluations.
 """
 
+import json
 from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
-from typing import Dict, List, Optional, Any
-import json
+from typing import Any, Dict, List, Optional
 
-from .validator import SkillValidator, ValidationResult
+from .metrics_collector import AggregatedMetrics, MetricsCollector
 from .tracer import SkillTracer, SpanContext
-from .metrics_collector import MetricsCollector, AggregatedMetrics
+from .validator import SkillValidator, ValidationResult
 
 
 @dataclass
@@ -28,23 +28,23 @@ class EvalConfig:
     tracing_enabled: bool = True
     validation_enabled: bool = True
     metrics_enabled: bool = True
-    trace_provider: str = 'console'  # 'console', 'otlp', 'none'
+    trace_provider: str = "console"  # 'console', 'otlp', 'none'
     otlp_endpoint: Optional[str] = None
 
     @classmethod
-    def from_dict(cls, data: Dict[str, Any]) -> 'EvalConfig':
+    def from_dict(cls, data: Dict[str, Any]) -> "EvalConfig":
         """Create from dictionary."""
         return cls(
-            session_id=data['session_id'],
-            session_name=data['session_name'],
-            skills_to_eval=data['skills_to_eval'],
-            test_data_paths=data.get('test_data_paths', {}),
-            output_dir=Path(data['output_dir']),
-            tracing_enabled=data.get('tracing_enabled', True),
-            validation_enabled=data.get('validation_enabled', True),
-            metrics_enabled=data.get('metrics_enabled', True),
-            trace_provider=data.get('trace_provider', 'console'),
-            otlp_endpoint=data.get('otlp_endpoint'),
+            session_id=data["session_id"],
+            session_name=data["session_name"],
+            skills_to_eval=data["skills_to_eval"],
+            test_data_paths=data.get("test_data_paths", {}),
+            output_dir=Path(data["output_dir"]),
+            tracing_enabled=data.get("tracing_enabled", True),
+            validation_enabled=data.get("validation_enabled", True),
+            metrics_enabled=data.get("metrics_enabled", True),
+            trace_provider=data.get("trace_provider", "console"),
+            otlp_endpoint=data.get("otlp_endpoint"),
         )
 
 
@@ -69,17 +69,14 @@ class EvalSessionResult:
     def to_dict(self) -> Dict[str, Any]:
         """Convert to dictionary."""
         return {
-            'session_id': self.session_id,
-            'session_name': self.session_name,
-            'start_time': self.start_time.isoformat(),
-            'end_time': self.end_time.isoformat(),
-            'duration_seconds': self.duration_seconds(),
-            'skills_evaluated': self.skills_evaluated,
-            'metrics': {
-                skill_id: metrics.to_dict()
-                for skill_id, metrics in self.metrics.items()
-            },
-            'summary': self.summary,
+            "session_id": self.session_id,
+            "session_name": self.session_name,
+            "start_time": self.start_time.isoformat(),
+            "end_time": self.end_time.isoformat(),
+            "duration_seconds": self.duration_seconds(),
+            "skills_evaluated": self.skills_evaluated,
+            "metrics": {skill_id: metrics.to_dict() for skill_id, metrics in self.metrics.items()},
+            "summary": self.summary,
         }
 
 
@@ -95,7 +92,7 @@ class EvalSession:
         config: EvalConfig,
         validator: Optional[SkillValidator] = None,
         tracer: Optional[SkillTracer] = None,
-        metrics_collector: Optional[MetricsCollector] = None
+        metrics_collector: Optional[MetricsCollector] = None,
     ):
         """
         Initialize evaluation session.
@@ -109,8 +106,7 @@ class EvalSession:
         self.config = config
         self.validator = validator or SkillValidator()
         self.tracer = tracer or SkillTracer(
-            provider=config.trace_provider,
-            endpoint=config.otlp_endpoint
+            provider=config.trace_provider, endpoint=config.otlp_endpoint
         )
         self.metrics_collector = metrics_collector or MetricsCollector()
 
@@ -141,16 +137,20 @@ class EvalSession:
 
         # Build summary
         summary = {
-            'total_skills': len(self.config.skills_to_eval),
-            'total_executions': sum(
-                m.total_executions for m in metrics.values()
+            "total_skills": len(self.config.skills_to_eval),
+            "total_executions": sum(m.total_executions for m in metrics.values()),
+            "overall_success_rate": (
+                sum(m.success_rate * m.total_executions for m in metrics.values())
+                / sum(m.total_executions for m in metrics.values())
+                if metrics
+                else 0
             ),
-            'overall_success_rate': sum(
-                m.success_rate * m.total_executions for m in metrics.values()
-            ) / sum(m.total_executions for m in metrics.values()) if metrics else 0,
-            'overall_validation_pass_rate': sum(
-                m.validation_pass_rate * m.total_executions for m in metrics.values()
-            ) / sum(m.total_executions for m in metrics.values()) if metrics else 0,
+            "overall_validation_pass_rate": (
+                sum(m.validation_pass_rate * m.total_executions for m in metrics.values())
+                / sum(m.total_executions for m in metrics.values())
+                if metrics
+                else 0
+            ),
         }
 
         result = EvalSessionResult(
@@ -162,7 +162,7 @@ class EvalSession:
             metrics=metrics,
             validation_results=self._validation_results,
             traces=self.tracer.get_spans(),
-            summary=summary
+            summary=summary,
         )
 
         print(f"\n{'='*60}")
@@ -176,10 +176,7 @@ class EvalSession:
         return result
 
     def validate_and_record(
-        self,
-        skill_id: str,
-        input_data: Dict[str, Any],
-        output_data: Dict[str, Any]
+        self, skill_id: str, input_data: Dict[str, Any], output_data: Dict[str, Any]
     ) -> tuple[ValidationResult, ValidationResult]:
         """
         Validate input and output, record results.
@@ -193,10 +190,7 @@ class EvalSession:
             Tuple of (input_validation_result, output_validation_result)
         """
         if not self.config.validation_enabled:
-            return (
-                ValidationResult(valid=True),
-                ValidationResult(valid=True)
-            )
+            return (ValidationResult(valid=True), ValidationResult(valid=True))
 
         input_result = self.validator.validate_input(skill_id, input_data)
         output_result = self.validator.validate_output(skill_id, output_data)
@@ -223,14 +217,14 @@ class EvalSession:
 
         result = self.end()
 
-        with open(output_path, 'w') as f:
+        with open(output_path, "w") as f:
             json.dump(result.to_dict(), f, indent=2)
 
         print(f"Results saved to: {output_path}")
 
         # Also save traces as separate file
-        traces_path = output_path.with_suffix('.traces.json')
-        with open(traces_path, 'w') as f:
+        traces_path = output_path.with_suffix(".traces.json")
+        with open(traces_path, "w") as f:
             f.write(self.tracer.export_json())
 
         print(f"Traces saved to: {traces_path}")

@@ -8,10 +8,11 @@ Generates GitHub-optimized markdown documentation with Mermaid diagrams
 """
 
 import json
-import yaml
-from pathlib import Path
-from datetime import datetime
 from collections import defaultdict
+from datetime import datetime
+from pathlib import Path
+
+import yaml
 
 
 class DocsGenerator:
@@ -32,7 +33,7 @@ class DocsGenerator:
 
     def load_registry(self):
         """Load job function registry"""
-        with open(self.registry_path, 'r') as f:
+        with open(self.registry_path, "r") as f:
             self.job_functions = json.load(f)
 
     def generate_all(self):
@@ -53,7 +54,7 @@ class DocsGenerator:
 
         output_path = self.docs_path / "directory.md"
 
-        with open(output_path, 'w') as f:
+        with open(output_path, "w") as f:
             f.write("# Skills Directory - Complete Catalog\n\n")
             f.write(f"**Generated:** {datetime.now().strftime('%Y-%m-%d')}\n\n")
 
@@ -65,18 +66,18 @@ class DocsGenerator:
             f.write(f"- **Status:** Production Ready\n\n")
 
             # Risk distribution
-            risk_counts = {'Critical': 0, 'High': 0, 'Medium': 0, 'Low': 0}
+            risk_counts = {"Critical": 0, "High": 0, "Medium": 0, "Low": 0}
             for skills in self.job_functions.values():
                 for skill in skills:
-                    risk_counts[skill['risk_level']] += 1
+                    risk_counts[skill["risk_level"]] += 1
 
             f.write("## Security Status\n\n")
             f.write("| Risk Level | Count | Percentage |\n")
             f.write("|------------|-------|------------|\n")
-            for risk in ['Critical', 'High', 'Medium', 'Low']:
+            for risk in ["Critical", "High", "Medium", "Low"]:
                 count = risk_counts[risk]
                 pct = (count / total_skills * 100) if total_skills else 0
-                emoji = {'Critical': '🔴', 'High': '🟡', 'Medium': '🔵', 'Low': '🟢'}[risk]
+                emoji = {"Critical": "🔴", "High": "🟡", "Medium": "🔵", "Low": "🟢"}[risk]
                 f.write(f"| {emoji} {risk} | {count} | {pct:.1f}% |\n")
 
             f.write("\n---\n\n")
@@ -85,7 +86,9 @@ class DocsGenerator:
             f.write("## Quick Navigation\n\n")
             for func in sorted(self.job_functions.keys()):
                 count = len(self.job_functions[func])
-                f.write(f"- [{func.replace('_', ' ').title()}](functions/{func}.md) ({count} skills)\n")
+                f.write(
+                    f"- [{func.replace('_', ' ').title()}](functions/{func}.md) ({count} skills)\n"
+                )
 
             f.write("\n---\n\n")
 
@@ -98,17 +101,21 @@ class DocsGenerator:
             all_skills = []
             for func, skills in self.job_functions.items():
                 for skill in skills:
-                    all_skills.append({**skill, 'function': func})
+                    all_skills.append({**skill, "function": func})
 
             # Sort by skill_id
-            all_skills.sort(key=lambda x: x['skill_id'])
+            all_skills.sort(key=lambda x: x["skill_id"])
 
             for skill in all_skills:
-                func = skill['function'].replace('_', ' ').title()
-                risk_emoji = {'Critical': '🔴', 'High': '🟡', 'Medium': '🔵', 'Low': '🟢'}[skill['risk_level']]
-                jtbd = skill['jtbd'][:60] + "..." if len(skill['jtbd']) > 60 else skill['jtbd']
+                func = skill["function"].replace("_", " ").title()
+                risk_emoji = {"Critical": "🔴", "High": "🟡", "Medium": "🔵", "Low": "🟢"}[
+                    skill["risk_level"]
+                ]
+                jtbd = skill["jtbd"][:60] + "..." if len(skill["jtbd"]) > 60 else skill["jtbd"]
 
-                f.write(f"| `{skill['skill_id']}` | {func} | {risk_emoji} {skill['risk_level']} | {jtbd} |\n")
+                f.write(
+                    f"| `{skill['skill_id']}` | {func} | {risk_emoji} {skill['risk_level']} | {jtbd} |\n"
+                )
 
             # Search tips
             f.write("\n---\n\n")
@@ -127,22 +134,22 @@ class DocsGenerator:
         for func, skills in self.job_functions.items():
             output_path = self.docs_path / "functions" / f"{func}.md"
 
-            with open(output_path, 'w') as f:
-                title = func.replace('_', ' ').title()
+            with open(output_path, "w") as f:
+                title = func.replace("_", " ").title()
                 f.write(f"# {title} Skills\n\n")
                 f.write(f"**Total Skills:** {len(skills)}\n\n")
 
                 # Risk breakdown
                 risk_counts = defaultdict(int)
                 for skill in skills:
-                    risk_counts[skill['risk_level']] += 1
+                    risk_counts[skill["risk_level"]] += 1
 
                 f.write("## Risk Distribution\n\n")
                 f.write("| Risk Level | Count |\n")
                 f.write("|------------|-------|\n")
-                for risk in ['Critical', 'High', 'Medium', 'Low']:
+                for risk in ["Critical", "High", "Medium", "Low"]:
                     if risk in risk_counts:
-                        emoji = {'Critical': '🔴', 'High': '🟡', 'Medium': '🔵', 'Low': '🟢'}[risk]
+                        emoji = {"Critical": "🔴", "High": "🟡", "Medium": "🔵", "Low": "🟢"}[risk]
                         f.write(f"| {emoji} {risk} | {risk_counts[risk]} |\n")
 
                 f.write("\n---\n\n")
@@ -153,9 +160,13 @@ class DocsGenerator:
                 f.write("|---|----------|------|----------------|\n")
 
                 for i, skill in enumerate(skills, 1):
-                    risk_emoji = {'Critical': '🔴', 'High': '🟡', 'Medium': '🔵', 'Low': '🟢'}[skill['risk_level']]
-                    jtbd = skill['jtbd'].replace('|', '\\|')  # Escape pipes
-                    f.write(f"| {i} | `{skill['skill_id']}` | {risk_emoji} {skill['risk_level']} | {jtbd} |\n")
+                    risk_emoji = {"Critical": "🔴", "High": "🟡", "Medium": "🔵", "Low": "🟢"}[
+                        skill["risk_level"]
+                    ]
+                    jtbd = skill["jtbd"].replace("|", "\\|")  # Escape pipes
+                    f.write(
+                        f"| {i} | `{skill['skill_id']}` | {risk_emoji} {skill['risk_level']} | {jtbd} |\n"
+                    )
 
                 # Back link
                 f.write("\n---\n\n")
@@ -169,7 +180,7 @@ class DocsGenerator:
 
         output_path = self.docs_path / "skill-tree.md"
 
-        with open(output_path, 'w') as f:
+        with open(output_path, "w") as f:
             f.write("# Skills Directory - Visual Tree\n\n")
             f.write("Interactive visualization of the skills directory structure.\n\n")
 
@@ -180,19 +191,19 @@ class DocsGenerator:
             # Top level: Job Functions
             for func in sorted(self.job_functions.keys()):
                 func_id = func
-                func_label = func.replace('_', ' ').title()
+                func_label = func.replace("_", " ").title()
                 count = len(self.job_functions[func])
 
                 # Determine color based on dominant risk
                 risk_counts = defaultdict(int)
                 for skill in self.job_functions[func]:
-                    risk_counts[skill['risk_level']] += 1
+                    risk_counts[skill["risk_level"]] += 1
 
-                if risk_counts['Critical'] > 0:
+                if risk_counts["Critical"] > 0:
                     color = "fill:#ffcccc"
-                elif risk_counts['High'] > count * 0.5:
+                elif risk_counts["High"] > count * 0.5:
                     color = "fill:#fff4cc"
-                elif risk_counts['Low'] > count * 0.5:
+                elif risk_counts["Low"] > count * 0.5:
                     color = "fill:#ccffcc"
                 else:
                     color = "fill:#cce5ff"
@@ -244,7 +255,7 @@ class DocsGenerator:
         readme_path = self.base_path / "README.md"
 
         # Read existing README
-        with open(readme_path, 'r') as f:
+        with open(readme_path, "r") as f:
             readme_content = f.read()
 
         # Add documentation section if not exists
@@ -256,7 +267,9 @@ class DocsGenerator:
                 new_section += "- 📚 [Complete Skills Directory](docs/directory.md)\n"
                 new_section += "- 🌳 [Visual Skill Tree](docs/skill-tree.md)\n"
                 new_section += "- 📋 [Browse by Job Function](docs/functions/)\n"
-                new_section += "- 🖥️  [Interactive CLI](skill-loom-cli.py) - Run `python3 skill-loom-cli.py`\n"
+                new_section += (
+                    "- 🖥️  [Interactive CLI](skill-loom-cli.py) - Run `python3 skill-loom-cli.py`\n"
+                )
                 new_section += "- 🏗️  [Architecture Guide](ARCHITECTURE.md)\n"
                 new_section += "- 🔒 [Security Policy](SECURITY_POLICY.md)\n\n"
 
@@ -266,11 +279,13 @@ class DocsGenerator:
                 readme_content += "- 📚 [Complete Skills Directory](docs/directory.md)\n"
                 readme_content += "- 🌳 [Visual Skill Tree](docs/skill-tree.md)\n"
                 readme_content += "- 📋 [Browse by Job Function](docs/functions/)\n"
-                readme_content += "- 🖥️  [Interactive CLI](skill-loom-cli.py) - Run `python3 skill-loom-cli.py`\n"
+                readme_content += (
+                    "- 🖥️  [Interactive CLI](skill-loom-cli.py) - Run `python3 skill-loom-cli.py`\n"
+                )
                 readme_content += "- 🏗️  [Architecture Guide](ARCHITECTURE.md)\n"
                 readme_content += "- 🔒 [Security Policy](SECURITY_POLICY.md)\n\n"
 
-            with open(readme_path, 'w') as f:
+            with open(readme_path, "w") as f:
                 f.write(readme_content)
 
             print(f"     ✓ Updated {readme_path}")
@@ -281,5 +296,5 @@ def main():
     generator.generate_all()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

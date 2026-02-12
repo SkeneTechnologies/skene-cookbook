@@ -55,9 +55,11 @@ pytest tests/integration/
 ```
 
 **Test Results:**
+
 <!-- Paste relevant test output -->
 
 ```
+
 ```
 
 ## Security Review
@@ -120,6 +122,7 @@ python scripts/batch_eval_skills.py --skill-name skill-name
 ```
 
 ```
+
 ```
 
 ## Breaking Changes
@@ -129,11 +132,9 @@ python scripts/batch_eval_skills.py --skill-name skill-name
 - [ ] No breaking changes
 - [ ] Breaking changes (describe below)
 
-**Breaking Changes:**
--
+## **Breaking Changes:**
 
-**Migration Guide:**
--
+## **Migration Guide:**
 
 ## Code Quality
 
@@ -153,8 +154,7 @@ python scripts/batch_eval_skills.py --skill-name skill-name
 - [ ] Performance improvement (describe below)
 - [ ] Performance degradation (describe below, provide justification)
 
-**Performance Notes:**
--
+## **Performance Notes:**
 
 ## Documentation
 

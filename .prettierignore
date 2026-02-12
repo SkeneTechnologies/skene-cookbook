@@ -31,6 +31,9 @@ reports/
 # Archives
 archived/
 
+# Skills library (large generated/catalog content; lint bin/ and scripts/ only)
+skills-library/
+
 # Generated files
 *.min.js
 *.map

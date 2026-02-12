@@ -6,20 +6,21 @@ and generates workflow blueprints for different job functions.
 """
 
 import json
-import pytest
+import sys
 from pathlib import Path
 from unittest.mock import Mock, patch
-import sys
+
+import pytest
 
 # Add scripts directory to path
 sys.path.insert(0, str(Path(__file__).parent.parent.parent / "scripts"))
 
 from generate_blueprints import ChainArchitect
 
-
 # =============================================================================
 # Test Initialization
 # =============================================================================
+
 
 @pytest.mark.unit
 def test_initialization(temp_output_directory):
@@ -46,6 +47,7 @@ def test_initialization_creates_blueprint_directory(temp_output_directory):
 # Test I/O Type Extraction
 # =============================================================================
 
+
 @pytest.mark.unit
 def test_extract_io_types_simple():
     """Test extraction of simple JSON schema types."""
@@ -56,8 +58,8 @@ def test_extract_io_types_simple():
         "properties": {
             "name": {"type": "string"},
             "age": {"type": "number"},
-            "active": {"type": "boolean"}
-        }
+            "active": {"type": "boolean"},
+        },
     }
 
     types = architect._extract_io_types(schema)
@@ -78,8 +80,8 @@ def test_extract_io_types_semantic():
         "properties": {
             "data_file": {"type": "string", "description": "Path to data file"},
             "report_url": {"type": "string", "description": "URL of the report"},
-            "image_data": {"type": "string", "description": "Image file contents"}
-        }
+            "image_data": {"type": "string", "description": "Image file contents"},
+        },
     }
 
     types = architect._extract_io_types(schema)
@@ -104,14 +106,7 @@ def test_extract_io_types_nested():
 
     schema = {
         "type": "object",
-        "properties": {
-            "data": {
-                "type": "object",
-                "properties": {
-                    "value": {"type": "number"}
-                }
-            }
-        }
+        "properties": {"data": {"type": "object", "properties": {"value": {"type": "number"}}}},
     }
 
     types = architect._extract_io_types(schema)
@@ -122,6 +117,7 @@ def test_extract_io_types_nested():
 # =============================================================================
 # Test Load Skills
 # =============================================================================
+
 
 @pytest.mark.unit
 def test_load_skills_from_registry(temp_skills_directory, mock_registry_data):
@@ -164,6 +160,7 @@ def test_load_skills_builds_io_graph(temp_skills_directory, mock_skills_data):
 # Test Chainability Analysis
 # =============================================================================
 
+
 @pytest.mark.unit
 def test_analyze_chainability_finds_compatible_pairs():
     """Test identification of compatible skill pairs."""
@@ -172,26 +169,26 @@ def test_analyze_chainability_finds_compatible_pairs():
     # Create skills with compatible I/O
     architect.skills = [
         {
-            'skill_id': 'producer',
-            'name': 'Data Producer',
-            'input_types': set(),
-            'output_types': {'data', 'file'},
-            'tools': [],
-            'exit_states': []
+            "skill_id": "producer",
+            "name": "Data Producer",
+            "input_types": set(),
+            "output_types": {"data", "file"},
+            "tools": [],
+            "exit_states": [],
         },
         {
-            'skill_id': 'consumer',
-            'name': 'Data Consumer',
-            'input_types': {'data', 'file'},
-            'output_types': {'report'},
-            'tools': [],
-            'exit_states': []
-        }
+            "skill_id": "consumer",
+            "name": "Data Consumer",
+            "input_types": {"data", "file"},
+            "output_types": {"report"},
+            "tools": [],
+            "exit_states": [],
+        },
     ]
 
     # Build IO graph
     for skill in architect.skills:
-        for output_type in skill['output_types']:
+        for output_type in skill["output_types"]:
             architect.io_graph[output_type].append(skill)
 
     architect.analyze_chainability()
@@ -207,26 +204,26 @@ def test_analyze_chainability_no_matches():
     # Create skills with incompatible I/O
     architect.skills = [
         {
-            'skill_id': 'skill_a',
-            'name': 'Skill A',
-            'input_types': set(),
-            'output_types': {'type_a'},
-            'tools': [],
-            'exit_states': []
+            "skill_id": "skill_a",
+            "name": "Skill A",
+            "input_types": set(),
+            "output_types": {"type_a"},
+            "tools": [],
+            "exit_states": [],
         },
         {
-            'skill_id': 'skill_b',
-            'name': 'Skill B',
-            'input_types': {'type_b'},  # Different type
-            'output_types': {'type_c'},
-            'tools': [],
-            'exit_states': []
-        }
+            "skill_id": "skill_b",
+            "name": "Skill B",
+            "input_types": {"type_b"},  # Different type
+            "output_types": {"type_c"},
+            "tools": [],
+            "exit_states": [],
+        },
     ]
 
     # Build IO graph
     for skill in architect.skills:
-        for output_type in skill['output_types']:
+        for output_type in skill["output_types"]:
             architect.io_graph[output_type].append(skill)
 
     architect.analyze_chainability()
@@ -239,6 +236,7 @@ def test_analyze_chainability_no_matches():
 # Test Missing Link Identification
 # =============================================================================
 
+
 @pytest.mark.unit
 def test_identify_missing_links():
     """Test identification of workflow gaps."""
@@ -246,26 +244,26 @@ def test_identify_missing_links():
 
     architect.skills = [
         {
-            'skill_id': 'skill_1',
-            'name': 'Skill 1',
-            'input_types': set(),
-            'output_types': {'data'},
-            'tools': [],
-            'exit_states': []
+            "skill_id": "skill_1",
+            "name": "Skill 1",
+            "input_types": set(),
+            "output_types": {"data"},
+            "tools": [],
+            "exit_states": [],
         },
         {
-            'skill_id': 'skill_2',
-            'name': 'Skill 2',
-            'input_types': {'report'},  # No skill produces 'report'
-            'output_types': {'result'},
-            'tools': [],
-            'exit_states': []
-        }
+            "skill_id": "skill_2",
+            "name": "Skill 2",
+            "input_types": {"report"},  # No skill produces 'report'
+            "output_types": {"result"},
+            "tools": [],
+            "exit_states": [],
+        },
     ]
 
     # Build IO graph
     for skill in architect.skills:
-        for output_type in skill['output_types']:
+        for output_type in skill["output_types"]:
             architect.io_graph[output_type].append(skill)
 
     architect.identify_missing_links()
@@ -278,6 +276,7 @@ def test_identify_missing_links():
 # Test Blueprint Generation
 # =============================================================================
 
+
 @pytest.mark.unit
 def test_create_function_blueprint_engineering(temp_output_directory):
     """Test blueprint generation for engineering function."""
@@ -286,13 +285,11 @@ def test_create_function_blueprint_engineering(temp_output_directory):
     architect.skills_by_function = {
         "engineering": [
             {"skill_id": "api_client", "name": "API Client"},
-            {"skill_id": "data_transformer", "name": "Data Transformer"}
+            {"skill_id": "data_transformer", "name": "Data Transformer"},
         ]
     }
 
-    architect.chainable_pairs = [
-        ("api_client", "data_transformer", 0.9)
-    ]
+    architect.chainable_pairs = [("api_client", "data_transformer", 0.9)]
 
     blueprint = architect.create_function_blueprint("engineering")
 
@@ -308,13 +305,11 @@ def test_create_function_blueprint_includes_workflows(temp_output_directory):
     architect.skills_by_function = {
         "marketing": [
             {"skill_id": "content_gen", "name": "Content Generator"},
-            {"skill_id": "seo_optimizer", "name": "SEO Optimizer"}
+            {"skill_id": "seo_optimizer", "name": "SEO Optimizer"},
         ]
     }
 
-    architect.chainable_pairs = [
-        ("content_gen", "seo_optimizer", 0.95)
-    ]
+    architect.chainable_pairs = [("content_gen", "seo_optimizer", 0.95)]
 
     blueprint = architect.create_function_blueprint("marketing")
 
@@ -331,7 +326,7 @@ def test_generate_function_blueprints(temp_output_directory):
     # Setup test data
     architect.skills_by_function = {
         "engineering": [{"skill_id": "test_1", "name": "Test 1"}],
-        "marketing": [{"skill_id": "test_2", "name": "Test 2"}]
+        "marketing": [{"skill_id": "test_2", "name": "Test 2"}],
     }
 
     architect.chainable_pairs = []
@@ -347,6 +342,7 @@ def test_generate_function_blueprints(temp_output_directory):
 # Test Chain Report Generation
 # =============================================================================
 
+
 @pytest.mark.unit
 def test_generate_chain_report(temp_output_directory):
     """Test chain analysis report generation."""
@@ -354,12 +350,12 @@ def test_generate_chain_report(temp_output_directory):
 
     architect.skills = [
         {
-            'skill_id': '1',
-            'name': 'Skill 1',
-            'input_types': set(),
-            'output_types': {'data'},
-            'tools': [],
-            'exit_states': []
+            "skill_id": "1",
+            "name": "Skill 1",
+            "input_types": set(),
+            "output_types": {"data"},
+            "tools": [],
+            "exit_states": [],
         }
     ]
 
@@ -381,8 +377,11 @@ def test_generate_chain_report(temp_output_directory):
 # Test Full Workflow
 # =============================================================================
 
+
 @pytest.mark.unit
-def test_full_blueprint_generation_workflow(temp_skills_directory, mock_registry_data, temp_output_directory):
+def test_full_blueprint_generation_workflow(
+    temp_skills_directory, mock_registry_data, temp_output_directory
+):
     """Test complete blueprint generation workflow."""
     # Setup registry
     registry_dir = temp_skills_directory / "registry" / "job_functions"
@@ -417,38 +416,40 @@ def test_full_blueprint_generation_workflow(temp_skills_directory, mock_registry
 # Test Exit State Analysis
 # =============================================================================
 
+
 @pytest.mark.unit
 def test_analyze_exit_states():
     """Test analysis of skill exit states for chaining hints."""
     architect = ChainArchitect()
 
     skill = {
-        'skill_id': 'test',
-        'exit_states': [
+        "skill_id": "test",
+        "exit_states": [
             {"state": "complete", "nextSkills": ["skill_2"]},
-            {"state": "partial", "nextSkills": ["skill_3"]}
-        ]
+            {"state": "partial", "nextSkills": ["skill_3"]},
+        ],
     }
 
     # Should extract next skill hints
-    assert len(skill['exit_states']) == 2
-    assert skill['exit_states'][0]['nextSkills'] == ["skill_2"]
+    assert len(skill["exit_states"]) == 2
+    assert skill["exit_states"][0]["nextSkills"] == ["skill_2"]
 
 
 # =============================================================================
 # Test I/O Compatibility Logic
 # =============================================================================
 
+
 @pytest.mark.unit
 def test_io_compatibility_exact_match():
     """Test exact type matching for skill chaining."""
     architect = ChainArchitect()
 
-    skill_a = {'output_types': {'string', 'data'}}
-    skill_b = {'input_types': {'string', 'data'}}
+    skill_a = {"output_types": {"string", "data"}}
+    skill_b = {"input_types": {"string", "data"}}
 
     # Check if there's overlap
-    overlap = skill_a['output_types'] & skill_b['input_types']
+    overlap = skill_a["output_types"] & skill_b["input_types"]
     assert len(overlap) > 0
 
 
@@ -457,8 +458,8 @@ def test_io_compatibility_no_match():
     """Test when skills have no compatible types."""
     architect = ChainArchitect()
 
-    skill_a = {'output_types': {'type_x'}}
-    skill_b = {'input_types': {'type_y'}}
+    skill_a = {"output_types": {"type_x"}}
+    skill_b = {"input_types": {"type_y"}}
 
-    overlap = skill_a['output_types'] & skill_b['input_types']
+    overlap = skill_a["output_types"] & skill_b["input_types"]
     assert len(overlap) == 0

@@ -4,38 +4,38 @@ name: Data Analysis Pipeline
 description: Extract, transform, analyze, and visualize data
 category: Data
 chain_sequence:
-- step_id: step_1_extraction
-  skill_id: elg_integration_health
-  action: execute
-  description: Execute extraction
-  timeout_seconds: 300
-  error_handling:
-    on_failure: stop
-    max_retries: 2
-- step_id: step_2_transformation
-  skill_id: elg_partner_influenced_revenue
-  action: execute
-  description: Execute transformation
-  timeout_seconds: 300
-  error_handling:
-    on_failure: continue
-    max_retries: 2
-- step_id: step_3_analysis
-  skill_id: elg_partner_influenced_revenue
-  action: execute
-  description: Execute analysis
-  timeout_seconds: 300
-  error_handling:
-    on_failure: continue
-    max_retries: 2
-- step_id: step_4_visualization
-  skill_id: prodops_documentation_health
-  action: execute
-  description: Execute visualization
-  timeout_seconds: 300
-  error_handling:
-    on_failure: continue
-    max_retries: 2
+  - step_id: step_1_extraction
+    skill_id: elg_integration_health
+    action: execute
+    description: Execute extraction
+    timeout_seconds: 300
+    error_handling:
+      on_failure: stop
+      max_retries: 2
+  - step_id: step_2_transformation
+    skill_id: elg_partner_influenced_revenue
+    action: execute
+    description: Execute transformation
+    timeout_seconds: 300
+    error_handling:
+      on_failure: continue
+      max_retries: 2
+  - step_id: step_3_analysis
+    skill_id: elg_partner_influenced_revenue
+    action: execute
+    description: Execute analysis
+    timeout_seconds: 300
+    error_handling:
+      on_failure: continue
+      max_retries: 2
+  - step_id: step_4_visualization
+    skill_id: prodops_documentation_health
+    action: execute
+    description: Execute visualization
+    timeout_seconds: 300
+    error_handling:
+      on_failure: continue
+      max_retries: 2
 metadata:
   author: Chain Architect
   created_at: '2026-02-12T09:34:39.868506'

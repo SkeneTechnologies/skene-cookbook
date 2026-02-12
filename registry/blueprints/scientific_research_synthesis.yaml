@@ -1,0 +1,47 @@
+id: workflow_scientific_research_synthesis
+version: 1.0.0
+name: Scientific Research Synthesis Pipeline
+description: Literature review to hypothesis generation to research lookup to scientific writing
+category: Research
+chain_sequence:
+  - step_id: step_1_literature_review
+    skill_id: scientific/literature-review
+    action: execute
+    description: Synthesize literature and identify gaps
+    timeout_seconds: 600
+    error_handling:
+      on_failure: stop
+      max_retries: 1
+  - step_id: step_2_hypothesis_generation
+    skill_id: scientific/hypothesis-generation
+    action: execute
+    description: Generate testable hypotheses from review
+    timeout_seconds: 300
+    error_handling:
+      on_failure: continue
+      max_retries: 2
+  - step_id: step_3_research_lookup
+    skill_id: scientific/research-lookup
+    action: execute
+    description: Enrich with current data and citations
+    timeout_seconds: 300
+    error_handling:
+      on_failure: continue
+      max_retries: 2
+  - step_id: step_4_scientific_writing
+    skill_id: scientific/scientific-writing
+    action: execute
+    description: Produce structured research output
+    timeout_seconds: 600
+    error_handling:
+      on_failure: stop
+      max_retries: 1
+metadata:
+  author: Skene Cookbook
+  created_at: '2026-02-12'
+  tags:
+    - scientific
+    - research
+    - literature
+    - hypothesis
+  estimated_duration_seconds: 1800

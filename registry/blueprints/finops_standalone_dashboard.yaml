@@ -1,0 +1,38 @@
+id: workflow_finops_standalone
+version: 1.0.0
+name: FinOps Standalone Dashboard
+description: Burn rate, scenario planning, investor metrics
+category: Finance
+chain_sequence:
+  - step_id: step_1_burn_rate
+    skill_id: finops_burn_rate_monitor
+    action: execute
+    description: Tracks cash burn and runway
+    timeout_seconds: 300
+    error_handling:
+      on_failure: stop
+      max_retries: 1
+  - step_id: step_2_scenario_planner
+    skill_id: finops_scenario_planner
+    action: execute
+    description: Models financial scenarios
+    timeout_seconds: 300
+    error_handling:
+      on_failure: continue
+      max_retries: 2
+  - step_id: step_3_investor_metrics
+    skill_id: finops_investor_metrics
+    action: execute
+    description: Produces investor-ready KPIs
+    timeout_seconds: 300
+    error_handling:
+      on_failure: stop
+      max_retries: 1
+metadata:
+  author: Skene Cookbook
+  created_at: '2026-02-12'
+  tags:
+    - finops
+    - finance
+    - board
+  estimated_duration_seconds: 900

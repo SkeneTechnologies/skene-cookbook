@@ -23,9 +23,9 @@ Usage:
 import json
 import random
 import string
-from pathlib import Path
-from typing import Dict, Any, List, Optional, Union
 from datetime import datetime, timedelta
+from pathlib import Path
+from typing import Any, Dict, List, Optional, Union
 
 
 class TestDataGenerator:
@@ -48,35 +48,32 @@ class TestDataGenerator:
         if skills_library_path is None:
             # Auto-detect from common locations
             project_root = Path(__file__).parent.parent
-            skills_library_path = project_root / 'skills-library'
+            skills_library_path = project_root / "skills-library"
 
         self.skills_library_path = Path(skills_library_path)
 
         # Support new directory structure (context/ and executable/ subdirs)
         self.search_paths = []
-        if (self.skills_library_path / 'executable').exists():
-            self.search_paths.append(self.skills_library_path / 'executable')
-        if (self.skills_library_path / 'context').exists():
-            self.search_paths.append(self.skills_library_path / 'context')
+        if (self.skills_library_path / "executable").exists():
+            self.search_paths.append(self.skills_library_path / "executable")
+        if (self.skills_library_path / "context").exists():
+            self.search_paths.append(self.skills_library_path / "context")
         if not self.search_paths:
             # Fallback to root if new structure doesn't exist
             self.search_paths = [self.skills_library_path]
 
         # Default value generators by type
         self.type_generators = {
-            'string': self._generate_string,
-            'number': self._generate_number,
-            'integer': self._generate_integer,
-            'boolean': self._generate_boolean,
-            'array': self._generate_array,
-            'object': self._generate_object,
+            "string": self._generate_string,
+            "number": self._generate_number,
+            "integer": self._generate_integer,
+            "boolean": self._generate_boolean,
+            "array": self._generate_array,
+            "object": self._generate_object,
         }
 
     def generate_from_skill(
-        self,
-        skill_id: str,
-        num_valid_cases: int = 3,
-        include_edge_cases: bool = True
+        self, skill_id: str, num_valid_cases: int = 3, include_edge_cases: bool = True
     ) -> List[Dict[str, Any]]:
         """
         Generate test data for a specific skill.
@@ -94,20 +91,18 @@ class TestDataGenerator:
         if not skill_path:
             raise FileNotFoundError(f"Skill not found: {skill_id}")
 
-        with open(skill_path / 'skill.json', 'r') as f:
+        with open(skill_path / "skill.json", "r") as f:
             skill_def = json.load(f)
 
-        input_schema = skill_def.get('inputSchema', {})
+        input_schema = skill_def.get("inputSchema", {})
 
         # Generate valid test cases
         test_cases = []
         for i in range(num_valid_cases):
             inputs = self.generate_from_schema(input_schema)
-            test_cases.append({
-                'inputs': inputs,
-                'label': f'valid_case_{i+1}',
-                'expected_valid': True
-            })
+            test_cases.append(
+                {"inputs": inputs, "label": f"valid_case_{i+1}", "expected_valid": True}
+            )
 
         # Generate edge cases
         if include_edge_cases:
@@ -117,10 +112,7 @@ class TestDataGenerator:
         return test_cases
 
     def generate_from_schema(
-        self,
-        schema: Dict[str, Any],
-        depth: int = 0,
-        max_depth: int = 5
+        self, schema: Dict[str, Any], depth: int = 0, max_depth: int = 5
     ) -> Any:
         """
         Generate a single valid value from JSON Schema.
@@ -136,15 +128,15 @@ class TestDataGenerator:
         if depth > max_depth:
             return None
 
-        schema_type = schema.get('type', 'object')
+        schema_type = schema.get("type", "object")
 
         # Handle enum
-        if 'enum' in schema:
-            return random.choice(schema['enum'])
+        if "enum" in schema:
+            return random.choice(schema["enum"])
 
         # Handle const
-        if 'const' in schema:
-            return schema['const']
+        if "const" in schema:
+            return schema["const"]
 
         # Generate by type
         generator = self.type_generators.get(schema_type, self._generate_string)
@@ -168,11 +160,11 @@ class TestDataGenerator:
         """
         edge_cases = []
 
-        if schema.get('type') != 'object':
+        if schema.get("type") != "object":
             return edge_cases
 
-        required = schema.get('required', [])
-        properties = schema.get('properties', {})
+        required = schema.get("required", [])
+        properties = schema.get("properties", {})
 
         # Edge case 1: Missing required field
         if required:
@@ -180,49 +172,44 @@ class TestDataGenerator:
                 incomplete_data = self.generate_from_schema(schema)
                 if field in incomplete_data:
                     del incomplete_data[field]
-                edge_cases.append({
-                    'inputs': incomplete_data,
-                    'label': f'missing_{field}',
-                    'expected_valid': False
-                })
+                edge_cases.append(
+                    {
+                        "inputs": incomplete_data,
+                        "label": f"missing_{field}",
+                        "expected_valid": False,
+                    }
+                )
 
         # Edge case 2: Wrong type for field
         for field, prop_schema in properties.items():
             invalid_data = self.generate_from_schema(schema)
-            field_type = prop_schema.get('type', 'string')
+            field_type = prop_schema.get("type", "string")
 
             # Generate wrong type
-            if field_type == 'string':
+            if field_type == "string":
                 invalid_data[field] = 12345  # number instead of string
-            elif field_type in ['number', 'integer']:
+            elif field_type in ["number", "integer"]:
                 invalid_data[field] = "not_a_number"  # string instead of number
-            elif field_type == 'boolean':
+            elif field_type == "boolean":
                 invalid_data[field] = "yes"  # string instead of boolean
-            elif field_type == 'array':
+            elif field_type == "array":
                 invalid_data[field] = "not_an_array"
-            elif field_type == 'object':
+            elif field_type == "object":
                 invalid_data[field] = "not_an_object"
 
-            edge_cases.append({
-                'inputs': invalid_data,
-                'label': f'invalid_type_{field}',
-                'expected_valid': False
-            })
+            edge_cases.append(
+                {"inputs": invalid_data, "label": f"invalid_type_{field}", "expected_valid": False}
+            )
 
         # Edge case 3: Empty values
-        edge_cases.append({
-            'inputs': {},
-            'label': 'empty_object',
-            'expected_valid': len(required) == 0
-        })
+        edge_cases.append(
+            {"inputs": {}, "label": "empty_object", "expected_valid": len(required) == 0}
+        )
 
         return edge_cases
 
     def generate_batch(
-        self,
-        skill_ids: List[str],
-        cases_per_skill: int = 3,
-        output_dir: Optional[Path] = None
+        self, skill_ids: List[str], cases_per_skill: int = 3, output_dir: Optional[Path] = None
     ) -> Dict[str, List[Dict[str, Any]]]:
         """
         Generate test data for multiple skills at once.
@@ -244,9 +231,9 @@ class TestDataGenerator:
 
                 # Save to file if output dir specified
                 if output_dir:
-                    output_path = Path(output_dir) / f'{skill_id}_test_data.json'
+                    output_path = Path(output_dir) / f"{skill_id}_test_data.json"
                     output_path.parent.mkdir(parents=True, exist_ok=True)
-                    with open(output_path, 'w') as f:
+                    with open(output_path, "w") as f:
                         json.dump(test_cases, f, indent=2)
 
             except Exception as e:
@@ -255,12 +242,7 @@ class TestDataGenerator:
 
         return batch_data
 
-    def save_test_cases(
-        self,
-        skill_id: str,
-        test_cases: List[Dict[str, Any]],
-        output_path: Path
-    ):
+    def save_test_cases(self, skill_id: str, test_cases: List[Dict[str, Any]], output_path: Path):
         """
         Save test cases to JSON file.
 
@@ -272,13 +254,13 @@ class TestDataGenerator:
         output_path.parent.mkdir(parents=True, exist_ok=True)
 
         data = {
-            'skill_id': skill_id,
-            'generated_at': datetime.now().isoformat(),
-            'num_cases': len(test_cases),
-            'test_cases': test_cases
+            "skill_id": skill_id,
+            "generated_at": datetime.now().isoformat(),
+            "num_cases": len(test_cases),
+            "test_cases": test_cases,
         }
 
-        with open(output_path, 'w') as f:
+        with open(output_path, "w") as f:
             json.dump(data, f, indent=2)
 
     # Type-specific generators
@@ -286,59 +268,59 @@ class TestDataGenerator:
     def _generate_string(self, schema: Dict[str, Any], depth: int = 0) -> str:
         """Generate string value."""
         # Check for pattern or format
-        format_type = schema.get('format')
+        format_type = schema.get("format")
 
-        if format_type == 'email':
-            return f'user_{self._random_string(5)}@example.com'
-        elif format_type == 'uri':
-            return f'https://example.com/{self._random_string(8)}'
-        elif format_type == 'date-time':
+        if format_type == "email":
+            return f"user_{self._random_string(5)}@example.com"
+        elif format_type == "uri":
+            return f"https://example.com/{self._random_string(8)}"
+        elif format_type == "date-time":
             return datetime.now().isoformat()
-        elif format_type == 'date':
+        elif format_type == "date":
             return datetime.now().date().isoformat()
 
         # Check for min/max length
-        min_length = schema.get('minLength', 1)
-        max_length = schema.get('maxLength', 20)
+        min_length = schema.get("minLength", 1)
+        max_length = schema.get("maxLength", 20)
         length = random.randint(min_length, min(max_length, 20))
 
         # Use description as hint for generating meaningful values
-        description = schema.get('description', '').lower()
+        description = schema.get("description", "").lower()
 
-        if 'id' in description or 'identifier' in description:
-            return f'test_{self._random_string(8)}'
-        elif 'name' in description:
-            return f'Test Name {self._random_string(4)}'
-        elif 'email' in description:
-            return f'user_{self._random_string(5)}@example.com'
-        elif 'url' in description or 'uri' in description:
-            return f'https://example.com/{self._random_string(8)}'
+        if "id" in description or "identifier" in description:
+            return f"test_{self._random_string(8)}"
+        elif "name" in description:
+            return f"Test Name {self._random_string(4)}"
+        elif "email" in description:
+            return f"user_{self._random_string(5)}@example.com"
+        elif "url" in description or "uri" in description:
+            return f"https://example.com/{self._random_string(8)}"
 
         return self._random_string(length)
 
     def _generate_number(self, schema: Dict[str, Any], depth: int = 0) -> float:
         """Generate number value."""
-        minimum = schema.get('minimum', 0)
-        maximum = schema.get('maximum', 10000)
+        minimum = schema.get("minimum", 0)
+        maximum = schema.get("maximum", 10000)
 
         # Check for exclusive bounds
-        if schema.get('exclusiveMinimum'):
-            minimum = schema['exclusiveMinimum'] + 0.01
-        if schema.get('exclusiveMaximum'):
-            maximum = schema['exclusiveMaximum'] - 0.01
+        if schema.get("exclusiveMinimum"):
+            minimum = schema["exclusiveMinimum"] + 0.01
+        if schema.get("exclusiveMaximum"):
+            maximum = schema["exclusiveMaximum"] - 0.01
 
         return round(random.uniform(minimum, maximum), 2)
 
     def _generate_integer(self, schema: Dict[str, Any], depth: int = 0) -> int:
         """Generate integer value."""
-        minimum = schema.get('minimum', 0)
-        maximum = schema.get('maximum', 1000)
+        minimum = schema.get("minimum", 0)
+        maximum = schema.get("maximum", 1000)
 
         # Check for exclusive bounds
-        if schema.get('exclusiveMinimum'):
-            minimum = schema['exclusiveMinimum'] + 1
-        if schema.get('exclusiveMaximum'):
-            maximum = schema['exclusiveMaximum'] - 1
+        if schema.get("exclusiveMinimum"):
+            minimum = schema["exclusiveMinimum"] + 1
+        if schema.get("exclusiveMaximum"):
+            maximum = schema["exclusiveMaximum"] - 1
 
         return random.randint(minimum, maximum)
 
@@ -348,21 +330,18 @@ class TestDataGenerator:
 
     def _generate_array(self, schema: Dict[str, Any], depth: int = 0) -> List[Any]:
         """Generate array value."""
-        min_items = schema.get('minItems', 0)
-        max_items = schema.get('maxItems', 3)
+        min_items = schema.get("minItems", 0)
+        max_items = schema.get("maxItems", 3)
         num_items = random.randint(min_items, min(max_items, 3))
 
-        items_schema = schema.get('items', {'type': 'string'})
+        items_schema = schema.get("items", {"type": "string"})
 
-        return [
-            self.generate_from_schema(items_schema, depth + 1)
-            for _ in range(num_items)
-        ]
+        return [self.generate_from_schema(items_schema, depth + 1) for _ in range(num_items)]
 
     def _generate_object(self, schema: Dict[str, Any], depth: int = 0) -> Dict[str, Any]:
         """Generate object value."""
-        properties = schema.get('properties', {})
-        required = schema.get('required', [])
+        properties = schema.get("properties", {})
+        required = schema.get("required", [])
 
         result = {}
 
@@ -382,7 +361,7 @@ class TestDataGenerator:
 
     def _random_string(self, length: int = 10) -> str:
         """Generate random alphanumeric string."""
-        return ''.join(random.choices(string.ascii_lowercase + string.digits, k=length))
+        return "".join(random.choices(string.ascii_lowercase + string.digits, k=length))
 
     def _find_skill_path(self, skill_id: str) -> Optional[Path]:
         """
@@ -395,10 +374,10 @@ class TestDataGenerator:
             Path to skill directory or None if not found
         """
         # Handle path-based IDs (e.g., 'cursor_rules/flask')
-        if '/' in skill_id:
+        if "/" in skill_id:
             # Direct path-based lookup
             skill_path = self.skills_library_path / skill_id
-            if skill_path.exists() and (skill_path / 'skill.json').exists():
+            if skill_path.exists() and (skill_path / "skill.json").exists():
                 return skill_path
             # Also try without skill.json to handle directory directly
             if skill_path.exists():
@@ -407,31 +386,31 @@ class TestDataGenerator:
 
         # Common domain abbreviations
         domain_prefixes = {
-            'customer_success': ['cs_', 'customer_success_'],
-            'ai_ops': ['ai_', 'ai_ops_'],
-            'product_ops': ['prodops_', 'product_ops_'],
-            'support_ops': ['support_', 'support_ops_'],
-            'ecosystem': ['elg_', 'ecosystem_'],
-            'marketing': ['mktg_', 'marketing_'],
-            'revops': ['revops_', 'revenue_ops_'],
-            'plg': ['plg_'],
-            'monetization': ['monetization_', 'mon_'],
-            'finops': ['finops_', 'finance_ops_'],
-            'security': ['security_', 'sec_'],
-            'community': ['community_', 'comm_'],
+            "customer_success": ["cs_", "customer_success_"],
+            "ai_ops": ["ai_", "ai_ops_"],
+            "product_ops": ["prodops_", "product_ops_"],
+            "support_ops": ["support_", "support_ops_"],
+            "ecosystem": ["elg_", "ecosystem_"],
+            "marketing": ["mktg_", "marketing_"],
+            "revops": ["revops_", "revenue_ops_"],
+            "plg": ["plg_"],
+            "monetization": ["monetization_", "mon_"],
+            "finops": ["finops_", "finance_ops_"],
+            "security": ["security_", "sec_"],
+            "community": ["community_", "comm_"],
         }
 
         # Search all domain directories (in both executable and context paths)
         for search_path in self.search_paths:
             for domain_dir in search_path.iterdir():
-                if not domain_dir.is_dir() or domain_dir.name.startswith('.'):
+                if not domain_dir.is_dir() or domain_dir.name.startswith("."):
                     continue
 
                 domain_name = domain_dir.name
 
                 # Get possible prefixes for this domain
-                prefixes_to_try = domain_prefixes.get(domain_name, [f'{domain_name}_'])
-                prefixes_to_try.append('')  # Also try no prefix
+                prefixes_to_try = domain_prefixes.get(domain_name, [f"{domain_name}_"])
+                prefixes_to_try.append("")  # Also try no prefix
 
                 # Try multiple naming patterns
                 patterns = set()  # Use set to avoid duplicates
@@ -439,31 +418,32 @@ class TestDataGenerator:
                 for prefix in prefixes_to_try:
                     if skill_id.startswith(prefix):
                         # Remove the prefix
-                        base_name = skill_id[len(prefix):]
+                        base_name = skill_id[len(prefix) :]
                         patterns.add(base_name)
-                        patterns.add(base_name.replace('_', '-'))
+                        patterns.add(base_name.replace("_", "-"))
 
                 # Also try exact match and common variations
                 patterns.add(skill_id)
-                patterns.add(skill_id.replace('_', '-'))
-                patterns.add(skill_id.replace('-', '_'))
+                patterns.add(skill_id.replace("_", "-"))
+                patterns.add(skill_id.replace("-", "_"))
 
                 # Try direct match first (fast path for non-nested structures)
                 for pattern in patterns:
                     skill_dir = domain_dir / pattern
-                    if skill_dir.exists() and (skill_dir / 'skill.json').exists():
+                    if skill_dir.exists() and (skill_dir / "skill.json").exists():
                         return skill_dir
 
                 # If not found, search recursively (for nested structures like marketing)
                 for pattern in patterns:
                     # Use rglob to search recursively
-                    for skill_json_path in domain_dir.rglob(f'{pattern}/skill.json'):
+                    for skill_json_path in domain_dir.rglob(f"{pattern}/skill.json"):
                         return skill_json_path.parent
 
         return None
 
 
 # Convenience functions
+
 
 def generate_test_data(skill_id: str, num_cases: int = 3) -> List[Dict[str, Any]]:
     """
@@ -481,9 +461,7 @@ def generate_test_data(skill_id: str, num_cases: int = 3) -> List[Dict[str, Any]
 
 
 def generate_batch_test_data(
-    skill_ids: List[str],
-    output_dir: Union[str, Path],
-    cases_per_skill: int = 3
+    skill_ids: List[str], output_dir: Union[str, Path], cases_per_skill: int = 3
 ) -> Dict[str, List[Dict[str, Any]]]:
     """
     Convenience function to generate test data for multiple skills.

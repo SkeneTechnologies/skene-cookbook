@@ -45,6 +45,7 @@ tests/
 ## Test Categories
 
 ### Unit Tests (`tests/unit/`)
+
 - **test_dedupe_skills.py**: Semantic deduplication engine
   - Sentence transformer mocking
   - Embedding generation
@@ -74,6 +75,7 @@ tests/
   - Chain suggestions
 
 ### Integration Tests (`tests/integration/`)
+
 - **test_full_pipeline.py**: Complete workflow testing
   - Analyze → Dedupe → Blueprints pipeline
   - Cross-component integration
@@ -85,6 +87,7 @@ tests/
   - Error handling
 
 ### Performance Tests (`tests/performance/`)
+
 - **test_large_scale.py**: Large-scale operations
   - 764 skills deduplication (< 60s embedding, < 30s dedupe)
   - Security analysis performance (< 120s)
@@ -94,6 +97,7 @@ tests/
 ## Running Tests
 
 ### By Category
+
 ```bash
 # Unit tests only
 pytest tests/unit -v
@@ -106,6 +110,7 @@ pytest tests/performance -v
 ```
 
 ### By Markers
+
 ```bash
 # Fast tests only (exclude slow tests)
 pytest -m "not slow"
@@ -121,6 +126,7 @@ pytest -m performance
 ```
 
 ### With Coverage
+
 ```bash
 # Generate coverage report
 pytest --cov=scripts --cov=. --cov-report=html --cov-report=term-missing
@@ -130,6 +136,7 @@ pytest --cov=scripts --cov-fail-under=80
 ```
 
 ### Parallel Execution
+
 ```bash
 # Run tests in parallel (faster)
 pytest -n auto
@@ -138,12 +145,15 @@ pytest -n auto
 ## Key Features
 
 ### Automatic Mocking
+
 All heavy dependencies are mocked automatically:
+
 - **Sentence Transformers**: Prevents 500MB+ model loading
 - **Rich Console**: Captures output without rendering
 - **Pyfiglet**: Mocks ASCII art generation
 
 ### Fixtures
+
 - `mock_skills_data`: 10 representative test skills
 - `temp_skills_directory`: Temporary file structure
 - `temp_output_directory`: Temporary output location
@@ -152,6 +162,7 @@ All heavy dependencies are mocked automatically:
 - `sample_skill_high_risk`: High-risk skill for security testing
 
 ### Test Data
+
 - **mock_skills.json**: 10 skills covering:
   - Different job functions (engineering, marketing, finops)
   - Various risk levels (Critical, High, Medium, Low)
@@ -161,10 +172,12 @@ All heavy dependencies are mocked automatically:
 ## CI/CD Integration
 
 Tests run automatically on:
+
 - Every push to `main` or `develop`
 - Every pull request to `main`
 
 ### GitHub Actions Workflow
+
 ```yaml
 - Run unit tests with coverage
 - Run integration tests
@@ -175,18 +188,19 @@ Tests run automatically on:
 
 ## Coverage Goals
 
-| Component | Target | Status |
-|-----------|--------|--------|
-| dedupe_skills.py | 90%+ | ✅ |
-| analyze_skills.py | 85%+ | ✅ |
-| generate_blueprints.py | 80%+ | ✅ |
-| skill-loom-cli.py | 70%+ | ✅ |
-| loom | 75%+ | ✅ |
-| **Overall** | **80%+** | **✅** |
+| Component              | Target   | Status |
+| ---------------------- | -------- | ------ |
+| dedupe_skills.py       | 90%+     | ✅     |
+| analyze_skills.py      | 85%+     | ✅     |
+| generate_blueprints.py | 80%+     | ✅     |
+| skill-loom-cli.py      | 70%+     | ✅     |
+| loom                   | 75%+     | ✅     |
+| **Overall**            | **80%+** | **✅** |
 
 ## Writing New Tests
 
 ### Example Unit Test
+
 ```python
 @pytest.mark.unit
 def test_my_function(temp_skills_directory):
@@ -196,6 +210,7 @@ def test_my_function(temp_skills_directory):
 ```
 
 ### Example Integration Test
+
 ```python
 @pytest.mark.integration
 @pytest.mark.slow
@@ -214,24 +229,28 @@ def test_my_workflow(temp_skills_directory):
 ## Troubleshooting
 
 ### Import Errors
+
 ```bash
 # Ensure scripts are in path
 export PYTHONPATH="${PYTHONPATH}:$(pwd)/scripts"
 ```
 
 ### Slow Tests
+
 ```bash
 # Skip slow tests during development
 pytest -m "not slow"
 ```
 
 ### Coverage Issues
+
 ```bash
 # Check what's not covered
 pytest --cov=scripts --cov-report=term-missing
 ```
 
 ### Failed Tests
+
 ```bash
 # Run with verbose output
 pytest -vv --tb=long
@@ -250,11 +269,13 @@ pytest -vv --tb=long
 ## Performance Benchmarks
 
 With test data (10 skills):
+
 - **Unit tests**: < 5 seconds
 - **Integration tests**: < 30 seconds
 - **Full suite**: < 60 seconds
 
 With full dataset (764 skills):
+
 - **Deduplication**: < 90 seconds
 - **Security analysis**: < 120 seconds
 - **Blueprint generation**: < 10 seconds
@@ -262,6 +283,7 @@ With full dataset (764 skills):
 ## Contributing
 
 When adding new features:
+
 1. Write tests first (TDD approach)
 2. Ensure tests pass: `pytest`
 3. Check coverage: `pytest --cov`

@@ -5,13 +5,14 @@ Tests that validate complete user journeys from start to finish.
 These tests simulate real-world usage patterns.
 """
 
-import pytest
-import subprocess
-import tempfile
 import json
-from pathlib import Path
+import subprocess
 import sys
+import tempfile
 import time
+from pathlib import Path
+
+import pytest
 
 
 @pytest.mark.e2e
@@ -28,7 +29,7 @@ class TestFirstTimeUserJourney:
             [sys.executable, str(base_path / "scripts" / "dedupe_skills.py"), "--help"],
             capture_output=True,
             text=True,
-            timeout=10
+            timeout=10,
         )
 
         # Should show help without crashing
@@ -214,7 +215,7 @@ class TestCLIInteractions:
         scripts = [
             "scripts/dedupe_skills.py",
             "scripts/analyze_skills.py",
-            "scripts/generate_blueprints.py"
+            "scripts/generate_blueprints.py",
         ]
 
         for script in scripts:
@@ -227,7 +228,7 @@ class TestCLIInteractions:
                 [sys.executable, str(script_path), "--help"],
                 capture_output=True,
                 text=True,
-                timeout=10
+                timeout=10,
             )
 
             # Should respond to help (returncode 0, 1, or 2 acceptable)

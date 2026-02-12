@@ -9,27 +9,30 @@ Tests the complete workflow:
 """
 
 import json
-import pytest
-from pathlib import Path
-import sys
 import subprocess
+import sys
+from pathlib import Path
+
+import pytest
 import yaml
 
 # Add scripts to path
 sys.path.insert(0, str(Path(__file__).parent.parent.parent / "scripts"))
 
-from dedupe_skills import SkillDeduplicator
 from analyze_skills import SkillAnalyzer
+from dedupe_skills import SkillDeduplicator
 from generate_blueprints import ChainArchitect
-
 
 # =============================================================================
 # Full Pipeline Integration Tests
 # =============================================================================
 
+
 @pytest.mark.integration
 @pytest.mark.slow
-def test_analyze_dedupe_chain_pipeline(temp_skills_directory, temp_output_directory, mock_skills_data):
+def test_analyze_dedupe_chain_pipeline(
+    temp_skills_directory, temp_output_directory, mock_skills_data
+):
     """Test complete pipeline: analyze → dedupe → blueprints."""
 
     # Phase 1: Analyze Skills
@@ -42,7 +45,9 @@ def test_analyze_dedupe_chain_pipeline(temp_skills_directory, temp_output_direct
     assert analysis_report.exists()
 
     # Phase 2: Deduplication
-    deduplicator = SkillDeduplicator(similarity_threshold=0.85, base_path=str(temp_skills_directory))
+    deduplicator = SkillDeduplicator(
+        similarity_threshold=0.85, base_path=str(temp_skills_directory)
+    )
     deduplicator.load_all_skills()
     deduplicator.generate_embeddings()
     deduplicator.find_duplicates()
@@ -63,10 +68,7 @@ def test_analyze_dedupe_chain_pipeline(temp_skills_directory, temp_output_direct
         job_func = skill.job_function
         if job_func not in index_data:
             index_data[job_func] = []
-        index_data[job_func].append({
-            "skill_id": skill.skill_id,
-            "name": skill.skill_id
-        })
+        index_data[job_func].append({"skill_id": skill.skill_id, "name": skill.skill_id})
 
     with open(registry_dir / "index.json", "w") as f:
         json.dump(index_data, f)
@@ -147,6 +149,7 @@ def test_registry_health_flow(temp_skills_directory, mock_registry_data):
 # Cross-Component Integration Tests
 # =============================================================================
 
+
 @pytest.mark.integration
 def test_security_analysis_affects_blueprints(temp_skills_directory, temp_output_directory):
     """Test that security analysis results influence blueprint generation."""
@@ -156,7 +159,9 @@ def test_security_analysis_affects_blueprints(temp_skills_directory, temp_output
     analyzer.analyze_all_skills()
 
     # Get high-risk skills
-    high_risk_skills = [s for s in analyzer.analyzed_skills if s.security_risk_level in ["Critical", "High"]]
+    high_risk_skills = [
+        s for s in analyzer.analyzed_skills if s.security_risk_level in ["Critical", "High"]
+    ]
 
     # Generate blueprints
     registry_dir = temp_skills_directory / "registry" / "job_functions"
@@ -194,6 +199,7 @@ def test_dedupe_results_inform_verification(temp_skills_directory):
 # =============================================================================
 # Data Consistency Tests
 # =============================================================================
+
 
 @pytest.mark.integration
 def test_all_analyzed_skills_have_security_levels(temp_skills_directory):
@@ -235,6 +241,7 @@ def test_dedupe_embeddings_match_skill_count(temp_skills_directory):
 # =============================================================================
 # Report Format Validation Tests
 # =============================================================================
+
 
 @pytest.mark.integration
 def test_all_reports_valid_json(temp_skills_directory, temp_output_directory):
@@ -288,6 +295,7 @@ def test_all_reports_valid_markdown(temp_skills_directory, temp_output_directory
 # Performance Integration Tests
 # =============================================================================
 
+
 @pytest.mark.integration
 @pytest.mark.slow
 def test_pipeline_completes_in_reasonable_time(temp_skills_directory, temp_output_directory):
@@ -317,6 +325,7 @@ def test_pipeline_completes_in_reasonable_time(temp_skills_directory, temp_outpu
 # =============================================================================
 # Edge Case Integration Tests
 # =============================================================================
+
 
 @pytest.mark.integration
 def test_handles_empty_skills_directory(temp_output_directory):

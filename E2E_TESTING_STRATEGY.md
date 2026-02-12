@@ -23,6 +23,7 @@ Comprehensive E2E testing strategy to validate the Skills Directory before publi
 ### Phase 1: Fresh Installation Testing ✓
 
 #### Test on Clean Systems
+
 - [ ] **Ubuntu 22.04 LTS** (GitHub Actions runner)
 - [ ] **Ubuntu 24.04 LTS** (Latest)
 - [ ] **macOS 13 (Ventura)** (Intel)
@@ -31,6 +32,7 @@ Comprehensive E2E testing strategy to validate the Skills Directory before publi
 - [ ] **Docker Alpine Linux** (Minimal environment)
 
 #### Installation Scenarios
+
 ```bash
 # Scenario 1: Fresh Git Clone
 git clone https://github.com/username/skene-cookbook.git
@@ -53,6 +55,7 @@ pip install -r requirements.txt
 ```
 
 #### Validation Points
+
 - [ ] All dependencies install without errors
 - [ ] No missing system dependencies
 - [ ] Scripts are executable
@@ -64,6 +67,7 @@ pip install -r requirements.txt
 ### Phase 2: Core Workflow Testing ✓
 
 #### User Journey 1: First-Time User
+
 ```bash
 # As a new user, I want to explore available skills
 
@@ -78,6 +82,7 @@ pip install -r requirements.txt
 ```
 
 **Success Criteria**:
+
 - [ ] README instructions are accurate
 - [ ] Installation completes without errors
 - [ ] CLI launches successfully
@@ -87,6 +92,7 @@ pip install -r requirements.txt
 - [ ] No crashes or errors
 
 #### User Journey 2: Data Analyst
+
 ```bash
 # As a data analyst, I want to analyze skill quality
 
@@ -102,12 +108,14 @@ pip install -r requirements.txt
 ```
 
 **Success Criteria**:
+
 - [ ] Analysis completes in < 2 minutes
 - [ ] Report is generated correctly
 - [ ] JSON is valid and readable
 - [ ] Recommendations are actionable
 
 #### User Journey 3: Security Auditor
+
 ```bash
 # As a security auditor, I want to assess risk levels
 
@@ -123,12 +131,14 @@ pip install -r requirements.txt
 ```
 
 **Success Criteria**:
+
 - [ ] All skills are analyzed
 - [ ] Risk levels are assigned correctly
 - [ ] Report is comprehensive
 - [ ] No false positives
 
 #### User Journey 4: Workflow Engineer
+
 ```bash
 # As a workflow engineer, I want to create skill chains
 
@@ -144,6 +154,7 @@ pip install -r requirements.txt
 ```
 
 **Success Criteria**:
+
 - [ ] Blueprints are generated
 - [ ] YAML is valid
 - [ ] Chainable pairs are identified
@@ -154,6 +165,7 @@ pip install -r requirements.txt
 ### Phase 3: Scale Testing with Real Data ✓
 
 #### Full Dataset Testing (808 Skills)
+
 ```bash
 # Test with complete skills library
 
@@ -165,6 +177,7 @@ pip install -r requirements.txt
 ```
 
 **Performance Benchmarks**:
+
 - [ ] Load time: < 10 seconds
 - [ ] Deduplication: < 120 seconds
 - [ ] Analysis: < 180 seconds
@@ -173,6 +186,7 @@ pip install -r requirements.txt
 - [ ] Disk space: < 500MB
 
 #### Stress Testing
+
 ```bash
 # Concurrent operations
 pytest tests/performance/test_large_scale.py -v
@@ -187,6 +201,7 @@ python scripts/generate_docs.py
 ```
 
 **Success Criteria**:
+
 - [ ] No memory leaks
 - [ ] Consistent performance
 - [ ] No file corruption
@@ -197,6 +212,7 @@ python scripts/generate_docs.py
 ### Phase 4: Documentation Validation ✓
 
 #### README Accuracy Test
+
 ```bash
 # Follow README instructions exactly as written
 
@@ -209,6 +225,7 @@ python scripts/generate_docs.py
 ```
 
 **Checklist**:
+
 - [ ] All prerequisites are necessary and sufficient
 - [ ] Installation steps work on all platforms
 - [ ] Quick start examples execute successfully
@@ -218,6 +235,7 @@ python scripts/generate_docs.py
 - [ ] Badges reflect reality
 
 #### Documentation Completeness
+
 - [ ] **README.md** - Clear, accurate, complete
 - [ ] **CONTRIBUTING.md** - Contribution guidelines
 - [ ] **LICENSE** - Appropriate license (MIT/Apache)
@@ -229,6 +247,7 @@ python scripts/generate_docs.py
 - [ ] **API documentation** - If applicable
 
 #### Documentation Testing Script
+
 ```bash
 #!/bin/bash
 # Test all documentation examples
@@ -246,6 +265,7 @@ python scripts/generate_docs.py
 #### Pre-Release Security Checklist
 
 ##### 1. Secrets & Credentials
+
 ```bash
 # Check for exposed secrets
 git log --all --full-history --source --remotes -- "*secret*" "*password*" "*.env" "*credentials*"
@@ -259,6 +279,7 @@ rg -i "password|api_key|secret|token" --type py --type json
 ```
 
 **Must Verify**:
+
 - [ ] No API keys in code
 - [ ] No passwords in configs
 - [ ] No .env files committed
@@ -266,6 +287,7 @@ rg -i "password|api_key|secret|token" --type py --type json
 - [ ] .gitignore is comprehensive
 
 ##### 2. Dependency Security
+
 ```bash
 # Check for vulnerabilities
 pip-audit
@@ -278,12 +300,14 @@ cat requirements.txt requirements-test.txt
 ```
 
 **Action Items**:
+
 - [ ] All dependencies < 2 years old
 - [ ] No known CVEs
 - [ ] Minimal dependency footprint
 - [ ] Locked versions specified
 
 ##### 3. Code Security Scan
+
 ```bash
 # Static analysis
 bandit -r scripts/ -ll
@@ -296,6 +320,7 @@ semgrep --config=auto scripts/
 ```
 
 **Must Fix**:
+
 - [ ] No SQL injection risks
 - [ ] No command injection risks
 - [ ] No path traversal vulnerabilities
@@ -303,6 +328,7 @@ semgrep --config=auto scripts/
 - [ ] No hardcoded secrets
 
 ##### 4. Privacy Compliance
+
 - [ ] No personal data in repository
 - [ ] No user tracking without consent
 - [ ] Privacy policy if collecting data
@@ -315,37 +341,41 @@ semgrep --config=auto scripts/
 
 #### Platform-Specific Testing Matrix
 
-| Test | Ubuntu | macOS | Windows | Docker |
-|------|--------|-------|---------|--------|
-| Fresh install | ✓ | ✓ | ✓ | ✓ |
-| Dependency install | ✓ | ✓ | ✓ | ✓ |
-| Script execution | ✓ | ✓ | ✓ | ✓ |
-| CLI interface | ✓ | ✓ | ✓ | ✓ |
-| File paths | ✓ | ✓ | ✓ | ✓ |
-| Unicode handling | ✓ | ✓ | ✓ | ✓ |
-| Performance | ✓ | ✓ | ✓ | ✓ |
+| Test               | Ubuntu | macOS | Windows | Docker |
+| ------------------ | ------ | ----- | ------- | ------ |
+| Fresh install      | ✓      | ✓     | ✓       | ✓      |
+| Dependency install | ✓      | ✓     | ✓       | ✓      |
+| Script execution   | ✓      | ✓     | ✓       | ✓      |
+| CLI interface      | ✓      | ✓     | ✓       | ✓      |
+| File paths         | ✓      | ✓     | ✓       | ✓      |
+| Unicode handling   | ✓      | ✓     | ✓       | ✓      |
+| Performance        | ✓      | ✓     | ✓       | ✓      |
 
 #### Platform-Specific Issues to Test
 
 **macOS**:
+
 - [ ] Works on Intel and Apple Silicon
 - [ ] Python 3.9+ compatibility
 - [ ] Path separators correct
 - [ ] No case sensitivity issues
 
 **Linux**:
+
 - [ ] Works on Ubuntu, Debian, Fedora, Arch
 - [ ] Doesn't require sudo
 - [ ] File permissions correct
 - [ ] Unicode support
 
 **Windows (WSL2)**:
+
 - [ ] Line endings (CRLF vs LF)
 - [ ] Path separators (\ vs /)
 - [ ] Works in PowerShell and CMD
 - [ ] Windows-specific dependencies
 
 **Docker**:
+
 - [ ] Minimal base image works
 - [ ] All dependencies install
 - [ ] Runs as non-root user
@@ -358,6 +388,7 @@ semgrep --config=auto scripts/
 #### Beta Testing Program
 
 ##### Internal Beta (Week 1)
+
 - [ ] 3-5 team members test independently
 - [ ] Follow documented workflows
 - [ ] Report any confusion or errors
@@ -365,6 +396,7 @@ semgrep --config=auto scripts/
 - [ ] Collect feedback
 
 ##### External Beta (Week 2)
+
 - [ ] 10-15 external beta testers
 - [ ] Mix of experience levels
 - [ ] Different operating systems
@@ -372,6 +404,7 @@ semgrep --config=auto scripts/
 - [ ] Structured feedback forms
 
 #### Feedback Collection Template
+
 ```markdown
 ## Beta Testing Feedback
 
@@ -380,21 +413,25 @@ semgrep --config=auto scripts/
 **Experience Level**: [Beginner / Intermediate / Advanced]
 
 ### Installation Experience (1-5 stars)
+
 - Ease of installation: ⭐⭐⭐⭐⭐
 - Time to first success: [X minutes]
 - Issues encountered: [None / List issues]
 
 ### Feature Testing
+
 - Feature A worked: Yes/No [Comments]
 - Feature B worked: Yes/No [Comments]
 - Feature C worked: Yes/No [Comments]
 
 ### Documentation
+
 - README clarity: ⭐⭐⭐⭐⭐
 - Examples helpful: Yes/No
 - Missing information: [List]
 
 ### Overall Impression
+
 - Would recommend: Yes/No
 - Most confusing part: [Description]
 - Most valuable feature: [Description]
@@ -480,6 +517,7 @@ def test_full_workflow_performance():
 #### RC Testing Process
 
 ##### RC1: Internal Validation
+
 ```bash
 # Create release candidate
 git checkout -b release/v1.0.0-rc1
@@ -497,6 +535,7 @@ pytest tests/e2e/ -v
 ```
 
 **RC1 Gate Criteria**:
+
 - [ ] All tests pass
 - [ ] 80%+ code coverage
 - [ ] No critical security issues
@@ -504,6 +543,7 @@ pytest tests/e2e/ -v
 - [ ] Performance meets benchmarks
 
 ##### RC2: Beta Testing
+
 ```bash
 # Deploy to test environment
 # Invite beta testers
@@ -512,12 +552,14 @@ pytest tests/e2e/ -v
 ```
 
 **RC2 Gate Criteria**:
+
 - [ ] No critical bugs reported
 - [ ] Positive feedback from 80%+ testers
 - [ ] All blocking issues resolved
 - [ ] Installation success rate > 95%
 
 ##### RC3: Final Validation
+
 ```bash
 # Final verification
 # Legal review (license, attributions)
@@ -526,6 +568,7 @@ pytest tests/e2e/ -v
 ```
 
 **RC3 Gate Criteria**:
+
 - [ ] Zero known critical bugs
 - [ ] All documentation accurate
 - [ ] Legal compliance verified
@@ -612,6 +655,7 @@ class TestPublicReleaseReadiness:
 ### Critical Path to Public Release
 
 #### Week -4: Preparation
+
 - [ ] All unit tests passing
 - [ ] Integration tests passing
 - [ ] Code coverage > 80%
@@ -619,6 +663,7 @@ class TestPublicReleaseReadiness:
 - [ ] Security scan clean
 
 #### Week -3: E2E Testing
+
 - [ ] Fresh install tests on all platforms
 - [ ] Core workflow testing complete
 - [ ] Performance benchmarks met
@@ -626,6 +671,7 @@ class TestPublicReleaseReadiness:
 - [ ] Security audit complete
 
 #### Week -2: Beta Testing
+
 - [ ] Internal beta (5 testers)
 - [ ] External beta (15 testers)
 - [ ] Feedback collected
@@ -633,6 +679,7 @@ class TestPublicReleaseReadiness:
 - [ ] RC1 released
 
 #### Week -1: Final Validation
+
 - [ ] RC2 released
 - [ ] All feedback addressed
 - [ ] Legal review complete
@@ -640,6 +687,7 @@ class TestPublicReleaseReadiness:
 - [ ] Release notes prepared
 
 #### Week 0: Public Release
+
 - [ ] RC3 validated
 - [ ] Tag v1.0.0
 - [ ] Publish to GitHub
@@ -651,6 +699,7 @@ class TestPublicReleaseReadiness:
 ## 🛠️ E2E Testing Tools & Scripts
 
 ### Automated Test Runner
+
 ```bash
 #!/bin/bash
 # scripts/run_e2e_tests.sh
@@ -694,6 +743,7 @@ echo "✅ All E2E tests passed!"
 ```
 
 ### Platform Testing Matrix Script
+
 ```bash
 #!/bin/bash
 # scripts/test_all_platforms.sh
@@ -722,15 +772,15 @@ done
 
 ### Release Readiness Scorecard
 
-| Category | Criteria | Weight | Status |
-|----------|----------|--------|--------|
-| **Functionality** | All features work | 20% | ✅ |
-| **Testing** | 80%+ coverage, all pass | 20% | ✅ |
-| **Documentation** | Complete & accurate | 15% | ✅ |
-| **Security** | No critical issues | 20% | ✅ |
-| **Performance** | Meets benchmarks | 10% | ✅ |
-| **Compatibility** | Works on all platforms | 10% | ✅ |
-| **User Experience** | Beta approval > 80% | 5% | ⏳ |
+| Category            | Criteria                | Weight | Status |
+| ------------------- | ----------------------- | ------ | ------ |
+| **Functionality**   | All features work       | 20%    | ✅     |
+| **Testing**         | 80%+ coverage, all pass | 20%    | ✅     |
+| **Documentation**   | Complete & accurate     | 15%    | ✅     |
+| **Security**        | No critical issues      | 20%    | ✅     |
+| **Performance**     | Meets benchmarks        | 10%    | ✅     |
+| **Compatibility**   | Works on all platforms  | 10%    | ✅     |
+| **User Experience** | Beta approval > 80%     | 5%     | ⏳     |
 
 **Minimum Score for Release**: 90/100
 
@@ -739,6 +789,7 @@ done
 ## 🎯 Post-Release Monitoring
 
 ### First 48 Hours
+
 - [ ] Monitor GitHub issues
 - [ ] Track installation success rate
 - [ ] Collect user feedback
@@ -746,12 +797,14 @@ done
 - [ ] Update documentation as needed
 
 ### First Week
+
 - [ ] Analyze usage patterns
 - [ ] Address common issues
 - [ ] Create FAQ from questions
 - [ ] Release v1.0.1 if needed
 
 ### First Month
+
 - [ ] Community feedback review
 - [ ] Plan v1.1.0 features
 - [ ] Update roadmap
@@ -764,6 +817,7 @@ done
 ### Release Approval Criteria
 
 **MUST HAVE (Blocking)**:
+
 - [ ] All critical tests pass (100%)
 - [ ] No known critical bugs
 - [ ] Security scan clean
@@ -771,12 +825,14 @@ done
 - [ ] Documentation complete
 
 **SHOULD HAVE (Non-blocking)**:
+
 - [ ] Performance benchmarks met (95%)
 - [ ] Beta tester approval (80%)
 - [ ] Cross-platform validated (100%)
 - [ ] Code coverage (80%+)
 
 **NICE TO HAVE**:
+
 - [ ] Social proof (testimonials)
 - [ ] Video demos
 - [ ] Blog post ready
@@ -797,6 +853,7 @@ ELSE ⏸️ HOLD RELEASE
 ## 📞 Support Plan
 
 ### Pre-Release
+
 - [ ] Create GitHub issues templates
 - [ ] Setup discussion forums
 - [ ] Prepare FAQ
@@ -804,6 +861,7 @@ ELSE ⏸️ HOLD RELEASE
 - [ ] Quick start video
 
 ### Post-Release
+
 - [ ] Monitor issues daily
 - [ ] Respond within 24 hours
 - [ ] Triage and prioritize

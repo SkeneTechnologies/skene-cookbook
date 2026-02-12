@@ -7,12 +7,12 @@ Markdown report generation for evaluation results.
 Compatible with existing skene-cookbook report format.
 """
 
+from datetime import datetime
 from pathlib import Path
 from typing import Dict, List, Optional
-from datetime import datetime
 
-from ..core.metrics_collector import AggregatedMetrics
 from ..core.eval_session import EvalSessionResult
+from ..core.metrics_collector import AggregatedMetrics
 
 
 class MarkdownReporter:
@@ -36,7 +36,7 @@ class MarkdownReporter:
         skill_id: str,
         metrics: AggregatedMetrics,
         session_id: str,
-        chain_compatibility: Optional[Dict[str, List[str]]] = None
+        chain_compatibility: Optional[Dict[str, List[str]]] = None,
     ) -> str:
         """
         Generate Markdown report for a single skill evaluation.
@@ -83,7 +83,9 @@ class MarkdownReporter:
         total_decisions = sum(metrics.decision_counts.values())
         for decision_type, count in sorted(metrics.decision_counts.items()):
             percentage = (count / total_decisions * 100) if total_decisions > 0 else 0
-            report += f"| {decision_type.replace('_', ' ').title()} | {count} | {percentage:.1f}% |\n"
+            report += (
+                f"| {decision_type.replace('_', ' ').title()} | {count} | {percentage:.1f}% |\n"
+            )
 
         # Add errors section if there are errors
         if metrics.error_type_counts:
@@ -92,9 +94,7 @@ class MarkdownReporter:
             report += "|-----------|-------|\n"
 
             for error_type, count in sorted(
-                metrics.error_type_counts.items(),
-                key=lambda x: x[1],
-                reverse=True
+                metrics.error_type_counts.items(), key=lambda x: x[1], reverse=True
             ):
                 report += f"| {error_type} | {count} |\n"
 
@@ -102,21 +102,21 @@ class MarkdownReporter:
         if chain_compatibility:
             report += "\n## Chain Compatibility\n\n"
 
-            if 'compatible' in chain_compatibility:
+            if "compatible" in chain_compatibility:
                 report += "### Compatible Skills\n\n"
-                for skill in chain_compatibility['compatible']:
+                for skill in chain_compatibility["compatible"]:
                     report += f"- ✅ {skill}\n"
 
-            if 'warnings' in chain_compatibility:
+            if "warnings" in chain_compatibility:
                 report += "\n### Compatibility Warnings\n\n"
-                for skill, warnings in chain_compatibility['warnings'].items():
+                for skill, warnings in chain_compatibility["warnings"].items():
                     report += f"- ⚠️ **{skill}**\n"
                     for warning in warnings:
                         report += f"  - {warning}\n"
 
-            if 'incompatible' in chain_compatibility:
+            if "incompatible" in chain_compatibility:
                 report += "\n### Incompatible Skills\n\n"
-                for skill in chain_compatibility['incompatible']:
+                for skill in chain_compatibility["incompatible"]:
                     report += f"- ❌ {skill}\n"
 
         # Add recommendations
@@ -139,10 +139,7 @@ class MarkdownReporter:
 
         return report
 
-    def generate_session_report(
-        self,
-        session_result: EvalSessionResult
-    ) -> str:
+    def generate_session_report(self, session_result: EvalSessionResult) -> str:
         """
         Generate Markdown report for entire evaluation session.
 
@@ -188,7 +185,7 @@ class MarkdownReporter:
         skill_id: str,
         metrics: AggregatedMetrics,
         session_id: str,
-        chain_compatibility: Optional[Dict[str, List[str]]] = None
+        chain_compatibility: Optional[Dict[str, List[str]]] = None,
     ) -> Path:
         """
         Generate and save skill evaluation report.
@@ -202,25 +199,17 @@ class MarkdownReporter:
         Returns:
             Path to saved report
         """
-        report = self.generate_skill_report(
-            skill_id,
-            metrics,
-            session_id,
-            chain_compatibility
-        )
+        report = self.generate_skill_report(skill_id, metrics, session_id, chain_compatibility)
 
         output_path = self.output_dir / "skills" / f"{skill_id}_eval.md"
         output_path.parent.mkdir(parents=True, exist_ok=True)
 
-        with open(output_path, 'w') as f:
+        with open(output_path, "w") as f:
             f.write(report)
 
         return output_path
 
-    def save_session_report(
-        self,
-        session_result: EvalSessionResult
-    ) -> Path:
+    def save_session_report(self, session_result: EvalSessionResult) -> Path:
         """
         Generate and save session evaluation report.
 
@@ -232,13 +221,10 @@ class MarkdownReporter:
         """
         report = self.generate_session_report(session_result)
 
-        output_path = (
-            self.output_dir / "sessions" /
-            f"{session_result.session_id}_eval.md"
-        )
+        output_path = self.output_dir / "sessions" / f"{session_result.session_id}_eval.md"
         output_path.parent.mkdir(parents=True, exist_ok=True)
 
-        with open(output_path, 'w') as f:
+        with open(output_path, "w") as f:
             f.write(report)
 
         return output_path

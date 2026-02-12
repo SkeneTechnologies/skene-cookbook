@@ -315,11 +315,13 @@ Logistics            0    ░░░░░░░░░░░░░░░░  ❌ 
 ---
 
 **Learn More:**
+
 - [Full Analysis](./AI_AGENT_COMPOSABILITY_ANALYSIS.md) - 50+ page deep dive
 - [Quick Summary](./AI_AGENT_SUMMARY.md) - TL;DR version
 - [Skills Directory](../README.md) - Installation & usage
 
 **Ready to Build?**
+
 ```bash
 npx skills-directory install --target all
 npx skills-directory list --domain revops

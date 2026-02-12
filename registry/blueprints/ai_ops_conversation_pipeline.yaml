@@ -1,0 +1,46 @@
+id: workflow_ai_ops_conversation
+version: 1.0.0
+name: AI Ops Conversation Pipeline
+description: Classify tickets, detect intent, suggest responses, summarize
+category: AI Ops
+chain_sequence:
+  - step_id: step_1_ticket_classifier
+    skill_id: ai_ticket_classifier
+    action: execute
+    description: Categories and prioritizes incoming tickets
+    timeout_seconds: 120
+    error_handling:
+      on_failure: continue
+      max_retries: 2
+  - step_id: step_2_intent_classifier
+    skill_id: ai_intent_classifier
+    action: execute
+    description: Detects user intent for routing
+    timeout_seconds: 120
+    error_handling:
+      on_failure: continue
+      max_retries: 2
+  - step_id: step_3_response_suggester
+    skill_id: ai_response_suggester
+    action: execute
+    description: Suggests replies or next actions
+    timeout_seconds: 120
+    error_handling:
+      on_failure: continue
+      max_retries: 2
+  - step_id: step_4_summarization
+    skill_id: ai_summarization_agent
+    action: execute
+    description: Produces conversation or thread summaries
+    timeout_seconds: 120
+    error_handling:
+      on_failure: stop
+      max_retries: 1
+metadata:
+  author: Skene Cookbook
+  created_at: '2026-02-12'
+  tags:
+    - ai_ops
+    - support
+    - conversation
+  estimated_duration_seconds: 480

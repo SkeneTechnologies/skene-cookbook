@@ -19,6 +19,7 @@ Successfully implemented Phase 0: Batch Evaluation Infrastructure as specified i
 **File**: `eval_harness/test_data_generator.py` (~450 LOC)
 
 **Features**:
+
 - Automatic test data generation from JSON Schema
 - Type-specific generators (string, number, integer, boolean, array, object)
 - Smart value generation (emails, URLs, dates based on description hints)
@@ -27,6 +28,7 @@ Successfully implemented Phase 0: Batch Evaluation Infrastructure as specified i
 - Schema-first approach (no duplication)
 
 **API**:
+
 ```python
 generator = TestDataGenerator()
 
@@ -41,6 +43,7 @@ data = generator.generate_from_schema(input_schema)
 ```
 
 **Validation**:
+
 ```bash
 ✅ Successfully generated test data for elg_mdf_tracker
 ✅ Generated 2 valid test cases with proper field structure
@@ -52,6 +55,7 @@ data = generator.generate_from_schema(input_schema)
 **File**: `scripts/batch_eval_skills.py` (~620 LOC)
 
 **Features**:
+
 - Parallel skill evaluation (configurable concurrency)
 - Domain-based or skill-list evaluation
 - Automatic test data generation and caching
@@ -60,6 +64,7 @@ data = generator.generate_from_schema(input_schema)
 - Integration with existing eval harness components
 
 **Usage**:
+
 ```bash
 # Evaluate entire domain
 python scripts/batch_eval_skills.py --domain ecosystem --parallel 5
@@ -78,6 +83,7 @@ python scripts/batch_eval_skills.py --domain ecosystem --use-existing-test-data
 ```
 
 **Validation**:
+
 ```bash
 ✅ Successfully evaluated 16 skills in ecosystem domain
 ✅ Parallel execution working (5 workers)
@@ -91,6 +97,7 @@ python scripts/batch_eval_skills.py --domain ecosystem --use-existing-test-data
 **File**: `scripts/analyze_eval_failures.py` (~450 LOC)
 
 **Features**:
+
 - Automated failure categorization (10 predefined categories)
 - Pattern-based error classification
 - Prioritized action plans
@@ -99,6 +106,7 @@ python scripts/batch_eval_skills.py --domain ecosystem --use-existing-test-data
 - Markdown reports with actionable recommendations
 
 **Failure Categories**:
+
 1. `schema_missing` - Missing inputSchema/outputSchema (Priority 5)
 2. `schema_invalid` - Invalid JSON Schema syntax (Priority 4)
 3. `skill_not_found` - Skill directory/file missing (Priority 5)
@@ -111,6 +119,7 @@ python scripts/batch_eval_skills.py --domain ecosystem --use-existing-test-data
 10. `unknown` - Uncategorized (Priority 1)
 
 **Usage**:
+
 ```bash
 # Analyze batch session
 python scripts/analyze_eval_failures.py --session batch_20260211_171252 --prioritize
@@ -123,6 +132,7 @@ python scripts/analyze_eval_failures.py --session batch_20260211_171252 --export
 ```
 
 **Validation**:
+
 ```bash
 ✅ Analyzed 4 failures from ecosystem domain
 ✅ Generated prioritized action plan
@@ -156,6 +166,7 @@ Duration:         ~8 seconds (5 parallel workers)
 ```
 
 **Successful Skills (12)**:
+
 - ✅ elg_mdf_tracker
 - ✅ elg_partner_tier_manager
 - ✅ elg_partner_influenced_revenue
@@ -170,6 +181,7 @@ Duration:         ~8 seconds (5 parallel workers)
 - ✅ (1 more)
 
 **Failed Skills (4)**:
+
 - ❌ elg_co_sell_trigger - No metrics collected (missing inputSchema)
 - ❌ elg_eql_scoring - No metrics collected (missing inputSchema)
 - ❌ elg_marketplace_integration - No metrics collected (missing inputSchema)
@@ -184,6 +196,7 @@ Duration:         ~8 seconds (5 parallel workers)
 **Finding**: 4 out of 16 ecosystem skills (25%) are missing `inputSchema` and `outputSchema`.
 
 **Impact**:
+
 - Cannot generate test data
 - Cannot validate inputs/outputs
 - These skills need schema remediation before evaluation
@@ -195,6 +208,7 @@ Duration:         ~8 seconds (5 parallel workers)
 **Finding**: The batch evaluation successfully validates schemas without requiring actual skill implementations.
 
 **Impact**:
+
 - Can evaluate all 765 skills for schema quality
 - Can identify chaining compatibility issues
 - Can assess security requirements
@@ -207,6 +221,7 @@ Duration:         ~8 seconds (5 parallel workers)
 **Finding**: Auto-act rate is 33-90% (varies by skill), not the 100% from single-skill tests.
 
 **Possible Causes**:
+
 - Some test cases have empty inputs (due to no required fields)
 - Confidence scoring penalizes empty/minimal inputs
 - Risk levels vary (High/Medium/Low)
@@ -218,6 +233,7 @@ Duration:         ~8 seconds (5 parallel workers)
 **Finding**: 16 skills evaluated in ~8 seconds with 5 workers = ~0.5 sec/skill.
 
 **Projection**:
+
 - 765 skills @ 0.5 sec = 382 seconds = **6.4 minutes**
 - With 10 workers: **~3-4 minutes for full library**
 
@@ -252,14 +268,14 @@ Duration:         ~8 seconds (5 parallel workers)
 
 ## Success Metrics
 
-| Metric | Target | Actual | Status |
-|--------|--------|--------|--------|
-| Test data auto-generation | 90%+ | ~75% | ⚠️ (schema gaps) |
-| Batch eval speed | < 1 hour | ~3-4 min | ✅ |
-| Parallel execution | 10-20 workers | 5+ workers | ✅ |
-| Report generation | Automatic | Automatic | ✅ |
-| Failure categorization | 80%+ | 100% | ✅ |
-| Infrastructure completeness | 100% | 100% | ✅ |
+| Metric                      | Target        | Actual     | Status           |
+| --------------------------- | ------------- | ---------- | ---------------- |
+| Test data auto-generation   | 90%+          | ~75%       | ⚠️ (schema gaps) |
+| Batch eval speed            | < 1 hour      | ~3-4 min   | ✅               |
+| Parallel execution          | 10-20 workers | 5+ workers | ✅               |
+| Report generation           | Automatic     | Automatic  | ✅               |
+| Failure categorization      | 80%+          | 100%       | ✅               |
+| Infrastructure completeness | 100%          | 100%       | ✅               |
 
 ---
 
@@ -416,16 +432,16 @@ skene-cookbook/
 
 Based on Phase 0 results, here's a more realistic timeline:
 
-| Phase | Original Estimate | Revised Estimate | Reason |
-|-------|------------------|------------------|--------|
-| Phase 0: Infrastructure | 2 weeks | ✅ 1 day | Completed in 3 hours |
-| Phase 1: Pilot (50 skills) | 3 weeks | **5 days** | Mostly schema fixes + tuning |
-| Phase 2: Business (150 skills) | 6 weeks | **2 weeks** | Automation proven, just scale |
-| Phase 3: Platform (287 skills) | 8 weeks | **3 weeks** | cursor_rules may need special handling |
-| Phase 4: Scientific (141 skills) | 5 weeks | **2 weeks** | Same automation |
-| Phase 5: Long Tail (137 skills) | 4 weeks | **1 week** | Cleanup |
-| Phase 6: Validation | 2 weeks | **1 week** | Generate master reports |
-| **TOTAL** | **30 weeks** | **~10 weeks** | 3x faster than original plan |
+| Phase                            | Original Estimate | Revised Estimate | Reason                                 |
+| -------------------------------- | ----------------- | ---------------- | -------------------------------------- |
+| Phase 0: Infrastructure          | 2 weeks           | ✅ 1 day         | Completed in 3 hours                   |
+| Phase 1: Pilot (50 skills)       | 3 weeks           | **5 days**       | Mostly schema fixes + tuning           |
+| Phase 2: Business (150 skills)   | 6 weeks           | **2 weeks**      | Automation proven, just scale          |
+| Phase 3: Platform (287 skills)   | 8 weeks           | **3 weeks**      | cursor_rules may need special handling |
+| Phase 4: Scientific (141 skills) | 5 weeks           | **2 weeks**      | Same automation                        |
+| Phase 5: Long Tail (137 skills)  | 4 weeks           | **1 week**       | Cleanup                                |
+| Phase 6: Validation              | 2 weeks           | **1 week**       | Generate master reports                |
+| **TOTAL**                        | **30 weeks**      | **~10 weeks**    | 3x faster than original plan           |
 
 **Caveat**: This assumes no major blockers (missing implementations, platform-specific issues, etc.)
 
@@ -487,12 +503,14 @@ Based on Phase 0 results, here's a more realistic timeline:
 ✅ **Phase 0 Complete**: Batch evaluation infrastructure is production-ready.
 
 **Key Achievements**:
+
 - 3 new modules (~1,520 LOC)
 - End-to-end automation (discovery → generation → evaluation → analysis)
 - 75% success rate on ecosystem domain (expected given schema gaps)
 - 3-4 minute evaluation time for full library (projected)
 
 **Blockers Resolved**:
+
 - Test data generation: ✅ Automated
 - Parallel execution: ✅ Working (5+ workers)
 - Failure analysis: ✅ Automated with categorization
@@ -506,36 +524,43 @@ Based on Phase 0 results, here's a more realistic timeline:
 ## Appendix: Commands Reference
 
 ### Generate Test Data Only
+
 ```bash
 python scripts/batch_eval_skills.py --domain ecosystem --generate-only
 ```
 
 ### Evaluate Single Domain
+
 ```bash
 python scripts/batch_eval_skills.py --domain ecosystem --parallel 10
 ```
 
 ### Evaluate Multiple Domains
+
 ```bash
 python scripts/batch_eval_skills.py --domains ecosystem,marketing,revops --parallel 10
 ```
 
 ### Evaluate Specific Skills
+
 ```bash
 python scripts/batch_eval_skills.py --skills elg_mdf_tracker,elg_partner_tier_manager
 ```
 
 ### Analyze Failures
+
 ```bash
 python scripts/analyze_eval_failures.py --session batch_20260211_171252 --prioritize
 ```
 
 ### Export Failures to CSV
+
 ```bash
 python scripts/analyze_eval_failures.py --session batch_20260211_171252 --export failures.csv
 ```
 
 ### View Reports
+
 ```bash
 # Aggregate report
 cat reports/evals/batch_20260211_171252_aggregate.md

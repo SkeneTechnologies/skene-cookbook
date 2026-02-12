@@ -1,0 +1,38 @@
+id: workflow_people_ops_talent
+version: 1.0.0
+name: People Ops Talent Intelligence
+description: Candidate sourcing, skill gap analysis, comp benchmarking
+category: People Ops
+chain_sequence:
+  - step_id: step_1_candidate_sourcer
+    skill_id: people_candidate_sourcer
+    action: execute
+    description: Surfaces and ranks candidates
+    timeout_seconds: 300
+    error_handling:
+      on_failure: stop
+      max_retries: 1
+  - step_id: step_2_skill_gap_analyzer
+    skill_id: people_skill_gap_analyzer
+    action: execute
+    description: Maps skill gaps for role or team
+    timeout_seconds: 300
+    error_handling:
+      on_failure: continue
+      max_retries: 2
+  - step_id: step_3_comp_benchmarker
+    skill_id: people_comp_benchmarker
+    action: execute
+    description: Benchmarks compensation
+    timeout_seconds: 300
+    error_handling:
+      on_failure: stop
+      max_retries: 1
+metadata:
+  author: Skene Cookbook
+  created_at: '2026-02-12'
+  tags:
+    - people_ops
+    - talent
+    - hiring
+  estimated_duration_seconds: 900

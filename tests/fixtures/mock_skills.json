@@ -11,20 +11,20 @@
     "input_schema": {
       "type": "object",
       "properties": {
-        "data_file": {"type": "string", "description": "Path to data file"},
-        "analysis_type": {"type": "string"}
+        "data_file": { "type": "string", "description": "Path to data file" },
+        "analysis_type": { "type": "string" }
       }
     },
     "output_schema": {
       "type": "object",
       "properties": {
-        "report": {"type": "string", "description": "Analysis report"},
-        "insights": {"type": "array"}
+        "report": { "type": "string", "description": "Analysis report" },
+        "insights": { "type": "array" }
       }
     },
-    "tools": [{"name": "read_file"}],
+    "tools": [{ "name": "read_file" }],
     "exitStates": [
-      {"state": "complete", "description": "Analysis complete", "nextSkills": ["test_skill_2"]}
+      { "state": "complete", "description": "Analysis complete", "nextSkills": ["test_skill_2"] }
     ]
   },
   {
@@ -39,20 +39,18 @@
     "input_schema": {
       "type": "object",
       "properties": {
-        "report": {"type": "string", "description": "Raw report data"},
-        "format": {"type": "string"}
+        "report": { "type": "string", "description": "Raw report data" },
+        "format": { "type": "string" }
       }
     },
     "output_schema": {
       "type": "object",
       "properties": {
-        "formatted_report": {"type": "string", "description": "Formatted report file"}
+        "formatted_report": { "type": "string", "description": "Formatted report file" }
       }
     },
-    "tools": [{"name": "write_file"}],
-    "exitStates": [
-      {"state": "complete", "description": "Report generated"}
-    ]
+    "tools": [{ "name": "write_file" }],
+    "exitStates": [{ "state": "complete", "description": "Report generated" }]
   },
   {
     "skill_id": "test_skill_3",
@@ -66,16 +64,16 @@
     "input_schema": {
       "type": "object",
       "properties": {
-        "user_id": {"type": "string"}
+        "user_id": { "type": "string" }
       }
     },
     "output_schema": {
       "type": "object",
       "properties": {
-        "deleted": {"type": "boolean"}
+        "deleted": { "type": "boolean" }
       }
     },
-    "tools": [{"name": "database_delete"}, {"name": "admin_panel"}],
+    "tools": [{ "name": "database_delete" }, { "name": "admin_panel" }],
     "exitStates": []
   },
   {
@@ -90,21 +88,19 @@
     "input_schema": {
       "type": "object",
       "properties": {
-        "campaign_name": {"type": "string"},
-        "target_audience": {"type": "object"}
+        "campaign_name": { "type": "string" },
+        "target_audience": { "type": "object" }
       }
     },
     "output_schema": {
       "type": "object",
       "properties": {
-        "campaign_id": {"type": "string"},
-        "status": {"type": "string"}
+        "campaign_id": { "type": "string" },
+        "status": { "type": "string" }
       }
     },
-    "tools": [{"name": "marketing_platform"}],
-    "exitStates": [
-      {"state": "launched", "description": "Campaign launched"}
-    ]
+    "tools": [{ "name": "marketing_platform" }],
+    "exitStates": [{ "state": "launched", "description": "Campaign launched" }]
   },
   {
     "skill_id": "test_skill_5",
@@ -118,16 +114,16 @@
     "input_schema": {
       "type": "object",
       "properties": {
-        "file_path": {"type": "string", "description": "Path to file"}
+        "file_path": { "type": "string", "description": "Path to file" }
       }
     },
     "output_schema": {
       "type": "object",
       "properties": {
-        "content": {"type": "string", "description": "File contents"}
+        "content": { "type": "string", "description": "File contents" }
       }
     },
-    "tools": [{"name": "read"}],
+    "tools": [{ "name": "read" }],
     "exitStates": []
   },
   {
@@ -152,18 +148,18 @@
     "input_schema": {
       "type": "object",
       "properties": {
-        "data": {"type": "string", "description": "Input data"}
+        "data": { "type": "string", "description": "Input data" }
       }
     },
     "output_schema": {
       "type": "object",
       "properties": {
-        "data": {"type": "string", "description": "Processed data"}
+        "data": { "type": "string", "description": "Processed data" }
       }
     },
-    "tools": [{"name": "transform"}],
+    "tools": [{ "name": "transform" }],
     "exitStates": [
-      {"state": "complete", "description": "Processing complete", "nextSkills": ["test_skill_1"]}
+      { "state": "complete", "description": "Processing complete", "nextSkills": ["test_skill_1"] }
     ]
   },
   {
@@ -178,18 +174,18 @@
     "input_schema": {
       "type": "object",
       "properties": {
-        "amount": {"type": "number"},
-        "card_number": {"type": "string"}
+        "amount": { "type": "number" },
+        "card_number": { "type": "string" }
       }
     },
     "output_schema": {
       "type": "object",
       "properties": {
-        "transaction_id": {"type": "string"},
-        "status": {"type": "string"}
+        "transaction_id": { "type": "string" },
+        "status": { "type": "string" }
       }
     },
-    "tools": [{"name": "stripe_api"}],
+    "tools": [{ "name": "stripe_api" }],
     "exitStates": []
   },
   {
@@ -204,17 +200,17 @@
     "input_schema": {
       "type": "object",
       "properties": {
-        "url": {"type": "string", "description": "URL to fetch"}
+        "url": { "type": "string", "description": "URL to fetch" }
       }
     },
     "output_schema": {
       "type": "object",
       "properties": {
-        "content": {"type": "string", "description": "Fetched content"},
-        "url": {"type": "string"}
+        "content": { "type": "string", "description": "Fetched content" },
+        "url": { "type": "string" }
       }
     },
-    "tools": [{"name": "web_fetch"}],
+    "tools": [{ "name": "web_fetch" }],
     "exitStates": []
   },
   {
@@ -229,16 +225,16 @@
     "input_schema": {
       "type": "object",
       "properties": {
-        "data_file": {"type": "string"}
+        "data_file": { "type": "string" }
       }
     },
     "output_schema": {
       "type": "object",
       "properties": {
-        "report": {"type": "string"}
+        "report": { "type": "string" }
       }
     },
-    "tools": [{"name": "read_file"}],
+    "tools": [{ "name": "read_file" }],
     "exitStates": []
   }
 ]

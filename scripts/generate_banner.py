@@ -8,10 +8,12 @@ ASCII Banner Generator for Skills Directory
 
 import pyfiglet
 
+
 def generate_banner(text="SKILL-LOOM", font="slant"):
     """Generate ASCII art banner"""
     banner = pyfiglet.figlet_format(text, font=font)
     return banner
+
 
 def generate_readme_header():
     """Generate full README header with banner"""
@@ -54,10 +56,11 @@ def generate_readme_header():
 """
     return header
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     import sys
 
-    if len(sys.argv) > 1 and sys.argv[1] == '--readme':
+    if len(sys.argv) > 1 and sys.argv[1] == "--readme":
         print(generate_readme_header())
     else:
         print(generate_banner())

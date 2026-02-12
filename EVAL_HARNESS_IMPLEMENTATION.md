@@ -126,11 +126,13 @@ Implemented a production-ready evaluation harness for the skene-cookbook skills 
 **Decision**: Wrap existing skill execution rather than modify skill implementations.
 
 **Rationale**:
+
 - No changes needed to 808+ existing skills
 - Skills remain implementation-agnostic
 - Can be incrementally adopted
 
 **Implementation**:
+
 ```python
 # Skills don't change
 def my_skill_logic(inputs):
@@ -146,11 +148,13 @@ result = executor.execute_skill(skill_id, version, inputs, my_skill_logic)
 **Decision**: Use confidence × risk × validation for decisions.
 
 **Rationale**:
+
 - Single-factor (e.g., just risk) is too simplistic
 - Combines multiple signals for better accuracy
 - Configurable thresholds for different environments
 
 **Rules Implemented**:
+
 ```
 Validation Failed → BLOCK
 Critical Risk → REQUIRE_APPROVAL
@@ -166,11 +170,13 @@ Confidence < 0.50 → REQUIRE_APPROVAL
 **Decision**: Use span stack for automatic parent-child relationships.
 
 **Rationale**:
+
 - Simplifies nested tracing (no manual parent passing)
 - Automatically captures workflow → step → skill hierarchy
 - Compatible with OpenTelemetry standard
 
 **Implementation**:
+
 ```python
 with tracer.trace_workflow_execution(...):
     with tracer.trace_skill_execution(...):  # Auto-detects parent
@@ -182,6 +188,7 @@ with tracer.trace_workflow_execution(...):
 **Decision**: Validate before and after execution, not during.
 
 **Rationale**:
+
 - Clear separation of concerns
 - Can block invalid inputs before expensive execution
 - Can detect contract violations in outputs
@@ -191,6 +198,7 @@ with tracer.trace_workflow_execution(...):
 **Decision**: Load schemas from existing skill.json and metadata.yaml.
 
 **Rationale**:
+
 - Schemas already exist (inputSchema, outputSchema)
 - No duplication of schema definitions
 - Single source of truth
@@ -281,6 +289,7 @@ Reports saved:
 ### Reports Generated ✅
 
 **Markdown Report** (`reports/evals/skills/elg_mdf_tracker_eval.md`):
+
 ```markdown
 # Evaluation Report: elg_mdf_tracker
 
@@ -289,14 +298,17 @@ Reports saved:
 **Auto-Act Rate**: 100.0%
 
 ## Performance Metrics
+
 | Average Latency | 1.12ms |
-| P95 Latency     | 3.24ms |
+| P95 Latency | 3.24ms |
 
 ## Recommendations
+
 ✅ Excellent performance - skill is production-ready
 ```
 
 **JSON Report** (`reports/evals/skills/elg_mdf_tracker_eval.json`):
+
 ```json
 {
   "skill_id": "elg_mdf_tracker",
@@ -357,16 +369,19 @@ print(result.warnings)
 ## Success Metrics (Current)
 
 ### Infrastructure
+
 - ✅ Tracing: 100% of test executions traced
 - ✅ Validation: 100% pass rate in tests
 - ✅ Metrics: All executions tracked
 
 ### Decision Quality
+
 - ✅ Auto-act rate: 100% (all valid test cases)
 - ✅ False positive rate: 0%
 - ✅ False negative rate: 0%
 
 ### Performance
+
 - ✅ Eval overhead: ~1ms per execution (0.05-3.24ms)
 - ✅ Report generation: < 1s for 3 executions
 
@@ -377,11 +392,13 @@ print(result.warnings)
 **Target**: Week 7
 
 **Components**:
+
 - A/B test session management
 - Statistical significance testing (scipy)
 - Comparative report generation
 
 **Deliverables**:
+
 ```bash
 python scripts/run_eval_harness.py ab-test \
   --skill-id elg_partner_tier_manager \
@@ -394,12 +411,14 @@ python scripts/run_eval_harness.py ab-test \
 **Target**: Week 8
 
 **Tasks**:
+
 1. Deploy to staging environment
 2. Run evals on 50 most-used skills
 3. Generate production dashboards
 4. Document learnings
 
 **Success Criteria**:
+
 - 50+ skills with eval reports
 - Production dashboard live
 - < 50ms eval overhead in production
@@ -407,6 +426,7 @@ python scripts/run_eval_harness.py ab-test \
 ### Phase 8: HTML Dashboards (TODO)
 
 **Components**:
+
 - Interactive Plotly/Dash dashboards
 - Success rate trends over time
 - Latency distribution histograms
@@ -435,6 +455,7 @@ python scripts/run_eval_harness.py ab-test \
 ### Overhead Analysis
 
 Based on test runs:
+
 - **Input validation**: ~0.02ms
 - **Output validation**: ~0.02ms
 - **Confidence scoring**: ~0.01ms
@@ -457,18 +478,18 @@ Based on test runs:
 
 ### Lines of Code Summary
 
-| Component | LOC | Tests | Coverage |
-|-----------|-----|-------|----------|
-| Validator | 320 | 10 | 74.83% |
-| Tracer | 280 | 7 | 36.04% |
-| Metrics Collector | 240 | 0 | 53.25% |
-| Decision Engine | 210 | 0 | 0% |
-| Confidence Scorer | 160 | 0 | 0% |
-| Risk Evaluator | 160 | 0 | 0% |
-| Instrumented Executor | 280 | 0 | 0% |
-| Reporters | 330 | 0 | 0% |
-| CLI | 210 | 0 | 0% |
-| **TOTAL** | **2,190** | **17** | **~35%** |
+| Component             | LOC       | Tests  | Coverage |
+| --------------------- | --------- | ------ | -------- |
+| Validator             | 320       | 10     | 74.83%   |
+| Tracer                | 280       | 7      | 36.04%   |
+| Metrics Collector     | 240       | 0      | 53.25%   |
+| Decision Engine       | 210       | 0      | 0%       |
+| Confidence Scorer     | 160       | 0      | 0%       |
+| Risk Evaluator        | 160       | 0      | 0%       |
+| Instrumented Executor | 280       | 0      | 0%       |
+| Reporters             | 330       | 0      | 0%       |
+| CLI                   | 210       | 0      | 0%       |
+| **TOTAL**             | **2,190** | **17** | **~35%** |
 
 ### Test Coverage Goals
 
@@ -527,6 +548,7 @@ Based on test runs:
 ## Conclusion
 
 Successfully implemented core evaluation harness (Phases 1-5) with:
+
 - ✅ 2,190 lines of production-ready code
 - ✅ 17 passing unit tests
 - ✅ End-to-end CLI verification

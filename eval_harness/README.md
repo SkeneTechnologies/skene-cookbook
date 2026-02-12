@@ -5,16 +5,19 @@ Production-ready evaluation infrastructure for AI skills with runtime validation
 ## Features
 
 ### 🔍 Runtime Validation
+
 - **Input/Output Schema Validation**: Validates runtime data against JSON Schema contracts
 - **Chain Compatibility**: Validates that skills can be chained together
 - **Detailed Error Messages**: JSONPath-based error reporting
 
 ### 📊 Distributed Tracing
+
 - **OpenTelemetry Integration**: Industry-standard distributed tracing
 - **Hierarchical Spans**: Workflow → Steps → Skills
 - **Console & OTLP Export**: Dev-friendly console output, production OTLP export
 
 ### 📈 Metrics Collection
+
 - **Success Rate**: % executions without errors
 - **Latency**: avg, p50, p95, p99, max, min
 - **Validation Pass Rate**: % passing I/O schema checks
@@ -22,12 +25,14 @@ Production-ready evaluation infrastructure for AI skills with runtime validation
 - **Error Distribution**: Track error types
 
 ### 🎯 Decision Engine
+
 - **Auto-Act**: Execute automatically (high confidence, acceptable risk)
 - **Flag for Review**: Execute but notify human (medium confidence)
 - **Require Approval**: Block until human approves (low confidence or high risk)
 - **Block**: Reject execution (validation failed)
 
 ### 📝 Reporting
+
 - **Markdown Reports**: Human-readable evaluation reports
 - **JSON Exports**: Machine-readable for programmatic analysis
 - **HTML Dashboards**: Interactive visualizations (coming soon)
@@ -125,15 +130,15 @@ eval_harness/
 
 ### Decision Rules
 
-| Condition | Decision | Reasoning |
-|-----------|----------|-----------|
-| Validation failed | **BLOCK** | Cannot execute with invalid data |
-| Critical risk | **REQUIRE_APPROVAL** | Always needs human oversight |
-| Confidence < 0.30 | **BLOCK** | Too risky to execute |
-| High risk + confidence < 0.75 | **FLAG_FOR_REVIEW** | Needs monitoring |
-| Confidence ≥ 0.85 | **AUTO_ACT** | High confidence, safe to auto-execute |
-| Confidence ≥ 0.50 | **FLAG_FOR_REVIEW** | Medium confidence, execute but notify |
-| Confidence < 0.50 | **REQUIRE_APPROVAL** | Low confidence, needs approval |
+| Condition                     | Decision             | Reasoning                             |
+| ----------------------------- | -------------------- | ------------------------------------- |
+| Validation failed             | **BLOCK**            | Cannot execute with invalid data      |
+| Critical risk                 | **REQUIRE_APPROVAL** | Always needs human oversight          |
+| Confidence < 0.30             | **BLOCK**            | Too risky to execute                  |
+| High risk + confidence < 0.75 | **FLAG_FOR_REVIEW**  | Needs monitoring                      |
+| Confidence ≥ 0.85             | **AUTO_ACT**         | High confidence, safe to auto-execute |
+| Confidence ≥ 0.50             | **FLAG_FOR_REVIEW**  | Medium confidence, execute but notify |
+| Confidence < 0.50             | **REQUIRE_APPROVAL** | Low confidence, needs approval        |
 
 ## Examples
 
@@ -248,6 +253,7 @@ session.save_results()
 ### Using Existing Schemas
 
 The eval harness automatically loads schemas from:
+
 - `skills-library/[domain]/[skill]/skill.json` (inputSchema, outputSchema)
 - `skills-library/[domain]/[skill]/metadata.yaml` (security.risk_level)
 
@@ -291,13 +297,15 @@ def test_mdf_tracker_eval(executor):
 **Auto-Act Rate**: 82%
 
 ## Decision Breakdown
-| Decision Type | Count | % |
-|---------------|-------|---|
-| Auto-Act | 41 | 82% |
-| Flag for Review | 7 | 14% |
-| Blocked | 2 | 4% |
+
+| Decision Type   | Count | %   |
+| --------------- | ----- | --- |
+| Auto-Act        | 41    | 82% |
+| Flag for Review | 7     | 14% |
+| Blocked         | 2     | 4%  |
 
 ## Recommendations
+
 ✅ Excellent performance - skill is production-ready
 ```
 
@@ -333,38 +341,45 @@ pytest tests/test_eval_harness_*.py --cov=eval_harness --cov-report=html
 ## Roadmap
 
 ### Phase 1: Core Infrastructure ✅ (Complete)
+
 - [x] Runtime I/O validation
 - [x] Distributed tracing
 - [x] Metrics collection
 - [x] Eval session management
 
 ### Phase 2: Decision Engine ✅ (Complete)
+
 - [x] Auto-act vs flag logic
 - [x] Confidence scoring
 - [x] Risk evaluation
 - [x] Execution history tracking
 
 ### Phase 3: Instrumentation ✅ (Complete)
+
 - [x] Instrumented executor
 - [x] Workflow executor
 - [x] Chain validation
 
 ### Phase 4: Reporting ✅ (Complete)
+
 - [x] Markdown reports
 - [x] JSON exports
 - [ ] HTML dashboards (TODO)
 
 ### Phase 5: CLI & Documentation ✅ (Complete)
+
 - [x] CLI entry point
 - [x] Documentation
 - [ ] Integration tests (TODO)
 
 ### Phase 6: A/B Testing (TODO)
+
 - [ ] A/B test session management
 - [ ] Statistical significance testing
 - [ ] A/B test reports
 
 ### Phase 7: Production Rollout (TODO)
+
 - [ ] Deploy to staging
 - [ ] Run evals on 50+ skills
 - [ ] Production dashboards

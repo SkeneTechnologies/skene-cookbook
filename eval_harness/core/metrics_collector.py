@@ -5,10 +5,10 @@
 Metrics collection and aggregation for skill executions.
 """
 
-from dataclasses import dataclass, field
-from typing import Dict, List, Optional, Any
-from collections import defaultdict
 import time
+from collections import defaultdict
+from dataclasses import dataclass, field
+from typing import Any, Dict, List, Optional
 
 
 @dataclass
@@ -57,21 +57,21 @@ class AggregatedMetrics:
     def to_dict(self) -> Dict[str, Any]:
         """Convert to dictionary."""
         return {
-            'skill_id': self.skill_id,
-            'total_executions': self.total_executions,
-            'success_rate': round(self.success_rate, 3),
-            'validation_pass_rate': round(self.validation_pass_rate, 3),
-            'auto_act_rate': round(self.auto_act_rate, 3),
-            'latency': {
-                'avg_ms': round(self.avg_duration_ms, 2),
-                'p50_ms': round(self.p50_duration_ms, 2),
-                'p95_ms': round(self.p95_duration_ms, 2),
-                'p99_ms': round(self.p99_duration_ms, 2),
-                'max_ms': round(self.max_duration_ms, 2),
-                'min_ms': round(self.min_duration_ms, 2),
+            "skill_id": self.skill_id,
+            "total_executions": self.total_executions,
+            "success_rate": round(self.success_rate, 3),
+            "validation_pass_rate": round(self.validation_pass_rate, 3),
+            "auto_act_rate": round(self.auto_act_rate, 3),
+            "latency": {
+                "avg_ms": round(self.avg_duration_ms, 2),
+                "p50_ms": round(self.p50_duration_ms, 2),
+                "p95_ms": round(self.p95_duration_ms, 2),
+                "p99_ms": round(self.p99_duration_ms, 2),
+                "max_ms": round(self.max_duration_ms, 2),
+                "min_ms": round(self.min_duration_ms, 2),
             },
-            'decisions': self.decision_counts,
-            'errors': self.error_type_counts,
+            "decisions": self.decision_counts,
+            "errors": self.error_type_counts,
         }
 
 
@@ -97,7 +97,7 @@ class MetricsCollector:
         decision_type: str,
         error_type: Optional[str] = None,
         error_message: Optional[str] = None,
-        metadata: Optional[Dict[str, Any]] = None
+        metadata: Optional[Dict[str, Any]] = None,
     ):
         """
         Record a skill execution.
@@ -123,7 +123,7 @@ class MetricsCollector:
             decision_type=decision_type,
             error_type=error_type,
             error_message=error_message,
-            metadata=metadata or {}
+            metadata=metadata or {},
         )
 
         self._records[skill_id].append(record)
@@ -145,7 +145,7 @@ class MetricsCollector:
         total = len(records)
         successes = sum(1 for r in records if r.success)
         validations_passed = sum(1 for r in records if r.validation_passed)
-        auto_acts = sum(1 for r in records if r.decision_type == 'auto_act')
+        auto_acts = sum(1 for r in records if r.decision_type == "auto_act")
 
         # Calculate latency percentiles
         durations = sorted([r.duration_ms for r in records])
@@ -178,7 +178,7 @@ class MetricsCollector:
             min_duration_ms=min(durations),
             decision_counts=dict(decision_counts),
             error_type_counts=dict(error_type_counts),
-            records=records
+            records=records,
         )
 
     def get_all_metrics(self) -> Dict[str, AggregatedMetrics]:
@@ -189,8 +189,7 @@ class MetricsCollector:
             Dictionary mapping skill_id to AggregatedMetrics
         """
         return {
-            skill_id: self.get_aggregated_metrics(skill_id)
-            for skill_id in self._records.keys()
+            skill_id: self.get_aggregated_metrics(skill_id) for skill_id in self._records.keys()
         }
 
     def get_records(self, skill_id: str) -> List[ExecutionRecord]:
@@ -225,30 +224,21 @@ class MetricsCollector:
         Returns:
             Summary dictionary
         """
-        all_records = [
-            record
-            for records in self._records.values()
-            for record in records
-        ]
+        all_records = [record for records in self._records.values() for record in records]
 
         if not all_records:
-            return {
-                'total_executions': 0,
-                'skills_tracked': 0
-            }
+            return {"total_executions": 0, "skills_tracked": 0}
 
         total = len(all_records)
         successes = sum(1 for r in all_records if r.success)
         validations_passed = sum(1 for r in all_records if r.validation_passed)
-        auto_acts = sum(1 for r in all_records if r.decision_type == 'auto_act')
+        auto_acts = sum(1 for r in all_records if r.decision_type == "auto_act")
 
         return {
-            'total_executions': total,
-            'skills_tracked': len(self._records),
-            'overall_success_rate': round(successes / total, 3),
-            'overall_validation_pass_rate': round(validations_passed / total, 3),
-            'overall_auto_act_rate': round(auto_acts / total, 3),
-            'avg_duration_ms': round(
-                sum(r.duration_ms for r in all_records) / total, 2
-            ),
+            "total_executions": total,
+            "skills_tracked": len(self._records),
+            "overall_success_rate": round(successes / total, 3),
+            "overall_validation_pass_rate": round(validations_passed / total, 3),
+            "overall_auto_act_rate": round(auto_acts / total, 3),
+            "avg_duration_ms": round(sum(r.duration_ms for r in all_records) / total, 2),
         }

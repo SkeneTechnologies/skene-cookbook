@@ -3,6 +3,7 @@
 ## Twitter/X (280 characters)
 
 ### Version 1 - Technical
+
 ```
 🎉 Skene Cookbook v0.1.0 is live!
 
@@ -19,6 +20,7 @@ https://github.com/SkeneTechnologies/skene-cookbook
 ```
 
 ### Version 2 - Product Focus
+
 ```
 Transform your AI workflows with Skene Cookbook! 🚀
 
@@ -36,6 +38,7 @@ github.com/SkeneTechnologies/skene-cookbook
 ```
 
 ### Version 3 - Developer Focus
+
 ```
 Just shipped: Skene Cookbook v0.1.0 🎉
 
@@ -88,12 +91,14 @@ Check it out: https://github.com/SkeneTechnologies/skene-cookbook
 ## Reddit Post (r/artificial, r/MachineLearning, r/programming)
 
 ### Title
+
 ```
 [P] Skene Cookbook v0.1.0 - Open source library of 760+ AI agent skills for Claude & Cursor
 ```
 
 ### Body
-```
+
+````
 Hey everyone! We just released Skene Cookbook v0.1.0 - an open-source library of production-ready AI agent skills.
 
 **What is it?**
@@ -123,9 +128,10 @@ A curated collection of 760+ skills across 23 domains (engineering, marketing, s
 ```bash
 npm install -g @skene/skills-directory
 skills-directory install --target all
-```
+````
 
 **Links:**
+
 - GitHub: https://github.com/SkeneTechnologies/skene-cookbook
 - Release Notes: https://github.com/SkeneTechnologies/skene-cookbook/releases/tag/v0.1.0
 - npm: https://www.npmjs.com/package/@skene/skills-directory
@@ -133,25 +139,32 @@ skills-directory install --target all
 **License:** MIT (free for commercial use)
 
 Would love feedback from the community! Open to contributions and feature requests.
+
 ```
 
 ## Hacker News Post
 
 ### Title
 ```
+
 Skene Cookbook – 760+ open-source AI skills for Claude and Cursor
+
 ```
 
 ### URL
 ```
+
 https://github.com/SkeneTechnologies/skene-cookbook
+
 ```
 
 ### Optional Comment (if self-posting)
 ```
+
 Author here. We just released Skene Cookbook - a library of 760+ production-ready AI agent skills.
 
 What makes it interesting:
+
 - Security built-in: Every skill has risk levels and validation
 - Eval harness: Automated testing with OpenTelemetry tracing
 - Type-safe: JSON Schema validation for all inputs/outputs
@@ -160,19 +173,24 @@ What makes it interesting:
 Started as internal tooling for our engineering team, evolved into a full library. Domains include engineering (DevOps, CI/CD), marketing (campaigns, SEO), sales (pipeline management), and more.
 
 Open to feedback and contributions! MIT licensed.
+
 ```
 
 ## Dev.to Post
 
 ### Title
 ```
+
 🎉 Introducing Skene Cookbook v0.1.0 - 760+ AI Skills for Claude & Cursor
+
 ```
 
 ### Tags
 ```
+
 #ai #opensource #productivity #devtools
-```
+
+````
 
 ### Body
 ```markdown
@@ -220,11 +238,12 @@ skills-directory install --target all     # For both
 
 # Check status
 skills-directory status
-```
+````
 
 ## 🎬 Example Use Cases
 
 ### Engineering Team
+
 ```bash
 # Automated code review
 skills-directory use engineering/code-review
@@ -237,6 +256,7 @@ skills-directory use security/vuln-scanner
 ```
 
 ### Marketing Team
+
 ```bash
 # Campaign planning
 skills-directory use marketing/campaign-planner
@@ -251,12 +271,14 @@ skills-directory use marketing/analytics-reporter
 ## 🔒 Security & Validation
 
 Every skill includes:
+
 - Input/output schema validation
 - Risk level assessment
 - Security requirements
 - Composability hints
 
 Example skill structure:
+
 ```json
 {
   "id": "engineering_code_review",
@@ -274,6 +296,7 @@ Example skill structure:
 ## 🤝 Contributing
 
 We welcome contributions! Areas we're looking for help:
+
 - New skills in your domain of expertise
 - Test coverage improvements
 - Documentation enhancements
@@ -305,11 +328,13 @@ skills-directory install --target all
 Would love to hear your feedback and use cases! Drop a comment or open an issue on GitHub.
 
 Happy coding! 🚀
+
 ```
 
 ## Discord/Slack Announcement
 
 ```
+
 🎉 **Big news!** We just released Skene Cookbook v0.1.0!
 
 **What is it?**
@@ -322,6 +347,7 @@ Open-source library of 760+ production AI skills for Claude & Cursor
 ✅ MIT licensed - free forever
 
 **Get started:**
+
 ```
 npm install -g @skene/skills-directory
 skills-directory install --target all
@@ -331,4 +357,7 @@ skills-directory install --target all
 🔗 https://github.com/SkeneTechnologies/skene-cookbook
 
 Feedback welcome! 🙌
+
+```
+
 ```

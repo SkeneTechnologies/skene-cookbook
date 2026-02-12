@@ -7,12 +7,14 @@ We are committed to providing a welcoming and inclusive environment for all cont
 ## Standards
 
 ✅ **Do:**
+
 - Be respectful and constructive
 - Focus on skill quality and security
 - Help others learn and improve
 - Give credit where due
 
 ❌ **Don't:**
+
 - Submit malicious skills
 - Bypass security requirements
 - Copy proprietary workflows without permission
@@ -21,6 +23,7 @@ We are committed to providing a welcoming and inclusive environment for all cont
 ## Enforcement
 
 Violations will result in:
+
 1. Warning
 2. Temporary ban
 3. Permanent ban

@@ -41,6 +41,7 @@ Navigate through 13 job functions to find skills relevant to your role:
 - And 8 more...
 
 Each function displays:
+
 - Total skill count
 - Risk level distribution
 - Top risk classification
@@ -55,6 +56,7 @@ Found 45 results for 'partner'
 ```
 
 Search looks for matches in:
+
 - Skill IDs
 - Job descriptions (JTBD)
 - Tags and metadata
@@ -75,6 +77,7 @@ Color-coded security dashboard:
 ```
 
 Features:
+
 - Overall security posture
 - Risk breakdown by job function
 - Color-coded visualization (Red/Yellow/Cyan/Green)
@@ -91,6 +94,7 @@ View and explore workflow blueprints:
 ### 5. Statistics Dashboard
 
 Comprehensive metrics:
+
 - Total skills and job functions
 - Top 5 job functions by skill count
 - Remediation impact statistics
@@ -99,6 +103,7 @@ Comprehensive metrics:
 ### 6. Skill Details
 
 Detailed view for each skill:
+
 - Job to be Done (JTBD) description
 - Required tools and dependencies
 - Security controls applied
@@ -243,6 +248,7 @@ export LANG=en_US.UTF-8
 ### Performance
 
 The CLI is optimized for fast loading:
+
 - Registry loaded once at startup
 - Paginated views (max 30 items)
 - Efficient search algorithms
@@ -262,6 +268,7 @@ The CLI is optimized for fast loading:
 ## Future Enhancements
 
 Planned features:
+
 - Skill comparison view
 - Export to CSV/JSON
 - Custom filters and saved searches

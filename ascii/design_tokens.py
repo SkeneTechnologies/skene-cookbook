@@ -52,7 +52,7 @@ class SkeneColors:
 
 def should_use_color() -> bool:
     """Check if colors should be enabled (respects NO_COLOR env var)"""
-    return os.environ.get('NO_COLOR') is None
+    return os.environ.get("NO_COLOR") is None
 
 
 def get_rich_color(hex_color: str) -> str:
@@ -69,20 +69,20 @@ class Tokens:
 
     # Map semantic names to hex colors
     colors: Dict[str, str] = {
-        'primary': SkeneColors.PRIMARY,
-        'primary_gold': SkeneColors.PRIMARY_GOLD,
-        'primary_bronze': SkeneColors.PRIMARY_BRONZE,
-        'white': SkeneColors.WHITE,
-        'text_on_dark': SkeneColors.TEXT_ON_DARK,
-        'secondary': SkeneColors.LIGHT_GREY,
-        'success': SkeneColors.SUCCESS,
-        'alert': SkeneColors.ALERT,
-        'error': SkeneColors.ERROR,
-        'warning': SkeneColors.WARNING,
-        'beacon_active': SkeneColors.BEACON_ACTIVE,
-        'beacon_pulse': SkeneColors.BEACON_PULSE,
-        'beacon_warn': SkeneColors.BEACON_WARN,
-        'dim': SkeneColors.DIM,
+        "primary": SkeneColors.PRIMARY,
+        "primary_gold": SkeneColors.PRIMARY_GOLD,
+        "primary_bronze": SkeneColors.PRIMARY_BRONZE,
+        "white": SkeneColors.WHITE,
+        "text_on_dark": SkeneColors.TEXT_ON_DARK,
+        "secondary": SkeneColors.LIGHT_GREY,
+        "success": SkeneColors.SUCCESS,
+        "alert": SkeneColors.ALERT,
+        "error": SkeneColors.ERROR,
+        "warning": SkeneColors.WARNING,
+        "beacon_active": SkeneColors.BEACON_ACTIVE,
+        "beacon_pulse": SkeneColors.BEACON_PULSE,
+        "beacon_warn": SkeneColors.BEACON_WARN,
+        "dim": SkeneColors.DIM,
     }
 
     @classmethod
@@ -154,15 +154,15 @@ class BoxChars:
 
 # Risk level color mapping (for skills)
 RISK_COLORS = {
-    'Critical': 'error',  # Maps to Tokens.get('error')
-    'High': 'warning',
-    'Medium': 'beacon_active',  # Cyan/teal
-    'Low': 'success'
+    "Critical": "error",  # Maps to Tokens.get('error')
+    "High": "warning",
+    "Medium": "beacon_active",  # Cyan/teal
+    "Low": "success",
 }
 
 
 # Export convenience function
 def get_risk_color_hex(risk_level: str) -> str:
     """Get hex color for risk level"""
-    token_name = RISK_COLORS.get(risk_level, 'white')
+    token_name = RISK_COLORS.get(risk_level, "white")
     return Tokens.get(token_name)

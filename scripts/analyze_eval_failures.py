@@ -24,13 +24,13 @@ Usage:
 import argparse
 import csv
 import json
+import re
 import sys
-from collections import defaultdict, Counter
-from dataclasses import dataclass, asdict
+from collections import Counter, defaultdict
+from dataclasses import asdict, dataclass
 from datetime import datetime
 from pathlib import Path
-from typing import Dict, Any, List, Optional, Set
-import re
+from typing import Any, Dict, List, Optional, Set
 
 # Add parent directory to path
 sys.path.insert(0, str(Path(__file__).parent.parent))
@@ -39,6 +39,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 @dataclass
 class FailureCategory:
     """Category of failure with patterns and recommendations."""
+
     category: str
     description: str
     pattern: str
@@ -50,6 +51,7 @@ class FailureCategory:
 @dataclass
 class AnalyzedFailure:
     """Analyzed failure with categorization."""
+
     skill_id: str
     domain: str
     error: str
@@ -72,7 +74,7 @@ class FailureAnalyzer:
             pattern=r"(schema.*not found|no.*schema)",
             fix_recommendation="Add inputSchema and outputSchema to skill.json",
             estimated_effort="Low",
-            priority=5
+            priority=5,
         ),
         FailureCategory(
             category="schema_invalid",
@@ -80,7 +82,7 @@ class FailureAnalyzer:
             pattern=r"(invalid.*schema|schema.*validation.*failed)",
             fix_recommendation="Fix schema definition to conform to JSON Schema spec",
             estimated_effort="Low",
-            priority=4
+            priority=4,
         ),
         FailureCategory(
             category="skill_not_found",
@@ -88,7 +90,7 @@ class FailureAnalyzer:
             pattern=r"(skill not found|file not found|does not exist)",
             fix_recommendation="Verify skill directory structure and skill.json exists",
             estimated_effort="Low",
-            priority=5
+            priority=5,
         ),
         FailureCategory(
             category="metadata_missing",
@@ -96,7 +98,7 @@ class FailureAnalyzer:
             pattern=r"(metadata.*not found|risk_level.*not found)",
             fix_recommendation="Add metadata.yaml with security.risk_level field",
             estimated_effort="Low",
-            priority=4
+            priority=4,
         ),
         FailureCategory(
             category="test_data_generation",
@@ -104,7 +106,7 @@ class FailureAnalyzer:
             pattern=r"(test.*data.*generation.*failed|no test cases generated)",
             fix_recommendation="Review schema complexity; may need manual test cases",
             estimated_effort="Medium",
-            priority=3
+            priority=3,
         ),
         FailureCategory(
             category="validation_error",
@@ -112,7 +114,7 @@ class FailureAnalyzer:
             pattern=r"(validation.*error|validator.*failed)",
             fix_recommendation="Check validator implementation for bugs",
             estimated_effort="Medium",
-            priority=3
+            priority=3,
         ),
         FailureCategory(
             category="execution_error",
@@ -120,7 +122,7 @@ class FailureAnalyzer:
             pattern=r"(execution.*failed|runtime.*error)",
             fix_recommendation="Investigate skill logic or test harness integration",
             estimated_effort="High",
-            priority=2
+            priority=2,
         ),
         FailureCategory(
             category="permission_error",
@@ -128,7 +130,7 @@ class FailureAnalyzer:
             pattern=r"(permission denied|access denied)",
             fix_recommendation="Check file permissions in skills library",
             estimated_effort="Low",
-            priority=4
+            priority=4,
         ),
         FailureCategory(
             category="json_parse_error",
@@ -136,7 +138,7 @@ class FailureAnalyzer:
             pattern=r"(json.*decode.*error|invalid.*json|expecting.*value)",
             fix_recommendation="Fix malformed JSON in skill.json or test data",
             estimated_effort="Low",
-            priority=5
+            priority=5,
         ),
         FailureCategory(
             category="unknown",
@@ -144,8 +146,8 @@ class FailureAnalyzer:
             pattern=r".*",
             fix_recommendation="Manual investigation required",
             estimated_effort="Medium",
-            priority=1
-        )
+            priority=1,
+        ),
     ]
 
     def __init__(self, report_dir: Path):
@@ -168,17 +170,17 @@ class FailureAnalyzer:
             List of failure dictionaries
         """
         # Load aggregate JSON report
-        json_path = self.report_dir / f'{session_id}_aggregate.json'
+        json_path = self.report_dir / f"{session_id}_aggregate.json"
 
         if not json_path.exists():
             raise FileNotFoundError(f"Session report not found: {json_path}")
 
-        with open(json_path, 'r') as f:
+        with open(json_path, "r") as f:
             data = json.load(f)
 
         # Extract failed results
-        results = data.get('results', [])
-        failures = [r for r in results if not r.get('success', False)]
+        results = data.get("results", [])
+        failures = [r for r in results if not r.get("success", False)]
 
         return failures
 
@@ -195,12 +197,14 @@ class FailureAnalyzer:
         failures = []
 
         # Search all aggregate reports for domain failures
-        for json_file in self.report_dir.glob('*_aggregate.json'):
-            with open(json_file, 'r') as f:
+        for json_file in self.report_dir.glob("*_aggregate.json"):
+            with open(json_file, "r") as f:
                 data = json.load(f)
 
-            results = data.get('results', [])
-            domain_failures = [r for r in results if r.get('domain') == domain and not r.get('success', False)]
+            results = data.get("results", [])
+            domain_failures = [
+                r for r in results if r.get("domain") == domain and not r.get("success", False)
+            ]
             failures.extend(domain_failures)
 
         return failures
@@ -237,28 +241,27 @@ class FailureAnalyzer:
         analyzed = []
 
         for failure in failures:
-            skill_id = failure.get('skill_id', 'unknown')
-            domain = failure.get('domain', 'unknown')
-            error = failure.get('error', 'No error message')
+            skill_id = failure.get("skill_id", "unknown")
+            domain = failure.get("domain", "unknown")
+            error = failure.get("error", "No error message")
 
             category = self.categorize_failure(error)
 
-            analyzed.append(AnalyzedFailure(
-                skill_id=skill_id,
-                domain=domain,
-                error=error,
-                category=category.category,
-                fix_recommendation=category.fix_recommendation,
-                priority=category.priority,
-                estimated_effort=category.estimated_effort
-            ))
+            analyzed.append(
+                AnalyzedFailure(
+                    skill_id=skill_id,
+                    domain=domain,
+                    error=error,
+                    category=category.category,
+                    fix_recommendation=category.fix_recommendation,
+                    priority=category.priority,
+                    estimated_effort=category.estimated_effort,
+                )
+            )
 
         return analyzed
 
-    def generate_summary_stats(
-        self,
-        analyzed_failures: List[AnalyzedFailure]
-    ) -> Dict[str, Any]:
+    def generate_summary_stats(self, analyzed_failures: List[AnalyzedFailure]) -> Dict[str, Any]:
         """
         Generate summary statistics for failures.
 
@@ -283,17 +286,15 @@ class FailureAnalyzer:
         effort_counts = Counter(f.estimated_effort for f in analyzed_failures)
 
         return {
-            'total_failures': total,
-            'by_category': dict(category_counts.most_common()),
-            'by_domain': dict(domain_counts.most_common()),
-            'by_priority': dict(sorted(priority_counts.items(), reverse=True)),
-            'by_effort': dict(effort_counts.most_common())
+            "total_failures": total,
+            "by_category": dict(category_counts.most_common()),
+            "by_domain": dict(domain_counts.most_common()),
+            "by_priority": dict(sorted(priority_counts.items(), reverse=True)),
+            "by_effort": dict(effort_counts.most_common()),
         }
 
     def generate_action_plan(
-        self,
-        analyzed_failures: List[AnalyzedFailure],
-        prioritize: bool = False
+        self, analyzed_failures: List[AnalyzedFailure], prioritize: bool = False
     ) -> List[Dict[str, Any]]:
         """
         Generate actionable fix plan.
@@ -318,19 +319,21 @@ class FailureAnalyzer:
             priority = max(f.priority for f in failures)
             effort = failures[0].estimated_effort
 
-            actions.append({
-                'category': category,
-                'fix_recommendation': recommendation,
-                'affected_skills': len(failures),
-                'skill_ids': [f.skill_id for f in failures],
-                'domains': list(set(f.domain for f in failures)),
-                'priority': priority,
-                'estimated_effort': effort
-            })
+            actions.append(
+                {
+                    "category": category,
+                    "fix_recommendation": recommendation,
+                    "affected_skills": len(failures),
+                    "skill_ids": [f.skill_id for f in failures],
+                    "domains": list(set(f.domain for f in failures)),
+                    "priority": priority,
+                    "estimated_effort": effort,
+                }
+            )
 
         # Sort by priority if requested
         if prioritize:
-            actions.sort(key=lambda x: (-x['priority'], x['affected_skills']), reverse=True)
+            actions.sort(key=lambda x: (-x["priority"], x["affected_skills"]), reverse=True)
 
         return actions
 
@@ -339,7 +342,7 @@ class FailureAnalyzer:
         analyzed_failures: List[AnalyzedFailure],
         summary_stats: Dict[str, Any],
         action_plan: List[Dict[str, Any]],
-        output_path: Path
+        output_path: Path,
     ):
         """
         Save analysis report as Markdown.
@@ -350,7 +353,7 @@ class FailureAnalyzer:
             action_plan: Action plan items
             output_path: Output file path
         """
-        with open(output_path, 'w') as f:
+        with open(output_path, "w") as f:
             f.write("# Evaluation Failure Analysis\n\n")
             f.write(f"**Generated**: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n")
 
@@ -362,8 +365,8 @@ class FailureAnalyzer:
             f.write("### Failures by Category\n\n")
             f.write("| Category | Count | Percentage |\n")
             f.write("|----------|-------|------------|\n")
-            total = summary_stats['total_failures']
-            for category, count in summary_stats['by_category'].items():
+            total = summary_stats["total_failures"]
+            for category, count in summary_stats["by_category"].items():
                 pct = count / max(total, 1) * 100
                 f.write(f"| {category} | {count} | {pct:.1f}% |\n")
 
@@ -371,7 +374,7 @@ class FailureAnalyzer:
             f.write("\n### Failures by Domain\n\n")
             f.write("| Domain | Count |\n")
             f.write("|--------|-------|\n")
-            for domain, count in list(summary_stats['by_domain'].items())[:10]:
+            for domain, count in list(summary_stats["by_domain"].items())[:10]:
                 f.write(f"| {domain} | {count} |\n")
 
             # Action plan
@@ -384,10 +387,12 @@ class FailureAnalyzer:
                 f.write(f"**Fix**: {action['fix_recommendation']}\n\n")
                 f.write(f"**Domains**: {', '.join(action['domains'])}\n\n")
 
-                if action['affected_skills'] <= 10:
+                if action["affected_skills"] <= 10:
                     f.write(f"**Skills**: {', '.join(action['skill_ids'])}\n\n")
                 else:
-                    f.write(f"**Skills**: {', '.join(action['skill_ids'][:10])} (and {action['affected_skills'] - 10} more)\n\n")
+                    f.write(
+                        f"**Skills**: {', '.join(action['skill_ids'][:10])} (and {action['affected_skills'] - 10} more)\n\n"
+                    )
 
             # Detailed failure list
             f.write("\n## Detailed Failure List\n\n")
@@ -395,8 +400,10 @@ class FailureAnalyzer:
             f.write("|----------|--------|----------|------------------------|\n")
 
             for failure in analyzed_failures[:100]:  # Limit to 100
-                error_short = failure.error[:50].replace('|', '-')
-                f.write(f"| {failure.skill_id} | {failure.domain} | {failure.category} | {error_short} |\n")
+                error_short = failure.error[:50].replace("|", "-")
+                f.write(
+                    f"| {failure.skill_id} | {failure.domain} | {failure.category} | {error_short} |\n"
+                )
 
         print(f"Analysis report saved: {output_path}")
 
@@ -408,11 +415,19 @@ class FailureAnalyzer:
             analyzed_failures: List of analyzed failures
             output_path: Output CSV path
         """
-        with open(output_path, 'w', newline='') as f:
-            writer = csv.DictWriter(f, fieldnames=[
-                'skill_id', 'domain', 'category', 'priority', 'estimated_effort',
-                'fix_recommendation', 'error'
-            ])
+        with open(output_path, "w", newline="") as f:
+            writer = csv.DictWriter(
+                f,
+                fieldnames=[
+                    "skill_id",
+                    "domain",
+                    "category",
+                    "priority",
+                    "estimated_effort",
+                    "fix_recommendation",
+                    "error",
+                ],
+            )
             writer.writeheader()
 
             for failure in analyzed_failures:
@@ -424,7 +439,7 @@ class FailureAnalyzer:
 def main():
     """Main CLI entry point."""
     parser = argparse.ArgumentParser(
-        description='Analyze evaluation failures',
+        description="Analyze evaluation failures",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
@@ -439,15 +454,15 @@ Examples:
 
   # Export to CSV
   python scripts/analyze_eval_failures.py --session batch_20260211_123456 --export failures.csv
-        """
+        """,
     )
 
-    parser.add_argument('--session', help='Batch eval session ID')
-    parser.add_argument('--domain', help='Analyze specific domain')
-    parser.add_argument('--report-dir', default='reports/evals', help='Report directory')
-    parser.add_argument('--prioritize', action='store_true', help='Prioritize action plan')
-    parser.add_argument('--export', help='Export failures to CSV')
-    parser.add_argument('--output', help='Output report path')
+    parser.add_argument("--session", help="Batch eval session ID")
+    parser.add_argument("--domain", help="Analyze specific domain")
+    parser.add_argument("--report-dir", default="reports/evals", help="Report directory")
+    parser.add_argument("--prioritize", action="store_true", help="Prioritize action plan")
+    parser.add_argument("--export", help="Export failures to CSV")
+    parser.add_argument("--output", help="Output report path")
 
     args = parser.parse_args()
 
@@ -497,11 +512,11 @@ Examples:
     print(f"{'='*60}")
     print(f"Total Failures: {summary['total_failures']}")
     print(f"\nTop Categories:")
-    for category, count in list(summary['by_category'].items())[:5]:
+    for category, count in list(summary["by_category"].items())[:5]:
         print(f"  {category}: {count}")
     print(f"\nAction Items: {len(action_plan)}")
     print(f"Report: {output_path}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

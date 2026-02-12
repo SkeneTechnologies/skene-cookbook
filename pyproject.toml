@@ -16,6 +16,9 @@ extend-exclude = '''
   | \.pytest_cache
   | node_modules
   | archived
+  | skills-library
+  | reports
+  | test_cases
 )/
 '''
 
@@ -33,7 +36,11 @@ skip_glob = [
     "*/.venv/*",
     "*/build/*",
     "*/dist/*",
-    "*/archived/*"
+    "*/archived/*",
+    "skills-library/*",
+    "*/skills-library/*",
+    "reports/*",
+    "test_cases/*"
 ]
 
 [tool.pytest.ini_options]

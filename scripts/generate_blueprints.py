@@ -8,11 +8,12 @@ Analyzes I/O compatibility and generates workflow blueprints
 """
 
 import json
-import yaml
-from pathlib import Path
-from typing import Dict, List, Set, Tuple
 from collections import defaultdict
 from datetime import datetime
+from pathlib import Path
+from typing import Dict, List, Set, Tuple
+
+import yaml
 
 
 class ChainArchitect:
@@ -38,7 +39,7 @@ class ChainArchitect:
 
         # Load from job functions index
         index_path = self.registry_path / "job_functions" / "index.json"
-        with open(index_path, 'r') as f:
+        with open(index_path, "r") as f:
             job_functions = json.load(f)
 
         total_skills = 0
@@ -50,21 +51,21 @@ class ChainArchitect:
         skill_files = list(self.skills_path.rglob("skill.json"))
         for skill_file in skill_files:
             try:
-                with open(skill_file, 'r') as f:
+                with open(skill_file, "r") as f:
                     skill_data = json.load(f)
 
                 # Extract I/O types
-                input_types = self._extract_io_types(skill_data.get('inputSchema'))
-                output_types = self._extract_io_types(skill_data.get('outputSchema'))
+                input_types = self._extract_io_types(skill_data.get("inputSchema"))
+                output_types = self._extract_io_types(skill_data.get("outputSchema"))
 
                 skill_record = {
-                    'skill_id': skill_data.get('id'),
-                    'name': skill_data.get('name', ''),
-                    'domain': skill_data.get('domain', ''),
-                    'input_types': input_types,
-                    'output_types': output_types,
-                    'tools': skill_data.get('tools', []),
-                    'exit_states': skill_data.get('exitStates', [])
+                    "skill_id": skill_data.get("id"),
+                    "name": skill_data.get("name", ""),
+                    "domain": skill_data.get("domain", ""),
+                    "input_types": input_types,
+                    "output_types": output_types,
+                    "tools": skill_data.get("tools", []),
+                    "exit_states": skill_data.get("exitStates", []),
                 }
 
                 self.skills.append(skill_record)
@@ -88,25 +89,25 @@ class ChainArchitect:
         types = set()
 
         # Get top-level type
-        if 'type' in schema:
-            types.add(schema['type'])
+        if "type" in schema:
+            types.add(schema["type"])
 
         # Get property types
-        if 'properties' in schema:
-            for prop_name, prop_schema in schema['properties'].items():
-                if 'type' in prop_schema:
-                    types.add(prop_schema['type'])
+        if "properties" in schema:
+            for prop_name, prop_schema in schema["properties"].items():
+                if "type" in prop_schema:
+                    types.add(prop_schema["type"])
                 # Add semantic type hints from description
-                if 'description' in prop_schema:
-                    desc = prop_schema['description'].lower()
-                    if 'file' in desc:
-                        types.add('file')
-                    if 'url' in desc or 'link' in desc:
-                        types.add('url')
-                    if 'email' in desc:
-                        types.add('email')
-                    if 'data' in desc:
-                        types.add('data')
+                if "description" in prop_schema:
+                    desc = prop_schema["description"].lower()
+                    if "file" in desc:
+                        types.add("file")
+                    if "url" in desc or "link" in desc:
+                        types.add("url")
+                    if "email" in desc:
+                        types.add("email")
+                    if "data" in desc:
+                        types.add("data")
 
         return types
 
@@ -116,28 +117,26 @@ class ChainArchitect:
 
         # For each skill, find skills that can follow it
         for skill in self.skills:
-            if not skill['output_types']:
+            if not skill["output_types"]:
                 continue
 
             compatible_followers = []
 
-            for output_type in skill['output_types']:
+            for output_type in skill["output_types"]:
                 # Find skills that accept this output type
                 for potential_follower in self.skills:
-                    if skill['skill_id'] == potential_follower['skill_id']:
+                    if skill["skill_id"] == potential_follower["skill_id"]:
                         continue
 
-                    if output_type in potential_follower['input_types']:
-                        compatible_followers.append({
-                            'skill': potential_follower,
-                            'connection_type': output_type
-                        })
+                    if output_type in potential_follower["input_types"]:
+                        compatible_followers.append(
+                            {"skill": potential_follower, "connection_type": output_type}
+                        )
 
             if compatible_followers:
-                self.chainable_pairs.append({
-                    'producer': skill,
-                    'compatible_consumers': compatible_followers
-                })
+                self.chainable_pairs.append(
+                    {"producer": skill, "compatible_consumers": compatible_followers}
+                )
 
         print(f"   ✅ Found {len(self.chainable_pairs)} chainable skill patterns")
 
@@ -147,11 +146,11 @@ class ChainArchitect:
 
         # Common JTBD workflows
         common_workflows = {
-            'data_analysis': ['extract', 'transform', 'analyze', 'visualize'],
-            'content_creation': ['research', 'draft', 'edit', 'publish'],
-            'customer_onboarding': ['signup', 'verify', 'setup', 'activate'],
-            'incident_response': ['detect', 'triage', 'remediate', 'report'],
-            'recruitment': ['source', 'screen', 'interview', 'offer']
+            "data_analysis": ["extract", "transform", "analyze", "visualize"],
+            "content_creation": ["research", "draft", "edit", "publish"],
+            "customer_onboarding": ["signup", "verify", "setup", "activate"],
+            "incident_response": ["detect", "triage", "remediate", "report"],
+            "recruitment": ["source", "screen", "interview", "offer"],
         }
 
         # Check for missing steps
@@ -161,20 +160,24 @@ class ChainArchitect:
             for step in steps:
                 # Check if we have skills for this step
                 matching_skills = [
-                    s for s in self.skills
-                    if step.lower() in s['name'].lower() or
-                       step.lower() in s['skill_id'].lower()
+                    s
+                    for s in self.skills
+                    if step.lower() in s["name"].lower() or step.lower() in s["skill_id"].lower()
                 ]
 
                 if not matching_skills:
                     missing_steps.append(step)
 
             if missing_steps:
-                self.missing_links.append({
-                    'workflow': workflow_name,
-                    'missing_steps': missing_steps,
-                    'severity': 'critical' if len(missing_steps) > len(steps) / 2 else 'moderate'
-                })
+                self.missing_links.append(
+                    {
+                        "workflow": workflow_name,
+                        "missing_steps": missing_steps,
+                        "severity": (
+                            "critical" if len(missing_steps) > len(steps) / 2 else "moderate"
+                        ),
+                    }
+                )
 
         print(f"   ⚠️  Found {len(self.missing_links)} workflow gaps")
 
@@ -183,13 +186,7 @@ class ChainArchitect:
         print("\n📐 Generating job function blueprints...")
 
         # Priority job functions for blueprints
-        priority_functions = [
-            'engineering',
-            'marketing',
-            'customer_success',
-            'sales',
-            'data'
-        ]
+        priority_functions = ["engineering", "marketing", "customer_success", "sales", "data"]
 
         blueprints_created = 0
 
@@ -204,7 +201,7 @@ class ChainArchitect:
 
             if blueprint:
                 output_path = self.blueprints_path / f"{function}_workflow.yaml"
-                with open(output_path, 'w') as f:
+                with open(output_path, "w") as f:
                     yaml.dump(blueprint, f, default_flow_style=False, sort_keys=False)
 
                 print(f"   ✅ Created: {output_path.name}")
@@ -217,31 +214,36 @@ class ChainArchitect:
 
         # Define common workflows by function
         workflow_patterns = {
-            'engineering': {
-                'name': 'Code Review & Deployment Pipeline',
-                'description': 'Automated code review, testing, and deployment workflow',
-                'steps': ['code_review', 'run_tests', 'security_scan', 'deploy']
+            "engineering": {
+                "name": "Code Review & Deployment Pipeline",
+                "description": "Automated code review, testing, and deployment workflow",
+                "steps": ["code_review", "run_tests", "security_scan", "deploy"],
             },
-            'marketing': {
-                'name': 'Content Marketing Campaign',
-                'description': 'Research, create, optimize, and distribute content',
-                'steps': ['keyword_research', 'content_creation', 'seo_optimization', 'distribution']
+            "marketing": {
+                "name": "Content Marketing Campaign",
+                "description": "Research, create, optimize, and distribute content",
+                "steps": [
+                    "keyword_research",
+                    "content_creation",
+                    "seo_optimization",
+                    "distribution",
+                ],
             },
-            'customer_success': {
-                'name': 'Customer Health Monitoring',
-                'description': 'Monitor customer health, detect churn risk, and intervene',
-                'steps': ['health_scoring', 'churn_prediction', 'intervention', 'follow_up']
+            "customer_success": {
+                "name": "Customer Health Monitoring",
+                "description": "Monitor customer health, detect churn risk, and intervene",
+                "steps": ["health_scoring", "churn_prediction", "intervention", "follow_up"],
             },
-            'sales': {
-                'name': 'Lead Qualification Pipeline',
-                'description': 'Qualify, score, route, and follow up on leads',
-                'steps': ['lead_scoring', 'qualification', 'routing', 'follow_up']
+            "sales": {
+                "name": "Lead Qualification Pipeline",
+                "description": "Qualify, score, route, and follow up on leads",
+                "steps": ["lead_scoring", "qualification", "routing", "follow_up"],
             },
-            'data': {
-                'name': 'Data Analysis Pipeline',
-                'description': 'Extract, transform, analyze, and visualize data',
-                'steps': ['extraction', 'transformation', 'analysis', 'visualization']
-            }
+            "data": {
+                "name": "Data Analysis Pipeline",
+                "description": "Extract, transform, analyze, and visualize data",
+                "steps": ["extraction", "transformation", "analysis", "visualization"],
+            },
         }
 
         if function not in workflow_patterns:
@@ -251,44 +253,46 @@ class ChainArchitect:
 
         # Build chain sequence
         chain_sequence = []
-        for i, step_name in enumerate(pattern['steps'], 1):
+        for i, step_name in enumerate(pattern["steps"], 1):
             # Try to find a matching skill
             matching_skill = None
             for skill in skills:
-                if any(keyword in skill.get('jtbd', '').lower() for keyword in step_name.split('_')):
+                if any(
+                    keyword in skill.get("jtbd", "").lower() for keyword in step_name.split("_")
+                ):
                     matching_skill = skill
                     break
 
             if not matching_skill and skills:
-                matching_skill = skills[min(i-1, len(skills)-1)]
+                matching_skill = skills[min(i - 1, len(skills) - 1)]
 
             if matching_skill:
                 step = {
-                    'step_id': f'step_{i}_{step_name}',
-                    'skill_id': matching_skill['skill_id'],
-                    'action': 'execute',
-                    'description': f'Execute {step_name.replace("_", " ")}',
-                    'timeout_seconds': 300,
-                    'error_handling': {
-                        'on_failure': 'stop' if i < len(pattern['steps']) / 2 else 'continue',
-                        'max_retries': 2
-                    }
+                    "step_id": f"step_{i}_{step_name}",
+                    "skill_id": matching_skill["skill_id"],
+                    "action": "execute",
+                    "description": f'Execute {step_name.replace("_", " ")}',
+                    "timeout_seconds": 300,
+                    "error_handling": {
+                        "on_failure": "stop" if i < len(pattern["steps"]) / 2 else "continue",
+                        "max_retries": 2,
+                    },
                 }
                 chain_sequence.append(step)
 
         blueprint = {
-            'id': f'workflow_{function}_automated',
-            'version': '1.0.0',
-            'name': pattern['name'],
-            'description': pattern['description'],
-            'category': function.replace('_', ' ').title(),
-            'chain_sequence': chain_sequence,
-            'metadata': {
-                'author': 'Chain Architect',
-                'created_at': datetime.now().isoformat(),
-                'job_function': function,
-                'auto_generated': True
-            }
+            "id": f"workflow_{function}_automated",
+            "version": "1.0.0",
+            "name": pattern["name"],
+            "description": pattern["description"],
+            "category": function.replace("_", " ").title(),
+            "chain_sequence": chain_sequence,
+            "metadata": {
+                "author": "Chain Architect",
+                "created_at": datetime.now().isoformat(),
+                "job_function": function,
+                "auto_generated": True,
+            },
         }
 
         return blueprint
@@ -298,36 +302,31 @@ class ChainArchitect:
         print("\n🎯 Generating JTBD-based blueprints...")
 
         jtbd_patterns = {
-            'partner_onboarding': {
-                'name': 'Complete Partner Onboarding',
-                'description': 'End-to-end partner onboarding from signup to revenue tracking',
-                'skill_sequence': [
-                    'partner.*onboard',
-                    'integration.*setup',
-                    '.*health.*monitor',
-                    'revenue.*track'
-                ]
+            "partner_onboarding": {
+                "name": "Complete Partner Onboarding",
+                "description": "End-to-end partner onboarding from signup to revenue tracking",
+                "skill_sequence": [
+                    "partner.*onboard",
+                    "integration.*setup",
+                    ".*health.*monitor",
+                    "revenue.*track",
+                ],
             },
-            'customer_churn_prevention': {
-                'name': 'Proactive Churn Prevention',
-                'description': 'Detect at-risk customers and intervene',
-                'skill_sequence': [
-                    'health.*scor',
-                    'churn.*predict',
-                    '.*intervention',
-                    '.*follow.*up'
-                ]
+            "customer_churn_prevention": {
+                "name": "Proactive Churn Prevention",
+                "description": "Detect at-risk customers and intervene",
+                "skill_sequence": [
+                    "health.*scor",
+                    "churn.*predict",
+                    ".*intervention",
+                    ".*follow.*up",
+                ],
             },
-            'lead_to_revenue': {
-                'name': 'Lead to Revenue Pipeline',
-                'description': 'Capture, qualify, nurture, and close leads',
-                'skill_sequence': [
-                    'lead.*captur',
-                    '.*qualification',
-                    '.*nurture',
-                    'deal.*clos'
-                ]
-            }
+            "lead_to_revenue": {
+                "name": "Lead to Revenue Pipeline",
+                "description": "Capture, qualify, nurture, and close leads",
+                "skill_sequence": ["lead.*captur", ".*qualification", ".*nurture", "deal.*clos"],
+            },
         }
 
         blueprints_created = 0
@@ -335,40 +334,41 @@ class ChainArchitect:
         for jtbd_id, pattern in jtbd_patterns.items():
             # Find matching skills
             matched_skills = []
-            for skill_pattern in pattern['skill_sequence']:
+            for skill_pattern in pattern["skill_sequence"]:
                 # Find skill matching pattern
                 import re
+
                 for skill in self.skills:
-                    if re.search(skill_pattern, skill['skill_id'], re.IGNORECASE):
+                    if re.search(skill_pattern, skill["skill_id"], re.IGNORECASE):
                         matched_skills.append(skill)
                         break
 
-            if len(matched_skills) >= len(pattern['skill_sequence']) / 2:
+            if len(matched_skills) >= len(pattern["skill_sequence"]) / 2:
                 blueprint = {
-                    'id': f'workflow_{jtbd_id}',
-                    'version': '1.0.0',
-                    'name': pattern['name'],
-                    'description': pattern['description'],
-                    'category': 'JTBD Workflow',
-                    'chain_sequence': [
+                    "id": f"workflow_{jtbd_id}",
+                    "version": "1.0.0",
+                    "name": pattern["name"],
+                    "description": pattern["description"],
+                    "category": "JTBD Workflow",
+                    "chain_sequence": [
                         {
-                            'step_id': f'step_{i+1}',
-                            'skill_id': skill['skill_id'],
-                            'action': 'execute',
-                            'timeout_seconds': 300
+                            "step_id": f"step_{i+1}",
+                            "skill_id": skill["skill_id"],
+                            "action": "execute",
+                            "timeout_seconds": 300,
                         }
                         for i, skill in enumerate(matched_skills)
                     ],
-                    'metadata': {
-                        'author': 'Chain Architect',
-                        'created_at': datetime.now().isoformat(),
-                        'jtbd_pattern': jtbd_id,
-                        'auto_generated': True
-                    }
+                    "metadata": {
+                        "author": "Chain Architect",
+                        "created_at": datetime.now().isoformat(),
+                        "jtbd_pattern": jtbd_id,
+                        "auto_generated": True,
+                    },
                 }
 
                 output_path = self.blueprints_path / f"{jtbd_id}.yaml"
-                with open(output_path, 'w') as f:
+                with open(output_path, "w") as f:
                     yaml.dump(blueprint, f, default_flow_style=False, sort_keys=False)
 
                 print(f"   ✅ Created: {output_path.name}")
@@ -381,32 +381,32 @@ class ChainArchitect:
         print("\n📊 Generating chain analysis report...")
 
         report = {
-            'metadata': {
-                'generated_at': datetime.now().isoformat(),
-                'total_skills_analyzed': len(self.skills)
+            "metadata": {
+                "generated_at": datetime.now().isoformat(),
+                "total_skills_analyzed": len(self.skills),
             },
-            'summary': {
-                'chainable_patterns': len(self.chainable_pairs),
-                'missing_workflow_links': len(self.missing_links),
-                'output_types_identified': len(self.io_graph),
-                'job_functions': len(self.skills_by_function)
+            "summary": {
+                "chainable_patterns": len(self.chainable_pairs),
+                "missing_workflow_links": len(self.missing_links),
+                "output_types_identified": len(self.io_graph),
+                "job_functions": len(self.skills_by_function),
             },
-            'chainability': {
-                'patterns': self.chainable_pairs[:50],  # Top 50
-                'io_graph': {k: [s['skill_id'] for s in v] for k, v in self.io_graph.items()}
+            "chainability": {
+                "patterns": self.chainable_pairs[:50],  # Top 50
+                "io_graph": {k: [s["skill_id"] for s in v] for k, v in self.io_graph.items()},
             },
-            'missing_links': self.missing_links,
-            'recommendations': {
-                'high_priority_skills_needed': [
-                    link['missing_steps']
+            "missing_links": self.missing_links,
+            "recommendations": {
+                "high_priority_skills_needed": [
+                    link["missing_steps"]
                     for link in self.missing_links
-                    if link['severity'] == 'critical'
+                    if link["severity"] == "critical"
                 ]
-            }
+            },
         }
 
         report_path = self.base_path / "reports" / "chain_analysis.json"
-        with open(report_path, 'w') as f:
+        with open(report_path, "w") as f:
             json.dump(report, f, indent=2)
 
         print(f"   ✅ Report saved: {report_path}")
@@ -418,7 +418,7 @@ class ChainArchitect:
         """Generate human-readable chain summary"""
         summary_path = self.base_path / "reports" / "chain_summary.md"
 
-        with open(summary_path, 'w') as f:
+        with open(summary_path, "w") as f:
             f.write("# Skill Chain Analysis Report\n\n")
             f.write(f"**Generated:** {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n")
 
@@ -429,21 +429,25 @@ class ChainArchitect:
             f.write(f"- **Output Types:** {report['summary']['output_types_identified']}\n\n")
 
             f.write("## Chainability Analysis\n\n")
-            f.write(f"Found {report['summary']['chainable_patterns']} skills that can be chained together.\n\n")
+            f.write(
+                f"Found {report['summary']['chainable_patterns']} skills that can be chained together.\n\n"
+            )
 
             if self.chainable_pairs:
                 f.write("### Example Chains\n\n")
                 for i, pattern in enumerate(self.chainable_pairs[:10], 1):
                     f.write(f"**{i}. {pattern['producer']['name']}**\n")
                     f.write(f"   → Can chain to {len(pattern['compatible_consumers'])} skills:\n")
-                    for consumer in pattern['compatible_consumers'][:3]:
-                        f.write(f"   - {consumer['skill']['name']} (via {consumer['connection_type']})\n")
+                    for consumer in pattern["compatible_consumers"][:3]:
+                        f.write(
+                            f"   - {consumer['skill']['name']} (via {consumer['connection_type']})\n"
+                        )
                     f.write("\n")
 
             if self.missing_links:
                 f.write("## ⚠️  Missing Links (Workflow Gaps)\n\n")
                 for gap in self.missing_links:
-                    severity_emoji = '🔴' if gap['severity'] == 'critical' else '🟡'
+                    severity_emoji = "🔴" if gap["severity"] == "critical" else "🟡"
                     f.write(f"### {severity_emoji} {gap['workflow'].replace('_', ' ').title()}\n\n")
                     f.write(f"**Missing Steps:** {', '.join(gap['missing_steps'])}\n\n")
 
@@ -456,9 +460,9 @@ class ChainArchitect:
 
     def print_summary(self):
         """Print summary to console"""
-        print("\n" + "="*70)
+        print("\n" + "=" * 70)
         print("  SKILL CHAIN ANALYSIS COMPLETE")
-        print("="*70)
+        print("=" * 70)
 
         print(f"\n📊 RESULTS")
         print(f"   Skills Analyzed:          {len(self.skills)}")
@@ -476,7 +480,7 @@ class ChainArchitect:
         print("   • reports/chain_analysis.json")
         print("   • reports/chain_summary.md")
 
-        print("\n" + "="*70 + "\n")
+        print("\n" + "=" * 70 + "\n")
 
 
 def main():
@@ -499,5 +503,5 @@ def main():
     print("\nNext: Review reports/chain_summary.md and registry/blueprints/")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

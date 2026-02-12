@@ -92,26 +92,32 @@ Provide clear execution instructions:
 # Skill Name
 
 ## Purpose
+
 What this skill accomplishes and when to use it.
 
 ## Prerequisites
+
 - Required tools or access
 - Dependencies on other skills
 
 ## Execution Steps
+
 1. Step-by-step instructions
 2. Expected inputs
 3. Expected outputs
 
 ## Example Usage
+
 \`\`\`
 // Example invocation
 \`\`\`
 
 ## Error Handling
+
 Common errors and how to resolve them.
 
 ## Security Considerations
+
 Any security implications or data access.
 ```
 
@@ -122,6 +128,7 @@ python scripts/analyze_skills.py --action metadata
 ```
 
 This generates `metadata.yaml` with security analysis:
+
 - Risk level assessment
 - Security requirements
 - Job function categorization
@@ -160,20 +167,24 @@ git push origin add-skill-[skill_name]
 **Job Function:** [function]
 
 ### Description
+
 Brief description of what the skill does.
 
 ### Security Analysis
+
 - Risk factors identified
 - Security requirements needed
 - Data access scope
 
 ### Testing
+
 - [ ] Tested standalone execution
 - [ ] Validated input/output schemas
 - [ ] Ran security analysis
 - [ ] Added to appropriate workflows (if applicable)
 
 ### Checklist
+
 - [ ] skill.json follows schema
 - [ ] instructions.md is complete
 - [ ] metadata.yaml generated
@@ -187,6 +198,7 @@ Brief description of what the skill does.
 To audit skills for security issues:
 
 1. **Run Analysis:**
+
    ```bash
    python scripts/analyze_skills.py --action report
    ```
@@ -199,16 +211,17 @@ To audit skills for security issues:
 
 3. **Update Security Requirements:**
    Edit `metadata.yaml` to add:
+
    ```yaml
    security:
-     risk_level: "High"
+     risk_level: 'High'
      requirements:
        sandboxing_required: true
        human_in_loop_required: true
        audit_logging: true
        data_access_scope:
-         - "pii"
-         - "financial"
+         - 'pii'
+         - 'financial'
    ```
 
 4. **Submit Security PR:**
@@ -236,6 +249,7 @@ If any are true, the skill needs appropriate security controls.
 ### 1. Design Workflow
 
 Identify:
+
 - Skills to chain together
 - Data flow between steps
 - Error handling strategy
@@ -248,38 +262,38 @@ Follow `schemas/workflow_blueprint.json`:
 ```yaml
 id: workflow_your_workflow_name
 version: 1.0.0
-name: "Your Workflow Name"
-description: "What this workflow accomplishes"
+name: 'Your Workflow Name'
+description: 'What this workflow accomplishes'
 
 chain_sequence:
-  - step_id: "step_1"
-    skill_id: "skill_to_execute"
-    action: "action_name"
+  - step_id: 'step_1'
+    skill_id: 'skill_to_execute'
+    action: 'action_name'
     input_mapping:
       static_values:
-        key: "value"
+        key: 'value'
     error_handling:
-      on_failure: "stop"
+      on_failure: 'stop'
       max_retries: 2
 
-  - step_id: "step_2"
-    skill_id: "next_skill"
-    action: "action_name"
+  - step_id: 'step_2'
+    skill_id: 'next_skill'
+    action: 'action_name'
     input_mapping:
-      from_step: "step_1"
+      from_step: 'step_1'
       field_mappings:
-        output_field: "input.field"
+        output_field: 'input.field'
 
 logic_gates:
   parallel_groups:
-    - group_id: "parallel_tasks"
+    - group_id: 'parallel_tasks'
       step_ids:
-        - "step_3"
-        - "step_4"
+        - 'step_3'
+        - 'step_4'
       wait_for_all: true
 
 security_context:
-  max_risk_level: "Medium"
+  max_risk_level: 'Medium'
   requires_approval: false
 ```
 
@@ -337,6 +351,7 @@ npm run setup:hooks
 ```
 
 This will automatically:
+
 - Validate skill.json against schema
 - Run security analysis
 - Check for malicious code patterns

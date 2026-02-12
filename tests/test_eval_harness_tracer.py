@@ -3,76 +3,77 @@ Unit tests for eval_harness SkillTracer.
 """
 
 import pytest
+
 from eval_harness.core.tracer import SkillTracer, SpanContext
 
 
 @pytest.fixture
 def tracer():
     """Create tracer instance."""
-    return SkillTracer(provider='none')  # Disable output for tests
+    return SkillTracer(provider="none")  # Disable output for tests
 
 
 def test_tracer_initialization(tracer):
     """Test tracer initializes correctly."""
     assert tracer is not None
-    assert tracer.provider == 'none'
+    assert tracer.provider == "none"
 
 
 def test_trace_skill_execution(tracer):
     """Test tracing a skill execution."""
-    inputs = {'partnerId': 'test-123', 'action': 'check_budget'}
+    inputs = {"partnerId": "test-123", "action": "check_budget"}
 
-    with tracer.trace_skill_execution('elg_mdf_tracker', '1.0.0', inputs) as span:
+    with tracer.trace_skill_execution("elg_mdf_tracker", "1.0.0", inputs) as span:
         # Simulate work
-        span.set_attribute('validation.passed', True)
-        span.set_attribute('decision.type', 'auto_act')
+        span.set_attribute("validation.passed", True)
+        span.set_attribute("decision.type", "auto_act")
 
     spans = tracer.get_spans()
     assert len(spans) == 1
 
     span = spans[0]
-    assert span.name == 'skill.elg_mdf_tracker'
-    assert span.status == 'ok'
-    assert span.attributes['skill.id'] == 'elg_mdf_tracker'
-    assert span.attributes['skill.version'] == '1.0.0'
-    assert span.attributes['validation.passed'] is True
+    assert span.name == "skill.elg_mdf_tracker"
+    assert span.status == "ok"
+    assert span.attributes["skill.id"] == "elg_mdf_tracker"
+    assert span.attributes["skill.version"] == "1.0.0"
+    assert span.attributes["validation.passed"] is True
     assert span.duration_ms() is not None
 
 
 def test_trace_skill_execution_with_error(tracer):
     """Test tracing captures errors."""
-    inputs = {'partnerId': 'test-123', 'action': 'check_budget'}
+    inputs = {"partnerId": "test-123", "action": "check_budget"}
 
     with pytest.raises(ValueError):
-        with tracer.trace_skill_execution('elg_mdf_tracker', '1.0.0', inputs) as span:
+        with tracer.trace_skill_execution("elg_mdf_tracker", "1.0.0", inputs) as span:
             raise ValueError("Test error")
 
     spans = tracer.get_spans()
     assert len(spans) == 1
 
     span = spans[0]
-    assert span.status == 'error'
-    assert 'Test error' in span.error_message
+    assert span.status == "error"
+    assert "Test error" in span.error_message
 
 
 def test_trace_workflow_execution(tracer):
     """Test tracing a workflow execution."""
-    with tracer.trace_workflow_execution('test_workflow', '1.0.0') as workflow_span:
-        workflow_span.set_attribute('steps', 3)
+    with tracer.trace_workflow_execution("test_workflow", "1.0.0") as workflow_span:
+        workflow_span.set_attribute("steps", 3)
 
     spans = tracer.get_spans()
     assert len(spans) == 1
 
     span = spans[0]
-    assert span.name == 'workflow.test_workflow'
-    assert span.attributes['workflow.id'] == 'test_workflow'
+    assert span.name == "workflow.test_workflow"
+    assert span.attributes["workflow.id"] == "test_workflow"
 
 
 def test_hierarchical_tracing(tracer):
     """Test hierarchical span relationships."""
-    with tracer.trace_workflow_execution('test_workflow', '1.0.0') as workflow_span:
+    with tracer.trace_workflow_execution("test_workflow", "1.0.0") as workflow_span:
         # Nested skill execution
-        with tracer.trace_skill_execution('elg_mdf_tracker', '1.0.0', {}) as skill_span:
+        with tracer.trace_skill_execution("elg_mdf_tracker", "1.0.0", {}) as skill_span:
             pass
 
     spans = tracer.get_spans()
@@ -89,17 +90,17 @@ def test_hierarchical_tracing(tracer):
 
 def test_export_json(tracer):
     """Test exporting spans as JSON."""
-    with tracer.trace_skill_execution('elg_mdf_tracker', '1.0.0', {}) as span:
-        span.set_attribute('test', 'value')
+    with tracer.trace_skill_execution("elg_mdf_tracker", "1.0.0", {}) as span:
+        span.set_attribute("test", "value")
 
     json_output = tracer.export_json()
-    assert 'elg_mdf_tracker' in json_output
-    assert 'test' in json_output
+    assert "elg_mdf_tracker" in json_output
+    assert "test" in json_output
 
 
 def test_reset(tracer):
     """Test resetting tracer state."""
-    with tracer.trace_skill_execution('elg_mdf_tracker', '1.0.0', {}) as span:
+    with tracer.trace_skill_execution("elg_mdf_tracker", "1.0.0", {}) as span:
         pass
 
     assert len(tracer.get_spans()) == 1

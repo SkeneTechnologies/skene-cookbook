@@ -5,21 +5,22 @@ Interactive terminal with deduplication, chaining, and health analysis
 """
 
 import json
-import yaml
-import sys
 import os
 import subprocess
+import sys
 from pathlib import Path
 
+import yaml
+
 try:
-    from rich.console import Console
-    from rich.table import Table
-    from rich.panel import Panel
-    from rich.prompt import Prompt, Confirm
-    from rich.tree import Tree
-    from rich import box
-    from rich.progress import Progress
     import pyfiglet
+    from rich import box
+    from rich.console import Console
+    from rich.panel import Panel
+    from rich.progress import Progress
+    from rich.prompt import Confirm, Prompt
+    from rich.table import Table
+    from rich.tree import Tree
 except ImportError:
     print("❌ Missing dependencies. Install with:")
     print("   pip3 install rich pyfiglet")
@@ -52,9 +53,7 @@ def cmd_dedupe():
         # Run deduplication
         with console.status("[bold green]Analyzing 808 skills..."):
             result = subprocess.run(
-                ["python3", "scripts/dedupe_skills.py"],
-                capture_output=True,
-                text=True
+                ["python3", "scripts/dedupe_skills.py"], capture_output=True, text=True
             )
 
         if result.returncode != 0:
@@ -63,10 +62,10 @@ def cmd_dedupe():
             return
 
     # Load report
-    with open(report_path, 'r') as f:
+    with open(report_path, "r") as f:
         report = json.load(f)
 
-    summary = report['summary']
+    summary = report["summary"]
 
     # Display summary
     table = Table(title="Deduplication Results", box=box.HEAVY_HEAD)
@@ -74,26 +73,10 @@ def cmd_dedupe():
     table.add_column("Count", justify="right", style="cyan")
     table.add_column("Action", style="yellow")
 
-    table.add_row(
-        "🔴 Duplicate Groups",
-        str(summary['duplicate_groups']),
-        "DELETE"
-    )
-    table.add_row(
-        "🟡 Similar Pairs",
-        str(summary['similar_pairs']),
-        "MERGE/REVIEW"
-    )
-    table.add_row(
-        "⚠️  Incomplete Skills",
-        str(summary['incomplete_skills']),
-        "FIX"
-    )
-    table.add_row(
-        "✅ Unique & Verified",
-        str(summary['unique_verified_skills']),
-        "PROMOTE"
-    )
+    table.add_row("🔴 Duplicate Groups", str(summary["duplicate_groups"]), "DELETE")
+    table.add_row("🟡 Similar Pairs", str(summary["similar_pairs"]), "MERGE/REVIEW")
+    table.add_row("⚠️  Incomplete Skills", str(summary["incomplete_skills"]), "FIX")
+    table.add_row("✅ Unique & Verified", str(summary["unique_verified_skills"]), "PROMOTE")
 
     console.print(table)
 
@@ -107,12 +90,14 @@ def cmd_dedupe():
 
     # Ask if user wants to see details
     if Confirm.ask("\n[cyan]View duplicate details?[/cyan]", default=False):
-        if report['duplicates']['groups']:
+        if report["duplicates"]["groups"]:
             console.print("\n[bold]Duplicate Groups:[/bold]\n")
-            for i, group in enumerate(report['duplicates']['groups'][:5], 1):
+            for i, group in enumerate(report["duplicates"]["groups"][:5], 1):
                 console.print(f"{i}. [bold]{group['primary']['skill_id']}[/bold]")
-                for dup in group['duplicates']:
-                    console.print(f"   → {dup['skill']['skill_id']} (similarity: {dup['similarity']:.3f})")
+                for dup in group["duplicates"]:
+                    console.print(
+                        f"   → {dup['skill']['skill_id']} (similarity: {dup['similarity']:.3f})"
+                    )
                 console.print()
 
     console.print()
@@ -144,7 +129,7 @@ def cmd_suggest_chain(job_name=None):
         console.print("\nGenerating suggestion based on available skills...")
 
         # Load skills for this function
-        with open("registry/job_functions/index.json", 'r') as f:
+        with open("registry/job_functions/index.json", "r") as f:
             job_functions = json.load(f)
 
         if job_name not in job_functions:
@@ -166,19 +151,21 @@ def cmd_suggest_chain(job_name=None):
 
     else:
         # Load existing blueprint
-        with open(blueprint_path, 'r') as f:
+        with open(blueprint_path, "r") as f:
             blueprint = yaml.safe_load(f)
 
-        console.print(Panel(
-            f"[bold]{blueprint['name']}[/bold]\n\n{blueprint['description']}",
-            title="[cyan]Workflow Blueprint[/cyan]",
-            border_style="cyan"
-        ))
+        console.print(
+            Panel(
+                f"[bold]{blueprint['name']}[/bold]\n\n{blueprint['description']}",
+                title="[cyan]Workflow Blueprint[/cyan]",
+                border_style="cyan",
+            )
+        )
 
         console.print("\n[bold]Chain Sequence:[/bold]\n")
 
         # ASCII diagram
-        steps = blueprint['chain_sequence']
+        steps = blueprint["chain_sequence"]
         for i, step in enumerate(steps, 1):
             console.print(f"  [bold cyan]Step {i}:[/bold cyan] {step['skill_id']}")
             console.print(f"     [dim]↓ {step.get('description', '')}[/dim]")
@@ -203,7 +190,7 @@ def cmd_health():
         task = progress.add_task("[cyan]Analyzing registry...", total=100)
 
         # Load skills
-        with open("registry/job_functions/index.json", 'r') as f:
+        with open("registry/job_functions/index.json", "r") as f:
             job_functions = json.load(f)
         progress.update(task, advance=30)
 
@@ -215,23 +202,25 @@ def cmd_health():
         dedupe_path = Path("reports/dedupe_report.json")
         unique_skills = 0
         if dedupe_path.exists():
-            with open(dedupe_path, 'r') as f:
+            with open(dedupe_path, "r") as f:
                 dedupe_report = json.load(f)
-                unique_skills = dedupe_report['summary']['unique_verified_skills']
+                unique_skills = dedupe_report["summary"]["unique_verified_skills"]
         progress.update(task, advance=30)
 
         # Load chain analysis if exists
         chain_path = Path("reports/chain_analysis.json")
         chainable = 0
         if chain_path.exists():
-            with open(chain_path, 'r') as f:
+            with open(chain_path, "r") as f:
                 chain_report = json.load(f)
-                chainable = chain_report['summary'].get('chainable_patterns', 0)
+                chainable = chain_report["summary"].get("chainable_patterns", 0)
         progress.update(task, advance=20)
 
     # Calculate health metrics
     uniqueness_pct = (unique_skills / total_skills * 100) if total_skills and unique_skills else 0
-    chainability_pct = (chainable / total_skills * 100) if total_skills and chainable else 40.0  # Estimate
+    chainability_pct = (
+        (chainable / total_skills * 100) if total_skills and chainable else 40.0
+    )  # Estimate
     verified_pct = 100 - (808 / total_skills * 100)  # Based on incomplete count
 
     overall_health = (uniqueness_pct + chainability_pct + verified_pct) / 3
@@ -244,34 +233,22 @@ def cmd_health():
 
     # Uniqueness
     uniqueness_status = "✅ Excellent" if uniqueness_pct > 90 else "⚠️  Needs work"
-    health_table.add_row(
-        "Uniqueness",
-        f"{uniqueness_pct:.1f}%",
-        uniqueness_status
-    )
+    health_table.add_row("Uniqueness", f"{uniqueness_pct:.1f}%", uniqueness_status)
 
     # Verification
     verified_status = "✅ Good" if verified_pct > 50 else "⚠️  Needs work"
-    health_table.add_row(
-        "Verified",
-        f"{verified_pct:.1f}%",
-        verified_status
-    )
+    health_table.add_row("Verified", f"{verified_pct:.1f}%", verified_status)
 
     # Chainability
     chainability_status = "✅ Good" if chainability_pct > 30 else "⚠️  Needs work"
-    health_table.add_row(
-        "Chainable",
-        f"{chainability_pct:.1f}%",
-        chainability_status
-    )
+    health_table.add_row("Chainable", f"{chainability_pct:.1f}%", chainability_status)
 
     # Overall
     overall_status = "✅ Healthy" if overall_health > 50 else "⚠️  Needs attention"
     health_table.add_row(
         "[bold]Overall Health[/bold]",
         f"[bold]{overall_health:.1f}%[/bold]",
-        f"[bold]{overall_status}[/bold]"
+        f"[bold]{overall_status}[/bold]",
     )
 
     console.print(health_table)

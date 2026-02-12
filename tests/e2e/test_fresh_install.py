@@ -5,12 +5,13 @@ Tests that validate fresh installation experience on different platforms.
 These tests simulate a new user cloning the repository and getting started.
 """
 
-import pytest
-import subprocess
-import tempfile
 import shutil
-from pathlib import Path
+import subprocess
 import sys
+import tempfile
+from pathlib import Path
+
+import pytest
 
 
 @pytest.mark.e2e
@@ -21,9 +22,7 @@ class TestFreshInstallation:
     def test_requirements_install_cleanly(self):
         """Test that all requirements install without conflicts."""
         result = subprocess.run(
-            [sys.executable, "-m", "pip", "check"],
-            capture_output=True,
-            text=True
+            [sys.executable, "-m", "pip", "check"], capture_output=True, text=True
         )
 
         # Should have no dependency conflicts
@@ -36,7 +35,7 @@ class TestFreshInstallation:
             "scripts/analyze_skills.py",
             "scripts/generate_blueprints.py",
             "skill-loom-cli.py",
-            "loom"
+            "loom",
         ]
 
         base_path = Path(__file__).parent.parent.parent
@@ -50,7 +49,7 @@ class TestFreshInstallation:
                 [sys.executable, str(script_path), "--help"],
                 capture_output=True,
                 text=True,
-                timeout=10
+                timeout=10,
             )
 
             # Should not crash (returncode 0 or 1 for scripts without --help)
@@ -59,12 +58,7 @@ class TestFreshInstallation:
     def test_minimal_dependencies_work(self):
         """Test that core functionality works with minimal dependencies."""
         # Core dependencies that must be present
-        required_imports = [
-            "json",
-            "yaml",
-            "pathlib",
-            "argparse"
-        ]
+        required_imports = ["json", "yaml", "pathlib", "argparse"]
 
         for module in required_imports:
             try:
@@ -96,6 +90,7 @@ class TestFreshInstallation:
 
         if job_functions_index.exists():
             import json
+
             with open(job_functions_index) as f:
                 data = json.load(f)
 
@@ -119,11 +114,7 @@ class TestDocumentationAccuracy:
     def test_license_exists(self):
         """Test that LICENSE file exists."""
         base_path = Path(__file__).parent.parent.parent
-        license_files = [
-            base_path / "LICENSE",
-            base_path / "LICENSE.md",
-            base_path / "LICENSE.txt"
-        ]
+        license_files = [base_path / "LICENSE", base_path / "LICENSE.md", base_path / "LICENSE.txt"]
 
         assert any(f.exists() for f in license_files), "No LICENSE file found"
 
@@ -176,13 +167,7 @@ class TestSecurityReadiness:
         content = gitignore.read_text().lower()
 
         # Common patterns that should be ignored
-        should_ignore = [
-            ".env",
-            "__pycache__",
-            ".pytest_cache",
-            ".coverage",
-            "*.pyc"
-        ]
+        should_ignore = [".env", "__pycache__", ".pytest_cache", ".coverage", "*.pyc"]
 
         for pattern in should_ignore:
             assert pattern in content, f"Missing from .gitignore: {pattern}"
@@ -191,12 +176,7 @@ class TestSecurityReadiness:
         """Test for common secret patterns in Python files."""
         base_path = Path(__file__).parent.parent.parent
 
-        suspicious_patterns = [
-            b"password = ",
-            b"api_key = ",
-            b"secret = ",
-            b"token = "
-        ]
+        suspicious_patterns = [b"password = ", b"api_key = ", b"secret = ", b"token = "]
 
         for py_file in base_path.rglob("*.py"):
             # Skip test files and virtual environments
@@ -209,9 +189,9 @@ class TestSecurityReadiness:
                 if pattern in content:
                     # Check if it's just a variable name or actual assignment
                     # This is a basic check - manual review still needed
-                    lines = content.split(b'\n')
+                    lines = content.split(b"\n")
                     for line in lines:
-                        if pattern in line and b'=' in line:
+                        if pattern in line and b"=" in line:
                             # Could be a false positive, but flag for review
                             print(f"⚠️  Potential secret in {py_file}: {line}")
 
@@ -231,7 +211,7 @@ class TestCrossFileConsistency:
         version_files = [
             base_path / "setup.py",
             base_path / "pyproject.toml",
-            base_path / "__init__.py"
+            base_path / "__init__.py",
         ]
 
         versions_found = []
@@ -257,10 +237,7 @@ class TestCrossFileConsistency:
         req_content = requirements.read_text().lower()
 
         # Core dependencies that should be in requirements
-        expected_deps = [
-            "pyyaml",
-            "rich"
-        ]
+        expected_deps = ["pyyaml", "rich"]
 
         for dep in expected_deps:
             assert dep in req_content, f"Missing dependency in requirements.txt: {dep}"

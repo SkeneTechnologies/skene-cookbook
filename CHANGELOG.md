@@ -8,12 +8,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+
 - METRICS.md - Canonical source of truth for all skill counts and methodology
 - Metric badges in README.md (total skills, executable, context, domains)
 - Automated verification for documentation accuracy (sync_metrics.js)
 - GitHub Action for documentation verification in CI/CD
 
 ### Changed
+
 - **Documentation Accuracy Update**: All documentation now uses accurate skill counts
   - Total: 765 skills (383 executable + 382 context)
   - Domains: 23 (21 executable + 2 context)
@@ -25,6 +27,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - package.json - Will update description to reflect accurate numbers (pending v0.1.2 release)
 
 ### Fixed
+
 - Documentation discrepancies across multiple files (README, SKILLS_CATALOG, index.json)
 - Inconsistent skill counting methodology (now documented in METRICS.md)
 - Missing context skills in summary counts (cursor_rules: 241, scientific: 141)
@@ -33,6 +36,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.1.1] - 2026-02-12
 
 ### Added
+
 - GitHub issue templates (bug report, feature request, skill proposal, security)
 - Pull request template with comprehensive checklists
 - Code of Conduct as standalone document
@@ -42,15 +46,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - JavaScript linting configuration (ESLint, Prettier)
 
 ### Changed
+
 - Extract Code of Conduct from CONTRIBUTING.md to standalone file
 - Update README.md with Code of Conduct link and setup instructions
 
 ### Fixed
+
 - CI/CD quality gates now properly fail on issues (not just warnings)
 
 ## [0.1.0] - 2026-02-11
 
 ### Added - Core Infrastructure
+
 - 765 AI agent skills across 23 domains (383 executable + 382 context):
   - 52 Marketing skills (content, SEO, campaigns)
   - 70 PLG skills (product-led growth, activation)
@@ -72,6 +79,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Ecosystem generator for tailored recommendations
 
 ### Added - Documentation
+
 - Comprehensive README with value proposition and ROI
 - Architecture guide (ARCHITECTURE.md)
 - Security policy (SECURITY_POLICY.md)
@@ -84,6 +92,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Build your first skill tutorial
 
 ### Added - Testing & Quality
+
 - Unit test framework with pytest
 - Test coverage reporting
 - Schema validation tests
@@ -91,6 +100,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Security scanning for skills
 
 ### Added - Features
+
 - Skills installed to `~/.cursor/skills/` and `~/.claude/skills/`
 - Skills persist between sessions
 - Installation status verification
@@ -99,12 +109,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Manual installation controls
 
 ### Changed
+
 - Rebranded from "Skills Directory" to "Skene Cookbook"
 - Updated repository name to `skene-cookbook`
 - Improved postinstall welcome message
 - Enhanced error handling and logging
 
 ### Fixed
+
 - Peer dependency warnings for zod and react
 - Postinstall visibility in GitHub installations
 - Skill count discrepancies (accurate 764 count)
@@ -112,6 +124,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - GitHub workflow test failures
 
 ### Security
+
 - Risk level classification for all skills (Low/Medium/High/Critical)
 - Security requirements analysis
 - Sandboxing recommendations for high-risk skills
@@ -121,6 +134,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.0.1] - 2024-02-XX (Initial Development)
 
 ### Added
+
 - Initial project structure
 - First skill definitions
 - Basic CLI implementation
@@ -135,6 +149,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 This is the first public release of Skene Cookbook, featuring a comprehensive library of 765 AI agent skills (383 executable + 382 context), complete evaluation infrastructure, and extensive documentation.
 
 **Key Highlights:**
+
 - Production-ready skills across 23 domains
 - 383 executable AI agent skills + 382 context skills
 - 241 cursor rules for IDE-specific guidance
@@ -149,11 +164,13 @@ This is the first public release of Skene Cookbook, featuring a comprehensive li
 **Upgrade Notes:** This is the initial public release. Future releases will include upgrade instructions here.
 
 **Known Issues:**
+
 - Test coverage is currently 7.76% (target: 60%+) - improvements planned for v0.2.0
 - Some skills lack comprehensive integration tests
 - CI/CD warnings don't fail builds (will be addressed in v0.2.0)
 
 **Roadmap for v0.2.0:**
+
 - Increase test coverage to 60%+
 - Add Python linting (Black, Flake8, isort)
 - Add JavaScript linting (ESLint, Prettier)
