@@ -351,38 +351,6 @@
 - **Risk Factors:** financial, execute, eval, system, write, change, access, pii, personal, sensitive, confidential, read, get, email, notification, alert, analytics, track, log, monitor, list, format, view
 - **Human-in-loop:** True
 
-### cursor_rules/microsoft-teams
-- **Risk Factors:** system
-- **Human-in-loop:** True
-
-### cursor_rules/crewai
-- **Risk Factors:** system
-- **Human-in-loop:** True
-
-### cursor_rules/typer
-- **Risk Factors:** command
-- **Human-in-loop:** True
-
-### cursor_rules/click
-- **Risk Factors:** command
-- **Human-in-loop:** True
-
-### cursor_rules/tensorflow
-- **Risk Factors:** system, read
-- **Human-in-loop:** True
-
-### cursor_rules/aws-ecs
-- **Risk Factors:** secret
-- **Human-in-loop:** True
-
-### cursor_rules/autogen
-- **Risk Factors:** system
-- **Human-in-loop:** True
-
-### cursor_rules/stripe
-- **Risk Factors:** payment, webhook
-- **Human-in-loop:** True
-
 ### vcf_stakeholder_mapping
 - **Risk Factors:** eval, system, update, access, personal, read, get, log, list, sort, format, view, risky_tool: crm.update_record
 - **Human-in-loop:** True
@@ -1193,6 +1161,38 @@
 
 ### plg_frameworks/growth-experimentation
 - **Risk Factors:** drop, system, write, update, change, read, get, analytics, track, log, monitor, list, format, calculate, show, view
+- **Human-in-loop:** True
+
+### cursor_rules/microsoft-teams
+- **Risk Factors:** system
+- **Human-in-loop:** True
+
+### cursor_rules/crewai
+- **Risk Factors:** system
+- **Human-in-loop:** True
+
+### cursor_rules/typer
+- **Risk Factors:** command
+- **Human-in-loop:** True
+
+### cursor_rules/click
+- **Risk Factors:** command
+- **Human-in-loop:** True
+
+### cursor_rules/tensorflow
+- **Risk Factors:** system, read
+- **Human-in-loop:** True
+
+### cursor_rules/aws-ecs
+- **Risk Factors:** secret
+- **Human-in-loop:** True
+
+### cursor_rules/autogen
+- **Risk Factors:** system
+- **Human-in-loop:** True
+
+### cursor_rules/stripe
+- **Risk Factors:** payment, webhook
 - **Human-in-loop:** True
 
 ### scientific/metabolomics-workbench-database
