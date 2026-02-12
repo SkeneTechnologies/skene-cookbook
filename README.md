@@ -55,6 +55,8 @@ npm install @skene/skills-directory
 ✨ **Skills are automatically activated** during install!
 They're installed to both Cursor (`~/.cursor/skills/`) and Claude (`~/.claude/skills/`)
 
+🎯 **Bonus:** An `ECOSYSTEM.md` file is generated with tailored recommendations for other Skene tools that complement your stack!
+
 ### Auto-Activation Behavior
 
 **Auto-install runs on first install** for local development environments.
@@ -115,7 +117,7 @@ Skills are automatically installed to Cursor and Claude during this step.
 
 ### 3. Explore Recipes
 
-Browse [10+ ready-to-use skill chain recipes](docs/SKILL_CHAINS.md) with step-by-step instructions.
+Browse [20+ ready-to-use skill chain recipes](docs/SKILL_CHAINS.md) with step-by-step instructions across 15+ domains.
 
 ---
 
@@ -161,6 +163,7 @@ Cursor and Claude automatically pick the right skill based on your prompt. Chain
 | `npx skills-directory install --target all` | Install to Cursor + Claude |
 | `npx skills-directory status`        | Check installation status & verify files |
 | `npx skills-directory showcase`     | Show what you can build (ROI & use cases) |
+| `npx skills-directory ecosystem`     | Generate tailored ecosystem recommendations |
 | `npx skills-directory list --domain plg` | List skills by domain |
 | `npx skills-directory stats`         | Show library statistics   |
 | `npx skills-directory uninstall`     | Remove installed skills    |
@@ -172,7 +175,7 @@ Cursor and Claude automatically pick the right skill based on your prompt. Chain
 ### 🚀 Getting Started
 - **[VALUE.md](docs/VALUE.md)** — Why skill chains? ROI calculations & 5 use cases
 - **[QUICK_WINS.md](docs/QUICK_WINS.md)** — Deploy your first agent in 15 min to 4 hours
-- **[SKILL_CHAINS.md](docs/SKILL_CHAINS.md)** — 10+ ready-to-use recipes with step-by-step instructions
+- **[SKILL_CHAINS.md](docs/SKILL_CHAINS.md)** — 20+ ready-to-use recipes with step-by-step instructions (PLG, RevOps, Marketing, HR, Security, Data Ops, and more)
 - **[SHOWCASE.md](docs/SHOWCASE.md)** — Real-world agent examples and case studies
 
 ### 📚 Reference
@@ -184,6 +187,7 @@ Cursor and Claude automatically pick the right skill based on your prompt. Chain
 
 ### 🔧 Technical
 - [Architecture Guide](ARCHITECTURE.md) — How the system works
+- [Ecosystem Generator](scripts/ecosystem-generator/README.md) — Tailored recommendations system
 - [AI Agent Composability Analysis](docs/technical/AI_AGENT_COMPOSABILITY_ANALYSIS.md) — Deep dive into agent composition
 - [Security Policy](SECURITY_POLICY.md) — Security best practices
 
