@@ -104,7 +104,7 @@ console.print(f"[{SkeneColors.ERROR}]{Symbols.CROSS}[/{SkeneColors.ERROR}] Error
 | `✓`   | `Symbols.CHECKMARK`     | U+2713   | Success, completed           |
 | `✗`   | `Symbols.CROSS`         | U+2717   | Error, failed                |
 | `●`   | `Symbols.BEACON`        | U+25C9   | Active state, risk indicator |
-| `⚠`  | `Symbols.BEACON_WARN`   | (custom) | Warnings                     |
+| `⚠`   | `Symbols.BEACON_WARN`   | (custom) | Warnings                     |
 | `•`   | `Symbols.BULLET`        | U+2022   | List items                   |
 | `→`   | `Symbols.ARROW`         | U+2192   | Navigation                   |
 | `▸`   | `Symbols.ARROW_RIGHT`   | U+25B8   | Workflow connectors          |

@@ -121,7 +121,6 @@ If you'd rather **copy a recipe and plug in your CRM/Stripe/playbook** than buil
 1. **Install** (see above).
 
 2. **See a working flow quickly** — pick one by time you have:
-
    - ⏱️ **15 min:** [Lead scoring agent](docs/QUICK_WINS.md#15-minute-win-lead-scoring) (2 skills)
    - 🕐 **1 hour:** [Churn prevention agent](docs/QUICK_WINS.md#1-hour-win-churn-risk-alerts) (3 skills)
    - 🌅 **Half day:** [Campaign automation agent](docs/QUICK_WINS.md#half-day-win-campaign-launch-automation) (5 skills)

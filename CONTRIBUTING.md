@@ -205,7 +205,6 @@ To audit skills for security issues:
 
 2. **Review Report:**
    Check `reports/security_analysis.md` for:
-
    - Skills flagged for review (tier 1 or elevated)
    - Missing security requirements
    - Potential vulnerabilities
