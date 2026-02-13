@@ -27,6 +27,46 @@
       "type": "string",
       "description": "Workflow category (e.g., 'Partner Onboarding', 'Lead Qualification')"
     },
+    "icp": {
+      "type": "object",
+      "description": "Ideal Customer Profile for this playbook",
+      "properties": {
+        "name": { "type": "string" },
+        "company": {
+          "type": "object",
+          "properties": {
+            "arr_band": { "type": "array", "items": { "type": "number" } },
+            "motion": { "type": "string" },
+            "industry": { "type": "string" }
+          }
+        },
+        "team": {
+          "type": "object",
+          "properties": {
+            "sales_reps": { "type": "array", "items": { "type": "integer" } },
+            "cs_reps": { "type": "array", "items": { "type": "integer" } }
+          }
+        },
+        "priorities": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "integration_reference": {
+      "type": "object",
+      "description": "Reference to integration schemas (exact fields/events to wire)",
+      "properties": {
+        "description": { "type": "string" },
+        "schemas": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "ref": { "type": "string", "description": "Path or URI to reference schema" },
+              "role": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
     "chain_sequence": {
       "type": "array",
       "description": "Ordered sequence of skill execution steps",
@@ -108,6 +148,14 @@
             "type": "integer",
             "minimum": 1,
             "maximum": 3600
+          },
+          "opinionated_prompts": {
+            "type": "object",
+            "description": "ICP-specific prompts merged at runtime with skill instructions",
+            "properties": {
+              "system_context": { "type": "string" },
+              "input_guidance": { "type": "object" }
+            }
           }
         }
       }

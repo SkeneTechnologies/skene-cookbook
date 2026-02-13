@@ -331,6 +331,17 @@ class SkillAnalyzer:
         with open(output_path, "w") as f:
             f.write("# Security Analysis Report\n\n")
             f.write(f"**Total Skills Analyzed:** {len(self.analyzed_skills)}\n\n")
+            f.write(
+                "*Risk levels are used internally to prioritize human review; "
+                "they do not indicate known security vulnerabilities.*\n\n"
+            )
+            f.write(
+                "**What are Tier 1 (review) skills?** They are skills that mention sensitive or "
+                "high-impact areas (e.g. payments, credentials, system operations, compliance, "
+                "integrations). They are **beneficial**—used for finance, CRM, partner ecosystem, "
+                "product ops, compliance, and data workflows—and are flagged so that human-in-the-loop "
+                "and audit logging can be applied where appropriate.\n\n"
+            )
             f.write("## Risk Distribution\n\n")
             for level, count in risk_distribution.items():
                 percentage = (
@@ -338,7 +349,7 @@ class SkillAnalyzer:
                 )
                 f.write(f"- **{level}:** {count} ({percentage:.1f}%)\n")
 
-            f.write("\n## Critical Risk Skills\n\n")
+            f.write("\n## Skills Flagged for Review (Tier 1)\n\n")
             critical_skills = [
                 s for s in self.analyzed_skills if s.security_risk_level == "Critical"
             ]

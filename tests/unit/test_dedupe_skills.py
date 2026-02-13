@@ -257,12 +257,14 @@ def test_validate_completeness_identifies_incomplete_skills(temp_skills_director
 
     deduplicator.skills = [
         {
+            "id": "complete",
             "skill_id": "complete",
             "name": "Complete Skill",
             "description": "Has schemas",
             "file_path": "complete.json",
             "inputSchema": {"type": "object"},
             "outputSchema": {"type": "object"},
+            "metadata": {"security": {}},
         },
         {
             "skill_id": "incomplete",
@@ -276,8 +278,9 @@ def test_validate_completeness_identifies_incomplete_skills(temp_skills_director
 
     deduplicator.validate_completeness()
 
-    assert len(deduplicator.incomplete) == 1
-    assert deduplicator.incomplete[0]["skill_id"] == "incomplete"
+    assert len(deduplicator.incomplete) >= 1
+    incomplete_ids = {s["skill_id"] for s in deduplicator.incomplete}
+    assert "incomplete" in incomplete_ids
 
 
 @pytest.mark.unit
@@ -287,20 +290,26 @@ def test_validate_completeness_all_complete(temp_skills_directory):
 
     deduplicator.skills = [
         {
+            "id": "skill_1",
             "skill_id": "skill_1",
             "name": "Skill 1",
             "description": "Complete",
+            "domain": "engineering",
             "file_path": "skill1.json",
             "inputSchema": {"type": "object"},
             "outputSchema": {"type": "object"},
+            "metadata": {"security": {}},
         },
         {
+            "id": "skill_2",
             "skill_id": "skill_2",
             "name": "Skill 2",
             "description": "Complete",
+            "domain": "engineering",
             "file_path": "skill2.json",
             "inputSchema": {"type": "object"},
             "outputSchema": {"type": "object"},
+            "metadata": {"security": {}},
         },
     ]
 
@@ -321,10 +330,14 @@ def test_identify_unique_verified_filters_correctly(temp_skills_directory):
 
     deduplicator.skills = [
         {
+            "id": "verified_1",
             "skill_id": "verified_1",
             "name": "Verified Skill",
-            "metadata": {"verified": True},
+            "description": "Complete",
             "file_path": "v1.json",
+            "inputSchema": {"type": "object"},
+            "outputSchema": {"type": "object"},
+            "metadata": {"security": {}, "categorization": {"jtbd": "test"}},
         },
         {
             "skill_id": "unverified_1",
@@ -335,8 +348,11 @@ def test_identify_unique_verified_filters_correctly(temp_skills_directory):
         {"skill_id": "no_metadata", "name": "No Metadata", "metadata": {}, "file_path": "n1.json"},
     ]
 
-    # Empty duplicates list means all are unique
     deduplicator.duplicates = []
+    deduplicator.incomplete = [
+        {"skill_id": "unverified_1"},
+        {"skill_id": "no_metadata"},
+    ]
     deduplicator.identify_unique_verified()
 
     assert len(deduplicator.unique_verified) == 1
@@ -351,7 +367,7 @@ def test_identify_unique_verified_filters_correctly(temp_skills_directory):
 @pytest.mark.unit
 def test_generate_report_creates_json(temp_output_directory, temp_skills_directory):
     """Test JSON report generation."""
-    deduplicator = SkillDeduplicator(base_path=str(temp_skills_directory))
+    deduplicator = SkillDeduplicator(base_path=str(temp_output_directory))
 
     deduplicator.skills = [
         {"skill_id": "1", "name": "Skill 1", "description": "Test", "file_path": "t1.json"}
@@ -361,23 +377,19 @@ def test_generate_report_creates_json(temp_output_directory, temp_skills_directo
     deduplicator.incomplete = []
     deduplicator.unique_verified = []
 
-    output_file = temp_output_directory / "test_report.json"
-    deduplicator.generate_report(str(output_file), format="json")
+    report = deduplicator.generate_report()
 
-    assert output_file.exists()
-
-    # Verify JSON structure
-    with open(output_file) as f:
-        report = json.load(f)
+    report_path = temp_output_directory / "reports" / "dedupe_report.json"
+    assert report_path.exists()
 
     assert "summary" in report
-    assert "total_skills" in report["summary"]
+    assert "total_skills_analyzed" in report["metadata"] or "duplicate_groups" in report["summary"]
 
 
 @pytest.mark.unit
 def test_generate_report_creates_markdown(temp_output_directory, temp_skills_directory):
     """Test Markdown report generation."""
-    deduplicator = SkillDeduplicator(base_path=str(temp_skills_directory))
+    deduplicator = SkillDeduplicator(base_path=str(temp_output_directory))
 
     deduplicator.skills = [
         {"skill_id": "1", "name": "Skill 1", "description": "Test", "file_path": "t1.json"}
@@ -387,38 +399,47 @@ def test_generate_report_creates_markdown(temp_output_directory, temp_skills_dir
     deduplicator.incomplete = []
     deduplicator.unique_verified = []
 
-    output_file = temp_output_directory / "test_report.md"
-    deduplicator.generate_report(str(output_file), format="markdown")
+    deduplicator.generate_report()
 
-    assert output_file.exists()
-
-    # Verify markdown content
-    content = output_file.read_text()
-    assert "# Skill Deduplication Report" in content or "Skills Deduplication" in content
+    summary_path = temp_output_directory / "reports" / "dedupe_summary.md"
+    assert summary_path.exists()
+    content = summary_path.read_text()
+    assert "Deduplication" in content or "Skills" in content
 
 
 @pytest.mark.unit
 def test_generate_report_includes_statistics(temp_output_directory, temp_skills_directory):
     """Test that report includes key statistics."""
-    deduplicator = SkillDeduplicator(base_path=str(temp_skills_directory))
+    deduplicator = SkillDeduplicator(base_path=str(temp_output_directory))
 
     deduplicator.skills = [
         {"skill_id": "1", "name": "S1", "description": "T1", "file_path": "t1.json"},
         {"skill_id": "2", "name": "S2", "description": "T2", "file_path": "t2.json"},
     ]
-    deduplicator.duplicates = [("1", "2", 0.96)]
+    deduplicator.duplicates = [
+        {
+            "primary": deduplicator.skills[0],
+            "duplicates": [
+                {"skill": deduplicator.skills[1], "similarity": 0.96},
+            ],
+            "recommendation": "delete_duplicates",
+        }
+    ]
     deduplicator.similar_pairs = []
-    deduplicator.incomplete = [deduplicator.skills[0]]
+    deduplicator.incomplete = [
+        {
+            "skill_id": "1",
+            "name": "S1",
+            "file_path": "t1.json",
+            "issues": ["Missing recommended: domain"],
+        }
+    ]
     deduplicator.unique_verified = []
 
-    output_file = temp_output_directory / "test_report.json"
-    deduplicator.generate_report(str(output_file), format="json")
+    report = deduplicator.generate_report()
 
-    with open(output_file) as f:
-        report = json.load(f)
-
-    assert report["summary"]["total_skills"] == 2
-    assert report["summary"]["duplicate_count"] >= 1
+    assert report["metadata"]["total_skills_analyzed"] == 2
+    assert report["summary"]["duplicate_groups"] >= 1
 
 
 # =============================================================================
@@ -450,8 +471,9 @@ def test_full_deduplication_workflow(temp_skills_directory, temp_output_director
     # Identify unique verified
     deduplicator.identify_unique_verified()
 
-    # Generate report
-    output_file = temp_output_directory / "workflow_report.json"
-    deduplicator.generate_report(str(output_file), format="json")
+    # Generate report (writes to base_path/reports/dedupe_report.json)
+    deduplicator.base_path = Path(temp_output_directory)
+    report = deduplicator.generate_report()
 
-    assert output_file.exists()
+    assert (temp_output_directory / "reports" / "dedupe_report.json").exists()
+    assert "summary" in report

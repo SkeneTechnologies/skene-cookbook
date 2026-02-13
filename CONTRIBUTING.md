@@ -205,7 +205,8 @@ To audit skills for security issues:
 
 2. **Review Report:**
    Check `reports/security_analysis.md` for:
-   - Skills with Critical/High risk levels
+
+   - Skills flagged for review (tier 1 or elevated)
    - Missing security requirements
    - Potential vulnerabilities
 
@@ -255,7 +256,17 @@ Identify:
 - Error handling strategy
 - Approval requirements
 
-### 2. Write Blueprint YAML
+### 2. Playbook-ready blueprints (recommended)
+
+To keep new workflows consistent with the cookbook’s **niche playbooks**, blueprints can include:
+
+- **`icp`** — Ideal Customer Profile (e.g. company size, motion, team size, priorities). See [Playbooks](docs/PLAYBOOKS.md) and existing blueprints in `registry/blueprints/`.
+- **`integration_reference`** — Optional link to reference schemas that define exact data to wire (CRM, billing). See [registry/integration_schemas/README.md](registry/integration_schemas/README.md) for format and existing Salesforce, HubSpot, and Stripe schemas.
+- **`opinionated_prompts`** per step — Optional `system_context` and `input_guidance` on each `chain_sequence` item so the chain is opinionated for the target ICP.
+
+The schema is in `schemas/workflow_blueprint.json`; all of these fields are optional. Use `scripts/recipe_to_blueprint.py --icp stub --integration-refs stub --opinionated-prompts` to generate a playbook-ready stub, or add them manually.
+
+### 3. Write Blueprint YAML
 
 Follow `schemas/workflow_blueprint.json`:
 
@@ -297,21 +308,21 @@ security_context:
   requires_approval: false
 ```
 
-### 3. Validate Workflow
+### 4. Validate Workflow
 
 ```bash
 # Validate blueprint (future tool)
 npm run validate:workflow registry/blueprints/your_workflow.yaml
 ```
 
-### 4. Test Workflow
+### 5. Test Workflow
 
 - Validate all skills exist
 - Test with sample data
 - Verify error handling
 - Check security requirements
 
-### 5. Submit Workflow PR
+### 6. Submit Workflow PR
 
 Same process as skill addition, but in `registry/blueprints/`.
 
@@ -342,6 +353,18 @@ python scripts/analyze_skills.py --action analyze
 # Run schema validation (future)
 npm test
 ```
+
+### Pre-flight check (before pushing to the public remote)
+
+Before pushing to the public remote (e.g. open-sourcing or publishing a release), run the full pre-flight suite so CI and open-source hygiene checks pass in one go:
+
+```bash
+./scripts/pre_release_check.sh
+```
+
+Or, if you use the npm script: `npm run preflight`
+
+This runs metrics consistency, schema validation (skills, metadata, workflows), linting, tests, security (including optional secrets scan), documentation and community file checks, and SPDX headers. Install **trufflehog** or **gitleaks** for secrets scanning; optional **markdown-link-check** for link validation.
 
 ### Pre-commit Hooks
 

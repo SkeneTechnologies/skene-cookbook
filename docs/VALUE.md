@@ -405,7 +405,7 @@ Try a [Quick Win](./QUICK_WINS.md) — Deploy your first skill chain in 15 minut
 ### Market Expansion Potential
 
 - **Skill Chain Cookbook:** 36 ready-to-use recipes across 9 domain groups (Sales, CS, Growth, Product, Brand, Ops, Research, Community, FinOps)
-- **Supported by:** 765 skills (383 executable + 382 context) — each recipe chains 2–7 skills
+- **Supported by:** 764 resources (382 executable skills + 382 reference guides) — each recipe chains 2–7 skills
 - **New Customer Segments:** 20+ segments (HR tech, DevTools, FinTech, Healthcare, etc.)
 - **Estimated Value:** $2M-$5M ARR expansion opportunity
 

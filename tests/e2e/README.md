@@ -96,6 +96,17 @@ Pre-release security validation:
 
 ## Pre-Release Checklist
 
+### Pre-flight (single command before pushing to public remote)
+
+Run the full pre-flight suite so the first post-push CI run stays green and open-source hygiene is verified:
+
+```bash
+./scripts/pre_release_check.sh
+# or: npm run preflight
+```
+
+This covers metrics consistency, schema validation, linting, unit and integration tests, coverage, security (including optional secrets scan), docs and community files, and SPDX headers. Optional: install **trufflehog** or **gitleaks** for secrets scanning.
+
 ### Phase 1: Local Validation (Day -7)
 
 ```bash
@@ -157,14 +168,14 @@ python -m memory_profiler scripts/dedupe_skills.py
 ### Phase 5: Documentation Review (Day -3)
 
 ```bash
-# Test all documentation examples
-python scripts/validate_docs.py
-
-# Check for broken links
-# (manual or use link checker tool)
+# Verify required docs exist and check markdown links
+python3 scripts/validate_docs.py
+python3 scripts/validate_docs.py --links
 ```
 
-**Gate**: All examples work, no broken links
+Doc and link validation are also run as part of the pre-flight suite (`./scripts/pre_release_check.sh`).
+
+**Gate**: All required docs present, no broken links
 
 ### Phase 6: Beta Testing (Day -2 to Day 0)
 
@@ -378,7 +389,7 @@ jobs:
 
 ## Resources
 
-- **E2E Testing Strategy**: `E2E_TESTING_STRATEGY.md`
+- **E2E Testing Strategy**: [docs/internal/E2E_TESTING_STRATEGY.md](../../docs/internal/E2E_TESTING_STRATEGY.md) (maintainers)
 - **Unit Testing Guide**: `tests/README.md`
 - **CI/CD Configuration**: `.github/workflows/lint-and-build.yml`
 - **Security Policy**: `SECURITY.md`

@@ -14,6 +14,9 @@ from pathlib import Path
 
 import yaml
 
+# User-facing labels for risk levels (softer than internal "Critical" for reputation)
+RISK_DISPLAY_LABELS = {"Critical": "Review", "High": "Elevated", "Medium": "Standard", "Low": "Low"}
+
 
 class DocsGenerator:
     """Generate comprehensive documentation"""
@@ -78,7 +81,8 @@ class DocsGenerator:
                 count = risk_counts[risk]
                 pct = (count / total_skills * 100) if total_skills else 0
                 emoji = {"Critical": "🔴", "High": "🟡", "Medium": "🔵", "Low": "🟢"}[risk]
-                f.write(f"| {emoji} {risk} | {count} | {pct:.1f}% |\n")
+                label = RISK_DISPLAY_LABELS[risk]
+                f.write(f"| {emoji} {label} | {count} | {pct:.1f}% |\n")
 
             f.write("\n---\n\n")
 
@@ -111,10 +115,11 @@ class DocsGenerator:
                 risk_emoji = {"Critical": "🔴", "High": "🟡", "Medium": "🔵", "Low": "🟢"}[
                     skill["risk_level"]
                 ]
+                risk_label = RISK_DISPLAY_LABELS[skill["risk_level"]]
                 jtbd = skill["jtbd"][:60] + "..." if len(skill["jtbd"]) > 60 else skill["jtbd"]
 
                 f.write(
-                    f"| `{skill['skill_id']}` | {func} | {risk_emoji} {skill['risk_level']} | {jtbd} |\n"
+                    f"| `{skill['skill_id']}` | {func} | {risk_emoji} {risk_label} | {jtbd} |\n"
                 )
 
             # Search tips
@@ -150,7 +155,8 @@ class DocsGenerator:
                 for risk in ["Critical", "High", "Medium", "Low"]:
                     if risk in risk_counts:
                         emoji = {"Critical": "🔴", "High": "🟡", "Medium": "🔵", "Low": "🟢"}[risk]
-                        f.write(f"| {emoji} {risk} | {risk_counts[risk]} |\n")
+                        label = RISK_DISPLAY_LABELS[risk]
+                        f.write(f"| {emoji} {label} | {risk_counts[risk]} |\n")
 
                 f.write("\n---\n\n")
 
@@ -163,9 +169,10 @@ class DocsGenerator:
                     risk_emoji = {"Critical": "🔴", "High": "🟡", "Medium": "🔵", "Low": "🟢"}[
                         skill["risk_level"]
                     ]
+                    risk_label = RISK_DISPLAY_LABELS[skill["risk_level"]]
                     jtbd = skill["jtbd"].replace("|", "\\|")  # Escape pipes
                     f.write(
-                        f"| {i} | `{skill['skill_id']}` | {risk_emoji} {skill['risk_level']} | {jtbd} |\n"
+                        f"| {i} | `{skill['skill_id']}` | {risk_emoji} {risk_label} | {jtbd} |\n"
                     )
 
                 # Back link
@@ -199,9 +206,9 @@ class DocsGenerator:
                 for skill in self.job_functions[func]:
                     risk_counts[skill["risk_level"]] += 1
 
-                if risk_counts["Critical"] > 0:
+                if risk_counts.get("Critical", 0) > 0:
                     color = "fill:#ffcccc"
-                elif risk_counts["High"] > count * 0.5:
+                elif risk_counts.get("High", 0) > count * 0.5:
                     color = "fill:#fff4cc"
                 elif risk_counts["Low"] > count * 0.5:
                     color = "fill:#ccffcc"
@@ -218,10 +225,10 @@ class DocsGenerator:
 
             # Add interactive legend
             f.write("## Color Legend\n\n")
-            f.write("- 🔴 **Red:** Contains Critical risk skills\n")
-            f.write("- 🟡 **Yellow:** Primarily High risk skills\n")
-            f.write("- 🔵 **Blue:** Mixed risk levels\n")
-            f.write("- 🟢 **Green:** Primarily Low risk skills\n\n")
+            f.write("- 🔴 **Red:** Contains skills flagged for human review\n")
+            f.write("- 🟡 **Yellow:** Primarily elevated-review skills\n")
+            f.write("- 🔵 **Blue:** Mixed review levels\n")
+            f.write("- 🟢 **Green:** Primarily low-review skills\n\n")
 
             # Add workflow visualization
             f.write("## Example Workflow Chain\n\n")

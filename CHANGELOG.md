@@ -11,27 +11,33 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - METRICS.md - Canonical source of truth for all skill counts and methodology
 - Metric badges in README.md (total skills, executable, context, domains)
-- Automated verification for documentation accuracy (sync_metrics.js)
+- Automated verification for documentation accuracy (sync_metrics.cjs)
 - GitHub Action for documentation verification in CI/CD
+- **Niche playbooks**: Workflow blueprints with ICP, integration references, and opinionated prompts per step (schemas and all 15 blueprints)
+- PLAYBOOKS.md and recipe-to-blueprint index (registry/recipe_blueprint_index.json)
+- Integration reference schemas (registry/integration_schemas/): Salesforce, HubSpot, Stripe for exact data to wire
+- Pre-flight test suite (scripts/pre_release_check.sh): metrics, schema validation, lint, tests, security, secrets scan, doc/link check; `npm run preflight`
+- scripts/validate_docs.py for documentation and link validation (E2E/pre-flight)
 
 ### Changed
 
 - **Documentation Accuracy Update**: All documentation now uses accurate skill counts
-  - Total: 765 skills (383 executable + 382 context)
+  - Total: 764 resources (382 executable + 382 reference guides)
   - Domains: 23 (21 executable + 2 context)
   - Context breakdown: 241 cursor rules + 141 scientific
-- README.md - Complete rewrite of "What's Included" section with accurate breakdown
+- README.md - "What's Included" with playbooks, blueprints, and integration schemas; pre-flight note
 - skills-library/README.md - Updated to reflect accurate counts and link to METRICS.md
 - SKILLS_CATALOG.md - Updated all domain counts and added context/executable separation
 - index.json - Rebuilt with complete metrics section and accurate totals
-- package.json - Will update description to reflect accurate numbers (pending v0.1.2 release)
+- Skill chain recipe count: **36 recipes** (SKILL_CHAINS.md, README, PLAYBOOKS); 15 workflow blueprints
+- CI and pre-flight: Critical risk skills no longer fail the build (warn only; catalog retained)
 
 ### Fixed
 
 - Documentation discrepancies across multiple files (README, SKILLS_CATALOG, index.json)
 - Inconsistent skill counting methodology (now documented in METRICS.md)
-- Missing context skills in summary counts (cursor_rules: 241, scientific: 141)
-- Skill chain recipe count: Updated from "20+" to accurate "28" recipes (README.md x2, SKILL_CHAINS.md x1)
+- Missing reference guides in summary counts (cursor_rules: 241, scientific: 141)
+- E2E README reference to validate_docs.py (script added and wired)
 
 ## [0.1.1] - 2026-02-12
 
@@ -58,7 +64,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added - Core Infrastructure
 
-- 765 AI agent skills across 23 domains (383 executable + 382 context):
+- 764 AI agent resources across 23 domains (382 executable + 382 reference guides):
   - 52 Marketing skills (content, SEO, campaigns)
   - 70 PLG skills (product-led growth, activation)
   - 29 Customer Success skills (health scoring, churn prevention)
@@ -146,12 +152,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Version 0.1.0 - Initial Public Release
 
-This is the first public release of Skene Cookbook, featuring a comprehensive library of 765 AI agent skills (383 executable + 382 context), complete evaluation infrastructure, and extensive documentation.
+This is the first public release of Skene Cookbook, featuring a comprehensive library of 764 AI agent resources (382 executable skills + 382 reference guides), complete evaluation infrastructure, and extensive documentation.
 
 **Key Highlights:**
 
 - Production-ready skills across 23 domains
-- 383 executable AI agent skills + 382 context skills
+- 382 executable AI agent skills + 382 reference guides
 - 241 cursor rules for IDE-specific guidance
 - 141 scientific computing skills
 - Comprehensive evaluation harness for quality assurance

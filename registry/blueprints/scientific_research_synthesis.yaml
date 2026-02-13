@@ -3,12 +3,23 @@ version: 1.0.0
 name: Scientific Research Synthesis Pipeline
 description: Literature review to hypothesis generation to research lookup to scientific writing
 category: Research
+icp:
+  name: Research and R&D, literature to output
+  priorities:
+    - literature_synthesis
+    - hypothesis_generation
+    - scientific_writing
+integration_reference:
+  description: Literature and citation sources; no CRM
+  schemas: []
 chain_sequence:
   - step_id: step_1_literature_review
     skill_id: scientific/literature-review
     action: execute
     description: Synthesize literature and identify gaps
     timeout_seconds: 600
+    opinionated_prompts:
+      system_context: Synthesize by theme; flag methodology and recency.
     error_handling:
       on_failure: stop
       max_retries: 1
@@ -17,6 +28,8 @@ chain_sequence:
     action: execute
     description: Generate testable hypotheses from review
     timeout_seconds: 300
+    opinionated_prompts:
+      system_context: Hypotheses must be testable and grounded in review.
     error_handling:
       on_failure: continue
       max_retries: 2
@@ -25,6 +38,8 @@ chain_sequence:
     action: execute
     description: Enrich with current data and citations
     timeout_seconds: 300
+    opinionated_prompts:
+      system_context: Prefer recent and authoritative sources; cite consistently.
     error_handling:
       on_failure: continue
       max_retries: 2
@@ -33,6 +48,8 @@ chain_sequence:
     action: execute
     description: Produce structured research output
     timeout_seconds: 600
+    opinionated_prompts:
+      system_context: Follow target venue format; include limitations and future work.
     error_handling:
       on_failure: stop
       max_retries: 1

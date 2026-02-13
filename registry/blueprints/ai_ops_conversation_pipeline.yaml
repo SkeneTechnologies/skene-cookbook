@@ -3,12 +3,23 @@ version: 1.0.0
 name: AI Ops Conversation Pipeline
 description: Classify tickets, detect intent, suggest responses, summarize
 category: AI Ops
+icp:
+  name: Support and AI Ops, deflection and quality
+  priorities:
+    - ticket_triage
+    - intent_detection
+    - response_quality
+integration_reference:
+  description: Conversation and ticket data from support/product; no CRM required
+  schemas: []
 chain_sequence:
   - step_id: step_1_ticket_classifier
     skill_id: ai_ticket_classifier
     action: execute
     description: Categories and prioritizes incoming tickets
     timeout_seconds: 120
+    opinionated_prompts:
+      system_context: Use consistent categories; prioritize by urgency and impact.
     error_handling:
       on_failure: continue
       max_retries: 2
@@ -17,6 +28,8 @@ chain_sequence:
     action: execute
     description: Detects user intent for routing
     timeout_seconds: 120
+    opinionated_prompts:
+      system_context: Map to routing buckets; low confidence goes to human.
     error_handling:
       on_failure: continue
       max_retries: 2
@@ -25,6 +38,8 @@ chain_sequence:
     action: execute
     description: Suggests replies or next actions
     timeout_seconds: 120
+    opinionated_prompts:
+      system_context: Suggest concise, actionable replies; cite KB when possible.
     error_handling:
       on_failure: continue
       max_retries: 2
@@ -33,6 +48,8 @@ chain_sequence:
     action: execute
     description: Produces conversation or thread summaries
     timeout_seconds: 120
+    opinionated_prompts:
+      system_context: Summarize outcome and next steps; keep under 3 bullets for handoff.
     error_handling:
       on_failure: stop
       max_retries: 1

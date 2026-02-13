@@ -359,6 +359,10 @@ class SkeneSkillsDirectory:
                 continue
         return None
 
+    def find_skill_file(self, skill_id: str) -> Optional[Path]:
+        """Public API: find skill.json file for a given skill ID."""
+        return self._find_skill_file(skill_id)
+
     def search_skills(self):
         """Search skills by keyword"""
         console.clear()
@@ -706,7 +710,7 @@ class SkeneSkillsDirectory:
             f"[bold {SkeneColors.PRIMARY}]Remediation Impact:[/bold {SkeneColors.PRIMARY}]"
         )
         console.print(
-            f"  [{SkeneColors.SUCCESS}]{Symbols.CHECKMARK}[/{SkeneColors.SUCCESS}] [{SkeneColors.WHITE}]470 Critical skills remediated[/{SkeneColors.WHITE}]"
+            f"  [{SkeneColors.SUCCESS}]{Symbols.CHECKMARK}[/{SkeneColors.SUCCESS}] [{SkeneColors.WHITE}]Risk levels tracked; human review where required[/{SkeneColors.WHITE}]"
         )
         console.print(
             f"  [{SkeneColors.SUCCESS}]{Symbols.CHECKMARK}[/{SkeneColors.SUCCESS}] [{SkeneColors.WHITE}]100% human approval bottlenecks removed[/{SkeneColors.WHITE}]"

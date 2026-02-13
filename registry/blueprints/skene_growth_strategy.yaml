@@ -3,12 +3,24 @@ version: 1.0.0
 name: Skene Growth Strategy Chain
 description: Tech stack analysis → growth hubs → growth manifest → growth template
 category: Strategy
+icp:
+  name: PLG and growth strategy, product-led motion
+  priorities:
+    - tech_stack
+    - growth_hubs
+    - growth_manifest
+    - plg_recommendations
+integration_reference:
+  description: Repo and product context; no CRM
+  schemas: []
 chain_sequence:
   - step_id: step_1_analyze_tech_stack
     skill_id: skene_analyze_tech_stack
     action: execute
     description: Detect framework, language, database, auth, deployment
     timeout_seconds: 300
+    opinionated_prompts:
+      system_context: Detect from package files and config; flag gaps for growth.
     error_handling:
       on_failure: stop
       max_retries: 1
@@ -17,6 +29,8 @@ chain_sequence:
     action: execute
     description: Identify viral, onboarding, monetization potential
     timeout_seconds: 300
+    opinionated_prompts:
+      system_context: Score viral, onboarding, monetization; prioritize quick wins.
     error_handling:
       on_failure: continue
       max_retries: 2
@@ -25,6 +39,8 @@ chain_sequence:
     action: execute
     description: Combine tech and growth gaps into manifest
     timeout_seconds: 300
+    opinionated_prompts:
+      system_context: Combine tech and growth; highlight go-to-market gaps.
     error_handling:
       on_failure: continue
       max_retries: 2
@@ -33,6 +49,8 @@ chain_sequence:
     action: execute
     description: Produce actionable PLG growth recommendations
     timeout_seconds: 300
+    opinionated_prompts:
+      system_context: Recommendations must be actionable and sequenced; tie to manifest.
     error_handling:
       on_failure: stop
       max_retries: 1

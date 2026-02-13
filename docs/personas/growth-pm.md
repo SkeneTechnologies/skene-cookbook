@@ -263,6 +263,7 @@ Each skill is battle-tested and based on real growth playbooks.
 
 - [Complete Skills Directory](../directory.md) — Browse all 75+ PLG skills
 - [Skill Chain Cookbook](../SKILL_CHAINS.md) — 36+ ready-to-use recipes
+- [Playbooks](../PLAYBOOKS.md) — Niche playbooks and exact data to wire
 - [Value & ROI Guide](../VALUE.md) — Detailed ROI calculations
 - [Security Best Practices](../../SECURITY_POLICY.md) — Production deployment guide
 

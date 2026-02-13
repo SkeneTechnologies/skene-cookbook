@@ -236,6 +236,7 @@ Pick the quick win that matches your time investment:
 
 - [Complete Skills Directory](../directory.md) — Browse all 156+ Sales/RevOps skills
 - [Skill Chain Cookbook](../SKILL_CHAINS.md) — 36+ ready-to-use recipes
+- [Playbooks](../PLAYBOOKS.md) — Niche playbooks and exact data to wire (CRM, billing)
 - [Value & ROI Guide](../VALUE.md) — Detailed ROI calculations
 - [Security Best Practices](../../SECURITY_POLICY.md) — Production deployment guide
 

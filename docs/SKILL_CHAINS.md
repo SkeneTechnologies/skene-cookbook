@@ -1,6 +1,6 @@
 # Skill Chain Cookbook
 
-**Production AI agents from recipes, not from scratch.** This is the primary way to use Skene: pick a recipe, copy-paste the chain, and deploy. **Skill Chains first** — these 36 recipes are the dishes; they’re built from a library of **765 skills** (the ingredients). No ML expertise required.
+**Pick a recipe, copy the chain, deploy.** Each recipe below is a tested workflow built from the library of **764 skills** (the ingredients). New to skills? [What are skills?](WHAT_ARE_SKILLS.md)
 
 ## 36 Ready-to-Use Recipes
 
@@ -83,19 +83,30 @@ Each recipe in this cookbook is a proven skill chain you can deploy immediately.
 
 ## Recipe index by domain
 
-| Domain | Recipe numbers |
-|--------|----------------|
-| **Sales & RevOps** | 1, 2, 3, 4 |
-| **Customer Success & Support** | 5, 6, 7, 8, 9, 10 |
-| **Growth & Marketing** | 11, 12, 13, 14, 15, 16, 17, 18 |
-| **Product & Engineering** | 19, 20, 21, 22, 23 |
-| **Brand & Content** | 24 |
-| **Operations & Compliance** | 25, 26, 27, 28, 29, 30, 31, 32 |
-| **Research & Strategy** | 33, 34 |
-| **Community** | 35 |
-| **FinOps** | 36 |
+| Domain                         | Recipe numbers                 |
+| ------------------------------ | ------------------------------ |
+| **Sales & RevOps**             | 1, 2, 3, 4                     |
+| **Customer Success & Support** | 5, 6, 7, 8, 9, 10              |
+| **Growth & Marketing**         | 11, 12, 13, 14, 15, 16, 17, 18 |
+| **Product & Engineering**      | 19, 20, 21, 22, 23             |
+| **Brand & Content**            | 24                             |
+| **Operations & Compliance**    | 25, 26, 27, 28, 29, 30, 31, 32 |
+| **Research & Strategy**        | 33, 34                         |
+| **Community**                  | 35                             |
+| **FinOps**                     | 36                             |
 
 ---
+
+## Niche playbooks and exact data to wire
+
+Every recipe is backed by a **workflow blueprint** with an **ICP** (Ideal Customer Profile), **integration reference** (exact fields/events to wire), and **opinionated prompts** per step so chains are niche-specific, not generic.
+
+- **Recipe-to-blueprint mapping:** [registry/recipe_blueprint_index.json](../registry/recipe_blueprint_index.json) maps recipe number to blueprint id and optional integration refs.
+- **Exact data to wire:** Reference schemas in [registry/integration_schemas/](../registry/integration_schemas/) list required Salesforce objects/fields, HubSpot events, and Stripe data for chains that use CRM or billing. Use with Clay, n8n, or custom ETL to ship faster.
+- **Full playbook list:** See [docs/PLAYBOOKS.md](PLAYBOOKS.md) for all blueprints, their ICP(s), integration references, and where opinionated prompts live (in the blueprint YAML).
+
+---
+
 ## Recipe 1: Sales Deal Qualification Pipeline
 
 **Use Case:** Automatically qualify, score, and route leads with recommended next actions
@@ -1501,6 +1512,7 @@ time_to_value → activation_metrics
 **ROI:** 50% faster time-to-value, 30% higher activation
 
 ---
+
 ## Recipe 10: Support Ticket Triage & Resolution
 
 ```
@@ -1511,6 +1523,7 @@ support_kb_gap_finder → support_bug_linker
 **ROI:** 40% faster resolution, 60% ticket deflection
 
 ---
+
 ## Recipe 11: Growth Optimization Engine
 
 **Use Case:** Continuous A/B testing and conversion optimization
@@ -2653,6 +2666,7 @@ upgrade_trigger → consumption_analyzer
 **ROI:** 15-25% revenue per customer increase
 
 ---
+
 ## Recipe 18: Product Analytics Intelligence
 
 ```
@@ -2669,6 +2683,7 @@ pql_scoring → expansion_playbook
 These recipes expand into new domains with 95%+ skill coverage validated against the library.
 
 ---
+
 ## Recipe 19: Developer Experience Onboarding
 
 **Use Case:** Accelerate developer onboarding with automated API documentation, code samples, sandbox provisioning, and integration health monitoring
@@ -5156,6 +5171,7 @@ deal_registration → partner_influenced_revenue
 **ROI:** 25% more partner-sourced pipeline
 
 ---
+
 ## Recipe 33: Scientific Research Synthesis Pipeline
 
 **Use Case:** Turn literature review into structured hypotheses and research output
@@ -5391,7 +5407,6 @@ Install domain: `npx skills-directory install --target all --domain finops`. Con
 - **Quarter 1:** Investor updates automated
 
 ---
-
 
 ## Tips for Building Your Own Chains
 

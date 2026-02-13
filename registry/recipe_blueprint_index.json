@@ -1,0 +1,244 @@
+{
+  "description": "Maps SKILL_CHAINS recipe numbers to workflow blueprint ids and optional integration refs. Multiple recipes can share one blueprint.",
+  "recipe_to_blueprint": [
+    {
+      "recipe_id": 1,
+      "recipe_name": "Sales Deal Qualification Pipeline",
+      "blueprint_id": "workflow_sales_automated",
+      "integration_refs": [
+        "salesforce_lead_qualification_chain.json",
+        "hubspot_events_lead_scoring.json"
+      ]
+    },
+    {
+      "recipe_id": 2,
+      "recipe_name": "Financial Intelligence Dashboard",
+      "blueprint_id": "workflow_finops_standalone",
+      "integration_refs": ["stripe_usage_expansion.json"]
+    },
+    {
+      "recipe_id": 3,
+      "recipe_name": "Product-Led Sales Handoff",
+      "blueprint_id": "workflow_sales_automated",
+      "integration_refs": [
+        "salesforce_lead_qualification_chain.json",
+        "hubspot_events_lead_scoring.json"
+      ]
+    },
+    {
+      "recipe_id": 4,
+      "recipe_name": "Competitive Intelligence Automation",
+      "blueprint_id": "workflow_marketing_automated",
+      "integration_refs": []
+    },
+    {
+      "recipe_id": 5,
+      "recipe_name": "Customer Churn Prevention Pipeline",
+      "blueprint_id": "workflow_customer_churn_prevention",
+      "integration_refs": ["salesforce_lead_qualification_chain.json"]
+    },
+    {
+      "recipe_id": 6,
+      "recipe_name": "AI Support Deflection System",
+      "blueprint_id": "workflow_ai_ops_conversation",
+      "integration_refs": []
+    },
+    {
+      "recipe_id": 7,
+      "recipe_name": "Customer Education Platform",
+      "blueprint_id": "workflow_customer_success_automated",
+      "integration_refs": []
+    },
+    {
+      "recipe_id": 8,
+      "recipe_name": "AI Ops Conversation Pipeline",
+      "blueprint_id": "workflow_ai_ops_conversation",
+      "integration_refs": []
+    },
+    {
+      "recipe_id": 9,
+      "recipe_name": "Customer Onboarding Automation",
+      "blueprint_id": "workflow_customer_success_automated",
+      "integration_refs": []
+    },
+    {
+      "recipe_id": 10,
+      "recipe_name": "Support Ticket Triage & Resolution",
+      "blueprint_id": "workflow_ai_ops_conversation",
+      "integration_refs": []
+    },
+    {
+      "recipe_id": 11,
+      "recipe_name": "Growth Optimization Engine",
+      "blueprint_id": "workflow_data_ops_experimentation",
+      "integration_refs": []
+    },
+    {
+      "recipe_id": 12,
+      "recipe_name": "Content Marketing Automation",
+      "blueprint_id": "workflow_marketing_automated",
+      "integration_refs": []
+    },
+    {
+      "recipe_id": 13,
+      "recipe_name": "Freemium Conversion Optimization",
+      "blueprint_id": "workflow_finops_standalone",
+      "integration_refs": ["stripe_usage_expansion.json"]
+    },
+    {
+      "recipe_id": 14,
+      "recipe_name": "Usage-Based Pricing Engine",
+      "blueprint_id": "workflow_finops_standalone",
+      "integration_refs": ["stripe_usage_expansion.json"]
+    },
+    {
+      "recipe_id": 15,
+      "recipe_name": "Community-Led Growth Engine",
+      "blueprint_id": "workflow_community_advocacy",
+      "integration_refs": []
+    },
+    {
+      "recipe_id": 16,
+      "recipe_name": "Multi-Platform Content Distribution",
+      "blueprint_id": "workflow_marketing_automated",
+      "integration_refs": []
+    },
+    {
+      "recipe_id": 17,
+      "recipe_name": "Pricing & Packaging Optimization",
+      "blueprint_id": "workflow_finops_standalone",
+      "integration_refs": ["stripe_usage_expansion.json"]
+    },
+    {
+      "recipe_id": 18,
+      "recipe_name": "Product Analytics Intelligence",
+      "blueprint_id": "workflow_data_ops_experimentation",
+      "integration_refs": []
+    },
+    {
+      "recipe_id": 19,
+      "recipe_name": "Developer Experience Onboarding",
+      "blueprint_id": "workflow_engineering_automated",
+      "integration_refs": []
+    },
+    {
+      "recipe_id": 20,
+      "recipe_name": "Product Experimentation Engine",
+      "blueprint_id": "workflow_data_ops_experimentation",
+      "integration_refs": []
+    },
+    {
+      "recipe_id": 21,
+      "recipe_name": "API Lifecycle Management",
+      "blueprint_id": "workflow_engineering_automated",
+      "integration_refs": []
+    },
+    {
+      "recipe_id": 22,
+      "recipe_name": "Security Code Review Automation",
+      "blueprint_id": "workflow_engineering_automated",
+      "integration_refs": []
+    },
+    {
+      "recipe_id": 23,
+      "recipe_name": "Superpowers Development Workflow",
+      "blueprint_id": "workflow_superpowers_development",
+      "integration_refs": []
+    },
+    {
+      "recipe_id": 24,
+      "recipe_name": "Brand Consistency Engine",
+      "blueprint_id": "workflow_marketing_automated",
+      "integration_refs": []
+    },
+    {
+      "recipe_id": 25,
+      "recipe_name": "Employee Onboarding Automation",
+      "blueprint_id": "workflow_people_ops_talent",
+      "integration_refs": []
+    },
+    {
+      "recipe_id": 26,
+      "recipe_name": "Data Quality Automation",
+      "blueprint_id": "workflow_data_automated",
+      "integration_refs": []
+    },
+    {
+      "recipe_id": 27,
+      "recipe_name": "Compliance Automation Hub",
+      "blueprint_id": "workflow_data_automated",
+      "integration_refs": []
+    },
+    {
+      "recipe_id": 28,
+      "recipe_name": "E-commerce Revenue Optimization",
+      "blueprint_id": "workflow_finops_standalone",
+      "integration_refs": ["stripe_usage_expansion.json"]
+    },
+    {
+      "recipe_id": 29,
+      "recipe_name": "Partnership Ecosystem Automation",
+      "blueprint_id": "workflow_partner_onboarding_revenue",
+      "integration_refs": ["salesforce_lead_qualification_chain.json"]
+    },
+    {
+      "recipe_id": 30,
+      "recipe_name": "People Ops Talent Intelligence",
+      "blueprint_id": "workflow_people_ops_talent",
+      "integration_refs": []
+    },
+    {
+      "recipe_id": 31,
+      "recipe_name": "Data Ops Experimentation Pipeline",
+      "blueprint_id": "workflow_data_ops_experimentation",
+      "integration_refs": []
+    },
+    {
+      "recipe_id": 32,
+      "recipe_name": "Partnership Deal Flow",
+      "blueprint_id": "workflow_partner_onboarding_revenue",
+      "integration_refs": ["salesforce_lead_qualification_chain.json"]
+    },
+    {
+      "recipe_id": 33,
+      "recipe_name": "Scientific Research Synthesis Pipeline",
+      "blueprint_id": "workflow_scientific_research_synthesis",
+      "integration_refs": []
+    },
+    {
+      "recipe_id": 34,
+      "recipe_name": "Skene Growth Strategy Chain",
+      "blueprint_id": "workflow_skene_growth_strategy",
+      "integration_refs": []
+    },
+    {
+      "recipe_id": 35,
+      "recipe_name": "Community Advocacy Pipeline",
+      "blueprint_id": "workflow_community_advocacy",
+      "integration_refs": []
+    },
+    {
+      "recipe_id": 36,
+      "recipe_name": "FinOps Standalone Dashboard",
+      "blueprint_id": "workflow_finops_standalone",
+      "integration_refs": ["stripe_usage_expansion.json"]
+    }
+  ],
+  "blueprint_files": {
+    "workflow_sales_automated": "registry/blueprints/sales_workflow.yaml",
+    "workflow_customer_churn_prevention": "registry/blueprints/customer_churn_prevention.yaml",
+    "workflow_customer_success_automated": "registry/blueprints/customer_success_workflow.yaml",
+    "workflow_marketing_automated": "registry/blueprints/marketing_workflow.yaml",
+    "workflow_data_automated": "registry/blueprints/data_workflow.yaml",
+    "workflow_engineering_automated": "registry/blueprints/engineering_workflow.yaml",
+    "workflow_finops_standalone": "registry/blueprints/finops_standalone_dashboard.yaml",
+    "workflow_partner_onboarding_revenue": "registry/blueprints/example_workflow.yaml",
+    "workflow_ai_ops_conversation": "registry/blueprints/ai_ops_conversation_pipeline.yaml",
+    "workflow_community_advocacy": "registry/blueprints/community_advocacy_pipeline.yaml",
+    "workflow_data_ops_experimentation": "registry/blueprints/data_ops_experimentation_pipeline.yaml",
+    "workflow_people_ops_talent": "registry/blueprints/people_ops_talent_intelligence.yaml",
+    "workflow_scientific_research_synthesis": "registry/blueprints/scientific_research_synthesis.yaml",
+    "workflow_skene_growth_strategy": "registry/blueprints/skene_growth_strategy.yaml",
+    "workflow_superpowers_development": "registry/blueprints/superpowers_development_workflow.yaml"
+  }
+}

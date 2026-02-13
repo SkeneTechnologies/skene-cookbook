@@ -3,6 +3,14 @@ version: 1.0.0
 name: Content Marketing Campaign
 description: Research, create, optimize, and distribute content
 category: Marketing
+icp:
+  name: ''
+  company: {}
+  team: {}
+  priorities: []
+integration_reference:
+  description: ''
+  schemas: []
 chain_sequence:
   - step_id: step_1_keyword_research
     skill_id: marketing_competitor_alternatives
@@ -12,6 +20,9 @@ chain_sequence:
     error_handling:
       on_failure: stop
       max_retries: 2
+    opinionated_prompts:
+      system_context: ''
+      input_guidance: {}
   - step_id: step_2_content_creation
     skill_id: elg_joint_marketing
     action: execute
@@ -20,6 +31,9 @@ chain_sequence:
     error_handling:
       on_failure: continue
       max_retries: 2
+    opinionated_prompts:
+      system_context: ''
+      input_guidance: {}
   - step_id: step_3_seo_optimization
     skill_id: marketing_competitor_alternatives
     action: execute
@@ -28,6 +42,9 @@ chain_sequence:
     error_handling:
       on_failure: continue
       max_retries: 2
+    opinionated_prompts:
+      system_context: ''
+      input_guidance: {}
   - step_id: step_4_distribution
     skill_id: development/web-assets
     action: execute
@@ -36,8 +53,11 @@ chain_sequence:
     error_handling:
       on_failure: continue
       max_retries: 2
+    opinionated_prompts:
+      system_context: ''
+      input_guidance: {}
 metadata:
   author: Chain Architect
-  created_at: '2026-02-12T09:34:39.858896'
+  created_at: '2026-02-13T13:51:55.400521'
   job_function: marketing
   auto_generated: true

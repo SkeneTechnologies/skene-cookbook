@@ -2669,11 +2669,6 @@
       "jtbd": "Trial types comparison, length optimization, email sequences, and conversion benchmarks"
     },
     {
-      "skill_id": "plg_frameworks/install-plg-skills",
-      "risk_level": "Critical",
-      "jtbd": "Installs all 27 PLG skills from SkeneTechnologies/plg-skills repository. Clones the repository and copies all skills to the target location (personal or project). Use when the user wants to install PLG skills, add skills from the plg-skills repository, or set up Product-Led Growth skills for Cursor."
-    },
-    {
       "skill_id": "plg_frameworks/plg-mental-models",
       "risk_level": "Critical",
       "jtbd": "When the user needs mental models or frameworks for PLG decisions -- including product-channel fit, time-to-value, network effects, habit loops, or pricing psychology. Also use when the user asks \"what framework should I use,\" \"how should I think about this,\" or references a specific model like \"adjacent user theory\" or \"bowling alley framework.\" For comprehensive PLG strategy, see plg-strategy. For growth loops, see growth-loops."

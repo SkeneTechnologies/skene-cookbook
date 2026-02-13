@@ -53,8 +53,8 @@ def test_analyze_dedupe_chain_pipeline(
     deduplicator.find_duplicates()
     deduplicator.validate_completeness()
 
-    dedupe_report = temp_output_directory / "dedupe_report.json"
-    deduplicator.generate_report(str(dedupe_report), format="json")
+    deduplicator.generate_report()
+    dedupe_report = Path(deduplicator.base_path) / "reports" / "dedupe_report.json"
     assert dedupe_report.exists()
 
     # Phase 3: Blueprint Generation
@@ -78,8 +78,8 @@ def test_analyze_dedupe_chain_pipeline(
     architect.analyze_chainability()
     architect.identify_missing_links()
 
-    chain_report = temp_output_directory / "chain_report.json"
-    architect.generate_chain_report(str(chain_report))
+    architect.generate_chain_report()
+    chain_report = Path(architect.base_path) / "reports" / "chain_analysis.json"
     assert chain_report.exists()
 
     # Verify all reports exist
@@ -267,8 +267,8 @@ def test_all_reports_valid_json(temp_skills_directory, temp_output_directory):
         deduplicator.generate_embeddings()
         deduplicator.find_duplicates()
 
-        dedupe_report = temp_output_directory / "dedupe.json"
-        deduplicator.generate_report(str(dedupe_report), format="json")
+        deduplicator.generate_report()
+        dedupe_report = Path(deduplicator.base_path) / "reports" / "dedupe_report.json"
 
         with open(dedupe_report) as f:
             data = json.load(f)

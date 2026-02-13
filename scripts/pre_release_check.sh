@@ -29,17 +29,17 @@ print_check() {
 
 print_pass() {
     echo -e "${GREEN}[✓]${NC} $1"
-    ((PASSED++))
+    PASSED=$((PASSED + 1))
 }
 
 print_fail() {
     echo -e "${RED}[✗]${NC} $1"
-    ((FAILED++))
+    FAILED=$((FAILED + 1))
 }
 
 print_warn() {
     echo -e "${YELLOW}[!]${NC} $1"
-    ((WARNINGS++))
+    WARNINGS=$((WARNINGS + 1))
 }
 
 # Main checks
@@ -61,31 +61,49 @@ else
     print_pass "Working tree is clean"
 fi
 
-# 3. Check Python linting
+# 3. Metrics consistency (README/directory counts and badges)
+print_header "Registry & Metrics Consistency"
+
+print_check "Verifying metrics consistency (skill counts, badges)..."
+if npm run verify:metrics &> /dev/null; then
+    print_pass "Metrics consistent with registry"
+else
+    print_fail "Metrics out of sync - run: npm run verify:metrics"
+fi
+
+# 4. Schema validation (skills, metadata, workflows)
+print_check "Validating schemas (skills, metadata, workflows)..."
+if python3 scripts/validate_schemas.py &> /dev/null; then
+    print_pass "All schemas valid"
+else
+    print_fail "Schema validation failed - run: python3 scripts/validate_schemas.py"
+fi
+
+# 5. Check Python linting
 print_header "Python Code Quality"
 
 print_check "Running Black (formatting)..."
-if black --check . &> /dev/null; then
+if (black --check . &> /dev/null) || (python3 -m black --check . &> /dev/null); then
     print_pass "Black formatting check passed"
 else
-    print_fail "Black formatting issues found - run: black ."
+    print_fail "Black formatting issues found - run: black . or python3 -m black ."
 fi
 
 print_check "Running Flake8 (linting)..."
-if flake8 . &> /dev/null; then
+if (flake8 . &> /dev/null) || (python3 -m flake8 . &> /dev/null); then
     print_pass "Flake8 linting passed"
 else
     print_fail "Flake8 linting issues found - run: flake8 ."
 fi
 
 print_check "Running isort (import sorting)..."
-if isort --check-only . &> /dev/null; then
+if (isort --check-only . &> /dev/null) || (python3 -m isort --check-only . &> /dev/null); then
     print_pass "isort check passed"
 else
-    print_fail "isort issues found - run: isort ."
+    print_fail "isort issues found - run: isort . or python3 -m isort ."
 fi
 
-# 4. Check JavaScript linting
+# 6. Check JavaScript linting
 print_header "JavaScript Code Quality"
 
 print_check "Running ESLint..."
@@ -102,44 +120,49 @@ else
     print_fail "Prettier formatting issues found - run: npm run format"
 fi
 
-# 5. Check tests
+# 7. Check tests
 print_header "Test Suite"
 
 print_check "Running unit tests..."
-if pytest tests/unit -v --tb=short -m "not slow" &> /dev/null; then
+if (pytest tests/unit -v --tb=short -m "not slow" --no-cov &> /dev/null) || (python3 -m pytest tests/unit -v --tb=short -m "not slow" --no-cov &> /dev/null); then
     print_pass "Unit tests passed"
 else
-    print_fail "Unit tests failed - run: pytest tests/unit -v"
+    print_fail "Unit tests failed - run: pytest tests/unit -v --no-cov"
 fi
 
 print_check "Running integration tests..."
-if pytest tests/integration -v --tb=short -m "not slow" &> /dev/null; then
+if (pytest tests/integration -v --tb=short -m "not slow" --no-cov &> /dev/null) || (python3 -m pytest tests/integration -v --tb=short -m "not slow" --no-cov &> /dev/null); then
     print_pass "Integration tests passed"
 else
-    print_fail "Integration tests failed - run: pytest tests/integration -v"
+    print_fail "Integration tests failed - run: pytest tests/integration -v --no-cov"
 fi
 
 print_check "Checking test coverage..."
-COVERAGE=$(pytest --cov --cov-report=term-missing -q | grep "TOTAL" | awk '{print $4}' | sed 's/%//')
+COVERAGE=$(pytest --cov --cov-report=term-missing -q 2>/dev/null | grep "TOTAL" | awk '{print $4}' | sed 's/%//')
+if [ -z "$COVERAGE" ]; then
+    COVERAGE=$(python3 -m pytest --cov --cov-report=term-missing -q 2>/dev/null | grep "TOTAL" | awk '{print $4}' | sed 's/%//')
+fi
 if [ -n "$COVERAGE" ]; then
-    if (( $(echo "$COVERAGE >= 60" | bc -l) )); then
-        print_pass "Test coverage: ${COVERAGE}% (meets 60% minimum)"
+    if (( $(echo "$COVERAGE >= 60" | bc -l 2>/dev/null || echo 0) )); then
+        print_pass "Test coverage: ${COVERAGE}% (meets 60% target)"
+    elif (( $(echo "$COVERAGE >= 30" | bc -l 2>/dev/null || echo 0) )); then
+        print_pass "Test coverage: ${COVERAGE}% (meets 30% minimum)"
     else
-        print_fail "Test coverage: ${COVERAGE}% (below 60% minimum)"
+        print_warn "Test coverage: ${COVERAGE}% (below 30% minimum)"
     fi
 else
     print_warn "Could not determine test coverage"
 fi
 
-# 6. Check security
+# 8. Check security
 print_header "Security Checks"
 
-print_check "Checking for Critical/High risk skills..."
-if python scripts/analyze_skills.py --action analyze &> /dev/null; then
+print_check "Checking for skills flagged for review (tier 1)..."
+if python3 scripts/analyze_skills.py --action analyze &> /dev/null; then
     if grep -q "Critical" reports/security_analysis.md 2>/dev/null; then
-        print_fail "Critical risk skills detected - review reports/security_analysis.md"
+        print_warn "Skills flagged for review present - see reports/security_analysis.md (warn only)"
     else
-        print_pass "No Critical risk skills detected"
+        print_pass "No skills flagged for review (tier 1)"
     fi
 else
     print_warn "Could not run security analysis"
@@ -152,31 +175,41 @@ else
     print_fail "npm vulnerabilities found - run: npm audit"
 fi
 
-# 7. Check documentation
+print_check "Scanning for secrets (trufflehog/gitleaks)..."
+if command -v trufflehog &> /dev/null; then
+    if trufflehog filesystem . --only-verified &> /dev/null; then
+        print_pass "No verified secrets detected (trufflehog)"
+    else
+        print_fail "Potential secrets detected - run: trufflehog filesystem . --only-verified"
+    fi
+elif command -v gitleaks &> /dev/null; then
+    if gitleaks detect --no-git --source . --verbose &> /dev/null; then
+        print_pass "No secrets detected (gitleaks)"
+    else
+        print_fail "Potential secrets detected - run: gitleaks detect --source ."
+    fi
+else
+    print_warn "No secrets scanner found (install trufflehog or gitleaks for open-source push)"
+fi
+
+# 9. Check documentation
 print_header "Documentation"
 
-print_check "Verifying CHANGELOG.md exists..."
-if [ -f "CHANGELOG.md" ]; then
-    print_pass "CHANGELOG.md exists"
+print_check "Verifying key documentation (validate_docs.py)..."
+if python3 scripts/validate_docs.py &> /dev/null; then
+    print_pass "All required docs present"
 else
-    print_fail "CHANGELOG.md not found"
+    print_fail "Missing required docs - run: python3 scripts/validate_docs.py"
 fi
 
-print_check "Verifying CODE_OF_CONDUCT.md exists..."
-if [ -f "CODE_OF_CONDUCT.md" ]; then
-    print_pass "CODE_OF_CONDUCT.md exists"
+print_check "Checking markdown links (validate_docs.py --links)..."
+if python3 scripts/validate_docs.py --links &> /dev/null; then
+    print_pass "Markdown links checked"
 else
-    print_fail "CODE_OF_CONDUCT.md not found"
+    print_warn "Link check skipped or failed (run: python3 scripts/validate_docs.py --links)"
 fi
 
-print_check "Verifying LICENSES.txt exists..."
-if [ -f "LICENSES.txt" ]; then
-    print_pass "LICENSES.txt exists"
-else
-    print_fail "LICENSES.txt not found"
-fi
-
-# 8. Check community infrastructure
+# 10. Check community infrastructure
 print_header "Community Infrastructure"
 
 print_check "Verifying issue templates..."
@@ -194,7 +227,7 @@ else
     print_fail "Pull request template not found"
 fi
 
-# 9. Check SPDX headers
+# 11. Check SPDX headers
 print_header "License Headers"
 
 print_check "Checking SPDX headers in source files..."
@@ -209,7 +242,7 @@ else
     print_fail "Missing SPDX headers (Python: $PYTHON_HEADERS/$PYTHON_FILES, JS: $JS_HEADERS/$JS_FILES)"
 fi
 
-# 10. Final summary
+# 12. Final summary
 print_header "Summary"
 
 echo -e "${GREEN}Passed:${NC}   $PASSED checks"

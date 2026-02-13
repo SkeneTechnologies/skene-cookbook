@@ -305,6 +305,7 @@ Each skill uses official APIs and follows best practices for reproducibility.
 
 - [Complete Skills Directory](../directory.md) — Browse all 141 scientific skills
 - [Skill Chain Cookbook](../SKILL_CHAINS.md) — 36+ ready-to-use recipes (includes [Recipe 33: Scientific Research Synthesis](../SKILL_CHAINS.md#recipe-33-scientific-research-synthesis-pipeline))
+- [Playbooks](../PLAYBOOKS.md) — Niche playbooks and exact data to wire
 - [Value & ROI Guide](../VALUE.md) — Detailed ROI calculations
 - [Security Best Practices](../../SECURITY_POLICY.md) — Data security for research
 

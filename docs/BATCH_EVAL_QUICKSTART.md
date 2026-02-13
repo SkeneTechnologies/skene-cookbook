@@ -432,7 +432,7 @@ A:
 
 ## Resources
 
-- **Phase 0 Completion Report**: `EVAL_HARNESS_PHASE_0_COMPLETE.md`
+- **Phase 0 Completion Report**: [docs/internal/EVAL_HARNESS_PHASE_0_COMPLETE.md](internal/EVAL_HARNESS_PHASE_0_COMPLETE.md) (maintainers)
 - **Original Rollout Plan**: Check project documentation
 - **Eval Harness README**: `eval_harness/README.md`
 - **Skills Catalog**: `skills-library/SKILLS_CATALOG.md`

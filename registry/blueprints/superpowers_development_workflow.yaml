@@ -3,12 +3,24 @@ version: 1.0.0
 name: Superpowers Development Workflow
 description: Brainstorm → plan → execute → verify for structured development
 category: Development
+icp:
+  name: Structured development, plan then execute
+  priorities:
+    - requirements
+    - planning
+    - execution
+    - verification
+integration_reference:
+  description: Repo and tooling only; no CRM
+  schemas: []
 chain_sequence:
   - step_id: step_1_brainstorming
     skill_id: superpowers/brainstorming
     action: execute
     description: Explore intent, requirements, and design
     timeout_seconds: 300
+    opinionated_prompts:
+      system_context: Clarify intent and constraints before implementation; capture edge cases.
     error_handling:
       on_failure: stop
       max_retries: 1
@@ -17,6 +29,8 @@ chain_sequence:
     action: execute
     description: Produce implementation plan
     timeout_seconds: 300
+    opinionated_prompts:
+      system_context: Plan in ordered steps; include tests and rollback where relevant.
     error_handling:
       on_failure: continue
       max_retries: 2
@@ -25,6 +39,8 @@ chain_sequence:
     action: execute
     description: Run the plan (e.g. code changes)
     timeout_seconds: 600
+    opinionated_prompts:
+      system_context: Execute step by step; preserve existing style and tests.
     error_handling:
       on_failure: continue
       max_retries: 2
@@ -33,6 +49,8 @@ chain_sequence:
     action: execute
     description: Validate work before marking done
     timeout_seconds: 300
+    opinionated_prompts:
+      system_context: Run linters and tests; confirm acceptance criteria before done.
     error_handling:
       on_failure: stop
       max_retries: 1

@@ -3,12 +3,27 @@ version: 1.0.0
 name: FinOps Standalone Dashboard
 description: Burn rate, scenario planning, investor metrics
 category: Finance
+icp:
+  name: Finance/ops, board and investor reporting
+  company:
+    arr_band: [0, 100000000]
+  priorities:
+    - burn_rate
+    - runway
+    - investor_metrics
+integration_reference:
+  description: Billing and usage for burn and revenue; Stripe for subscription data
+  schemas:
+    - ref: registry/integration_schemas/stripe_usage_expansion.json
+      role: Subscription and invoice data for burn and MRR
 chain_sequence:
   - step_id: step_1_burn_rate
     skill_id: finops_burn_rate_monitor
     action: execute
     description: Tracks cash burn and runway
     timeout_seconds: 300
+    opinionated_prompts:
+      system_context: Focus on burn and runway; segment by category where useful.
     error_handling:
       on_failure: stop
       max_retries: 1
@@ -17,6 +32,8 @@ chain_sequence:
     action: execute
     description: Models financial scenarios
     timeout_seconds: 300
+    opinionated_prompts:
+      system_context: Model base, upside, downside; tie to growth and spend levers.
     error_handling:
       on_failure: continue
       max_retries: 2
@@ -25,6 +42,8 @@ chain_sequence:
     action: execute
     description: Produces investor-ready KPIs
     timeout_seconds: 300
+    opinionated_prompts:
+      system_context: ARR, MRR, burn, runway, Rule of 40; keep definitions consistent.
     error_handling:
       on_failure: stop
       max_retries: 1

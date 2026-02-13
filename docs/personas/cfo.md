@@ -312,6 +312,7 @@ All finance skills are built with compliance in mind:
 
 - [Complete Skills Directory](../directory.md) — Browse all 33 FinOps skills
 - [Skill Chain Cookbook](../SKILL_CHAINS.md) — 36+ ready-to-use recipes (includes [Recipe 2: Financial Intelligence](../SKILL_CHAINS.md#recipe-2-financial-intelligence-dashboard) and [Recipe 36: FinOps Standalone](../SKILL_CHAINS.md#recipe-36-finops-standalone-dashboard))
+- [Playbooks](../PLAYBOOKS.md) — Niche playbooks and exact data to wire (billing, Stripe)
 - [Value & ROI Guide](../VALUE.md) — Detailed ROI calculations
 - [Security Best Practices](../../SECURITY_POLICY.md) — SOX compliance guide
 

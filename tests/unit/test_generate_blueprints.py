@@ -291,10 +291,11 @@ def test_create_function_blueprint_engineering(temp_output_directory):
 
     architect.chainable_pairs = [("api_client", "data_transformer", 0.9)]
 
-    blueprint = architect.create_function_blueprint("engineering")
+    skills = architect.skills_by_function["engineering"]
+    blueprint = architect._create_function_blueprint("engineering", skills)
 
     assert isinstance(blueprint, dict)
-    assert "function" in blueprint or "skills" in blueprint or "workflows" in blueprint
+    assert "chain_sequence" in blueprint or "name" in blueprint or "id" in blueprint
 
 
 @pytest.mark.unit
@@ -311,10 +312,10 @@ def test_create_function_blueprint_includes_workflows(temp_output_directory):
 
     architect.chainable_pairs = [("content_gen", "seo_optimizer", 0.95)]
 
-    blueprint = architect.create_function_blueprint("marketing")
+    skills = architect.skills_by_function["marketing"]
+    blueprint = architect._create_function_blueprint("marketing", skills)
 
     assert isinstance(blueprint, dict)
-    # Blueprint should include some structure
     assert len(blueprint) > 0
 
 
@@ -348,26 +349,40 @@ def test_generate_chain_report(temp_output_directory):
     """Test chain analysis report generation."""
     architect = ChainArchitect(base_path=str(temp_output_directory))
 
-    architect.skills = [
+    skill1 = {
+        "skill_id": "1",
+        "name": "Skill 1",
+        "input_types": [],
+        "output_types": ["data"],
+        "tools": [],
+        "exit_states": [],
+    }
+    skill2 = {
+        "skill_id": "2",
+        "name": "Skill 2",
+        "input_types": ["data"],
+        "output_types": [],
+        "tools": [],
+        "exit_states": [],
+    }
+    architect.skills = [skill1, skill2]
+    architect.chainable_pairs = [
         {
-            "skill_id": "1",
-            "name": "Skill 1",
-            "input_types": set(),
-            "output_types": {"data"},
-            "tools": [],
-            "exit_states": [],
+            "producer": skill1,
+            "compatible_consumers": [{"skill": skill2, "connection_type": "data"}],
         }
     ]
+    architect.io_graph = {"data": [skill1, skill2]}
+    architect.missing_links = [
+        {"workflow": "test", "missing_steps": ["report"], "severity": "critical"}
+    ]
 
-    architect.chainable_pairs = [("skill_1", "skill_2", 0.9)]
-    architect.missing_links = [{"input_type": "report", "skills_needing": ["skill_3"]}]
+    architect.generate_chain_report()
 
-    output_file = temp_output_directory / "chain_report.json"
-    architect.generate_chain_report(str(output_file))
+    report_path = temp_output_directory / "reports" / "chain_analysis.json"
+    assert report_path.exists()
 
-    assert output_file.exists()
-
-    with open(output_file) as f:
+    with open(report_path) as f:
         report = json.load(f)
 
     assert "summary" in report or isinstance(report, dict)
@@ -405,11 +420,12 @@ def test_full_blueprint_generation_workflow(
     # Generate blueprints
     architect.generate_function_blueprints()
 
-    # Generate report
-    report_file = temp_output_directory / "test_chain_report.json"
-    architect.generate_chain_report(str(report_file))
+    # Generate report (writes to base_path/reports/chain_analysis.json)
+    architect.base_path = Path(temp_output_directory)
+    architect.generate_chain_report()
 
-    assert report_file.exists()
+    report_path = temp_output_directory / "reports" / "chain_analysis.json"
+    assert report_path.exists()
 
 
 # =============================================================================

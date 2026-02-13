@@ -40,15 +40,18 @@ function countActualSkills() {
     const executableCmd = 'find skills-library/executable -name "skill.json" 2>/dev/null | wc -l';
     const executableCount = parseInt(execSync(executableCmd, { encoding: 'utf8' }).trim(), 10);
 
-    // Count context skills
-    const contextCmd = 'find skills-library/context -name "skill.json" 2>/dev/null | wc -l';
+    // Count reference guides
+    const contextCmd = 'find skills-library/reference -name "skill.json" 2>/dev/null | wc -l';
     const contextCount = parseInt(execSync(contextCmd, { encoding: 'utf8' }).trim(), 10);
 
     // Count domains
     const executableDomainsCmd = 'ls -d skills-library/executable/*/ 2>/dev/null | wc -l';
-    const executableDomains = parseInt(execSync(executableDomainsCmd, { encoding: 'utf8' }).trim(), 10);
+    const executableDomains = parseInt(
+      execSync(executableDomainsCmd, { encoding: 'utf8' }).trim(),
+      10
+    );
 
-    const contextDomainsCmd = 'ls -d skills-library/context/*/ 2>/dev/null | wc -l';
+    const contextDomainsCmd = 'ls -d skills-library/reference/*/ 2>/dev/null | wc -l';
     const contextDomains = parseInt(execSync(contextDomainsCmd, { encoding: 'utf8' }).trim(), 10);
 
     const totals = {
@@ -59,13 +62,16 @@ function countActualSkills() {
         executable: executableDomains,
         context: contextDomains,
         total: executableDomains + contextDomains,
-      }
+      },
     };
 
     log(`   Executable: ${totals.executable}`, 'green');
-    log(`   Context: ${totals.context}`, 'green');
+    log(`   Reference: ${totals.context}`, 'green');
     log(`   Total: ${totals.total}`, 'green');
-    log(`   Domains: ${totals.domains.total} (${totals.domains.executable} executable + ${totals.domains.context} context)`, 'green');
+    log(
+      `   Domains: ${totals.domains.total} (${totals.domains.executable} executable + ${totals.domains.context} reference)`,
+      'green'
+    );
 
     return totals;
   } catch (error) {
@@ -104,7 +110,7 @@ function verifyDocumentation(actual) {
       patterns: {
         total: /Compose (\d+) AI skills/,
         executable: /(\d+) executable skills/,
-        context: /(\d+) context skills/,
+        context: /(\d+) reference guides/,
       },
     },
     {
@@ -118,7 +124,7 @@ function verifyDocumentation(actual) {
       patterns: {
         total: /\*\*(\d+) AI skills\*\*/,
         executable: /\*\*(\d+) executable\*\*/,
-        context: /\*\*(\d+) context skills\*\*/,
+        context: /\*\*(\d+) reference guides\*\*/,
       },
     },
     {
@@ -126,7 +132,7 @@ function verifyDocumentation(actual) {
       patterns: {
         total: /> \*\*(\d+) AI skills\*\*/,
         executable: /\*\*(\d+) executable skills\*\*/,
-        context: /\*\*(\d+) context skills\*\*/,
+        context: /\*\*(\d+) reference guides\*\*/,
       },
     },
   ];
@@ -160,21 +166,30 @@ function verifyDocumentation(actual) {
       if (index.metrics.total_skills === actual.total) {
         log(`      ✅ total_skills: ${index.metrics.total_skills} (correct)`, 'green');
       } else {
-        log(`      ❌ total_skills: Found ${index.metrics.total_skills}, Expected ${actual.total}`, 'red');
+        log(
+          `      ❌ total_skills: Found ${index.metrics.total_skills}, Expected ${actual.total}`,
+          'red'
+        );
         hasErrors = true;
       }
 
       if (index.metrics.executable_skills === actual.executable) {
         log(`      ✅ executable_skills: ${index.metrics.executable_skills} (correct)`, 'green');
       } else {
-        log(`      ❌ executable_skills: Found ${index.metrics.executable_skills}, Expected ${actual.executable}`, 'red');
+        log(
+          `      ❌ executable_skills: Found ${index.metrics.executable_skills}, Expected ${actual.executable}`,
+          'red'
+        );
         hasErrors = true;
       }
 
-      if (index.metrics.context_skills === actual.context) {
-        log(`      ✅ context_skills: ${index.metrics.context_skills} (correct)`, 'green');
+      if (index.metrics.reference_guides === actual.context) {
+        log(`      ✅ reference_guides: ${index.metrics.reference_guides} (correct)`, 'green');
       } else {
-        log(`      ❌ context_skills: Found ${index.metrics.context_skills}, Expected ${actual.context}`, 'red');
+        log(
+          `      ❌ reference_guides: Found ${index.metrics.reference_guides}, Expected ${actual.context}`,
+          'red'
+        );
         hasErrors = true;
       }
     } else {

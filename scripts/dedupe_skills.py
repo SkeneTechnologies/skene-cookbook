@@ -323,12 +323,19 @@ class SkillDeduplicator:
                 f.write("## 🔴 Duplicate Groups (Recommend DELETE)\n\n")
                 for i, group in enumerate(report["duplicates"]["groups"][:10], 1):
                     f.write(f"### Group {i}\n\n")
-                    f.write(f"**Primary:** `{group['primary']['skill_id']}`\n\n")
+                    primary = group.get("primary")
+                    if not primary and group.get("duplicates"):
+                        primary = group["duplicates"][0].get("skill") or {}
+                    primary = primary or {}
+                    primary_id = primary.get("skill_id") or primary.get("id", "?")
+                    f.write(f"**Primary:** `{primary_id}`\n\n")
                     f.write("**Duplicates:**\n")
-                    for dup in group["duplicates"]:
-                        f.write(
-                            f"- `{dup['skill']['skill_id']}` (similarity: {dup['similarity']:.3f})\n"
-                        )
+                    for dup in group.get("duplicates", []):
+                        sid = (dup.get("skill") or {}).get("skill_id") or (
+                            dup.get("skill") or {}
+                        ).get("id", "?")
+                        sim = dup.get("similarity", 0)
+                        f.write(f"- `{sid}` (similarity: {sim:.3f})\n")
                     f.write("\n")
 
                 if len(report["duplicates"]["groups"]) > 10:

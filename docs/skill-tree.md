@@ -12,7 +12,7 @@ graph TD
     style data fill:#ffcccc
     Root --> design[Design<br/>77 skills]
     style design fill:#ffcccc
-    Root --> engineering[Engineering<br/>265 skills]
+    Root --> engineering[Engineering<br/>266 skills]
     style engineering fill:#ffcccc
     Root --> executive[Executive<br/>4 skills]
     style executive fill:#ffcccc
@@ -38,10 +38,10 @@ graph TD
 
 ## Color Legend
 
-- 🔴 **Red:** Contains Critical risk skills
-- 🟡 **Yellow:** Primarily High risk skills
-- 🔵 **Blue:** Mixed risk levels
-- 🟢 **Green:** Primarily Low risk skills
+- 🔴 **Red:** Contains skills flagged for human review
+- 🟡 **Yellow:** Primarily elevated-review skills
+- 🔵 **Blue:** Mixed review levels
+- 🟢 **Green:** Primarily low-review skills
 
 ## Example Workflow Chain
 

@@ -1,0 +1,54 @@
+{
+  "system": "salesforce",
+  "recipe_ids": [1, 3, 4],
+  "chain_ids": ["workflow_sales_automated", "workflow_sales_qualification"],
+  "description": "CRM objects and fields for lead qualification and deal inspection chains",
+  "required_objects": ["Lead", "Opportunity", "Contact", "Account"],
+  "fields": {
+    "Lead": {
+      "required": ["Id", "Company", "Status", "Source", "CreatedDate"],
+      "recommended": [
+        "Email",
+        "FirstName",
+        "LastName",
+        "Title",
+        "NumberOfEmployees",
+        "Industry",
+        "AnnualRevenue",
+        "OwnerId"
+      ]
+    },
+    "Opportunity": {
+      "required": ["Id", "Name", "StageName", "Amount", "CloseDate", "AccountId"],
+      "recommended": [
+        "LeadSource",
+        "Type",
+        "Probability",
+        "NextStep",
+        "OwnerId",
+        "CreatedDate",
+        "LastModifiedDate"
+      ]
+    },
+    "Contact": {
+      "required": ["Id", "AccountId", "Email"],
+      "recommended": ["FirstName", "LastName", "Title", "Phone", "MailingCity", "MailingCountry"]
+    },
+    "Account": {
+      "required": ["Id", "Name"],
+      "recommended": [
+        "NumberOfEmployees",
+        "Industry",
+        "AnnualRevenue",
+        "Type",
+        "OwnerId",
+        "CreatedDate"
+      ]
+    }
+  },
+  "skill_step_mapping": {
+    "lead_qualification": ["Lead", "Contact", "Account"],
+    "opportunity_scoring": ["Opportunity", "Account", "Contact"],
+    "deal_inspection": ["Opportunity", "Account"]
+  }
+}

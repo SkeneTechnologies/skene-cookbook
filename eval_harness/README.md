@@ -380,7 +380,7 @@ pytest tests/test_eval_harness_*.py --cov=eval_harness --cov-report=html
 
 ### Phase 7: Production Rollout (TODO)
 
-- [ ] Deploy to staging
+- [ ] Deploy to your staging environment
 - [ ] Run evals on 50+ skills
 - [ ] Production dashboards
 

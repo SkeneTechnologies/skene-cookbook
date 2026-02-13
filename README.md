@@ -1,4 +1,4 @@
-# Build AI Agents in Days, Not Months
+# When you need an AI workflow without building it from scratch
 
 <p align="left">
   <a href="https://github.com/SkeneTechnologies/skene-cookbook/actions"><img src="https://github.com/SkeneTechnologies/skene-cookbook/workflows/Lint%20&%20Build%20Documentation/badge.svg" alt="GitHub Actions"></a>
@@ -10,244 +10,223 @@
 
 <p align="left">
   <a href="docs/SKILL_CHAINS.md"><img src="https://img.shields.io/badge/recipes-36%20Skill%20Chains-blue" alt="Skill Chain Recipes"></a>
-  <a href="METRICS.md"><img src="https://img.shields.io/badge/skills-765%20ingredients-green" alt="Skills (ingredients)"></a>
-  <a href="METRICS.md"><img src="https://img.shields.io/badge/executable-383-orange" alt="Executable"></a>
+  <a href="METRICS.md"><img src="https://img.shields.io/badge/skills-764%20ingredients-green" alt="Skills (ingredients)"></a>
+  <a href="METRICS.md"><img src="https://img.shields.io/badge/executable-382-orange" alt="Executable"></a>
   <a href="METRICS.md"><img src="https://img.shields.io/badge/domains-23-purple" alt="Domains"></a>
 </p>
 
-**Production AI agents from Skill Chains, not from scratch.** Start with **36 ready-to-use recipes** (the chains); each recipe is built from our library of **765 skills**. No ML expertise required — copy-paste a recipe, deploy in days, get real ROI.
+If you're trying to ship something like lead scoring, churn alerts, or a content pipeline without months of custom agent code, this repo is a **cookbook of 36 recipes** (skill chains) and **764 skills** you can copy and adapt. Pre-built workflows and skills for Cursor and Claude; install via npm, pick a recipe, and wire your data. New to skills? [What are skills?](docs/WHAT_ARE_SKILLS.md)
 
-[**Browse Skill Chain Recipes**](docs/SKILL_CHAINS.md) • [**Explore the Directory**](docs/directory.md) • [**View ROI Metrics**](METRICS.md) • [**Quick Start**](#-quick-start)
-
----
-
-## 🎭 Choose Your Path
-
-_Tailored guides to get you up and running based on your role._
-
-| Role                | Focus Area                         | Get Started                                   |
-| :------------------ | :--------------------------------- | :-------------------------------------------- |
-| 👔 **Sales Leader** | Lead scoring & pipeline management | [View Guide →](docs/personas/sales-leader.md) |
-| 🚀 **Growth PM**    | PLG activation & engagement flows  | [View Guide →](docs/personas/growth-pm.md)    |
-| 🔬 **Researcher**   | Scientific tools & data analysis   | [View Guide →](docs/personas/researcher.md)   |
-| 💼 **Finance/CFO**  | Financial intelligence & reporting | [View Guide →](docs/personas/cfo.md)          |
-
-Or [browse the Skill Chain Cookbook (36 recipes) →](docs/SKILL_CHAINS.md) · [browse 765 skills →](docs/directory.md)
+[**Browse Skill Chain Recipes**](docs/SKILL_CHAINS.md) • [**Playbooks & Data to Wire**](docs/PLAYBOOKS.md) • [**Explore the Directory**](docs/directory.md) • [**View Metrics**](METRICS.md) • [**Quick Start**](#-quick-start)
 
 ---
 
-## ⚡ Why Skill Chains?
+## Choose your path
 
-We don't just give you skills — we give you the **chains** that turn them into workflows. The **Skill Chain Cookbook** is ready-to-deploy recipes; skills are the ingredients.
+_Guides by role — pick the one that matches your situation._
 
-| Others                          | Skene Cookbook                                    |
-| ------------------------------- | ------------------------------------------------- |
-| Single skills or ad-hoc prompts | **Skill Chains** — multi-step workflows           |
-| Build from scratch              | **Recipes** — copy-paste, deploy in days          |
-| Generic "AI agent"              | Domain recipes (sales, churn, PLG, compliance, …) |
+| Role                | When this fits you                                                      | Get started                                   |
+| :------------------ | :---------------------------------------------------------------------- | :-------------------------------------------- |
+| 👔 **Sales Leader** | You own pipeline and want AI qualification without a big build          | [View guide →](docs/personas/sales-leader.md) |
+| 🚀 **Growth PM**    | You're improving activation and want flows for onboarding or engagement | [View guide →](docs/personas/growth-pm.md)    |
+| 🔬 **Researcher**   | You need scientific tools and data analysis in your workflow            | [View guide →](docs/personas/researcher.md)   |
+| 💼 **Finance/CFO**  | You need financial intelligence and reporting, not custom models        | [View guide →](docs/personas/cfo.md)          |
 
-| Traditional AI Agents         | Skill Chains                   |
-| ----------------------------- | ------------------------------ |
-| 3-6 months development        | **1-2 weeks**                  |
-| $50K-$150K cost               | **$5K-$10K**                   |
-| Custom code, hard to maintain | Pre-built skills, easy updates |
-| Single-purpose                | Composable, reusable           |
-
-> [!TIP] > **Real ROI:** A standard Sales Agent built with Skene typically saves **$20K–$40K/month** by automating qualification. Finance Agents save **$50K+/month** in CFO/finance team time. Growth Agents drive **15%+ conversion lift** through automated optimization. Churn Prevention saves **$400K ARR/year** through early intervention.
->
-> [Read the full Value Proposition →](docs/VALUE.md)
+Or [browse the Skill Chain Cookbook (36 recipes) →](docs/SKILL_CHAINS.md) · [browse 764 skills →](docs/directory.md)
 
 ---
 
-## 📦 Installation
+## When this helps
+
+You want a **multi-step workflow** (e.g. qualify → score → route) but don't want to design and maintain each step yourself. The cookbook gives you recipes; you copy one, point it at your CRM or data, and adjust. Skills are the building blocks; chains are the workflows that combine them.
+
+- **Single steps vs workflows:** If you only need one-off prompts or single skills, you can use the skills library. If you need a repeatable flow (e.g. lead in → score → route → notify), the recipes are for that.
+- **Starting from zero vs from a recipe:** Many teams build custom agents over several months. Here you start from a recipe and ship in days or weeks by wiring your data and tweaking prompts.
+- **Generic vs domain:** Recipes are organized by domain (sales, churn, PLG, compliance, growth, etc.) so you can find something that matches what you're trying to do.
+
+> **Example outcomes:** Teams use the sales recipe to automate lead scoring and routing (fewer manual touches). Finance recipes are used for burn and scenario modeling. Churn recipes flag at-risk accounts early. Growth recipes drive conversion and onboarding flows. [Full breakdown and numbers →](docs/VALUE.md)
+
+---
+
+## Installation
 
 ```bash
 npm install @skene/skills-directory
 ```
 
-### 🛠️ Auto-Activation
+### Auto-activation
 
-Skills are automatically installed to your local environment during the npm install step. They are tailored for modern IDEs and LLM interfaces:
+Skills are installed to your environment during `npm install` and work with:
 
 - **Cursor:** `~/.cursor/skills/`
 - **Claude:** `~/.claude/skills/`
 
-**Auto-install automatically skips in:**
+Install is skipped automatically in:
 
-- CI/CD environments (GitHub Actions, CircleCI, Jenkins)
-- Docker containers
-- When `--ignore-scripts` flag is used
+- CI/CD (e.g. GitHub Actions, CircleCI, Jenkins)
+- Docker
+- When you use `--ignore-scripts`
 
-To skip auto-install manually (e.g., in CI/CD or Docker):
+To skip manually (e.g. in CI or Docker):
 
 ```bash
 SKIP_SKILLS_INSTALL=true npm install @skene/skills-directory
 ```
 
-🎯 **Bonus:** An `ECOSYSTEM.md` file is generated with tailored recommendations for other Skene tools that complement your stack!
+An `ECOSYSTEM.md` file is generated with suggestions for other Skene tools that fit your stack.
 
 ---
 
-## 📂 What's Included?
+## What's included
 
-**Skill Chain Cookbook first:** [36 recipes](docs/SKILL_CHAINS.md) — copy-paste workflows for sales, CS, growth, product, compliance, and more. Each recipe chains 2–7 skills from the library below.
+If you'd rather **copy a recipe and plug in your CRM/Stripe/playbook** than build from scratch, start with the [Skill Chain Cookbook (36 recipes)](docs/SKILL_CHAINS.md). Each recipe chains 2–7 skills and is backed by a playbook (workflow blueprint) with ICP, integration references, and prompts — see [Playbooks](docs/PLAYBOOKS.md) and [registry/blueprints](registry/blueprints/).
 
 <details open>
-<summary><b>Skills library (765 total: 383 executable + 382 context)</b></summary>
+<summary><b>Skills library (764 total: 382 executable + 382 reference guides)</b></summary>
 
-- **70 PLG Skills**: Product-led growth, activation, and onboarding.
-- **52 Marketing Skills**: Content, SEO, campaigns, and analytics.
-- **29 Customer Success**: Health scoring and churn prediction.
-- **25 RevOps Skills**: Sales pipeline, forecasting, and GTM alignment.
-- **20 Monetization Skills**: Pricing, billing, revenue optimization.
-- **19 AI Ops Skills**: Intelligent automation and ML operations.
-- **187 More Skills**: Across security, data ops, devex, finance, HR, and more.
+- **70 PLG:** Product-led growth, activation, onboarding.
+- **52 Marketing:** Content, SEO, campaigns, analytics.
+- **29 Customer Success:** Health scoring, churn prediction.
+- **25 RevOps:** Sales pipeline, forecasting, GTM alignment.
+- **20 Monetization:** Pricing, billing, revenue optimization.
+- **19 AI Ops:** Automation and ML operations.
+- **187 more:** Security, data ops, devex, finance, HR, and others.
 
-[See all executable skills →](METRICS.md#executable-skills-breakdown)
+[Executable skills breakdown →](METRICS.md#executable-skills-breakdown)
 
 </details>
 
 <details>
-<summary><b>Context & Infrastructure (382)</b></summary>
+<summary><b>Reference guides & infrastructure (382)</b></summary>
 
-- **241 Cursor Rules**: Best-practice IDE guidelines for 241+ frameworks.
-- **141 Scientific Skills**: Research tools, bioinformatics, and data analysis.
-- **Integrations**: 40+ standardized tools (CRM, Analytics, Billing).
-- **Security**: Approval gates, rollbacks, and audit trails included.
+- **241 Cursor rules:** IDE guidelines for 241+ frameworks.
+- **141 Scientific:** Research tools, bioinformatics, data analysis.
+- **Integrations:** 40+ standardized tools (CRM, analytics, billing).
+- **Security:** Approval gates, rollbacks, audit trails.
+
+</details>
+
+<details>
+<summary><b>Workflow blueprints & integration schemas</b></summary>
+
+- **Blueprints:** Each recipe maps to [registry/blueprints/](registry/blueprints/) with optional ICP, integration references, and per-step prompts.
+- **Data to wire:** [registry/integration_schemas/](registry/integration_schemas/) has reference schemas for Salesforce, HubSpot, Stripe so you can wire CRM and billing without reinventing. See [Playbooks](docs/PLAYBOOKS.md).
 
 </details>
 
 ---
 
-## 🚀 Quick Start
+## Quick start
 
-1. **Install the library** (as shown above).
+1. **Install** (see above).
 
-2. **Pick a "Win" level** to deploy your first agent:
-   - ⏱️ **15-Min Win**: [Lead Scoring Agent](docs/QUICK_WINS.md#15-minute-win-lead-scoring) (2 skills)
-   - 🕐 **1-Hour Win**: [Churn Prevention Agent](docs/QUICK_WINS.md#1-hour-win-churn-risk-alerts) (3 skills)
-   - 🌅 **Half-Day Win**: [Campaign Automation Agent](docs/QUICK_WINS.md#half-day-win-campaign-launch-automation) (5 skills)
+2. **See a working flow quickly** — pick one by time you have:
 
-3. **Verify installation:**
+   - ⏱️ **15 min:** [Lead scoring agent](docs/QUICK_WINS.md#15-minute-win-lead-scoring) (2 skills)
+   - 🕐 **1 hour:** [Churn prevention agent](docs/QUICK_WINS.md#1-hour-win-churn-risk-alerts) (3 skills)
+   - 🌅 **Half day:** [Campaign automation agent](docs/QUICK_WINS.md#half-day-win-campaign-launch-automation) (5 skills)
+
+3. **Check installation:**
 
    ```bash
    npx skills-directory status
    ```
 
-4. **Deploy from a recipe:**
-   Browse the [Skill Chain Cookbook](docs/SKILL_CHAINS.md) — 36+ ready-to-use recipes with step-by-step instructions across 15+ domains.
+4. **Deploy from a recipe:** Browse the [Skill Chain Cookbook](docs/SKILL_CHAINS.md) — 36 recipes with step-by-step instructions across 15+ domains.
 
 ---
 
-## ⌨️ CLI Reference
+## CLI reference
 
-| Command                                     | Description                               |
-| ------------------------------------------- | ----------------------------------------- |
-| `npx skills-directory status`               | Verify installation & file integrity      |
-| `npx skills-directory list --domain plg`    | List all skills in a specific domain      |
-| `npx skills-directory ecosystem`            | Generate tailored tool recommendations    |
-| `npx skills-directory showcase`             | Show what you can build (ROI & use cases) |
-| `npx skills-directory install --target all` | Manually install to Cursor + Claude       |
-| `npx skills-directory stats`                | Show library statistics                   |
-| `npx skills-directory uninstall`            | Remove installed skills                   |
+| Command                                     | Description                            |
+| ------------------------------------------- | -------------------------------------- |
+| `npx skills-directory status`               | Verify installation and file integrity |
+| `npx skills-directory list --domain plg`    | List skills in a domain                |
+| `npx skills-directory ecosystem`            | Generate tool recommendations          |
+| `npx skills-directory showcase`             | Show what you can build (use cases)    |
+| `npx skills-directory install --target all` | Manually install to Cursor + Claude    |
+| `npx skills-directory stats`                | Library statistics                     |
+| `npx skills-directory uninstall`            | Remove installed skills                |
 
 ---
 
-## 💼 Use Cases
+## Use cases (by situation)
 
 ### Sales & RevOps
 
-- **Lead qualification pipeline** — Qualify, score, and route leads automatically
-- **Deal inspection engine** — Analyze deal health and identify risks
-- **Pipeline forecasting** — Predict revenue and commit accuracy
+You already use a CRM and want leads scored and routed without writing the pipeline yourself. Recipes cover qualification, deal health, and forecasting.
 
 ### Customer Success
 
-- **Health monitoring** — Real-time customer health tracking
-- **Churn prediction** — Identify at-risk accounts 60-90 days early
-- **Expansion playbooks** — Trigger upsell opportunities automatically
+You want to spot churn risk and trigger playbooks instead of building models from scratch. Recipes cover health monitoring, at-risk accounts (60–90 days early), and expansion/upsell triggers.
 
 ### Finance & FinOps
 
-- **CFO dashboard** — Real-time ARR, burn rate, and investor metrics
-- **Scenario planning** — Model growth scenarios instantly
-- **Board reporting** — Auto-generate board decks and reports
+You need burn, scenarios, and board-ready numbers without building everything in-house. Recipes cover ARR, burn rate, investor metrics, scenario planning, and board reporting.
 
 ### Marketing & Growth
 
-- **Content automation** — End-to-end content creation and distribution
-- **A/B testing engine** — Continuous conversion optimization
-- **SEO optimization** — Programmatic SEO at scale
+You want content or experiments wired into a workflow. Recipes cover content creation and distribution, conversion optimization, and programmatic SEO.
 
-[See detailed ROI calculations →](docs/VALUE.md)
+[Detailed outcomes and calculations →](docs/VALUE.md)
 
 ---
 
-## 📚 Documentation
+## Documentation
 
-### 🚀 Strategy
+### Strategy and value
 
-- **[VALUE.md](docs/VALUE.md)** — ROI calculations & 5 core use cases.
-- **[SKILL_CHAINS.md](docs/SKILL_CHAINS.md)** — Skill Chain Cookbook: 36+ ready-to-use recipes.
-- **[SHOWCASE.md](docs/SHOWCASE.md)** — Real-world case studies.
-- **[QUICK_WINS.md](docs/QUICK_WINS.md)** — Deploy your first agent in 15 min to 4 hours.
+- **[VALUE.md](docs/VALUE.md)** — Outcomes and calculations for core use cases.
+- **[SKILL_CHAINS.md](docs/SKILL_CHAINS.md)** — Skill Chain Cookbook: 36 recipes.
+- **[SHOWCASE.md](docs/SHOWCASE.md)** — Case studies and examples.
+- **[QUICK_WINS.md](docs/QUICK_WINS.md)** — First agent in 15 min to 4 hours.
 
-### 🔧 Technical & Development
+### Technical and development
 
-- **[Architecture](ARCHITECTURE.md)** — Deep dive into the system.
-- **[Build Your First Skill](docs/BUILD_YOUR_FIRST_SKILL.md)** — Step-by-step skill creation tutorial.
-- **[Troubleshooting](docs/TROUBLESHOOTING.md)** — Solving peer dependency warnings and common issues.
-- **[Metrics Methodology](METRICS.md)** — Canonical skill counts (765 total: 383 executable + 382 context).
-- **[Complete Skills Directory](docs/directory.md)** — Browse all skills by domain.
-- **[Visual Skill Tree](docs/skill-tree.md)** — See skills organized by domain.
-- **[AI Agent Composability Analysis](docs/technical/AI_AGENT_COMPOSABILITY_ANALYSIS.md)** — Deep dive into agent composition.
+- **[Architecture](ARCHITECTURE.md)** — How the system works.
+- **[Build Your First Skill](docs/BUILD_YOUR_FIRST_SKILL.md)** — Create a skill step-by-step.
+- **[Troubleshooting](docs/TROUBLESHOOTING.md)** — Peer dependency warnings and common issues.
+- **[Metrics methodology](METRICS.md)** — Skill counts (764 total: 382 executable + 382 reference guides).
+- **[Skills directory](docs/directory.md)** — Browse all skills by domain.
+- **[Skill tree](docs/skill-tree.md)** — Skills by domain (visual).
+- **[AI Agent composability](docs/technical/AI_AGENT_COMPOSABILITY_ANALYSIS.md)** — Agent composition.
 
-### 👨‍💻 Contributing
+### Contributing
 
-If you're contributing to skene-cookbook, set up your development environment:
+To contribute to skene-cookbook, set up your environment:
 
 ```bash
-# Clone the repository
 git clone https://github.com/SkeneTechnologies/skene-cookbook.git
 cd skene-cookbook
 
-# Install Python dependencies
 pip install -r requirements-test.txt
-
-# Install Node.js dependencies
 npm install
-
-# Install pre-commit hooks (runs linting and security checks automatically)
 pre-commit install
-
-# Verify installation
 pre-commit run --all-files
 ```
 
-Pre-commit hooks will automatically format code, lint, detect secrets, and check for common issues. To bypass hooks in emergencies: `git commit --no-verify`
+Pre-commit runs formatting, linting, secret checks. Bypass in emergencies: `git commit --no-verify`.
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for full contribution guidelines.
-
----
-
-## 🤝 Community & Support
-
-**Found a bug?** [Open an issue →](https://github.com/SkeneTechnologies/skene-cookbook/issues/new?template=bug_report.yml)
-
-**Have a question?** [Start a discussion →](https://github.com/SkeneTechnologies/skene-cookbook/discussions)
-
-**Contributing:** [Build Your First Skill](docs/BUILD_YOUR_FIRST_SKILL.md) • [Contributing Guidelines](CONTRIBUTING.md) • [Code of Conduct](CODE_OF_CONDUCT.md)
-
-**Security:** Please report vulnerabilities via our [Security Policy](SECURITY_POLICY.md).
+Before pushing to the public remote, run: `./scripts/pre_release_check.sh` or `npm run preflight`. See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ---
 
-## 📌 Skill Sources
+## Community and support
+
+**Bug or question:** [Open an issue →](https://github.com/SkeneTechnologies/skene-cookbook/issues/new)
+
+**Contributing:** [Build Your First Skill](docs/BUILD_YOUR_FIRST_SKILL.md) · [CONTRIBUTING.md](CONTRIBUTING.md) · [Code of Conduct](CODE_OF_CONDUCT.md)
+
+**Security:** [Security Policy](SECURITY_POLICY.md)
+
+---
+
+## Skill sources
 
 Skills curated from: Anthropic Official, Trail of Bits, obra/superpowers, K-Dense-AI, awesome-cursor-rules, Skene PLG
 
 ---
 
 <p align="center">
-  Built with ❤️ by Skene Technologies. Licensed under <a href="LICENSE">MIT</a>.
+  Built by Skene Technologies. Licensed under <a href="LICENSE">MIT</a>.
 </p>

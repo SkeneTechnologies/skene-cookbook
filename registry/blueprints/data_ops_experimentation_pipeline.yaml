@@ -3,12 +3,23 @@ version: 1.0.0
 name: Data Ops Experimentation Pipeline
 description: Cohort builder, experiment analyzer, funnel optimizer
 category: Data Ops
+icp:
+  name: Data and growth ops, experimentation
+  priorities:
+    - cohorts
+    - experiment_analysis
+    - funnel_optimization
+integration_reference:
+  description: Product and analytics events; no CRM required
+  schemas: []
 chain_sequence:
   - step_id: step_1_cohort_builder
     skill_id: data_cohort_builder
     action: execute
     description: Builds user cohorts for analysis
     timeout_seconds: 300
+    opinionated_prompts:
+      system_context: Define cohorts by behavior and attributes; avoid tiny segments.
     error_handling:
       on_failure: stop
       max_retries: 1
@@ -17,6 +28,8 @@ chain_sequence:
     action: execute
     description: Analyzes A/B tests and significance
     timeout_seconds: 300
+    opinionated_prompts:
+      system_context: Require statistical significance; call out guardrail metrics.
     error_handling:
       on_failure: continue
       max_retries: 2
@@ -25,6 +38,8 @@ chain_sequence:
     action: execute
     description: Optimizes conversion funnels
     timeout_seconds: 300
+    opinionated_prompts:
+      system_context: Identify biggest drop-off; recommend one change per step.
     error_handling:
       on_failure: stop
       max_retries: 1

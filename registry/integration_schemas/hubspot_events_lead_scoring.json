@@ -1,0 +1,44 @@
+{
+  "system": "hubspot",
+  "recipe_ids": [1, 3],
+  "chain_ids": ["workflow_sales_automated", "workflow_sales_qualification"],
+  "description": "Engagement events and properties for lead scoring and PQL chains",
+  "required_events": [
+    "page_view",
+    "form_submit",
+    "email_open",
+    "email_click",
+    "demo_booked",
+    "trial_started"
+  ],
+  "properties": {
+    "company": {
+      "recommended": [
+        "name",
+        "domain",
+        "numberofemployees",
+        "industry",
+        "lifecyclestage",
+        "createdate"
+      ]
+    },
+    "contact": {
+      "recommended": [
+        "email",
+        "firstname",
+        "lastname",
+        "jobtitle",
+        "lifecyclestage",
+        "hs_lead_status",
+        "createdate"
+      ]
+    },
+    "engagement": {
+      "recommended": ["timestamp", "type", "page_url", "form_id", "email_id"]
+    }
+  },
+  "skill_step_mapping": {
+    "lead_qualification": ["contact", "company", "engagement"],
+    "pql_scoring": ["contact", "company", "engagement"]
+  }
+}

@@ -8,6 +8,19 @@ description: |
   Complete workflow that onboards a new partner, monitors integration health,
   and tracks revenue attribution from partner activities.
 category: 'Ecosystem Management'
+icp:
+  name: Ecosystem/partner team, partner-led growth
+  company:
+    industry: b2b_saas
+  priorities:
+    - partner_onboarding
+    - integration_health
+    - revenue_attribution
+integration_reference:
+  description: Partner and integration data; optional CRM for account mapping
+  schemas:
+    - ref: registry/integration_schemas/salesforce_lead_qualification_chain.json
+      role: Optional account mapping for co-sell
 chain_sequence:
   # Step 1: Onboard Partner
   - step_id: 'step_1_onboard'
@@ -17,6 +30,8 @@ chain_sequence:
       static_values:
         partner_tier: 'silver'
         initial_mdf_budget: 50000
+    opinionated_prompts:
+      system_context: Onboard with clear tier and MDF; capture requested integrations.
     error_handling:
       on_failure: 'stop'
       max_retries: 2
@@ -38,6 +53,8 @@ chain_sequence:
       fallback_step: 'step_2b_manual_setup'
       max_retries: 3
     timeout_seconds: 120
+    opinionated_prompts:
+      system_context: Configure integration per partner tier; fallback to manual ticket if needed.
 
   # Step 2b: Manual Setup Fallback
   - step_id: 'step_2b_manual_setup'
@@ -50,6 +67,8 @@ chain_sequence:
       static_values:
         ticket_type: 'integration_setup'
         priority: 'high'
+    opinionated_prompts:
+      system_context: Create high-priority ticket with partner context for manual setup.
     error_handling:
       on_failure: 'continue'
 
@@ -66,6 +85,8 @@ chain_sequence:
         check_type: 'full'
     conditions:
       skip_if: "$.step_2_integration.status == 'failed'"
+    opinionated_prompts:
+      system_context: Run full health check; skip if integration step failed.
     error_handling:
       on_failure: 'continue'
     timeout_seconds: 90
@@ -85,6 +106,8 @@ chain_sequence:
       on_failure: 'retry'
       max_retries: 3
     timeout_seconds: 60
+    opinionated_prompts:
+      system_context: Initialize attribution with time-decay; track ongoing.
 
   # Step 5: Setup Co-Sell Motion
   - step_id: 'step_5_cosell_enable'
@@ -96,6 +119,8 @@ chain_sequence:
         partner_id: 'output.partner_id'
     conditions:
       execute_if: "$.step_1_onboard.output.partner_tier in ['gold', 'platinum']"
+    opinionated_prompts:
+      system_context: Enable co-sell only for gold/platinum; link to partner profile.
     error_handling:
       on_failure: 'continue'
 

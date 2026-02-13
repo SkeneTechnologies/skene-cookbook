@@ -2,7 +2,7 @@
 
 **The largest open-source AI skills library for Claude and Cursor**
 
-**765 AI skills** across 23 domains: **383 executable** + **382 context skills**
+**764 AI skills** across 23 domains: **382 executable** + **382 reference guides**
 
 Compatible with Claude, Cursor, and SkeneFlow.
 
@@ -31,7 +31,7 @@ npx skene-skills list --domain plg
 
 ## What's Included
 
-### Context Skills (382)
+### Reference Guides (382)
 | Category | Skills | Description |
 |----------|--------|-------------|
 | **Cursor Rules** | 241 | Technology-specific coding rules (React, Next.js, Python, etc.) |
@@ -62,7 +62,7 @@ npx skene-skills list --domain plg
 | **Development** | 5 | General development practices |
 | **VCF** | 3 | Venture/VC deal flow skills |
 
-**Total: 765 skills** (383 executable + 382 context) across 23 domains
+**Total: 764 skills** (382 executable + 382 reference guides) across 23 domains
 
 See [METRICS.md](../METRICS.md) for detailed counting methodology and domain breakdown.
 

@@ -1,7 +1,7 @@
 {
   "name": "SkeneFlow SaaS Growth Skills Library",
   "version": "2.2.0",
-  "description": "A comprehensive skills library with 765 AI skills (383 executable + 382 context) covering the entire SaaS growth stack, scientific computing, and 241 technology-specific cursor rules.",
+  "description": "A comprehensive skills library with 764 AI resources (382 executable skills + 382 reference guides) covering the entire SaaS growth stack, scientific computing, and 241 technology-specific coding guidelines.",
   "generated_at": "2026-02-12T08:53:48.044Z",
   "domains": {
     "plg": {
@@ -1526,7 +1526,7 @@
     }
   },
   "summary": {
-    "total_skills": 765,
+    "total_skills": 764,
     "total_domains": 23,
     "core_growth_skills": 267,
     "marketing_skills": 73,
@@ -1554,20 +1554,20 @@
       {
         "version": "2.2.0",
         "date": "2026-02-12",
-        "skills": 765,
+        "skills": 764,
         "domains": 23,
-        "notes": "Documentation accuracy update: Added complete context skills count (cursor_rules: 241, scientific: 141) and verified all executable skill counts. Created METRICS.md as single source of truth."
+        "notes": "Documentation accuracy update: Added complete reference guides count (cursor_rules: 241, scientific: 141) and verified all executable skill counts. Created METRICS.md as single source of truth."
       }
     ],
-    "executable_skills": 383,
-    "context_skills": 382,
+    "executable_skills": 382,
+    "reference_guides": 382,
     "executable_domains": 21,
-    "context_domains": 2
+    "reference_domains": 2
   },
   "metrics": {
-    "total_skills": 765,
-    "executable_skills": 383,
-    "context_skills": 382,
+    "total_skills": 764,
+    "executable_skills": 382,
+    "reference_guides": 382,
     "breakdown": {
       "executable": {
         "ai_ops": 19,

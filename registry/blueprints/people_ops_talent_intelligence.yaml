@@ -3,12 +3,23 @@ version: 1.0.0
 name: People Ops Talent Intelligence
 description: Candidate sourcing, skill gap analysis, comp benchmarking
 category: People Ops
+icp:
+  name: People ops, talent and comp
+  priorities:
+    - sourcing
+    - skill_gaps
+    - comp_benchmarks
+integration_reference:
+  description: ATS and HRIS data; no CRM
+  schemas: []
 chain_sequence:
   - step_id: step_1_candidate_sourcer
     skill_id: people_candidate_sourcer
     action: execute
     description: Surfaces and ranks candidates
     timeout_seconds: 300
+    opinionated_prompts:
+      system_context: Rank by fit and diversity; surface passive candidates.
     error_handling:
       on_failure: stop
       max_retries: 1
@@ -17,6 +28,8 @@ chain_sequence:
     action: execute
     description: Maps skill gaps for role or team
     timeout_seconds: 300
+    opinionated_prompts:
+      system_context: Map gaps to learning paths and hiring; prioritize critical roles.
     error_handling:
       on_failure: continue
       max_retries: 2
@@ -25,6 +38,8 @@ chain_sequence:
     action: execute
     description: Benchmarks compensation
     timeout_seconds: 300
+    opinionated_prompts:
+      system_context: Use market data by role and geo; flag outliers.
     error_handling:
       on_failure: stop
       max_retries: 1

@@ -1,0 +1,30 @@
+{
+  "system": "stripe",
+  "recipe_ids": [12, 13, 14],
+  "chain_ids": ["workflow_usage_billing", "workflow_freemium_conversion", "workflow_expansion"],
+  "description": "Subscription, usage, and invoice data for usage-based pricing and expansion chains",
+  "required_objects": ["Subscription", "Invoice", "Customer"],
+  "optional_objects": ["UsageRecord", "SubscriptionItem"],
+  "fields": {
+    "Subscription": {
+      "required": ["id", "status", "current_period_start", "current_period_end", "customer"],
+      "recommended": ["plan", "quantity", "cancel_at_period_end", "created"]
+    },
+    "Invoice": {
+      "required": ["id", "customer", "amount_due", "status", "created"],
+      "recommended": ["subscription", "lines", "period_start", "period_end"]
+    },
+    "Customer": {
+      "required": ["id", "email"],
+      "recommended": ["metadata", "created", "subscriptions"]
+    },
+    "UsageRecord": {
+      "recommended": ["quantity", "timestamp", "subscription_item"]
+    }
+  },
+  "skill_step_mapping": {
+    "usage_metering": ["Subscription", "UsageRecord", "SubscriptionItem"],
+    "overage_predictor": ["Subscription", "UsageRecord", "Invoice"],
+    "pricing_optimization": ["Subscription", "Invoice", "Customer"]
+  }
+}

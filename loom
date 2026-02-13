@@ -65,7 +65,7 @@ def cmd_dedupe():
     with open(report_path, "r") as f:
         report = json.load(f)
 
-    summary = report["summary"]
+    summary = report.get("summary", {})
 
     # Display summary
     table = Table(title="Deduplication Results", box=box.HEAVY_HEAD)
@@ -73,31 +73,37 @@ def cmd_dedupe():
     table.add_column("Count", justify="right", style="cyan")
     table.add_column("Action", style="yellow")
 
-    table.add_row("🔴 Duplicate Groups", str(summary["duplicate_groups"]), "DELETE")
-    table.add_row("🟡 Similar Pairs", str(summary["similar_pairs"]), "MERGE/REVIEW")
-    table.add_row("⚠️  Incomplete Skills", str(summary["incomplete_skills"]), "FIX")
-    table.add_row("✅ Unique & Verified", str(summary["unique_verified_skills"]), "PROMOTE")
+    table.add_row("🔴 Duplicate Groups", str(summary.get("duplicate_groups", 0)), "DELETE")
+    table.add_row("🟡 Similar Pairs", str(summary.get("similar_pairs", 0)), "MERGE/REVIEW")
+    table.add_row("⚠️  Incomplete Skills", str(summary.get("incomplete_skills", 0)), "FIX")
+    table.add_row("✅ Unique & Verified", str(summary.get("unique_verified_skills", 0)), "PROMOTE")
 
     console.print(table)
 
     console.print(f"\n💡 [bold]Actions Recommended:[/bold]")
-    console.print(f"   • Delete {summary['deletion_candidates']} duplicate skills")
-    console.print(f"   • Merge {summary['merge_candidates']} similar pairs")
-    console.print(f"   • Review {summary['review_candidates']} borderline cases")
-    console.print(f"   • Fix {summary['incomplete_skills']} incomplete skills")
+    console.print(f"   • Delete {summary.get('deletion_candidates', 0)} duplicate skills")
+    console.print(f"   • Merge {summary.get('merge_candidates', 0)} similar pairs")
+    console.print(f"   • Review {summary.get('review_candidates', 0)} borderline cases")
+    console.print(f"   • Fix {summary.get('incomplete_skills', 0)} incomplete skills")
 
     console.print(f"\n📄 [bold]Full Report:[/bold] reports/dedupe_summary.md")
 
     # Ask if user wants to see details
     if Confirm.ask("\n[cyan]View duplicate details?[/cyan]", default=False):
-        if report["duplicates"]["groups"]:
+        if report.get("duplicates", {}).get("groups"):
             console.print("\n[bold]Duplicate Groups:[/bold]\n")
             for i, group in enumerate(report["duplicates"]["groups"][:5], 1):
-                console.print(f"{i}. [bold]{group['primary']['skill_id']}[/bold]")
-                for dup in group["duplicates"]:
-                    console.print(
-                        f"   → {dup['skill']['skill_id']} (similarity: {dup['similarity']:.3f})"
-                    )
+                primary = (
+                    group.get("primary") or (group.get("duplicates") or [{}])[0].get("skill") or {}
+                )
+                console.print(
+                    f"{i}. [bold]{primary.get('skill_id', primary.get('id', '?'))}[/bold]"
+                )
+                for dup in group.get("duplicates", []):
+                    skill = dup.get("skill") or {}
+                    sid = skill.get("skill_id", skill.get("id", "?"))
+                    sim = dup.get("similarity", 0)
+                    console.print(f"   → {sid} (similarity: {sim:.3f})")
                 console.print()
 
     console.print()
@@ -204,7 +210,7 @@ def cmd_health():
         if dedupe_path.exists():
             with open(dedupe_path, "r") as f:
                 dedupe_report = json.load(f)
-                unique_skills = dedupe_report["summary"]["unique_verified_skills"]
+                unique_skills = dedupe_report.get("summary", {}).get("unique_verified_skills", 0)
         progress.update(task, advance=30)
 
         # Load chain analysis if exists
@@ -213,7 +219,7 @@ def cmd_health():
         if chain_path.exists():
             with open(chain_path, "r") as f:
                 chain_report = json.load(f)
-                chainable = chain_report["summary"].get("chainable_patterns", 0)
+                chainable = chain_report.get("summary", {}).get("chainable_patterns", 0)
         progress.update(task, advance=20)
 
     # Calculate health metrics
@@ -221,9 +227,15 @@ def cmd_health():
     chainability_pct = (
         (chainable / total_skills * 100) if total_skills and chainable else 40.0
     )  # Estimate
-    verified_pct = 100 - (808 / total_skills * 100)  # Based on incomplete count
+    verified_pct = (
+        (100 - (808 / total_skills * 100)) if total_skills else 0
+    )  # Based on incomplete count
 
-    overall_health = (uniqueness_pct + chainability_pct + verified_pct) / 3
+    overall_health = (
+        (uniqueness_pct + chainability_pct + verified_pct) / 3
+        if (uniqueness_pct or chainability_pct or verified_pct)
+        else 0
+    )
 
     # Display health dashboard
     health_table = Table(title="Registry Health Metrics", box=box.DOUBLE)

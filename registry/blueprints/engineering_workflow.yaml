@@ -3,6 +3,14 @@ version: 1.0.0
 name: Code Review & Deployment Pipeline
 description: Automated code review, testing, and deployment workflow
 category: Engineering
+icp:
+  name: ''
+  company: {}
+  team: {}
+  priorities: []
+integration_reference:
+  description: ''
+  schemas: []
 chain_sequence:
   - step_id: step_1_code_review
     skill_id: devex_code_sample_generator
@@ -12,6 +20,9 @@ chain_sequence:
     error_handling:
       on_failure: stop
       max_retries: 2
+    opinionated_prompts:
+      system_context: ''
+      input_guidance: {}
   - step_id: step_2_run_tests
     skill_id: elg_channel_enablement
     action: execute
@@ -20,6 +31,9 @@ chain_sequence:
     error_handling:
       on_failure: continue
       max_retries: 2
+    opinionated_prompts:
+      system_context: ''
+      input_guidance: {}
   - step_id: step_3_security_scan
     skill_id: prodops_incident_analyzer
     action: execute
@@ -28,6 +42,9 @@ chain_sequence:
     error_handling:
       on_failure: continue
       max_retries: 2
+    opinionated_prompts:
+      system_context: ''
+      input_guidance: {}
   - step_id: step_4_deploy
     skill_id: prodops_release_notes_generator
     action: execute
@@ -36,8 +53,11 @@ chain_sequence:
     error_handling:
       on_failure: continue
       max_retries: 2
+    opinionated_prompts:
+      system_context: ''
+      input_guidance: {}
 metadata:
   author: Chain Architect
-  created_at: '2026-02-12T09:34:39.855507'
+  created_at: '2026-02-13T13:51:55.397047'
   job_function: engineering
   auto_generated: true

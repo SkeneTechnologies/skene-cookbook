@@ -1,7 +1,7 @@
 {
   "name": "@skene/skills-directory",
   "version": "0.1.2",
-  "description": "Skills Directory — 765 AI skills (383 executable + 382 context) for Claude and Cursor. PLG, marketing, security, scientific computing, and more. One command to install.",
+  "description": "Skills Directory — 764 AI skills (382 executable + 382 reference guides) for Claude and Cursor. PLG, marketing, security, scientific computing, and more. One command to install.",
   "private": false,
   "type": "module",
   "license": "MIT",
@@ -53,7 +53,8 @@
     "lint:js:fix": "eslint --fix \"bin/**/*.js\" \"scripts/**/*.cjs\"",
     "lint:format": "prettier --check '**/*.{js,json,md,yml,yaml}'",
     "format": "prettier --write '**/*.{js,json,md,yml,yaml}'",
-    "format:check": "prettier --check '**/*.{js,json,md,yml,yaml}'"
+    "format:check": "prettier --check '**/*.{js,json,md,yml,yaml}'",
+    "preflight": "bash scripts/pre_release_check.sh"
   },
   "peerDependenciesMeta": {
     "zod": {

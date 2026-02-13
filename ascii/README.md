@@ -195,9 +195,8 @@ This system follows the **Skene ASCII Design Spec** from `skene-flow`:
 
 ## Related Projects
 
-- **TypeScript version**: `~/skene-prototypes/skene-flow-proto-local-backup/docs/templates/ascii-design-system/`
-- **Production use**: `~/skene-primary/skene-dashboard/skene-flow/src/onboarding/design-tokens.ts`
-- **Figma Design System**: `~/skene-strategy/projects/design-system/` (web components)
+- **TypeScript/design tokens**: Used in Skene Flow onboarding and design system.
+- **Figma Design System**: Web components and design tokens align with this ASCII palette.
 
 ## Color Reference
 

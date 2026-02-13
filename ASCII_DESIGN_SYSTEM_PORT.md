@@ -104,7 +104,7 @@ console.print(f"[{SkeneColors.ERROR}]{Symbols.CROSS}[/{SkeneColors.ERROR}] Error
 | `✓`   | `Symbols.CHECKMARK`     | U+2713   | Success, completed           |
 | `✗`   | `Symbols.CROSS`         | U+2717   | Error, failed                |
 | `●`   | `Symbols.BEACON`        | U+25C9   | Active state, risk indicator |
-| `⚠`   | `Symbols.BEACON_WARN`   | (custom) | Warnings                     |
+| `⚠`  | `Symbols.BEACON_WARN`   | (custom) | Warnings                     |
 | `•`   | `Symbols.BULLET`        | U+2022   | List items                   |
 | `→`   | `Symbols.ARROW`         | U+2192   | Navigation                   |
 | `▸`   | `Symbols.ARROW_RIGHT`   | U+25B8   | Workflow connectors          |
@@ -153,7 +153,7 @@ console.print(f"[{SkeneColors.ERROR}]{Symbols.CROSS}[/{SkeneColors.ERROR}] Error
 ### ✅ Verified Working
 
 ```bash
-cd ~/skene-primary/skene-skills-directory
+cd /path/to/skene-cookbook
 
 # Test basic launch
 python3 skill-loom-cli.py
@@ -313,10 +313,8 @@ python3 -m ascii.export --format json > skene-colors.json
 
 ## References
 
-- **Source Design Spec:** `~/skene-flow-proto-local-backup/docs/templates/ascii-design-system/ASCII_DESIGN_SPEC.md`
-- **Implementation Plan:** `.cursor/plans/token-based_ascii_design_system_991cd8f6.plan.md`
-- **Figma Tokens:** `~/skene-strategy/projects/design-system/src/styles/figma-design-tokens.css`
-- **TypeScript Tokens:** `~/skene-flow/src/onboarding/design-tokens.ts`
+- **Source design spec:** ASCII design system spec (Figma/TypeScript alignment).
+- **Figma / TypeScript tokens:** Design tokens align with Skene brand palette in Figma and onboarding flows.
 
 ---
 

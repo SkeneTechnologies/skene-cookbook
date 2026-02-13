@@ -49,6 +49,7 @@ If you're looking for value propositions, ROI calculations, and use cases, see:
 
 - **[../VALUE.md](../VALUE.md)** — Why skill chains? Real ROI and business impact
 - **[../SKILL_CHAINS.md](../SKILL_CHAINS.md)** — 36 ready-to-use Skill Chain recipes
+- **[../PLAYBOOKS.md](../PLAYBOOKS.md)** — Niche playbooks, ICPs, and exact data to wire (Salesforce, HubSpot, Stripe)
 - **[../QUICK_WINS.md](../QUICK_WINS.md)** — Get started in 15 minutes
 
 ---
@@ -76,3 +77,5 @@ These technical documents provide:
 - [Architecture Guide](../../ARCHITECTURE.md) — System architecture and design
 - [Security Policy](../../SECURITY_POLICY.md) — Security best practices
 - [Complete Skills Directory](../directory.md) — All 800+ skills listed
+- [Playbooks](../PLAYBOOKS.md) — Niche playbooks, blueprints, and integration reference schemas
+- [Integration reference schemas](../../registry/integration_schemas/README.md) — Exact Salesforce/HubSpot/Stripe data to wire

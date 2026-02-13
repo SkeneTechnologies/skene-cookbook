@@ -1,8 +1,8 @@
 # Skene Skills Catalog
 
-> **765 AI skills** across **23 domains** for SaaS growth, marketing, compliance, and more.
+> **764 AI skills** across **23 domains** for SaaS growth, marketing, compliance, and more.
 >
-> **383 executable skills** + **382 context skills** (241 cursor rules + 141 scientific)
+> **382 executable skills** + **382 reference guides** (241 coding guidelines + 141 scientific)
 >
 > 📊 See [METRICS.md](../METRICS.md) for the canonical source of all counts and methodology.
 
@@ -10,13 +10,13 @@
 
 ## Quick Navigation
 
-### Context Skills (382)
+### Reference Guides (382)
 | Domain | Skills | Category |
 |--------|--------|----------|
 | [Cursor Rules](#cursor-rules) | 241 | Development (IDE) |
 | [Scientific](#scientific) | 141 | Research & Data Science |
 
-### Executable Skills (383)
+### Executable Skills (382)
 | Domain | Skills | Category |
 |--------|--------|----------|
 | [Marketing](#marketing) | 52 | Growth & Content |
@@ -41,7 +41,7 @@
 | [Development](#development) | 5 | Dev Practices |
 | [VCF](#vcf) | 3 | Venture Capital |
 
-**Total: 765 skills** (383 executable + 382 context) — See [METRICS.md](../METRICS.md) for details
+**Total: 764 resources** (382 executable skills + 382 reference guides) — See [METRICS.md](../METRICS.md) for details
 
 ---
 

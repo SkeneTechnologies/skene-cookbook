@@ -10,23 +10,49 @@ DOC = Path(__file__).resolve().parent.parent / "docs" / "SKILL_CHAINS.md"
 
 # (old_recipe_number, slug_hint) in desired order. "quick6" = ### Recipe 6 in Quick Reference.
 ORDER = [
-    (1, "sales-deal-qualification"), (3, "financial-intelligence"), (13, "product-led-sales"), (22, "competitive-intelligence"),
-    (2, "customer-churn"), (14, "ai-support-deflection"), (24, "customer-education"), (32, "ai-ops-conversation"),
-    ("quick6", "customer-onboarding"), ("quick7", "support-ticket-triage"),
-    (4, "growth-optimization"), (5, "content-marketing"), (11, "freemium-conversion"), (12, "usage-based-pricing"),
-    (18, "community-led-growth"), (19, "multi-platform-content"), ("quick9", "pricing--packaging"), ("quick10", "product-analytics"),
-    (15, "developer-experience"), (20, "product-experimentation"), (21, "api-lifecycle"), (25, "security-code-review"), (30, "superpowers-development"),
+    (1, "sales-deal-qualification"),
+    (3, "financial-intelligence"),
+    (13, "product-led-sales"),
+    (22, "competitive-intelligence"),
+    (2, "customer-churn"),
+    (14, "ai-support-deflection"),
+    (24, "customer-education"),
+    (32, "ai-ops-conversation"),
+    ("quick6", "customer-onboarding"),
+    ("quick7", "support-ticket-triage"),
+    (4, "growth-optimization"),
+    (5, "content-marketing"),
+    (11, "freemium-conversion"),
+    (12, "usage-based-pricing"),
+    (18, "community-led-growth"),
+    (19, "multi-platform-content"),
+    ("quick9", "pricing--packaging"),
+    ("quick10", "product-analytics"),
+    (15, "developer-experience"),
+    (20, "product-experimentation"),
+    (21, "api-lifecycle"),
+    (25, "security-code-review"),
+    (30, "superpowers-development"),
     (23, "brand-consistency"),
-    (16, "employee-onboarding"), (17, "data-quality"), (26, "compliance-automation"), (27, "e-commerce-revenue"), (28, "partnership-ecosystem"),
-    (35, "people-ops-talent"), (36, "data-ops-experimentation"), ("quick8", "partnership-deal"),
-    (29, "scientific-research"), (31, "skene-growth-strategy"),
+    (16, "employee-onboarding"),
+    (17, "data-quality"),
+    (26, "compliance-automation"),
+    (27, "e-commerce-revenue"),
+    (28, "partnership-ecosystem"),
+    (35, "people-ops-talent"),
+    (36, "data-ops-experimentation"),
+    ("quick8", "partnership-deal"),
+    (29, "scientific-research"),
+    (31, "skene-growth-strategy"),
     (34, "community-advocacy"),
     (33, "finops-standalone"),
 ]
 
 
 def slug(s: str) -> str:
-    return re.sub(r"-+", "-", re.sub(r"[^a-z0-9-]", "", s.lower().replace(" ", "-").replace("&", "and"))).strip("-")
+    return re.sub(
+        r"-+", "-", re.sub(r"[^a-z0-9-]", "", s.lower().replace(" ", "-").replace("&", "and"))
+    ).strip("-")
 
 
 def main():
@@ -40,7 +66,7 @@ def main():
 
     # Split into sections: ## Recipe N: Title ... or ### Recipe N: Title ...
     section_re = re.compile(
-        r'^(## Recipe (\d+): (.+?)|### Recipe (\d+): (.+?)|## Recipe \d+-\d+: .+?)$',
+        r"^(## Recipe (\d+): (.+?)|### Recipe (\d+): (.+?)|## Recipe \d+-\d+: .+?)$",
         re.MULTILINE,
     )
     pos = idx
@@ -64,7 +90,11 @@ def main():
             if chunk and "Recipe 1:" not in chunk:
                 sections.append(("_between", None, None, text[pos:start]))
         full_match = m.group(0)
-        if full_match.startswith("## Recipe ") and ":" in full_match and not full_match.startswith("## Recipe 1:"):
+        if (
+            full_match.startswith("## Recipe ")
+            and ":" in full_match
+            and not full_match.startswith("## Recipe 1:")
+        ):
             # "## Recipe 6-10: Quick Reference"
             if "-" in full_match.split(":")[0]:
                 end = text.find("\n## Recipe ", start + 2)
@@ -77,15 +107,15 @@ def main():
                 block = text[start:end]
                 # Parse ### Recipe 6, 7, 8, 9, 10
                 for q in [6, 7, 8, 9, 10]:
-                    qm = re.search(rf'\n### Recipe {q}: (.+?)\n\n', block)
+                    qm = re.search(rf"\n### Recipe {q}: (.+?)\n\n", block)
                     if qm:
-                        qcontent = block[qm.start():]
-                        next_q = re.search(r'\n### Recipe \d+: ', qcontent[10:])
+                        qcontent = block[qm.start() :]
+                        next_q = re.search(r"\n### Recipe \d+: ", qcontent[10:])
                         if next_q:
-                            qcontent = qcontent[:10 + next_q.start()]
-                        next_sec = re.search(r'\n## Recipe \d+: ', qcontent)
+                            qcontent = qcontent[: 10 + next_q.start()]
+                        next_sec = re.search(r"\n## Recipe \d+: ", qcontent)
                         if next_sec:
-                            qcontent = qcontent[:next_sec.start()]
+                            qcontent = qcontent[: next_sec.start()]
                         qcontent = qcontent.strip()
                         title = qm.group(1).strip()
                         sections.append((f"quick{q}", title, qcontent))
@@ -159,7 +189,7 @@ def main():
             # Replace first line (old heading) with new heading
             first_line = content_fixed.split("\n")[0]
             if first_line.startswith("## Recipe ") or first_line.startswith("### Recipe "):
-                content_fixed = new_heading + content_fixed[len(first_line):]
+                content_fixed = new_heading + content_fixed[len(first_line) :]
             else:
                 content_fixed = new_heading + "\n" + content_fixed
             ordered.append((new_num, content_fixed))

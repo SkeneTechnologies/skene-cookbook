@@ -62,22 +62,28 @@ def test_cmd_dedupe_existing_report(mock_subprocess, mock_console, temp_output_d
             "similar_pairs": 10,
             "incomplete_skills": 15,
             "unique_verified_skills": 100,
+            "deletion_candidates": 12,
+            "merge_candidates": 3,
+            "review_candidates": 7,
         },
-        "duplicates": [],
-        "similar_pairs": [],
-        "incomplete": [],
+        "duplicates": {"groups": []},
+        "similar_pairs": {"pairs": []},
+        "incomplete": {"skills": []},
     }
 
     report_path = report_dir / "dedupe_report.json"
     with open(report_path, "w") as f:
         json.dump(report_data, f)
 
-    # Mock Path.exists to return True
+    # Mock Path.exists, open, and prompts to avoid stdin
     with (
         patch("pathlib.Path.exists", return_value=True),
         patch("builtins.open", mock_open(read_data=json.dumps(report_data))),
+        patch("loom.Confirm") as mock_confirm,
+        patch("loom.Prompt") as mock_prompt,
     ):
-
+        mock_confirm.return_value.ask.return_value = False
+        mock_prompt.return_value.ask.return_value = ""
         loom.cmd_dedupe()
 
         # Subprocess should not be called if report exists
@@ -102,15 +108,22 @@ def test_cmd_dedupe_run_analysis(mock_subprocess, mock_console):
             "similar_pairs": 0,
             "incomplete_skills": 0,
             "unique_verified_skills": 764,
-        }
+            "deletion_candidates": 0,
+            "merge_candidates": 0,
+            "review_candidates": 0,
+        },
+        "duplicates": {"groups": []},
     }
 
-    # Mock Path.exists to return False first, then True
+    # Mock Path.exists to return False first, then True; mock prompts
     with (
         patch("pathlib.Path.exists", side_effect=[False, True]),
         patch("builtins.open", mock_open(read_data=json.dumps(report_data))),
+        patch("loom.Confirm") as mock_confirm,
+        patch("loom.Prompt") as mock_prompt,
     ):
-
+        mock_confirm.return_value.ask.return_value = False
+        mock_prompt.return_value.ask.return_value = ""
         loom.cmd_dedupe()
 
         # Verify subprocess was called
@@ -155,19 +168,24 @@ def test_cmd_suggest_chain_with_blueprint(mock_console, temp_output_directory):
     blueprint_dir.mkdir(parents=True, exist_ok=True)
 
     blueprint_data = {
-        "function": "engineering",
-        "workflows": [{"name": "Test Workflow", "steps": ["skill_1", "skill_2"]}],
+        "name": "Engineering Workflow",
+        "description": "Test workflow for engineering",
+        "chain_sequence": [
+            {"skill_id": "skill_1", "description": "Step 1"},
+            {"skill_id": "skill_2", "description": "Step 2"},
+        ],
     }
 
-    blueprint_path = blueprint_dir / "engineering.yaml"
+    blueprint_path = blueprint_dir / "engineering_workflow.yaml"
     with open(blueprint_path, "w") as f:
         yaml.dump(blueprint_data, f)
 
     with (
         patch("pathlib.Path.exists", return_value=True),
         patch("builtins.open", mock_open(read_data=yaml.dump(blueprint_data))),
+        patch("loom.Prompt") as mock_prompt,
     ):
-
+        mock_prompt.return_value.ask.return_value = "engineering"
         loom.cmd_suggest_chain()
 
         # Should display blueprint
@@ -182,7 +200,11 @@ def test_cmd_suggest_chain_generate_new(mock_subprocess, mock_console):
     """Test chain suggestion generates new blueprint if none exists."""
     mock_subprocess.return_value.returncode = 0
 
-    with patch("pathlib.Path.exists", return_value=False):
+    with (
+        patch("pathlib.Path.exists", return_value=False),
+        patch("loom.Prompt") as mock_prompt,
+    ):
+        mock_prompt.return_value.ask.return_value = "engineering"
         loom.cmd_suggest_chain()
 
         # May call subprocess to generate blueprints
@@ -197,21 +219,38 @@ def test_cmd_suggest_chain_generate_new(mock_subprocess, mock_console):
 @pytest.mark.unit
 @pytest.mark.cli
 @patch("loom.console")
-def test_cmd_health_calculates_metrics(mock_console, temp_skills_directory, mock_registry_data):
+@patch("loom.Prompt")
+def test_cmd_health_calculates_metrics(
+    mock_prompt, mock_console, temp_skills_directory, mock_registry_data
+):
     """Test health command calculates repository health metrics."""
-    # Create registry
     registry_dir = temp_skills_directory / "registry" / "job_functions"
     registry_dir.mkdir(parents=True, exist_ok=True)
-
     with open(registry_dir / "index.json", "w") as f:
         json.dump(mock_registry_data, f)
 
-    # Mock paths
-    with patch("pathlib.Path.cwd", return_value=temp_skills_directory):
+    mock_prompt.return_value.ask.return_value = ""
+
+    original_open = open
+
+    def open_mock(path, *args, **kwargs):
+        path_str = str(path) if hasattr(path, "__str__") else path
+        if "job_functions" in path_str and "index.json" in path_str:
+            from io import StringIO
+
+            return StringIO(json.dumps(mock_registry_data))
+        return original_open(path, *args, **kwargs)
+
+    def exists_mock(self):
+        return "reports" not in str(self)
+
+    with (
+        patch("builtins.open", open_mock),
+        patch("pathlib.Path.exists", exists_mock),
+    ):
         loom.cmd_health()
 
-        # Should display health metrics
-        assert mock_console.print.called
+    assert mock_console.print.called
 
 
 @pytest.mark.unit
@@ -225,13 +264,10 @@ def test_cmd_health_shows_uniqueness_score(mock_console):
     with (
         patch("pathlib.Path.exists", return_value=True),
         patch("builtins.open", mock_open(read_data=json.dumps(report_data))),
+        patch("loom.Prompt") as mock_prompt,
     ):
-
+        mock_prompt.return_value.ask.return_value = ""
         loom.cmd_health()
-
-        # Calculate expected uniqueness
-        uniqueness = ((100 - 5 - 10) / 100) * 100
-        # Should display metric
 
 
 @pytest.mark.unit
@@ -245,11 +281,10 @@ def test_cmd_health_shows_chainability_score(mock_console):
     with (
         patch("pathlib.Path.exists", return_value=True),
         patch("builtins.open", mock_open(read_data=json.dumps(chain_report_data))),
+        patch("loom.Prompt") as mock_prompt,
     ):
-
+        mock_prompt.return_value.ask.return_value = ""
         loom.cmd_health()
-
-        # Should display chainability metric
 
 
 @pytest.mark.unit
@@ -269,11 +304,10 @@ def test_cmd_health_shows_verification_rate(mock_console):
     with (
         patch("pathlib.Path.exists", return_value=True),
         patch("builtins.open", mock_open(read_data=json.dumps(registry_data))),
+        patch("loom.Prompt") as mock_prompt,
     ):
-
+        mock_prompt.return_value.ask.return_value = ""
         loom.cmd_health()
-
-        # Should calculate 2/3 = 66.67% verification rate
 
 
 # =============================================================================
@@ -419,16 +453,19 @@ def test_interactive_menu_navigation(mock_prompt, mock_console):
 @pytest.mark.unit
 @pytest.mark.cli
 @patch("loom.console")
-def test_formats_health_report_correctly(mock_console):
+@patch("loom.Prompt")
+def test_formats_health_report_correctly(mock_prompt, mock_console):
     """Test health report formatting."""
-    # Mock all necessary data
+    mock_prompt.return_value.ask.return_value = ""
+    # Mock so reports exist but have minimal summary; registry yields valid dict for job_functions
+    registry_data = {"engineering": [{"skill_id": "1"}]}
     with (
         patch("pathlib.Path.exists", return_value=True),
-        patch("builtins.open", mock_open(read_data='{"summary": {}}')),
+        patch(
+            "builtins.open",
+            mock_open(read_data=json.dumps(registry_data)),
+        ),
     ):
-
         loom.cmd_health()
 
-        # Should create formatted output
-        # Rich tables and panels should be used
-        assert mock_console.print.called
+    assert mock_console.print.called

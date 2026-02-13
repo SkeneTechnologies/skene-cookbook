@@ -15,16 +15,16 @@
 
 ### Skill Counts (ingredients for recipes)
 
-- **Total Skills**: 765
-- **Executable Skills**: 383
-- **Context Skills**: 382
+- **Total Skills**: 764
+- **Executable Skills**: 382
+- **Reference Guides**: 382
   - Cursor Rules: 241
   - Scientific Computing: 141
 
 ### Domain Counts
 
 - **Executable Domains**: 21
-- **Context Domains**: 2
+- **Reference Domains**: 2
 - **Total Unique Domains**: 23
 
 ---
@@ -57,7 +57,7 @@
 | **development**        | 5      | Software development workflows                  |
 | **vcf**                | 3      | Value creation frameworks                       |
 
-**Total Executable:** 383 skills across 21 domains
+**Total Executable:** 382 skills across 21 domains
 
 ### By Job Function
 
@@ -75,11 +75,11 @@ _Mapping domains to typical job functions:_
 | **People/HR**        | 8           | people_ops (8)                                                                           |
 | **Community**        | 28          | community (12), anthropic_official (16)                                                  |
 
-_Note: Some domains serve multiple functions. Total exceeds 383 due to overlapping categorization._
+_Note: Some domains serve multiple functions. Total exceeds 382 due to overlapping categorization._
 
 ---
 
-## Context Skills Breakdown
+## Reference Guides Breakdown
 
 ### Cursor Rules (241 skills)
 
@@ -93,7 +93,7 @@ Technology-specific coding guidelines and best practices for Cursor IDE:
 - Languages (Python, JavaScript, TypeScript, Go, Rust, etc.)
 - And 200+ more specialized tools and frameworks
 
-**Location:** `skills-library/context/cursor_rules/`
+**Location:** `skills-library/reference/cursor_rules/`
 
 ### Scientific Computing (141 skills)
 
@@ -106,7 +106,7 @@ Domain-specific knowledge for research and scientific workflows:
 - Research databases and APIs
 - Academic workflow tools
 
-**Location:** `skills-library/context/scientific/`
+**Location:** `skills-library/reference/scientific/`
 
 ---
 
@@ -134,14 +134,14 @@ skills-library/executable/marketing/seo-optimizer/
 # Count executable skills
 find skills-library/executable -name "skill.json" | wc -l
 
-# Count context skills
-find skills-library/context -name "skill.json" | wc -l
+# Count reference guides
+find skills-library/reference -name "skill.json" | wc -l
 
 # Count all skills
 find skills-library -name "skill.json" | wc -l
 ```
 
-### Executable vs Context Skills
+### Executable Skills vs Reference Guides
 
 **Executable Skills** (`skills-library/executable/`):
 
@@ -149,32 +149,32 @@ find skills-library -name "skill.json" | wc -l
 - Invokable by Claude/Cursor to perform actions
 - Include tool definitions, parameters, error handling
 - Production-ready with security gates
-- **Count: 383 skills**
+- **Count: 382 skills**
 
-**Context Skills** (`skills-library/context/`):
+**Reference Guides** (`skills-library/reference/`):
 
 - Reference materials and domain knowledge
 - Cursor rules for IDE-specific guidance
 - Scientific computing documentation
-- Not directly executable, but provide context for AI
+- Not directly executable, but provide reference knowledge for AI
 - **Count: 382 skills**
 
 ### Why Multiple Numbers?
 
-You may see different numbers referenced in different contexts:
+You may see different numbers referenced in different places:
 
-| Context                 | Number Used           | Reasoning                                  |
+| Where                   | Number Used           | Reasoning                                  |
 | ----------------------- | --------------------- | ------------------------------------------ |
-| Marketing materials     | "760+ skills"         | Total skills (765), rounded for simplicity |
-| Technical documentation | "383 executable"      | Precise count of action-taking skills      |
-| User-facing features    | "765 total resources" | All skills including context               |
+| Marketing materials     | "760+ skills"         | Total skills (764), rounded for simplicity |
+| Technical documentation | "382 executable"      | Precise count of action-taking skills      |
+| User-facing features    | "764 total resources" | All skills including reference guides      |
 | Domain browsing         | "21 domains"          | Executable domains only                    |
-| Complete catalog        | "23 domains"          | All domains including context              |
+| Complete catalog        | "23 domains"          | All domains including reference guides     |
 
 **All of these are correct** for their respective audiences. When in doubt:
 
 - **User-facing claims:** Use "760+ skills" (total)
-- **Technical accuracy:** Use "383 executable + 382 context = 765 total"
+- **Technical accuracy:** Use "382 executable + 382 reference guides = 764 total"
 - **Marketing copy:** Use "760+ skills across 23 domains"
 
 ---
@@ -188,9 +188,9 @@ When writing or updating documentation:
 1. **Reference this file** for canonical numbers
 2. **Link to METRICS.md** rather than hardcoding numbers
 3. **Use consistent terminology:**
-   - "760+ skills" or "765 total skills" for general use
-   - "383 executable skills" for technical precision
-   - "23 domains" for domain count (21 executable + 2 context)
+   - "760+ skills" or "764 total skills" for general use
+   - "382 executable skills" for technical precision
+   - "23 domains" for domain count (21 executable + 2 reference)
 
 ### Verification
 
@@ -198,20 +198,20 @@ To verify these numbers match the actual repository:
 
 ```bash
 # Navigate to repository
-cd /Users/teemukinos/skene-primary/skene-cookbook
+cd /path/to/skene-cookbook
 
 # Count executable skills by domain
 for dir in skills-library/executable/*/; do
   echo "$(basename "$dir"): $(find "$dir" -name 'skill.json' | wc -l | tr -d ' ')"
 done
 
-# Count context skills
-echo "cursor_rules: $(find skills-library/context/cursor_rules -name 'skill.json' | wc -l | tr -d ' ')"
-echo "scientific: $(find skills-library/context/scientific -name 'skill.json' | wc -l | tr -d ' ')"
+# Count reference guides
+echo "cursor_rules: $(find skills-library/reference/cursor_rules -name 'skill.json' | wc -l | tr -d ' ')"
+echo "scientific: $(find skills-library/reference/scientific -name 'skill.json' | wc -l | tr -d ' ')"
 
 # Count totals
 echo "Total executable: $(find skills-library/executable -name 'skill.json' | wc -l | tr -d ' ')"
-echo "Total context: $(find skills-library/context -name 'skill.json' | wc -l | tr -d ' ')"
+echo "Total reference: $(find skills-library/reference -name 'skill.json' | wc -l | tr -d ' ')"
 echo "Grand total: $(find skills-library -name 'skill.json' | wc -l | tr -d ' ')"
 ```
 
@@ -251,11 +251,11 @@ Prior to v0.1.2, skill counts were inconsistent across documentation:
 
 ### Version History
 
-| Version | Total Skills | Executable | Context | Domains |
-| ------- | ------------ | ---------- | ------- | ------- |
-| 0.1.2   | 765          | 383        | 382     | 23      |
-| 0.1.1   | ~760         | ~383       | ~382    | 23      |
-| 0.1.0   | ~760         | ~383       | ~382    | 23      |
+| Version | Total Skills | Executable | Reference | Domains |
+| ------- | ------------ | ---------- | --------- | ------- |
+| 0.1.2   | 764          | 382        | 382       | 23      |
+| 0.1.1   | ~760         | ~382       | ~382      | 23      |
+| 0.1.0   | ~760         | ~382       | ~382      | 23      |
 
 _Note: Counts for 0.1.0 and 0.1.1 are retroactive estimates based on git history._
 
@@ -290,9 +290,9 @@ Every quarter, verify:
 **For Copy/Paste:**
 
 ```
-Total Skills: 765
-Executable: 383 (across 21 domains)
-Context: 382 (cursor_rules: 241, scientific: 141)
+Total Skills: 764
+Executable: 382 (across 21 domains)
+Reference: 382 (cursor_rules: 241, scientific: 141)
 Total Domains: 23
 ```
 
@@ -302,11 +302,11 @@ Total Domains: 23
 
 **Technical Description:**
 
-> "383 executable AI agent skills + 382 context skills = 765 total resources"
+> "382 executable AI agent skills + 382 reference guides = 764 total resources"
 
 **Domain Breakdown:**
 
-> "21 executable domains (marketing, PLG, RevOps, etc.) + 2 context domains (cursor_rules, scientific)"
+> "21 executable domains (marketing, PLG, RevOps, etc.) + 2 reference domains (cursor_rules, scientific)"
 
 ---
 

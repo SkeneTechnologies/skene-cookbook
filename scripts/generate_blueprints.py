@@ -98,8 +98,8 @@ class ChainArchitect:
                 if "type" in prop_schema:
                     types.add(prop_schema["type"])
                 # Add semantic type hints from description
-                if "description" in prop_schema:
-                    desc = prop_schema["description"].lower()
+                if "description" in prop_schema and prop_schema["description"]:
+                    desc = (prop_schema["description"] or "").lower()
                     if "file" in desc:
                         types.add("file")
                     if "url" in desc or "link" in desc:
@@ -162,7 +162,8 @@ class ChainArchitect:
                 matching_skills = [
                     s
                     for s in self.skills
-                    if step.lower() in s["name"].lower() or step.lower() in s["skill_id"].lower()
+                    if step.lower() in (s.get("name") or "").lower()
+                    or step.lower() in (s.get("skill_id") or "").lower()
                 ]
 
                 if not matching_skills:
@@ -258,7 +259,7 @@ class ChainArchitect:
             matching_skill = None
             for skill in skills:
                 if any(
-                    keyword in skill.get("jtbd", "").lower() for keyword in step_name.split("_")
+                    keyword in (skill.get("jtbd") or "").lower() for keyword in step_name.split("_")
                 ):
                     matching_skill = skill
                     break
@@ -277,6 +278,7 @@ class ChainArchitect:
                         "on_failure": "stop" if i < len(pattern["steps"]) / 2 else "continue",
                         "max_retries": 2,
                     },
+                    "opinionated_prompts": {"system_context": "", "input_guidance": {}},
                 }
                 chain_sequence.append(step)
 
@@ -286,6 +288,8 @@ class ChainArchitect:
             "name": pattern["name"],
             "description": pattern["description"],
             "category": function.replace("_", " ").title(),
+            "icp": {"name": "", "company": {}, "team": {}, "priorities": []},
+            "integration_reference": {"description": "", "schemas": []},
             "chain_sequence": chain_sequence,
             "metadata": {
                 "author": "Chain Architect",
@@ -350,12 +354,15 @@ class ChainArchitect:
                     "name": pattern["name"],
                     "description": pattern["description"],
                     "category": "JTBD Workflow",
+                    "icp": {"name": "", "company": {}, "team": {}, "priorities": []},
+                    "integration_reference": {"description": "", "schemas": []},
                     "chain_sequence": [
                         {
                             "step_id": f"step_{i+1}",
                             "skill_id": skill["skill_id"],
                             "action": "execute",
                             "timeout_seconds": 300,
+                            "opinionated_prompts": {"system_context": "", "input_guidance": {}},
                         }
                         for i, skill in enumerate(matched_skills)
                     ],
@@ -398,14 +405,15 @@ class ChainArchitect:
             "missing_links": self.missing_links,
             "recommendations": {
                 "high_priority_skills_needed": [
-                    link["missing_steps"]
+                    link.get("missing_steps", [])
                     for link in self.missing_links
-                    if link["severity"] == "critical"
+                    if link.get("severity") == "critical"
                 ]
             },
         }
 
         report_path = self.base_path / "reports" / "chain_analysis.json"
+        report_path.parent.mkdir(parents=True, exist_ok=True)
         with open(report_path, "w") as f:
             json.dump(report, f, indent=2)
 

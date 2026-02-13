@@ -36,6 +36,7 @@ This tutorial walks you through creating a simple skill from scratch. We'll buil
 - Familiarity with JSON format
 - Basic command line usage
 - Understanding of the domain you're contributing to
+- Understanding of [what skills are](WHAT_ARE_SKILLS.md) and how they fit together
 
 ---
 
