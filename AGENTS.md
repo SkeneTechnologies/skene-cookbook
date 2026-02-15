@@ -4,7 +4,7 @@ AI agent instructions for `skene-cookbook` - 764 skill library with 36 skill cha
 
 ## Quick Context
 
-**Repository:** Single npm package `@skene/skills-directory` v0.1.2
+**Repository:** Single npm package `@skene/skills-directory` v0.2.0
 **Purpose:** Pre-built AI skill chains for PLG, sales, customer success, security, and more
 **License:** MIT
 **Stack:** Node.js 18+ (npm CLI), Python 3.10+ (testing/validation), Pytest (80%+ coverage)

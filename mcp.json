@@ -1,0 +1,256 @@
+{
+  "$schema": "https://modelcontextprotocol.io/schema/mcp-config.json",
+  "version": "1.0.0",
+  "name": "skene-cookbook",
+  "description": "Model Context Protocol configuration for skene-cookbook AI skills library",
+  "contexts": [
+    {
+      "id": "skills-registry",
+      "name": "Skills Registry",
+      "description": "764 AI skills organized by domain with metadata",
+      "type": "filesystem",
+      "path": "skills-library",
+      "include": ["**/*.json", "**/*.md"],
+      "exclude": ["**/tests/**", "**/node_modules/**"],
+      "metadata": {
+        "skill_count": 764,
+        "domains": [
+          "ecosystem",
+          "marketing",
+          "sales",
+          "customer_success",
+          "product_ops",
+          "security",
+          "finops",
+          "data",
+          "engineering",
+          "hr"
+        ]
+      }
+    },
+    {
+      "id": "skill-chains",
+      "name": "Skill Chain Recipes",
+      "description": "36 ready-to-use workflow blueprints for common business scenarios",
+      "type": "filesystem",
+      "path": "registry/blueprints",
+      "include": ["*.yaml", "*.yml"],
+      "metadata": {
+        "chain_count": 36,
+        "primary_doc": "docs/SKILL_CHAINS.md"
+      }
+    },
+    {
+      "id": "schemas",
+      "name": "Validation Schemas",
+      "description": "JSON schemas for skills, workflows, and integration configurations",
+      "type": "filesystem",
+      "path": "schemas",
+      "include": ["*.json"],
+      "metadata": {
+        "skill_schema": "schemas/skill_definition.json",
+        "workflow_schema": "schemas/workflow_blueprint.json"
+      }
+    },
+    {
+      "id": "integration-schemas",
+      "name": "Integration Schemas",
+      "description": "CRM and billing platform field mappings for data wiring",
+      "type": "filesystem",
+      "path": "registry/integration_schemas",
+      "include": ["*.yaml", "*.yml"],
+      "metadata": {
+        "supported_platforms": ["salesforce", "hubspot", "stripe", "chargebee"]
+      }
+    },
+    {
+      "id": "test-suite",
+      "name": "Test Suite",
+      "description": "Unit, integration, and E2E tests with 32%+ coverage",
+      "type": "filesystem",
+      "path": "tests",
+      "include": ["**/*.py"],
+      "exclude": ["**/__pycache__/**", "**/.pytest_cache/**"],
+      "metadata": {
+        "test_framework": "pytest",
+        "coverage_target": "60%",
+        "current_coverage": "32.36%"
+      }
+    },
+    {
+      "id": "documentation",
+      "name": "User Documentation",
+      "description": "Guides, recipes, and reference materials",
+      "type": "filesystem",
+      "path": "docs",
+      "include": ["**/*.md"],
+      "metadata": {
+        "primary_guides": ["docs/SKILL_CHAINS.md", "docs/PLAYBOOKS.md", "docs/directory.md"]
+      }
+    }
+  ],
+  "tools": [
+    {
+      "id": "skill-search",
+      "name": "Search Skills",
+      "description": "Semantic search across 764 skills by domain, category, or JTBD",
+      "endpoint": "file://./scripts/search_skills.py",
+      "parameters": {
+        "query": {
+          "type": "string",
+          "description": "Search query (e.g., 'analyze customer churn')"
+        },
+        "domain": {
+          "type": "string",
+          "enum": [
+            "ecosystem",
+            "marketing",
+            "sales",
+            "customer_success",
+            "product_ops",
+            "security",
+            "finops",
+            "data",
+            "engineering",
+            "hr"
+          ],
+          "optional": true
+        },
+        "risk_level": {
+          "type": "string",
+          "enum": ["Low", "Medium", "High", "Critical"],
+          "optional": true
+        }
+      }
+    },
+    {
+      "id": "chain-builder",
+      "name": "Build Skill Chain",
+      "description": "Generate workflow blueprint from skill IDs",
+      "endpoint": "file://./scripts/generate_blueprints.py",
+      "parameters": {
+        "skill_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "List of skill IDs to chain (e.g., ['sales_analyze_pipeline', 'sales_recommend_actions'])"
+        },
+        "workflow_name": {
+          "type": "string",
+          "description": "Human-readable workflow name"
+        }
+      }
+    },
+    {
+      "id": "validate-skill",
+      "name": "Validate Skill Schema",
+      "description": "Validate skill.json against schema",
+      "endpoint": "file://./scripts/validate_skills.py",
+      "parameters": {
+        "skill_path": {
+          "type": "string",
+          "description": "Path to skill directory (e.g., 'skills-library/executable/sales/analyze-pipeline/')"
+        }
+      }
+    },
+    {
+      "id": "metrics-sync",
+      "name": "Sync Metrics",
+      "description": "Regenerate registry and sync skill counts across docs",
+      "endpoint": "npm:verify:metrics",
+      "parameters": {}
+    }
+  ],
+  "prompts": [
+    {
+      "id": "skill-creation",
+      "name": "Create New Skill",
+      "description": "Generate skill.json and instructions.md for a new skill",
+      "template": "You are creating a new skill for the skene-cookbook library.\n\n**Domain:** {{domain}}\n**Skill Name:** {{skill_name}}\n**Description:** {{description}}\n**Risk Level:** {{risk_level}}\n\nGenerate:\n1. skill.json following schemas/skill_definition.json\n2. instructions.md with clear execution steps\n3. Suggested test cases\n\nEnsure the skill follows these conventions:\n- Skill ID format: {domain}_{action}_{target}\n- All required fields in skill.json\n- Clear input/output schemas\n- Security considerations documented"
+    },
+    {
+      "id": "chain-recipe",
+      "name": "Create Chain Recipe",
+      "description": "Generate a skill chain recipe for a business use case",
+      "template": "You are creating a skill chain recipe for skene-cookbook.\n\n**Use Case:** {{use_case}}\n**Target Persona:** {{persona}}\n**ICP:** {{icp}}\n\nGenerate:\n1. Workflow blueprint (YAML) with 2-7 chained skills\n2. Recipe entry for docs/SKILL_CHAINS.md\n3. Data flow mappings between steps\n4. Expected ROI and success metrics\n\nFormat the recipe following the existing 36 recipes in docs/SKILL_CHAINS.md."
+    }
+  ],
+  "resources": [
+    {
+      "id": "skill-registry-json",
+      "name": "Skill Registry (JSON)",
+      "description": "Machine-readable registry of all skills",
+      "uri": "file://./registry/skills.json",
+      "metadata": {
+        "format": "json",
+        "auto_generated": true
+      }
+    },
+    {
+      "id": "job-functions",
+      "name": "Job Function Mapping",
+      "description": "Skills organized by job function (Sales, Marketing, CS, etc.)",
+      "uri": "file://./registry/job_functions/index.json",
+      "metadata": {
+        "format": "json"
+      }
+    },
+    {
+      "id": "jtbd-patterns",
+      "name": "Jobs-to-be-Done Patterns",
+      "description": "Skills mapped to JTBD categories",
+      "uri": "file://./registry/jtbd_patterns.json",
+      "metadata": {
+        "format": "json"
+      }
+    }
+  ],
+  "agents": {
+    "primary_instructions": "file://./AGENTS.md",
+    "boundaries": {
+      "can_read": [
+        "skills-library/**",
+        "registry/**",
+        "docs/**",
+        "tests/**",
+        "schemas/**",
+        "scripts/**"
+      ],
+      "cannot_read": [".ai/internal/**", "node_modules/**", ".venv/**"],
+      "can_modify": [
+        "skills-library/executable/**/*.json",
+        "skills-library/executable/**/*.md",
+        "docs/**/*.md",
+        "tests/**/*.py"
+      ],
+      "cannot_modify": ["registry/**", "METRICS.md", "package-lock.json", ".git/**"]
+    }
+  },
+  "evaluation": {
+    "harness_path": "eval_harness",
+    "eval_types": [
+      {
+        "id": "skill-execution",
+        "name": "Skill Execution Accuracy",
+        "description": "Verify skill outputs match expected results",
+        "script": "eval_harness/run_evals.py"
+      },
+      {
+        "id": "chain-consistency",
+        "name": "Chain Data Flow Consistency",
+        "description": "Verify data flows correctly between chained skills",
+        "script": "eval_harness/chain_evaluator.py"
+      }
+    ]
+  },
+  "metadata": {
+    "repository": "https://github.com/SkeneTechnologies/skene-cookbook",
+    "package": "@skene/skills-directory",
+    "version": "0.2.0",
+    "license": "MIT",
+    "maintainer": "opensource@skene.ai",
+    "homepage": "https://github.com/SkeneTechnologies/skene-cookbook#readme",
+    "issues": "https://github.com/SkeneTechnologies/skene-cookbook/issues"
+  }
+}

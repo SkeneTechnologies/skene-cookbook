@@ -1,6 +1,6 @@
 {
   "name": "@skene/skills-directory",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Skills Directory — 764 AI skills (382 executable + 382 reference guides) for Claude and Cursor. PLG, marketing, security, scientific computing, and more. One command to install.",
   "private": false,
   "type": "module",

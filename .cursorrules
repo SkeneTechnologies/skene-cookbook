@@ -1,0 +1,377 @@
+# Cursor Rules for skene-cookbook
+
+## Project Context
+
+**Repository:** skene-cookbook - 764 AI skill library with 36 skill chain recipes
+**Package:** @skene/skills-directory v0.2.0
+**License:** MIT
+**Purpose:** Pre-built AI skill chains for PLG, sales, customer success, security, and more
+
+## Architecture Patterns
+
+### Skill Structure (Non-Negotiable)
+
+Every skill MUST follow this exact structure:
+
+```
+skills-library/{domain}/{skill-name}/
+├── skill.json          # Metadata (name, description, category, risk_level)
+├── instructions.md     # AI agent execution instructions
+└── tests/              # Optional: skill-specific tests
+```
+
+**Do NOT:**
+- Create skills outside `skills-library/executable/` or `skills-library/reference/`
+- Modify existing skill structure without updating registry
+- Add skills without `skill.json` and `instructions.md`
+
+### Registry Auto-Generation
+
+The `registry/` directory is AUTO-GENERATED from `skills-library/`:
+- Never manually edit files in `registry/`
+- Always run `npm run verify:metrics` after skill changes
+- Registry regeneration syncs badges and counts across README.md, METRICS.md, docs/directory.md
+
+### Risk Level Classification
+
+Skills are classified by risk level (defined in `skill.json`):
+- `Low` - Read-only operations, no external dependencies
+- `Medium` - Write operations, requires configuration
+- `High` - External API calls, requires credentials
+- `Critical` - System-level operations, requires manual review
+
+**Rule:** When creating a skill that makes external API calls, uses credentials, or modifies data, always set `risk_level: "High"` or `"Critical"`.
+
+## Naming Conventions
+
+### Skill IDs
+- Format: `{domain}_{action}_{target}` (e.g., `sales_analyze_pipeline`)
+- Use snake_case, all lowercase
+- Be descriptive but concise (3-5 words max)
+
+### File Naming
+- Skill directories: kebab-case (e.g., `analyze-customer-health/`)
+- Python files: snake_case (e.g., `analyze_skills.py`)
+- JavaScript files: kebab-case (e.g., `skills-directory.js`)
+- Documentation: SCREAMING_SNAKE_CASE for top-level (e.g., `AGENTS.md`), kebab-case for nested
+
+### Domain Categories
+
+Valid domains (don't invent new ones without discussion):
+- `ecosystem` - Partner, integration management
+- `marketing` - Campaigns, content, SEO
+- `sales` - Pipeline, deals, CRM
+- `customer_success` - Health, churn, onboarding
+- `product_ops` - Roadmap, releases
+- `security` - Security, compliance
+- `finops` - Billing, revenue
+- `data` - Analytics, reporting
+- `engineering` - DevOps, CI/CD
+- `hr` - Recruiting, onboarding
+
+## Testing Patterns
+
+### Test Organization
+
+```
+tests/
+├── unit/           # Fast, isolated tests (< 1s each)
+├── integration/    # Multi-component tests (< 5s each)
+└── e2e/            # Full user workflows (< 30s each)
+```
+
+### Required Test Coverage
+
+- Minimum: 60% overall coverage
+- Target: 80%+ coverage
+- Critical paths (eval_harness, tracer): 90%+ coverage
+
+### Testing Commands
+
+```bash
+# Run full suite
+pytest tests/ -v
+
+# Run fast tests only
+pytest tests/unit -v -m "not slow"
+
+# Run specific domain tests
+pytest tests/unit/test_dedupe_skills.py -v
+```
+
+**Rule:** All PRs must pass `pytest tests/ -v` before merging.
+
+## Code Quality Standards
+
+### Pre-Commit Hooks (Enforced)
+
+The following hooks run automatically on commit:
+- `detect-secrets` - Blocks commits with credentials
+- `prettier` - Formats JS/JSON/YAML/Markdown
+- `black` - Formats Python (if installed)
+- `flake8` - Lints Python (if installed)
+- `isort` - Sorts Python imports (if installed)
+
+**Rule:** Never use `--no-verify` to skip hooks. Fix the issues instead.
+
+### Linting Commands
+
+```bash
+# JavaScript
+npm run lint        # ESLint + Prettier
+npm run format      # Auto-fix formatting
+
+# Python (if installed in venv)
+black .
+flake8 .
+isort .
+```
+
+## Workflow Blueprints
+
+### Blueprint Schema
+
+Blueprints in `registry/blueprints/` follow `schemas/workflow_blueprint.json`:
+
+```yaml
+id: workflow_{name}
+version: 1.0.0
+name: 'Human Readable Name'
+chain_sequence:
+  - step_id: 'step_1'
+    skill_id: 'domain_action_target'
+    action: 'action_name'
+    input_mapping:
+      static_values: {}
+    error_handling:
+      on_failure: 'stop'
+      max_retries: 2
+```
+
+**Rule:** All workflow blueprints must validate against schema before committing.
+
+## Playbook-Ready Features (Optional but Encouraged)
+
+When creating blueprints, consider adding:
+
+```yaml
+icp:
+  company_size: '50-500'
+  motion: 'product-led-growth'
+  priorities: ['reduce_churn', 'increase_nrr']
+
+integration_reference:
+  - type: 'crm'
+    provider: 'salesforce'
+    schema_ref: 'registry/integration_schemas/salesforce_fields.yaml'
+
+opinionated_prompts:
+  - step_id: 'step_1'
+    system_context: 'You are analyzing a PLG motion with 30-day trials...'
+    input_guidance: 'Focus on trial-to-paid conversion metrics...'
+```
+
+See `registry/integration_schemas/README.md` for schema format.
+
+## Security Rules (Blocking)
+
+### Never Commit
+
+These patterns are BLOCKED by pre-commit hooks:
+- `.env` files (use `.env.example` for templates)
+- Files in `.ssh/`, `.aws/`, `secrets/`
+- Private keys (detected by `detect-private-key` hook)
+- API keys, tokens, passwords (detected by `detect-secrets`)
+
+### Handling Credentials
+
+```bash
+# Good: Reference environment variables
+DATABASE_URL = os.getenv('DATABASE_URL')
+
+# Bad: Hardcoded credentials
+DATABASE_URL = "postgresql://user:pass@localhost"  # pragma: allowlist secret
+```
+
+## AI Agent Boundaries
+
+### What AI Agents Can Access
+
+- All files except `.ai/internal/` (gitignored, excluded in `.cursorignore`)
+- `AGENTS.md` for build commands and conventions
+- All skill schemas in `skills-library/`
+- Test suites in `tests/`
+
+### What AI Agents Should NOT Touch
+
+- `skills-library/` content (764 skills, managed by scripts)
+- `registry/` (auto-generated)
+- `METRICS.md` (auto-generated)
+
+**Rule:** If you modify skill counts or categories, run `npm run verify:metrics` to sync all dependent files.
+
+## Development Workflow
+
+### Adding a New Skill
+
+1. Create directory: `skills-library/executable/{domain}/{skill-name}/`
+2. Write `skill.json` (follow schema in `schemas/skill_definition.json`)
+3. Write `instructions.md` (clear execution steps)
+4. Run `npm run verify:metrics` to update registry
+5. Add tests in `tests/` if complex logic
+6. Run `pytest tests/ -v` to verify
+7. Commit with message: `feat(skills): add {skill-name} to {domain}`
+
+### Modifying Existing Skills
+
+1. Read the skill's `skill.json` and `instructions.md` first
+2. Make changes
+3. Run `npm run verify:metrics`
+4. Update tests if behavior changed
+5. Run `pytest tests/ -v`
+6. Commit with message: `fix(skills): update {skill-name} - {reason}`
+
+### Creating Skill Chains
+
+1. Identify 2-7 skills to chain together
+2. Create blueprint in `registry/blueprints/` (or use script: `scripts/recipe_to_blueprint.py`)
+3. Validate against `schemas/workflow_blueprint.json`
+4. Document in `docs/SKILL_CHAINS.md` (follow existing format)
+5. Add integration test in `tests/integration/`
+6. Commit with message: `feat(chains): add {chain-name} recipe`
+
+## Performance Guidelines
+
+### Skill Execution
+
+- Keep skills atomic (single responsibility)
+- Skills should complete in < 5 seconds (unless marked with `slow: true`)
+- Use caching for expensive operations (see `eval_harness/tracer.py` for examples)
+
+### Testing Performance
+
+- Unit tests: < 1 second each
+- Integration tests: < 5 seconds each
+- E2E tests: < 30 seconds each
+- Mark slow tests with `@pytest.mark.slow`
+
+## Common Patterns
+
+### Skill Chaining (Data Flow)
+
+Skills output data that becomes input for next skill:
+
+```yaml
+- step_id: 'analyze'
+  skill_id: 'sales_analyze_pipeline'
+  output: { health_score: 0.85 }
+
+- step_id: 'recommend'
+  skill_id: 'sales_recommend_actions'
+  input_mapping:
+    from_step: 'analyze'
+    field_mappings:
+      health_score: 'input.score'
+```
+
+### Error Handling
+
+```yaml
+error_handling:
+  on_failure: 'stop'        # Options: stop, continue, retry
+  max_retries: 2
+  retry_delay_seconds: 5
+```
+
+## Commit Message Format
+
+Follow Conventional Commits:
+
+```
+<type>(<scope>): <subject>
+
+<body>
+
+<footer>
+```
+
+**Types:**
+- `feat` - New feature (skill, chain, tool)
+- `fix` - Bug fix
+- `docs` - Documentation only
+- `refactor` - Code refactoring (no behavior change)
+- `test` - Adding or updating tests
+- `chore` - Maintenance (deps, config, etc.)
+
+**Examples:**
+```
+feat(skills): add customer health scoring to customer_success domain
+fix(chains): correct data mapping in sales pipeline workflow
+docs(agents): update AGENTS.md with eval harness instructions
+```
+
+## Quick Reference Commands
+
+```bash
+# Setup
+npm ci
+
+# Testing
+pytest tests/ -v                          # All tests
+pytest tests/unit -v -m "not slow"        # Fast unit tests
+pytest tests/integration -v               # Integration tests
+
+# Quality
+npm run lint                              # ESLint + Prettier
+npm run format                            # Auto-fix formatting
+npm run verify:metrics                    # Sync skill counts/badges
+
+# Pre-release
+bash scripts/pre_release_check.sh         # Comprehensive check
+
+# Pre-commit
+pre-commit run --all-files                # Run all hooks
+```
+
+## Questions or Unclear Patterns?
+
+- Read `AGENTS.md` for build commands and testing workflows
+- Read `CONTRIBUTING.md` for contribution guidelines
+- Read `ARCHITECTURE.md` for design details
+- Check existing skills in `skills-library/` for examples
+- See `docs/SKILL_CHAINS.md` for 36 ready-to-use recipes
+
+## AI Agent Execution Context
+
+When executing code:
+- Use `source .venv/bin/activate` for Python commands
+- Use `npm ci` for fresh dependency install
+- Always run tests before committing: `pytest tests/ -v`
+- Check `git status` before and after operations
+- Use `npm run verify:metrics` after skill changes
+
+## Emergency Commands
+
+If something breaks:
+
+```bash
+# Reset to clean state
+git status
+git restore .
+git clean -fd
+
+# Rebuild registry
+npm run verify:metrics
+
+# Reinstall dependencies
+rm -rf node_modules .venv
+npm ci
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements-dev.txt  # if exists
+```
+
+---
+
+**Last Updated:** 2026-02-15 (v0.2.0 - Open Source Release)
+**Maintained By:** Skene Technologies (opensource@skene.ai)
