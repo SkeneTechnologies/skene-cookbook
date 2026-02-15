@@ -13,7 +13,7 @@ integration_reference:
   schemas: []
 chain_sequence:
   - step_id: step_1_extraction
-    skill_id: elg_integration_health
+    skill_id: null
     action: execute
     description: Execute extraction
     timeout_seconds: 300
@@ -24,7 +24,7 @@ chain_sequence:
       system_context: ''
       input_guidance: {}
   - step_id: step_2_transformation
-    skill_id: elg_partner_influenced_revenue
+    skill_id: null
     action: execute
     description: Execute transformation
     timeout_seconds: 300
@@ -35,7 +35,7 @@ chain_sequence:
       system_context: ''
       input_guidance: {}
   - step_id: step_3_analysis
-    skill_id: elg_partner_influenced_revenue
+    skill_id: null
     action: execute
     description: Execute analysis
     timeout_seconds: 300
@@ -46,7 +46,7 @@ chain_sequence:
       system_context: ''
       input_guidance: {}
   - step_id: step_4_visualization
-    skill_id: prodops_documentation_health
+    skill_id: null
     action: execute
     description: Execute visualization
     timeout_seconds: 300
@@ -58,6 +58,6 @@ chain_sequence:
       input_guidance: {}
 metadata:
   author: Chain Architect
-  created_at: '2026-02-13T13:51:55.410247'
+  created_at: '2026-02-15T23:06:01.470970'
   job_function: data
   auto_generated: true

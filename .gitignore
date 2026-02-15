@@ -37,5 +37,16 @@ reports/
 # Test and tool caches
 .pytest_cache/
 
-# Stub/leftover files
+# Stub/leftover files (removed from repo)
 conditional
+loom
+loom.py
+skill-loom-cli.py
+skill_loom_cli.py
+
+# AI agent internal boundaries
+.ai/internal/
+*.internal.md
+
+# Security scan reports (temporary, not for commit)
+security-scan-*.json

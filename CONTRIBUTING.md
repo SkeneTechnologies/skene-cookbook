@@ -378,6 +378,26 @@ This will automatically:
 - Run security analysis
 - Check for malicious code patterns
 
+## Working with AI Coding Agents
+
+This repository includes `AGENTS.md` with build commands, testing workflows, and conventions for AI coding agents (Cursor, Claude, etc.).
+
+### Quick Setup for AI Agents
+
+AI agents will automatically read `AGENTS.md` for context. To manually review:
+
+```bash
+cat AGENTS.md
+```
+
+### Agent Boundaries
+
+- `AGENTS.md` - Primary instructions for AI agents
+- `.cursorignore` - Files excluded from Cursor AI indexing
+- `.ai/internal/` - Maintainer-only documentation (gitignored, not indexed)
+
+See `AGENTS.md` for complete build commands and conventions.
+
 ## Code of Conduct
 
 All contributors are expected to follow our [Code of Conduct](CODE_OF_CONDUCT.md). Please read it before participating in the project.

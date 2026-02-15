@@ -13,7 +13,7 @@ integration_reference:
   schemas: []
 chain_sequence:
   - step_id: step_1_keyword_research
-    skill_id: marketing_competitor_alternatives
+    skill_id: null
     action: execute
     description: Execute keyword research
     timeout_seconds: 300
@@ -24,7 +24,7 @@ chain_sequence:
       system_context: ''
       input_guidance: {}
   - step_id: step_2_content_creation
-    skill_id: elg_joint_marketing
+    skill_id: null
     action: execute
     description: Execute content creation
     timeout_seconds: 300
@@ -35,7 +35,7 @@ chain_sequence:
       system_context: ''
       input_guidance: {}
   - step_id: step_3_seo_optimization
-    skill_id: marketing_competitor_alternatives
+    skill_id: null
     action: execute
     description: Execute seo optimization
     timeout_seconds: 300
@@ -46,7 +46,7 @@ chain_sequence:
       system_context: ''
       input_guidance: {}
   - step_id: step_4_distribution
-    skill_id: development/web-assets
+    skill_id: null
     action: execute
     description: Execute distribution
     timeout_seconds: 300
@@ -58,6 +58,6 @@ chain_sequence:
       input_guidance: {}
 metadata:
   author: Chain Architect
-  created_at: '2026-02-13T13:51:55.400521'
+  created_at: '2026-02-15T23:06:01.468300'
   job_function: marketing
   auto_generated: true

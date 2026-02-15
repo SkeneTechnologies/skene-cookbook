@@ -1,0 +1,37 @@
+# .cursorignore - Exclude files/directories from Cursor AI indexing
+
+# Internal documentation (maintainer-only)
+.ai/internal/
+
+# Build artifacts and dependencies
+node_modules/
+.venv/
+venv/
+dist/
+build/
+htmlcov/
+.pytest_cache/
+.coverage
+coverage.xml
+*.pyc
+__pycache__/
+
+# Large generated files
+package-lock.json
+
+# Test outputs and reports
+reports/
+test_cases/
+*_TEST_REPORT.md
+*_REPORT.md
+*_CHECKLIST.md
+
+# Backups and temporary files
+*.backup
+*.tmp
+*.log
+.DS_Store
+
+# Cache directories
+.skene/
+.cache/
